@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-08 · Ubersuggest résiduel, PR-A — fil d'Ariane hors du `<h1>` des 2 articles à page dédiée (FR et EN, 4 pages) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lot D), suite de UB-04 (#74) | **PR** : #116 (PR-A), brouillon, « DO NOT MERGE », branche `seo/ubersuggest-tech-h1-dedies-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` passaient leur fil d'Ariane dans le prop `title` de `HeroSection`, donc dans le `<h1>`. Le fil passe dans le prop `breadcrumb` introduit par #74 : `<nav>` étiqueté par langue, séparateurs masqués aux lecteurs d'écran, `font-heading` à la place de `font-sans` comme dans #74. Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni description modifiés ; `BreadcrumbList` inchangé.
+
+**Pourquoi** — Défaut laissé hors périmètre par #74 (JOURNAL du 01/10) et inscrit en F4 de `ETAT.md`. Fresh-check du 08/10 sur `main` `06b18e2` : sur les 4 pages, le texte du H1 commence par « Accueil/Blog/Comparatif », « Home/Blog/Comparison », « Accueil/Blog/Guide », « Home/Blog/Guide », avec un `<div>` enfant du `<h1>`.
+
+**Fichiers** — `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Le H1 des 4 pages ne porte plus que leur titre. Hygiène technique et structure d'accessibilité ; aucun gain de trafic ni de position annoncé.
+
+**Vérifié** —
+- Propriété des fichiers : aucune des 15 PR ouvertes au 08/10 (#27, #64, #70, #82, #104, #105, #107 à #115) ne touche les 2 fichiers ni `components/hero/`. `messages/*.json`, modifiés par 6 PR ouvertes, ne sont pas touchés : le libellé du repère reste dans chaque page, comme dans le gabarit d'article.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices de la CI) ; `verifier-consequences` : effet local.
+- HTML prérendu, build de `main` `06b18e2` contre build de la branche, identifiant de build neutralisé, scripts retirés : 374 pages, 370 identiques, 4 différentes, les 4 pages visées. Écart limité au déplacement du fil : `div` dans le `<h1>` devenu `nav` étiqueté juste avant, séparateurs `aria-hidden`, classe de police.
+- CSS compilée : 3 feuilles, identiques octet pour octet à celles de `main`.
+- Chromium, `next start`, 4 pages, 1440 et 390 px, animations neutralisées : captures de la zone d'en-tête, 0 pixel différent sur les 8 ; police, taille, graisse, interligne, couleur et position du fil identiques ; hauteur de document identique ; 0 débordement, 0 erreur de page.
+- `<head>` des 4 pages identique à `main` : title, description, canonical, hreflang, robots, `og:*`, `twitter:*` ; `BreadcrumbList` identique.
+- Arbre d'accessibilité (comparatif FR, prestataire EN) : un seul titre de niveau 1, au nom égal au titre de l'article ; repère de navigation « Fil d'Ariane » ou « Breadcrumb », 2 liens, catégorie en texte ; séparateurs absents de l'arbre.
+- Playwright, Chromium, `navigation-pages-longues` et `sommaire-blog` sur le build de la branche : 68 sur 69 ; l'échec porte sur `/de-ch/ia-photo-produit` à 1024 px, page non modifiée au HTML identique à `main`, et passe 3 fois sur 3 au rejeu isolé.
+
+**Supposé** — [Inférence] Firefox et Safari suivent le rendu de Chromium : même structure de bloc, mêmes règles CSS. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels.
+- Détecté pendant le fresh-check, non modifié : `/{fr,en,de-ch}/studio-photo/selecteur-machines` place un lien de retour « Studios Photo » suivi d'un `<br>` dans son `<h1>`. Hors liste historique de l'audit ; structure différente (lien seul, mise en page centrée) : décision séparée.
+- Libellé du repère à migrer vers `messages/*.json`, avec celui du gabarit d'article, quand ces fichiers seront libres.
+
+**Suite** — GO de fusion distinct de Laurent (mission du 08/10 : GO_MERGE = NO). Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, puis les 4 pages dans Chrome sur `www`.
+- Doublon : #118, ouverte à 16:17 UTC par une autre session (branche `seo/ubersuggest-residuels-2026-10-08`), porte le même correctif sur les 2 mêmes fichiers, avec un module partagé `lib/blog-fil-ariane.ts` ; #116 a été ouverte à 16:06 UTC, avant elle. Une seule des deux doit être fusionnée : choix de Laurent ; aucune fermeture sans GO.
+
+---
+
 ## 2026-10-08 · JSON-LD — `Product.url` et `Offer.url` des fiches de-ch sur l'URL canonique · Claude de Laurent
 
 **Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « structured data »), backlog F5 de `ETAT.md` (#55) | **PR** : #110, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p` | **Base** : `main` `06b18e2`
