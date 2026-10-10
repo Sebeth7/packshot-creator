@@ -77,11 +77,13 @@ export const ROUTES_EXCLUES: readonly RegleRoute[] = [
  * (docs/standards/R-UX-LONG.md, D37, D39, D44). Elles rejoindront la
  * couverture en retirant leur ligne, sur décision, après la fin de leur gel.
  * Aucune levée automatique à la date.
+ *
+ * `/fr/packshot-mode` retirée le 10/10/2026 sur décision de Laurent (D56) :
+ * exception propre à la pop-in, la période de mesure Mode n'est pas annulée.
  */
 export const ROUTES_GELEES: readonly (RegleRoute & { jusqua: string })[] = [
   { chemin: '/fr', exact: true, motif: 'Accueil, mesure M5 (D44)', jusqua: '28/10/2026' },
   { chemin: '/fr/packshot-e-commerce', motif: 'F5 (D37)', jusqua: '23/11/2026' },
-  { chemin: '/fr/packshot-mode', motif: 'Mode (D39)', jusqua: '26/11/2026' },
   { chemin: '/fr/industrie/mode-textile', motif: 'Hub mode-textile, mesure Mode', jusqua: '26/11/2026' },
 ];
 
