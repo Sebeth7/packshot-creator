@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · Neutralisation ciblée : liens produit historiques, liens IA vers l'ancienne route `alphashot-g2`, offre d'essai BlendAI de l'article FR IA · Claude de Laurent
+
+**Chantier** : cocons et maillage, finition ciblée (kit `PSC_COCONS_FINITION_CIBLE_PRET_CLAUDE_CODE_2026-10-10.zip`, SHA-256 `d7c94f19…48e6`, transmis par Laurent le 10/10 ; GO_CODE_CIBLÉ et GO_PR_DRAFT, GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : brouillon, « DO NOT MERGE » | **Base** : `main` `48a2ce2`
+
+**Quoi** — Script du kit (`PSC_PATCH_COCONS_CIBLE_2026-10-10.mjs`, exécuté hors dépôt depuis un worktree isolé, contrôle des SHA des 6 fichiers et de l'unicité de chaque remplacement) :
+1. G1 (ANC-131, 132, 142, 143) : articles 3D FR et EN, hyperliens retirés sur « Packshot Macro DL » et « Packshot Macro DIS » (vers `alphashot-micro-v2`) ; noms, `<strong>` et `<em>` conservés.
+2. G2 (ANC-121, 122, 126) : article Amazon EN et articles eBooks EN et FR, hyperlien vers l'ancienne route `alphashot-g2` retiré des expressions IA / automatisation ; texte et gras conservés ; aucune destination de substitution.
+3. G3 (ANC-153) : `content/blog/fr/generer-images-produit-ia.json`, retrait de l'offre « 6 visuels offerts, sans carte bancaire » (phrase de l'étape « Choisissez votre outil », avec « Connectez-vous et accédez au tableau de bord. »), du paragraphe de promotion « en 30 secondes », du CTA « Tester BlendAI gratuitement », et de la mention de l'offre dans la FAQ (texte de l'article et champ `faqs`, qui alimente le JSON-LD FAQPage).
+
+**Pourquoi** — Liens qui associent des désignations historiques ou des affirmations IA à une fiche d'un autre produit (G1, G2) ; offre d'essai non confirmée (G3).
+
+**Fichiers** — 6 JSON de `content/blog/{fr,en}/` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Liens de contenu entrants, `main` → PR : `/fr/ia-photo-produit` 7 → 5 ; `/fr/studio-photo/alphashot-g2` 2 → 1 (le restant : ANC-125, HOLD) ; `/en/photo-studio/alphashot-g2` 2 → 0 ; `alphashot-micro-v2` FR 14 → 12, EN 15 → 13. Aucun lien ni texte ajouté.
+
+**Vérifié** — `main` `48a2ce2` = base attendue par le kit ; SHA des 6 fichiers conformes ; dry-run puis apply : 11 remplacements au nombre d'occurrences attendu ; diff champ par champ : seuls des `href` retirés et les passages G3 listés ; aucune PR ouverte ne touche ces 6 fichiers (#27 : Amazon FR seulement ; #64 : aucun). Contrôles de build : voir la PR.
+**Supposé** — Le classement ANC du kit (pilotage externe du 10/10) n'est pas re-audité ici (consigne du kit).
+**Non regardé** — 15 références historiques G1 conservées sans conversion ; ANC-125 (Amazon FR, collision #27) ; ANC-112 à ANC-118 (landing IA actuelle) ; ANC-152 (collision #64) ; la landing `/fr/ia-photo-produit` de `main` affiche toujours « Essai gratuit — 6 visuels offerts » et lie `blendai.studio` (hors mandat) ; dans l'article FR IA, la légende « en moins de 30 secondes » et les durées « 30 secondes par image » restent (hors liste du kit) ; affirmations techniques IA restant dans la prose G2 : HOLD éditorial D42 avant fusion.
+
+**Suite** — Brouillon ; QA ciblée des 6 URL sur la Preview ; validations D42 à relever ; GO_MERGE et GO_PUBLICATION distincts de Laurent.
+
+---
+
 ## 2026-10-10 · Clôture de #123 et #124 : `main` `3619e75` intégré dans #125, exception renumérotée D54, contrôle de `www` dans Chrome · Claude de Laurent
 
 **Chantier** : maillage et cocons, clôture (mission de Laurent du 10/10 « Réconciliation finale de la PR #125 ») | **PR** : #125, brouillon, documentation seule | **Commit** : fusion de `main` `3619e75` dans la branche `claude/gracious-cerf-rbj12m` (ce commit)
