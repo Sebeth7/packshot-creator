@@ -78,11 +78,11 @@ const faqItems = [
   },
   {
     question: 'Quels sont les coûts cachés d\'un studio photo automatisé ?',
-    answer: 'Les principaux coûts récurrents sont la maintenance annuelle (10–15 % du prix machine), la formation des nouveaux opérateurs (facturée séparément) et les mises à jour logicielles (généralement gratuites chez Orbitvu). Les consommables sont négligeables (moins de 200 €/an).',
+    answer: 'Les principaux coûts récurrents sont la maintenance (sur devis), la formation des nouveaux opérateurs (facturée séparément) et les consommables.',
   },
   {
     question: 'Comment financer l\'achat d\'un studio photo automatisé ?',
-    answer: 'Plusieurs options existent : leasing professionnel sur 36–60 mois, crédit équipement bancaire, ou amortissement comptable sur 3–5 ans. La formation, facturée séparément et dispensée par un organisme certifié Qualiopi, peut être financée par votre OPCO selon votre situation.',
+    answer: "Le leasing professionnel ou un crédit équipement sont possibles ; leurs conditions dépendent de l'organisme financeur. La formation est facturée séparément : Sysnext est certifiée Qualiopi, un financement OPCO est possible selon votre situation.",
   },
   {
     question: 'Quelle est la formule pour calculer le ROI d\'un studio photo ?',
@@ -90,7 +90,7 @@ const faqItems = [
   },
   {
     question: 'Un studio Orbitvu est-il compatible avec l\'IA photo produit ?',
-    answer: 'Oui, les studios Orbitvu sont IA Ready et compatibles nativement avec BlendAI. Le workflow combiné Hardware + IA génère un gain de productivité total de 92–95 % vs méthode traditionnelle.',
+    answer: "Les packshots produits par un studio Orbitvu peuvent ensuite être traités par des outils d'IA (détourage, arrière-plans, mises en scène). Les intégrations possibles dépendent de vos outils : contactez-nous pour les vérifier.",
   },
 ];
 
@@ -165,7 +165,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   L'acquisition d'un studio photo automatisé représente un investissement stratégique majeur pour toute entreprise e-commerce. Avec des budgets très variables selon le modèle et la configuration retenus, la décision ne peut être prise à la légère. Un ROI mal calculé peut conduire à choisir une machine inadaptée, sous-dimensionnée pour vos besoins futurs, ou au contraire surdimensionnée et sous-exploitée.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Dans ce guide complet, nous vous présentons une <strong>méthode en 8 facteurs</strong> pour calculer précisément le retour sur investissement de votre futur studio photo automatisé. Que vous gériez 500 ou 10 000 références, cette approche vous permettra de prendre une décision éclairée et de justifier votre investissement auprès de votre direction financière.
+                  Dans ce guide complet, nous vous présentons une <strong>méthode en 8 facteurs</strong> pour calculer le retour sur investissement de votre futur studio photo automatisé. Que vous gériez 500 ou 10 000 références, cette approche vous permettra de prendre une décision éclairée et de justifier votre investissement auprès de votre direction financière.
                 </p>
 
                 <hr className="my-8 border-neutral-200" />
@@ -189,24 +189,24 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <ul className="list-disc pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600"><strong>AlphaShot Micro</strong> : Sur devis (petits objets : bijoux, montres, cosmétiques)</li>
                   <li className="text-future-dusk-600"><strong>AlphaShot G2</strong> : Sur devis (e-commerce généraliste : chaussures, maroquinerie, textile)</li>
-                  <li className="text-future-dusk-600"><strong>AlphaShot 360</strong> : Sur devis (vues 360°, vidéos produits, AR/VR)</li>
+                  <li className="text-future-dusk-600"><strong>AlphaShot 360</strong> : Sur devis (vues 360°, vidéos produits)</li>
                   <li className="text-future-dusk-600"><strong>AlphaShot XXL</strong> : Sur devis (grands produits : meubles, électroménager)</li>
                 </ul>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Coûts d'Installation</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">Au-delà du prix machine, prévoyez :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Installation on-site</strong> : 1 000 - 2 000€ (transport, calibration, mise en service)</li>
-                  <li className="text-future-dusk-600"><strong>Aménagement espace</strong> : 500 - 3 000€ (électricité, éclairage ambiant, mobilier)</li>
-                  <li className="text-future-dusk-600"><strong>Logiciels complémentaires</strong> : 0 - 1 000€/an (retouche, gestion catalogue)</li>
+                  <li className="text-future-dusk-600"><strong>Livraison et installation sur site</strong> : facturées en supplément, sur devis</li>
+                  <li className="text-future-dusk-600"><strong>Aménagement de l'espace</strong> : électricité, éclairage ambiant, mobilier</li>
+                  <li className="text-future-dusk-600"><strong>Logiciels complémentaires</strong> : retouche, gestion catalogue</li>
                 </ul>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Formation Équipes</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">Un facteur souvent sous-estimé mais crucial pour optimiser votre ROI :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Essential Training</strong> (à distance) : prise en main du studio, facturée séparément</li>
-                  <li className="text-future-dusk-600"><strong>Master Training</strong> (en présentiel) : maîtrise du studio, facturée séparément (organisme certifié Qualiopi, financement OPCO possible)</li>
-                  <li className="text-future-dusk-600"><strong>Support post-formation</strong> : Inclus pendant 3-6 mois selon distributeur</li>
+                  <li className="text-future-dusk-600"><strong>Essential Training</strong> (4 h, à distance) : prise en main du studio, facturée séparément</li>
+                  <li className="text-future-dusk-600"><strong>Master Training</strong> (7 h, en présentiel) : maîtrise du studio, facturée séparément</li>
+                  <li className="text-future-dusk-600"><strong>Financement</strong> : Sysnext est certifiée Qualiopi ; financement OPCO possible selon votre situation</li>
                 </ul>
 
                 <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Investissement initial total moyen</strong> :</p>
@@ -256,14 +256,10 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Maintenance et Consommables</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">N'oubliez pas les coûts récurrents :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Maintenance studio automatisé</strong> : 10-15% du prix machine par an</li>
-                  <li className="text-future-dusk-600"><strong>Consommables</strong> : Négligeables (électricité, backgrounds papier si besoin)</li>
-                  <li className="text-future-dusk-600"><strong>Mises à jour logicielles</strong> : Généralement incluses dans maintenance</li>
+                  <li className="text-future-dusk-600"><strong>Maintenance studio automatisé</strong> : sur devis</li>
+                  <li className="text-future-dusk-600"><strong>Consommables</strong> : électricité, fonds papier si besoin</li>
                 </ul>
 
-                <Callout type="warning" title="Attention aux coûts cachés">
-                  Les coûts de production photo actuels sont souvent sous-estimés de <strong>30-50%</strong> car dispersés entre plusieurs départements (photo, retouche, e-commerce, IT).
-                </Callout>
 
                 <hr className="my-8 border-neutral-200" />
 
@@ -308,19 +304,19 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Réduction Post-Production</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Les studios automatisés Orbitvu intègrent des fonctionnalités qui réduisent drastiquement le besoin de retouche :
+                  Les studios automatisés Orbitvu intègrent des fonctionnalités qui réduisent le besoin de retouche :
                 </p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Détourage automatique</strong> : Précision 99%+, gain de 10-15 min par photo</li>
-                  <li className="text-future-dusk-600"><strong>Correction chromatique</strong> : Balance des blancs automatique, cohérence garantie</li>
-                  <li className="text-future-dusk-600"><strong>Nettoyage arrière-plan</strong> : Fond blanc pur, aucune retouche nécessaire</li>
+                  <li className="text-future-dusk-600"><strong>Détourage automatique</strong></li>
+                  <li className="text-future-dusk-600"><strong>Correction chromatique</strong> : balance des blancs automatique</li>
+                  <li className="text-future-dusk-600"><strong>Nettoyage arrière-plan</strong> : fond blanc</li>
                 </ul>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <strong>ROI post-production</strong> : Retouche manuelle 15€/photo × 1 000 photos = 15 000€/an. Retouche minimale IA (10% des photos) : 5€/photo × 100 photos = 500€/an. <strong>Économie : 14 500€/an</strong>.
                 </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">
-                    Découvrir l'intégration IA BlendAI pour aller encore plus loin
+                    Découvrir l'approche studio + IA
                   </Link>
                 </p>
 
@@ -331,52 +327,23 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   4. Gains Qualitatifs : Au-Delà des Chiffres
                 </h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  Certains bénéfices du studio automatisé ne se mesurent pas directement en euros mais impactent fortement votre business.
+                  Certains bénéfices du studio automatisé ne se mesurent pas directement en euros.
                 </p>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Réduction Taux de Rejet</h4>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">Les photos de mauvaise qualité génèrent des retours produits et insatisfaction client :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Taux de retour e-commerce moyen</strong> : 15-30% selon secteur</li>
-                  <li className="text-future-dusk-600"><strong>Part due aux visuels trompeurs</strong> : 20-40% des retours</li>
-                  <li className="text-future-dusk-600"><strong>Impact studio automatisé</strong> : -30% des retours liés aux visuels</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>Calcul économie</strong> : Chiffre d'affaires 1M€/an → Taux retour 20% = 200 000€ → Retours liés visuels 30% = 60 000€ → Réduction (-30%) : <strong>18 000€ économisés/an</strong>.
-                </p>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Cohérence Visuels et Image de Marque</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">L'homogénéité visuelle de votre catalogue renforce la perception qualité de votre marque :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Éclairage constant</strong> : Même rendu sur 100% du catalogue</li>
-                  <li className="text-future-dusk-600"><strong>Cadrage uniforme</strong> : Cohérence visuelle parfaite</li>
-                  <li className="text-future-dusk-600"><strong>Colorimétrie maîtrisée</strong> : Fidélité couleurs garantie</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Impact business</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600">+15-25% de conversion sur pages produits (données études e-commerce 2024-2025)</li>
-                  <li className="text-future-dusk-600">+30% de temps passé sur site (navigation facilitée)</li>
-                  <li className="text-future-dusk-600">-40% de demandes SAV "couleur différente de la photo"</li>
+                  <li className="text-future-dusk-600"><strong>Éclairage constant</strong> : rendu homogène sur le catalogue</li>
+                  <li className="text-future-dusk-600"><strong>Cadrage uniforme</strong></li>
+                  <li className="text-future-dusk-600"><strong>Colorimétrie maîtrisée</strong></li>
                 </ul>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Time-to-Market : Réactivité Commerciale</h4>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">La vitesse de mise en ligne des nouveaux produits devient un avantage concurrentiel décisif :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Sans studio automatisé</strong> : 10-20 jours (brief prestataire, shooting, retouche, livraison)</li>
-                  <li className="text-future-dusk-600"><strong>Avec studio automatisé</strong> : 1-2 jours (shooting interne + traitement immédiat)</li>
-                  <li className="text-future-dusk-600"><strong>Gain</strong> : -80% délai de mise en ligne</li>
-                </ul>
-                <p className="mb-4 leading-relaxed text-future-dusk-600"><strong>Impact saisonnier</strong> :</p>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600">Lancement collections en phase avec concurrence</li>
-                  <li className="text-future-dusk-600">Réactivité promotions flash (&lt; 48h)</li>
-                  <li className="text-future-dusk-600">Tests A/B visuels en temps réel</li>
-                </ul>
 
                 <hr className="my-8 border-neutral-200" />
 
                 <Callout type="info" title="Calculez Votre ROI Personnalisé">
-                  Estimez le retour sur investissement de votre futur studio photo en 5 minutes avec notre calculateur gratuit. Obtenez une recommandation machine adaptée à vos besoins.{' '}
+                  Estimez le retour sur investissement de votre futur studio photo avec notre calculateur gratuit.{' '}
                   <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline font-semibold">
                     Lancer le calculateur gratuit →
                   </Link>
@@ -410,7 +377,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   <li className="text-future-dusk-600">
                     Investissement initial (machine + installation + formation) : variable selon le modèle retenu —{' '}
                     <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">
-                      obtenez votre chiffrage exact en 5 minutes
+                      obtenez une estimation
                     </Link>
                   </li>
                   <li className="text-future-dusk-600">1 opérateur dédié studio : 35 000€/an</li>
@@ -474,34 +441,16 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
 
                 {/* Section 6 */}
                 <h3 id="calculateur-roi-gratuit" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-                  6. Calculateur ROI Gratuit : Estimez Votre Retour en 5 Minutes
+                  6. Calculateur ROI Gratuit : Estimez Votre Retour
                 </h3>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   Pour calculer votre ROI personnalisé, nous mettons à votre disposition un <strong>calculateur interactif gratuit</strong>.
                 </p>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Fonctionnalités du Calculateur</h4>
-                <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>8 questions simples</strong> (volume, budget actuel, objectifs)</li>
-                  <li className="text-future-dusk-600"><strong>Résultats instantanés</strong> personnalisés</li>
-                  <li className="text-future-dusk-600"><strong>Recommandation machine</strong> intelligente (Micro, G2, 360, XXL)</li>
-                  <li className="text-future-dusk-600"><strong>Comparaison avant/après</strong> détaillée</li>
-                  <li className="text-future-dusk-600"><strong>Export PDF gratuit</strong> pour présentation direction</li>
-                  <li className="text-future-dusk-600"><strong>Graphiques évolution ROI</strong> sur 1-3-5 ans</li>
-                </ul>
+                <p className="mb-4 leading-relaxed text-future-dusk-600">
+                  Le calculateur vous interroge sur votre volume et vos coûts de production actuels, puis établit une étude de retour sur investissement par machine. Un rapport PDF peut être obtenu après saisie de votre adresse e-mail.
+                </p>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Comment Utiliser le Calculateur</h4>
-                <ol className="list-decimal pl-6 mb-4 space-y-3">
-                  <li className="text-future-dusk-600">
-                    <strong>Renseignez vos données actuelles</strong> : Volume annuel produits, coûts production actuels (internes ou externes), temps moyen par produit, budget disponible.
-                  </li>
-                  <li className="text-future-dusk-600">
-                    <strong>Recevez votre analyse personnalisée</strong> : Machine recommandée, délai de retour estimé, ROI année 1, 2, 3, économies prévisionnelles.
-                  </li>
-                  <li className="text-future-dusk-600">
-                    <strong>Exportez votre rapport PDF</strong> : Présentation direction validée, graphiques professionnels, hypothèses détaillées.
-                  </li>
-                </ol>
 
                 <div className="text-center my-10">
                   <Link
@@ -525,41 +474,25 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Amélioration Workflow Équipes</h4>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">L'automatisation libère vos équipes pour des tâches à plus forte valeur ajoutée :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Temps libéré</strong> : 80% du temps photo réalloué à stratégie contenu, merchandising</li>
+                  <li className="text-future-dusk-600"><strong>Temps libéré</strong> : du temps réalloué à la stratégie de contenu et au merchandising</li>
                   <li className="text-future-dusk-600"><strong>Motivation équipes</strong> : Fin des tâches répétitives, montée en compétences techniques</li>
-                  <li className="text-future-dusk-600"><strong>Polyvalence</strong> : 1 opérateur formé peut gérer bijoux, chaussures, meubles</li>
                 </ul>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Scalabilité : Préparer la Croissance</h4>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">Un studio automatisé dimensionné correctement supporte votre croissance sans nouvel investissement majeur :</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600">Un studio automatisé bien dimensionné accompagne votre croissance :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Capacité évolutive</strong> : Passer de 500 à 5 000 produits/an sans embauche</li>
                   <li className="text-future-dusk-600"><strong>Modularité</strong> : Ajout d'un second studio identique si besoin (workflow unifié)</li>
-                  <li className="text-future-dusk-600"><strong>Pérennité</strong> : Machines Orbitvu garanties 5-7 ans, mises à jour software gratuites</li>
                 </ul>
 
                 <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Flexibilité Multi-Produits</h4>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">Contrairement aux solutions spécialisées, les studios Orbitvu s'adaptent à tous types de produits :</p>
+                <p className="mb-4 leading-relaxed text-future-dusk-600">La gamme Orbitvu couvre plusieurs types de produits, selon le modèle :</p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Bijoux</strong> (3×3 cm) → <strong>Meubles</strong> (150×150 cm) avec même workflow</li>
                   <li className="text-future-dusk-600"><strong>Packshots simples</strong> → <strong>Vues 360°</strong> → <strong>Vidéos</strong> (selon modèle)</li>
-                  <li className="text-future-dusk-600"><strong>Photo fond blanc</strong> → <strong>Lifestyle IA</strong> (intégration BlendAI native)</li>
                 </ul>
 
-                <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-3">Intégration IA : Le Workflow 2026</h4>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">Les studios Orbitvu sont <strong>IA Ready</strong>, compatibles nativement avec BlendAI pour prolonger votre workflow :</p>
-                <ol className="list-decimal pl-6 mb-4 space-y-2">
-                  <li className="text-future-dusk-600"><strong>Capture studio Orbitvu</strong> : Packshot fond blanc haute qualité (2-5 min)</li>
-                  <li className="text-future-dusk-600"><strong>Export automatique BlendAI</strong> : API directe, aucune manipulation manuelle</li>
-                  <li className="text-future-dusk-600"><strong>IA génère 5 déclinaisons</strong> : Détourage, backgrounds, lifestyle, retouche (2 min)</li>
-                  <li className="text-future-dusk-600"><strong>Validation humaine</strong> : QA rapide, export e-commerce (1 min)</li>
-                </ol>
-                <p className="mb-4 leading-relaxed text-future-dusk-600">
-                  <strong>ROI combiné Hardware + IA</strong> : Gain de productivité total de <strong>92-95%</strong> vs méthode traditionnelle.
-                </p>
                 <p className="mb-4 leading-relaxed text-future-dusk-600">
                   <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">
-                    Découvrir l'intégration IA pour studios photo
+                    Découvrir l'approche studio + IA
                   </Link>
                 </p>
 
@@ -595,13 +528,11 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   Calculer le ROI d'un studio photo automatisé nécessite une <strong>approche holistique</strong> intégrant coûts directs, coûts indirects, gains de productivité et bénéfices qualitatifs. La formule classique ROI doit être complétée par une analyse des impacts stratégiques : cohérence visuelle, time-to-market, scalabilité, intégration IA.
                 </p>
 
-                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Les 5 Points Clés à Retenir</h3>
+                <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Les Points Clés à Retenir</h3>
                 <ol className="list-decimal pl-6 mb-4 space-y-2">
                   <li className="text-future-dusk-600"><strong>ROI moyen 12-18 mois</strong> pour catalogues 500+ produits/an</li>
                   <li className="text-future-dusk-600"><strong>Économie 50-80%</strong> des coûts photo sur 3 ans</li>
                   <li className="text-future-dusk-600"><strong>Productivité ×5-10</strong> (de 25 min à 3 min par produit)</li>
-                  <li className="text-future-dusk-600"><strong>Qualité +30%</strong> (cohérence, fidélité couleurs, expérience client)</li>
-                  <li className="text-future-dusk-600"><strong>IA Ready</strong> : Workflow 2026 Hardware + IA BlendAI (productivité ×20)</li>
                 </ol>
 
                 <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3">Vos Prochaines Étapes</h3>
@@ -656,7 +587,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Intégration IA</strong> :{' '}
-                    <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Workflow Hardware + BlendAI</Link>
+                    <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Approche studio + IA</Link>
                   </li>
                   <li className="text-future-dusk-600">
                     <strong>Formations</strong> :{' '}

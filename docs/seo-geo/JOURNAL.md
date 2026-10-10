@@ -34,6 +34,760 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #122 — publication autorisée (D55) : interrupteur ouvert, stockage de session mentionné dans la politique de confidentialité · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122 | **Commit** : voir l'historique de #122
+
+**Quoi** — GO_MERGE et GO_PUBLICATION de Laurent du 10/10 et ses réponses aux quatre points ouverts (D55) : `POPIN_PUBLICATION_AUTORISEE = true` ; article 6 de la politique de confidentialité complété d'une entrée « Stockage de session (fenêtre de suggestion) » en FR, EN et de-ch ; commentaires et test des interrupteurs alignés.
+
+**Pourquoi** — Les préalables documentés sur #122 sont levés par décision de Laurent : copy publiée sur son autorité (`SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED`) ; `sessionStorage` tenu pour fonctionnel, sans consentement, et mentionné ; fermeture par X et Échap validée par les tests automatisés ; droits du visuel confirmés.
+
+**Fichiers** — `lib/engagement/activation.ts`, `lib/engagement/session.ts` (commentaire), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts` (commentaire), `app/[lang]/confidentialite/page.tsx` (une entrée), `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (clé `privacy.article6.sessionStorage` ajoutée, aucune clé existante modifiée, mise en forme conservée), `docs/seo-geo/DECISIONS.md` (D55), `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — À la fusion : pop-in montée en production, donc sur `www`, desktop FR seulement ; exclusions, gels et périodes de mesure inchangés. Politique de confidentialité : une entrée de plus à l'article 6. Mesure sur 7 à 14 jours : `exit_modal_view` et `cta_click` (`exit_modal`) dans GA4, consentement requis.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest : 34 fichiers, 626 tests ; ESLint (`lib/engagement`, `components/engagement`, politique, spec) : aucune erreur ; `npx next build` vert (valeurs factices), 387 pages ; `next start` local : entrée de l'article 6 rendue sur `/fr/confidentialite` et `/en/confidentialite` (`/de-ch/confidentialite` : 404, comme sur `main`) ; Playwright Chromium, `e2e/popin-engagement.spec.ts` : 38/38 (conditions, X, Échap, rechargement, exclusions, gels, mobile, session). Sources CNIL relues le 10/10 : page « Cookies et traceurs : comment mettre mon site web en conformité ? » (le stockage local relève des traceurs) ; lignes directrices, délibération n° 2020-091, article 5, point 49 (liste des exemptions).
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4) ; contrôle humain en Chrome de la fermeture (D55 : tests automatisés tenus pour suffisants). `pkc_attribution` (`lib/attribution.ts`, monté dans le layout) : écrit en production dans le `sessionStorage` (UTM, referrer, première page) sans consentement ni mention dans la politique ; hors #122, non modifié, à signaler à Laurent.
+
+**Suite** — CI, sortie du brouillon et fusion ; contrôle de `sysnext.vercel.app` (smoke, pop-in montée), puis de `www` dans Chrome (Laurent) ; mesure sur 7 à 14 jours ; validation de la copy par Sébastien, non bloquante (D55).
+
+---
+
+## 2026-10-10 · Clôture de #123 et #124 : `main` `3619e75` intégré dans #125, exception renumérotée D54, contrôle de `www` dans Chrome · Claude de Laurent
+
+**Chantier** : maillage et cocons, clôture (mission de Laurent du 10/10 « Réconciliation finale de la PR #125 ») | **PR** : #125, brouillon, documentation seule | **Commit** : fusion de `main` `3619e75` dans la branche `claude/gracious-cerf-rbj12m` (ce commit)
+
+**Quoi**
+- `main` `3619e75` (fusion de #82, 10/10 à 05:00:17 UTC) fusionné dans #125, sans rebase ; conflits des trois fichiers résolus dans l'éditeur de conflits de GitHub.
+- L'exception D15/D48 de #123 et #124, proposée D53 sur la branche de #125 le 09/10 (tête `6813cbf`), est inscrite **D54** : la D53 de `main` est celle de #82 (landing catalogue). Le texte de Laurent (« Inscrire cette décision comme D53 ») est reproduit sans modification ; la ligne « Statut » de D54 explique la renumérotation. Dans les lignes propres à #125 (titre et deuxième puce de l'entrée du 09/10 ci-dessous, `ETAT.md` § G), « D53 » devient « D54 » ; aucune ligne de `main` n'est renumérotée.
+- Contrôle Chrome de `www` du 10/10 consigné (`ETAT.md` C, E, G) ; J0 de la mesure de #123 fixé.
+
+**Pourquoi** — Collision de numéro : #82 a inscrit D53 sur `main` (ex-D52 de sa branche, renumérotée le 09/10) avant #125, qui proposait aussi une D53. Règle appliquée le 09/10 pour #82 : la décision déjà fusionnée garde son numéro. Aucun « D54 » dans `DECISIONS.md`, `ETAT.md` et `JOURNAL.md` de `main`, de #125 ni de #126 avant cette écriture.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D54 au-dessus de la D53 de `main`) ; `docs/seo-geo/ETAT.md` (version de `main` ; lignes actualisées : `main`, mise à jour documentaire, règle D37/D39/D52, #123 et #124 sortis de B, contrôles `www` en C, événement D52 et mesure de #123 en E, livraisons en G) ; `docs/seo-geo/JOURNAL.md` (cette entrée ; entrée de #125 du 09/10 placée sous l'entrée de #82 du 10/10).
+
+**Effet attendu** — Aucun effet sur le site (documentation). Mesure de #123 : J0 le 10/10, J+28 le 07/11, J+56 le 05/12.
+
+**Vérifié**
+- GitHub, 10/10 vers 05:20 UTC, dans Chrome : `main` = `3619e75` (parents `f143f61` et `d7331c1`) ; #125 brouillon, tête `6813cbf` (parent `f143f61`), en conflit sur les trois fichiers ; #126 brouillon (#82, branche `claude/magical-clarke-rkqimg`), `DECISIONS.md` identique à `main`.
+- Fusion : `DECISIONS.md` et `JOURNAL.md` contiennent toutes les lignes de `main`, dans l'ordre ; `ETAT.md` les contient toutes sauf les lignes actualisées listées sous « Fichiers » ; un seul titre « D53 » (#82) et un seul titre « D54 ».
+- `www.packshot-creator.com`, 10/10 de 06:46 à 06:54 CEST (04:46–04:54 UTC, avant la fusion de #82), Claude dans Chrome pour Laurent, aucun formulaire soumis :
+  - accessible dans Chrome (HTTP 200, aucun blocage Cloudflare) ;
+  - A, Studios : l'ancre corrigée de `/fr/blog/les-visuels-au-service-du-referencement-de-votre-e-commerce` mène à `/fr/studios-photo-automatises` (clic réel) ;
+  - B, Mode : « fashion » de `/en/blog/how-shotflow-accelerates-fashion-visual-content-production` mène à `/en/packshot-mode`, page en anglais ;
+  - C, F5 : « packshots professionnels en série » du pilier FR mène à `/fr/packshot-e-commerce`, lien distinct de « studio photo automatisé » (Studios) ;
+  - D, Amazon : liens réciproques entre `comment-avoir-meilleures-images-amazon` et `photographie-360-amazon` ; F5 depuis le guide Amazon ;
+  - E, de-ch : `leitfaden-packshot-fotografie-warum-packshots-machen` vers `/de-ch/packshot-e-commerce` ; `produkt-vorstellen-leitfaden-packshot-fotografie` vers le pilier de-ch et `/de-ch/packshot-mode` ; destinations en `de-ch` ;
+  - F : `/fr/packshot-e-commerce`, `/fr/packshot-mode`, `/fr/industrie/mode-textile`, `/fr/distributeur-orbitvu-suisse`, `/fr/studio-photo/alphashot-pro-g2` : 200, un H1, aucune image cassée ;
+  - G, guides `/fr/guide/modifier-couleur-produit-photo` et `/en/guide/change-product-photo-color` : liens éditoriaux soulignés, cliquables (clic et Entrée), focus clavier visible ;
+  - 390 px : 2 guides, pilier FR, F5, `/fr/distributeur-orbitvu-suisse` : aucun débordement horizontal, aucun lien masqué ;
+  - verdict : 7 groupes sur 7 PASS, aucune anomalie bloquante.
+- Défauts préexistants, présents dans les sources à `085b005` (avant #124), non corrigés : liens de pages de-ch vers des contenus FR (4 dans `leitfaden-packshot-fotografie-warum-packshots-machen`, 20 dans `produkt-vorstellen-leitfaden-packshot-fotografie`, nombres inchangés par #124) ; « les studio photo automatisé » (accord) dans le pilier FR ; ancre « intelligence artificielle » du guide Amazon FR vers `/fr/studio-photo/alphashot-g2`, redirigée vers `alphashot-xl-g2`.
+
+**Supposé** — `www` servait `f143f61` pendant le contrôle : déploiement Production `f143f61` « Active » sur la page des déploiements GitHub vers 04:53 UTC et liens de #124 rendus ; aucun identifiant de commit dans les pages.
+
+**Non regardé** — Les 97 pages sur `www` : seul l'échantillon ci-dessus (contrôle exhaustif 97/97 : `sysnext.vercel.app`, 09/10) ; guide `/fr/guide/comment-faire-photos-multi-angles-chaussures` prévu le 09/10 ; correspondance avec les groupes 2, 3, 5, 9, 11 et 15 de la mission de #124 ; Firefox, Safari, appareils réels (390 px via une iframe de même origine, largeur utile 375 px) ; `www` après la fusion de #82 ; claims déjà inventoriés ; lignes de #82 dans `ETAT.md` (B, C, G), laissées à #126 ; build local (session sans clone du dépôt) : CI de la tête de #125.
+
+**Suite**
+- Fusion de #125 : GO_MERGE distinct de Laurent.
+- #125 et #126 modifient toutes deux la ligne « Dernière mise à jour documentaire » d'`ETAT.md` et le haut de `JOURNAL.md` : la seconde fusionnée devra intégrer `main`. La ligne `main` d'`ETAT.md` est identique dans les deux PR.
+
+## 2026-10-10 · #122 — `main` `3619e75` (fusion de #82) intégré ; dépendance « catalogue 404 » levée · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122, brouillon | **Commit** : fusion de `main` `3619e75` (voir l'historique de #122)
+
+**Quoi** — `main` `3619e75` (fusion de #82, 10/10 à 05:00 UTC) fusionné dans #122, sans rebase. Conflits dans `JOURNAL.md` (union, entrées placées par heure UTC) et `ETAT.md` (historique « Dernière mise à jour » des deux côtés conservé). Aucun fichier de code commun. Ligne #122 d'`ETAT.md` : la landing catalogue est publiée, le CTA secondaire ne mène plus à une 404.
+
+**Pourquoi** — #82 fusionnée et publiée ; #122 en conflit documentaire avec `main`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `e2e/popin-engagement.spec.ts` (aide `lire`).
+
+**Effet attendu** — Aucun ; #122 reste en brouillon, GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — `sysnext.vercel.app/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide` : 200 le 10/10 (05:0x UTC) ; #82 lit `origine` (liste fermée) et l'écrit dans la notification interne. Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné. `tsc`, `verifier-json`, Vitest 626/626, `next build` (387 pages).
+
+Test rendu robuste (`e2e/popin-engagement.spec.ts`, aide `lire`) : la cible de défilement est recalculée jusqu'à stabilisation. L'ancienne aide figeait la cible au premier calcul ; sur `/fr`, la hauteur de page peut changer après le chargement, et le test « aucune apparition sur /fr » échouait par intermittence (délai de 30 s). Contre-épreuve sur serveur relancé à froid : ancienne aide 1 échec sur 3 ; nouvelle aide 3 sur 3 ; spec complète en Chromium 76/76 sur deux répétitions.
+
+**Correction** — Le relevé « `e2e/popin-engagement.spec.ts` 52/52 » sur `f5c3bbb` (description de #122, 09/10) était inexact : la commande n'affichait que la dernière ligne du résumé. La configuration locale exécute 4 projets × 38 tests ; Firefox et WebKit ne démarrent pas avec le binaire Chromium imposé, et le projet Mobile Chrome ne s'applique pas à une pop-in desktop. Le chiffre de référence est le projet Chromium : 38/38.
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4).
+
+**Suite** — Restent pour #122 : GO de fusion et de publication de Laurent, P4 `sessionStorage` (statut juridique NON ÉTABLI), QA de Laurent (X puis rechargement, Échap), spec hors CI jusqu'à #117.
+
+---
+
+## 2026-10-10 · Landing catalogue All-in-One (#82) : variables de Production relevées, `CATALOGUE_NOTIFICATION_EMAIL` créée · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commit** : ce commit (documentation seule)
+
+**Quoi** — Mission de Laurent du 10/10 (« #82 / Vercel production ») : variables du parcours relevées dans le tableau de bord Vercel, projet `sysnext`, environnement Production ; `CATALOGUE_NOTIFICATION_EMAIL` créée, seule écriture autorisée. Geste fait par Laurent avec Claude dans Chrome : la session cloud n'a aucun accès à Vercel (ni connecteur, ni jeton ; R3).
+
+**Pourquoi** — Condition de fusion de la mission du 09/10 (D53) : « variables Production présentes ». Relevé de Sébastien du 09/10 : `CATALOGUE_NOTIFICATION_EMAIL` absente en Production.
+
+**Fichiers** — Aucun fichier du site. Vercel : `CATALOGUE_NOTIFICATION_EMAIL` ajoutée en Production seule.
+
+**Effet attendu** — Au prochain déploiement de production (fusion de #82), `GET /api/catalogue` répond `{"disponible":true}`. [Inférence] Une variable ajoutée ne s'applique qu'aux déploiements suivants. Cela repose sur des schémas observés.
+
+**Vérifié** — Rapport de Laurent du 10/10 (Claude dans Chrome), valeurs non affichées :
+- `RESEND_API_KEY` : PRESENT (« All Environments », donc Production) ;
+- `RESEND_FROM_EMAIL` : PRESENT (« All Environments ») ;
+- `CATALOGUE_NOTIFICATION_EMAIL` : PRESENT, créée en Production seule, type « Config » (le choix « Secret » était proposé par défaut, non imposé), destinataire attendu confirmé dans le formulaire avant enregistrement ;
+- aucune autre variable modifiée ; message « A new deployment is required » fermé par « Dismiss », sans redéploiement ; formulaire non soumis, aucun e-mail envoyé ; variable de la Preview de la branche de #82 non modifiée.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Badge « Needs Attention » affiché par Vercel sur `RESEND_API_KEY` : détail non ouvert, signification non établie. Captures d'écran du formulaire de saisie prises par l'outil (valeur du destinataire visible), ni partagées ni enregistrées comme livrable.
+
+**Suite** — Fusion de #82 (D53), puis contrôle de `sysnext.vercel.app` (`GET /api/catalogue`, page, politique) et de `www` dans Chrome (R4).
+
+---
+
+## 2026-10-09 · #122 — `main` `f143f61` intégré (#123, #124), sans changement de code · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122, brouillon | **Commit** : fusion de `main` `f143f61` (voir l'historique de #122)
+
+**Quoi** — `main` `f143f61` (fusions de #123 et #124) fusionné dans #122, sans rebase. Conflits dans `JOURNAL.md` (union, entrées placées par heure UTC) et `ETAT.md` (lignes #122, #123 et #124 conservées). Aucun fichier de code commun. Ligne #122 d'`ETAT.md` : `main` intégré, `origine` désormais lue par #82 sur sa branche.
+
+**Pourquoi** — Point de contrôle de 20:49 UTC : `main` avancé, #122 en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun. #122 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION toujours non donnés.
+
+**Vérifié** — Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné ; contrôles de la tête : description de #122.
+
+**Supposé** — Aucun.
+
+**Non regardé** — La D52 de `main` (#124 : liens éditoriaux vers Mode et F5 sans attendre les fenêtres de mesure) ne vise pas la pop-in ; les gels de `ROUTES_GELEES` (F5 jusqu'au 23/11, Mode jusqu'au 26/11) restent ceux de la mission de Laurent du 09/10, non modifiés.
+
+**Suite** — Inchangée : dépendance à #82 (publication de la landing), P4 `sessionStorage`, QA de Laurent (X puis rechargement, Échap).
+
+## 2026-10-09 · Fusion et publication de #123 puis #124 (exception D54), contrôles de production · Claude de Laurent
+
+**Chantier** : maillage et cocons, clôture (missions de Laurent du 09/10 « GO final — fusion et publication PR #123 puis #124 » et « Reprise autorisée — PR #124 après fusion de #123 ») | **PR** : #123 (`085b005`), #124 (`f143f61`) ; documentation : PR brouillon de la branche `claude/gracious-cerf-rbj12m` | **`main`** : `3c0909b` → `085b005` → `f143f61`
+
+**Quoi**
+- #123 fusionnée le 09/10 à 20:18:55 UTC par commit de fusion (`085b005`), tête `6bc15f4` ; #124 à 20:42:37 UTC (`f143f61`), tête `9a76bc1`. Chaque PR est sortie du brouillon, « DO NOT MERGE » retiré du titre, juste avant sa fusion.
+- D54 inscrite : exception ponctuelle D15/D48 (fusion sans attendre l'échéance de D15 ; pour #124, sans nouvelle information de Sébastien selon D48 a) et fusion par commit de fusion, en dérogation ponctuelle à `02-PROCEDURE.md`.
+- `ETAT.md` : `main` et règle D37/D39/D52 (A) ; #123 et #124 sortis de B ; contrôle Chrome de `www` (C) ; événement D52 daté et mesure de #123 (E) ; livraisons (G).
+
+**Pourquoi** — Décision de Laurent du 09/10 : GO_EXCEPTION_D15_123, GO_EXCEPTION_D15_124, GO_EXCEPTION_INFORMATION_D48A_124, GO_MERGE et GO_PUBLICATION des deux PR, GO_QA_PRODUCTION, GO_DOCUMENTATION_CLOTURE. Sans exception : #123 attendait l'échéance D15 du 16/10 ; pour #124, l'information de Sébastien n'était pas publiée et D15 n'avait pas démarré.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun effet sur le site (documentation). Effets des deux PR : mesures en E (#123 : J+28 et J+56 ; événement D52 pour F5, Mode et Studios ; événement de baseline de M5, la fusion précédant la fenêtre du 14 au 28/10).
+
+**Vérifié**
+- Avant chaque fusion : tête inchangée (`6bc15f4`, puis `9a76bc1`), CI 4/4 verte (14:59:49 et 16:39:50 UTC), aucune revue, aucune objection ; `main` protégée, comme pour les fusions précédentes.
+- Arbres git, relevés en local après les fusions : `085b005` porte l'arbre de `6bc15f4` (`039c999`) ; `f143f61` celui de `9a76bc1` (`dd921d4`) ; parents `3c0909b` + `6bc15f4`, puis `085b005` + `9a76bc1`. Différentiel de `f143f61` contre `085b005` (GitHub) : 85 fichiers, 82 contenus + `DECISIONS.md`, `ETAT.md`, `JOURNAL.md`.
+- `sysnext.vercel.app` après #123 : `smoke.mjs` vert (17 pages, 3 ressources) ; 3 liens de #123 lus sur les pages (L1, E-BIJ-2, F-MON-1) ; liens rendus des 97 pages touchées par les deux PR : 97/97 HTTP 200, état `6bc15f4` (28 pages sources de #123 conformes, 69 pages de #124 encore inchangées).
+- `sysnext.vercel.app` après #124 (20:43:58 UTC) : `smoke.mjs` vert ; 97/97 HTTP 200, état `9a76bc1` (82 pages propres à cet état, 15 identiques en `6bc15f4` et `9a76bc1`) : les 34 liens de #123 et les 126 opérations de #124 sont rendus.
+- Worker déployé `packshot-router` (lu par l'API Cloudflare, sans modification ; dernière modification le 09/10 à 10:33 UTC), rejoué hors ligne avec une origine simulée : 61/61 destinations distinctes des 129 liens ajoutés ou re-ciblés transmises sans redirection ni 410 ; témoins : `/fr/studio-photo/alphashot-g2` et `/fr/studio-photo/alphashot-xl` en 301 vers XL G2.
+- Contrôle négatif du 09/10 vers 19:30 UTC, avant les fusions : 97/97 pages conformes à `main` `3c0909b`.
+
+**Supposé**
+- Le déploiement de production Vercel sert `f143f61` : déduit du contenu rendu sur `sysnext` (97 pages à l'état `9a76bc1`) ; identifiant du déploiement non consulté (dashboard, R3).
+- QA Chrome des Preview (#123 PASS ; #124 15/15 PASS et non-régression de #123) : déclarée par Laurent le 09/10, heure non communiquée.
+
+**Non regardé**
+- `www.packshot-creator.com` : 403 Cloudflare au client de la session (R4) ; surface publique non contrôlée (ETAT, C).
+- Specs Playwright sur la production ; données GSC (lecture à J+28).
+- Outillage : pendant la mission, le mode automatique de Claude Code a refusé 3 commandes Bash de vérification (catégorie « Production Deploy ») ; reprise sur confirmation de Laurent ; aucune permission modifiée.
+
+**Suite**
+- Chrome sur `www` : groupes 2, 3, 5, 9, 11 et 15 de la mission de #124, pages de la QA de #123 et 2 guides ; la date du constat fixe J0 de #123 et complète l'événement D52 (E).
+- Arbitrages G1 à G5 de #124 et pages en reconstruction (#104, #105, #107, #108) : chantiers propriétaires, inchangés.
+- Fusion de cette PR documentaire : GO_MERGE distinct de Laurent.
+
+---
+
+## 2026-10-09 · Landing catalogue All-in-One (#82) : `main` `f143f61` intégré (#123, #124), décision de #82 renumérotée D53 · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commit** : fusion de `main` `f143f61` (voir l'historique de #82)
+
+**Quoi** — `main` `f143f61` (fusions de #123 à 20:18 UTC et de #124 à 20:42 UTC) fusionné dans #82, sans rebase. #124 a inscrit sur `main` une D52 (maillage vers Mode, Packshot e-commerce et Amazon) : la décision de publication de #82, numérotée « D52 » sur la branche, devient **D53**, placée au-dessus. Mentions renommées dans les seules lignes de #82 (`DECISIONS.md`, `ETAT.md`, Q24, entrée du JOURNAL de #82 du 09/10, non fusionnée) ; la D52 de `main` et ses mentions sont inchangées.
+
+**Pourquoi** — Point de contrôle de 20:49 UTC : `main` avancé, collision de numéro de décision. Règle de résolution : la décision déjà fusionnée garde son numéro.
+
+**Fichiers** — Conflits : `docs/seo-geo/DECISIONS.md` (D53 au-dessus de la D52 de `main`), `docs/seo-geo/JOURNAL.md` (union ; entrée de #82 de 16:4x UTC au-dessus de celles de #124 et #123). `ETAT.md` fusionné sans conflit. Aucun fichier du site de #82 commun avec #123 et #124.
+
+**Effet attendu** — Aucun pour le visiteur. #82 de nouveau fusionnable.
+
+**Vérifié** — Aucune ligne de `main` absente de `JOURNAL.md` ni de `DECISIONS.md` fusionnés ; seules les lignes renommées D52 → D53 diffèrent du côté de #82. Contrôles de la tête : description de #82.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Effet de la D52 de `main` (liens éditoriaux vers Mode et F5) sur les exclusions de la pop-in #122 : D52 ne vise que les liens éditoriaux ; les gels de #122 viennent de la mission de Laurent du 09/10 et ne sont pas modifiés.
+
+**Suite** — Inchangée : `CATALOGUE_NOTIFICATION_EMAIL` en Production avant la fusion.
+
+---
+
+## 2026-10-09 · Landing catalogue All-in-One (#82) : `main` intégré, P3, P4, origine de la pop-in, interrupteurs ouverts (D53) · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commits** : `783b55e` (fusion de `main` `3c0909b`), `34b8a5f` (P3, P4, origine, état GET), `1846fd5` (interrupteurs)
+
+**Quoi** — Mission de Laurent du 09/10 (« #82 finalisation et publication ») : `main` fusionné sans rebase ; mention P3 du formulaire ; P4 dans la politique de confidentialité (Resend) ; `?origine=brochure_exit_sitewide` lu et remonté dans la notification interne ; `GET /api/catalogue` (état seul) ; `PUBLICATION_AUTORISEE` et `SERVICES_REELS_AUTORISES` passés à `true`. D53 inscrite.
+
+**Pourquoi** — GO de finalisation, de fusion et de publication de Laurent du 09/10 (D53), après la décision de Sébastien « aucun CRM » et le test réel depuis la Preview du même jour (entrées précédentes du Claude de Sébastien).
+
+**Fichiers** —
+- Fusion : `docs/seo-geo/JOURNAL.md` (union, entrées de #82 du 09/10 placées par heure), `ETAT.md` (état de `main` conservé, ligne #82 du 09/10 reportée), `BOITE-AUX-LETTRES.md` (question de #82 renumérotée **Q24** : #82 est la seconde des deux PR porteuses d'une « Q23 » ; texte conservé). Aucun fichier du site en conflit.
+- P3 : `components/landings/catalogue-all-in-one/contenu.ts` (`FORMULAIRE.donnees.avant`, formulation de Laurent du 06/10, reprise mot pour mot).
+- P4 : `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (`privacy` : `article2.catalogueForm`, `article3.purpose6`, `article8`), `app/[lang]/confidentialite/page.tsx`.
+- Origine : `lib/catalogue/schema.ts` (`ORIGINES_CATALOGUE`, `origineCatalogue`), `gestionnaire.ts`, `fiche.ts` (ligne « Origine : brochure_exit_sitewide »), `CatalogueForm.tsx`.
+- `app/api/catalogue/route.ts` (`GET` → `{ disponible }`), `lib/catalogue/activation.ts`, `lib/catalogue/pdf.ts` (commentaire, garde D36 de `main`), tests `lib/catalogue/__tests__/`, `e2e/catalogue-all-in-one.spec.ts`. `docs/seo-geo/DECISIONS.md` (D53).
+
+**Effet attendu** — Après fusion : `/fr/catalogue-orbitvu-all-in-one` servie en production (`noindex, nofollow`, ni canonique ni sitemap), formulaire ouvert si les trois variables Resend du catalogue sont présentes en Production ; sinon 503 `catalogue_unavailable` et message de repli avec les téléphones. #122 peut quitter son HOLD « catalogue 404 » après contrôle de la publication.
+
+**Vérifié** —
+- P4, sources Resend relues le 09/10 : https://resend.com/security/gdpr (mise à jour du 21/09/2026) : « Resend's primary processing operations take place in the United States » ; « Transfers out of the EEA are made under the EU Standard Contractual Clauses, which are incorporated into the DPA » ; participation au EU-U.S. Data Privacy Framework (« additional transfer mechanism ») ; transferts suisses : SCC de l'UE avec les modifications prévues au DPA ; DPA « GDPR Article 28 » en vigueur pour chaque compte. https://www.resend.com/security : données stockées aux États-Unis ; SOC 2 Type II. Texte publié : sous-traitant, traitement principal aux États-Unis, SCC du DPA, DPF, Suisse ; ni « conforme RGPD », ni hébergement en Europe, ni durée. Pipedrive non cité.
+- Origine : liste fermée côté navigateur et serveur ; valeur inconnue, casse différente, UTM, balise, nombre ou tableau ignorés sans rejet de la demande ; rien dans l'e-mail du prospect. Contre-épreuves (code remis à l'identique, `cmp`) : origine recopiée sans liste fermée → 3 échecs ; ligne « Origine » retirée → 1 échec.
+- PDF relu le 09/10 depuis la session : HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 `0d72b207…6730e5` identique, 28 pages (`pdfinfo`), en-tête `noindex` présent (deux fois, comme le 06/10).
+- Worker (`cloudflare-worker/src/index.js`, dépôt) : aucune règle ne capte `/fr/catalogue-orbitvu-all-in-one` ni `/api/catalogue` ; relais vers l'origine Next, méthode et corps transmis.
+- `npx tsc --noEmit` vert ; ESLint ciblé : 0 erreur ; `verifier-json` : 195 fichiers ; Vitest : 33 fichiers, 593 tests ; `npx next build` vert (valeurs factices, 387 pages) ; Playwright sur `next start` local : `catalogue-all-in-one.spec.ts` 72/72 (Chromium et Mobile Chrome), specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`) 81/81.
+- Rendu local, 1440 et 390 px : hero, film, formulaire, mention P3, article 8 ; aucun bandeau d'aperçu ; `noindex, nofollow` ; aucune réponse 4xx ou 5xx interne. `GET /api/catalogue` local : `{"disponible":false}` (aucun secret local).
+- Preview de la branche : 302 vers le SSO Vercel ; non contrôlable par script depuis la session (jeton `VERCEL_AUTOMATION_BYPASS_SECRET` absent).
+
+**Supposé** — Que les variables de Production lues par Sébastien dans le tableau de bord le 09/10 (`RESEND_API_KEY`, `RESEND_FROM_EMAIL` présentes en Production ; `CATALOGUE_NOTIFICATION_EMAIL` sur la Preview de la branche seule) n'aient pas changé : aucun accès Vercel depuis la session (R3, pas de jeton).
+
+**Non regardé** — Variables Vercel de Production (aucun accès) ; Preview dans Chrome (SSO) ; `www` (R4) ; formulaire réel en production (aucun envoi sans autorisation) ; limitation de débit derrière le Worker : [Inférence] l'adresse lue par `getClientIp` peut être celle de Cloudflare et non celle du visiteur, comme pour `/api/roi-lead`, cela repose sur des schémas observés ; `/api/contact` utilise aussi Resend et Pipedrive sans que la politique les nomme (chantier séparé, signalé en Q24 le 06/10).
+
+**Suite** — Avant la fusion : `CATALOGUE_NOTIFICATION_EMAIL` = `sebastien.jourdan@sysnext.com` à créer en Production dans le tableau de bord Vercel (projet `sysnext`), présence de `RESEND_API_KEY` et `RESEND_FROM_EMAIL` en Production à confirmer ; CI verte sur la tête. Après la fusion : déploiement de production, `GET /api/catalogue` sur `sysnext.vercel.app` (`disponible: true` attendu), page et politique sur `sysnext.vercel.app`, contrôle Chrome de `www` (R4). #122 : dépendance à lever après ce contrôle, sans fusion automatique.
+## 2026-10-09 · Réparation globale des ancres et finalisation des cocons — 99 défauts traités, 22 arbitrages résolus, 25 liens nouveaux, D52 · Claude de Laurent
+
+**Chantier** : maillage et cocons, campagne consolidée (mission de Laurent du 09/10 « Réparation globale des ancres et finalisation des cocons SEO/GEO » ; GO_CODE et GO_PR_DRAFT = YES ; GO_MERGE, GO_PUBLICATION, GO_PAID = NO) | **PR** : #124, brouillon, « DO NOT MERGE », branche `claude/reparation-ancres-cocons` | **Base** : tête de #123 (`6bc15f4`), elle-même sur `main` `3c0909b`. **Dépendance** : la PR contient les commits de #123 tant que #123 n'est pas fusionnée ; aucun de ses 34 liens n'est modifié (contrôle ci-dessous)
+
+**Quoi**
+- Les 99 corrections de l'inventaire du 09/10 (1 611 ancres, `ANCRES_CORRECTIONS_2026-10-09.csv`, hors dépôt) reprises ligne à ligne contre le code : 71 appliquées, 28 conservées en l'état avec motif.
+- 22 des 54 lignes « à arbitrer » résolues par une preuve déjà disponible ; 32 regroupées en 5 décisions (description de la PR).
+- 25 liens nouveaux sur un texte existant (D48 b) pour les relations manquantes des cocons ; 8 ancres mode EN re-ciblées du hub EN `noindex` (contenu FR, D9) vers la landing Mode EN indexable.
+- D52 inscrite (décision de Laurent du 09/10 sur Mode, Packshot e-commerce et Amazon).
+
+| Famille | Lignes | Opération | Régime |
+|---|---|---|---|
+| Destinations fausses | ANC-001 à ANC-010 | href corrigé : guide packshot EN partie 4, contact pour la démonstration (FR, EN), photogrammétrie au lieu de l'éclairage (FR, EN), horlogerie EN au lieu du hub bijoux (3), santé au lieu des cosmétiques (FR, EN) | D48 (a) |
+| `alphashot-g2` nommant l'Alphashot Pro G2 | ANC-120, ANC-123, ANC-124, ANC-127 | href vers la fiche `alphashot-pro-g2` : la phrase nomme ce studio ; `alphashot-g2` est un autre produit (`machines.ts`, sans IA, retiré) redirigé par le Worker vers l'XL G2. EN : « Premiers » traduit « the first » | D48 (a) ; D15 pour le mot EN |
+| Ancres incohérentes | ANC-011, 012, 013 à 017, 018, 019, 020 à 022, 034, 038 | ancre-phrase réduite à « mal éclairée » ; phrase altérée réparée (« les … et nos offres d'accompagnement ») et Studios au lieu de l'accueil ; 5 liens sectoriels retirés de la puce « Alphashot 360 » ; « modus » → « fashion » (EN, 2) ; 3 liens retirés de la conclusion surchargée (FR, EN) ; « consulter notre article dédié » déplacé sur « les avantages d'une toplight » (FR, EN) | D15 ; D48 (b) pour les déplacements sans mot changé |
+| Studios (I02A) | ANC-040 à 043, 045, 046, 048 à 053, 150, 151 | href de la page de qualification ou du hub bijoux vers `/xx/studios-photo-automatises` quand l'ancre nomme les studios | D48 (a) ; `STUDIOS_INTERNAL_LINKING_EVENT` |
+| Mode (I05, D52) | ANC-055 à 071 | 9 mentions sectorielles FR → hub `mode-textile` ; 6 ancres « vêtements » FR → `/fr/packshot-mode` ; EN « Fashion » et de-ch « Kleidung » → landing Mode de leur langue | D48 (a) + D52 |
+| Secteurs | ANC-072, ANC-073 | « vins et spiritueux » : accueil → hub vin (A-007) ; « Shoe » : index EN → article EN chaussures indexable (hub EN `noindex`, contenu FR) | D48 (a) |
+| Doublons | 16 des 26 | lien redondant retiré, texte conservé ; guides chaussures FR/EN : retrait du lien de l'astuce de l'étape 2, conservation de celui de l'étape 5 (Multi-Camera Rig, qui identifie l'XL Pro v2) | retrait |
+| ShotFlow, workflows | ANC-100 à 111 | 6 ancres de marque ou auto-liens retirés (« ptimizing » corrigé en « optimizing ») ; 5 ancres « workflow » vers le propriétaire I17 | retrait ; D48 (a) |
+| 360°, legacy | ANC-119, 147 à 149 | fiche `alphashot-360` (propriétaire I04) ; article logiciel PackshotCreator perdu | D48 (a) |
+
+Conservées en l'état (28) : 10 doublons utiles (AI Act EN, gel J+7 ; « And many other e-commerce sectors », unique après ANC-073 ; sections distinctes des articles « mise en valeur » FR et EN ; listes ROI FR et EN, uniques après ANC-009 et ANC-010) ; 7 libellés français des gabarits EN (PACK-L, pages `noindex`) ; 8 ancres d'appel ou de chapitre (« immersion totale », « passer à la vitesse supérieure », « Notre guide dédié », « Commencez dès aujourd'hui ! » et leurs jumeaux EN) : P2 sans changement d'intention ; 3 améliorations Studios non appliquées (ANC-044 : la page lie déjà Studios ; ANC-047 et ANC-054 : seconde mention de la même page, qui lie désormais Studios par ANC-046 et ANC-053, laissée vers la page de qualification).
+
+Liens nouveaux (D48 b), par cocon : CC11 F5, 7 (pilier FR, 8 défis, photo produit e-commerce, studio e-commerce, Amazon FR, EN, de-ch) ; CC01, 5 (série → pilier, 4 FR et 1 de-ch) ; CC02-R, 6 (pilier internalisation ↔ ROI, prestataire ; 3 articles → pilier) ; CC13, 1 (migration → distributeur Suisse) ; CC06H, CC06J, CC08, 1 chacun (guide montre → hub horlogerie, guide bijoux → hub bijoux, article → hub vin) ; CC11-MKP, 2 (articles Amazon entre eux) ; de-ch, 1 (migration → format d'image).
+
+**Pourquoi** — Inventaire du 09/10 : 99 défauts confirmés ; propriétaires sans lien éditorial entrant : F5 (0 en FR, EN, de-ch), hub `mode-textile` (0), page distributeur (0), satellites CC02-R (0) ; landing IA cible de 11 ancres hors sujet (ShotFlow, workflows). Principe de la mission : réparer les liens qui racontent une mauvaise histoire, puis relier les bonnes pages.
+
+**Fichiers** — 82 fichiers `content/{blog,guides}/{fr,en,de-ch}/*.json` (champ `content` ou `introText`, un seul champ par fichier) ; `docs/seo-geo/DECISIONS.md` (D52), `docs/seo-geo/ETAT.md` (B, E), `docs/seo-geo/JOURNAL.md`. Aucun fichier de code, de gabarit, de landing, de Worker ni de `messages/*.json`.
+
+**Effet attendu** — [Inférence] Meilleure lisibilité des propriétaires d'intention par les moteurs (F5, Mode, Studios, fiche 360, article workflow) et parcours article → offre explicites ; aucun gain de position ou de trafic n'est promis. Lecture : GSC page × requête à J+28 et J+56 de la fusion, contre la baseline ci-dessous, en citant l'événement D52. Cela repose sur des schémas observés.
+
+Baseline GSC, 90 jours du 09/07 au 06/10/2026 (projet `gsc-crawl-seo`, `gsc_metrics_page`, site 3, lecture seule ; conversions non disponibles dans cette source) :
+
+| Groupe de pages | Impressions | Clics | Position moyenne pondérée |
+|---|---|---|---|
+| CC01 pilier + 4 volets de la série FR | 30 147 | 107 | 18,9 |
+| CC11 satellites qui lient F5 (FR 3, EN 1) | 8 914 | 8 | 33,1 |
+| Accueil `/fr` (M5) | 6 980 | 68 | 25,2 |
+| Contenus de-ch modifiés (4) | 3 670 | 7 | 11,0 |
+| CC05 hub `mode-textile` + articles vêtements FR et EN | 3 300 | 13 | 15,2 |
+| CC11-MKP articles Amazon FR (2) | 2 992 | 8 | 5,9 |
+| CC02 Studios FR + EN + de-ch | 2 751 | 21 | 26,5 |
+| CC02-360 fiche 360 FR + EN + de-ch | 2 378 | 19 | 21,4 |
+| Hubs horlogerie, vin, bijoux FR | 2 039 | 9 | 19,7 |
+| CC10 landing IA FR + EN | 1 601 | 13 | 22,9 |
+| CC10 article workflow I17 FR + EN | 1 295 | 1 | 12,7 |
+| CC11 F5 FR + EN + de-ch | 1 204 | 1 | 42,5 |
+| CC05 landing Mode FR + EN + de-ch | 789 | 7 | 15,7 |
+| CC02-R internalisation FR (4) | 457 | 6 | 11,4 |
+| CC13 distributeur Suisse | 8 | 0 | 8,1 |
+
+**Vérifié**
+- `git branch --show-current` = `claude/reparation-ancres-cocons` avant chaque commit.
+- Moteur d'opérations : chaque changement localisé par ancre et destination exactes, texte visible comparé avant et après, nombre de liens du champ contrôlé ; 126 opérations, 0 échec. Delta des liens contre `6bc15f4` identique au journal des opérations (aucun retrait ni ajout inattendu) : les 34 liens de #123 sont intacts.
+- `npx next build` vert (variables factices de la CI) ; `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 499/499.
+- HTML prérendu contre la tête de #123 (identifiant de build neutralisé) : 374 pages, 292 identiques, 82 différentes = exactement les 82 pages du journal ; `<title>`, canonique, robots, hreflang, H1 et `lang` inchangés partout ; texte visible modifié sur 5 pages seulement, celles des réécritures prévues (ANC-012, 018, 019, 104, 123).
+- Rejeu des 366 chemins internes par le Worker du dépôt devant `next start` : mêmes chemins et mêmes statuts que sur #123. Les 40 destinations nouvelles ou re-ciblées : 200 direct, canonique auto-référente, langue de la source ; 2 en `noindex, follow` (hubs EN horlogerie et santé, même statut que la destination fausse remplacée).
+- Densité : au plus 3 liens nouveaux par page, #123 compris ; aucune cible liée deux fois sur une page touchée.
+- Playwright (Chromium local) : `machine-selector`, `sommaire-blog`, `navigation-pages-longues` : 81/81 ; `internal-links`, `internal-links-all`, `cta-destinations` : 23 réussis, 1 échec préexistant (CTA « Découvrir nos studios » absent de l'accueil, déjà absent du build de `main`).
+- Collisions de fichiers avec les PR ouvertes : #119 (`metaTitle`, ligne 7) contre `content` (ligne 16) dans 4 fichiers : pas de recouvrement ; #104 (`ia-lumieres-virtuelles` FR, même correctif horlogerie que `main`) et #64 (évolution e-commerce FR et EN, comparatif FR) modifient la même ligne `content` que cette PR : conflit textuel à résoudre au profit de `main` à leur actualisation.
+
+**Supposé** — [Inférence] `www` servira le même HTML que le build local. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) : mission Chrome préparée dans la PR, non exécutée ; CI GitHub au moment de l'écriture ; conversions (GA4 non consulté) ; sources hors dépôt inaccessibles : `PSC_LANDINGS_COCONS_FINAL_2026-10-07_V2.zip` complet, `08_PSC_ORBITVU_OWNER_MAP.md`, rapport Pareto du 09/10, audits A, C, E, F et F2 d'origine (le ZIP V4.3 en contient les synthèses 00 à 11, sans 08).
+
+**Suite** — Fusion de #123, puis mise à jour de la base de cette PR ; contrôle Chrome de la Preview ; circuit D15 pour les réécritures et les liens D48 (b) ; à la fusion, dater l'événement D52 dans `ETAT.md` § E. Décisions demandées à Laurent ou Sébastien : 5 groupes listés dans la PR (gamme ancienne, XL v2 / XL G2 et `alphashot-g2`, BlendAI, ancres IA et landing IA, rôle et chiffres de la landing Amazon).
+
+---
+
+## 2026-10-09 · #122 — contrôle de Laurent en Chrome réel : ouverture confirmée ; diagnostic en texte JSON · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122, brouillon ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122 | **Base** : `main` `3c0909b`, inchangé
+
+**Contrôle de Laurent** — Chrome réel, Preview de `a214dc0`, `/fr/blog/guide-achat-studio-2026?popin-debug=1`, de 17:33 à 17:37 (heure du poste). Constats rapportés par Laurent :
+- **Onglet** : vierge, `{"debut":…,"etat":null}`, sans remise à zéro.
+- **Fenêtre** : `innerWidth` 1321, requête desktop complète vraie.
+- **Conditions** :
+  - environ 275 s sur le site ;
+  - lecture maximale 92 %, environ 87 % à la sortie ;
+  - cookie `cookie-consent` présent ;
+  - aucune autre fenêtre affichée.
+- **Événements reçus** :
+  - 4 `mouseleave` : 3 sorties par la droite vers le panneau Claude (x = 1322, 1335, 1323), ignorées comme sorties latérales ;
+  - 1 sortie par le haut (x = 1324, y = −6) ;
+  - aucun signal `approche` : la montée finale était en diagonale vers le coin haut droit.
+- **Résultat** : **pop-in ouverte** à la première vraie sortie par le haut ; `etat` passé à `shown` ; `<dialog open>` de 960 × 597.
+- **Bilan** : `CODE_BUG_CONFIRMED = NO`. Causes de variabilité relevées par Laurent : page masquée au départ (fenêtre Chrome réduite ou recouverte) ; sorties latérales vers le panneau Claude ; une seule apparition par onglet ; 60 s de session ; 70 % de la page courante.
+- Fermeture (X, Échap) et absence de réapparition après rechargement : non rapportées dans ce contrôle.
+
+**Quoi** — Mode `?popin-debug=1` seulement : le détail des lignes `[popin]` est écrit en texte JSON (au lieu d'un objet que les outils de lecture de console affichent « Object »), avec en plus la visibilité de la page (`page`). Comportement hors diagnostic inchangé.
+
+**Fichiers** — `components/engagement/PopinEngagement.tsx`, `e2e/popin-engagement.spec.ts`.
+
+**Protocole de test, à partir de ce contrôle** —
+- fenêtre Chrome au premier plan ;
+- sortie verticale vers la barre d'onglets, loin du panneau Claude ;
+- un nouvel onglet par essai (onglet saisi, pas dupliqué), ou effacement de `pkc_popin_engagement` dans le `sessionStorage` de l'onglet, sur accord, avant un nouvel essai. Un onglet où la pop-in est apparue reste consommé jusqu'à sa fermeture.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; Vitest : 27 fichiers, 532 tests ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages ; `e2e/popin-engagement.spec.ts` : 38/38, dont la lecture du JSON du diagnostic (`pret`, `page`, `desktop`, `secondes`, `lecture`, `cookies`, `autreFenetre`, `dejaAffichee`).
+**Supposé** — [Inférence] Les observations intermittentes antérieures relèvent des mêmes causes d'environnement ; non vérifiable, le `sessionStorage` des autres onglets n'étant pas accessible. Cela repose sur des schémas observés.
+**Non regardé** — Chrome sous macOS ; plein écran.
+
+**Suite** — Compléter le contrôle de la Preview : fermeture par X puis rechargement, puis Échap dans un nouvel onglet. Puis décisions HOLD (P4, D42 étape 5, publication après #82) ; fusion sur GO distinct.
+
+---
+
+## 2026-10-09 · #122 — intention de sortie fiabilisée (constat de Laurent en Chrome réel) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement, correction ciblée (mission de Laurent du 09/10, « #122 exit intent ne fonctionne pas en Chrome réel » ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b`, inchangé
+
+**Constat** — Laurent, sur la Preview, 60 s et 70 % réunis : la pop-in ne s'affiche pas quand la souris quitte la page par le haut. Les tests Playwright précédents construisaient l'événement de sortie par `dispatchEvent`, taillé pour la règle : ils ne prouvaient rien sur Chrome réel.
+
+**Diagnostic** —
+- Chromium 141 fenêtré (Linux X11, écran virtuel), pointeur système déplacé par XTest jusqu'à la barre d'onglets : l'ancienne version `be503f3` s'ouvre aussi (Chromium y rapporte une coordonnée extérieure, `y = -18`). Le défaut n'est pas reproduit dans cet environnement.
+- [Inférence] Causes couvertes par la correction, faute de reproduction (cela repose sur des schémas observés) :
+  - sortie rapportée à la dernière position intérieure, au-delà des 20 px de l'ancien seuil (comportement prêté à Chrome sous certains systèmes) ;
+  - condition desktop évaluée au chargement seulement : fenêtre étroite à l'ouverture (outils de développement, zoom, mise à l'échelle), aucun écouteur posé ;
+  - une fenêtre `[role="dialog"]` masquée, présente dans le DOM, bloquait la pop-in ;
+  - bord haut atteint sans quitter le document.
+
+**Quoi** — Détection de l'intention de sortie seulement ; design, copy, CTA, `sessionStorage`, 60 s et 70 % inchangés.
+- **Signal principal** : `mouseleave` de `document.documentElement` (et `mouseout` sans cible, équivalent), accepté si la sortie se fait par le haut. Accepté : coordonnée négative ; ou position rapportée dans les 80 px du haut, plus proche du bord haut que des côtés, avec une dernière montée continue. Écartés : côtés, bas, barre de défilement, descente.
+- **Repli** : la souris atteint les 8 px du haut au terme d'une montée continue d'au moins 40 px, sans bouton enfoncé, avant même de quitter le document.
+- **Trajectoire** : dernière suite de pas montants sur 600 ms ; un balayage horizontal (en-tête) l'interrompt ; tremblement latéral léger toléré.
+- **Une seule ouverture** : drapeau et retrait des écouteurs au premier déclenchement.
+- Écouteurs posés dès qu'un pointeur fin capable de survol est présent ; la largeur de 1 024 px est vérifiée au moment du geste. Mobile et tactile : toujours aucun écouteur.
+- Fenêtres bloquantes : seulement celles affichées (`dialog[open]`, `[role="dialog"]` ou `[aria-modal]` visibles, défilement bloqué).
+- **Diagnostic** : `?popin-debug=1` dans l'URL écrit en console l'état du surveillant au montage et chaque signal de sortie avec l'état des conditions. Rien n'est stocké ni envoyé.
+
+**Fichiers** — `lib/engagement/regles.ts`, `components/engagement/PopinEngagement.tsx`, `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Rayon d'action** — Surveillant toujours dans le chunk partagé du layout : +6,9 Ko brut et +2,9 Ko gzip par page, FR, EN et de-ch comprises (contre +4,9 et +2,1 Ko ; écart dû aux messages de diagnostic). Aucun texte ni balise ajoutés au HTML prérendu ni au flux RSC. `CookieBanner.tsx`, `pr-checks.yml`, #82 et #117 non modifiés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages.
+- Vitest : 27 fichiers, 532 tests, dont 33 pour la pop-in : sortie haute à coordonnée extérieure, sortie à la dernière position intérieure (0, 30 et 80 px), sorties latérales et basses, barre de défilement, descente, repli, en-tête (horizontal, immobile, clic), petite remontée, trajectoire.
+- Playwright Chromium sur `next start` local : `e2e/popin-engagement.spec.ts` 38/38 puis 76/76 sur deux répétitions. Souris uniquement par `page.mouse` (événements `isTrusted` émis par Chromium), plus aucun `dispatchEvent`. Les tests « aucune apparition » attendent le message du surveillant, pour ne pas passer avant l'hydratation.
+- Specs de la CI et `youtube-consent` : 89/89.
+- **Chromium 141 fenêtré, pointeur système (XTest), build local de la nouvelle tête** : avant 60 s, rien ; 60 s et 30 % de lecture, rien ; sorties gauche, droite, gauche près du haut et basse, rien ; en-tête (montée sur « Solutions », balayage, deux clics), rien ; montée vers la barre d'onglets, ouverture (par le repli, à `y = 2`) ; X, fermée ; rechargement, 100 % et nouvelle sortie haute, rien (« déjà affichée dans la session (dismissed) »).
+**Supposé** — [Inférence] La correction couvre le défaut observé par Laurent ; non prouvé, faute de l'avoir reproduit. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO Vercel) ; Chrome sous Windows et macOS ; plein écran (l'API Fullscreen ne s'est pas appliquée dans l'écran virtuel).
+
+**Suite** — Nouveau contrôle de Laurent sur la Preview, avec `?popin-debug=1` et la console ouverte en cas d'échec : le message indique la condition manquante. Fusion sur GO distinct.
+
+---
+
+## 2026-10-09 · Campagne globale de maillage — 34 liens contextuels (D48 b), correction EN de l'article « lens » (D15) et liens des guides rendus visibles · Claude de Laurent
+
+**Chantier** : maillage et cocons, campagne unique (missions de Laurent du 09/10 : R1 « objectifs photographiques », campagne globale, complément « densité par page », réconciliation V4.3, puis « finition finale » avec GO_CODE ponctuel ; GO_PR_SUPPLÉMENTAIRE, GO_MERGE, GO_PUBLICATION, appels payants = NO) | **PR** : #123, brouillon, « DO NOT MERGE », branche `claude/gracious-cerf-rbj12m` | **Base** : `main` `3c0909b` intégré (fusion de #109)
+
+**Quoi** —
+- Liens ajoutés : 34, posés sur des mots existants (D48 b) ; 28 pages sources, 23 cibles ; FR 20, EN 14, de-ch 0 ; 14 P1, 20 P2. Objectif 7 (dont E1, L1, E2 du lot R1), format d'image 5, bijoux 4, netteté 4, cadrage et lunettes 4, horlogerie 2, studio interne et investissement 7, production visuelle 1.
+- Retirés après la réconciliation V4.3 (décision de Laurent du 09/10) : F-27-1 et F-27-2 (hub chaussures : lignes D-367 et D-369 du registre, différées après le 26/11, D39, et soumises à CA2), E-ECO-2 (cible jumelle EN d'un article Amazon en mesure, HOLD jusqu'au 23/11), F-ECO-1 (ancre de l'intention I11 vers un article concurrent de F5, gel jusqu'au 23/11). Les 3 fichiers qui ne portaient que ces liens sont identiques à `main`.
+- Contrôle des réserves éditoriales : F-BIJ-3 retiré (la phrase d'introduction du guide équipement bijoux annonce le contenu de la page elle-même, « dans ce tutoriel complet », et le lien renvoyait ailleurs) ; E-FLOU-2 : ancre ramenée à « Blurry » (la cible ne traite que du flou, pas du cadrage ; aucun mot modifié) ; F-BIJ-2, F-PROD-1, F-OBJ-2 et F-FLOU-2 conservés (ancre conforme au sujet de la cible ; au plus 2 liens par paragraphe).
+- Liens corrigés : 0. Liens existants supprimés : 0. Liens conservés : tous les autres.
+- Densité : au plus 3 ajouts par page (une seule page à 3 : bague 8 étapes FR, 2 182 mots, 3 sections, 3 destinations) ; au plus 2 liens par paragraphe ; aucun ajout P2 au-delà de 15 liens de corps pour 1 000 mots. 9 ajouts retirés avant la première livraison pour ces motifs (F-CHA-1, E-CHA-1, E-STU-2, E-STU-3, F-STU-3, E-ECO-1, F-ECO-2, E-OBJ-2, E-PROD-1).
+- Article EN `how-to-choose-best-lens-for-product-photography` : `metaTitle`, `h1` et `title`, « packshot(s) » remplacé par « product photography » (D15, D42). Slug, description, texte, FAQ, liens : inchangés.
+- Gabarit des guides : classe `guide-content` sur l'introduction et le contenu des étapes (`app/[lang]/guide/[slug]/page.tsx`) et règle de liens dans `app/globals.css` (couche `components`) : couleur `--very-peri-6`, soulignement, survol `--very-peri-7`, contour de focus clavier de 2 px. Cause du défaut : `@tailwindcss/typography` n'est pas chargé, les classes `prose-a:*` ne produisent rien. Plugin non activé ; aucune règle de mise en page des articles reprise.
+
+**Pourquoi** — Recovery Pareto du 09/10 : les cibles retenues cumulaient peu de liens contextuels entrants (format d'image EN : 5 957 impressions sur 90 jours, aucun lien ; bague 8 étapes EN : 3 039, aucun lien). Paire « objectif » : recul de classement daté de mai 2026, aucun lien contextuel ; « product photography » absent de l'article EN alors que les requêtes perdues le contiennent (7 419 impressions d'octobre 2025 à janvier 2026, contre 4 pour « packshot »). Guides : liens indiscernables du texte, défaut préexistant sur `main` (deux guides en échec à la QA Chrome, mission de Laurent du 09/10).
+
+**Fichiers** — 29 JSON `content/{blog,guides}/{fr,en}/**` ; `app/[lang]/guide/[slug]/page.tsx`, `app/globals.css` ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après publication autorisée : lecture informative à J+28, verdict à J+56, sur les 23 cibles contre 5 témoins inchangés (baseline 08/09 → 05/10 : cibles 78 clics, 10 812 impressions, position 11,5 ; témoins 25 clics, 1 370 impressions, position 10,7). Liens contextuels entrants des 23 cibles : 16 → 50. Aucun gain chiffré annoncé.
+
+**Vérifié** (tête finale, build local de la branche) —
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 499/499 ; `npx next build` vert (variables factices de la CI) ; `verifier-consequences` : effet local.
+- HTML prérendu contre `main` `3c0909b` (actifs CSS neutralisés) : 344 pages identiques au contenu près ; 30 différentes = 28 pages sources (texte identique, liens ajoutés seulement), l'article EN lens (title, H1) et `/en/blog` (titre de la carte) ; en plus, les 47 guides ne diffèrent que par la classe `guide-content`. Canonique, robots, hreflang et `lang` inchangés partout.
+- Contre la tête précédente `49ac5c2` : 5 pages différentes, chacune par un lien retiré seulement (les 5 retraits), texte identique.
+- Par lien : 34/34 ancres rendues exactes et uniques, cible en 200 direct, canonique auto-référente, même langue, sans `noindex` ; 5/5 retraits absents du rendu, texte conservé.
+- Liens de tout le site rejoués (Worker du dépôt devant `next start`) : 366 chemins, statuts identiques à la tête précédente ; hors 200 direct, seulement 3 chemins `alphashot-g2` (D29) et 5 chemins liés depuis des pages EN servies en 410.
+- Playwright, Chromium du conteneur : `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `internal-links` et `mobile-overflow` : 91/92 ; le seul échec, `mobile-overflow` sur `/fr` à 375 px, se reproduit à l'identique sur le build de `main` `3c0909b` (préexistant, accueil non modifié).
+- Guides, 7 pages FR, EN et de-ch, 1440 et 390 px : liens `rgb(82, 82, 185)`, soulignés, survol `rgb(77, 94, 167)`, focus clavier `2px solid`, aucun débordement, aucune erreur de page ; contraste du lien sur fond blanc 6,43:1, du survol 6,04:1 ; sur `main`, liens de la couleur du texte, sans soulignement.
+- PR ouvertes : aucun fichier commun, sauf avec #27 (branche du 23/09, non fusionnable).
+**Supposé** — [Inférence] Chaque ancre décrit le sujet de sa cible : choix éditorial, non mesurable avant publication. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (protégée par SSO) ; `www` (R4) ; Firefox et WebKit ; relecture humaine de l'anglais.
+
+**Suite** — CI verte sur la tête finale ; information de Sébastien publiée le 09/10 à 14:16:03 UTC (aucune nouvelle information demandée par Laurent) ; QA Chrome ; délai D15 de 5 jours ouvrés à compter de la dernière condition remplie sur la tête finale ; GO_MERGE distinct ; J0 = publication constatée sur `www`.
+## 2026-10-09 · #122 — `main` `3c0909b` intégré, plafond de session réel (`sessionStorage`), temps cumulé sur le site · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « #122 — remise à niveau main + vrai cap session + finalisation technique » ; code sur #122 seulement ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b` intégré par fusion (`980781c`) ; conflits limités à `JOURNAL.md` et `ETAT.md`, résolus par union (187 entrées de `main` conservées) ; aucun conflit de code
+
+**Quoi** —
+- **Une apparition par session**, rechargement et navigation compris : état dans `sessionStorage` seulement, clé `pkc_popin_engagement`, contenu `{ "debut": <instant d'arrivée, ms>, "etat": null | "shown" | "dismissed" | "converted" }`. `shown` à l'apparition ; `dismissed` à la fermeture (X, Échap, fond) ; `converted` au clic Démo ou Catalogue. Tout état non nul empêche une nouvelle apparition.
+- **60 s sur le site** : écart entre maintenant et l'instant d'arrivée de la session (horodatage, aucun compteur actif) ; conservé par les navigations internes et les rechargements dans l'onglet ; nouvelle session ou nouvel onglet : zéro.
+- **70 % de lecture** : propres à la page courante, remis à zéro à chaque page ; première mesure 250 ms après l'affichage de la page, pour que le défilement de la page précédente ne compte pas.
+- `sessionStorage` indisponible (navigation privée stricte, quota) : repli sur la mémoire de la page, sans erreur.
+- Design, copy, exclusions, gels, CTA, mesure GA4 : inchangés.
+
+**Pourquoi** — Décision de Laurent du 09/10 : une seule apparition par session, fermeture, clic Démo et clic Catalogue compris ; 60 s minimum sur le site ; 70 % de la page courante ; intention de sortie ; conditions cumulatives.
+
+**Statut vie privée** — `SESSION_STORAGE_USED = functional session-only state`. `PRIVACY_LEGAL_STATUS = NON ÉTABLI`, à intégrer à P4 avant publication. Aucun cookie, aucun `localStorage`, aucun identifiant, aucune URL ni historique de navigation stockés.
+
+**Fichiers** — `lib/engagement/session.ts`, `lib/engagement/activation.ts` (`STOCKAGE_SESSION_AUTORISE = true`), `components/engagement/PopinEngagement.tsx`, `components/engagement/FenetreEngagement.tsx`, `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Rayon d'action** — Inchangé dans sa nature : surveillant dans le chunk partagé du layout, +4,9 Ko brut et +2,1 Ko gzip par page, FR, EN et de-ch comprises (contre +4,4 et +1,9 Ko avant ; comparaison avec un build de `main` à code client identique). Aucun texte ni balise ajoutés au HTML prérendu ni au flux RSC. #117 toujours ouverte : `CookieBanner.tsx` et `pr-checks.yml` non modifiés ; le spec Playwright reste hors de la CI.
+
+**Origine** — `ORIGINE_EMITTED_BY_122 = YES` (`/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide`, aucun UTM). `ORIGINE_CONSUMED_BY_82 = NO` : dépendance de #82, non modifiée.
+
+**Vérifié** — Gels relus sur `main` `3c0909b` (`R-UX-LONG.md` § 4 inchangé : accueil 28/10, F5 23/11, Mode et mode-textile 26/11) ; `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; Vitest : 27 fichiers, 523 tests, dont 24 pour la pop-in ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages ; Playwright Chromium sur `next start` local : `e2e/popin-engagement.spec.ts` 34/34, dont 9 tests de session (fermeture puis rechargement, clic Démo, clic Catalogue, Échap puis navigation interne, 30 s sur A puis B, temps conservé au rechargement, nouvelle session à zéro, 70 % d'une page précédente ignorés en navigation interne et en chargement complet) ; specs de la CI et `youtube-consent` : 89/89. Contre-épreuve avec `STOCKAGE_SESSION_AUTORISE = false` : les 5 tests qui dépendent du stockage échouent, les 5 autres passent.
+**Supposé** — [Inférence] La Preview se comporte comme le build local ; elle est derrière le SSO Vercel. Cela repose sur des schémas observés.
+**Non regardé** — Preview et production (R4) ; Firefox et Safari (navigateurs absents du conteneur).
+
+**Suite** — Contrôle humain de la Preview par Laurent, rechargement compris (D42, étape 4) ; P4 avant publication ; validation D42 étape 5 ; publication après celle de la landing #82 ; GO de fusion distinct.
+
+---
+
+## 2026-10-09 · #109 — exception D51 inscrite, QA Chrome 7/7 PASS, fusion autorisée ; #111 fermée sans fusion · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission « Clôture et publication #109 / fermeture #111 » du 09/10 : GO_MERGE_109, GO_PUBLICATION_109, GO_CLOSE_111_WITHOUT_MERGE, exception D15/D42) | **PR** : #109, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca`, tête contrôlée `81803ad`
+
+**Quoi** — D51 inscrite dans `DECISIONS.md` (texte de Laurent reproduit sans modification). Aucun fichier du site modifié par ce commit : le code fusionné est celui de `81803ad`, contrôlé par Laurent. #109 passe de brouillon à prête et est fusionnée par commit de fusion ; #111 est fermée sans fusion, branche conservée.
+
+**Pourquoi** — QA Chrome de Laurent sur la Preview de `81803ad` : 7 groupes PASS, aucun défaut bloquant (D42, étape 4). Validation de Sébastien (étape 5) non reçue : remplacée pour cette seule PR par l'exception D51, qui ne vaut pas validation de Sébastien. #111 : fusion simulée de `9337135` sur `81803ad` sans effet sur les fichiers du site ; test `claims-roi-sav` repris (en-tête seul différent) ; ses deux entrées JOURNAL présentes mot pour mot ici (08/10, 09/10).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D51), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — À la fusion : déploiement de production (~3 minutes) ; adresse du showroom, conditions commerciales, délai, garantie, ROI et claims non sourcés corrigés sur les pages servies (voir les entrées du 08/10 et du 09/10).
+
+**Vérifié** — Tête de #109 `81803ad` identique à la tête de la QA Chrome ; CI 4/4 verte, Vercel « success », `mergeable_state` : clean ; `main` `f03f8ca` inchangé (09/10, 12:07 UTC).
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de production à faire par Laurent après déploiement.
+
+**Suite** — Après fusion : smoke `sysnext.vercel.app` et contrôle des correctifs servis ; SHA de fusion et résultats consignés dans le commentaire de clôture de #109, puis repris au JOURNAL par la prochaine PR documentaire ; contrôle `www` dans Chrome (Laurent) ; fermeture de #64 sur GO distinct ; #108 à resynchroniser (clés Studios).
+
+---
+
+## 2026-10-09 · #109 — garde `claims-roi-sav` reprise de #111, entrées JOURNAL de #111 conservées ; #111 sans apport propre · Claude de Laurent
+
+**Chantier** : intégrité factuelle (mission V8 de Laurent du 09/10, « finalisation unique #109/#111 » ; cette session est seule à écrire sur #109 et #111) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `d98c151`
+
+**Quoi** — `lib/__tests__/claims-roi-sav.test.ts` repris tel quel de #111 (`9337135`) ; les deux entrées JOURNAL de #111 (08/10 et 09/10) recopiées sans modification, ci-dessous et à leur date, pour qu'elles survivent à une fermeture de #111 sans fusion.
+
+**Pourquoi** — Fusion simulée de #109 (`d98c151`) et de #111 (`9337135`) : les fichiers du site du résultat sont identiques à ceux de #109 ; seul ce test (et la documentation) distingue #111. Le reporter ici évite une seconde publication des mêmes modifications.
+
+**Fichiers** — `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. La CI garde contre le retour de « ROI dès le 4e mois » (guide budget, FR, EN, de-ch) et des engagements de service retirés du guide d'achat.
+
+**Vérifié** — voir le commit (tsc, Vitest, `next build`).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — #111 : fermeture sans fusion sur GO de Laurent, branche conservée.
+
+---
+
+## 2026-10-09 · #111 — `main` `f03f8ca` intégré, valeurs alignées sur #109, garde de test ajustée · Claude de Laurent
+
+**Chantier** : intégrité factuelle, complément de #109 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #111, brouillon, branche `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `f03f8ca` intégré par fusion (`4a69506`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seul `JOURNAL.md` en conflit, fusionné par union (167 + 12 + 1 = 180 entrées).
+- Constat : la seconde passe de #109 (`b9698c3`, 08/10) corrige les mêmes lignes plus largement (« seuil de rentabilité dès 500 photos par an », « Hotline française », « Assistance installation gratuite », contrat « interventions on-site illimitées »). Deux versions différentes des mêmes lignes auraient produit un conflit et laissé ces claims dans #111.
+- Alignement : `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) reprennent mot pour mot les valeurs de #109 ; dans le guide d'achat, le bloc « Avantages support FR » et « Contrat maintenance » est retiré exactement comme dans #109 (même hunk). Le titre « Support Technique France » et la mention « Distributeur officiel Orbitvu France/Suisse » restent ; la garantie relève de #109.
+- `lib/__tests__/claims-roi-sav.test.ts` : motifs étendus à la formulation anglaise de #109 (« between 6 and 12 », « guarantee ») ; garde ajoutée contre « on-site illimitées ».
+
+**Pourquoi** — Faits métier du 08/10 (ROI de 6 à 12 mois, jamais garanti ; aucun engagement de service établi) et consigne du 08/10 14:48 « si aucune source ou fait métier explicite ne l'établit : NE PAS L'INVENTER. NE PAS LE CONSERVER PAR DÉFAUT. » Les points « à trancher » de la ligne Academy d'`ETAT.md` (« suivi post-formation », « Formateurs experts 10+ ans », Marie D., Camille R., « plus de 500 entreprises ») sont retirés par #109 : aucune réponse de Sébastien n'est nécessaire pour un retrait.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue), `app/[lang]/blog/guide-achat-studio-2026/page.tsx`, `lib/__tests__/claims-roi-sav.test.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Fusion de #109 et #111 sans conflit sur les fichiers du site, dans un ordre comme dans l'autre ; après fusion de #109, le diff de #111 se réduit au test et à la documentation. Aucun effet de position annoncé.
+
+**Vérifié** — voir la description de #111 (tests, build, simulation des deux ordres de fusion).
+**Supposé** — Rien.
+**Non regardé** — Preview (SSO) ; `www` (R4).
+
+**Suite** — Ordre recommandé : #109 puis #111 ; D42 étapes 4 et 5 portées par les mêmes phrases que #109 ; fusion sur GO distinct de Laurent.
+
+---
+
+## 2026-10-09 · Pop-in d'engagement — démo prioritaire, catalogue Orbitvu en repli (desktop, FR) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « Démo prioritaire + catalogue Orbitvu en repli » ; GO code ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `f03f8ca`
+
+**Quoi** — Fenêtre modale desktop, FR, distincte de #82 : « Demander une démo » en CTA principal (`/fr/contact`, cible de tous les CTA démo du site), « Recevoir le catalogue » en CTA secondaire (`/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide`, aucun UTM). Apparition une seule fois par session, seulement si trois conditions sont réunies : 60 s sur le site, 70 % de la page lus, puis intention de sortie (souris qui remonte et quitte la fenêtre par le haut). Copy et maquette validées par Laurent, reprises mot pour mot.
+
+**Pourquoi** — Décision de Laurent du 09/10 : démo = conversion prioritaire, catalogue = repli, pop-in = moteur de visibilité des deux ; ni pop-up à l'arrivée, ni minuterie seule, ni mobile, ni formulaire embarqué.
+
+**Fichiers** — `lib/engagement/regles.ts` (routes couvertes, exclusions, gels, seuils, intention de sortie), `lib/engagement/activation.ts` (interrupteurs), `lib/engagement/session.ts` (mémoire de session), `lib/engagement/mesure.ts` (GA4), `components/engagement/PopinEngagement.tsx` (surveillant), `components/engagement/FenetreEngagement.tsx` (fenêtre), `components/engagement/contenu.ts`, `components/engagement/visuel.ts`, `app/[lang]/layout.tsx` (montage), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Comportement** —
+- Desktop au sens du dépôt : 1 024 px et plus (seuil D44), pointeur fin capable de survol. Rien n'est monté en EN ni en de-ch ; sur mobile, aucun écouteur et aucun téléchargement du visuel.
+- Exclusions : `/fr/contact`, `/fr/calculateur-roi`, `/fr/calculateur`, `/fr/outil-financement`, `/fr/catalogue-orbitvu-all-in-one`, `/fr/mentions-legales`, `/fr/cgu`, `/fr/confidentialite`, `/fr/academy`, segments de confirmation (`merci`, `confirmation`, `succes`…). Gels (`R-UX-LONG.md`, « aucune modification de la page ») : `/fr` jusqu'au 28/10, `/fr/packshot-e-commerce` jusqu'au 23/11, `/fr/packshot-mode` et `/fr/industrie/mode-textile` jusqu'au 26/11. Aucune levée automatique : une ligne retirée de `ROUTES_GELEES`, sur décision, suffit.
+- Pas d'apparition tant que le bandeau cookies attend un choix ou a été rouvert, ni quand une autre fenêtre occupe l'écran (`dialog[open]`, `role="dialog"`, `aria-modal`, défilement bloqué).
+- `<dialog>` natif en modal : `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, focus initial sur « Fermer », focus piégé, Échap, clic sur le fond, retour du focus. Aucune animation, aucun décalage de mise en page (couche supérieure, défilement non bloqué). Fenêtre, texte et visuel chargés seulement quand 60 s et 70 % sont atteints.
+- GA4, sans donnée personnelle : `exit_modal_view` (dénominateur, aucun événement existant ne le mesurait), `cta_click` `demo` / `brochure` / `close` (+ `close_method`), `cta_location: exit_modal`.
+
+**Rayon d'action** — `app/[lang]/layout.tsx` est commun à toutes les pages : le surveillant rejoint le chunk JS partagé du layout, soit +4,4 Ko brut et +1,9 Ko gzip par page, FR, EN et de-ch comprises (comparaison avec le build de #109, même base de code client). Aucun texte, aucune image, aucune balise ajoutés au HTML prérendu ni au flux RSC d'une page, gelées comprises. `components/cookies/CookieBanner.tsx` et `.github/workflows/pr-checks.yml` non modifiés, car #117 modifie ces deux fichiers : le bandeau est détecté par son cookie `cookie-consent` et ses événements `open-cookie-banner` / `cookie-consent-update`. En conséquence, le spec Playwright n'est pas encore exécuté par la CI ; à ajouter à `ATTENDUS` après #117. Les tests unitaires le sont.
+
+**Effet attendu** — Aucun avant le GO de publication : `POPIN_PUBLICATION_AUTORISEE = false`, la pop-in n'est montée ni sur la production Vercel ni donc sur `www` ; elle l'est sur les Preview et en local. Après publication, mesure de 7 à 14 jours : impressions, fermetures, clics démo et catalogue, envois du catalogue, demandes de consultant, signaux de baisse de la démo.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint ciblé (`components/engagement`, `lib/engagement`, `layout`, spec) sans erreur ni avertissement ; Vitest : 26 fichiers, 516 tests (dont 21 de la pop-in) ; `verifier-json` : 195 fichiers ; `npx next build` (variables factices) : 386 pages ; Playwright Chromium sur `next start` local : 24/24 pour `e2e/popin-engagement.spec.ts` (conditions, Échap, X, focus, démo, catalogue avec `origine`, aucune requête non GET ni `/api/`, autre fenêtre, aucun décalage, 8 routes hors couverture, bandeau cookies, mobile sans visuel, rendu 1920 × 1080, 1440 × 900 et 1280 × 720), 81/81 pour les specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`). `cookie-banner.spec.ts` « GA4 après acceptation » : en échec en local car `NEXT_PUBLIC_GA_MEASUREMENT_ID` est absent du build ; aucun fichier analytics ou cookies modifié.
+**Supposé** — [Inférence] `VERCEL_ENV` vaut `production` au build de production Vercel et `preview` sur les Preview (mécanisme identique à `lib/catalogue/activation.ts` de #82). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO Vercel) ; production (R4) ; Firefox et Safari (navigateurs absents du conteneur) ; version mobile (hors mission).
+
+**HOLD et décisions ouvertes** —
+- **Stockage de session** : la qualification « vie privée » de `sessionStorage` n'est pas établie par la gouvernance (P4 ouvert) ; `STOCKAGE_SESSION_AUTORISE = false`. La mémoire de session est en mémoire du module : elle couvre les navigations internes, pas un rechargement complet ni un nouvel onglet. `SITE_TIME_CROSS_PAGE` est donc partiel : temps cumulé entre pages en navigation interne, remis à zéro par un rechargement complet.
+- **`origine`** : non lue par la landing de #82 (qui garde le chemin sans paramètre et les UTM) ; lecture et remontée dans la notification interne à prévoir après la fusion de #82, sans modifier #82 maintenant.
+- **Publication** : après la publication de la landing catalogue (#82), sinon le CTA secondaire mène à une 404 ; GO_PUBLICATION distinct.
+- **Copywriting FR** : copy validée par Laurent ; validation de Sébastien selon D13 et D42 (étape 5).
+- **Visuel** : affiche du film de la gamme Orbitvu (`public/images/hero/orbitvu-gamme-2026-poster.avif`, 23 Ko), déjà publiée sur l'accueil ; droits d'usage du film « supposés » (JOURNAL du 04/10), non établis.
+
+**Suite** — Contrôle de la Preview par Laurent (D42, étape 4 ; 1440 et 1280 px) ; validation D42 étape 5 ; décisions P4 et publication ; fusion sur GO distinct.
+
+---
+
+## 2026-10-09 · #109 — derniers engagements non démontrés retirés (gratuité, « 24h »), descriptions du blog alignées · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 sans reposer les questions déjà tranchées », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : tête `a4ce4f9` intégrée par fusion. Une seconde session, distincte de celle qui a ouvert #109, a exécuté la même mission en parallèle ; sa fusion de `main` `f03f8ca` (`04b7823`) recouvrait celle de `d7d1811`, sans écart sur les fichiers du site.
+
+**Quoi** — Complément de l'entrée suivante, hors des 19 fichiers de la seconde passe : « pour un diagnostic gratuit » retiré de `besoins-photographie-produit` ; « Diagnostic gratuit et sans engagement » retiré des deux descriptions de `questionsCles` (FR, EN, de-ch) ; clés inutilisées `contact.trustBadge1` (« Réponse sous 24h ») et `trustBadge3` (« Démo gratuite sans engagement ») supprimées ; `trustBadge2` (« 5000+ entreprises équipées », fait retenu le 08/10) conservée ; descriptions de six articles dans `lib/blog.ts` alignées mot pour mot sur les méta de #109.
+
+**Pourquoi** — Contrôle local du 09/10 : le flux RSC de chaque page sérialise tout le fichier de messages de la langue, si bien que ces chaînes apparaissaient dans le HTML de toutes les pages, y compris celles de #109. Les descriptions de `lib/blog.ts`, lues par la liste du blog et par `RelatedArticles`, reprenaient les anciennes promesses (« Comparatif complet », « pricing »). Démo et diagnostic « gratuits » et « 24 h » avaient déjà été retirés des autres clés par la seconde passe du 08/10.
+
+**Faits métier** — Ceux consolidés dans l'entrée suivante ; aucun n'est repris ni modifié ici.
+
+**Fichiers** — `app/[lang]/besoins-photographie-produit/page.tsx`, `lib/blog.ts`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (namespaces `questionsCles` et `contact` seulement), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — `lib/blog.ts` alimente `app/[lang]/blog/page.tsx` (liste) et `components/blog/RelatedArticles.tsx` (articles liés, sur les articles et guides) : seules les six descriptions changent, ni slug, ni date, ni `readingTime`. Les clés `contact.trustBadge*` ne sont lues par aucun fichier de `app`, `components` ou `lib` (recherche du 09/10) ; leur suppression ne retire que du flux RSC. Aucune clé de `home` (gel D44), de F5 ou de Mode touchée.
+
+**Effet attendu** — Plus aucune occurrence de « diagnostic gratuit » ni de « Réponse sous 24h » dans le HTML des pages hors accueil, dès le déploiement de la fusion.
+
+**Vérifié** — Après fusion de `a4ce4f9` : voir le message du commit de fusion (tsc, `verifier-json`, Vitest, `next build`, contrôle local `next start`). Avant fusion, sur `04b7823` + ce complément : `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest : 25 fichiers, 495 tests ; `npx next build` (variables factices) : 386 pages ; 42 pages en 200 (FR, EN, de-ch : accueil, contact, mentions légales, besoins, questions clés, page Suisse, Studios, blog, articles), texte visible, `<head>` et JSON-LD contrôlés. Occurrences restantes : accueil (« démo gratuite », « ROI moyen », gel D44), témoignages clients (« il y a 9 mois », « Orbitvu depuis 2018 »), date d'article (2018), « 12 jours » voulu (Studios, guide), « ROI moyen 12-18 mois » de l'article ROI (chantier ROI distinct). Flux RSC : « démo gratuite » ne vient plus que de `home.hero.cta` (gel D44) ; « sans engagement » ne vient plus que de l'offre d'essai BlendAI.
+**Supposé** — Que le rendu de la Preview soit identique au rendu local ; la Preview est derrière le SSO Vercel.
+**Non regardé** — Preview et production (R4) ; restes déclarés le 08/10, inchangés : Q20/D45, D29, F5, Mode, `home.faq.q7` et `home.hero` (gel jusqu'au 28/10), `foundingDate` et Qualiopi de `organizationSchema()` (accueil, F5, Mode), prix D30 et D25 de `blogStudioIa`, nombres codés en dur de `studios-photo-automatises` (landing #108 en HOLD), `readingTime` de `lib/blog.ts`, `blogPrestataire`, `/industrie` « 2 à 4 semaines » (D10).
+
+**Suite** — #111 empilée sur #109 (fusionner #109 d'abord). Validation D42 : contrôle de la Preview par Laurent (étape 4), puis validation du copywriting FR par Sébastien (étape 5, D13). Aucun GO de fusion.
+
+---
+
+## 2026-10-09 · #109 — `main` `f03f8ca` intégré, « 5000+ » rétabli (erreur de la seconde passe), faits métier consolidés · Claude de Laurent
+
+**Chantier** : intégrité factuelle, successeur de #64 (mission V8 de Laurent du 09/10, « finaliser #109 + #111 », GO_CODE sur ce périmètre, GO_MERGE = NO) | **PR** : #109, brouillon, branche `fix/factual-integrity-oct-2026` | **Base** : `main` `f03f8ca` intégré par fusion (`d7d1811`)
+
+**Quoi** —
+- Fusion de `main` `f03f8ca` : seuls `JOURNAL.md` et `ETAT.md` en conflit, fusionnés par union (167 + 12 + 2 = 181 entrées) ; aucun fichier du site en conflit.
+- **Correction de l'entrée du 08/10 « seconde passe »** : le retrait de « 5000+ » était une erreur. Valeurs de `main` rétablies à l'identique : `contact.trustStat2Value` et `trustStat2Label` (FR « 5000+ » / « entreprises équipées », EN « 5000+ » / « companies equipped », de-ch « 5'000+ » / « ausgerüstete Unternehmen ») ; `studiosHardware.meta.description` FR et de-ch : « 5 000+ entreprises équipées. » / « 5000+ ausgerüstete Unternehmen. » réinséré à sa place d'origine, sans « ROI moyen 9 mois » ni « Démo gratuite ». La meta EN ne le contenait pas. Les registres de la seconde passe (entrées 554 et 586, hors dépôt) sont à lire avec cette correction.
+
+**Pourquoi** — « 5_000_PLUS = fait métier Sébastien retenu » (Laurent, 08/10, 13:24 UTC). Le seul point ouvert sur ce chiffre était, au JOURNAL du 30/09 (#71), « l'écart « 5 000+ entreprises » (accueil) contre « plus de 500 entreprises » (guide budget) » ; « plus de 500 entreprises » disparaît avec la réécriture de `blogBudget.intro.p2` par #109. Libellé : celui de `main` et de l'accueil, sans portée géographique ni rattachement à Orbitvu ajoutés.
+
+**Faits métier consolidés** (consignés une fois ; formulation et provenance) —
+- Sysnext 2001, lancement de PackshotCreator 2004, « PackshotCreator est une marque de Sysnext » : missions de Laurent du 30/09 et du 08/10 ; D33 (25/09, « date de création : 2001 »). `foundingDate` : « FOUNDINGDATE_PATCH = OUT_OF_SCOPE » (30/09), modèle d'entité non tranché.
+- Showroom « 198 allée de la Tour, 01700 Beynost », distinct du siège : « fait métier Laurent + Sébastien » (30/09), rappelé le 08/10. Même point que D1 (commune du showroom, Sébastien) : la commune change, la règle éditoriale de D1 (« près de Lyon » hors contact, schema, mentions légales) reste appliquée.
+- Orbitvu : distributeur officiel, jamais exclusif (D6) ; « depuis 2023 » (30/09, 08/10).
+- Livraison et installation facturées en supplément : D32 (25/09, offre de leasing B2B livrée et installée, France et Suisse), 30/09, 08/10.
+- Délai : D32 (25/09) « environ 10 jours » ; le 30/09, Laurent : « délai actuel ≈ 12 jours », « Le chiffre ancien « environ 10 jours » est dépassé par la confirmation du 30/09 », « OLD_D32 = environ 10 jours », « GOVERNANCE_AMENDMENT_REQUIRED = YES » ; le 08/10 : « environ 12 jours, indicatif, NON GARANTI ». Même offre et même point selon Laurent : 12 jours dans le contenu de #109 ; texte de D32 non amendé ; F5 gelée à 10 jours (D37) ; `shippingDetails` de D32 non implémenté.
+- Formation facturée séparément ; Essential 4 h à distance, Master 7 h en présentiel (01/10, #71 ; 08/10) ; Qualiopi : « ENTITÉ QUALIOPI = SYSNEXT » (08/10).
+- Garantie standard d'un an, extension possible, sans plafond publié (30/09, 08/10).
+- ROI « 6–12 mois usuel ; 12–18 mois pour très gros Alphastudio ; jamais comme garantie » (08/10).
+- Allemand : accompagnement commercial possible en Suisse, équipe ni bilingue ni native (D33 ; 30/09 ; 08/10) ; espagnol non parlé (D33).
+- 5 000+ : ci-dessus.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (8 lignes), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Bandeau de `/contact` et meta de Studios (FR, de-ch) conformes au fait retenu. Aucun effet de position annoncé.
+
+**Vérifié** — `verifier-json` : 195 JSON valides ; `npx tsc --noEmit` vert ; Vitest 495/495 ; `npx next build` vert (386 pages) ; HTML prérendu : `/fr/contact`, `/en/contact`, `/de-ch/contact` affichent « 5000+ » / « 5'000+ » et leur libellé ; `<meta name="description">` de `/fr` et `/de-ch/studios-photo-automatises` contient la mention rétablie, celle de `/en` est inchangée ; diff du commit limité aux 8 lignes de `messages`, les autres corrections de #109 sont inchangées.
+**Supposé** — [Inférence] Le fait retenu le 08/10 répond au point ouvert le 30/09 (même chiffre, même libellé « entreprises »). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4). Portées divergentes du même chiffre hors #109 : accueil « en France et en Suisse » (gelé jusqu'au 28/10), `studiosHardware.socialProof.label` « en France et dans le monde » (clé non rendue), page Studios « Clients équipés » (`studios-photo-automatises/page.tsx`, hors des 19 fichiers).
+
+**Suite** — D42 étape 4 (Preview, Laurent) et étape 5 (Sébastien : copywriting FR client-facing, D13) ; fusion sur GO distinct de Laurent ; #111 réconciliée sur les mêmes valeurs (entrée suivante de sa branche).
+
+---
+
+## 2026-10-09 · Landing catalogue All-in-One (#82) : test réel de l'envoi e-mail depuis la Preview, verrous remis · Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `4a800f0` (ouverture), `971d0bc` (fermeture)
+
+**Quoi** — Mission de Laurent du 06/10 (« envoi du mail catalogue ») exécutée : deux demandes réelles depuis la Preview de #82, sans CRM, puis `SERVICES_REELS_AUTORISES` remis à `false` et le déploiement de test supprimé.
+
+**Pourquoi** — Vérifier en réel que, sur la Preview, le prospect reçoit l'e-mail du lien et que l'équipe reçoit la notification, consultant compris, avant toute publication.
+
+**Fichiers** — `lib/catalogue/activation.ts` (interrupteur ouvert par `4a800f0`, refermé par `971d0bc`). Vercel : déploiement de test `sysnext-l4az19x4t` (`4a800f0`) supprimé après le test.
+
+**Effet attendu** — Aucun pour le visiteur : production inchangée, page en 404 et API fermée en production ; Preview de nouveau fermée (503).
+
+**Vérifié** —
+- Preview `4a800f0` construite (READY) ; formulaire rempli dans Chrome (session Vercel) le 09/10 :
+  - A — `TEST PR82 A - a ignorer`, France, sans consultant, prospect `sebastien.jourdan+test-pr82-a@sysnext.com` : écran « Votre catalogue est prêt », « Le lien de téléchargement vous a également été envoyé par e-mail » ;
+  - B — `TEST PR82 B - a ignorer`, Suisse, consultant coché, prospect `sebastien.jourdan+test-pr82-b@sysnext.com` : même écran, plus « Votre demande d'échange avec un consultant PackshotCreator a été prise en compte ».
+- Resend : exactement 4 envois de test (10:29:47 et 10:30:52 UTC), tous `delivered`, expéditeur `PackshotCreator <sebastien.jourdan@sysnext.com>` ; aucun envoi après la fermeture.
+- Boîte `sebastien.jourdan@sysnext.com` (lue par le connecteur Gmail) : les 4 messages en boîte de réception.
+  - E-mail prospect : objet « Votre catalogue Orbitvu All-in-One » ; lien `https://videos.packshot-creator.com/catalogues/orbitvu-all-in-one-2026-fr.pdf` ; +33 (0)1 47 42 66 66 et +41 44 580 43 84 ; « Demander une démo » → `/fr/contact`, « Calculer mon ROI » → `/fr/calculateur-roi` ; aucune pièce jointe (6,7 Ko).
+  - Notification A : objet `[Brochure] TEST PR82 A - a ignorer`, en-tête « Nouveau lead brochure », fiche complète, « Lien du catalogue envoyé au prospect : confirmé par Resend. »
+  - Notification B : objet `[Brochure] TEST PR82 B - a ignorer - DEMANDE À ÊTRE RECONTACTÉ`, en-tête « LE PROSPECT DEMANDE À ÊTRE RECONTACTÉ », « Demande de consultant : OUI ».
+- Liens : PDF 200, `application/pdf`, 15 380 434 octets ; `/fr/contact` et `/fr/calculateur-roi` 200 sur `sysnext.vercel.app` et ouverts dans Chrome sur `www` (titres attendus).
+- Après fermeture (`971d0bc`, READY, alias de branche) : `POST /api/catalogue` valide → 503 `catalogue_unavailable` ; ancien déploiement `sysnext-l4az19x4t` → 404 `DEPLOYMENT_NOT_FOUND`.
+- Aucun appel Pipedrive (code retiré), aucune affaire, aucun lead commercial ; production, Cloudflare, R2, formulaires Contact et ROI non touchés.
+
+**Supposé** — Que le premier clic sur « Recevoir le catalogue » de la demande A, bloqué côté navigateur par « Sélectionnez France ou Suisse » (pays saisi par l'outil sans événement de changement), n'ait rien envoyé : aucune requête n'atteint l'API quand la validation du navigateur échoue, et Resend ne montre aucun envoi supplémentaire.
+
+**Non regardé** — Bandeau « Aperçu de travail, parcours non activé… aucune demande enregistrée ni envoyée » (`CatalogueAllInOne.tsx`, `apercuInterne`) : affiché sur la Preview pendant le test alors que les envois étaient ouverts ; texte à revoir avant la publication. GA4 non testé (cookies non acceptés). Rendu des e-mails sur mobile et dans d'autres messageries que Gmail.
+
+**Suite** — Avant publication : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité), `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production, bandeau d'aperçu, GO de publication et de fusion de Laurent (D42).
+
+---
+
+## 2026-10-09 · Landing catalogue All-in-One (#82) : Pipedrive retiré du parcours brochure, notification à Sébastien · Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : voir l'historique de #82 (09/10)
+
+**Quoi** — Décision de Sébastien du 09/10 : aucun CRM dans le parcours brochure. Plus aucun appel Pipedrive : `lib/catalogue/pipedrive.ts` supprimé, `crm.ts` devenu `fiche.ts` (contenu de la demande). Parcours : e-mail du lien au prospect, puis notification interne portant la fiche de la demande et le sort de l'e-mail du lien. `CATALOGUE_NOTIFICATION_EMAIL` vaut `sebastien.jourdan@sysnext.com` (Preview de #82) au lieu de `leads@sysnext.com`.
+
+**Pourquoi** — Mission de Laurent du 06/10 (« envoi du mail catalogue », relancée le 07/10) : le code écrivait dans Pipedrive avant tout e-mail, ce qui déclenchait son STOP (« si une écriture Pipedrive est indispensable »). Sébastien a tranché P1 et T1 de Q23 : pas de Pipedrive ; le tri des leads brochure vers le CRM se fait hors du site, par son assistant IA, à partir de la notification. Destinataire changé par Sébastien (T2).
+
+**Fichiers** — `lib/catalogue/services.ts`, `lib/catalogue/gestionnaire.ts`, `lib/catalogue/resend.ts`, `lib/catalogue/fiche.ts` (ex-`crm.ts`), `lib/catalogue/pipedrive.ts` (supprimé), `lib/catalogue/activation.ts`, `lib/catalogue/schema.ts` et `app/api/catalogue/route.ts` (commentaires), `components/landings/catalogue-all-in-one/mesure.ts` (commentaire), `lib/catalogue/__tests__/` (doublure Pipedrive supprimée, scénarios réécrits). Variable Vercel `CATALOGUE_NOTIFICATION_EMAIL` (Preview, branche de #82) modifiée par le tableau de bord le 09/10.
+
+**Effet attendu** — Aucun pour le visiteur tant que `SERVICES_REELS_AUTORISES` est faux. Une fois ouverte, la route n'exige plus `PIPEDRIVE_API_TOKEN` ; elle reste fermée (503) sans `RESEND_API_KEY`, `RESEND_FROM_EMAIL` ou une adresse valide dans `CATALOGUE_NOTIFICATION_EMAIL`, la notification étant désormais la trace de la demande. Contrat de réponse inchangé (`ok`, `pdfUrl`, `emailSent`, `contactRequestAccepted`).
+
+Règles du parcours sans CRM :
+- e-mail du lien d'abord, puis notification ; la notification dit si le lien est parti (« confirmé par Resend » ou « NON confirmé, à renvoyer ») ;
+- un seul des deux envois confirmé suffit au succès : l'e-mail du lien reste tracé dans le journal d'envoi Resend ;
+- aucun des deux confirmé : 500 `technical`, journal `catalogue.aucune_trace`, nouvel essai possible (même `requestId` retraité) ;
+- consultant : `contactRequestAccepted` vrai seulement si la notification est transmise ; objet `[Brochure] entreprise - DEMANDE À ÊTRE RECONTACTÉ` et mention en tête, inchangés ;
+- fiche : une ligne « Clé : valeur » par information (type, consultant, brochure, pays, entreprise, domaine grand public, produits, page, attribution, date, identifiant), lisible par un programme.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue`, `app/api/catalogue`, `components/landings/catalogue-all-in-one` : 0 avertissement ; `npx vitest run` : 484/484 (518 avant : tests du contrat Pipedrive retirés, scénarios sans CRM ajoutés).
+- Test P : aucun appel `fetch` pendant une demande complète, même avec `PIPEDRIVE_API_TOKEN` présent ; aucune mention de Pipedrive dans les e-mails.
+- Contre-épreuves (code remis à l'identique, `cmp`) : succès accepté sans aucune trace → 3 échecs ; sort de l'e-mail présumé dans la notification → 3 échecs.
+- Variables de la Preview (lecture par le tableau de bord Vercel le 09/10) : `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `PIPEDRIVE_API_TOKEN` sur Development, Preview et Production ; `CATALOGUE_NOTIFICATION_EMAIL` sur la Preview de la branche seule, relue après modification.
+- Resend : domaine `sysnext.com` vérifié (depuis le 14/03), expéditeur de production `sebastien.jourdan@sysnext.com`, envois de production « delivered » le 09/10.
+
+**Supposé** — Que le tri par l'assistant IA de Sébastien lise la notification telle qu'elle est structurée (non vu).
+
+**Non regardé** — Plafond d'envoi du plan Resend : 5 demandes par heure et par adresse IP × 24 h × 2 e-mails = jusqu'à 240 e-mails par jour depuis une seule IP, sur le compte qui sert aussi Contact et ROI. Idempotence : un même `requestId` reçu par deux instances Vercel est traité deux fois (la note Pipedrive assurait ce dédoublonnage ; perte assumée). `/api/contact` et ses écritures Pipedrive : hors périmètre, inchangés.
+
+**Suite** — Test réel contrôlé depuis la Preview (entrée suivante), interrupteurs remis à faux. Avant publication : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité ; Pipedrive n'est plus sous-traitant de ce formulaire), `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production.
+
+---
+
+## 2026-10-09 · #121 — suppressions ciblées sous D50 (ShotFlow FR/EN, Oscaro FR), photographie 3D retirée, `main` intégré · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel factuel (mission V8 de Laurent du 09/10, « reprise immédiate Ubersuggest ») | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `0ca0ba4` intégré (fusion de #113)
+
+**Quoi** — Suppressions seules, sans texte nouveau, sous D50 (exception D13/D42 de Laurent du 09/10) :
+- ShotFlow FR (`comment-shotflow-ameliore-suivi-taches-en-temps-reel`) : déjà dans #121, « | -50% de délais » du `metaTitle` et « Réduisez vos délais de 50%, » de la description ; ajoutés : les puces « Les délais d'approbation ont été réduits de 50 %… » et « 40 % du temps de travail économisé… », et dans la FAQ les phrases chiffrées des questions 1 à 5 (étude 2024, 83 %, 47 % ; 3 à 4 semaines, 90 %, 200 déploiements ; enquête 2024, 28 %, Printemps 32 %, 4,2 à 7,8/10 ; 100 000 assets, 1,2 s, 200 utilisateurs, client mode 25 000 assets et 18 % ; 180 clients, 35 %, 15-22 %, 20-25 %, 60 %) et la phrase qui renvoyait à « ces KPIs ».
+- ShotFlow EN (`how-shotflow-improves-real-time-task-tracking`) : « Reduce your deadlines by 50%, improve collaboration, and reduce costs. » devient « Improve collaboration and reduce costs. » dans la description, donc dans `og:description` et les cartes du blog (seul accord grammatical : majuscule, virgule) ; « Approval times have been reduced by 50%, speeding up all production. » et « 40% of working time saved thanks to the automation of updates. » retirés ; mêmes suppressions que le FR dans la FAQ.
+- Oscaro FR : « , n°1 des pièces auto neuves et d'origine sur internet, » retiré du corps (déjà dans #121).
+- Photographie 3D, FR et EN : modifications de #121 retirées, fichiers rendus identiques à `main` (HOLD PACK-D9 intact).
+
+**HOLD — non supprimés, localisation** :
+- ShotFlow EN : intertitre H3 « 50% reduction in approval times » (section « ShotFlow: real-time visibility… ») ; section « Case study: a successful transformation » (acteur non nommé, « the results are impressive: », 4 puces 65 %, 50 %, 20 %, 98 %, citation d'un « creative director ») ; FAQ 5, témoignage final ; description, « Supporting testimonies and case studies ». Motif : suppression impossible sans réécriture (intertitre, liste introduite par une phrase) ou témoignage, hors du champ de D50.
+- ShotFlow FR : intertitre H3 « 50 % de réduction des délais d'approbation » ; étude de cas (« Après ShotFlow, les résultats sont impressionnants : », 4 puces, citation du directeur créatif) ; FAQ 5, témoignage final ; description, « Témoignages et études de cas à l'appui. ».
+- Oscaro FR : description, « le leader des pièces auto en ligne » (suppression impossible sans substituer un sujet) ; title et H1 (résultat client, lot C) ; corps : « plus de 4000 LEDs », « jusqu'à 120 kg », « plus de 7000 références », citation sur la baisse des retours et la hausse des ventes, non identifiés comme non sourcés à ce jour.
+
+**Fichiers** — `content/blog/fr/comment-shotflow-ameliore-suivi-taches-en-temps-reel.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `content/blog/fr/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg.json`, `docs/seo-geo/DECISIONS.md` (D50), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Moins d'affirmations chiffrées non sourcées exposées sur 3 articles, leurs cartes de blog et leurs données structurées. Aucun effet de position annoncé.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 486/486 ; `npx next build` vert (386 pages) ; CSS identique à `main`.
+- HTML prérendu contre `main` `0ca0ba4` (identifiant de build neutralisé, scripts retirés) : 363 pages identiques sur 374 ; 11 différentes : les 3 articles, `/fr/blog` et `/en/blog` (carte ShotFlow), 6 articles dont la carte « articles liés » affiche la description ShotFlow. Écarts limités aux suppressions listées.
+- JSON-LD : 374 pages, 0 bloc invalide ; 2 pages différentes (ShotFlow FR et EN), champs `Article.description` et réponses de `FAQPage` seulement ; FAQ visible égale à `FAQPage`.
+- Rendu local (`next start`, Chromium) des 3 articles et des 2 index, 1440 et 390 px : HTTP 200, un seul H1, 0 débordement, 0 erreur de page ; questions de FAQ ouvertes sans erreur.
+
+**Supposé** — Rien.
+**Non regardé** — Preview Vercel (SSO, inaccessible depuis cette session) ; `sysnext.vercel.app` (bloqué par le proxy de la session) ; `www` (R4).
+
+**Suite** — Contrôle Chrome de la Preview (D42, étape 4). Le passage de brouillon à prête pour revue déclenchera une demande de revue automatique `CODEOWNERS` : l'autorisation de Laurent du 09/10 ne vaut que pour #116 et #120. Fusion ensuite, sur le GO conditionnel de Laurent du 09/10. #119 reste en HOLD (D13).
+
+---
+
+## 2026-10-09 · #113 — resynchronisation sur `main` (après #112), retrait D35, fusion ; consignation de la fusion de #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #113 distinct et conditionnel) | **PR** : #113, branche `claude/focused-hypatia-ygys0g-alt-aria` | **Base** : `main` `67ec946` (fusion de #112)
+
+**Quoi**
+1. #112 fusionnée le 09/10 à 08:13:42 UTC, commit de fusion `67ec946` : date consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E) ; #112 passe de B à G.
+2. #113 : base passée de la branche de #112 à `main` ; `main` `67ec946` fusionnée dans la branche (conflit sur `JOURNAL.md` seulement, résolu par union).
+3. D35 : les 7 ALT traduits de l'article EN protégé `/en/blog/packshot-photography-guide-why-make-product-packshots` sont retirés (commit `f6276a4`) ; le fichier est identique octet pour octet à `main`. Conservés : 7 ALT de-ch, 112 autres ALT EN (45 fichiers), 21 ALT décoratifs vidés, `title` de l'iframe Vimeo, ARIA du sélecteur.
+
+**Pourquoi** — D35 : l'article EN du comparateur F5 reste en l'état jusqu'à la fin de la mesure F5 (J+56 le 23/11). Les 7 ALT y avaient été modifiés le 08/10 par erreur de périmètre ; aucune revue antérieure ne l'avait relevé.
+
+**Fichiers** — `content/blog/en/packshot-photography-guide-why-make-product-packshots.json` (retour à `main`) ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Delta de #113 contre `main` : 55 JSON (112 ALT EN sur 45 fichiers, 7 ALT de-ch, 21 ALT décoratifs, 1 `title` d'iframe ; aucun changement hors attributs `alt` / `title`), `MachineCard.tsx`, `MachineModal.tsx`.
+
+**Vérifié** — `main` `67ec946` (09/10, après fusion de #112) ; tête de #113 resynchronisée `e642a68` + ce commit. Delta contre `main` recompté : 55 JSON, 112 ALT EN (45 fichiers), 7 ALT de-ch, 21 décoratifs, 1 `title`, 0 changement hors attributs ; `MachineCard.tsx` et `MachineModal.tsx` identiques à la tête `ab7a0bf` contrôlée le 09/10. `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 486/486. HTML prérendu contre un build de `main` `67ec946` : 47 pages modifiées (41 articles, exactement ceux des JSON de blog touchés ; sélecteur et Studios FR, EN, de-ch) ; identiques à `main` : accueil FR, EN, de-ch, F5 ×3, Mode ×3, hub mode, article D35, 15 URL du cluster AI Act (#96) et les pages sources de sa baseline (`migrer-ancien-packshotcreator` et équivalents). Les 14 guides EN portent leurs ALT dans `introMedia`, champ non rendu par le gabarit : aucune page de guide modifiée. QA Playwright sur build local, 10 URL × 3 viewports : 30/30 PASS (URL 8 et 9 : erreurs de console des intégrations externes seulement, présentes sur `main`). `sysnext` après fusion de #112 (09/10 vers 08:15 UTC) : `smoke.mjs` vert (17 pages, 3 ressources), 6 URL de #112 servies avec le lien attendu.
+
+**Supposé** — QA Chrome réelle de #113 (10/10, 09/10) reprise de la mission de Laurent, non refaite ; la page D35 en était exclue (URL 1 à 10 hors article protégé).
+**Non regardé** — `www` (R4) ; relecture EN/DE humaine des ALT (D42).
+
+**Suite** — `smoke.mjs` sur `sysnext` après fusion de #113 ; contrôle Chrome de `www` par Laurent ; fenêtre C11 au plus tard le 15/10 respectée par la fusion.
+
+---
+
+## 2026-10-09 · #112 — exception D49, intégration de `main` et fusion · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — finir Repair Factory #112 + #113 » du 09/10 (GO_CODE limité à la resynchronisation, aux conflits et au retrait du périmètre D35 ; GO_MERGE #112 conditionnel) | **PR** : #112, branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `330c022` (fusion de #120)
+
+**Quoi** — `main` `330c022` (#110, #116, #120) intégré par commit de fusion `b41d433` : conflits de `ETAT.md` et `JOURNAL.md` résolus par union. D49 inscrite dans `DECISIONS.md` : exception ponctuelle de Laurent pour #112 (D15 et information préalable de Sébastien non appliquées à cette seule PR). Ligne #112 d'`ETAT.md` mise à jour.
+
+**Pourquoi** — Décision expresse de Laurent du 09/10 (texte intégral en D49). Traçabilité des corrections de régime (a), qui remplace ici l'information préalable de Sébastien : M01, M02, M03 (3 ancres « studio photo automatisé » vers `/fr/studios-photo-automatises`), M30, M31, M32 (ancres horlogerie vers le hub horlogerie, dont 1 de-ch), « photographie commerciale horlogère » (guide bracelet FR, audit E, sans numéro M) vers le hub horlogerie, liens externes (A05, AA5 a, A17, F-098, F-070). Liens de régime (b) publiés au titre de D49 : M04, M05 (Studios), M21, D-044 (hub vin).
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md` ; commit de fusion `b41d433`.
+
+**Effet attendu** — Aucun effet nouveau sur le site par ces commits. Diff de site de #112 identique à la tête `c4c20db` contrôlée (même `patch-id` avant et après l'intégration de `main`).
+
+**Vérifié** — `main` `330c022` ; fichiers de `main` depuis `06b18e2` : aucun fichier du site commun avec #112 ; D49 libre sur `main` ; CODEOWNERS : « la protection de branche n'exige pas de revue ».
+**Supposé** — La QA Chrome réelle de #113 (10/10) est reprise de la mission de Laurent ; elle n'a pas été refaite par cette session.
+**Non regardé** — `www` (R4).
+
+**Suite** — CI sur la nouvelle tête, puis fusion de #112 ; `STUDIOS_INTERNAL_LINKING_EVENT` = date de cette fusion, à consigner par #113 ; `smoke.mjs` sur `sysnext.vercel.app` après déploiement.
+
+---
+
+## 2026-10-09 · D48 — inscription de CA10 (a) + (b) dans DECISIONS.md, par #112 · Claude de Laurent
+
+**Chantier** : mission de Laurent « V8 — exécution ciblée #112 » du 09/10 (GO_CODE limité à cette inscription ; GO_MERGE, GO_PUBLICATION, GO_CLOUDFLARE_DEPLOY = NO) | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` | **Base** : `main` `06b18e2`
+
+**Quoi** — D48 inscrite en tête de `DECISIONS.md` : CA10 (a) correction d'un `href` existant, ancre inchangée, information de Sébastien ; CA10 (b) lien posé sur un texte existant sans modifier un mot, D15. Datée du 07/10/2026, attribuée à Laurent. Ligne #112 d'`ETAT.md` mise à jour. Aucun fichier du site modifié.
+
+**Pourquoi** — Arbitrage A3 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2 (`11_ARBITRAGES_LAURENT.md`, ZIP hors dépôt, SHA-256 `ef94c420…6024`) : la première PR de vague 1 qui applique CA10 l'inscrit. #112 l'applique : (a) M01, M02, M03, M30, M31, M32 ; (b) M04, M05, M21, et D-044, lien du même type hors du dossier V2. Arbitrages de Laurent du 09/10 : M31 conservé dans #112, #27 non fusionnable en l'état et non fermée ; protocole Studios conservé, son J0 ne bloque pas #112, aucun témoin D47 modifié ; M39 attend une landing IA validée, #105 reste HOLD.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet sur le site. CA10 devient une règle écrite opposable aux PR suivantes.
+
+**Vérifié** — `main` `06b18e2` et tête de #112 `0788f23` avant écriture ; numéro D48 absent de `main`, de la branche et des PR ouvertes ; aucune PR ouverte ne touche `DECISIONS.md` ; texte des deux régimes repris du tableau A3 sans modification.
+**Supposé** — Rien.
+**Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
+
+**Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
 ## 2026-10-08 · Médias externes et consentement — Vimeo, Sketchfab, saasphoto.com en façade ; bandeau cookies (Pixel 5, focus) · Claude de Laurent
 
 **Chantier** : médias externes, consentement et UX (mission de Laurent du 08/10, GO_CODE sur ce seul périmètre technique ; GO_MERGE = NO ; GO_PUBLICATION = NO) ; backlog F4 « Consentement » et « Bandeau cookies en Pixel 5 » | **PR** : #117, brouillon, « DO NOT MERGE », branche `ccr-9f625584-mumrjt` | **Base** : `main` `06b18e2` (fusion de #106)
@@ -71,6 +825,351 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - Décisions de consentement : catégorie durable pour les autres services (libellé « Vidéos YouTube » du bandeau, article 6 de la politique de confidentialité, aucune modification sans validation) ; croix « Fermer » du bandeau rouvert, qui vaut « Tout refuser » ; textes de la fenêtre d'information (FR, EN, de-CH) à relire, gardés dans `lib/external-embeds.ts` faute de pouvoir toucher `messages/*.json`.
 - Débordement de 49 px de l'accueil en mobile : cause racine du défaut Pixel 5, non corrigé (accueil gelé jusqu'au 28/10, D44 et M5).
 - Inactifs : `introMedia` des guides (10 iframes `cdn.embedly.com`, 6 scripts `orbitvu.co`, champ non rendu par le gabarit) ; `components/media/VideoFacade.tsx` et `components/video/YouTubeFacade.tsx`, importés par aucun fichier (ils chargeraient `img.youtube.com` ou `i.ytimg.com` à l'affichage).
+
+---
+
+## 2026-10-08 · Repair Factory, PR-B — ALT, ARIA et mécanique de langue (B4_1, B4_2, LANG A36/A38, C11) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : #113, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-alt-aria`, **empilée sur PR-A (#112)** (mêmes JSON de contenu, champ `content` sur une ligne : se fusionne après PR-A) | **Base** : branche de PR-A
+
+**Quoi** — Deux commits :
+1. ALT : 119 ALT en français servis sur 46 articles et guides EN traduits en anglais ; 7 ALT en français de l'article de-ch `leitfaden-packshot-fotografie-warum-packshots-machen` traduits en allemand ; 21 `alt="__wf_reserved_decorative"` (15 fichiers) remplacés par `alt=""` ; `title` de l'iframe Vimeo EN repris de la version FR (F10). Coquille « massacra » (B4-0322) rendue par « mascara » dans l'ALT EN.
+2. ARIA et libellés : nom accessible distinct par carte du sélecteur (C11, G-007 à G-009 : « Voir la fiche » suivi du nom de la machine) ; unité « photos » de la modale rendue « Fotos » en de-ch (dette A de PACK-L) ; « Sur devis » rendu « Auf Anfrage » en de-ch. Libellés des secteurs `optics`, `health`, `industrial`, `watchmaking` des fiches (clés brutes en FR et en EN) : retirés de cette PR après l'ouverture de #110 (sprint parallèle, même fichier `app/[lang]/studio-photo/[slug]/page.tsx`), COLLISION_OTHER_SPRINT.
+
+**Pourquoi** — B4 (716 occurrences) et LANG (A01–A38) comptent les mêmes ALT en mauvaise langue (ponts PONT-01, PONT-02 de la réconciliation du 07/10) : une seule correction par occurrence. Registre B4 original absent (`B4_RAW_REGISTER = MISSING`) : seuls les cas prouvés par observation du fichier sont corrigés.
+
+**Fichiers** — 56 fichiers `content/{blog,guides}/{en,de-ch,fr}/**` ; `components/machine-selector/components/MachineCard.tsx`, `components/machine-selector/components/MachineModal.tsx` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Pages EN et de-ch concernées sans ALT en français ; noms accessibles distincts sur 13 cartes (sélecteur FR, EN, de-ch et pages Studios). Effet de classement : aucun attendu en propre (accessibilité, cohérence de langue).
+
+**Vérifié**
+- `verifier-json` 195 valides ; `tsc` vert ; `next build` vert (386 pages) ; Vitest 483/483.
+- HTML prérendu contre `main` (PR-A + PR-B, après retrait du fichier des fiches) : seules les pages des JSON touchés, le sélecteur et Studios changent ; fiches identiques à `main` ; accueil, F5, Mode, cluster AI Act identiques.
+- ALT en français restants sur pages EN : uniquement les 3 pages EN servies en français (décision B1/D9) et les 2 fichiers EN de #109.
+- e2e : voir l'entrée PR-A (même build) ; `machine-selector` vert (le spec lit le texte visible, inchangé).
+
+**Supposé** — [Inférence] Les ALT traduits décrivent correctement leur image : la traduction reprend l'ALT français sans vérification visuelle image par image. Cela repose sur des schémas observés.
+**Non regardé** — 167 `alt="__wf_reserved_inherit"` (description image par image nécessaire) ; ALT FR jugés trompeurs ou bourrés de mots-clés (B4_3 : réécritures, validation de Sébastien) ; relecture EN et DE humaine (D42).
+
+**Suite** — Fusion après PR-A ; fenêtre C11 (MachineCard sur la cible et le témoin du pilote Studios) : au plus tard le 15/10, sinon après J+56 ; relecture EN/DE.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-A — maillage : ancres, liens et cocons (résiduel V4.3 exécutable) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 (mission de Laurent, GO_CODE = YES, GO_MERGE = NO) ; registres V4.3 (36 lots, 582 occurrences) et réconciliation du 07/10 | **PR** : #112, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g` ; PR liées : #113 (empilée), #114, #115 | **Base** : `main` `06b18e2`
+
+**Quoi** — Quatre commits, chacun retirable seul :
+1. Ancres mal dirigées : A-005 (« horlogerie », ia-lumieres-virtuelles FR) et A-006 (« réussir la photographie de vos montres », guide montre FR) vers le hub horlogerie au lieu du hub bijoux ; jumeau de-ch « Fotografie Ihrer Uhren » vers `/de-ch/branchen/uhren` ; « photographie commerciale horlogère » (guide bracelet FR) vers le hub horlogerie ; libellés EN A-008 (« theoptics And ») et « modus » → « fashion ». Deux fichiers identiques octet pour octet à ceux de #104.
+2. Pilote Studios (EPL) : A-001, A-002, A-003 (« studio photo automatisé » qui menait au guide de décision) et N-001, N-002 (liens posés sur une mention existante) vers `/fr/studios-photo-automatises`. Commit isolé : sa fusion fixe le J0 du pilote.
+3. Hub vin-spiritueux : D-044 (« bouteilles en verre ») et D-045 (« bouteilles de vin »).
+4. Liens externes : retrait du lien, texte conservé (règle AA5 a) pour pixcap FR (F-041, F-042), la balise `<a id="">` sans href (F-043), goaland et wpengine FR et EN (D-020 à D-023) ; « Cloudinary » (FR, EN, de-ch) vers cloudinary.com, « BrightRiver » (EN) vers bright-river.com ; normalisation des URL externes redirigées (A17 : 23 lignes, 78 occurrences, 42 fichiers) ; coquille d'ancre « Alphasmhot » (F-098) ; « Retour au site » du questionnaire (F-070).
+
+**Pourquoi** — Mission du 08/10 : exécuter le résiduel sûr des audits déjà faits, sans nouvel audit. Les quatre landings actuelles (bijoux, IA, vin, Studios) ne sont plus exclues du fait des brouillons #104, #105, #107 et #108. Lignes du registre 582 : E06, A-008, EPL, D-044, D-045, A05, D-020 à D-023, A17 ; constats complémentaires des audits B et E.
+
+**Fichiers** — 52 fichiers `content/{blog,guides}/**` (FR, EN, de-ch) et `app/etude-clients-2026/SurveyForm.tsx` ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Après fusion : 4 liens de contenu de plus vers des owners (Studios +2, hub vin +2), 8 ancres redirigées vers la page qui correspond à leur texte (horlogerie +3, Studios +3 au détriment du guide de décision, et leurs jumeaux), aucun lien externe mort ni mal attribué sur les lignes traitées. [Inférence] Effet de classement non chiffrable ; lecture GSC par page à J+28. Cela repose sur des schémas observés.
+
+**Vérifié**
+- Fresh-check : `main` `06b18e2` ; PR ouvertes #109 (sprint parallèle, 19 fichiers), #104, #105, #107, #108 (HOLD), #82, #70, #64, #27 ; #110 et #111 (sprint parallèle) ouvertes pendant la mission, aucun fichier commun avec cette PR. Aucun fichier de #109 modifié (fichiers communs exclus ligne par ligne). Fichiers de #27 (non fusionnable, CA2 en attente) modifiés là où le résiduel l'exige.
+- Chaque remplacement appliqué par chaîne exacte avec nombre d'occurrences contrôlé ; sérialisation JSON d'origine conservée ; `verifier-json` : 195 fichiers valides.
+- URL externes cibles relevées en 200, sans redirection, le 08/10 (curl depuis le conteneur) ; pixcap.com sans résolution DNS ; l'article goaland redirige vers l'index du blog, la ressource wpengine vers un autre article.
+- `tsc` vert ; `next build` vert (386 pages, avec PR-B empilée) ; Vitest 483/483.
+- HTML prérendu contre `main` (scripts retirés, identifiant de build neutralisé) : seules les pages des fichiers touchés changent ; accueil, F5, Mode et les 15 articles du cluster AI Act identiques.
+- Liens rendus, Worker du dépôt rejoué devant `next start` : 0 balise `<a>` sans href (1 sur `main`) ; liens non 200 inchangés (16 vers `alphashot-g2`, D29 ; 2 à double saut, D29 ; 7 depuis des pages EN en 410) ; 3 fragments absents, ceux du témoin du pilote (D47).
+- e2e Chromium (machine-selector, sommaire-blog, navigation-pages-longues, internal-links, cta-destinations) : 96 réussis, 1 échec préexistant (`cta-destinations`, CTA « Découvrir nos studios » de l'accueil, relevé par l'audit A le 01/10 ; accueil identique à `main`).
+
+**Supposé** — [Inférence] « bouteilles en verre » (D-044) relève du cocon vin : la page cible traite des bouteilles en verre. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; Firefox, WebKit ; contenus non traités : liste HOLD de la PR.
+
+**Suite** — Information de Sébastien (CA10 a ; D42, arbitrage final 3 : maillage et liens) ; décision du J0 du pilote Studios (fusion du commit EPL, ou retrait du commit) ; 25 liens vers Studios différés « après lecture du pilote » (D-081 à D-104, D-116) ; GO de fusion distinct.
+
+**Mise à jour du 08/10, finalisation (décision de Laurent)** — Aucune landing nouvelle ni refonte publiée ; #104, #105, #107 et #108 restent HOLD, les pages actuelles bijoux, IA, vin et Studios servent d'owners et de destinations. Un lien vers la page Studios actuelle n'est pas le lancement de la refonte Studios : le J0 du pilote n'est plus une décision préalable à la fusion de cette PR. Sa fusion est consignée comme `STUDIOS_INTERNAL_LINKING_EVENT` (`ETAT.md`, section E), sans baseline payante. Revue finale du diff : 4 liens internes nouveaux (Studios ×2, vin ×2), 7 ancres re-ciblées (Studios ×3, horlogerie ×4 dont 1 de-ch ; correction de l'effet attendu ci-dessus, qui en annonçait 8), 2 libellés EN corrigés sur des cibles inchangées, 0 lien vers `/fr/packshot-e-commerce`, `/fr/packshot-mode` ou l'accueil ; texte visible inchangé hors libellés EN et coquille « Alphasmhot ». Sébastien : information (D42, arbitrage final 3), pas de validation.
+
+---
+
+## 2026-10-09 · Ubersuggest résiduel : #116 fusionnée, #120 intégrée à `main`, décisions de Laurent du 09/10 · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission V8 de Laurent du 09/10, « finalisation #116 et #120 ») | **PR** : #116 fusionnée ; #120 (cette branche) | **Commit de fusion de #116** : `7501f38` (`main`), le 09/10/2026 à 07:14:16 UTC, tête `7841991`
+
+**Quoi** —
+- #116 sortie du brouillon puis fusionnée par commit de fusion, tête `7841991` verrouillée. Code des 2 fichiers identique à la tête `13ba3ad`, contrôlée dans Chrome sur la Preview le 09/10 (QA de Laurent : PASS, 4 pages FR/EN, 1440 et 390 px) ; CI 4/4 verte sur `7841991`.
+- #120 : `main` `7501f38` intégré dans sa branche ; conflits de `ETAT.md` et `JOURNAL.md` résolus par union ; fichiers du site inchangés (3 `metaTitle` EN, rien d'autre).
+- #118 : fermeture sans fusion, son correctif étant fusionné par #116 (HTML identique sur les 374 pages prérendues, mesuré le 09/10).
+
+**Décisions de Laurent du 09/10, consignées sans modification de sens** —
+1. Demandes de revue **automatiques** de `CODEOWNERS` autorisées lors du passage de #116 et #120 de brouillon à prêtes pour revue, pour ces deux PR uniquement. Aucune demande manuelle, aucun message direct, aucune relance, aucune attente de validation de Sébastien. Une notification automatique n'est pas une validation métier.
+2. **Exception D42 ciblée, #120** : suppression du claim chiffré non sourcé « -50% delay » du `metaTitle` EN de `/en/blog/how-shotflow-improves-real-time-task-tracking`, sans attendre de validation métier complémentaire. Cette exception ne vaut que pour cette suppression : aucun autre claim, aucune prose FR, aucune proposition commerciale. Aucune validation n'est attribuée à Sébastien.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (intégration de `main` et consignation) ; fichiers du site de #120 inchangés.
+
+**Vérifié** — Voir l'entrée de contrôle de #120 ci-dessous et la description de la PR.
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) : contrôle Chrome de Laurent après déploiement. Statut de déploiement Vercel : constaté par le contenu servi seulement.
+
+**Suite** — #119 et #121 restent en HOLD (point D13 des titles FR ; HOLD PACK-D9 ; D42). Après fusion de #120 : `smoke.mjs` sur `sysnext.vercel.app`, puis les 7 pages dans Chrome sur `www`.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel, PR-B — 3 titles EN raccourcis mécaniquement · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, titles trop longs (mission de Laurent du 08/10, « UBERSUGGEST RESIDUAL CLEANUP », triage du 30/09 réutilisé, aucun nouvel appel Ubersuggest) | **PR** : #120, brouillon, branche `seo/ubersuggest-titres-en-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Champ `metaTitle` de 3 articles EN, chacun remplacé par un texte qui existe déjà :
+- `/en/blog/how-to-avoid-blurry-product-photographs` : « How to avoid blurry photos in product photography: causes, solutions, and best practices » (88) devient le H1 de l'article, « How to avoid blurry photos in product photography » (49) ;
+- `/en/blog/technique-photograph-jewelry-tutorial` : « How to Photograph Jewelry: Professional Techniques for Jewelers | PackshotCreator » (81) perd son suffixe de marque et devient « How to Photograph Jewelry: Professional Techniques for Jewelers » (63) ;
+- `/en/blog/how-shotflow-improves-real-time-task-tracking` : « ShotFlow: Optimize your production monitoring in real time | -50% delay » (71) perd « | -50% delay », chiffre non établi (backlog factuel du triage, n° 4), et devient « ShotFlow: Optimize your production monitoring in real time » (58).
+
+Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, slug et canonical inchangés.
+
+**Pourquoi** — Les 2 seuls titles EN classés SHORTEN_SAFE au triage du 30/09 qui restent mécaniques et hors de toute PR ouverte au 08/10, et le seul claim EN du backlog factuel retirable d'un title par simple suppression, dans un fichier libre. Les titles FR ne sont pas modifiés : la question « un `<title>` relève-t-il du copywriting réservé à Sébastien (D13) ? » reste ouverte (ligne #70 de `ETAT.md`). D13 vise le copywriting français. GSC sur 90 jours au 30/09 (triage) : 5 clics, 1 645 impressions, position 9,3 pour le premier ; 1 clic, 564 impressions, position 30,5 pour le second.
+
+**Fichiers** — `content/blog/en/how-to-avoid-blurry-product-photographs.json`, `content/blog/en/technique-photograph-jewelry-tutorial.json`, `content/blog/en/how-shotflow-improves-real-time-task-tracking.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Titles affichés en entier dans les résultats de recherche. Aucun gain de clics ni de position n'est mesuré ou annoncé ; lecture possible dans GSC à J+28.
+
+**Vérifié** — voir la PR : title, `og:title`, `twitter:title`, canonical et hreflang rendus ; HTML prérendu comparé à `main` ; CSS compilée comparée à `main`.
+
+**Supposé** — [Inférence] Google reprend le title tel quel, sans le réécrire. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; CTR avant et après, faute de recul.
+
+**Suite** — GO de Laurent, puis fusion ; information à Sébastien (métadonnées seules, D42, arbitrage final 3). Titles FR : lot de 10 lignes préparé pour Sébastien, hors dépôt, dont le pendant FR du title ShotFlow (« | -50% de délais »).
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel, PR-A — fil d'Ariane hors du `<h1>` des 2 articles à page dédiée (FR et EN, 4 pages) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest du 30/09, résiduel (mission de Laurent du 08/10, lot D), suite de UB-04 (#74) | **PR** : #116 (PR-A), brouillon, « DO NOT MERGE », branche `seo/ubersuggest-tech-h1-dedies-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — `comparatif-orbitvu-ortery-styleshoots-2026` et `prestataire-packshot-vs-studio-interne` passaient leur fil d'Ariane dans le prop `title` de `HeroSection`, donc dans le `<h1>`. Le fil passe dans le prop `breadcrumb` introduit par #74 : `<nav>` étiqueté par langue, séparateurs masqués aux lecteurs d'écran, `font-heading` à la place de `font-sans` comme dans #74. Aucun texte visible, aucune clé de `messages/*.json`, aucun title ni description modifiés ; `BreadcrumbList` inchangé.
+
+**Pourquoi** — Défaut laissé hors périmètre par #74 (JOURNAL du 01/10) et inscrit en F4 de `ETAT.md`. Fresh-check du 08/10 sur `main` `06b18e2` : sur les 4 pages, le texte du H1 commence par « Accueil/Blog/Comparatif », « Home/Blog/Comparison », « Accueil/Blog/Guide », « Home/Blog/Guide », avec un `<div>` enfant du `<h1>`.
+
+**Fichiers** — `app/[lang]/blog/comparatif-orbitvu-ortery-styleshoots-2026/page.tsx`, `app/[lang]/blog/prestataire-packshot-vs-studio-interne/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Le H1 des 4 pages ne porte plus que leur titre. Hygiène technique et structure d'accessibilité ; aucun gain de trafic ni de position annoncé.
+
+**Vérifié** —
+- Propriété des fichiers : aucune des 15 PR ouvertes au 08/10 (#27, #64, #70, #82, #104, #105, #107 à #115) ne touche les 2 fichiers ni `components/hero/`. `messages/*.json`, modifiés par 6 PR ouvertes, ne sont pas touchés : le libellé du repère reste dans chaque page, comme dans le gabarit d'article.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices de la CI) ; `verifier-consequences` : effet local.
+- HTML prérendu, build de `main` `06b18e2` contre build de la branche, identifiant de build neutralisé, scripts retirés : 374 pages, 370 identiques, 4 différentes, les 4 pages visées. Écart limité au déplacement du fil : `div` dans le `<h1>` devenu `nav` étiqueté juste avant, séparateurs `aria-hidden`, classe de police.
+- CSS compilée : 3 feuilles, identiques octet pour octet à celles de `main`.
+- Chromium, `next start`, 4 pages, 1440 et 390 px, animations neutralisées : captures de la zone d'en-tête, 0 pixel différent sur les 8 ; police, taille, graisse, interligne, couleur et position du fil identiques ; hauteur de document identique ; 0 débordement, 0 erreur de page.
+- `<head>` des 4 pages identique à `main` : title, description, canonical, hreflang, robots, `og:*`, `twitter:*` ; `BreadcrumbList` identique.
+- Arbre d'accessibilité (comparatif FR, prestataire EN) : un seul titre de niveau 1, au nom égal au titre de l'article ; repère de navigation « Fil d'Ariane » ou « Breadcrumb », 2 liens, catégorie en texte ; séparateurs absents de l'arbre.
+- Playwright, Chromium, `navigation-pages-longues` et `sommaire-blog` sur le build de la branche : 68 sur 69 ; l'échec porte sur `/de-ch/ia-photo-produit` à 1024 px, page non modifiée au HTML identique à `main`, et passe 3 fois sur 3 au rejeu isolé.
+
+**Supposé** — [Inférence] Firefox et Safari suivent le rendu de Chromium : même structure de bloc, mêmes règles CSS. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels.
+- Détecté pendant le fresh-check, non modifié : `/{fr,en,de-ch}/studio-photo/selecteur-machines` place un lien de retour « Studios Photo » suivi d'un `<br>` dans son `<h1>`. Hors liste historique de l'audit ; structure différente (lien seul, mise en page centrée) : décision séparée.
+- Libellé du repère à migrer vers `messages/*.json`, avec celui du gabarit d'article, quand ces fichiers seront libres.
+
+**Suite** — GO de fusion distinct de Laurent (mission du 08/10 : GO_MERGE = NO). Après fusion : `smoke.mjs` sur `sysnext.vercel.app`, puis les 4 pages dans Chrome sur `www`.
+- Doublon : #118, ouverte à 16:17 UTC par une autre session (branche `seo/ubersuggest-residuels-2026-10-08`), porte le même correctif sur les 2 mêmes fichiers, avec un module partagé `lib/blog-fil-ariane.ts` ; #116 a été ouverte à 16:06 UTC, avant elle. Une seule des deux doit être fusionnée : choix de Laurent ; aucune fermeture sans GO.
+
+---
+
+## 2026-10-08 · JSON-LD — `Product.url` et `Offer.url` des fiches de-ch sur l'URL canonique · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « structured data »), backlog F5 de `ETAT.md` (#55) | **PR** : #110, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p` | **Base** : `main` `06b18e2`
+
+**Quoi** — Les 17 fiches `/de-ch/fotostudio/<slug>` déclaraient `Product.url` et `Offer.url` en `/de-ch/studio-photo/<slug>`, qui répond 307 vers la fiche. Ces deux champs prennent l'URL canonique de la fiche, déjà calculée par `getPathname` pour le fil d'Ariane (#55) ; FR et EN inchangés.
+
+**Pourquoi** — Défaut listé au backlog F5 depuis #55 (29/09), confirmé le 08/10 sur un build local de `main` `06b18e2` : relevé des URL internes déclarées dans les JSON-LD des 323 pages du sitemap, statut sans suivre les redirections ; 34 valeurs non 200 : 13 `Product.url` et 13 `Offer.url` (307) sur les fiches du sitemap, 8 `Service.url` (301) sur les hubs `branchen`. Les 4 fiches `delisted`, hors sitemap mais prérendues en de-ch, portaient le même défaut. Les fiches de-ch sont des fiches marchand (`Offer` en CHF) : l'URL de l'offre doit être celle de la page.
+
+**Fichiers** — `app/[lang]/studio-photo/[slug]/page.tsx` (une constante `urlFiche`, partagée par le fil d'Ariane et `productSchema`), `lib/seo/__tests__/json-ld-url-canonique.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : `Product.url` et `Offer.url` des 17 fiches de-ch égaux à leur canonique ; aucun autre champ ne change. Lecture : GSC, « Fiches marchand » et « Extraits de produits », filtre `/de-ch/fotostudio/`, J+14 à J+28 après la mise en production. Aucun gain de position ni de clics n'est attendu ni promis.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 195 fichiers valides ; `npx vitest run` : 486/486 (24 fichiers), dont le nouveau test (3/3). Sa règle sur les sources détecte le motif de `main` (URL `/${lang}/studio-photo/…` écrite en dur dans `productSchema`) ; elle exclut nommément `app/[lang]/industrie/[slug]/page.tsx` (voir Non regardé).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, avant (`main` `06b18e2`) et après : 56 pages comparées (17 fiches × 3 langues, sélecteur FR et de-ch, `/fr`, `/de-ch`, `/de-ch/branchen/uhren`). 39 identiques ; 17 fiches de-ch différentes sur `Product.url` et `Offer.url` seulement ; statut, `<title>`, canonical, hreflang, `robots`, `BreadcrumbList` et autres blocs JSON-LD identiques.
+- Relevé JSON-LD sur le build de la branche : 323 pages, 0 `Product.url` ni `Offer.url` non 200 ; restent les 8 `Service.url`.
+
+**Supposé** — [Inférence] Le comportement 307 de `/de-ch/studio-photo/<slug>` vient du middleware `next-intl` ; le Worker laisse passer les chemins à préfixe de langue, donc la production répond comme le build local. Cela repose sur des schémas observés.
+**Non regardé** — `Service.url` des 8 hubs `/de-ch/branchen/*` (`/de-ch/industrie/<slug>`, 301) : laissé en l'état, le gabarit `industrie/[slug]` est touché par #104 et #107 (HOLD) et sert `/de-ch/branchen/mode` (gel Mode jusqu'au 26/11) ; `Service` n'ouvre aucun résultat enrichi. Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). Test des résultats enrichis de Google : à faire sur la Preview ou après fusion. Aucun appel payant.
+
+**Suite** — Contrôle de la Preview de-ch (source JSON-LD de 2 fiches) ; fusion sur GO distinct de Laurent ; après fusion, test des résultats enrichis sur `/de-ch/fotostudio/alphashot-pro-g2` et lecture GSC à J+14/J+28. `Service.url` des `branchen` : après la sortie de HOLD de #104 et #107 et le 26/11.
+
+---
+
+## 2026-10-08 · Ubersuggest résiduel — suppressions factuelles minimales (ShotFlow, Oscaro, photographie 3D) · Claude de Laurent
+
+**Chantier** : audit Ubersuggest, backlog factuel du triage du 30/09 (mission de Laurent du 08/10, « RÉCONCILIATION ET RÉPARATION DU TRIAGE DÉJÀ FAIT » ; triage réutilisé, aucun appel Ubersuggest) | **PR** : #121, brouillon, branche `seo/ubersuggest-suppressions-factuelles-2026-10-08` | **Base** : `main` `06b18e2`
+
+**Quoi** — Suppressions seules, sans mot ajouté, dans 4 fichiers qu'aucune PR ouverte ne touche :
+- `/fr/blog/comment-shotflow-ameliore-suivi-taches-en-temps-reel` : « | -50% de délais » retiré du title (77 → 60 caractères) ; « Réduisez vos délais de 50%, » retiré de la description, majuscule reportée sur « Améliorez » ;
+- `/fr/blog/oscaro-com-reduit-ses-retours-darticles-commandes-en-ligne-grace-aux-visuels-a-360deg` : apposition « n°1 des pièces auto neuves et d’origine sur internet » retirée du corps ;
+- `/fr` et `/en/blog/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre` : « brevetés » retiré de « Nos plateaux tournants brevetés » ; phrase « Nos solutions de photos de produits en 3D et nos logiciels dynamiques garantissent le flux de travail le plus rapide et le plus productif possible. » retirée.
+
+**Pourquoi** — Entrées 4 (risque élevé), 6 (risque élevé) et 2 (risque moyen) du backlog factuel du triage : affirmations sans source dans le dépôt. La mission autorise une suppression factuelle minimale dans un fichier qu'aucune PR ne possède, sans claim de remplacement.
+
+**Fichiers** — les 4 JSON ci-dessus, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Ces affirmations ne s'affichent plus : ni dans le résultat de recherche (ShotFlow), ni dans le corps des pages. Aucun gain de trafic ni de position n'est mesuré ou annoncé.
+
+**Vérifié** — voir la PR : carte des fichiers des 20 PR ouvertes ; HTML prérendu comparé à `main` ; title, description, canonical, hreflang, robots, Open Graph et Twitter rendus ; CSS compilée comparée à `main`.
+
+**Supposé** — Rien.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4).
+- Non traité, à arbitrer :
+  - la FAQ du même article ShotFlow, rendue aussi en `FAQPage` JSON-LD, porte une quinzaine de chiffres sans source (83 %, 47 %, 200 déploiements, 28 %, 100 000 assets, 180 clients…) et un client nommé (« Printemps ») ; idem pour l'intertitre « 50 % de réduction des délais d'approbation ». C'est un chantier éditorial, hors de toute suppression minimale ;
+  - description Oscaro, « le leader des pièces auto en ligne » : la retirer impose une reformulation (D13) ;
+  - page 2D : le JSON FR est touché par #70 et #119 ; le JSON EN, en `noindex` (D9), n'est pas traité seul pour ne pas faire diverger les deux versions ;
+  - description EN de l'article ShotFlow : fichier touché par #120.
+- Doublons entre PR ouvertes le 08/10 : #118 et #116 font la même correction (fil d'Ariane des 2 articles dédiés) ; #120 et #119 modifient les 2 mêmes titles EN.
+
+**Suite** — Validation ciblée de Sébastien (D42, arbitrage final 3 : un claim modifié), puis GO de fusion de Laurent ; après fusion, `smoke.mjs` et contrôle Chrome sur `www` des 4 pages.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-D — Worker : BL-042 et BL-018 vers leur équivalent exact (code seul, non déployé) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 ; E-BL (PACK-W de la réconciliation du 07/10) | **PR** : #115, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-legacy-worker` | **Base** : `main` `06b18e2`
+
+**Quoi** — `cloudflare-worker/src/index.js` : BL-042, `/ecommerce-jewelry-photography-tutorial` sort de `GONE_PATHS` et redirige en 301 vers `/en/blog/technique-photograph-jewelry-tutorial` (cible déjà utilisée par la variante `/en/blog/…`) ; BL-018, l'ancien article « boostez … 4 erreurs à éviter » redirige vers l'article exact au lieu de l'article voisin « 6 pratiques ». Test `cloudflare-worker/test/e-bl-pack-w.test.ts`.
+
+**Pourquoi** — Rapport E-BL (simulation sur 112 URL à backlinks) : BL-042 en 410 avec équivalent existant (correspondance HIGH), BL-018 vers une cible voisine. Simulation ≠ erreur live : comportement `www` non contrôlé (R4).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/test/e-bl-pack-w.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement (non autorisé par cette mission) : les backlinks de ces deux anciennes URL atteignent l'article correspondant. Les variantes `/amp/` de BL-042 passent de 410 à 404.
+
+**Vérifié**
+- R5 : Worker déployé `packshot-router` (modifié le 01/10 à 06:59:54 UTC) lu en lecture seule le 08/10 par l'API Cloudflare ; écart avec le dépôt limité aux commentaires retirés par l'empaquetage et aux enveloppes du bundler : aucune divergence de règle.
+- Cibles servies en 200 par `next start`, canonique auto-référente, sans `noindex`, présentes au sitemap.
+- Vitest Worker : 6 fichiers, 165 tests verts (`unicite-tables`, `legacy-redirects`, `lot-f`, nouveau test sur les hôtes www, en. et fr.) ; `tsc` vert. Arbre de l'application identique à `main` (build vert de `main` `06b18e2` le 08/10).
+
+**Supposé** — Aucun.
+**Non regardé** — Comportement réel de `www` (R4 ; témoins `curl.exe` du poste de Laurent, D23) ; 3 251 URL de l'inventaire E-BL (non fourni) ; BL-027 (cible = source A-002 du pilote Studios), BL-045 et BL-048 (images, décision P0-D KEEP_410), BL-071 et BL-091 (gel Mode, 26/11).
+
+**Suite** — Gate de date Worker (`EBL_EARLIEST_WORKER_GATE`, 09 ou 10/10) et lectures lot F et P0-D/E à consigner ; témoins `www` avant et après ; GO de fusion puis GO de déploiement distincts (D4).
+
+---
+
+## 2026-10-08 · Intégrité factuelle — résidus hors #109 : ROI « dès le 4e mois » du guide budget, engagements de service du guide d'achat · Claude de Laurent
+
+**Chantier** : sprint SEO/GEO Recovery du 08/10 (mission de Laurent, axe « intégrité factuelle »), complément de #109 | **PR** : #111, brouillon, `DO NOT MERGE` | **Branche** : `claude/wizardly-davinci-7i092p-factuel` | **Base** : `main` `06b18e2`
+
+**Quoi** — Deux omissions de #109, sur des lignes qu'elle ne touche pas :
+- `blogBudget.roi.body` et `blogBudget.faq.q5.answer` (FR, EN, de-ch) : « le ROI est atteint dès le quatrième mois » et « dès le 4e mois » retirés ; ROI « généralement entre 6 et 12 mois selon le volume », indicatif et sans garantie. La FAQ alimente le `FAQPage` de la page ;
+- `guide-achat-studio-2026`, bloc « Support Technique France » : « Réponse < 2h ouvrées », « Intervention 24-48h (France métropolitaine) » et « Pièces détachées : Stock FR, livraison 24h » retirés ; « Interventions sur site : selon le contrat de maintenance » renvoie au contrat décrit juste en dessous.
+
+**Pourquoi** — Faits rappelés par Laurent le 08/10 : ROI de 6 à 12 mois en usage courant, jamais garanti ; aucun engagement de service (délai d'intervention, délai de réponse, pièces sous 24 h) établi. #109 retire ces mêmes engagements du comparatif Orbitvu et le ROI de 4 à 8 mois du guide d'achat, mais ces lignes restent sur `main` et sur la tête `0860462` de #109. `/en/blog/budget-studio-photo-automatise` : 363 impressions et 10 clics du 08/09 au 05/10 (`gsc-crawl-seo`, `gsc_metrics_page`, lecture seule).
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (2 clés par langue, sérialisation d'origine, 6 lignes), `app/[lang]/blog/guide-achat-studio-2026/page.tsx` (3 lignes → 2), `lib/__tests__/claims-roi-sav.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Routes** — `blogBudget` n'est lu que par `app/[lang]/blog/budget-studio-photo-automatise/page.tsx` : `/fr/…` et `/en/…` (200) ; `/de-ch/…` répond 404, les valeurs de-ch (en français) sont alignées par cohérence. Guide d'achat : `/fr/blog/guide-achat-studio-2026` et `/en/…` (même gabarit FR). Aucune page gelée (F5, Mode, accueil, #104, #105, #107, #108).
+
+**Effet attendu** — Aucun avant fusion. Après fusion : FAQ et `FAQPage` du guide budget alignés sur le fait ROI ; trois engagements de service non établis retirés du guide d'achat. Réduction d'un risque factuel ; aucun gain de trafic attendu.
+
+**Vérifié**
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; `npx vitest run` : 487/487 (25 fichiers), dont `claims-roi-sav.test.ts` 4/4. Les conditions du test échouent sur le contenu de `main` (6 textes ROI, 3 lignes de service).
+- `npx next build` vert (variables factices de la CI), 386 pages.
+- `next start` local comparé à `sysnext.vercel.app` (production hors Cloudflare) sur les 4 routes : `<title>`, canonical, hreflang, `robots` identiques ; JSON-LD identiques hors la réponse `FAQPage` modifiée (budget FR et EN) ; texte visible : seules les phrases visées diffèrent.
+- Chromium local, 1440 et 390 px : sections modifiées visibles, FAQ ouverte lisible, 0 erreur console, 0 débordement horizontal.
+- Fusion simulée (`git merge-tree`) avec #109 (`0860462`), #110, #108 et #105 : fichiers du site sans conflit ; `JOURNAL.md` en conflit (entrées en tête, union) ; `ETAT.md` en conflit avec #105 seulement.
+
+**Supposé** — [Inférence] « Hotline française » et la mention d'interventions sur site selon contrat restent exactes : la page décrit déjà un contrat de maintenance « Standard (sur devis) : Hotline » et « Premium (sur devis) : + interventions on-site ». Cela repose sur des schémas observés ; non vérifié auprès de Sébastien.
+**Non regardé** — Exclusions explicites de #109 laissées en l'état (« Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ») ; « Support technique hotline (illimité pendant 3 mois) » et « interventions on-site illimitées » (bloc « suivi post-formation » à trancher par Sébastien, D) ; `home.faq.q2` de-ch et `home.faq.q7` (accueil gelé jusqu'au 28/10) ; `/industrie` (« 2 à 4 semaines », non démontré faux). Preview Vercel (SSO), `www` (R4). D42 : étapes 4 et 5 non faites.
+
+**Suite** — D42 : contrôle de la Preview par Laurent (desktop, tablette, mobile), validation ciblée de Sébastien sur les 4 phrases modifiées ; fusion sur GO distinct, de préférence après #109 ou avec elle (mêmes pages, lignes disjointes).
+
+---
+
+## 2026-10-08 · Intégrité factuelle — PR #109, seconde passe sur les 19 fichiers · Claude de Laurent
+
+**Chantier** : intégrité factuelle, mission « dernier passage » de Laurent du 08/10 | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base de la passe** : tête `0860462` | **Commit** : le commit de cette entrée, « fix: remove residual unsupported factual claims »
+
+**Quoi** — Relecture complète des 19 fichiers déjà touchés par #109. Chaque claim est classé : fait vérifié, fait métier établi, Q20_HOLD, D29_HOLD, hors périmètre, retiré ou neutralisé. Un claim présent sur `main` n'est pas tenu pour valide pour cette seule raison. Registre de la passe : 832 entrées, dont 339 retraits et 393 neutralisations ; 7 faits vérifiés ; 28 faits métier établis ; 25 Q20_HOLD ; 5 D29_HOLD ; 35 hors périmètre conservés.
+- Guide d'achat : location, occasion (décote, garantie transférable), BPI, CII, aides régionales, durées et taux de leasing, remise comptant, négociation, mises à jour gratuites (2 à 3 par an), pièces 7 à 10 ans, compatibilité ascendante, support prioritaire 2 ans, démo de 2 à 4 h sur 5 à 10 produits, « standard de l'industrie », « tous IA Ready », compatibilité native BlendAI, « 90 % des cas », « 80 % », AR/VR, export 3D, « économies substantielles » : retirés ou neutralisés. Bloc Premium : 6 à 12 mois, puis « Pour les plus grands Alphastudio, le retour observé peut plutôt se situer entre 12 et 18 mois », sans garantie.
+- Article ROI : 80 % de temps réalloué, 500 → 5 000 produits sans embauche, mises à jour gratuites, « bijoux → meubles, même workflow », intégration native BlendAI, « Qualité +30 % », « productivité ×20 » : retirés. Le contenu « 12-18 mois » du chantier ROI reste en dehors de la passe.
+- Comparatif Orbitvu : réécrit sans comparaison non sourcée. Il ne publie aucune caractéristique de StyleShoots ni de Photomatics, ne contient ni tableau concurrent ni gamme historique PackshotStudio R3, PackshotMacro ou PackshotRotator (noms et fin « 2018 » sans source), et ne cite ni « experts Orbitvu » ni volumes, temps, mégapixels ou systèmes d'exploitation. « Marque lancée en 2004 par la société française Sysnext » et « depuis 2023 » sont conservés (faits établis le 08/10).
+- Articles BlendAI vs Flair, BlendAI vs Photoroom et guide IA photo produit : réécrits en guides de critères. Plus aucune donnée Flair, Photoroom ou Claid, plus aucun pourcentage de fidélité, temps automatique, batch chiffré, API ou intégration native, ni cas client chiffré. Le calcul de rentabilité du guide IA (BlendAI Pro 530 €/mois, ROI 463 %) et l'essai « 14 jours » sont retirés.
+- Page Suisse : distance « moins de 2 h de Genève » retirée (le showroom est désormais situé à Beynost, près de Lyon), démonstrations en visioconférence retirées, formation « sur site » remplacée par les formats établis (4 h à distance, 7 h en présentiel), « de référence », JSON-LD local « formations certifiées Qualiopi » → « Sysnext est certifiée Qualiopi ».
+- Articles JSON : « évolution e-commerce » FR et EN (gratuité, « jusqu'à 70 % », « +15-20 % de conversion », « -15 % de retours », mises à jour sans frais pendant 3 ans, superlatifs ; lien EN `updateyourpackshot.com` corrigé en `upgradeyourpackshot.com`, le programme de reprise étant vérifié sur `www.upgradeyourpackshot.com/fr/` le 08/10) ; comparatif de solutions FR et EN (huissier, « premier studio », « 142 secondes » contradictoire, superlatifs, FAQ Orbitvu « leader », 30 personnes en R&D, 180 salariés).
+- `messages` (FR, EN, de-ch) : 258 clés par langue, dans les seuls namespaces touchés par #109 (`contact`, `legal`, `besoinsPhoto`, `studiosHardware`, `blogBudget`, `blogComparatif`, `blogStudioIa`). Corrigés : « 24 h », « 48 h », « garantie », démo et diagnostic « gratuits », « 5000+ entreprises », ROI moyen de 9 mois remplacé par 6 à 12 mois sans garantie, « Hotline dédiée », formations « certifiées » ou « Qualiopi », « 0 €/an » de maintenance, consommables, « plus de 500 entreprises », données concurrentes de `blogComparatif` (cellules « Non vérifié », listes devenues « Points à vérifier auprès du fabricant »), étude « indépendante » remplacée par « réalisée en 2023 à la demande de PackshotCreator », marché et juridique de `blogStudioIa` (34 millions d'images, 8,9 milliards de dollars, FTC, Californie, FDA, ITAR, « zéro hallucination », « solution propriétaire », « Plus de 100 marques », 75 €/mois). de-ch : Qualiopi et OPCO présentés comme français (D38).
+- Qualiopi : 16 formulations corrigées vers « Sysnext est certifiée Qualiopi ; financement OPCO possible selon votre situation ».
+
+**Pourquoi** — Mission du 08/10 : aucun claim conservé par défaut sans source ou fait métier explicite ; comparaisons concurrentes limitées aux faits sourcés ; Qualiopi rattaché à Sysnext ; ROI usuel de 6 à 12 mois, de 12 à 18 mois pour les plus grands Alphastudio, jamais garanti.
+
+**Fichiers** — `app/[lang]/blog/{guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, orbitvu-vs-concurrents, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `content/blog/{fr/evolution-e-commerce-packshot, en/e-commerce-packshot-evolution, fr/comparatif-de-solutions-de-photographie-automatisee, en/comparison-of-automated-photography-solutions}.json`, `messages/{fr,en,de-ch}.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Relus sans modification : `app/[lang]/contact/page.tsx`, `components/seo/SchemaOrg.tsx`, `data/navigation/pages-longues.ts`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : URL, canonical, `robots` et hreflang inchangés ; articles réécrits plus courts (temps de lecture affiché inchangé, aligné sur `lib/blog.ts`, hors périmètre) ; sommaires réalignés sur les titres. Réduction du risque factuel et juridique, pas de gain de trafic attendu.
+
+**Restes, non corrigés dans cette passe**
+- Q20_HOLD (cadences, dimensions, charges, versions) : 500+ photos/jour, 200 à 500 produits/jour, 30 s par packshot, 3 s, 90 s, 150 photos/heure, 16 et 20 systèmes, jusqu'à 100 cm (G2) contre 35 cm et 40 cm, 18 cm, 2,5 m, 3 m, 1 tonne, 1 000 kg, 50 et 150 kg, MultiStation, modules 360° et vidéo, « Station M ».
+- D29_HOLD : résultats de l'étude 2023 (Alphashot XL PRO V2 contre R3 Mark II) : 78 contre 33 contenus par jour, temps des quatre tests, 19 734 et 8 457 visuels par an, 50,6 jours.
+- D30 (aucun prix modifié) : `studiosHardware.faqStudios.q1` « 12 000 € à 150 000 € HT » et `blogBudget` « 56 450 à 150 000 € HT », alors que le catalogue indique 12 450 € et 130 000 € HT (E-Comm Studio+, confirmé par Sébastien le 04/09/2026) ; fourchette « Polyvalent » à confronter au catalogue ; « quelques milliers d'euros » (`besoinsPhoto`) ; prix Alphashot 360 dans `blogStudioIa`, à arbitrer entre D30 et D25.
+- Zones interdites : `organizationSchema()` (rendu sur l'accueil, F5 et Mode) porte encore « formations certifiées Qualiopi », `numberOfEmployees` 10 à 50 sans source et `foundingDate` 2004.
+- Hors des 19 fichiers : nombres 5 000+, 25 ans et 50+ codés en dur dans `studios-photo-automatises/page.tsx` ; « diagnostic gratuit » codé en dur dans `besoins-photographie-produit/page.tsx` ; descriptions de `lib/blog.ts` (« Comparatif complet… pricing ») ; `availability: InStock` du JSON-LD `Offer` (D30).
+- Clés non rendues, laissées en l'état : `studiosHardware.threePillars` (« Formation certifiée », « zéro hallucination, fidélité 100% »), `photoTypes` (« Réduit les retours de 25% »), `socialProof`, `roiCalculator`, `sectors`, `contact.trustBadge*`.
+- Dossier Ortery et interview Sysnext 2003 : FAQ « Ortery est-il toujours présent en France ? » conservée.
+
+**Vérifié**
+- Fresh-check : #109 ouverte, brouillon, tête `0860462` ; `main` `06b18e2`.
+- `messages/*.json` et articles JSON : sérialisation d'origine vérifiée octet pour octet avant écriture ; `verifier-json` : 195 fichiers valides.
+- `tsc` vert. Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- ESLint sur les fichiers modifiés : aucune règle nouvelle ; `react/no-unescaped-entities` déjà présent sur `main` dans ces fichiers (étape de lint non bloquante en CI).
+- Ancres : chaque entrée des sommaires réécrits pointe vers un `id` présent une seule fois.
+- `next build` vert (variables factices de la CI), 386 pages.
+- `next start` local, 25 URL touchées par la passe (FR, EN, de-ch), Chromium 390, 768 et 1440 px : statut 200, aucun débordement horizontal, aucune réponse 4xx locale, aucune ancre de sommaire orpheline ; formulations retirées absentes, nouvelles formulations présentes. Erreurs console : CORS du CDN 360 d'Orbitvu sur les deux articles « évolution », contenu embarqué non modifié par la passe.
+
+**Supposé** — [Inférence] `updateyourpackshot.com` est une faute de frappe : le domaine ne répond pas via le proxy, `upgradeyourpackshot.com` répond en FR et en EN. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; contrôle humain D42 ; namespaces de `messages` non touchés par #109 (accueil compris) ; dates « Dernière mise à jour » des articles.
+
+**Suite** — Arbitrages demandés : prix (D30 contre catalogue, D25 dans `blogStudioIa`) ; Qualiopi de `organizationSchema()` après le 28/10 ; nombres codés en dur de Studios ; Q20 et D29. Contrôle de la Preview par Laurent, puis validation D42 ; fusion et publication sur GO distincts.
+
+---
+
+## 2026-10-08 · Intégrité factuelle — PR #109, successeur de #64 recréé depuis `main` · Claude de Laurent
+
+**Chantier** : faits métier établis, D33, D25, comparatif Orbitvu | **PR** : #109, brouillon, `DO NOT MERGE` | **Branche** : `fix/factual-integrity-oct-2026` | **Base** : `main` `06b18e2` | **Commits** : `9d66eaa` (faits métier), `927e7cf` (D25), puis le commit de cette entrée (comparatif Orbitvu, registre des pages longues, documentation)
+
+**Quoi** — GO code de Laurent du 08/10. Patch recréé depuis `main` : la branche de #64 n'est ni reprise ni rebasée ; #64 reste ouverte, sa fermeture est un geste séparé, après préservation. Corrections classées A dans la revue READ ONLY du 08/10 :
+- showroom : 198 allée de la Tour, 01700 Beynost, distinct du siège : `contact.showroomAddress` et `legal.article2.showroomValue` (FR, EN, de-ch), `localBusinessSchema()` (adresse et coordonnées BAN 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés), carte de `/contact`, « showroom Paris » et « Paris 11e » du comparatif Orbitvu et du guide d'achat → « showroom près de Lyon » ;
+- conditions commerciales : livraison et installation facturées en supplément, formation facturée séparément (`studiosHardware.support.step2description`, `besoinsPhoto.solution.step3.description`, `blogBudget.included` en FR, EN, de-ch ; guide d'achat ; FAQ 2 des articles « évolution e-commerce » FR et EN) ;
+- délai : environ 12 jours, indicatif et sans garantie (`studiosHardware.faqStudios.q6.answer` en FR, EN, de-ch ; guide d'achat, FAQ et ligne « Délai de livraison ») ;
+- garantie : standard d'un an, extension possible, sans plafond (guide d'achat, FAQ et encadré ; « garanties 5-7 ans » retiré de `comment-calculer-le-roi-…`) ; « interventions technicien on-site » retiré de la couverture décrite dans la FAQ du guide ;
+- Orbitvu : distribué depuis 2023 (`blogBudget.intro.p2` en FR, EN, de-ch ; `distributeur-orbitvu-suisse` ; comparatif, ×2) ;
+- allemand : accompagnement commercial possible en allemand pour la Suisse (FAQ 1 de `distributeur-orbitvu-suisse`) ;
+- ROI du guide d'achat : « généralement 6 à 12 mois selon le volume, sans garantie » à la place de « 4 à 8 mois » (FAQ, bloc « Financement », liste finale), de « 5-6 mois » et « 1-2 mois » (délais de retour) ; « 12 à 18 mois pour les plus grands Alphastudio » ajouté au seul bloc Premium (360 ou XXL), qui annonçait « 2-4 mois » ;
+- comparatif Orbitvu : « PackshotCreator (société française, fondée en 2004) » → « PackshotCreator, marque lancée en 2004 par la société française Sysnext » ; `foundingDate` non modifié ;
+- D25 : prix concurrents et prix comparés retirés de `blogComparatif` (13 clés) et `blogStudioIa` (5 clés) en FR, EN, de-ch, de `blendai-vs-flair-ai-…`, `blendai-vs-photoroom-…`, `ia-photo-produit-guide-2026` et du comparatif de solutions FR et EN (économie annuelle chiffrée) ;
+- comparatif Orbitvu : parts de marché, années de fondation des concurrents, prix, sous-sections « Prix compétitif » et « Rapport qualité/prix imbattable », témoignages Marie D., Thomas L., Camille R., engagements de service (hotline < 2 h, interventions 24–48 h, pièces 24 h), satisfaction 98 %, « ×20 », « ×3 », « 90 % », « 15 000 machines » et « 45 % », ROI « 4–8 mois vs 8–12 mois », superlatifs (« leader européen », « seul fabricant », « unique », « excellence », « premium » du support), verdict « l'emporte », comparaisons dépréciatives envers StyleShoots, lignes « IA Ready », « Support France », « Évolutivité » et « Garantie » des tableaux comparatifs, FAQ « Pourquoi Orbitvu est-il moins cher… » (FAQPage 6 → 5) : contenu final de #64 (`63e1e92`), sauf « (2004–2018) », conservé ;
+- `data/navigation/pages-longues.ts` : les six exceptions « PR #64 ouverte » de la famille `blog-dedie-avec-sommaire` renvoient à #109 (successeur de #64), mêmes pages, même gel ; aucun autre changement de registre.
+
+**Pourquoi** — Revue READ ONLY du 08/10 : les 28 clés de `messages` et les 6 pages de blog corrigées par #64 portaient encore sur `main` leur valeur du 01/10, et les formulations fautives étaient servies en production (`sysnext.vercel.app`, relevé du 08/10). Faits établis rappelés par Laurent le 08/10 : SHOWROOM, LIVRAISON, INSTALLATION, FORMATION, DÉLAI, GARANTIE, ALLEMAND, ORBITVU (officiel, jamais exclusif), RELATION_ORBITVU 2023, SYSNEXT 2001, PACKSHOTCREATOR_LAUNCH 2004, ROI (6 à 12 mois usuel, 12 à 18 mois pour les très gros Alphastudio, jamais présenté comme une garantie). D25, D33, D42.
+
+**Fichiers** — `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `components/seo/SchemaOrg.tsx`, `app/[lang]/contact/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `app/[lang]/blog/{orbitvu-vs-concurrents, guide-achat-studio-2026, comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet, blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026, blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026, ia-photo-produit-guide-2026}/page.tsx`, `content/blog/fr/evolution-e-commerce-packshot.json`, `content/blog/en/e-commerce-packshot-evolution.json`, `content/blog/fr/comparatif-de-solutions-de-photographie-automatisee.json`, `content/blog/en/comparison-of-automated-photography-solutions.json`, `data/navigation/pages-longues.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. Après fusion : canonical, `robots`, hreflang et URL inchangés ; `Store` du showroom à Beynost ; FAQPage du comparatif Orbitvu à 5 questions (6 sur `main`). Réduction d'un risque factuel et juridique, pas de gain de trafic attendu.
+
+**Correction de la revue du 08/10** — Le rapport READ ONLY ne relevait dans le guide d'achat que deux « ROI 4–8 mois ». Il y en a trois (FAQ, bloc « Financement », liste finale), plus « 2-4 mois » (bloc Premium), « 5-6 mois » et « 1-2 mois » (délais de retour), contraires au même fait métier : traités dans le même lot, extension signalée à Laurent.
+
+**Exclus** — `home.faq.q7` (accueil gelé jusqu'au 28/10 : M5, D44) ; `foundingDate` (2004, inchangé) ; `hasMap` et intitulés « Showroom Lyon » ; dimensions, charges, cadences et versions (D45, Q20 ouverte) ; redirections XL (D29) ; F5 (« environ 10 jours ») ; Mode ; `/industrie` (D10) ; Academy et Qualiopi au-delà de #71 ; « (2004–2018) » (lancement de 2004 établi) ; ROI « 12-18 mois » de `comment-calculer-le-roi-…` (chantier ROI distinct) et « Délai retour : 12-18 mois » du guide (moins de 500 produits par an) ; interview « Créée en 2003, la société Sysnext » ; « distributeur exclusif d'Ortery » ; prix BlendAI seuls de `ia-photo-produit-guide-2026` (530 €/mois dans un calcul de rentabilité, sans prix concurrent) ; dans le guide d'achat, « Satisfaction client 98 % », « Accompagnement garanti », « Support prioritaire 2 ans », « recommandé pour 90 % des cas », « Rapport qualité/prix imbattable ».
+
+**#108 (HOLD)** — modifie les mêmes clés `studiosHardware.support.step2description` et `studiosHardware.faqStudios.q6.answer` (FR supprimées, EN et de-ch réécrites avec les mêmes faits). PR108_FUTURE_REBASE_REQUIRED = YES : à sa resynchronisation, garder sa version. #108 n'est pas modifiée. #104, #105, #107 : HOLD, non touchées.
+
+**Vérifié**
+- Préconditions, avant écriture : `main` = `06b18e2` ; #64 ouverte, brouillon, non fusionnée ; #104, #105, #107, #108 ouvertes en brouillon ; branche créée depuis `origin/main`.
+- `messages/*.json` : 27 clés par langue, éditées par chemin JSON avec la sérialisation d'origine ; 81 lignes modifiées au total, aucune autre (aucun reformatage). Articles JSON : sérialisation d'origine conservée. `verifier-json` : 195 fichiers valides.
+- `tsc` vert. `next build` vert, 386 pages : sur `927e7cf` avant le premier push, puis sur l'état final.
+- Vitest ciblé (`registre-pages-longues`, `coherence-dimensions`, `json-ld-techniques`) : 3 fichiers, 37/37.
+- `next start` local, 26 URL : formulations retirées absentes du HTML, nouvelles formulations présentes ; canonical, hreflang et `robots` identiques à la production ; `Store` : 198 allée de la Tour, 01700 Beynost, 45.829766 / 4.998587 ; `@id`, `name`, `hasMap` inchangés ; `Organization` : `foundingDate` 2004 et siège 254 rue Vendôme inchangés ; nombre de questions FAQPage identique à la production, sauf le comparatif Orbitvu (5 au lieu de 6).
+- Rendu Chromium 390, 768 et 1440 px, 20 pages : 0 erreur, 0 réponse 4xx. Mesures identiques à un build local de `main` `06b18e2`, dont un débordement de 4 px préexistant sur `/fr/blog/comparatif-orbitvu-ortery-styleshoots-2026` en 768 px.
+- `e2e/contact-form.spec.ts` (Desktop Chrome, Pixel 5 ; affichage seul, aucun envoi) : 21 réussis, 1 échec (« should expand FAQ accordion », Pixel 5), identique sur `main`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO) et `www` (R4) ; Firefox, WebKit ; contrôle humain D42, étapes 4 et 5.
+
+**Suite** — Contrôle de la Preview de #109 par Laurent (desktop, tablette, mobile) ; validation selon D42 ; fusion uniquement sur GO distinct ; fermeture de #64 sur GO distinct, branche conservée (ses entrées JOURNAL du 30/09 et du 01/10 n'existent que sur elle) ; micro-patch `home.faq.q7` après le 28/10 ; mise à jour de D32 (« 10 jours »), D1 et `00-BRIEFING.md` (Saint-Bonnet) par leur auteur.
 
 ---
 
@@ -624,6 +1723,57 @@ Après la fusion, aucun retour arrière du Worker vers une version sans le retra
 **Non regardé** — Preview de la nouvelle tête dans Chrome (contrôle humain, § 11) ; `www` (R4) ; Firefox, Safari, appareils réels ; sommaire de A en EN et de-ch (couvert par la QA de #84 du 06/10, non refait).
 
 **Suite** — CI et Preview sur la nouvelle tête ; contrôle Chrome final de Laurent (`CLUSTER.md` § 11) ; décision de Laurent sur le bloc CTA visé et sur une PR dédiée ; « GO MERGE #96 ». À la fusion de la seconde de #82 et #96 : numéro de la « Q23 » à arbitrer (collision consignée par #82).
+## 2026-10-06 · Landing catalogue All-in-One (#82) actualisée depuis `main` `1e0901b` · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `dc7c2e6` (fusion)
+
+**Quoi** — `main` `1e0901b` fusionnée dans la branche de #82, sans rebase, avant toute configuration de la Preview ou tout test réel. Entrés sur `main` depuis `9b19e6d` : `a4b27c6`, `063fd18`, `a26c58c`, `1e0901b` (#84, sommaire du blog, D44) ; fichiers `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Pourquoi** — GO de Laurent du 06/10 : GitHub déclarait #82 en conflit (`mergeable_state: dirty`).
+
+**Fichiers** — Conflit unique : `docs/seo-geo/JOURNAL.md`, entrées ajoutées en tête des deux côtés. Résolution : toutes les entrées conservées à l'identique ; l'entrée #84 du 06/10 (commit `a26c58c`, 09:01 UTC) placée par heure, entre l'entrée #82 de 09:47 UTC et celle de 08:50 UTC. `components/blog/TableOfContents.tsx` et `e2e/sommaire-blog.spec.ts` repris de `main` sans changement. `ETAT.md` : lignes « Contrôle », « `main` » et « Dernière mise à jour ».
+
+**Effet attendu** — Aucun pour le visiteur. #82 redevient fusionnable sans conflit ; son périmètre (`lib/catalogue`, `app/api/catalogue`, landing) est inchangé par la fusion.
+
+**Vérifié** —
+- Aucune ligne du JOURNAL de `main` ni de celui de #82 absente du fichier fusionné (comptage ligne à ligne) ; fichiers de #84 identiques à `main`.
+- Invariants de #82 : `PDF_CATALOGUE.enLigne = true`, `SERVICES_REELS_AUTORISES = false`, `PUBLICATION_AUTORISEE = false`, personnes et organisations Pipedrive en v2, notes en v1, `CATALOGUE_NOTIFICATION_EMAIL` sans repli, note « [Brochure] » épinglée, aucun appel `/deals` ni `/leads`, formulaire et mention P3 inchangés.
+- Contrôles sur la tête fusionnée : voir la description de #82 (tsc, eslint, `verifier-json`, Vitest, build, Playwright landing et sommaire, `/api/catalogue` en 503, gardes).
+
+**Supposé** — Aucun.
+
+**Non regardé** — La ligne #84 de `ETAT.md` (« Brouillon ; tête `a4b27c6` ») n'est pas réécrite, alors que #84 est fusionnée : chantier distinct, à mettre à jour par sa propre session. #96 n'est pas fusionnée : la collision du numéro Q23 reste ouverte.
+
+**Suite** — Configuration de la Preview (`CATALOGUE_NOTIFICATION_EMAIL` et autres variables) sous GO séparé, puis GO d'exécution du test réel.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : variable `CATALOGUE_NOTIFICATION_EMAIL`, note « [Brochure] » épinglée, alignement sur le principe du parcours Contact · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `a02f293`
+
+**Quoi** — R1 : la notification interne du catalogue lit exclusivement `CATALOGUE_NOTIFICATION_EMAIL`, sans repli sur `NOTIFICATION_EMAIL`. R2 : la note « [Brochure] » est épinglée sur la fiche de la personne (`pinned_to_person_flag = 1`, à la création et à la mise à jour du suivi). Aucun appel réel ; les interrupteurs restent faux.
+
+**Pourquoi** — Décisions de Laurent du 06/10, après la comparaison des parcours Contact et Brochure. Le parcours Brochure suit déjà le principe commercial de Contact (enregistrement du lead → notification interne → e-mail au prospect → suivi humain possible). Il n'en reprend pas les faiblesses techniques : v1 hors support, échecs Resend non détectés, HTML non échappé, organisation approximative, réponse 200 sans trace, destinataires codés en dur, promesse « 24 heures ouvrées », affaire d'office. `NOTIFICATION_EMAIL` est lue par le questionnaire : la changer en production aurait détourné ses notifications. Le code Resend de #82 n'est pas simplifiable par réutilisation : `/api/contact` n'a pas de module partagé, et ses conventions communes (expéditeur `PackshotCreator <RESEND_FROM_EMAIL>`) sont déjà celles du catalogue.
+
+**Fichiers** — `lib/catalogue/services.ts`, `lib/catalogue/resend.ts` (commentaires), `lib/catalogue/pipedrive.ts`, `lib/catalogue/__tests__/doublures.ts`, `lib/catalogue/__tests__/services-reels.test.ts`. Une ligne ajoutée à `.env.example` dans `a02f293` a été retirée avant le push : la garde `verifier-consequences` interdit tout fichier `.env*` (dépôt public). La variable est documentée ici, dans Q23 et dans `services.ts`.
+
+**Effet attendu** — Aucun pour le visiteur tant que la route est fermée. Au test réel : notification à `leads@sysnext.com` une fois la variable créée sur Vercel ; note « [Brochure] » en tête de la fiche personne.
+
+**Vérifié** —
+- Variable absente, vide, sans adresse valide, ou `NOTIFICATION_EMAIL` seule présente : aucune notification, absence journalisée (`catalogue.notification.non_configuree`) et consignée dans la note, `contactRequestAccepted` faux, seul l'e-mail au prospect part (4 tests). Avec les deux variables, seule celle du catalogue reçoit.
+- Note : `pinned_to_person_flag: 1` à la création (avec `person_id` et `org_id`) et à la mise à jour ; aucun autre drapeau d'épinglage ; demande rejouée sans nouvelle note ; aucune affaire ni Lead. La doublure n'accepte que 0 ou 1 (documentation Pipedrive) et refuse tout autre épinglage.
+- Contre-épreuves (code remis à l'identique, `cmp`) : repli sur `NOTIFICATION_EMAIL` → 1 échec ; lecture de `NOTIFICATION_EMAIL` seule → 6 ; note non épinglée à la création → 1 ; drapeau absent de la mise à jour → 1 ; drapeau booléen → 21.
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue` et `app/api/catalogue` : 0 avertissement ; `verifier-json` : 180 valides ; `npx vitest run` : 518/518 ; `npx next build` vert (373 pages, valeurs factices) ; `/api/catalogue` locale : 503 ; Playwright : 45/45 sur Chromium, landing 33/33 sur Mobile Chrome.
+
+**Supposé** — Qu'une mise à jour `PUT /v1/notes/{id}` ne retire pas l'épinglage : le drapeau y est renvoyé pour ne pas en dépendre. Que Pipedrive admette plusieurs notes épinglées sur une même personne (demandes répétées) : non vérifié en réel.
+
+**Non regardé** —
+- Vercel : `CATALOGUE_NOTIFICATION_EMAIL` n'est pas créée (hors GO de cette mission).
+- `/api/contact` : non modifiée ; ses problèmes techniques sont un chantier séparé, signalé dans Q23.
+- Formulaire : ni nom ni téléphone ajoutés (faible friction, décision de Laurent) ; mention P3 inchangée, en attente de Sébastien.
+
+**Suite** — Avant le GO d'exécution du test réel : création de `CATALOGUE_NOTIFICATION_EMAIL` (Preview) et contrôle des autres variables sous GO séparé, domaine Resend, deux adresses de test.
 
 ---
 
@@ -740,6 +1890,246 @@ Une première version de la correction de la molette interrompait aussi sur un a
 **Non regardé** — Preview Vercel (SSO) et `www` (R4) ; Safari, Firefox, appareils réels ; Légifrance et Amazon (inaccessibles par script le 06/10) ; template du blog : `twitter:*` hérité du site, `og:url`, `og:locale` et `inLanguage` de l'`Article` absents sur tous les articles (BL-43-1, PR distincte) ; `og:image` en AVIF, non lu par plusieurs réseaux sociaux (préexistant).
 
 **Suite** — Checkpoint de la mission ; GO de publication explicite de Laurent ; fusion ; contrôle J0 sur `sysnext.vercel.app` puis `www` dans Chrome ; mesure J+7, J+28, J+56 ; [Inférence] GitHub marquera #59, #60 et #77 comme fusionnées à la fusion de cette PR, leurs têtes étant incluses ; #79 reste ouverte (REVIEW ONLY) ou se ferme sur décision de Laurent.
+## 2026-10-06 · Landing catalogue All-in-One (#82) : Pipedrive en API v2 (personnes, organisations), décisions T1, T2, P3, P5 consignées · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `c0e4b89`
+
+**Quoi** — Les cinq appels « personnes » et « organisations » de `lib/catalogue/pipedrive.ts` passent en API v2 ; les notes restent en v1. Aucun appel réel : `SERVICES_REELS_AUTORISES` et `PUBLICATION_AUTORISEE` restent faux.
+
+**Pourquoi** — Audit des prérequis du test réel (mission de Laurent du 06/10) : Pipedrive a déprécié au 01/01/2026, puis mis hors support le 01/08/2026, les points d'accès v1 des personnes et des organisations ([changelog](https://developers.pipedrive.com/changelog/post/deprecated-apiv1-endpoints-become-out-of-support) : « may remain functional », sans engagement ni date de retrait). GO de Laurent du 06/10 pour une migration ciblée avant tout test réel.
+
+**Fichiers** — `lib/catalogue/pipedrive.ts`, `lib/catalogue/__tests__/doublures.ts`, `lib/catalogue/__tests__/services-reels.test.ts`.
+
+**Contrat appliqué** — vérifié sur le client officiel `pipedrive` 33.4.3 (`dist/versions/v2`, lu via jsdelivr) et la documentation développeurs :
+- base `https://api.pipedrive.com/api/v2` ; jeton dans l'en-tête `x-api-token`, jamais dans l'URL ;
+- `GET /persons/search` et `GET /organizations/search` (`term`, `fields`, `exact_match`, `limit`), réponse `data.items[].item` ; `exact_match` non sensible à la casse ;
+- `POST /persons` avec `emails` au pluriel (`value`, `primary`, `label`) et `org_id` ; `PATCH /persons/{id}` au lieu de PUT ; `POST /organizations` avec `name` ; réponse `{ success, data: { id } }` ;
+- notes en v1, inchangées (`api_token` en paramètre, comme `/api/contact`) : absentes de la liste de dépréciation, sans équivalent v2 ;
+- un identifiant non numérique dans une réponse fait échouer l'appel (500, aucun doublon, aucun faux succès).
+
+**Effet attendu** — Aucun pour le visiteur : la route reste en 503. Au test réel, les fiches seront écrites par l'API v2.
+
+**Vérifié** —
+- Doublure stricte : chaque route a sa version, sa méthode et son authentification ; tout écart est refusé (405, 410, 401, 400) et consigné.
+- 15 tests ajoutés (K) : ordre et adresses des appels, PATCH `{ org_id }` seul, jeton en en-tête et absent des URL v2, paramètres de recherche, corps de création, erreurs HTTP 400 à 500 sans jeton ni donnée saisie, formes de réponse inattendues, refus d'une régression par la doublure.
+- Contre-épreuves (code remis à l'identique ensuite, vérifié par `cmp`) : recherche de personne en v1 → 21 échecs ; `email` au singulier → 12 ; jeton aussi dans l'URL v2 → 21 ; PUT au lieu de PATCH → 1 ; organisation créée en v1 → 7.
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue` et `app/api/catalogue` : 0 avertissement ; `verifier-json` : 180 valides ; `npx vitest run` : 509/509 ; `npx next build` vert (373 pages, valeurs factices) ; `/api/catalogue` locale : 503 `catalogue_unavailable` ; Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Mobile Chrome.
+
+**Décisions de Laurent du 06/10 (Q23)** —
+- T1 : écritures de test autorisées sur le principe : deux personnes, deux organisations (`TEST PR82 A — à supprimer`, `TEST PR82 B — à supprimer`), deux notes, puis suppression. Exécution en attente d'un GO distinct.
+- T2 : destinataire métier des notifications catalogue : `leads@sysnext.com`. Configuration Vercel non vérifiée ; `NOTIFICATION_EMAIL` est partagée avec `/api/submit-survey`, ne pas la modifier en production. Variable dédiée proposée dans Q23, non codée.
+- P3 : nouvelle mention du formulaire proposée par Laurent, validation de Sébastien en attente. Formulaire non modifié.
+- P5 : migration v2 décidée et implémentée sur #82 (ce commit).
+
+**Supposé** — Que le jeton de production soit accepté par `https://api.pipedrive.com/api/v2` avec l'en-tête `x-api-token` : c'est l'adresse du client officiel, mais seul le premier appel réel le prouvera.
+
+**Non regardé** —
+- `/api/contact`, `/api/roi-lead`, `/api/roi-pdf`, `/api/submit-survey` et `lib/pipedrive.ts` : toujours en v1 en production, hors du périmètre du GO. Signalé à Sébastien dans Q23.
+- Variables Vercel (Preview) et domaine Resend : aucun accès depuis la session.
+- Collision de numéro : la branche `ccr-e0a4796e-2p18xn` (#96, cluster AI Act) emploie aussi « Q23 » pour une autre question. Signalée dans Q23, rien renuméroté ni modifié sur #96.
+
+**Suite** — Avant le GO d'exécution du test réel : contrôle Vercel des variables de la Preview (dont `NOTIFICATION_EMAIL`), statut du domaine Resend, deux adresses de test absentes de Pipedrive. P1, P2, P4 et la validation de P3 restent chez Sébastien.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : PDF en ligne sur R2, `enLigne = true`, services réels toujours fermés · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `1ad2aad`
+
+**Quoi** — `PDF_CATALOGUE.enLigne` passe à `true` (`lib/catalogue/pdf.ts`). `SERVICES_REELS_AUTORISES` et `PUBLICATION_AUTORISEE` restent faux : `/api/catalogue` répond toujours 503 et n'appelle ni Resend ni Pipedrive.
+
+**Pourquoi** — GO de Laurent du 06/10, après son envoi du PDF sur R2 et son contrôle depuis son poste Windows (fait métier). URL : `https://videos.packshot-creator.com/catalogues/orbitvu-all-in-one-2026-fr.pdf`.
+- Résultats de Laurent : HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 `0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5`.
+- `X-Robots-Tag: noindex` présent, mais deux fois.
+
+**Fichiers** — `lib/catalogue/pdf.ts`, `app/api/catalogue/route.ts` (commentaire), `lib/catalogue/__tests__/services-reels.test.ts`. Hors dépôt : objet R2 `packshot-videos/catalogues/orbitvu-all-in-one-2026-fr.pdf` et règle d'en-tête de réponse, posés par Laurent le 06/10. La session n'a rien écrit sur Cloudflare ni sur R2.
+
+**Effet attendu** — Aucun pour le visiteur tant que les services réels sont fermés. Au GO de test réel, la route pourra remettre ce lien.
+
+**Vérifié** —
+- Relecture de l'URL publique depuis la session, en lecture seule :
+  - HTTP 200, `content-type: application/pdf`, `content-length: 15380434` ;
+  - SHA-256 du fichier téléchargé identique ;
+  - `x-robots-tag: noindex` reçu deux fois ;
+  - `last-modified` du 06/10 à 07:43:41 GMT, `etag` `cf2fbde2dd4342349cad59dba525af62`.
+- Contrôles :
+  - `npx tsc --noEmit` vert ; eslint : 0 avertissement ;
+  - `npx vitest run` : 494/494 ; nouveau test : PDF en ligne et secrets présents, services réels faux → 503, aucun appel ;
+  - `npx next build` vert (373 pages) ;
+  - `/api/catalogue` locale : 503 `catalogue_unavailable` ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5.
+
+**Supposé** — Aucun.
+
+**Non regardé** —
+- Origine du doublon `X-Robots-Tag` (règle de transformation en double, ou autre source) : ne pas modifier Cloudflare dans cette mission.
+- Configuration exacte de la règle posée par Laurent (expression, portée) : non lisible avec le jeton de la session.
+- `05-INFRA.md` non mis à jour, faute de connaître la règle exacte.
+
+**Suite** — GO distinct de Laurent pour les tests réels contrôlés de Resend et Pipedrive. Q23 reste ouverte.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : alignement sur les règles brochure de Sébastien du 02/10 · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `f5462b5`
+
+**Quoi** —
+- Note Pipedrive typée « [Brochure] » : « lead brochure », ni demande de démonstration ni affaire qualifiée. Elle porte l'identifiant de brochure, la langue et le signalement des adresses grand public. Plus aucune phrase d'interdiction d'appel.
+- Notification interne pour chaque nouvelle demande (objet `[Brochure] entreprise`), avec la demande de consultant en tête quand elle existe.
+- E-mail : chemins de retour « Demander une démo » et « Calculer mon ROI ».
+- GA4 : `form_submit` (`brochure_form`), `brochure_download`, `form_error`.
+- Limite de fréquence portée à 5 demandes par heure et par IP.
+
+**Pourquoi** — Document « Formulaire brochure — règles de maillage pour Laurent » (Sébastien, 02/10), fourni par Laurent le 06/10 et lu en entier. Il est confronté au code de #82. Les faits métier de Laurent du 06/10 priment sur le même point :
+- la demande de brochure est un lead, à compter à part ;
+- téléphones conservés ;
+- aucune interdiction d'appel codée ;
+- landing validée par Sébastien, FR seule ;
+- PDF tel quel.
+
+**Fichiers** — `lib/catalogue/crm.ts`, `courriel.ts`, `resend.ts`, `services.ts`, `gestionnaire.ts`, `schema.ts` (constantes `BROCHURE_ID`, `LANGUE_CATALOGUE`), `app/api/catalogue/route.ts`, `components/landings/catalogue-all-in-one/mesure.ts`, `CatalogueForm.tsx` (appel de mesure seulement), tests du catalogue.
+
+**Effet attendu** — Aucun tant que les interrupteurs sont faux. Ensuite :
+- chaque demande donne une note `[Brochure]`, un e-mail au prospect et une notification interne ;
+- GA4 compte une conversion `form_submit` par demande acceptée ; Pipedrive reste la source du volume.
+
+**Vérifié** —
+- Écarts traités, par paragraphe du document :
+  - § 3 règle 7 et § 5 : chemins de retour dans l'e-mail, libellés et destinations déjà publiés (`blogArticle.ctaDemo` vers `/contact`, `blogArticle.ctaRoi` vers `/calculateur-roi`, comme `ArticleCTA`), adresses fixes ;
+  - § 4 : adresse grand public signalée, jamais refusée ; 5 demandes par heure et par IP ;
+  - § 5 : notification `[Brochure] entreprise` lue dans `NOTIFICATION_EMAIL`, sans la mention « ne pas appeler » (écartée par le fait du 06/10) ;
+  - § 6 : `form_submit`, `form_name: 'brochure_form'`, `brochure_id`, `page_type`, `locale` ; `brochure_download`.
+- Contrôles :
+  - `npx tsc --noEmit` vert ; eslint de la landing : 0 avertissement ;
+  - `npx vitest run` : 493/493, dont 93 pour le catalogue ;
+  - `npx next build` vert (373 pages) ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5.
+- Contre-épreuves (fichier restauré à l'identique) : notification limitée au consultant → 3 échecs ; consultant déclaré accepté sans notification → 5 échecs.
+- PDF joint à la mission : SHA-256 identique au fichier contrôlé le matin (`0d72b207…`).
+
+**Supposé** — Les libellés publiés « Demander une démo » et « Calculer mon ROI » conviennent à l'e-mail. Le texte de l'e-mail reste à relire par Sébastien (§ 4 et § 5 : textes client écrits par lui).
+
+**Non regardé** —
+- Étiquette Pipedrive « Brochure » (§ 6) : identifiant non connu, renvoyé à Q23.
+- Lien vers la fiche ou le secteur d'origine : la landing est autonome ; aucune page d'origine, et `machineContext` est absent.
+- Lien vers la démonstration sur l'état de succès (§ 4) : landing validée, interface non modifiée.
+
+**Suite** — Q23 complétée. GO R2, puis GO de test réel.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : parcours fonctionnel V1 (Pipedrive, Resend, consultant, PDF R2, GA4), sans appel réel · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `7aa3001` (code), `ffee83c` (fusion de `main` `9b19e6d`, #95)
+
+**Quoi** — `/api/catalogue` reçoit ses adaptateurs, tous verrouillés :
+- trace durable dans Pipedrive : personne retrouvée par e-mail (sinon créée), organisation par nom exact (sinon créée), note « Demande de catalogue » portant le requestId, puis le suivi (e-mail, consultant) ;
+- e-mail du lien au prospect par Resend, texte existant de `courriel.ts` ;
+- consultant demandé : mention explicite dans la note et notification interne aux destinataires de `NOTIFICATION_EMAIL` ;
+- URL R2 du PDF dans `lib/catalogue/pdf.ts`, `enLigne = false` ;
+- événements GA4 accompagnés de paramètres de contexte sans donnée personnelle.
+
+**Aucune affaire n'est créée**, ni pour une brochure seule, ni pour une demande de consultant. Interrupteur `SERVICES_REELS_AUTORISES = false` : la route répond toujours 503. En production, elle reste fermée tant que `PUBLICATION_AUTORISEE` est faux.
+
+**Pourquoi** — Mission de Laurent du 06/10 : finalisation fonctionnelle avant publication. Landing validée par Sébastien (fait rapporté par Laurent le 06/10). Une demande de brochure n'est pas un lead qualifié : ni appel automatique, ni affaire créée en silence, ni étape Pipedrive choisie sans Sébastien.
+
+**Fichiers** —
+- Nouveaux : `lib/catalogue/pipedrive.ts`, `lib/catalogue/resend.ts`, `lib/catalogue/pdf.ts`, `lib/catalogue/__tests__/services-reels.test.ts`, `lib/catalogue/__tests__/mesure-ga4.test.ts`, `lib/catalogue/__tests__/doublures.ts`.
+- Modifiés : `lib/catalogue/services.ts`, `gestionnaire.ts`, `crm.ts`, `activation.ts`, `app/api/catalogue/route.ts`, `components/landings/catalogue-all-in-one/mesure.ts`, `CatalogueForm.tsx` (appel de mesure seulement ; champs et textes inchangés), tests existants du catalogue.
+- Hors dépôt : aucun ; le PDF n'est pas versionné.
+
+**Effet attendu** — Aucun tant que les interrupteurs sont faux. Après GO R2 (`enLigne = true`) et GO de test réel (`SERVICES_REELS_AUTORISES = true`), sur la Preview :
+- une demande crée ou retrouve la personne et l'organisation, puis écrit une note ;
+- le prospect reçoit un e-mail portant le lien ;
+- si un consultant est demandé, l'équipe reçoit une notification.
+
+**Vérifié** —
+- **PDF désigné** (fait métier de Laurent du 06/10), `All_in_One_FR_online_pages_web_version.pdf` :
+  - 15 380 434 octets, SHA-256 `0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5` ; c'est le nom et la taille du fichier propre décrit dans le brief initial ;
+  - 28 pages, A4 paysage 841,89 × 595,28 pt ; MediaBox, CropBox, BleedBox, TrimBox et ArtBox identiques sur les 28 pages, sans rotation ;
+  - PDF 1.6 linéarisé ; 32 polices incorporées sur 32 ; ni lien, ni formulaire, ni JavaScript, ni chiffrement ;
+  - rendu des 28 pages sans erreur par Poppler et par PDFium 156 (moteur de Chrome, hors interface du navigateur) ; analyse pypdf sans avertissement ;
+  - texte identique mot pour mot (2 408 mots) au PDF QA du 02/10 ; rendu aligné : écarts limités aux contours ;
+  - **utilisé tel quel, aucun fichier dérivé**.
+- **QR du PDF** : mêmes 13 pages et mêmes destinations que le 02/10. Les adresses `orbitvu.fr` répondent 200 après redirection le 06/10. YouTube répond 429 : non vérifié.
+- **K1–K6 du dépôt** comparés au nouveau PDF : écarts limités aux contours. Aucun réexport.
+- **Contrôles** :
+  - `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; `npx vitest run` : 489/489, dont 89 pour le catalogue ; eslint des fichiers de la landing : 0 avertissement ;
+  - `npx next build` vert (373 pages, valeurs factices) ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5 ;
+  - contrôle local à 1440, 1024, 768, 390 et 320 : aucun débordement ; vidéo 16:9 et une requête MP4 à partir de 768 ; aucune requête MP4 en dessous.
+- **Contre-épreuves**, fichier restauré à l'identique ensuite : dédoublonnage désactivé → le test F échoue ; création d'affaire ajoutée → les tests A et B échouent.
+- **R2**, en lecture seule (API Cloudflare) :
+  - un seul bucket, `packshot-videos` (WEUR) ;
+  - `videos.` figure dans les `PASSTHROUGH_HOSTS` du Worker ; règle WAF 4 « Skip SBFM » sur cet hôte (05-INFRA) ;
+  - objet cible absent (404 le 06/10) ;
+  - `wrangler r2 object put` n'accepte aucun en-tête libre : `X-Robots-Tag` passe par une règle de transformation de réponse.
+
+**Supposé** —
+- Les secrets `PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY` et `RESEND_FROM_EMAIL` de Vercel sont ceux qu'utilise `/api/contact`.
+- La présence de `NOTIFICATION_EMAIL` sur Vercel n'est pas établie (seul `/api/submit-survey` la lit, avec une adresse de repli).
+- Les réponses de l'API Pipedrive v1 (`persons/search` avec `exact_match`, `notes?person_id`) suivent les formes déjà exploitées par `/api/contact`. Non testé en réel.
+
+**Non regardé** —
+- Preview Vercel (SSO) ; production (R4).
+- Document « Formulaire brochure — règles de maillage pour Laurent.md », non fourni à la session : les règles appliquées sont celles des sections 7 à 15 de la mission.
+- Lecteurs PDF de Chrome, Safari et Firefox, et mobile réel.
+- Deux requêtes simultanées sur deux instances : fenêtre de doublon de note possible.
+
+**Suite** —
+- GO R2 : upload et règle `X-Robots-Tag`, contrôle `curl.exe` depuis le poste de Laurent (D23), puis `enLigne = true`.
+- GO de test réel Pipedrive et Resend depuis la Preview (`SERVICES_REELS_AUTORISES = true`, commit relu).
+- Q23 à Sébastien.
+- Validation de la Preview, puis GO de publication.
+
+---
+
+## 2026-10-04 · Landing catalogue All-in-One (#82) actualisée depuis `main` `0ac062b` · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Base intégrée** : `main` `0ac062b` (fusions de #87, #83 et #86), par commit de fusion (pas de rebase) | **Tête de départ** : `41e45ee` (commit de Sébastien du 04/10, conservé tel quel)
+
+**Quoi** — `main` fusionnée dans la branche. Conflits sur `JOURNAL.md` (entrées des deux côtés conservées, ordre chronologique inverse) et `ETAT.md` (en-tête de la section A repris de `main`, avec `main` `0ac062b` et les changements du 04/10 ; ligne #82 du tableau B complétée du film de la gamme ; lignes #83 à #87 de `main` conservées sans modification).
+
+**Pourquoi** — Après la fusion de #86, la PR était en conflit avec `main` : seuls les contrôles Vercel tournaient sur `41e45ee`, pas les workflows GitHub.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, ce journal ; le reste vient de `main` sans conflit.
+
+**Vérifié** — Sur l'état fusionné : `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 180 JSON valides ; `npx vitest run` : 456/456 ; eslint des fichiers de la landing : 0 avertissement ; `npx next build` vert ; parcours `e2e/machine-selector.spec.ts` (désormais exécuté par `pr-checks`) et `e2e/catalogue-all-in-one.spec.ts` : 45/45 sur Chromium, et spec de la landing 33/33 sur Pixel 5 ; `verifier-consequences.mjs` : rien ne bloque. D44 : la landing (4 806 px à 1440 en V5.1, avant le panneau 16:9 du 04/10) reste sous le seuil indicatif de 7 200 px.
+**Supposé** — Que les lignes #83, #86 et #87 du tableau B, rédigées avant leur fusion, seront mises à jour par la session qui les porte.
+**Non regardé** — Preview Vercel (SSO) ; lecture du film R2 depuis le conteneur (Chromium sans H.264).
+
+**Suite** — Validation graphique de Laurent sur la Preview, film de la gamme compris. Aucune fusion ni publication.
+
+---
+
+## 2026-10-04 · Landing catalogue All-in-One : film de la gamme Orbitvu à la place de la boucle de la home · Claude de Sébastien
+
+**Chantier** : demande directe de Sébastien du 04/10, sur la Preview de cette branche | **PR** : #82 (brouillon, ne pas fusionner) | **Commit** : voir PR
+
+**Quoi** — Le panneau vidéo du hero ne réutilise plus `hero-range-2025.mp4` recadré. Il lit le film de présentation de la gamme Orbitvu en version 540p sans piste audio (R2, 3,5 Mo, 42 s), en entier. Le panneau passe de 2,2:1 et 2:1 à 16:9 dès 640 px ; sous 640 px, le bandeau reste en 2,4:1 avec l'image fixe. `VideoStudio`, la pause hors champ et la coordination avec le ruban sont inchangés.
+
+**Pourquoi** — Demande de Sébastien du 04/10 : remplacer « le gif actuel » de cette page par `hero-video.mp4`. Les textes anglais incrustés interdisent tout recadrage : un ratio 2:1 rognait le bas de l'image (« Up to 250 products per day »).
+
+**Fichiers** — `components/landings/catalogue-all-in-one/CatalogueAllInOne.tsx`, `e2e/catalogue-all-in-one.spec.ts` (URL de la vidéo et de l'affiche), `public/images/hero/orbitvu-gamme-2026-poster.avif` (nouveau, 23 Ko, plan à 30,6 s sans texte, identique à celui de la PR #95). Hors repo : `https://videos.packshot-creator.com/orbitvu-gamme-2026-540p.mp4`, envoyé le 04/10.
+
+**Effet attendu** — Immédiat sur la Preview. Le panneau gagne environ 46 px de hauteur à 1440 px (686 × 386). Poids vidéo sur ordinateur : jusqu'à 3,5 Mo, contre 0,6 Mo auparavant. Mobile : 0 octet de vidéo, comme avant.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `npm run build` vert (373 pages).
+- `e2e/catalogue-all-in-one.spec.ts` sur `next start`, Chrome du Mac : 33/33.
+- Playwright, Chrome visible :
+  - desktop 1440 : `206 video/mp4`, `readyState` 4, lecture muette en cours ;
+  - mobile 390 : image fixe, aucune requête vers R2.
+- Fichier R2 relu après envoi : empreinte SHA-256 identique au fichier fourni (`daa432dc…`).
+
+**Supposé** — Droits d'usage du film acquis (fourni par Sébastien).
+
+**Non regardé** —
+- Safari et Firefox.
+- Le cadrage de l'image fixe en 2,4:1 sous 640 px : elle est centrée et le studio reste visible sur la capture à 390 px, mais toutes les largeurs n'ont pas été passées en revue.
+
+**Suite** — La PR #95 (accueil) ajoute la même affiche au même chemin : contenu identique, pas de conflit attendu à la fusion de `main`.
 
 ---
 
@@ -1348,6 +2738,151 @@ Spec `e2e/sommaire-blog.spec.ts` (8 tests). Aucun contenu, aucun `id` de titre, 
 **Non regardé** — Brochures PDF Orbitvu ; notes Pipedrive produites par le prompt des leads (aucun accès, appels Gemini payants exclus) ; Preview et production.
 
 **Suite** — Réponse de Sébastien à Q20, puis PR PRODUCT-DATA (catégorie A d'abord : XL G2 et Micro, encombrements) ; dérivation des catalogues depuis le référentiel ; valeurs F5 après le 23/11, Mode après le 26/11.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V5.1 : section catalogue compacte, priorité au ruban, métadonnées préparées · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg`, partie de `4412966` (HEAD transmis, vérifié identique sur origin) | **Base** : `main` `de6c4cd` (inchangée)
+
+**Quoi** — Mission V5.1 de Laurent après revue de la Preview V5. (A) Section « Trouvez le studio adapté à vos produits » compactée. (B) Ruban des studios : démarrage dès qu'il entre dans le champ, la vidéo du hero se mettant en pause pendant qu'il défile. (C) Title et meta description réécrits pour le positionnement V5, indexation inchangée. H1, formulaire, CTA, téléphones, API, visuels K1–K6 et PDF inchangés.
+
+**Pourquoi** — (A) À 1 361 px de haut à 1440, la section montrait trop du document à télécharger. (B) En V4 et V5, le ruban attendait que la vidéo du hero soit à moins de 30 % visible : à 1440 × 900, un visiteur arrêté sur la frise avec la vidéo encore à l'écran (défilement entre ≈ 370 et 630 px) voyait un ruban immobile. (C) Title et meta description encore ceux du copydeck V2 (« 28 pages, 10 systèmes »).
+
+**Section catalogue (A)** — Texte inchangé à gauche ; à droite, K5 en grand, puis K4 et la vignette K6 côte à côte ; la vignette K6 est un bouton « Agrandir la matrice » qui ouvre la fenêtre modale de la V5. Sous 640 px : pages seules K3 et K2 côte à côte, puis la vignette K6 pleine largeur ; aucune double page minuscule. Hauteurs mesurées (V5 → V5.1) : 1440 px 1 361 → 822 (−40 %), 1024 px 1 348 → 900 (−33 %), 768 px 1 673 → 1 193 (−29 %), 390 px 1 793 → 1 278 (−29 %), 320 px 1 840 → 1 400 (−24 %). À 1440, la hauteur est désormais celle de la colonne de texte, non modifiée : la baisse dépasse la fourchette indicative de 25 à 35 % sans rien retirer.
+
+**Ruban (B)** — Démarrage quand le ruban est visible à 60 % au moins (header déduit), sans condition sur la vidéo. Nouveau `animationPrincipale.ts` : le ruban signale quand il défile, la vidéo du hero se met alors en pause, puis reprend quand il s'arrête. Contrôle visuel en conditions réelles (arrivée par la molette depuis le haut de page) : démarrage immédiat, 22,0 px/s constants sur 14 s, environ deux machines nouvelles en 12 s, huit visibles d'emblée à 1440 ; vitesse conservée. Boucle : incréments réguliers de part et d'autre du retour au début (1 672,2 → 0,6 px), sans saut. Silhouettes, fondu des bords, survol, focus, pause, glissement tactile, mouvement réduit et arrêt hors champ inchangés et revérifiés.
+
+**Métadonnées (C)** — Title : « Studios photo Orbitvu : recevez le catalogue | PackshotCreator » (62 caractères). Meta description : « Découvrez les possibilités des studios photo automatisés Orbitvu et recevez le catalogue All-in-One pour explorer la gamme. France et Suisse. » (141 caractères). Proposition de Laurent retenue telle quelle : longueurs dans les règles du dépôt (`e2e/seo.spec.ts` : title < 70, description de 50 à 160) et termes présents sur la page (studios automatisés Orbitvu, catalogue All-in-One, gamme, France et Suisse). Aucune donnée de volume de recherche consultée ni affirmée. Inchangés : `noindex, nofollow`, aucune canonique, aucun sitemap, route FR seule, `PUBLICATION_AUTORISEE = false`.
+
+**Fichiers** — nouveau : `components/landings/catalogue-all-in-one/animationPrincipale.ts` ; modifiés : `CatalogueAllInOne.tsx`, `AgrandirPage.tsx` (vignette cliquable), `StudiosRail.tsx`, `VideoStudio.tsx`, `coordination.ts` (commentaire), `contenu.ts` (META), `e2e/catalogue-all-in-one.spec.ts`, `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : `app/[lang]/catalogue-orbitvu-all-in-one/page.tsx` (lit `META`), formulaire, API, `public/`, home, fiches machines.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 433/433 ; `npx next build` vert.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 66/66 sur serveur neuf, dont : nouveau title et nouvelle meta description, `nofollow` présent ; ruban qui défile alors que la vidéo est encore visible à plus de 30 %, avec appel à `pause()` sur la vidéo, puis arrêt du ruban et appel à `play()` au retour en haut ; section catalogue ≤ 1 020 px à 1440 et vignette K6 de moins de 400 px ; K3 et K2 côte à côte sur mobile.
+- Specs `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, les mêmes qu'en V3, V4, V5 et sur `main`.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390 et 320 px ; bas du CTA inchangé (827 px sur 900 à 1440, 881 sur 768 à 1024) ; aucun emplacement neutre ; aucune requête du MP4 sous 768 px.
+**Supposé** — Que la vitesse de 22 px/s convienne à l'œil de Laurent : jugement sur enregistrement, pas sur mesure d'usage.
+**Non regardé** — Preview Vercel V5.1 dans un navigateur (SSO : les captures sont locales, ce n'est pas un contrôle de la Preview) ; Safari, Firefox et appareils réels ; volumes de recherche des formulations du title.
+
+**Suite** — Dernière validation graphique de Laurent sur la Preview. Restent ouverts avant activation : destination des QR « démo » (`orbitvu.fr/contact/`), versions de produits nommées par le PDF, validation du PDF QA, hébergement du PDF, stockage et CRM, indexation et URL définitive. Aucune fusion ni publication ; pas de développement CRM/e-mail engagé.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V5 : ruban continu des studios, vraies pages du catalogue · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd` (inchangée depuis V3)
+
+**Quoi** — Mission V5 de Laurent (prompt du 02/10 et paquet `PSC_CATALOGUE_RECROP_ET_VISUELS_K1_K6_2026-10-02.zip`). (A) La frise V4 (grandes cartes, une carte toutes les 4,5 s, arrêt en bout de liste) devient un ruban fin qui défile en continu, en boucle sans saut. (B) Les six emplacements neutres K1–K6 sont remplacés par les vraies pages du catalogue : couverture K1 dans la carte du formulaire et dans le bloc final, doubles pages K5 et K4, matrice K6 avec agrandissement. H1, formulaire, CTA, téléphones et API inchangés.
+
+**Pourquoi** — Retour de Laurent sur la V4 : trop proche d'un carrousel de fiches, et le catalogue absent de la Preview.
+
+**Paquet reçu (hors dépôt)** — PDF `All-in-One_2026_FR_RECROP_QA_NOT_APPROVED.pdf` (28 pages, 595 × 422 pt) : CropBox `[0 297 595 719]` sur MediaBox `[0 0 595 841]`, soit `Rect(0,122,595,544)` du README en repère haut-gauche ; polices Inter incorporées ; aucune annotation de lien cliquable. Six WebP (pages 1339 × 950, doubles pages 2678 × 950) contrôlés à taille réelle : ni texte tronqué ni mauvais appariement ; appariement conforme au README (K1 p. 1, K2 p. 24, K3 p. 10, K4 pp. 24–25, K5 pp. 10–11, K6 pp. 6–7). Copiés à l'identique (empreintes SHA-256 égales) sous `public/images/catalogue-all-in-one/` ; ni PDF ni planche de contrôle dans le dépôt.
+
+**QR et liens du PDF (contrôle technique, pas de validation)** — 28 pages rendues à 300 dpi, QR décodés (OpenCV, hors dépôt) : « Demander une démo » et « Réserver une démonstration gratuite » → `https://orbitvu.fr/contact/` (pages 6, 8, 10, 12, 14, 16, 18, 20, 22, 24) ; « Voir la brochure dédiée » → `https://orbitvu.fr/product/<modèle>/` (9 fiches) ; vidéos → `youtu.be` (pages 5, 26, 27). Les 10 adresses `orbitvu.fr` répondent 200 après redirection (`/contact/ecrivez-nous`, `/produits/...`) ; les 3 vidéos YouTube ne sont pas vérifiables depuis le conteneur (429). Les QR « démo » visibles sur K2–K6 mènent donc vers `orbitvu.fr`, pas vers le formulaire de la landing : décision ouverte pour Laurent. Page 28 : `www.orbitvu.fr`, `orbitvu@sysnext.com`.
+
+**Frise (A)** — Ruban défilable nativement (glisser, molette horizontale, flèches, Début, Fin), avec boutons précédent / suivant (à partir de 640 px) et pause. Défilement automatique par translation de la piste au sous-pixel (`translate3d`, `requestAnimationFrame`, 22 px/s), rendu au défilement natif à la même position dès qu'il s'arrête. Liste rendue trois fois : la première porte la sémantique, les deux copies sont `aria-hidden` et `inert` ; au bout d'une période (1 683 px à 1 440 px de large), la position recule d'autant, sans saut visible. Défilement seulement sans `prefers-reduced-motion`, ruban visible à 30 % au moins, vidéo du hero hors champ, onglet actif, ni survol ni focus ; toute interaction manuelle l'arrête jusqu'à « Reprendre ». Mobile : défilement continu conservé, un glissement prend la main. Visuels en silhouettes : rendus détourés fondus dans le fond du ruban (`mix-blend-multiply`, luminosité +4 % pour effacer les fonds blanc cassé 250–254), gabarit croissant avec la taille des produits (92 à 176 px de large). Hauteur du ruban : 182 px en desktop, 143 px en mobile. Intitulé court : le texte d'accompagnement V4 est retiré, surtitre et titre conservés. Exclusions V4 réexaminées et maintenues : XL G2 (toutes ses photos sont sur fond noir, D29), XXL et Fashion (vues d'ensemble toutes avec une personne).
+
+**Catalogue (B)** — `EmplacementVisuel` remplacé par `PageCatalogue` (`next/image`, `object-contain`, rapport du fichier) ; sous 640 px, pages seules K3 et K2 à la place des doubles pages, seule l'image affichée étant chargée. Section « Trouvez le studio adapté » recomposée : texte à gauche, K5 et K4 à droite, puis K6 sur toute la largeur avec « Agrandir la matrice » (fenêtre modale native, image à la taille du fichier). Section passée de ≈ 820 à 1 361 px de haut à 1 440 px. Couverture K1 sans rotation : 120 × 85 px (96 × 68 px de 1 024 à 1 279 px, 88 × 62 px sur mobile). Bandeau interne : « extraits du catalogue présentés pour revue, téléchargement du PDF non activé ».
+
+**Fichiers** — nouveaux : `components/landings/catalogue-all-in-one/PageCatalogue.tsx`, `AgrandirPage.tsx`, `public/images/catalogue-all-in-one/k1-couverture.webp`, `k2-furniture-studio-p24.webp`, `k3-alphashot-pro-g2-p10.webp`, `k4-furniture-studio-pp24-25.webp`, `k5-alphashot-pro-g2-pp10-11.webp`, `k6-matrice-pp6-7.webp`, `lib/catalogue/__tests__/visuels-catalogue.test.ts` ; supprimé : `components/landings/catalogue-all-in-one/EmplacementVisuel.tsx` ; modifiés : `StudiosRail.tsx`, `studios.ts`, `visuels.ts`, `contenu.ts`, `CatalogueAllInOne.tsx`, `CatalogueForm.tsx` (vignette seulement, logique inchangée), `e2e/catalogue-all-in-one.spec.ts`, `lib/catalogue/__tests__/frise-studios.test.ts`, `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : home, `HeroVideo`, fiches machines, `MACHINES`, `lib/machine-images.ts`, redirections XL, services CRM et e-mail, `lib/catalogue/activation.ts` (`PUBLICATION_AUTORISEE = false`).
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 433/433 (dont gabarits de la frise, six visuels présents avec dimensions exactes, ni PDF ni planche dans `public/`).
+- `npx next build` vert.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 64/64, dont ruban (une seule liste exposée, copies inertes, hauteur ≤ 190 px, défilement continu par petits incréments réguliers, arrêt au survol sans saut, pause et reprise, boucle à la fin d'une période, clavier, précédent sans butée, mouvement réduit, glissement tactile qui prend la main) et catalogue (K1 chargée, K5/K4/K6 chargées en desktop, K3/K2/K6 en mobile, aucun emplacement neutre, matrice agrandie puis fermée par Échap). Le test de la vraie route (503) renvoie 429 après plusieurs passes sur le même serveur local (limiteur 5 requêtes / 10 min) : passe finale sur serveur neuf, verte.
+- Specs `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, les mêmes qu'en V3, en V4 et sur `main`.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390 et 320 px ; bas du CTA à 827 px sur 900 en 1440 × 900 (inchangé), 881 px sur 768 en 1024 × 768 (inchangé) ; tablette 768 : 1 505 px (V4 : 1 475), mobile 320 : 1 393 px (V4 : 1 373), mobile 390 : 1 269 px (inchangé) ; aucune requête du MP4 sous 768 px ; vidéo du hero en pause quand le ruban défile.
+**Supposé** — Que les droits confirmés par Laurent couvrent les personnes visibles sur les pages reproduites (mannequin p. 11, silhouette et témoignage nommé p. 25). Que la fluidité du ruban sur Safari iOS et Firefox soit celle mesurée sur Chromium.
+**Non regardé** — Preview Vercel V5 dans un navigateur (SSO) ; Safari, Firefox, appareils réels ; lecteurs d'écran réels ; suite e2e complète (1 024 tests) ; destinations YouTube des QR.
+
+**Suite** — Revue de la Preview V5 par Laurent. Décisions ouvertes : destination des QR « démo » (`orbitvu.fr/contact/` et non la landing) ; la matrice K6 et les fiches du PDF nomment des versions qui ne correspondent pas toutes à la gamme du site (Alphadesk, retirée du site ; « Alphashot XL Pro » contre « Alphashot XL Pro v2 ») ; PDF QA à valider avant tout téléchargement. Aucune fusion ni publication.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V4 : frise des studios, recadrage de la vidéo du hero · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Mission V4 de Laurent. (A) Frise panoramique « Du bijou au mobilier, explorez les studios Orbitvu. » insérée entre le hero et « Imaginez les possibilités ». (B) Diagnostic du film translucide autour du flacon dans la vidéo du hero, puis recadrage du panneau vidéo sur le studio et l'écran. Formulaire, CTA, téléphones et API inchangés.
+
+**Pourquoi** — (A) Donner à voir l'étendue de la gamme avant le formulaire de bas de page. (B) Le rectangle translucide, masqué sur la home par le texte et le voile de `HeroVideo`, était visible dans le panneau éditorial de la V3.
+
+**Diagnostic (B)** — Le défaut est dans le fichier source, pas dans l'intégration. `hero-range-2025.mp4` (H.264 Main, 2280 × 780, 104 images : 1 I, 26 P, 76 B) porte un rectangle aux coins arrondis, plus clair que le fond, autour du flacon, dans les 104 images, image I comprise. Mesure sur une zone de 480 × 440 px : bord haut à 47,7 de luminance à l'extérieur contre 58,5 à l'intérieur, écart-type inter-images 0,06 et 0,04 (couche fixe), contre 14,39 sur le flacon en rotation. Identique dans la copie AV1 de capture et dans l'affiche (`hero-range-2025-poster.avif` = image 0, PSNR 49,5 dB) : la transition affiche → vidéo n'y est pour rien. Son bord gauche traverse les nervures du dôme : ce n'est pas une porte du studio. Sa nature exacte (couche de composition) n'est pas établie. React et le CSS ne sont pas en cause.
+
+**Correction retenue (B)** — Recadrage du même fichier, sans flou ni masque : agrandissement ancré à droite (`origin-right`, `scale` 1,7 / 1,56 / 1,42 selon le rapport du panneau, égal à rapport × 780 / 1100), qui montre x ≈ 1180 à 2280 de la source (studio à gauche, écran avec le packshot du flacon), le rectangle s'arrêtant vers x ≈ 1130. Appliqué aussi à l'image fixe (mobile, mouvement réduit). Options écartées : cadrage V3 (défaut visible), recadrage serré sur le flacon (290 px de source, flou), masque ou flou (interdits par la mission). Le remplacement par une autre séquence propre suppose les vidéos des fiches (R2), injoignables depuis le conteneur (403 Cloudflare) : proposé à Laurent, non fait. Retour au cadrage V3 : deux valeurs dans `CatalogueAllInOne.tsx`.
+
+**Frise (A)** — Source : `MACHINES` (calculateur ROI) pour les noms et familles, `getMachineImage()` pour les images ; aucun chemin construit depuis un id. 13 références non retirées (`delisted`) sur `HEAD`, et non 12 comme indiqué dans la mission. 9 retenues, dans l'ordre de `MACHINES` : Alphashot Micro Pro v2, Alphashot 360, Alphashot Pro G2, Alphashot XL Pro v2, Alphatable v2, Alphastudio Compact Pro v2, Bike Studio, Furniture Studio, E-Comm Studio+. Écartées : Alphastudio XXL Pro v2, Fashion Studio Basic, Fashion Studio Pro v2 (toutes les vues d'ensemble disponibles montrent une personne) ; Alphashot XL G2 (seule image : photo d'ambiance sur fond sombre, incohérente avec les rendus détourés sur fond blanc, et D29 : pas de juxtaposition XL G2 / XL Pro v2). Famille d'usage tirée des données, sans chiffre : catégorie de taille, « Prise de vue à plat » pour l'Alphatable. Ni prix, ni cadence, ni lien vers les fiches. Les neuf studios ne sont pas présentés comme les « 10 systèmes » du PDF.
+
+**Comportement** — Défilement horizontal natif à accroche (`scroll-snap`), `data-lenis-prevent`. Desktop : 4,6 cartes visibles à 1440 px, boutons précédent / suivant / pause ; avancée automatique d'une carte toutes les 4,5 s, seulement à partir de 1024 px avec souris, sans `prefers-reduced-motion`, frise visible à moitié au moins et vidéo du hero hors champ (moins de 30 % visible, header déduit) ; suspendue au survol et au focus de la liste ; arrêtée par toute interaction manuelle (bouton, glissement, molette horizontale, flèches, Début, Fin) jusqu'à « Reprendre » ; arrêt en bout de liste, sans boucle ni carte dupliquée. Tablette : 2,7 cartes ; mobile : 1,4 carte ; pas d'automatisme. La vidéo du hero se met en pause hors champ, en plus de la pause du visiteur : une seule animation majeure à la fois.
+
+**Fichiers** — nouveaux : `components/landings/catalogue-all-in-one/StudiosRail.tsx`, `studios.ts`, `coordination.ts`, `lib/catalogue/__tests__/frise-studios.test.ts` ; modifiés : `components/landings/catalogue-all-in-one/CatalogueAllInOne.tsx`, `VideoStudio.tsx`, `contenu.ts`, `e2e/catalogue-all-in-one.spec.ts`, `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : la home et `components/hero/HeroVideo.tsx`, les fiches machines, `lib/machine-images.ts`, `MACHINES`, la logique de redirection XL, `public/` (aucun fichier ajouté ni modifié), les services CRM et e-mail, les autres formulaires.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run lib/catalogue` : 52/52 (6 nouveaux sur la frise : aucune référence retirée, exclusions motivées, D29, noms exacts, images issues de `getMachineImage` et présentes sur disque, familles sans chiffre).
+- `npx next build` vert.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 52/52, dont 5 nouveaux sur la frise (position entre hero et possibilités, 9 cartes sans lien ni prix ; précédent, suivant, flèche droite, Début, Fin ; avancée automatique nulle tant que la vidéo est dans le champ, effective frise centrée, arrêtée par la pause ; mouvement réduit sans bouton pause ni mouvement ; mobile à accroche avec carte suivante entrevue, sans automatisme).
+- Specs `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, les mêmes qu'en V3 et que sur `main` `8c0dd06`.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390 et 320 px ; bas du bouton principal à 827 px sur 900 en 1440 × 900 (inchangé) ; aucune requête du MP4 à 390 et 320 px ; vidéo du hero en pause frise centrée, reprise en haut de page ; avancée automatique 0 → 290 → 580 → 870 px ; survol de 5 s sans mouvement ; glissement tactile effectif à 390 et 768 px, et à 320 px avec un geste de 216 px.
+**Supposé** — Que le rectangle soit une couche de composition du fichier livré : sa nature exacte n'est pas établie. Que Chrome, Safari et Firefox lisent le MP4 H.264 en lecture automatique muette, comme sur la home (le Chromium du conteneur ne décode pas le H.264 : captures faites avec une copie AV1 servie au seul navigateur de capture, hors dépôt).
+**Non regardé** — Preview Vercel V4 dans un navigateur (SSO) ; Safari iOS, Android et trackpads réels (défilement horizontal au pavé tactile) ; Firefox et WebKit (absents du conteneur) ; lecteurs d'écran réels ; suite e2e complète (1 024 tests), seules les specs de la landing et les trois specs de comparaison ont été lancées.
+
+**Suite** — Revue de la Preview V4 par Laurent : recadrage de la vidéo (studio en grande partie hors champ, écran au centre) ou séquence de remplacement à fournir ; liste des 9 studios et exclusions ; libellés de famille. Aucune fusion ni publication.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V3 : vidéo de la home, promesse photographique, catalogue en aide au choix · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Recentrage V3 demandé par Laurent : ce qui donne envie, ce sont les possibilités des studios Orbitvu ; le catalogue devient la première étape concrète pour choisir. Hero refait (vidéo de la home, H1 « Vos produits comme vous ne les avez jamais vus. », formulaire inchangé), sections « Imaginez les possibilités » et « Trouvez le studio adapté à vos produits » ; bloc final conservé.
+
+**Pourquoi** — Retour de Laurent du 02/10 sur la première Preview : la page présentait le catalogue comme un objet extraordinaire ; c'est un document commercial utile.
+
+**Fait métier** — FAIT MÉTIER LAURENT, 02/10/2026 : Laurent confirme disposer des droits nécessaires à la diffusion du catalogue et à sa présentation sur cette landing. Cette autorisation n'est plus un arbitrage en attente. Le PDF reste à contrôler techniquement : la copie du kit a une CropBox restreinte.
+
+**Fichiers** — modifiés : `components/landings/catalogue-all-in-one/` (`CatalogueAllInOne.tsx`, `CatalogueForm.tsx`, `EmplacementVisuel.tsx`, `contenu.ts`, `visuels.ts`), `e2e/catalogue-all-in-one.spec.ts` ; nouveaux : `components/landings/catalogue-all-in-one/VideoStudio.tsx`, `SansCoupure.tsx` ; `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : `components/hero/HeroVideo.tsx`, la home, les fiches XL G2 et Pro G2, les routes et redirections XL (D29), `public/`.
+
+**Vidéo** — `public/images/hero/hero-range-2025.mp4` (H.264, 2280 × 780, 3,47 s, 30 i/s, 623 654 o) et `hero-range-2025-poster.avif`, référencés tels quels, sans copie. Inspection image par image : studio et écran entre 27 % et 80 % de la largeur, fond sombre uni ailleurs ; une composition « vidéo en fond » placerait le studio derrière le texte et le formulaire. Choix : panneau éditorial sous le titre (cadrage `55% 50%`, rapport 2:1 en desktop), bandeau pleine largeur en tête sur mobile. `VideoStudio` reprend les règles de `HeroVideo` (lecture muette en boucle à partir de 768 px, image fixe en dessous sans téléchargement de la vidéo, image fixe si `prefers-reduced-motion`), sans le voile latéral prévu pour un fond, avec un bouton pause (WCAG 2.2.2). Le modèle du studio filmé n'est pas nommé : non établi.
+
+**Visuels de la section 2** — quatre visuels déjà publiés sur les fiches du site : `alphashot-xl-g2/advantage-open-doors.avif`, `alphashot-xl-g2/soft-station-capture.avif`, `alphashot-pro-g2/soft-export.avif`, `alphashot-pro-g2/packshot-mascara.avif`. Écartés : les photos montrant une personne (`alphashot-xl-g2/packshot-operator.avif`, `alphashot-pro-g2/session.avif`, mains de `alphashot-xl-g2/hw-turntable.avif` ; droit à l'image ouvert au JOURNAL du 01/10). Légendes sans nom de modèle : la copie interne du catalogue (`pdftotext`) nomme l'Alphashot Pro G2 et l'Alphashot XL Pro v2, pas l'XL G2 (D29). Phrase sur l'IA reprise de `/fr/packshot-e-commerce` : « l'assistant photo IA est réservé aux Alphashot Pro G2 et XL G2 ».
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement (dont la règle React Compiler sur `setState` dans un effet, évitée par `useSyncExternalStore`) ; `npx vitest run` : 423/423.
+- `npx next build` vert ; `/fr/catalogue-orbitvu-all-in-one` prérendue seule.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 42/42, dont vidéo muette et en boucle en desktop avec bouton pause, aucune requête du MP4 à 390 px, image fixe avec `prefers-reduced-motion`, bouton principal dans le premier écran à 1440 × 900.
+- Specs existantes `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, identiques à ceux de `main` `8c0dd06` relevés le même jour.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390, 320 et 844 × 390 ; bas du bouton principal à 827 px sur 900 en 1440 × 900, 881 px sur 768 en 1024 × 768 ; à 390 × 844, la carte du formulaire commence dans le premier écran (bouton à 1 269 px). Le Chromium du conteneur ne décode pas le H.264 : pour les captures animées, la requête du MP4 est servie au navigateur de capture avec une copie AV1 du même fichier (scratchpad, hors dépôt).
+**Supposé** — Que Chrome, Safari et Firefox lisent le MP4 H.264 en lecture automatique muette, comme sur la home.
+**Non regardé** — Preview Vercel V3 dans un navigateur (SSO, pas de jeton) ; Safari iOS et Android réels ; Firefox et WebKit (absents du conteneur) ; lecteurs d'écran réels.
+
+**Suite** — Revue graphique et éditoriale de Laurent sur la Preview V3 ; title et meta description encore ceux du copydeck V2, à trancher avec l'indexation ; export paysage correct du PDF, QR, hébergement, stockage, règle CRM et mention données avant toute activation.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — intégration en PR brouillon, bloquée ASSETS/PDF/EXTERNALS PENDING · Claude de Laurent
+
+**Chantier** : landing d'acquisition du catalogue All-in-One (kit d'intégration du 02/10, brief V2), hors 06-CHANTIERS | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `13f3cf0` | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `8c0dd06`, puis fusion de `main` `de6c4cd` (#81, documentation seule ; conflits `ETAT.md` et `JOURNAL.md` résolus en conservant les deux côtés)
+
+**Quoi** — Page `/fr/catalogue-orbitvu-all-in-one` (FR seule, France et Suisse) en quatre sections, formulaire dédié et route `POST /api/catalogue` à services injectés. La page répond 404 sur la production Vercel tant que `PUBLICATION_AUTORISEE` est faux ; la route répond 503 `catalogue_unavailable` : aucun stockage, aucun adaptateur Pipedrive ni Resend n'existe dans le code.
+
+**Pourquoi** — GO de Laurent du 02/10 pour une intégration en branche isolée et une PR brouillon uniquement. Objectif : donner envie de recevoir le catalogue, consultant facultatif, démonstration en lien tertiaire.
+
+**Fichiers** — nouveaux : `app/[lang]/catalogue-orbitvu-all-in-one/page.tsx`, `components/landings/catalogue-all-in-one/` (`CatalogueAllInOne.tsx`, `CatalogueForm.tsx`, `EmplacementVisuel.tsx`, `LienTelephone.tsx`, `contenu.ts`, `mesure.ts`, `visuels.ts`), `app/api/catalogue/route.ts`, `lib/catalogue/` (`schema.ts`, `gestionnaire.ts`, `services.ts`, `activation.ts`, `courriel.ts`, `crm.ts`, 3 fichiers de tests), `e2e/catalogue-all-in-one.spec.ts` ; modifiés, ajouts d'une ligne : `i18n/routing.ts` (pathname), `i18n/deChCoverage.ts` (`FR_ONLY`) ; `docs/seo-geo/ETAT.md`, ce journal.
+
+**Effet attendu** — Aucun en production : page en 404, route fermée, aucune entrée de sitemap, aucun lien entrant. Sur Preview et en local : revue visuelle et fonctionnelle, avec réponses d'API simulées.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 423/423, dont 46 nouveaux (schéma, route : succès simulé, e-mail en échec, CRM en échec, PDF absent, stockage absent ou en échec, pays absent ou hors FR/CH, double clic, nouvel essai, limitation, champ piège, journal sans donnée personnelle, secrets présents sans effet, simulation ; e-mail composé ; règle CRM ; sélecteur de langue). Contre-épreuve : sans l'entrée `FR_ONLY`, 2 tests échouent.
+- `npx next build` vert (valeurs factices) : `/fr/catalogue-orbitvu-all-in-one` prérendue seule. Build avec `VERCEL_ENV=production` vert, puis `next start` : `/fr`, `/en` et `/de-ch/catalogue-orbitvu-all-in-one` en 404, `/fr` en 200, `/api/catalogue` en 503.
+- Playwright `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 34/34 ; réponses d'API interceptées ; la vraie route locale répond 503. Balise `robots` `noindex, nofollow`, aucune canonique, aucun hreflang, aucun lien vers F5 dans `<main>`, aucun pays présélectionné, case consultant décochée, ni téléphone ni case marketing ; sélecteur de langue : EN vers `/en`, DE-CH vers `/de-ch`.
+- Specs existantes `language-switch`, `mobile-overflow`, `seo` (Chromium) : 241 réussis, 11 échecs, identiques sur un build de `main` `8c0dd06` : préexistants.
+- Captures locales 1440×900, 1024×768 paysage, 768×1024, 390×844, 320×640, 844×390, et sept états du formulaire : aucun débordement horizontal ; bas du CTA à 859 px sur 900 en 1440 ; sous la ligne de flottaison à 1024×768. `prefers-reduced-motion` : éventail fixe. Contrastes calculés : CTA blanc sur `#6667AB` 5,13:1 ; textes ≥ 5,9:1 ; texte indicatif des champs 4,17:1 sur leur fond `future-dusk-0` (même couleur `future-dusk-400` que `ContactForm`).
+- Aperçus K1–K6 du kit : injectés dans le navigateur de capture seulement ; `git status` ne montre aucun fichier du kit.
+**Supposé** — Que le 404 prérendu par `notFound()` est servi en 404 par Vercel comme par `next start` (mesuré en local seulement). Que `trackEvent` n'émet rien sans consentement analytique (lecture de `GoogleAnalytics.tsx`, non mesuré dans GA4).
+**Non regardé** — Preview Vercel (pas de jeton de contournement dans cette session ; visuels non autorisés de toute façon). Firefox et WebKit (navigateurs absents du conteneur). Lecteurs d'écran réels. Rendu sur `www` (R4). Envoi réel : interdit à ce stade.
+
+**Suite** — Bloquants avant toute Preview complète ou publication : PDF paysage brut, accord écrit d'Orbitvu (PDF et pages), destinations des QR, hébergement du PDF, stockage durable et reprise des échecs, règle Pipedrive (étape), mention données, relecture de Sébastien (D42), URL, indexation et header (Laurent), puis GO de Laurent.
 
 ---
 
