@@ -385,7 +385,7 @@ test.describe('Pop-in d’engagement — routes et langues hors couverture', () 
     '/fr/academy',
     '/fr',
     '/fr/packshot-e-commerce',
-    '/fr/packshot-mode',
+    '/fr/industrie/mode-textile',
     '/en/studios-photo-automatises',
     '/de-ch/ia-photo-produit',
   ]) {
@@ -398,6 +398,22 @@ test.describe('Pop-in d’engagement — routes et langues hors couverture', () 
       await expect(fenetre(page)).toHaveCount(0);
     });
   }
+});
+
+test.describe('Pop-in d’engagement — landing Mode (D56)', () => {
+  test.use({ viewport: { width: 1440, height: 900 } });
+
+  test.beforeEach(async ({ context, baseURL }) => {
+    await choixCookiesFait(context, baseURL!);
+  });
+
+  test('apparaît sur /fr/packshot-mode quand les trois conditions sont réunies', async ({ page }) => {
+    await ouvrir(page, '/fr/packshot-mode');
+    await lire(page, 1);
+    await page.clock.fastForward(61_000);
+    await sortirParLeHaut(page);
+    await expect(page.getByRole('dialog', { name: TITRE })).toBeVisible();
+  });
 });
 
 test.describe('Pop-in d’engagement — bandeau cookies', () => {

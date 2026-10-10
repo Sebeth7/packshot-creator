@@ -25,6 +25,19 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D56 · 2026-10-10 · Pop-in d'engagement active sur la landing Mode `/fr/packshot-mode` : levée de son gel pour la seule pop-in
+
+**Décidé par** : Laurent — mission « GO — activer la pop-in sur la landing Mode » du 10/10/2026 (GO_CODAGE, GO_MERGE, GO_PUBLICATION = YES)
+**Statut** : en vigueur
+
+**La décision** — Retirer `/fr/packshot-mode` des routes gelées de la pop-in (`ROUTES_GELEES`, `lib/engagement/regles.ts`) : la landing Mode, publiée, bénéficie de la pop-in d'engagement déjà en production (#122, D55), avec les mêmes déclencheurs (desktop dès 1 024 px, 60 s cumulées, 70 % de lecture, sortie par le haut, une apparition par session). Texte de Laurent : « Cette landing est publiée. Je souhaite qu'elle bénéficie du dispositif de conversion déjà en production. »
+
+**Le contexte** — Les gels de la pop-in reprenaient les fenêtres de mesure des pages sous expérience SEO (mission de Laurent du 09/10 ; D55 interdisait d'en lever un au titre de la publication de #122). La fenêtre de mesure Mode (D39, J+28 le 29/10, J+56 le 26/11) n'est pas annulée : l'activation de la pop-in sur la landing est un événement à prendre en compte dans l'interprétation des conversions.
+
+**Ce qu'elle interdit** — Étendre cette levée à une autre page gelée (`/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile` restent exclues) ; modifier au titre de cette décision les textes, visuels, CTA, métadonnées ou composants de la landing Mode ; tenir la fenêtre de mesure Mode pour annulée.
+
+---
+
 ## D55 · 2026-10-10 · Publication de la pop-in d'engagement (#122) sur l'autorité de Laurent : copy sans validation de Sébastien, `sessionStorage` tenu pour fonctionnel et mentionné, fermeture validée par les tests automatisés, droits du visuel confirmés
 
 **Décidé par** : Laurent — GO de fusion et de publication de #122 du 10/10/2026, puis réponses du 10/10 aux quatre points ouverts de #122

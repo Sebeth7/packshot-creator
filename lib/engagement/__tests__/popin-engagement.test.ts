@@ -198,10 +198,19 @@ describe('couverture des routes', () => {
   });
 
   it('pages gelées exclues, sans levée automatique', () => {
-    for (const chemin of ['/fr', '/fr/', '/fr/packshot-e-commerce', '/fr/packshot-mode', '/fr/industrie/mode-textile']) {
+    for (const chemin of ['/fr', '/fr/', '/fr/packshot-e-commerce', '/fr/industrie/mode-textile']) {
       expect(routeCouverte(chemin), chemin).toBe(false);
     }
-    expect(ROUTES_GELEES.map((g) => g.jusqua)).toEqual(['28/10/2026', '23/11/2026', '26/11/2026', '26/11/2026']);
+    expect(ROUTES_GELEES.map((g) => g.chemin)).toEqual(['/fr', '/fr/packshot-e-commerce', '/fr/industrie/mode-textile']);
+    expect(ROUTES_GELEES.map((g) => g.jusqua)).toEqual(['28/10/2026', '23/11/2026', '26/11/2026']);
+  });
+
+  it('landing Mode couverte depuis D56 (10/10), le hub mode-textile restant gelé', () => {
+    for (const chemin of ['/fr/packshot-mode', '/fr/packshot-mode/', '/fr/packshot-mode?utm_source=x']) {
+      expect(routeCouverte(chemin), chemin).toBe(true);
+    }
+    expect(routeCouverte('/fr/industrie/mode-textile')).toBe(false);
+    expect(routeCouverte('/en/packshot-mode')).toBe(false);
   });
 
   it('ni EN ni de-ch', () => {

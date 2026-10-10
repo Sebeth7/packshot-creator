@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
+
+**Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
+
+**Quoi** — #128 sortie du brouillon et fusionnée par commit de fusion le 10/10 à 09:58:08 UTC (`f3ca6f9`, parents `0bd8d60` et `6677eeb`), sur le GO de Laurent (D56). **Début de l'activation de la pop-in sur `/fr/packshot-mode` pour l'interprétation des conversions : 10/10, 09:58:08 UTC (fusion) ; production servie à partir de 09:59:36 UTC (déploiement).**
+
+**Pourquoi** — D56 ; CI 4/4 verte sur `6677eeb` (build terminé à 09:57:39 UTC).
+
+**Fichiers** — Aucun fichier du site dans cette entrée ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (ligne `main`, ligne de mesure Mode, #128 en G, contrôle `www` en C).
+
+**Effet attendu** — Pop-in possible sur `/fr/packshot-mode` (desktop FR, 60 s, 70 %, sortie haute, une fois par session).
+
+**Vérifié** — Statut Vercel de `f3ca6f9` : « success » à 09:59:36 UTC (déploiement `3fjoX2wR93LyrFmcgxPrExkjJjUG`). `sysnext.vercel.app` (lecture `curl`, 09:58 puis 10:00 UTC) : avant le déploiement, le code des règles servi portait le motif de gel « Mode (D39) » ; après, il ne le porte plus, et porte toujours « Accueil, mesure M5 (D44) », « F5 (D37) », « Hub mode-textile, mesure Mode » et les exclusions (catalogue, pages légales, Academy) ; composant de la pop-in référencé dans le rendu de `/fr/packshot-mode` (200) ; `smoke.mjs` : vert, 17 pages.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Apparition effective dans un navigateur sur la production (`www`, R4 ; test automatisé contre la production refusé plus tôt par le mode automatique). GA4.
+
+**Suite** — Contrôle Chrome sur `www` : `/fr/packshot-mode` (apparition après 60 s, 70 % et sortie haute) et `/fr/industrie/mode-textile` (aucune pop-in) ; lecture de la mesure Mode à J+28 (29/10) et J+56 (26/11) avec cet événement.
+
+---
+
+## 2026-10-10 · Pop-in d'engagement active sur la landing Mode `/fr/packshot-mode` (D56) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (suite de #122) | **PR** : voir l'historique de `feat/popin-mode-eligible` | **Commit** : voir PR
+
+**Quoi** — `/fr/packshot-mode` retirée de `ROUTES_GELEES` (`lib/engagement/regles.ts`) : la landing Mode devient éligible à la pop-in, avec les mêmes déclencheurs (desktop dès 1 024 px, 60 s cumulées, 70 % de lecture, sortie par le haut, une apparition par session). `/fr`, `/fr/packshot-e-commerce` et `/fr/industrie/mode-textile` restent gelées ; exclusions inchangées.
+
+**Pourquoi** — Décision de Laurent du 10/10 (D56) : « Cette landing est publiée. Je souhaite qu'elle bénéficie du dispositif de conversion déjà en production. » Exception propre à la pop-in.
+
+**Fichiers** — `lib/engagement/regles.ts` (une ligne retirée, commentaire), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`, `docs/seo-geo/DECISIONS.md` (D56), `docs/seo-geo/ETAT.md` (ligne de mesure Mode). Landing Mode non modifiée : ni texte, ni visuel, ni CTA, ni métadonnée, ni composant.
+
+**Effet attendu** — À la fusion (production en environ 3 minutes) : la pop-in peut s'ouvrir sur `/fr/packshot-mode`. Fenêtre de mesure Mode (D39) inchangée, **J+28 le 29/10, J+56 le 26/11** : l'heure de fusion de cette PR marque le début de l'activation, à prendre en compte dans l'interprétation des conversions de la landing (clics démo, demandes de catalogue avec `origine=brochure_exit_sitewide`).
+
+**Vérifié** — `main` `0bd8d60` au départ ; `npx tsc --noEmit` vert ; Vitest `lib/engagement` : 34/34 (nouveau test : `/fr/packshot-mode` couverte, avec barre finale et paramètres ; `/fr/industrie/mode-textile` et `/en/packshot-mode` exclues ; gels restants `/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile`) ; ESLint ciblé : aucune erreur ; `verifier-json` : 195 ; `npx next build` vert (387 pages) ; Playwright Chromium sur `next start` local : 11/11 (apparition sur `/fr/packshot-mode` après 60 s, 70 % et sortie haute ; aucune apparition sur `/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile`, contact, calculateur, mentions légales, Academy, EN, de-ch ; apparition de référence sur un article).
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4) ; GA4 ; effet de la pop-in sur la mesure GSC de la landing (sans objet attendu : aucun contenu prérendu modifié).
+
+**Suite** — Fusion ; contrôle de `sysnext.vercel.app` ; contrôle de `www` dans Chrome sur `/fr/packshot-mode` (apparition après 60 s, 70 % et sortie haute ; hub `mode-textile` sans pop-in).
+
+---
+
 ## 2026-10-10 · #117 — `main` `0bd8d60` (#122) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
 
 **Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `14be5ee` (fusion de `main` `0bd8d60`)
@@ -58,6 +102,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Preview et Chrome réel (Android, lecteur d'écran) ; réponse 402 de saasphoto.com, à vérifier en navigateur réel, non corrigée ici ; ajout du spec `popin-engagement` aux parcours de la CI (hors périmètre de cette resynchronisation).
 
 **Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
+
+---
+
+## 2026-10-10 · #122 fusionnée et publiée (`0bd8d60`) : pop-in d'engagement active en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `0bd8d60`
+
+**Quoi** — Mission de Laurent du 10/10 « GO final pop-in #122 » (GO_CODAGE_122, GO_MERGE_122, GO_PUBLICATION_122 = YES) : #122 sortie du brouillon, titre sans « DO NOT MERGE », fusionnée par commit de fusion le 10/10 à 08:37:22 UTC (`0bd8d60`, parents `48a2ce2` et `f724809`), comme #82 et les fusions récentes de `main` (`02-PROCEDURE.md`, étape 6, prescrit `--squash` : écart de pratique déjà constaté en D54). Branche conservée.
+
+**Pourquoi** — D55 : préalables levés par décision de Laurent ; CI 4/4 verte sur `f724809` (build terminé à 08:36:14 UTC).
+
+**Fichiers** — Aucun fichier du site dans cette entrée ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (#122 sort de B, entre en G ; contrôle `www` en C ; ligne `main`).
+
+**Effet attendu** — Pop-in active sur les pages FR desktop éligibles de `www` ; mesure GA4 sur 7 à 14 jours (`exit_modal_view`, `cta_click` à `exit_modal`, consentement requis).
+
+**Vérifié** —
+- `main` = `0bd8d60` ; `lib/engagement/activation.ts` sur `main` : `POPIN_PUBLICATION_AUTORISEE = true`, `STOCKAGE_SESSION_AUTORISE = true`.
+- Statut Vercel de `0bd8d60` : « Deployment has completed » à 08:38:51 UTC (déploiement `FA256LRkqtbEcgJTmwRd5DCGMs6c`).
+- `sysnext.vercel.app`, lecture du HTML servi (`curl`), 08:39 UTC : avant le déploiement, aucun code de la pop-in ; après, la référence client du composant (module contenant `popin-debug`) figure dans le rendu de `/fr` et de `/fr/blog/guide-achat-studio-2026`, et pas dans celui de `/en` : montage en FR seulement, conforme au layout.
+- `smoke.mjs https://sysnext.vercel.app` : vert, 17 pages, 3 ressources.
+- Politique de confidentialité : entrée « Stockage de session (fenêtre de suggestion) » servie sur `/fr/confidentialite`, « Session storage (suggestion window) » sur `/en/confidentialite`.
+
+**Supposé** — Que les exclusions et gels, appliqués côté navigateur (le composant est monté sur toutes les pages FR, dont `/fr`), se comportent en production comme dans les 38 tests Playwright du build local de `f724809`.
+
+**Non regardé** — Comportement de la pop-in en navigateur sur la production : l'exécution de la spec Playwright contre `sysnext.vercel.app` a été refusée par le mode automatique de Claude Code (« Production Reads ») ; non contournée. `www` (R4). GA4 : aucun accès ; réception non vérifiée.
+
+**Suite** — Contrôle Claude dans Chrome sur `www` (ETAT, C) : déclenchement, X, Échap, non-réapparition, liens, absence sur `/fr`, pages gelées, EN, mobile ; GA4 en temps réel si le consentement est accepté. Fusion de #126 : GO distinct de Laurent.
 
 ---
 
@@ -145,6 +216,35 @@ Test rendu robuste (`e2e/popin-engagement.spec.ts`, aide `lire`) : la cible de d
 **Non regardé** — `www` (R4).
 
 **Suite** — Restent pour #122 : GO de fusion et de publication de Laurent, P4 `sessionStorage` (statut juridique NON ÉTABLI), QA de Laurent (X puis rechargement, Échap), spec hors CI jusqu'à #117.
+
+---
+
+## 2026-10-10 · Landing catalogue All-in-One (#82) fusionnée et publiée ; contrôle de `sysnext.vercel.app` · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, fusionnée | **Commit** : `3619e75` (fusion, 10/10 à 05:00:17 UTC)
+
+**Quoi** — #82 sortie du brouillon puis fusionnée dans `main` (méthode « merge », tête `d7331c1`), sur le GO de fusion et de publication de Laurent du 09/10 (D53). Déploiement de production Vercel réussi (statut `success` à 05:01:23 UTC). `/fr/catalogue-orbitvu-all-in-one` est publique, `noindex, nofollow`.
+
+**Pourquoi** — Conditions de D53 réunies : CI verte sur `d7331c1` (4 contrôles sur 4), fusion sans conflit, variables de Production présentes (relevé de Laurent du 10/10, entrée précédente).
+
+**Fichiers** — Aucun dans ce commit de documentation ; contenu publié : description de #82.
+
+**Effet attendu** — Leads brochure depuis la landing : e-mail du lien au prospect, notification à `CATALOGUE_NOTIFICATION_EMAIL`. Aucun effet d'indexation (D53). #122 : le CTA « Recevoir le catalogue » ne mène plus à une 404.
+
+**Vérifié** — Sur `sysnext.vercel.app`, 10/10 entre 05:01 et 05:10 UTC :
+- avant la fusion (04:5x UTC) : page et `/api/catalogue` en 404, politique en 200 ;
+- après : page 200 (05:01:35 UTC) ; `<title>` « Studios photo Orbitvu : recevez le catalogue | PackshotCreator » ; H1 attendu ; `robots` `noindex, nofollow` ; ni canonique ni hreflang ; en-têtes D36 de l'origine présents (`x-robots-tag: noindex`, `x-packshot-origin-noindex: 1`) ; aucun bandeau d'aperçu ; mention P3 présente, ancienne mention absente ; téléphones FR et CH ; aucun lien vers F5 dans `<main>` ;
+- `GET /api/catalogue` : 200, `cache-control: no-store`, `{"disponible":true}` (route ouverte : interrupteurs, PDF et trois variables présents) ;
+- `?origine=brochure_exit_sitewide` : 200 ; `/en/…` et `/de-ch/…` : 404 ; `sitemap.xml` : aucune URL catalogue ;
+- `/fr/confidentialite` et `/en/confidentialite` : article 8 présent ;
+- PDF : 200, `application/pdf`, 15 380 434 octets ;
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` : 17 pages et 3 ressources au vert.
+
+**Supposé** — Que la clé Resend de production envoie correctement : non testé en production (aucune soumission sans autorisation) ; elle sert déjà `/api/contact`, et le test réel de la Preview du 09/10 a réussi.
+
+**Non regardé** — `www.packshot-creator.com` : sondé par script le 10/10 (page, API, politique) → 403 pour les trois, politique existante comprise ; ne prouve rien (R4), contrôle dans Chrome par Laurent ; formulaire réel en production ; badge « Needs Attention » de `RESEND_API_KEY` dans Vercel ; [Inférence] limitation de débit derrière le Worker (adresse Cloudflare possible), cela repose sur des schémas observés.
+
+**Suite** — Contrôle de `www` dans Chrome (landing et politique, desktop et mobile, sans soumission). #122 : dépendance à #82 levée côté application ; #122 reste en HOLD pour ses propres points (GO, P4 `sessionStorage`, QA de Laurent).
 
 ---
 
