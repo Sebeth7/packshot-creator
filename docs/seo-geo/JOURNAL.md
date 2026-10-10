@@ -34,6 +34,54 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #122 — `main` `3619e75` (fusion de #82) intégré ; dépendance « catalogue 404 » levée · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122, brouillon | **Commit** : fusion de `main` `3619e75` (voir l'historique de #122)
+
+**Quoi** — `main` `3619e75` (fusion de #82, 10/10 à 05:00 UTC) fusionné dans #122, sans rebase. Conflits dans `JOURNAL.md` (union, entrées placées par heure UTC) et `ETAT.md` (historique « Dernière mise à jour » des deux côtés conservé). Aucun fichier de code commun. Ligne #122 d'`ETAT.md` : la landing catalogue est publiée, le CTA secondaire ne mène plus à une 404.
+
+**Pourquoi** — #82 fusionnée et publiée ; #122 en conflit documentaire avec `main`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun ; #122 reste en brouillon, GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — `sysnext.vercel.app/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide` : 200 le 10/10 (05:0x UTC) ; #82 lit `origine` (liste fermée) et l'écrit dans la notification interne. Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné.
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4).
+
+**Suite** — Restent pour #122 : GO de fusion et de publication de Laurent, P4 `sessionStorage` (statut juridique NON ÉTABLI), QA de Laurent (X puis rechargement, Échap), spec hors CI jusqu'à #117.
+
+---
+
+## 2026-10-10 · Landing catalogue All-in-One (#82) : variables de Production relevées, `CATALOGUE_NOTIFICATION_EMAIL` créée · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commit** : ce commit (documentation seule)
+
+**Quoi** — Mission de Laurent du 10/10 (« #82 / Vercel production ») : variables du parcours relevées dans le tableau de bord Vercel, projet `sysnext`, environnement Production ; `CATALOGUE_NOTIFICATION_EMAIL` créée, seule écriture autorisée. Geste fait par Laurent avec Claude dans Chrome : la session cloud n'a aucun accès à Vercel (ni connecteur, ni jeton ; R3).
+
+**Pourquoi** — Condition de fusion de la mission du 09/10 (D53) : « variables Production présentes ». Relevé de Sébastien du 09/10 : `CATALOGUE_NOTIFICATION_EMAIL` absente en Production.
+
+**Fichiers** — Aucun fichier du site. Vercel : `CATALOGUE_NOTIFICATION_EMAIL` ajoutée en Production seule.
+
+**Effet attendu** — Au prochain déploiement de production (fusion de #82), `GET /api/catalogue` répond `{"disponible":true}`. [Inférence] Une variable ajoutée ne s'applique qu'aux déploiements suivants. Cela repose sur des schémas observés.
+
+**Vérifié** — Rapport de Laurent du 10/10 (Claude dans Chrome), valeurs non affichées :
+- `RESEND_API_KEY` : PRESENT (« All Environments », donc Production) ;
+- `RESEND_FROM_EMAIL` : PRESENT (« All Environments ») ;
+- `CATALOGUE_NOTIFICATION_EMAIL` : PRESENT, créée en Production seule, type « Config » (le choix « Secret » était proposé par défaut, non imposé), destinataire attendu confirmé dans le formulaire avant enregistrement ;
+- aucune autre variable modifiée ; message « A new deployment is required » fermé par « Dismiss », sans redéploiement ; formulaire non soumis, aucun e-mail envoyé ; variable de la Preview de la branche de #82 non modifiée.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Badge « Needs Attention » affiché par Vercel sur `RESEND_API_KEY` : détail non ouvert, signification non établie. Captures d'écran du formulaire de saisie prises par l'outil (valeur du destinataire visible), ni partagées ni enregistrées comme livrable.
+
+**Suite** — Fusion de #82 (D53), puis contrôle de `sysnext.vercel.app` (`GET /api/catalogue`, page, politique) et de `www` dans Chrome (R4).
+
+---
+
 ## 2026-10-09 · #122 — `main` `f143f61` intégré (#123, #124), sans changement de code · Claude de Laurent
 
 **Chantier** : pop-in d'engagement (#122) | **PR** : #122, brouillon | **Commit** : fusion de `main` `f143f61` (voir l'historique de #122)
@@ -56,6 +104,59 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-09 · Landing catalogue All-in-One (#82) : `main` `f143f61` intégré (#123, #124), décision de #82 renumérotée D53 · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commit** : fusion de `main` `f143f61` (voir l'historique de #82)
+
+**Quoi** — `main` `f143f61` (fusions de #123 à 20:18 UTC et de #124 à 20:42 UTC) fusionné dans #82, sans rebase. #124 a inscrit sur `main` une D52 (maillage vers Mode, Packshot e-commerce et Amazon) : la décision de publication de #82, numérotée « D52 » sur la branche, devient **D53**, placée au-dessus. Mentions renommées dans les seules lignes de #82 (`DECISIONS.md`, `ETAT.md`, Q24, entrée du JOURNAL de #82 du 09/10, non fusionnée) ; la D52 de `main` et ses mentions sont inchangées.
+
+**Pourquoi** — Point de contrôle de 20:49 UTC : `main` avancé, collision de numéro de décision. Règle de résolution : la décision déjà fusionnée garde son numéro.
+
+**Fichiers** — Conflits : `docs/seo-geo/DECISIONS.md` (D53 au-dessus de la D52 de `main`), `docs/seo-geo/JOURNAL.md` (union ; entrée de #82 de 16:4x UTC au-dessus de celles de #124 et #123). `ETAT.md` fusionné sans conflit. Aucun fichier du site de #82 commun avec #123 et #124.
+
+**Effet attendu** — Aucun pour le visiteur. #82 de nouveau fusionnable.
+
+**Vérifié** — Aucune ligne de `main` absente de `JOURNAL.md` ni de `DECISIONS.md` fusionnés ; seules les lignes renommées D52 → D53 diffèrent du côté de #82. Contrôles de la tête : description de #82.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Effet de la D52 de `main` (liens éditoriaux vers Mode et F5) sur les exclusions de la pop-in #122 : D52 ne vise que les liens éditoriaux ; les gels de #122 viennent de la mission de Laurent du 09/10 et ne sont pas modifiés.
+
+**Suite** — Inchangée : `CATALOGUE_NOTIFICATION_EMAIL` en Production avant la fusion.
+
+---
+
+## 2026-10-09 · Landing catalogue All-in-One (#82) : `main` intégré, P3, P4, origine de la pop-in, interrupteurs ouverts (D53) · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commits** : `783b55e` (fusion de `main` `3c0909b`), `34b8a5f` (P3, P4, origine, état GET), `1846fd5` (interrupteurs)
+
+**Quoi** — Mission de Laurent du 09/10 (« #82 finalisation et publication ») : `main` fusionné sans rebase ; mention P3 du formulaire ; P4 dans la politique de confidentialité (Resend) ; `?origine=brochure_exit_sitewide` lu et remonté dans la notification interne ; `GET /api/catalogue` (état seul) ; `PUBLICATION_AUTORISEE` et `SERVICES_REELS_AUTORISES` passés à `true`. D53 inscrite.
+
+**Pourquoi** — GO de finalisation, de fusion et de publication de Laurent du 09/10 (D53), après la décision de Sébastien « aucun CRM » et le test réel depuis la Preview du même jour (entrées précédentes du Claude de Sébastien).
+
+**Fichiers** —
+- Fusion : `docs/seo-geo/JOURNAL.md` (union, entrées de #82 du 09/10 placées par heure), `ETAT.md` (état de `main` conservé, ligne #82 du 09/10 reportée), `BOITE-AUX-LETTRES.md` (question de #82 renumérotée **Q24** : #82 est la seconde des deux PR porteuses d'une « Q23 » ; texte conservé). Aucun fichier du site en conflit.
+- P3 : `components/landings/catalogue-all-in-one/contenu.ts` (`FORMULAIRE.donnees.avant`, formulation de Laurent du 06/10, reprise mot pour mot).
+- P4 : `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (`privacy` : `article2.catalogueForm`, `article3.purpose6`, `article8`), `app/[lang]/confidentialite/page.tsx`.
+- Origine : `lib/catalogue/schema.ts` (`ORIGINES_CATALOGUE`, `origineCatalogue`), `gestionnaire.ts`, `fiche.ts` (ligne « Origine : brochure_exit_sitewide »), `CatalogueForm.tsx`.
+- `app/api/catalogue/route.ts` (`GET` → `{ disponible }`), `lib/catalogue/activation.ts`, `lib/catalogue/pdf.ts` (commentaire, garde D36 de `main`), tests `lib/catalogue/__tests__/`, `e2e/catalogue-all-in-one.spec.ts`. `docs/seo-geo/DECISIONS.md` (D53).
+
+**Effet attendu** — Après fusion : `/fr/catalogue-orbitvu-all-in-one` servie en production (`noindex, nofollow`, ni canonique ni sitemap), formulaire ouvert si les trois variables Resend du catalogue sont présentes en Production ; sinon 503 `catalogue_unavailable` et message de repli avec les téléphones. #122 peut quitter son HOLD « catalogue 404 » après contrôle de la publication.
+
+**Vérifié** —
+- P4, sources Resend relues le 09/10 : https://resend.com/security/gdpr (mise à jour du 21/09/2026) : « Resend's primary processing operations take place in the United States » ; « Transfers out of the EEA are made under the EU Standard Contractual Clauses, which are incorporated into the DPA » ; participation au EU-U.S. Data Privacy Framework (« additional transfer mechanism ») ; transferts suisses : SCC de l'UE avec les modifications prévues au DPA ; DPA « GDPR Article 28 » en vigueur pour chaque compte. https://www.resend.com/security : données stockées aux États-Unis ; SOC 2 Type II. Texte publié : sous-traitant, traitement principal aux États-Unis, SCC du DPA, DPF, Suisse ; ni « conforme RGPD », ni hébergement en Europe, ni durée. Pipedrive non cité.
+- Origine : liste fermée côté navigateur et serveur ; valeur inconnue, casse différente, UTM, balise, nombre ou tableau ignorés sans rejet de la demande ; rien dans l'e-mail du prospect. Contre-épreuves (code remis à l'identique, `cmp`) : origine recopiée sans liste fermée → 3 échecs ; ligne « Origine » retirée → 1 échec.
+- PDF relu le 09/10 depuis la session : HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 `0d72b207…6730e5` identique, 28 pages (`pdfinfo`), en-tête `noindex` présent (deux fois, comme le 06/10).
+- Worker (`cloudflare-worker/src/index.js`, dépôt) : aucune règle ne capte `/fr/catalogue-orbitvu-all-in-one` ni `/api/catalogue` ; relais vers l'origine Next, méthode et corps transmis.
+- `npx tsc --noEmit` vert ; ESLint ciblé : 0 erreur ; `verifier-json` : 195 fichiers ; Vitest : 33 fichiers, 593 tests ; `npx next build` vert (valeurs factices, 387 pages) ; Playwright sur `next start` local : `catalogue-all-in-one.spec.ts` 72/72 (Chromium et Mobile Chrome), specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`) 81/81.
+- Rendu local, 1440 et 390 px : hero, film, formulaire, mention P3, article 8 ; aucun bandeau d'aperçu ; `noindex, nofollow` ; aucune réponse 4xx ou 5xx interne. `GET /api/catalogue` local : `{"disponible":false}` (aucun secret local).
+- Preview de la branche : 302 vers le SSO Vercel ; non contrôlable par script depuis la session (jeton `VERCEL_AUTOMATION_BYPASS_SECRET` absent).
+
+**Supposé** — Que les variables de Production lues par Sébastien dans le tableau de bord le 09/10 (`RESEND_API_KEY`, `RESEND_FROM_EMAIL` présentes en Production ; `CATALOGUE_NOTIFICATION_EMAIL` sur la Preview de la branche seule) n'aient pas changé : aucun accès Vercel depuis la session (R3, pas de jeton).
+
+**Non regardé** — Variables Vercel de Production (aucun accès) ; Preview dans Chrome (SSO) ; `www` (R4) ; formulaire réel en production (aucun envoi sans autorisation) ; limitation de débit derrière le Worker : [Inférence] l'adresse lue par `getClientIp` peut être celle de Cloudflare et non celle du visiteur, comme pour `/api/roi-lead`, cela repose sur des schémas observés ; `/api/contact` utilise aussi Resend et Pipedrive sans que la politique les nomme (chantier séparé, signalé en Q24 le 06/10).
+
+**Suite** — Avant la fusion : `CATALOGUE_NOTIFICATION_EMAIL` = `sebastien.jourdan@sysnext.com` à créer en Production dans le tableau de bord Vercel (projet `sysnext`), présence de `RESEND_API_KEY` et `RESEND_FROM_EMAIL` en Production à confirmer ; CI verte sur la tête. Après la fusion : déploiement de production, `GET /api/catalogue` sur `sysnext.vercel.app` (`disponible: true` attendu), page et politique sur `sysnext.vercel.app`, contrôle Chrome de `www` (R4). #122 : dépendance à lever après ce contrôle, sans fusion automatique.
 ## 2026-10-09 · Réparation globale des ancres et finalisation des cocons — 99 défauts traités, 22 arbitrages résolus, 25 liens nouveaux, D52 · Claude de Laurent
 
 **Chantier** : maillage et cocons, campagne consolidée (mission de Laurent du 09/10 « Réparation globale des ancres et finalisation des cocons SEO/GEO » ; GO_CODE et GO_PR_DRAFT = YES ; GO_MERGE, GO_PUBLICATION, GO_PAID = NO) | **PR** : #124, brouillon, « DO NOT MERGE », branche `claude/reparation-ancres-cocons` | **Base** : tête de #123 (`6bc15f4`), elle-même sur `main` `3c0909b`. **Dépendance** : la PR contient les commits de #123 tant que #123 n'est pas fusionnée ; aucun de ses 34 liens n'est modifié (contrôle ci-dessous)
@@ -419,6 +520,73 @@ Baseline GSC, 90 jours du 09/07 au 06/10/2026 (projet `gsc-crawl-seo`, `gsc_metr
 **Non regardé** — Preview (SSO) ; `www` (R4). Portées divergentes du même chiffre hors #109 : accueil « en France et en Suisse » (gelé jusqu'au 28/10), `studiosHardware.socialProof.label` « en France et dans le monde » (clé non rendue), page Studios « Clients équipés » (`studios-photo-automatises/page.tsx`, hors des 19 fichiers).
 
 **Suite** — D42 étape 4 (Preview, Laurent) et étape 5 (Sébastien : copywriting FR client-facing, D13) ; fusion sur GO distinct de Laurent ; #111 réconciliée sur les mêmes valeurs (entrée suivante de sa branche).
+
+---
+
+## 2026-10-09 · Landing catalogue All-in-One (#82) : test réel de l'envoi e-mail depuis la Preview, verrous remis · Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `4a800f0` (ouverture), `971d0bc` (fermeture)
+
+**Quoi** — Mission de Laurent du 06/10 (« envoi du mail catalogue ») exécutée : deux demandes réelles depuis la Preview de #82, sans CRM, puis `SERVICES_REELS_AUTORISES` remis à `false` et le déploiement de test supprimé.
+
+**Pourquoi** — Vérifier en réel que, sur la Preview, le prospect reçoit l'e-mail du lien et que l'équipe reçoit la notification, consultant compris, avant toute publication.
+
+**Fichiers** — `lib/catalogue/activation.ts` (interrupteur ouvert par `4a800f0`, refermé par `971d0bc`). Vercel : déploiement de test `sysnext-l4az19x4t` (`4a800f0`) supprimé après le test.
+
+**Effet attendu** — Aucun pour le visiteur : production inchangée, page en 404 et API fermée en production ; Preview de nouveau fermée (503).
+
+**Vérifié** —
+- Preview `4a800f0` construite (READY) ; formulaire rempli dans Chrome (session Vercel) le 09/10 :
+  - A — `TEST PR82 A - a ignorer`, France, sans consultant, prospect `sebastien.jourdan+test-pr82-a@sysnext.com` : écran « Votre catalogue est prêt », « Le lien de téléchargement vous a également été envoyé par e-mail » ;
+  - B — `TEST PR82 B - a ignorer`, Suisse, consultant coché, prospect `sebastien.jourdan+test-pr82-b@sysnext.com` : même écran, plus « Votre demande d'échange avec un consultant PackshotCreator a été prise en compte ».
+- Resend : exactement 4 envois de test (10:29:47 et 10:30:52 UTC), tous `delivered`, expéditeur `PackshotCreator <sebastien.jourdan@sysnext.com>` ; aucun envoi après la fermeture.
+- Boîte `sebastien.jourdan@sysnext.com` (lue par le connecteur Gmail) : les 4 messages en boîte de réception.
+  - E-mail prospect : objet « Votre catalogue Orbitvu All-in-One » ; lien `https://videos.packshot-creator.com/catalogues/orbitvu-all-in-one-2026-fr.pdf` ; +33 (0)1 47 42 66 66 et +41 44 580 43 84 ; « Demander une démo » → `/fr/contact`, « Calculer mon ROI » → `/fr/calculateur-roi` ; aucune pièce jointe (6,7 Ko).
+  - Notification A : objet `[Brochure] TEST PR82 A - a ignorer`, en-tête « Nouveau lead brochure », fiche complète, « Lien du catalogue envoyé au prospect : confirmé par Resend. »
+  - Notification B : objet `[Brochure] TEST PR82 B - a ignorer - DEMANDE À ÊTRE RECONTACTÉ`, en-tête « LE PROSPECT DEMANDE À ÊTRE RECONTACTÉ », « Demande de consultant : OUI ».
+- Liens : PDF 200, `application/pdf`, 15 380 434 octets ; `/fr/contact` et `/fr/calculateur-roi` 200 sur `sysnext.vercel.app` et ouverts dans Chrome sur `www` (titres attendus).
+- Après fermeture (`971d0bc`, READY, alias de branche) : `POST /api/catalogue` valide → 503 `catalogue_unavailable` ; ancien déploiement `sysnext-l4az19x4t` → 404 `DEPLOYMENT_NOT_FOUND`.
+- Aucun appel Pipedrive (code retiré), aucune affaire, aucun lead commercial ; production, Cloudflare, R2, formulaires Contact et ROI non touchés.
+
+**Supposé** — Que le premier clic sur « Recevoir le catalogue » de la demande A, bloqué côté navigateur par « Sélectionnez France ou Suisse » (pays saisi par l'outil sans événement de changement), n'ait rien envoyé : aucune requête n'atteint l'API quand la validation du navigateur échoue, et Resend ne montre aucun envoi supplémentaire.
+
+**Non regardé** — Bandeau « Aperçu de travail, parcours non activé… aucune demande enregistrée ni envoyée » (`CatalogueAllInOne.tsx`, `apercuInterne`) : affiché sur la Preview pendant le test alors que les envois étaient ouverts ; texte à revoir avant la publication. GA4 non testé (cookies non acceptés). Rendu des e-mails sur mobile et dans d'autres messageries que Gmail.
+
+**Suite** — Avant publication : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité), `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production, bandeau d'aperçu, GO de publication et de fusion de Laurent (D42).
+
+---
+
+## 2026-10-09 · Landing catalogue All-in-One (#82) : Pipedrive retiré du parcours brochure, notification à Sébastien · Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : voir l'historique de #82 (09/10)
+
+**Quoi** — Décision de Sébastien du 09/10 : aucun CRM dans le parcours brochure. Plus aucun appel Pipedrive : `lib/catalogue/pipedrive.ts` supprimé, `crm.ts` devenu `fiche.ts` (contenu de la demande). Parcours : e-mail du lien au prospect, puis notification interne portant la fiche de la demande et le sort de l'e-mail du lien. `CATALOGUE_NOTIFICATION_EMAIL` vaut `sebastien.jourdan@sysnext.com` (Preview de #82) au lieu de `leads@sysnext.com`.
+
+**Pourquoi** — Mission de Laurent du 06/10 (« envoi du mail catalogue », relancée le 07/10) : le code écrivait dans Pipedrive avant tout e-mail, ce qui déclenchait son STOP (« si une écriture Pipedrive est indispensable »). Sébastien a tranché P1 et T1 de Q23 : pas de Pipedrive ; le tri des leads brochure vers le CRM se fait hors du site, par son assistant IA, à partir de la notification. Destinataire changé par Sébastien (T2).
+
+**Fichiers** — `lib/catalogue/services.ts`, `lib/catalogue/gestionnaire.ts`, `lib/catalogue/resend.ts`, `lib/catalogue/fiche.ts` (ex-`crm.ts`), `lib/catalogue/pipedrive.ts` (supprimé), `lib/catalogue/activation.ts`, `lib/catalogue/schema.ts` et `app/api/catalogue/route.ts` (commentaires), `components/landings/catalogue-all-in-one/mesure.ts` (commentaire), `lib/catalogue/__tests__/` (doublure Pipedrive supprimée, scénarios réécrits). Variable Vercel `CATALOGUE_NOTIFICATION_EMAIL` (Preview, branche de #82) modifiée par le tableau de bord le 09/10.
+
+**Effet attendu** — Aucun pour le visiteur tant que `SERVICES_REELS_AUTORISES` est faux. Une fois ouverte, la route n'exige plus `PIPEDRIVE_API_TOKEN` ; elle reste fermée (503) sans `RESEND_API_KEY`, `RESEND_FROM_EMAIL` ou une adresse valide dans `CATALOGUE_NOTIFICATION_EMAIL`, la notification étant désormais la trace de la demande. Contrat de réponse inchangé (`ok`, `pdfUrl`, `emailSent`, `contactRequestAccepted`).
+
+Règles du parcours sans CRM :
+- e-mail du lien d'abord, puis notification ; la notification dit si le lien est parti (« confirmé par Resend » ou « NON confirmé, à renvoyer ») ;
+- un seul des deux envois confirmé suffit au succès : l'e-mail du lien reste tracé dans le journal d'envoi Resend ;
+- aucun des deux confirmé : 500 `technical`, journal `catalogue.aucune_trace`, nouvel essai possible (même `requestId` retraité) ;
+- consultant : `contactRequestAccepted` vrai seulement si la notification est transmise ; objet `[Brochure] entreprise - DEMANDE À ÊTRE RECONTACTÉ` et mention en tête, inchangés ;
+- fiche : une ligne « Clé : valeur » par information (type, consultant, brochure, pays, entreprise, domaine grand public, produits, page, attribution, date, identifiant), lisible par un programme.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue`, `app/api/catalogue`, `components/landings/catalogue-all-in-one` : 0 avertissement ; `npx vitest run` : 484/484 (518 avant : tests du contrat Pipedrive retirés, scénarios sans CRM ajoutés).
+- Test P : aucun appel `fetch` pendant une demande complète, même avec `PIPEDRIVE_API_TOKEN` présent ; aucune mention de Pipedrive dans les e-mails.
+- Contre-épreuves (code remis à l'identique, `cmp`) : succès accepté sans aucune trace → 3 échecs ; sort de l'e-mail présumé dans la notification → 3 échecs.
+- Variables de la Preview (lecture par le tableau de bord Vercel le 09/10) : `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `PIPEDRIVE_API_TOKEN` sur Development, Preview et Production ; `CATALOGUE_NOTIFICATION_EMAIL` sur la Preview de la branche seule, relue après modification.
+- Resend : domaine `sysnext.com` vérifié (depuis le 14/03), expéditeur de production `sebastien.jourdan@sysnext.com`, envois de production « delivered » le 09/10.
+
+**Supposé** — Que le tri par l'assistant IA de Sébastien lise la notification telle qu'elle est structurée (non vu).
+
+**Non regardé** — Plafond d'envoi du plan Resend : 5 demandes par heure et par adresse IP × 24 h × 2 e-mails = jusqu'à 240 e-mails par jour depuis une seule IP, sur le compte qui sert aussi Contact et ROI. Idempotence : un même `requestId` reçu par deux instances Vercel est traité deux fois (la note Pipedrive assurait ce dédoublonnage ; perte assumée). `/api/contact` et ses écritures Pipedrive : hors périmètre, inchangés.
+
+**Suite** — Test réel contrôlé depuis la Preview (entrée suivante), interrupteurs remis à faux. Avant publication : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité ; Pipedrive n'est plus sous-traitant de ce formulaire), `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production.
 
 ---
 
@@ -1413,6 +1581,57 @@ Après la fusion, aucun retour arrière du Worker vers une version sans le retra
 **Non regardé** — Preview de la nouvelle tête dans Chrome (contrôle humain, § 11) ; `www` (R4) ; Firefox, Safari, appareils réels ; sommaire de A en EN et de-ch (couvert par la QA de #84 du 06/10, non refait).
 
 **Suite** — CI et Preview sur la nouvelle tête ; contrôle Chrome final de Laurent (`CLUSTER.md` § 11) ; décision de Laurent sur le bloc CTA visé et sur une PR dédiée ; « GO MERGE #96 ». À la fusion de la seconde de #82 et #96 : numéro de la « Q23 » à arbitrer (collision consignée par #82).
+## 2026-10-06 · Landing catalogue All-in-One (#82) actualisée depuis `main` `1e0901b` · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `dc7c2e6` (fusion)
+
+**Quoi** — `main` `1e0901b` fusionnée dans la branche de #82, sans rebase, avant toute configuration de la Preview ou tout test réel. Entrés sur `main` depuis `9b19e6d` : `a4b27c6`, `063fd18`, `a26c58c`, `1e0901b` (#84, sommaire du blog, D44) ; fichiers `components/blog/TableOfContents.tsx`, `e2e/sommaire-blog.spec.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Pourquoi** — GO de Laurent du 06/10 : GitHub déclarait #82 en conflit (`mergeable_state: dirty`).
+
+**Fichiers** — Conflit unique : `docs/seo-geo/JOURNAL.md`, entrées ajoutées en tête des deux côtés. Résolution : toutes les entrées conservées à l'identique ; l'entrée #84 du 06/10 (commit `a26c58c`, 09:01 UTC) placée par heure, entre l'entrée #82 de 09:47 UTC et celle de 08:50 UTC. `components/blog/TableOfContents.tsx` et `e2e/sommaire-blog.spec.ts` repris de `main` sans changement. `ETAT.md` : lignes « Contrôle », « `main` » et « Dernière mise à jour ».
+
+**Effet attendu** — Aucun pour le visiteur. #82 redevient fusionnable sans conflit ; son périmètre (`lib/catalogue`, `app/api/catalogue`, landing) est inchangé par la fusion.
+
+**Vérifié** —
+- Aucune ligne du JOURNAL de `main` ni de celui de #82 absente du fichier fusionné (comptage ligne à ligne) ; fichiers de #84 identiques à `main`.
+- Invariants de #82 : `PDF_CATALOGUE.enLigne = true`, `SERVICES_REELS_AUTORISES = false`, `PUBLICATION_AUTORISEE = false`, personnes et organisations Pipedrive en v2, notes en v1, `CATALOGUE_NOTIFICATION_EMAIL` sans repli, note « [Brochure] » épinglée, aucun appel `/deals` ni `/leads`, formulaire et mention P3 inchangés.
+- Contrôles sur la tête fusionnée : voir la description de #82 (tsc, eslint, `verifier-json`, Vitest, build, Playwright landing et sommaire, `/api/catalogue` en 503, gardes).
+
+**Supposé** — Aucun.
+
+**Non regardé** — La ligne #84 de `ETAT.md` (« Brouillon ; tête `a4b27c6` ») n'est pas réécrite, alors que #84 est fusionnée : chantier distinct, à mettre à jour par sa propre session. #96 n'est pas fusionnée : la collision du numéro Q23 reste ouverte.
+
+**Suite** — Configuration de la Preview (`CATALOGUE_NOTIFICATION_EMAIL` et autres variables) sous GO séparé, puis GO d'exécution du test réel.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : variable `CATALOGUE_NOTIFICATION_EMAIL`, note « [Brochure] » épinglée, alignement sur le principe du parcours Contact · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `a02f293`
+
+**Quoi** — R1 : la notification interne du catalogue lit exclusivement `CATALOGUE_NOTIFICATION_EMAIL`, sans repli sur `NOTIFICATION_EMAIL`. R2 : la note « [Brochure] » est épinglée sur la fiche de la personne (`pinned_to_person_flag = 1`, à la création et à la mise à jour du suivi). Aucun appel réel ; les interrupteurs restent faux.
+
+**Pourquoi** — Décisions de Laurent du 06/10, après la comparaison des parcours Contact et Brochure. Le parcours Brochure suit déjà le principe commercial de Contact (enregistrement du lead → notification interne → e-mail au prospect → suivi humain possible). Il n'en reprend pas les faiblesses techniques : v1 hors support, échecs Resend non détectés, HTML non échappé, organisation approximative, réponse 200 sans trace, destinataires codés en dur, promesse « 24 heures ouvrées », affaire d'office. `NOTIFICATION_EMAIL` est lue par le questionnaire : la changer en production aurait détourné ses notifications. Le code Resend de #82 n'est pas simplifiable par réutilisation : `/api/contact` n'a pas de module partagé, et ses conventions communes (expéditeur `PackshotCreator <RESEND_FROM_EMAIL>`) sont déjà celles du catalogue.
+
+**Fichiers** — `lib/catalogue/services.ts`, `lib/catalogue/resend.ts` (commentaires), `lib/catalogue/pipedrive.ts`, `lib/catalogue/__tests__/doublures.ts`, `lib/catalogue/__tests__/services-reels.test.ts`. Une ligne ajoutée à `.env.example` dans `a02f293` a été retirée avant le push : la garde `verifier-consequences` interdit tout fichier `.env*` (dépôt public). La variable est documentée ici, dans Q23 et dans `services.ts`.
+
+**Effet attendu** — Aucun pour le visiteur tant que la route est fermée. Au test réel : notification à `leads@sysnext.com` une fois la variable créée sur Vercel ; note « [Brochure] » en tête de la fiche personne.
+
+**Vérifié** —
+- Variable absente, vide, sans adresse valide, ou `NOTIFICATION_EMAIL` seule présente : aucune notification, absence journalisée (`catalogue.notification.non_configuree`) et consignée dans la note, `contactRequestAccepted` faux, seul l'e-mail au prospect part (4 tests). Avec les deux variables, seule celle du catalogue reçoit.
+- Note : `pinned_to_person_flag: 1` à la création (avec `person_id` et `org_id`) et à la mise à jour ; aucun autre drapeau d'épinglage ; demande rejouée sans nouvelle note ; aucune affaire ni Lead. La doublure n'accepte que 0 ou 1 (documentation Pipedrive) et refuse tout autre épinglage.
+- Contre-épreuves (code remis à l'identique, `cmp`) : repli sur `NOTIFICATION_EMAIL` → 1 échec ; lecture de `NOTIFICATION_EMAIL` seule → 6 ; note non épinglée à la création → 1 ; drapeau absent de la mise à jour → 1 ; drapeau booléen → 21.
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue` et `app/api/catalogue` : 0 avertissement ; `verifier-json` : 180 valides ; `npx vitest run` : 518/518 ; `npx next build` vert (373 pages, valeurs factices) ; `/api/catalogue` locale : 503 ; Playwright : 45/45 sur Chromium, landing 33/33 sur Mobile Chrome.
+
+**Supposé** — Qu'une mise à jour `PUT /v1/notes/{id}` ne retire pas l'épinglage : le drapeau y est renvoyé pour ne pas en dépendre. Que Pipedrive admette plusieurs notes épinglées sur une même personne (demandes répétées) : non vérifié en réel.
+
+**Non regardé** —
+- Vercel : `CATALOGUE_NOTIFICATION_EMAIL` n'est pas créée (hors GO de cette mission).
+- `/api/contact` : non modifiée ; ses problèmes techniques sont un chantier séparé, signalé dans Q23.
+- Formulaire : ni nom ni téléphone ajoutés (faible friction, décision de Laurent) ; mention P3 inchangée, en attente de Sébastien.
+
+**Suite** — Avant le GO d'exécution du test réel : création de `CATALOGUE_NOTIFICATION_EMAIL` (Preview) et contrôle des autres variables sous GO séparé, domaine Resend, deux adresses de test.
 
 ---
 
@@ -1529,6 +1748,246 @@ Une première version de la correction de la molette interrompait aussi sur un a
 **Non regardé** — Preview Vercel (SSO) et `www` (R4) ; Safari, Firefox, appareils réels ; Légifrance et Amazon (inaccessibles par script le 06/10) ; template du blog : `twitter:*` hérité du site, `og:url`, `og:locale` et `inLanguage` de l'`Article` absents sur tous les articles (BL-43-1, PR distincte) ; `og:image` en AVIF, non lu par plusieurs réseaux sociaux (préexistant).
 
 **Suite** — Checkpoint de la mission ; GO de publication explicite de Laurent ; fusion ; contrôle J0 sur `sysnext.vercel.app` puis `www` dans Chrome ; mesure J+7, J+28, J+56 ; [Inférence] GitHub marquera #59, #60 et #77 comme fusionnées à la fusion de cette PR, leurs têtes étant incluses ; #79 reste ouverte (REVIEW ONLY) ou se ferme sur décision de Laurent.
+## 2026-10-06 · Landing catalogue All-in-One (#82) : Pipedrive en API v2 (personnes, organisations), décisions T1, T2, P3, P5 consignées · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `c0e4b89`
+
+**Quoi** — Les cinq appels « personnes » et « organisations » de `lib/catalogue/pipedrive.ts` passent en API v2 ; les notes restent en v1. Aucun appel réel : `SERVICES_REELS_AUTORISES` et `PUBLICATION_AUTORISEE` restent faux.
+
+**Pourquoi** — Audit des prérequis du test réel (mission de Laurent du 06/10) : Pipedrive a déprécié au 01/01/2026, puis mis hors support le 01/08/2026, les points d'accès v1 des personnes et des organisations ([changelog](https://developers.pipedrive.com/changelog/post/deprecated-apiv1-endpoints-become-out-of-support) : « may remain functional », sans engagement ni date de retrait). GO de Laurent du 06/10 pour une migration ciblée avant tout test réel.
+
+**Fichiers** — `lib/catalogue/pipedrive.ts`, `lib/catalogue/__tests__/doublures.ts`, `lib/catalogue/__tests__/services-reels.test.ts`.
+
+**Contrat appliqué** — vérifié sur le client officiel `pipedrive` 33.4.3 (`dist/versions/v2`, lu via jsdelivr) et la documentation développeurs :
+- base `https://api.pipedrive.com/api/v2` ; jeton dans l'en-tête `x-api-token`, jamais dans l'URL ;
+- `GET /persons/search` et `GET /organizations/search` (`term`, `fields`, `exact_match`, `limit`), réponse `data.items[].item` ; `exact_match` non sensible à la casse ;
+- `POST /persons` avec `emails` au pluriel (`value`, `primary`, `label`) et `org_id` ; `PATCH /persons/{id}` au lieu de PUT ; `POST /organizations` avec `name` ; réponse `{ success, data: { id } }` ;
+- notes en v1, inchangées (`api_token` en paramètre, comme `/api/contact`) : absentes de la liste de dépréciation, sans équivalent v2 ;
+- un identifiant non numérique dans une réponse fait échouer l'appel (500, aucun doublon, aucun faux succès).
+
+**Effet attendu** — Aucun pour le visiteur : la route reste en 503. Au test réel, les fiches seront écrites par l'API v2.
+
+**Vérifié** —
+- Doublure stricte : chaque route a sa version, sa méthode et son authentification ; tout écart est refusé (405, 410, 401, 400) et consigné.
+- 15 tests ajoutés (K) : ordre et adresses des appels, PATCH `{ org_id }` seul, jeton en en-tête et absent des URL v2, paramètres de recherche, corps de création, erreurs HTTP 400 à 500 sans jeton ni donnée saisie, formes de réponse inattendues, refus d'une régression par la doublure.
+- Contre-épreuves (code remis à l'identique ensuite, vérifié par `cmp`) : recherche de personne en v1 → 21 échecs ; `email` au singulier → 12 ; jeton aussi dans l'URL v2 → 21 ; PUT au lieu de PATCH → 1 ; organisation créée en v1 → 7.
+- `npx tsc --noEmit` vert ; eslint de `lib/catalogue` et `app/api/catalogue` : 0 avertissement ; `verifier-json` : 180 valides ; `npx vitest run` : 509/509 ; `npx next build` vert (373 pages, valeurs factices) ; `/api/catalogue` locale : 503 `catalogue_unavailable` ; Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Mobile Chrome.
+
+**Décisions de Laurent du 06/10 (Q23)** —
+- T1 : écritures de test autorisées sur le principe : deux personnes, deux organisations (`TEST PR82 A — à supprimer`, `TEST PR82 B — à supprimer`), deux notes, puis suppression. Exécution en attente d'un GO distinct.
+- T2 : destinataire métier des notifications catalogue : `leads@sysnext.com`. Configuration Vercel non vérifiée ; `NOTIFICATION_EMAIL` est partagée avec `/api/submit-survey`, ne pas la modifier en production. Variable dédiée proposée dans Q23, non codée.
+- P3 : nouvelle mention du formulaire proposée par Laurent, validation de Sébastien en attente. Formulaire non modifié.
+- P5 : migration v2 décidée et implémentée sur #82 (ce commit).
+
+**Supposé** — Que le jeton de production soit accepté par `https://api.pipedrive.com/api/v2` avec l'en-tête `x-api-token` : c'est l'adresse du client officiel, mais seul le premier appel réel le prouvera.
+
+**Non regardé** —
+- `/api/contact`, `/api/roi-lead`, `/api/roi-pdf`, `/api/submit-survey` et `lib/pipedrive.ts` : toujours en v1 en production, hors du périmètre du GO. Signalé à Sébastien dans Q23.
+- Variables Vercel (Preview) et domaine Resend : aucun accès depuis la session.
+- Collision de numéro : la branche `ccr-e0a4796e-2p18xn` (#96, cluster AI Act) emploie aussi « Q23 » pour une autre question. Signalée dans Q23, rien renuméroté ni modifié sur #96.
+
+**Suite** — Avant le GO d'exécution du test réel : contrôle Vercel des variables de la Preview (dont `NOTIFICATION_EMAIL`), statut du domaine Resend, deux adresses de test absentes de Pipedrive. P1, P2, P4 et la validation de P3 restent chez Sébastien.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : PDF en ligne sur R2, `enLigne = true`, services réels toujours fermés · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `1ad2aad`
+
+**Quoi** — `PDF_CATALOGUE.enLigne` passe à `true` (`lib/catalogue/pdf.ts`). `SERVICES_REELS_AUTORISES` et `PUBLICATION_AUTORISEE` restent faux : `/api/catalogue` répond toujours 503 et n'appelle ni Resend ni Pipedrive.
+
+**Pourquoi** — GO de Laurent du 06/10, après son envoi du PDF sur R2 et son contrôle depuis son poste Windows (fait métier). URL : `https://videos.packshot-creator.com/catalogues/orbitvu-all-in-one-2026-fr.pdf`.
+- Résultats de Laurent : HTTP 200, `application/pdf`, 15 380 434 octets, SHA-256 `0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5`.
+- `X-Robots-Tag: noindex` présent, mais deux fois.
+
+**Fichiers** — `lib/catalogue/pdf.ts`, `app/api/catalogue/route.ts` (commentaire), `lib/catalogue/__tests__/services-reels.test.ts`. Hors dépôt : objet R2 `packshot-videos/catalogues/orbitvu-all-in-one-2026-fr.pdf` et règle d'en-tête de réponse, posés par Laurent le 06/10. La session n'a rien écrit sur Cloudflare ni sur R2.
+
+**Effet attendu** — Aucun pour le visiteur tant que les services réels sont fermés. Au GO de test réel, la route pourra remettre ce lien.
+
+**Vérifié** —
+- Relecture de l'URL publique depuis la session, en lecture seule :
+  - HTTP 200, `content-type: application/pdf`, `content-length: 15380434` ;
+  - SHA-256 du fichier téléchargé identique ;
+  - `x-robots-tag: noindex` reçu deux fois ;
+  - `last-modified` du 06/10 à 07:43:41 GMT, `etag` `cf2fbde2dd4342349cad59dba525af62`.
+- Contrôles :
+  - `npx tsc --noEmit` vert ; eslint : 0 avertissement ;
+  - `npx vitest run` : 494/494 ; nouveau test : PDF en ligne et secrets présents, services réels faux → 503, aucun appel ;
+  - `npx next build` vert (373 pages) ;
+  - `/api/catalogue` locale : 503 `catalogue_unavailable` ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5.
+
+**Supposé** — Aucun.
+
+**Non regardé** —
+- Origine du doublon `X-Robots-Tag` (règle de transformation en double, ou autre source) : ne pas modifier Cloudflare dans cette mission.
+- Configuration exacte de la règle posée par Laurent (expression, portée) : non lisible avec le jeton de la session.
+- `05-INFRA.md` non mis à jour, faute de connaître la règle exacte.
+
+**Suite** — GO distinct de Laurent pour les tests réels contrôlés de Resend et Pipedrive. Q23 reste ouverte.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : alignement sur les règles brochure de Sébastien du 02/10 · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `f5462b5`
+
+**Quoi** —
+- Note Pipedrive typée « [Brochure] » : « lead brochure », ni demande de démonstration ni affaire qualifiée. Elle porte l'identifiant de brochure, la langue et le signalement des adresses grand public. Plus aucune phrase d'interdiction d'appel.
+- Notification interne pour chaque nouvelle demande (objet `[Brochure] entreprise`), avec la demande de consultant en tête quand elle existe.
+- E-mail : chemins de retour « Demander une démo » et « Calculer mon ROI ».
+- GA4 : `form_submit` (`brochure_form`), `brochure_download`, `form_error`.
+- Limite de fréquence portée à 5 demandes par heure et par IP.
+
+**Pourquoi** — Document « Formulaire brochure — règles de maillage pour Laurent » (Sébastien, 02/10), fourni par Laurent le 06/10 et lu en entier. Il est confronté au code de #82. Les faits métier de Laurent du 06/10 priment sur le même point :
+- la demande de brochure est un lead, à compter à part ;
+- téléphones conservés ;
+- aucune interdiction d'appel codée ;
+- landing validée par Sébastien, FR seule ;
+- PDF tel quel.
+
+**Fichiers** — `lib/catalogue/crm.ts`, `courriel.ts`, `resend.ts`, `services.ts`, `gestionnaire.ts`, `schema.ts` (constantes `BROCHURE_ID`, `LANGUE_CATALOGUE`), `app/api/catalogue/route.ts`, `components/landings/catalogue-all-in-one/mesure.ts`, `CatalogueForm.tsx` (appel de mesure seulement), tests du catalogue.
+
+**Effet attendu** — Aucun tant que les interrupteurs sont faux. Ensuite :
+- chaque demande donne une note `[Brochure]`, un e-mail au prospect et une notification interne ;
+- GA4 compte une conversion `form_submit` par demande acceptée ; Pipedrive reste la source du volume.
+
+**Vérifié** —
+- Écarts traités, par paragraphe du document :
+  - § 3 règle 7 et § 5 : chemins de retour dans l'e-mail, libellés et destinations déjà publiés (`blogArticle.ctaDemo` vers `/contact`, `blogArticle.ctaRoi` vers `/calculateur-roi`, comme `ArticleCTA`), adresses fixes ;
+  - § 4 : adresse grand public signalée, jamais refusée ; 5 demandes par heure et par IP ;
+  - § 5 : notification `[Brochure] entreprise` lue dans `NOTIFICATION_EMAIL`, sans la mention « ne pas appeler » (écartée par le fait du 06/10) ;
+  - § 6 : `form_submit`, `form_name: 'brochure_form'`, `brochure_id`, `page_type`, `locale` ; `brochure_download`.
+- Contrôles :
+  - `npx tsc --noEmit` vert ; eslint de la landing : 0 avertissement ;
+  - `npx vitest run` : 493/493, dont 93 pour le catalogue ;
+  - `npx next build` vert (373 pages) ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5.
+- Contre-épreuves (fichier restauré à l'identique) : notification limitée au consultant → 3 échecs ; consultant déclaré accepté sans notification → 5 échecs.
+- PDF joint à la mission : SHA-256 identique au fichier contrôlé le matin (`0d72b207…`).
+
+**Supposé** — Les libellés publiés « Demander une démo » et « Calculer mon ROI » conviennent à l'e-mail. Le texte de l'e-mail reste à relire par Sébastien (§ 4 et § 5 : textes client écrits par lui).
+
+**Non regardé** —
+- Étiquette Pipedrive « Brochure » (§ 6) : identifiant non connu, renvoyé à Q23.
+- Lien vers la fiche ou le secteur d'origine : la landing est autonome ; aucune page d'origine, et `machineContext` est absent.
+- Lien vers la démonstration sur l'état de succès (§ 4) : landing validée, interface non modifiée.
+
+**Suite** — Q23 complétée. GO R2, puis GO de test réel.
+
+---
+
+## 2026-10-06 · Landing catalogue All-in-One (#82) : parcours fonctionnel V1 (Pipedrive, Resend, consultant, PDF R2, GA4), sans appel réel · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Commits** : `7aa3001` (code), `ffee83c` (fusion de `main` `9b19e6d`, #95)
+
+**Quoi** — `/api/catalogue` reçoit ses adaptateurs, tous verrouillés :
+- trace durable dans Pipedrive : personne retrouvée par e-mail (sinon créée), organisation par nom exact (sinon créée), note « Demande de catalogue » portant le requestId, puis le suivi (e-mail, consultant) ;
+- e-mail du lien au prospect par Resend, texte existant de `courriel.ts` ;
+- consultant demandé : mention explicite dans la note et notification interne aux destinataires de `NOTIFICATION_EMAIL` ;
+- URL R2 du PDF dans `lib/catalogue/pdf.ts`, `enLigne = false` ;
+- événements GA4 accompagnés de paramètres de contexte sans donnée personnelle.
+
+**Aucune affaire n'est créée**, ni pour une brochure seule, ni pour une demande de consultant. Interrupteur `SERVICES_REELS_AUTORISES = false` : la route répond toujours 503. En production, elle reste fermée tant que `PUBLICATION_AUTORISEE` est faux.
+
+**Pourquoi** — Mission de Laurent du 06/10 : finalisation fonctionnelle avant publication. Landing validée par Sébastien (fait rapporté par Laurent le 06/10). Une demande de brochure n'est pas un lead qualifié : ni appel automatique, ni affaire créée en silence, ni étape Pipedrive choisie sans Sébastien.
+
+**Fichiers** —
+- Nouveaux : `lib/catalogue/pipedrive.ts`, `lib/catalogue/resend.ts`, `lib/catalogue/pdf.ts`, `lib/catalogue/__tests__/services-reels.test.ts`, `lib/catalogue/__tests__/mesure-ga4.test.ts`, `lib/catalogue/__tests__/doublures.ts`.
+- Modifiés : `lib/catalogue/services.ts`, `gestionnaire.ts`, `crm.ts`, `activation.ts`, `app/api/catalogue/route.ts`, `components/landings/catalogue-all-in-one/mesure.ts`, `CatalogueForm.tsx` (appel de mesure seulement ; champs et textes inchangés), tests existants du catalogue.
+- Hors dépôt : aucun ; le PDF n'est pas versionné.
+
+**Effet attendu** — Aucun tant que les interrupteurs sont faux. Après GO R2 (`enLigne = true`) et GO de test réel (`SERVICES_REELS_AUTORISES = true`), sur la Preview :
+- une demande crée ou retrouve la personne et l'organisation, puis écrit une note ;
+- le prospect reçoit un e-mail portant le lien ;
+- si un consultant est demandé, l'équipe reçoit une notification.
+
+**Vérifié** —
+- **PDF désigné** (fait métier de Laurent du 06/10), `All_in_One_FR_online_pages_web_version.pdf` :
+  - 15 380 434 octets, SHA-256 `0d72b2079706546e241f029f38836985e152ef2af956104322fd343bfc6730e5` ; c'est le nom et la taille du fichier propre décrit dans le brief initial ;
+  - 28 pages, A4 paysage 841,89 × 595,28 pt ; MediaBox, CropBox, BleedBox, TrimBox et ArtBox identiques sur les 28 pages, sans rotation ;
+  - PDF 1.6 linéarisé ; 32 polices incorporées sur 32 ; ni lien, ni formulaire, ni JavaScript, ni chiffrement ;
+  - rendu des 28 pages sans erreur par Poppler et par PDFium 156 (moteur de Chrome, hors interface du navigateur) ; analyse pypdf sans avertissement ;
+  - texte identique mot pour mot (2 408 mots) au PDF QA du 02/10 ; rendu aligné : écarts limités aux contours ;
+  - **utilisé tel quel, aucun fichier dérivé**.
+- **QR du PDF** : mêmes 13 pages et mêmes destinations que le 02/10. Les adresses `orbitvu.fr` répondent 200 après redirection le 06/10. YouTube répond 429 : non vérifié.
+- **K1–K6 du dépôt** comparés au nouveau PDF : écarts limités aux contours. Aucun réexport.
+- **Contrôles** :
+  - `npx tsc --noEmit` vert ; `verifier-json` : 180 JSON valides ; `npx vitest run` : 489/489, dont 89 pour le catalogue ; eslint des fichiers de la landing : 0 avertissement ;
+  - `npx next build` vert (373 pages, valeurs factices) ;
+  - Playwright : landing et sélecteur 45/45 sur Chromium, landing 33/33 sur Pixel 5 ;
+  - contrôle local à 1440, 1024, 768, 390 et 320 : aucun débordement ; vidéo 16:9 et une requête MP4 à partir de 768 ; aucune requête MP4 en dessous.
+- **Contre-épreuves**, fichier restauré à l'identique ensuite : dédoublonnage désactivé → le test F échoue ; création d'affaire ajoutée → les tests A et B échouent.
+- **R2**, en lecture seule (API Cloudflare) :
+  - un seul bucket, `packshot-videos` (WEUR) ;
+  - `videos.` figure dans les `PASSTHROUGH_HOSTS` du Worker ; règle WAF 4 « Skip SBFM » sur cet hôte (05-INFRA) ;
+  - objet cible absent (404 le 06/10) ;
+  - `wrangler r2 object put` n'accepte aucun en-tête libre : `X-Robots-Tag` passe par une règle de transformation de réponse.
+
+**Supposé** —
+- Les secrets `PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY` et `RESEND_FROM_EMAIL` de Vercel sont ceux qu'utilise `/api/contact`.
+- La présence de `NOTIFICATION_EMAIL` sur Vercel n'est pas établie (seul `/api/submit-survey` la lit, avec une adresse de repli).
+- Les réponses de l'API Pipedrive v1 (`persons/search` avec `exact_match`, `notes?person_id`) suivent les formes déjà exploitées par `/api/contact`. Non testé en réel.
+
+**Non regardé** —
+- Preview Vercel (SSO) ; production (R4).
+- Document « Formulaire brochure — règles de maillage pour Laurent.md », non fourni à la session : les règles appliquées sont celles des sections 7 à 15 de la mission.
+- Lecteurs PDF de Chrome, Safari et Firefox, et mobile réel.
+- Deux requêtes simultanées sur deux instances : fenêtre de doublon de note possible.
+
+**Suite** —
+- GO R2 : upload et règle `X-Robots-Tag`, contrôle `curl.exe` depuis le poste de Laurent (D23), puis `enLigne = true`.
+- GO de test réel Pipedrive et Resend depuis la Preview (`SERVICES_REELS_AUTORISES = true`, commit relu).
+- Q23 à Sébastien.
+- Validation de la Preview, puis GO de publication.
+
+---
+
+## 2026-10-04 · Landing catalogue All-in-One (#82) actualisée depuis `main` `0ac062b` · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Base intégrée** : `main` `0ac062b` (fusions de #87, #83 et #86), par commit de fusion (pas de rebase) | **Tête de départ** : `41e45ee` (commit de Sébastien du 04/10, conservé tel quel)
+
+**Quoi** — `main` fusionnée dans la branche. Conflits sur `JOURNAL.md` (entrées des deux côtés conservées, ordre chronologique inverse) et `ETAT.md` (en-tête de la section A repris de `main`, avec `main` `0ac062b` et les changements du 04/10 ; ligne #82 du tableau B complétée du film de la gamme ; lignes #83 à #87 de `main` conservées sans modification).
+
+**Pourquoi** — Après la fusion de #86, la PR était en conflit avec `main` : seuls les contrôles Vercel tournaient sur `41e45ee`, pas les workflows GitHub.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, ce journal ; le reste vient de `main` sans conflit.
+
+**Vérifié** — Sur l'état fusionné : `npx tsc --noEmit` vert ; `node scripts/seo/verifier-json.mjs` : 180 JSON valides ; `npx vitest run` : 456/456 ; eslint des fichiers de la landing : 0 avertissement ; `npx next build` vert ; parcours `e2e/machine-selector.spec.ts` (désormais exécuté par `pr-checks`) et `e2e/catalogue-all-in-one.spec.ts` : 45/45 sur Chromium, et spec de la landing 33/33 sur Pixel 5 ; `verifier-consequences.mjs` : rien ne bloque. D44 : la landing (4 806 px à 1440 en V5.1, avant le panneau 16:9 du 04/10) reste sous le seuil indicatif de 7 200 px.
+**Supposé** — Que les lignes #83, #86 et #87 du tableau B, rédigées avant leur fusion, seront mises à jour par la session qui les porte.
+**Non regardé** — Preview Vercel (SSO) ; lecture du film R2 depuis le conteneur (Chromium sans H.264).
+
+**Suite** — Validation graphique de Laurent sur la Preview, film de la gamme compris. Aucune fusion ni publication.
+
+---
+
+## 2026-10-04 · Landing catalogue All-in-One : film de la gamme Orbitvu à la place de la boucle de la home · Claude de Sébastien
+
+**Chantier** : demande directe de Sébastien du 04/10, sur la Preview de cette branche | **PR** : #82 (brouillon, ne pas fusionner) | **Commit** : voir PR
+
+**Quoi** — Le panneau vidéo du hero ne réutilise plus `hero-range-2025.mp4` recadré. Il lit le film de présentation de la gamme Orbitvu en version 540p sans piste audio (R2, 3,5 Mo, 42 s), en entier. Le panneau passe de 2,2:1 et 2:1 à 16:9 dès 640 px ; sous 640 px, le bandeau reste en 2,4:1 avec l'image fixe. `VideoStudio`, la pause hors champ et la coordination avec le ruban sont inchangés.
+
+**Pourquoi** — Demande de Sébastien du 04/10 : remplacer « le gif actuel » de cette page par `hero-video.mp4`. Les textes anglais incrustés interdisent tout recadrage : un ratio 2:1 rognait le bas de l'image (« Up to 250 products per day »).
+
+**Fichiers** — `components/landings/catalogue-all-in-one/CatalogueAllInOne.tsx`, `e2e/catalogue-all-in-one.spec.ts` (URL de la vidéo et de l'affiche), `public/images/hero/orbitvu-gamme-2026-poster.avif` (nouveau, 23 Ko, plan à 30,6 s sans texte, identique à celui de la PR #95). Hors repo : `https://videos.packshot-creator.com/orbitvu-gamme-2026-540p.mp4`, envoyé le 04/10.
+
+**Effet attendu** — Immédiat sur la Preview. Le panneau gagne environ 46 px de hauteur à 1440 px (686 × 386). Poids vidéo sur ordinateur : jusqu'à 3,5 Mo, contre 0,6 Mo auparavant. Mobile : 0 octet de vidéo, comme avant.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `npm run build` vert (373 pages).
+- `e2e/catalogue-all-in-one.spec.ts` sur `next start`, Chrome du Mac : 33/33.
+- Playwright, Chrome visible :
+  - desktop 1440 : `206 video/mp4`, `readyState` 4, lecture muette en cours ;
+  - mobile 390 : image fixe, aucune requête vers R2.
+- Fichier R2 relu après envoi : empreinte SHA-256 identique au fichier fourni (`daa432dc…`).
+
+**Supposé** — Droits d'usage du film acquis (fourni par Sébastien).
+
+**Non regardé** —
+- Safari et Firefox.
+- Le cadrage de l'image fixe en 2,4:1 sous 640 px : elle est centrée et le studio reste visible sur la capture à 390 px, mais toutes les largeurs n'ont pas été passées en revue.
+
+**Suite** — La PR #95 (accueil) ajoute la même affiche au même chemin : contenu identique, pas de conflit attendu à la fusion de `main`.
 
 ---
 
@@ -2137,6 +2596,151 @@ Spec `e2e/sommaire-blog.spec.ts` (8 tests). Aucun contenu, aucun `id` de titre, 
 **Non regardé** — Brochures PDF Orbitvu ; notes Pipedrive produites par le prompt des leads (aucun accès, appels Gemini payants exclus) ; Preview et production.
 
 **Suite** — Réponse de Sébastien à Q20, puis PR PRODUCT-DATA (catégorie A d'abord : XL G2 et Micro, encombrements) ; dérivation des catalogues depuis le référentiel ; valeurs F5 après le 23/11, Mode après le 26/11.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V5.1 : section catalogue compacte, priorité au ruban, métadonnées préparées · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg`, partie de `4412966` (HEAD transmis, vérifié identique sur origin) | **Base** : `main` `de6c4cd` (inchangée)
+
+**Quoi** — Mission V5.1 de Laurent après revue de la Preview V5. (A) Section « Trouvez le studio adapté à vos produits » compactée. (B) Ruban des studios : démarrage dès qu'il entre dans le champ, la vidéo du hero se mettant en pause pendant qu'il défile. (C) Title et meta description réécrits pour le positionnement V5, indexation inchangée. H1, formulaire, CTA, téléphones, API, visuels K1–K6 et PDF inchangés.
+
+**Pourquoi** — (A) À 1 361 px de haut à 1440, la section montrait trop du document à télécharger. (B) En V4 et V5, le ruban attendait que la vidéo du hero soit à moins de 30 % visible : à 1440 × 900, un visiteur arrêté sur la frise avec la vidéo encore à l'écran (défilement entre ≈ 370 et 630 px) voyait un ruban immobile. (C) Title et meta description encore ceux du copydeck V2 (« 28 pages, 10 systèmes »).
+
+**Section catalogue (A)** — Texte inchangé à gauche ; à droite, K5 en grand, puis K4 et la vignette K6 côte à côte ; la vignette K6 est un bouton « Agrandir la matrice » qui ouvre la fenêtre modale de la V5. Sous 640 px : pages seules K3 et K2 côte à côte, puis la vignette K6 pleine largeur ; aucune double page minuscule. Hauteurs mesurées (V5 → V5.1) : 1440 px 1 361 → 822 (−40 %), 1024 px 1 348 → 900 (−33 %), 768 px 1 673 → 1 193 (−29 %), 390 px 1 793 → 1 278 (−29 %), 320 px 1 840 → 1 400 (−24 %). À 1440, la hauteur est désormais celle de la colonne de texte, non modifiée : la baisse dépasse la fourchette indicative de 25 à 35 % sans rien retirer.
+
+**Ruban (B)** — Démarrage quand le ruban est visible à 60 % au moins (header déduit), sans condition sur la vidéo. Nouveau `animationPrincipale.ts` : le ruban signale quand il défile, la vidéo du hero se met alors en pause, puis reprend quand il s'arrête. Contrôle visuel en conditions réelles (arrivée par la molette depuis le haut de page) : démarrage immédiat, 22,0 px/s constants sur 14 s, environ deux machines nouvelles en 12 s, huit visibles d'emblée à 1440 ; vitesse conservée. Boucle : incréments réguliers de part et d'autre du retour au début (1 672,2 → 0,6 px), sans saut. Silhouettes, fondu des bords, survol, focus, pause, glissement tactile, mouvement réduit et arrêt hors champ inchangés et revérifiés.
+
+**Métadonnées (C)** — Title : « Studios photo Orbitvu : recevez le catalogue | PackshotCreator » (62 caractères). Meta description : « Découvrez les possibilités des studios photo automatisés Orbitvu et recevez le catalogue All-in-One pour explorer la gamme. France et Suisse. » (141 caractères). Proposition de Laurent retenue telle quelle : longueurs dans les règles du dépôt (`e2e/seo.spec.ts` : title < 70, description de 50 à 160) et termes présents sur la page (studios automatisés Orbitvu, catalogue All-in-One, gamme, France et Suisse). Aucune donnée de volume de recherche consultée ni affirmée. Inchangés : `noindex, nofollow`, aucune canonique, aucun sitemap, route FR seule, `PUBLICATION_AUTORISEE = false`.
+
+**Fichiers** — nouveau : `components/landings/catalogue-all-in-one/animationPrincipale.ts` ; modifiés : `CatalogueAllInOne.tsx`, `AgrandirPage.tsx` (vignette cliquable), `StudiosRail.tsx`, `VideoStudio.tsx`, `coordination.ts` (commentaire), `contenu.ts` (META), `e2e/catalogue-all-in-one.spec.ts`, `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : `app/[lang]/catalogue-orbitvu-all-in-one/page.tsx` (lit `META`), formulaire, API, `public/`, home, fiches machines.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 433/433 ; `npx next build` vert.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 66/66 sur serveur neuf, dont : nouveau title et nouvelle meta description, `nofollow` présent ; ruban qui défile alors que la vidéo est encore visible à plus de 30 %, avec appel à `pause()` sur la vidéo, puis arrêt du ruban et appel à `play()` au retour en haut ; section catalogue ≤ 1 020 px à 1440 et vignette K6 de moins de 400 px ; K3 et K2 côte à côte sur mobile.
+- Specs `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, les mêmes qu'en V3, V4, V5 et sur `main`.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390 et 320 px ; bas du CTA inchangé (827 px sur 900 à 1440, 881 sur 768 à 1024) ; aucun emplacement neutre ; aucune requête du MP4 sous 768 px.
+**Supposé** — Que la vitesse de 22 px/s convienne à l'œil de Laurent : jugement sur enregistrement, pas sur mesure d'usage.
+**Non regardé** — Preview Vercel V5.1 dans un navigateur (SSO : les captures sont locales, ce n'est pas un contrôle de la Preview) ; Safari, Firefox et appareils réels ; volumes de recherche des formulations du title.
+
+**Suite** — Dernière validation graphique de Laurent sur la Preview. Restent ouverts avant activation : destination des QR « démo » (`orbitvu.fr/contact/`), versions de produits nommées par le PDF, validation du PDF QA, hébergement du PDF, stockage et CRM, indexation et URL définitive. Aucune fusion ni publication ; pas de développement CRM/e-mail engagé.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V5 : ruban continu des studios, vraies pages du catalogue · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd` (inchangée depuis V3)
+
+**Quoi** — Mission V5 de Laurent (prompt du 02/10 et paquet `PSC_CATALOGUE_RECROP_ET_VISUELS_K1_K6_2026-10-02.zip`). (A) La frise V4 (grandes cartes, une carte toutes les 4,5 s, arrêt en bout de liste) devient un ruban fin qui défile en continu, en boucle sans saut. (B) Les six emplacements neutres K1–K6 sont remplacés par les vraies pages du catalogue : couverture K1 dans la carte du formulaire et dans le bloc final, doubles pages K5 et K4, matrice K6 avec agrandissement. H1, formulaire, CTA, téléphones et API inchangés.
+
+**Pourquoi** — Retour de Laurent sur la V4 : trop proche d'un carrousel de fiches, et le catalogue absent de la Preview.
+
+**Paquet reçu (hors dépôt)** — PDF `All-in-One_2026_FR_RECROP_QA_NOT_APPROVED.pdf` (28 pages, 595 × 422 pt) : CropBox `[0 297 595 719]` sur MediaBox `[0 0 595 841]`, soit `Rect(0,122,595,544)` du README en repère haut-gauche ; polices Inter incorporées ; aucune annotation de lien cliquable. Six WebP (pages 1339 × 950, doubles pages 2678 × 950) contrôlés à taille réelle : ni texte tronqué ni mauvais appariement ; appariement conforme au README (K1 p. 1, K2 p. 24, K3 p. 10, K4 pp. 24–25, K5 pp. 10–11, K6 pp. 6–7). Copiés à l'identique (empreintes SHA-256 égales) sous `public/images/catalogue-all-in-one/` ; ni PDF ni planche de contrôle dans le dépôt.
+
+**QR et liens du PDF (contrôle technique, pas de validation)** — 28 pages rendues à 300 dpi, QR décodés (OpenCV, hors dépôt) : « Demander une démo » et « Réserver une démonstration gratuite » → `https://orbitvu.fr/contact/` (pages 6, 8, 10, 12, 14, 16, 18, 20, 22, 24) ; « Voir la brochure dédiée » → `https://orbitvu.fr/product/<modèle>/` (9 fiches) ; vidéos → `youtu.be` (pages 5, 26, 27). Les 10 adresses `orbitvu.fr` répondent 200 après redirection (`/contact/ecrivez-nous`, `/produits/...`) ; les 3 vidéos YouTube ne sont pas vérifiables depuis le conteneur (429). Les QR « démo » visibles sur K2–K6 mènent donc vers `orbitvu.fr`, pas vers le formulaire de la landing : décision ouverte pour Laurent. Page 28 : `www.orbitvu.fr`, `orbitvu@sysnext.com`.
+
+**Frise (A)** — Ruban défilable nativement (glisser, molette horizontale, flèches, Début, Fin), avec boutons précédent / suivant (à partir de 640 px) et pause. Défilement automatique par translation de la piste au sous-pixel (`translate3d`, `requestAnimationFrame`, 22 px/s), rendu au défilement natif à la même position dès qu'il s'arrête. Liste rendue trois fois : la première porte la sémantique, les deux copies sont `aria-hidden` et `inert` ; au bout d'une période (1 683 px à 1 440 px de large), la position recule d'autant, sans saut visible. Défilement seulement sans `prefers-reduced-motion`, ruban visible à 30 % au moins, vidéo du hero hors champ, onglet actif, ni survol ni focus ; toute interaction manuelle l'arrête jusqu'à « Reprendre ». Mobile : défilement continu conservé, un glissement prend la main. Visuels en silhouettes : rendus détourés fondus dans le fond du ruban (`mix-blend-multiply`, luminosité +4 % pour effacer les fonds blanc cassé 250–254), gabarit croissant avec la taille des produits (92 à 176 px de large). Hauteur du ruban : 182 px en desktop, 143 px en mobile. Intitulé court : le texte d'accompagnement V4 est retiré, surtitre et titre conservés. Exclusions V4 réexaminées et maintenues : XL G2 (toutes ses photos sont sur fond noir, D29), XXL et Fashion (vues d'ensemble toutes avec une personne).
+
+**Catalogue (B)** — `EmplacementVisuel` remplacé par `PageCatalogue` (`next/image`, `object-contain`, rapport du fichier) ; sous 640 px, pages seules K3 et K2 à la place des doubles pages, seule l'image affichée étant chargée. Section « Trouvez le studio adapté » recomposée : texte à gauche, K5 et K4 à droite, puis K6 sur toute la largeur avec « Agrandir la matrice » (fenêtre modale native, image à la taille du fichier). Section passée de ≈ 820 à 1 361 px de haut à 1 440 px. Couverture K1 sans rotation : 120 × 85 px (96 × 68 px de 1 024 à 1 279 px, 88 × 62 px sur mobile). Bandeau interne : « extraits du catalogue présentés pour revue, téléchargement du PDF non activé ».
+
+**Fichiers** — nouveaux : `components/landings/catalogue-all-in-one/PageCatalogue.tsx`, `AgrandirPage.tsx`, `public/images/catalogue-all-in-one/k1-couverture.webp`, `k2-furniture-studio-p24.webp`, `k3-alphashot-pro-g2-p10.webp`, `k4-furniture-studio-pp24-25.webp`, `k5-alphashot-pro-g2-pp10-11.webp`, `k6-matrice-pp6-7.webp`, `lib/catalogue/__tests__/visuels-catalogue.test.ts` ; supprimé : `components/landings/catalogue-all-in-one/EmplacementVisuel.tsx` ; modifiés : `StudiosRail.tsx`, `studios.ts`, `visuels.ts`, `contenu.ts`, `CatalogueAllInOne.tsx`, `CatalogueForm.tsx` (vignette seulement, logique inchangée), `e2e/catalogue-all-in-one.spec.ts`, `lib/catalogue/__tests__/frise-studios.test.ts`, `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : home, `HeroVideo`, fiches machines, `MACHINES`, `lib/machine-images.ts`, redirections XL, services CRM et e-mail, `lib/catalogue/activation.ts` (`PUBLICATION_AUTORISEE = false`).
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 433/433 (dont gabarits de la frise, six visuels présents avec dimensions exactes, ni PDF ni planche dans `public/`).
+- `npx next build` vert.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 64/64, dont ruban (une seule liste exposée, copies inertes, hauteur ≤ 190 px, défilement continu par petits incréments réguliers, arrêt au survol sans saut, pause et reprise, boucle à la fin d'une période, clavier, précédent sans butée, mouvement réduit, glissement tactile qui prend la main) et catalogue (K1 chargée, K5/K4/K6 chargées en desktop, K3/K2/K6 en mobile, aucun emplacement neutre, matrice agrandie puis fermée par Échap). Le test de la vraie route (503) renvoie 429 après plusieurs passes sur le même serveur local (limiteur 5 requêtes / 10 min) : passe finale sur serveur neuf, verte.
+- Specs `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, les mêmes qu'en V3, en V4 et sur `main`.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390 et 320 px ; bas du CTA à 827 px sur 900 en 1440 × 900 (inchangé), 881 px sur 768 en 1024 × 768 (inchangé) ; tablette 768 : 1 505 px (V4 : 1 475), mobile 320 : 1 393 px (V4 : 1 373), mobile 390 : 1 269 px (inchangé) ; aucune requête du MP4 sous 768 px ; vidéo du hero en pause quand le ruban défile.
+**Supposé** — Que les droits confirmés par Laurent couvrent les personnes visibles sur les pages reproduites (mannequin p. 11, silhouette et témoignage nommé p. 25). Que la fluidité du ruban sur Safari iOS et Firefox soit celle mesurée sur Chromium.
+**Non regardé** — Preview Vercel V5 dans un navigateur (SSO) ; Safari, Firefox, appareils réels ; lecteurs d'écran réels ; suite e2e complète (1 024 tests) ; destinations YouTube des QR.
+
+**Suite** — Revue de la Preview V5 par Laurent. Décisions ouvertes : destination des QR « démo » (`orbitvu.fr/contact/` et non la landing) ; la matrice K6 et les fiches du PDF nomment des versions qui ne correspondent pas toutes à la gamme du site (Alphadesk, retirée du site ; « Alphashot XL Pro » contre « Alphashot XL Pro v2 ») ; PDF QA à valider avant tout téléchargement. Aucune fusion ni publication.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V4 : frise des studios, recadrage de la vidéo du hero · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Mission V4 de Laurent. (A) Frise panoramique « Du bijou au mobilier, explorez les studios Orbitvu. » insérée entre le hero et « Imaginez les possibilités ». (B) Diagnostic du film translucide autour du flacon dans la vidéo du hero, puis recadrage du panneau vidéo sur le studio et l'écran. Formulaire, CTA, téléphones et API inchangés.
+
+**Pourquoi** — (A) Donner à voir l'étendue de la gamme avant le formulaire de bas de page. (B) Le rectangle translucide, masqué sur la home par le texte et le voile de `HeroVideo`, était visible dans le panneau éditorial de la V3.
+
+**Diagnostic (B)** — Le défaut est dans le fichier source, pas dans l'intégration. `hero-range-2025.mp4` (H.264 Main, 2280 × 780, 104 images : 1 I, 26 P, 76 B) porte un rectangle aux coins arrondis, plus clair que le fond, autour du flacon, dans les 104 images, image I comprise. Mesure sur une zone de 480 × 440 px : bord haut à 47,7 de luminance à l'extérieur contre 58,5 à l'intérieur, écart-type inter-images 0,06 et 0,04 (couche fixe), contre 14,39 sur le flacon en rotation. Identique dans la copie AV1 de capture et dans l'affiche (`hero-range-2025-poster.avif` = image 0, PSNR 49,5 dB) : la transition affiche → vidéo n'y est pour rien. Son bord gauche traverse les nervures du dôme : ce n'est pas une porte du studio. Sa nature exacte (couche de composition) n'est pas établie. React et le CSS ne sont pas en cause.
+
+**Correction retenue (B)** — Recadrage du même fichier, sans flou ni masque : agrandissement ancré à droite (`origin-right`, `scale` 1,7 / 1,56 / 1,42 selon le rapport du panneau, égal à rapport × 780 / 1100), qui montre x ≈ 1180 à 2280 de la source (studio à gauche, écran avec le packshot du flacon), le rectangle s'arrêtant vers x ≈ 1130. Appliqué aussi à l'image fixe (mobile, mouvement réduit). Options écartées : cadrage V3 (défaut visible), recadrage serré sur le flacon (290 px de source, flou), masque ou flou (interdits par la mission). Le remplacement par une autre séquence propre suppose les vidéos des fiches (R2), injoignables depuis le conteneur (403 Cloudflare) : proposé à Laurent, non fait. Retour au cadrage V3 : deux valeurs dans `CatalogueAllInOne.tsx`.
+
+**Frise (A)** — Source : `MACHINES` (calculateur ROI) pour les noms et familles, `getMachineImage()` pour les images ; aucun chemin construit depuis un id. 13 références non retirées (`delisted`) sur `HEAD`, et non 12 comme indiqué dans la mission. 9 retenues, dans l'ordre de `MACHINES` : Alphashot Micro Pro v2, Alphashot 360, Alphashot Pro G2, Alphashot XL Pro v2, Alphatable v2, Alphastudio Compact Pro v2, Bike Studio, Furniture Studio, E-Comm Studio+. Écartées : Alphastudio XXL Pro v2, Fashion Studio Basic, Fashion Studio Pro v2 (toutes les vues d'ensemble disponibles montrent une personne) ; Alphashot XL G2 (seule image : photo d'ambiance sur fond sombre, incohérente avec les rendus détourés sur fond blanc, et D29 : pas de juxtaposition XL G2 / XL Pro v2). Famille d'usage tirée des données, sans chiffre : catégorie de taille, « Prise de vue à plat » pour l'Alphatable. Ni prix, ni cadence, ni lien vers les fiches. Les neuf studios ne sont pas présentés comme les « 10 systèmes » du PDF.
+
+**Comportement** — Défilement horizontal natif à accroche (`scroll-snap`), `data-lenis-prevent`. Desktop : 4,6 cartes visibles à 1440 px, boutons précédent / suivant / pause ; avancée automatique d'une carte toutes les 4,5 s, seulement à partir de 1024 px avec souris, sans `prefers-reduced-motion`, frise visible à moitié au moins et vidéo du hero hors champ (moins de 30 % visible, header déduit) ; suspendue au survol et au focus de la liste ; arrêtée par toute interaction manuelle (bouton, glissement, molette horizontale, flèches, Début, Fin) jusqu'à « Reprendre » ; arrêt en bout de liste, sans boucle ni carte dupliquée. Tablette : 2,7 cartes ; mobile : 1,4 carte ; pas d'automatisme. La vidéo du hero se met en pause hors champ, en plus de la pause du visiteur : une seule animation majeure à la fois.
+
+**Fichiers** — nouveaux : `components/landings/catalogue-all-in-one/StudiosRail.tsx`, `studios.ts`, `coordination.ts`, `lib/catalogue/__tests__/frise-studios.test.ts` ; modifiés : `components/landings/catalogue-all-in-one/CatalogueAllInOne.tsx`, `VideoStudio.tsx`, `contenu.ts`, `e2e/catalogue-all-in-one.spec.ts`, `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : la home et `components/hero/HeroVideo.tsx`, les fiches machines, `lib/machine-images.ts`, `MACHINES`, la logique de redirection XL, `public/` (aucun fichier ajouté ni modifié), les services CRM et e-mail, les autres formulaires.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run lib/catalogue` : 52/52 (6 nouveaux sur la frise : aucune référence retirée, exclusions motivées, D29, noms exacts, images issues de `getMachineImage` et présentes sur disque, familles sans chiffre).
+- `npx next build` vert.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 52/52, dont 5 nouveaux sur la frise (position entre hero et possibilités, 9 cartes sans lien ni prix ; précédent, suivant, flèche droite, Début, Fin ; avancée automatique nulle tant que la vidéo est dans le champ, effective frise centrée, arrêtée par la pause ; mouvement réduit sans bouton pause ni mouvement ; mobile à accroche avec carte suivante entrevue, sans automatisme).
+- Specs `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, les mêmes qu'en V3 et que sur `main` `8c0dd06`.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390 et 320 px ; bas du bouton principal à 827 px sur 900 en 1440 × 900 (inchangé) ; aucune requête du MP4 à 390 et 320 px ; vidéo du hero en pause frise centrée, reprise en haut de page ; avancée automatique 0 → 290 → 580 → 870 px ; survol de 5 s sans mouvement ; glissement tactile effectif à 390 et 768 px, et à 320 px avec un geste de 216 px.
+**Supposé** — Que le rectangle soit une couche de composition du fichier livré : sa nature exacte n'est pas établie. Que Chrome, Safari et Firefox lisent le MP4 H.264 en lecture automatique muette, comme sur la home (le Chromium du conteneur ne décode pas le H.264 : captures faites avec une copie AV1 servie au seul navigateur de capture, hors dépôt).
+**Non regardé** — Preview Vercel V4 dans un navigateur (SSO) ; Safari iOS, Android et trackpads réels (défilement horizontal au pavé tactile) ; Firefox et WebKit (absents du conteneur) ; lecteurs d'écran réels ; suite e2e complète (1 024 tests), seules les specs de la landing et les trois specs de comparaison ont été lancées.
+
+**Suite** — Revue de la Preview V4 par Laurent : recadrage de la vidéo (studio en grande partie hors champ, écran au centre) ou séquence de remplacement à fournir ; liste des 9 studios et exclusions ; libellés de famille. Aucune fusion ni publication.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — V3 : vidéo de la home, promesse photographique, catalogue en aide au choix · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, brouillon, ne pas fusionner | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `de6c4cd`
+
+**Quoi** — Recentrage V3 demandé par Laurent : ce qui donne envie, ce sont les possibilités des studios Orbitvu ; le catalogue devient la première étape concrète pour choisir. Hero refait (vidéo de la home, H1 « Vos produits comme vous ne les avez jamais vus. », formulaire inchangé), sections « Imaginez les possibilités » et « Trouvez le studio adapté à vos produits » ; bloc final conservé.
+
+**Pourquoi** — Retour de Laurent du 02/10 sur la première Preview : la page présentait le catalogue comme un objet extraordinaire ; c'est un document commercial utile.
+
+**Fait métier** — FAIT MÉTIER LAURENT, 02/10/2026 : Laurent confirme disposer des droits nécessaires à la diffusion du catalogue et à sa présentation sur cette landing. Cette autorisation n'est plus un arbitrage en attente. Le PDF reste à contrôler techniquement : la copie du kit a une CropBox restreinte.
+
+**Fichiers** — modifiés : `components/landings/catalogue-all-in-one/` (`CatalogueAllInOne.tsx`, `CatalogueForm.tsx`, `EmplacementVisuel.tsx`, `contenu.ts`, `visuels.ts`), `e2e/catalogue-all-in-one.spec.ts` ; nouveaux : `components/landings/catalogue-all-in-one/VideoStudio.tsx`, `SansCoupure.tsx` ; `docs/seo-geo/ETAT.md`, ce journal. Non modifiés : `components/hero/HeroVideo.tsx`, la home, les fiches XL G2 et Pro G2, les routes et redirections XL (D29), `public/`.
+
+**Vidéo** — `public/images/hero/hero-range-2025.mp4` (H.264, 2280 × 780, 3,47 s, 30 i/s, 623 654 o) et `hero-range-2025-poster.avif`, référencés tels quels, sans copie. Inspection image par image : studio et écran entre 27 % et 80 % de la largeur, fond sombre uni ailleurs ; une composition « vidéo en fond » placerait le studio derrière le texte et le formulaire. Choix : panneau éditorial sous le titre (cadrage `55% 50%`, rapport 2:1 en desktop), bandeau pleine largeur en tête sur mobile. `VideoStudio` reprend les règles de `HeroVideo` (lecture muette en boucle à partir de 768 px, image fixe en dessous sans téléchargement de la vidéo, image fixe si `prefers-reduced-motion`), sans le voile latéral prévu pour un fond, avec un bouton pause (WCAG 2.2.2). Le modèle du studio filmé n'est pas nommé : non établi.
+
+**Visuels de la section 2** — quatre visuels déjà publiés sur les fiches du site : `alphashot-xl-g2/advantage-open-doors.avif`, `alphashot-xl-g2/soft-station-capture.avif`, `alphashot-pro-g2/soft-export.avif`, `alphashot-pro-g2/packshot-mascara.avif`. Écartés : les photos montrant une personne (`alphashot-xl-g2/packshot-operator.avif`, `alphashot-pro-g2/session.avif`, mains de `alphashot-xl-g2/hw-turntable.avif` ; droit à l'image ouvert au JOURNAL du 01/10). Légendes sans nom de modèle : la copie interne du catalogue (`pdftotext`) nomme l'Alphashot Pro G2 et l'Alphashot XL Pro v2, pas l'XL G2 (D29). Phrase sur l'IA reprise de `/fr/packshot-e-commerce` : « l'assistant photo IA est réservé aux Alphashot Pro G2 et XL G2 ».
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement (dont la règle React Compiler sur `setState` dans un effet, évitée par `useSyncExternalStore`) ; `npx vitest run` : 423/423.
+- `npx next build` vert ; `/fr/catalogue-orbitvu-all-in-one` prérendue seule.
+- `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 42/42, dont vidéo muette et en boucle en desktop avec bouton pause, aucune requête du MP4 à 390 px, image fixe avec `prefers-reduced-motion`, bouton principal dans le premier écran à 1440 × 900.
+- Specs existantes `language-switch`, `mobile-overflow`, `seo` (Chromium) : 11 échecs, identiques à ceux de `main` `8c0dd06` relevés le même jour.
+- Captures locales : aucun débordement horizontal à 1440, 1024, 768, 390, 320 et 844 × 390 ; bas du bouton principal à 827 px sur 900 en 1440 × 900, 881 px sur 768 en 1024 × 768 ; à 390 × 844, la carte du formulaire commence dans le premier écran (bouton à 1 269 px). Le Chromium du conteneur ne décode pas le H.264 : pour les captures animées, la requête du MP4 est servie au navigateur de capture avec une copie AV1 du même fichier (scratchpad, hors dépôt).
+**Supposé** — Que Chrome, Safari et Firefox lisent le MP4 H.264 en lecture automatique muette, comme sur la home.
+**Non regardé** — Preview Vercel V3 dans un navigateur (SSO, pas de jeton) ; Safari iOS et Android réels ; Firefox et WebKit (absents du conteneur) ; lecteurs d'écran réels.
+
+**Suite** — Revue graphique et éditoriale de Laurent sur la Preview V3 ; title et meta description encore ceux du copydeck V2, à trancher avec l'indexation ; export paysage correct du PDF, QR, hébergement, stockage, règle CRM et mention données avant toute activation.
+
+---
+
+## 2026-10-02 · Landing catalogue Orbitvu All-in-One — intégration en PR brouillon, bloquée ASSETS/PDF/EXTERNALS PENDING · Claude de Laurent
+
+**Chantier** : landing d'acquisition du catalogue All-in-One (kit d'intégration du 02/10, brief V2), hors 06-CHANTIERS | **PR** : #82, brouillon, ne pas fusionner | **Commit** : `13f3cf0` | **Branche** : `claude/magical-clarke-rkqimg` | **Base** : `main` `8c0dd06`, puis fusion de `main` `de6c4cd` (#81, documentation seule ; conflits `ETAT.md` et `JOURNAL.md` résolus en conservant les deux côtés)
+
+**Quoi** — Page `/fr/catalogue-orbitvu-all-in-one` (FR seule, France et Suisse) en quatre sections, formulaire dédié et route `POST /api/catalogue` à services injectés. La page répond 404 sur la production Vercel tant que `PUBLICATION_AUTORISEE` est faux ; la route répond 503 `catalogue_unavailable` : aucun stockage, aucun adaptateur Pipedrive ni Resend n'existe dans le code.
+
+**Pourquoi** — GO de Laurent du 02/10 pour une intégration en branche isolée et une PR brouillon uniquement. Objectif : donner envie de recevoir le catalogue, consultant facultatif, démonstration en lien tertiaire.
+
+**Fichiers** — nouveaux : `app/[lang]/catalogue-orbitvu-all-in-one/page.tsx`, `components/landings/catalogue-all-in-one/` (`CatalogueAllInOne.tsx`, `CatalogueForm.tsx`, `EmplacementVisuel.tsx`, `LienTelephone.tsx`, `contenu.ts`, `mesure.ts`, `visuels.ts`), `app/api/catalogue/route.ts`, `lib/catalogue/` (`schema.ts`, `gestionnaire.ts`, `services.ts`, `activation.ts`, `courriel.ts`, `crm.ts`, 3 fichiers de tests), `e2e/catalogue-all-in-one.spec.ts` ; modifiés, ajouts d'une ligne : `i18n/routing.ts` (pathname), `i18n/deChCoverage.ts` (`FR_ONLY`) ; `docs/seo-geo/ETAT.md`, ce journal.
+
+**Effet attendu** — Aucun en production : page en 404, route fermée, aucune entrée de sitemap, aucun lien entrant. Sur Preview et en local : revue visuelle et fonctionnelle, avec réponses d'API simulées.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; eslint des fichiers touchés : 0 avertissement ; `npx vitest run` : 423/423, dont 46 nouveaux (schéma, route : succès simulé, e-mail en échec, CRM en échec, PDF absent, stockage absent ou en échec, pays absent ou hors FR/CH, double clic, nouvel essai, limitation, champ piège, journal sans donnée personnelle, secrets présents sans effet, simulation ; e-mail composé ; règle CRM ; sélecteur de langue). Contre-épreuve : sans l'entrée `FR_ONLY`, 2 tests échouent.
+- `npx next build` vert (valeurs factices) : `/fr/catalogue-orbitvu-all-in-one` prérendue seule. Build avec `VERCEL_ENV=production` vert, puis `next start` : `/fr`, `/en` et `/de-ch/catalogue-orbitvu-all-in-one` en 404, `/fr` en 200, `/api/catalogue` en 503.
+- Playwright `e2e/catalogue-all-in-one.spec.ts`, Chromium et Pixel 5 : 34/34 ; réponses d'API interceptées ; la vraie route locale répond 503. Balise `robots` `noindex, nofollow`, aucune canonique, aucun hreflang, aucun lien vers F5 dans `<main>`, aucun pays présélectionné, case consultant décochée, ni téléphone ni case marketing ; sélecteur de langue : EN vers `/en`, DE-CH vers `/de-ch`.
+- Specs existantes `language-switch`, `mobile-overflow`, `seo` (Chromium) : 241 réussis, 11 échecs, identiques sur un build de `main` `8c0dd06` : préexistants.
+- Captures locales 1440×900, 1024×768 paysage, 768×1024, 390×844, 320×640, 844×390, et sept états du formulaire : aucun débordement horizontal ; bas du CTA à 859 px sur 900 en 1440 ; sous la ligne de flottaison à 1024×768. `prefers-reduced-motion` : éventail fixe. Contrastes calculés : CTA blanc sur `#6667AB` 5,13:1 ; textes ≥ 5,9:1 ; texte indicatif des champs 4,17:1 sur leur fond `future-dusk-0` (même couleur `future-dusk-400` que `ContactForm`).
+- Aperçus K1–K6 du kit : injectés dans le navigateur de capture seulement ; `git status` ne montre aucun fichier du kit.
+**Supposé** — Que le 404 prérendu par `notFound()` est servi en 404 par Vercel comme par `next start` (mesuré en local seulement). Que `trackEvent` n'émet rien sans consentement analytique (lecture de `GoogleAnalytics.tsx`, non mesuré dans GA4).
+**Non regardé** — Preview Vercel (pas de jeton de contournement dans cette session ; visuels non autorisés de toute façon). Firefox et WebKit (navigateurs absents du conteneur). Lecteurs d'écran réels. Rendu sur `www` (R4). Envoi réel : interdit à ce stade.
+
+**Suite** — Bloquants avant toute Preview complète ou publication : PDF paysage brut, accord écrit d'Orbitvu (PDF et pages), destinations des QR, hébergement du PDF, stockage durable et reprise des échecs, règle Pipedrive (étape), mention données, relecture de Sébastien (D42), URL, indexation et header (Laurent), puis GO de Laurent.
 
 ---
 
