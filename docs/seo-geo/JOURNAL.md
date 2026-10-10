@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #117 — `main` `0bd8d60` (#122) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `14be5ee` (fusion de `main` `0bd8d60`)
+
+**Quoi** — `main` `0bd8d60` fusionné dans #117, sans rebase (GO_CODE de Laurent du 10/10, limité à la resynchronisation et aux contrôles). Conflits dans `JOURNAL.md` (union, entrée #117 du 08/10 en tête des entrées du 08/10) et `ETAT.md` (ligne #117 actualisée, lignes de `main` conservées, puces F4 de #117 gardées). Les 10 fichiers de code et de test de #117 sont identiques à `2c0261f`.
+
+**Pourquoi** — #117 avait 135 commits de retard sur `main` `0bd8d60` (base `06b18e2`) et un conflit documentaire avec `main`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices :
+- `npx tsc --noEmit` vert ; Vitest 640/640 (35 fichiers) ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78. Un premier passage sans `NEXT_PUBLIC_GA_MEASUREMENT_ID` au build donnait 76/78 (test « GA4 après acceptation ») ; vert avec un identifiant factice.
+- HTML prérendu des 6 articles : 0 iframe Vimeo, Sketchfab ou saasphoto.com, façades présentes.
+- Non-régressions (`popin-engagement`, `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `external-links`, `mobile-overflow`, `seo`) en Desktop Chrome et Pixel 5 : 705 réussis, 45 échecs, **liste identique sur un build de `main` `0bd8d60`** (contre-épreuve) : `seo` 20 (titles et descriptions), `mobile-overflow` 2 (`/fr`), `popin-engagement` 23 en Pixel 5 seulement (spec desktop). `popin-engagement` en Desktop Chrome : aucun échec avec le bandeau de #117.
+- Aucun fichier `content/**` ni `messages/*.json` dans le diff de #117 contre `main` : les changements de #112, #113 et #121 ne sont pas touchés.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview et Chrome réel (Android, lecteur d'écran) ; réponse 402 de saasphoto.com, à vérifier en navigateur réel, non corrigée ici ; ajout du spec `popin-engagement` aux parcours de la CI (hors périmètre de cette resynchronisation).
+
+**Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
+
+---
+
 ## 2026-10-10 · #122 — publication autorisée (D55) : interrupteur ouvert, stockage de session mentionné dans la politique de confidentialité · Claude de Laurent
 
 **Chantier** : pop-in d'engagement (#122) | **PR** : #122 | **Commit** : voir l'historique de #122
