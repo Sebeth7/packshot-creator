@@ -25,10 +25,10 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D53 · 2026-10-09 · Exception ponctuelle D15/D48 pour les PR #123 et #124 : fusion et publication sans attendre l'échéance de D15 ; fusion par commit de fusion
+## D54 · 2026-10-09 · Exception ponctuelle D15/D48 pour les PR #123 et #124 : fusion et publication sans attendre l'échéance de D15 ; fusion par commit de fusion
 
 **Décidé par** : Laurent — mission « GO final Laurent — fusion et publication PR #123 puis #124 » du 09/10/2026, confirmée par la mission « Reprise autorisée — PR #124 après fusion de #123 » du même jour
-**Statut** : en vigueur pour les seules têtes `6bc15f4` (#123) et `9a76bc1` (#124) ; épuisée par leurs fusions du 09/10 (`085b005`, `f143f61`). D15, D42 et D48 restent inchangées pour tout le reste ; `02-PROCEDURE.md` n'est pas modifié.
+**Statut** : en vigueur pour les seules têtes `6bc15f4` (#123) et `9a76bc1` (#124) ; épuisée par leurs fusions du 09/10 (`085b005`, `f143f61`). D15, D42 et D48 restent inchangées pour tout le reste ; `02-PROCEDURE.md` n'est pas modifié. **Numéro** : proposée D53 sur la branche de #125 le 09/10 (tête `6813cbf`) ; renumérotée D54 le 10/10 à l'intégration de `main` `3619e75`, où la D53 de #82 (landing catalogue) était déjà fusionnée : la décision déjà fusionnée garde son numéro (règle appliquée à #82 le 09/10). Dans le texte de Laurent ci-dessous, reproduit sans modification, « D53 » désigne la présente D54.
 
 **La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
 
@@ -41,9 +41,37 @@ Append-only. Plus récent en haut.
 
 **Le contexte** — #123 : délai D15 démarré le 09/10 (information de Sébastien à 14:16:03 UTC, CI verte à 14:59:49 UTC, QA Chrome PASS déclarée par Laurent), 5e jour ouvré le vendredi 16/10. #124 : CI verte (16:39:50 UTC), QA Chrome 15/15 PASS et non-régression de #123 PASS (Laurent, 09/10) ; information de Sébastien prévue par D48 (a) non publiée, donc D15 non démarré. #124 était empilée sur la tête de #123 : fusionnées par commit de fusion, les deux PR donnent des arbres identiques aux têtes contrôlées ; un squash de #123 aurait provoqué 13 conflits dans #124 (simulation `git merge-tree` du 09/10). `02-PROCEDURE.md` (étape 6) prescrit `--squash` ; les fusions récentes de `main` sont des commits de fusion.
 
-**Exécution** — #123 fusionnée le 09/10 à 20:18:55 UTC (`085b005`, arbre identique à `6bc15f4`) ; #124 le 09/10 à 20:42:37 UTC (`f143f61`, arbre identique à `9a76bc1`). Aucune information complémentaire publiée à Sébastien. Contrôles de production : JOURNAL du 09/10.
+**Exécution** — #123 fusionnée le 09/10 à 20:18:55 UTC (`085b005`, arbre identique à `6bc15f4`) ; #124 le 09/10 à 20:42:37 UTC (`f143f61`, arbre identique à `9a76bc1`). Aucune information complémentaire publiée à Sébastien. Contrôles de production : JOURNAL du 09/10 (`sysnext`) et du 10/10 (`www`, dans Chrome).
 
 **Ce qu'elle interdit** — Présenter les contenus de #123 et #124 comme validés par Sébastien ; appliquer cette exception à une autre PR ou à une autre tête ; s'en prévaloir pour une réécriture, un claim, un prix ou une modification produit ; tenir la dérogation de méthode de fusion pour une modification de `02-PROCEDURE.md`.
+
+---
+
+## D53 · 2026-10-09 · Publication de la landing catalogue All-in-One (#82) sur l'autorité de Laurent, sans validation de la copy par Sébastien
+
+**Décidé par** : Laurent — mission « #82 finalisation et publication, landing catalogue Orbitvu All-in-One » du 09/10/2026
+**Statut** : en vigueur pour la seule PR #82 ; épuisée par sa fusion. D42 reste inchangée pour toute autre PR, #122 comprise. Numérotée « D52 » sur la branche de #82 le 09/10, renumérotée D53 à l'intégration de `main` `f143f61` : la D52 de #124 (maillage) y était fusionnée avant.
+
+**La décision** — Extraits du texte de Laurent du 09/10/2026, reproduits sans modification :
+
+> Laurent donne maintenant le GO pour faire le nécessaire afin de publier la landing catalogue #82.
+> GO_FINALISATION = YES
+> GO_MERGE = YES sous réserve CI/Preview conformes
+> GO_PUBLICATION = YES sous réserve contrôles ci-dessous
+> Ne pas republier silencieusement un état non testé.
+
+> Conserver le copy actuellement testé sauf anomalie manifeste. […] Laurent autorise la publication de cette version.
+> Consigner :
+> SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED
+> PUBLICATION_AUTHORITY = LAURENT
+> PUBLICATION_GO = RECEIVED_2026-10-09
+> Ne pas bloquer uniquement sur l'absence de nouvelle validation copy de Sébastien.
+
+> V1 catalogue reste une landing lead-gen. Conserver : noindex, nofollow. Pas de sitemap. Pas de canonique organique nouvelle. Pas de maillage global dans cette mission. La publication commerciale ≠ décision d'en faire un owner SEO.
+
+**Le contexte** — Décision de Sébastien du 09/10 : aucun CRM dans le parcours brochure (Q24, ex-« Q23 » de la branche de #82). Test réel depuis la Preview le 09/10 par le Claude de Sébastien : deux demandes, quatre e-mails reçus (JOURNAL du 09/10). P3 (mention du formulaire) et P4 (Resend dans la politique de confidentialité) mis en œuvre sur #82 le 09/10. Validation de la copy par Sébastien (D42, étape 5) non reçue.
+
+**Ce qu'elle interdit** — Présenter la copy de la landing, de l'e-mail ou de la mention comme validée par Sébastien ; appliquer cette décision à une autre PR (#122 n'est pas fusionnée au titre de D53) ; indexer la page, l'ajouter au sitemap, lui donner une canonique ou un maillage global au titre de cette publication ; réintroduire un CRM (Pipedrive, personne, organisation, note, Lead, affaire) dans le parcours ; écrire « production end-to-end vérifiée » sans test réel en production.
 
 ---
 

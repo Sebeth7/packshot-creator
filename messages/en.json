@@ -2787,6 +2787,10 @@
         "title": "Contact forms",
         "description": "Name, email, phone, company, message"
       },
+      "catalogueForm": {
+        "title": "Catalogue request",
+        "description": "First name, email, company, country, products (optional), request to speak with a consultant (optional)"
+      },
       "interactiveTools": {
         "title": "Interactive tools",
         "description": "Data entered in ROI calculator, OPCO simulator, system selector"
@@ -2802,7 +2806,8 @@
       "purpose2": "Providing interactive tool results",
       "purpose3": "Managing training enrollments",
       "purpose4": "Improving our website and services",
-      "purpose5": "Complying with our legal obligations"
+      "purpose5": "Complying with our legal obligations",
+      "purpose6": "Sending you the requested catalogue and following up on your request"
     },
     "article4": {
       "heading": "Article 4: Retention period",
@@ -2840,6 +2845,10 @@
     "article7": {
       "heading": "Article 7: Security",
       "content": "Sysnext implements appropriate technical and organizational measures to protect your personal data against unauthorized access, modification, disclosure or destruction."
+    },
+    "article8": {
+      "heading": "Article 8: Emails related to a catalogue request",
+      "content": "Emails related to a catalogue request (the download link sent to you and the notification of the request to our team) are sent by our provider Resend, acting as a processor. Resend states that its primary processing operations take place in the United States. Transfers from the European Economic Area are governed by the European Commission's Standard Contractual Clauses, incorporated into Resend's data processing agreement; Resend also states that it participates in the EU-U.S. Data Privacy Framework. For transfers from Switzerland, that agreement applies the same clauses, with the adaptations it provides for."
     },
     "cta": {
       "heading": "Questions about your data?",
