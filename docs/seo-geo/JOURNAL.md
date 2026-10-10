@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #117 — `main` `0f960b5` (#126, #128) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `9646028` (fusion de `main` `0f960b5`)
+
+**Quoi** — Seconde resynchronisation du 10/10 (même GO_CODE de Laurent, renvoyé) : `main` `0f960b5` fusionné dans #117, sans rebase. Conflits dans `JOURNAL.md` (union, entrée #117 de 09:47 UTC placée par heure) et `ETAT.md` (ligne #117 actualisée ; ligne #122 retirée comme sur `main`, PR fusionnée). Les 10 fichiers de code et de test de #117 restent identiques à `2c0261f`.
+
+**Pourquoi** — `main` a avancé après la première resynchronisation (#128 puis #126, vers 10:33 UTC) : #117 de nouveau en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices :
+- `npx tsc --noEmit` vert ; Vitest 641/641 (35 fichiers) ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78.
+- `popin-engagement` (règles de #128) en Desktop Chrome : 39/39 avec le bandeau de #117.
+- HTML prérendu des 6 articles : 0 iframe Vimeo, Sketchfab ou saasphoto.com, façades présentes.
+
+**Supposé** — Les autres non-régressions du premier passage du 10/10 (705 réussis, 45 échecs identiques à `main` `0bd8d60`) restent valables : `main` n'a changé depuis que les règles de la pop-in, leurs tests et la documentation.
+
+**Non regardé** — Preview et Chrome réel ; réponse 402 de saasphoto.com (à vérifier en navigateur réel, non corrigée ici).
+
+**Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
