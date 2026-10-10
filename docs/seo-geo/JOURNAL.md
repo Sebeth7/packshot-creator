@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · Landing catalogue All-in-One (#82) : variables de Production relevées, `CATALOGUE_NOTIFICATION_EMAIL` créée · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commit** : ce commit (documentation seule)
+
+**Quoi** — Mission de Laurent du 10/10 (« #82 / Vercel production ») : variables du parcours relevées dans le tableau de bord Vercel, projet `sysnext`, environnement Production ; `CATALOGUE_NOTIFICATION_EMAIL` créée, seule écriture autorisée. Geste fait par Laurent avec Claude dans Chrome : la session cloud n'a aucun accès à Vercel (ni connecteur, ni jeton ; R3).
+
+**Pourquoi** — Condition de fusion de la mission du 09/10 (D53) : « variables Production présentes ». Relevé de Sébastien du 09/10 : `CATALOGUE_NOTIFICATION_EMAIL` absente en Production.
+
+**Fichiers** — Aucun fichier du site. Vercel : `CATALOGUE_NOTIFICATION_EMAIL` ajoutée en Production seule.
+
+**Effet attendu** — Au prochain déploiement de production (fusion de #82), `GET /api/catalogue` répond `{"disponible":true}`. [Inférence] Une variable ajoutée ne s'applique qu'aux déploiements suivants. Cela repose sur des schémas observés.
+
+**Vérifié** — Rapport de Laurent du 10/10 (Claude dans Chrome), valeurs non affichées :
+- `RESEND_API_KEY` : PRESENT (« All Environments », donc Production) ;
+- `RESEND_FROM_EMAIL` : PRESENT (« All Environments ») ;
+- `CATALOGUE_NOTIFICATION_EMAIL` : PRESENT, créée en Production seule, type « Config » (le choix « Secret » était proposé par défaut, non imposé), destinataire attendu confirmé dans le formulaire avant enregistrement ;
+- aucune autre variable modifiée ; message « A new deployment is required » fermé par « Dismiss », sans redéploiement ; formulaire non soumis, aucun e-mail envoyé ; variable de la Preview de la branche de #82 non modifiée.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Badge « Needs Attention » affiché par Vercel sur `RESEND_API_KEY` : détail non ouvert, signification non établie. Captures d'écran du formulaire de saisie prises par l'outil (valeur du destinataire visible), ni partagées ni enregistrées comme livrable.
+
+**Suite** — Fusion de #82 (D53), puis contrôle de `sysnext.vercel.app` (`GET /api/catalogue`, page, politique) et de `www` dans Chrome (R4).
+
+---
+
 ## 2026-10-09 · Landing catalogue All-in-One (#82) : `main` `f143f61` intégré (#123, #124), décision de #82 renumérotée D53 · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commit** : fusion de `main` `f143f61` (voir l'historique de #82)
