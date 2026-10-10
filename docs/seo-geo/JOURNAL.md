@@ -42,11 +42,15 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Pourquoi** — #82 fusionnée et publiée ; #122 en conflit documentaire avec `main`.
 
-**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `e2e/popin-engagement.spec.ts` (aide `lire`).
 
 **Effet attendu** — Aucun ; #122 reste en brouillon, GO_MERGE et GO_PUBLICATION non donnés.
 
-**Vérifié** — `sysnext.vercel.app/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide` : 200 le 10/10 (05:0x UTC) ; #82 lit `origine` (liste fermée) et l'écrit dans la notification interne. Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné.
+**Vérifié** — `sysnext.vercel.app/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide` : 200 le 10/10 (05:0x UTC) ; #82 lit `origine` (liste fermée) et l'écrit dans la notification interne. Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné. `tsc`, `verifier-json`, Vitest 626/626, `next build` (387 pages).
+
+Test rendu robuste (`e2e/popin-engagement.spec.ts`, aide `lire`) : la cible de défilement est recalculée jusqu'à stabilisation. L'ancienne aide figeait la cible au premier calcul ; sur `/fr`, la hauteur de page peut changer après le chargement, et le test « aucune apparition sur /fr » échouait par intermittence (délai de 30 s). Contre-épreuve sur serveur relancé à froid : ancienne aide 1 échec sur 3 ; nouvelle aide 3 sur 3 ; spec complète en Chromium 76/76 sur deux répétitions.
+
+**Correction** — Le relevé « `e2e/popin-engagement.spec.ts` 52/52 » sur `f5c3bbb` (description de #122, 09/10) était inexact : la commande n'affichait que la dernière ligne du résumé. La configuration locale exécute 4 projets × 38 tests ; Firefox et WebKit ne démarrent pas avec le binaire Chromium imposé, et le projet Mobile Chrome ne s'applique pas à une pop-in desktop. Le chiffre de référence est le projet Chromium : 38/38.
 
 **Supposé** — Aucun.
 

@@ -55,12 +55,14 @@ async function ouvrir(page: Page, chemin = PAGE_ELIGIBLE) {
 }
 
 async function lire(page: Page, part = 1) {
-  const cible = await page.evaluate((p) => {
+  // Cible recalculée à chaque essai : la hauteur de la page peut encore changer
+  // après le chargement (images, contenus différés), et une cible figée ne serait
+  // alors jamais atteinte.
+  await page.waitForFunction((p) => {
     const y = Math.round((document.documentElement.scrollHeight - window.innerHeight) * p);
-    window.scrollTo(0, y);
-    return y;
+    if (Math.abs(window.scrollY - y) >= 2) window.scrollTo(0, y);
+    return Math.abs(window.scrollY - y) < 2;
   }, part);
-  await page.waitForFunction((y) => Math.abs(window.scrollY - y) < 2, cible);
   await page.clock.runFor(100);
 }
 
