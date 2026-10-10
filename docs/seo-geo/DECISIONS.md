@@ -25,6 +25,28 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D54 · 2026-10-09 · Exception ponctuelle D15/D48 pour les PR #123 et #124 : fusion et publication sans attendre l'échéance de D15 ; fusion par commit de fusion
+
+**Décidé par** : Laurent — mission « GO final Laurent — fusion et publication PR #123 puis #124 » du 09/10/2026, confirmée par la mission « Reprise autorisée — PR #124 après fusion de #123 » du même jour
+**Statut** : en vigueur pour les seules têtes `6bc15f4` (#123) et `9a76bc1` (#124) ; épuisée par leurs fusions du 09/10 (`085b005`, `f143f61`). D15, D42 et D48 restent inchangées pour tout le reste ; `02-PROCEDURE.md` n'est pas modifié. **Numéro** : proposée D53 sur la branche de #125 le 09/10 (tête `6813cbf`) ; renumérotée D54 le 10/10 à l'intégration de `main` `3619e75`, où la D53 de #82 (landing catalogue) était déjà fusionnée : la décision déjà fusionnée garde son numéro (règle appliquée à #82 le 09/10). Dans le texte de Laurent ci-dessous, reproduit sans modification, « D53 » désigne la présente D54.
+
+**La décision** — Texte de Laurent du 09/10/2026, reproduit sans modification :
+
+> L'exception ponctuelle D15/D48 ne vaut que pour :
+> - #123, HEAD 6bc15f46a3d426feb3ba688a35c571bd1d996152 ;
+> - #124, HEAD 9a76bc1546a88d65dde5e406c34408d67f67a188.
+> Elle dispense du délai D15 restant pour ces deux PR et, pour #124 seulement, de publier une nouvelle information à Sébastien selon D48(a). Elle ne constitue pas une validation métier de Sébastien ; ne modifie pas durablement D15, D42 ou D48 ; n'autorise aucun nouveau claim, aucune réécriture, aucune modification produit, et ne s'étend à aucun autre HEAD ou PR. Inscrire cette décision comme D53 par le circuit documentaire approprié APRÈS les fusions, sans modifier préalablement les HEAD contrôlés.
+
+> Fusionner EXCLUSIVEMENT par « Create a merge commit » (pas squash, pas rebase). Laurent autorise ponctuellement cette dérogation à 02-PROCEDURE.md : un squash entraînerait des conflits artificiels dans #124.
+
+**Le contexte** — #123 : délai D15 démarré le 09/10 (information de Sébastien à 14:16:03 UTC, CI verte à 14:59:49 UTC, QA Chrome PASS déclarée par Laurent), 5e jour ouvré le vendredi 16/10. #124 : CI verte (16:39:50 UTC), QA Chrome 15/15 PASS et non-régression de #123 PASS (Laurent, 09/10) ; information de Sébastien prévue par D48 (a) non publiée, donc D15 non démarré. #124 était empilée sur la tête de #123 : fusionnées par commit de fusion, les deux PR donnent des arbres identiques aux têtes contrôlées ; un squash de #123 aurait provoqué 13 conflits dans #124 (simulation `git merge-tree` du 09/10). `02-PROCEDURE.md` (étape 6) prescrit `--squash` ; les fusions récentes de `main` sont des commits de fusion.
+
+**Exécution** — #123 fusionnée le 09/10 à 20:18:55 UTC (`085b005`, arbre identique à `6bc15f4`) ; #124 le 09/10 à 20:42:37 UTC (`f143f61`, arbre identique à `9a76bc1`). Aucune information complémentaire publiée à Sébastien. Contrôles de production : JOURNAL du 09/10 (`sysnext`) et du 10/10 (`www`, dans Chrome).
+
+**Ce qu'elle interdit** — Présenter les contenus de #123 et #124 comme validés par Sébastien ; appliquer cette exception à une autre PR ou à une autre tête ; s'en prévaloir pour une réécriture, un claim, un prix ou une modification produit ; tenir la dérogation de méthode de fusion pour une modification de `02-PROCEDURE.md`.
+
+---
+
 ## D53 · 2026-10-09 · Publication de la landing catalogue All-in-One (#82) sur l'autorité de Laurent, sans validation de la copy par Sébastien
 
 **Décidé par** : Laurent — mission « #82 finalisation et publication, landing catalogue Orbitvu All-in-One » du 09/10/2026
