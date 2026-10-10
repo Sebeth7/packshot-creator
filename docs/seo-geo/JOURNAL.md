@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · Landing « Studios Orbitvu d'occasion » : intégration Next.js de la V4.1 en Preview (brouillon, DO NOT MERGE) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, GO de Laurent du 10/10 (GO CODE, BRANCHE + PUSH, PR DRAFT, PREVIEW = YES ; MERGE, PUBLICATION, FORMULAIRES RÉELS, ENVOI D'E-MAIL, N8N, RECHERCHE PAYANTE = NO) | **PR** : brouillon, branche `claude/gallant-galileo-f32xk6` | **Commit** : base `main` `0f960b5`
+
+**Quoi** — Page FR `/fr/studios-photo-automatises/opportunites` en composants natifs, fidèle à la maquette V4.1 (copie reprise sans réécriture ; seuls écarts : avis et messages de simulation des formulaires). Deux états calculés côté serveur depuis le registre `data/occasion/machines.ts` (vide par défaut) ; vue de contrôle `…/opportunites/exemples-fictifs` avec les trois exemples de la V4.1, bandeau « Exemples fictifs – aucune offre réelle ». Lien texte « Offres d'occasion » sous Solutions > Studios (desktop, mobile) et dans la colonne des studios du pied de page, FR seulement, calculé dans `app/[lang]/layout.tsx`.
+
+**Pourquoi** — GO d'exécution de Laurent du 10/10 (mission `MISSION_CLAUDE_CODE_PREVIEW_OCCASION_2026-10-10.md`, livrables `packshot-occasion-orbitvu-livrables-2026-10-10.zip`) : obtenir une Preview à montrer à Sébastien, sans effet de bord sur les ventes neuves.
+
+**Fichiers** — Nouveaux : `lib/occasion/activation.ts` (`PUBLICATION_AUTORISEE = false`, `COLLECTE_REELLE_AUTORISEE = false`), `lib/occasion/stock.ts`, `lib/occasion/formulaires.ts` (validation, preuve de consentement prévue, rien n'est stocké), `lib/occasion/navigation.ts`, `lib/occasion/__tests__/occasion.test.ts`, `data/occasion/machines.ts`, `data/occasion/exemples-fictifs.ts`, `components/landings/occasion/**`, `app/[lang]/studios-photo-automatises/opportunites/page.tsx` et `exemples-fictifs/page.tsx`, `public/images/occasion/*.avif` (3). Modifiés : `components/layout/Header.tsx`, `components/layout/Footer.tsx`, `app/[lang]/layout.tsx`, `i18n/routing.ts`, `i18n/deChCoverage.ts` (`FR_ONLY`), `lib/engagement/regles.ts` (`ROUTES_EXCLUES`).
+
+**Effet attendu** — Aucun en production : page 404 et liens absents tant que `PUBLICATION_AUTORISEE` est faux. Preview : page, vue de contrôle et deux liens visibles.
+
+**Vérifié** — Local, avant push : `npx tsc --noEmit` vert ; `npx vitest run` 645/645 (dont 18 tests de `lib/occasion`) ; ESLint sans erreur sur les fichiers touchés (1 avertissement préexistant, `Calculator` inutilisé dans `Header.tsx`) ; `npx next build` vert (variables factices), les deux pages prérendues en `/fr` seulement. Build local avec `VERCEL_ENV=production` : les deux URL en 404, sans titre ni description de la page ; aucun lien « occasion » sur `/fr`, `/fr/studios-photo-automatises`, `/en`, `/de-ch`. QA Playwright locale (build hors production) 47/47 : état vide (aucune carte ni formulaire machine, liste d'attente juste après le hero, contact général vers `/fr/contact`) ; état exemples (3 cartes « Exemple fictif », ordre V4.1, aucun prix) ; `#alertes` ne change pas l'état ; carte → présélection de la référence (OCC-02, OCC-03, OCC-01 au toucher en 390 px) ; erreurs, focus et opt-in décoché ; envois simulés sans aucune requête portant les données (seuls des préchargements Next `?_rsc=` des liens du pied de page) ; lien du menu desktop juste sous Studios, menu mobile, pied de page ; sélecteur de langue vers `/en` et `/de-ch` ; 1440, 390 et 320 px sans débordement horizontal ; aucune erreur JavaScript. Specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`) : 81/81 sur ce build.
+
+**Supposé** — Le build Vercel de Preview reçoit `VERCEL_ENV=preview` (page et liens servis) et celui de production `VERCEL_ENV=production` (comportement de #82 et #122, non revérifié sur la production).
+
+**Non regardé** — Production (aucun déploiement, GO_PUBLICATION = NO). Firefox, Safari, appareils réels, tablette. GA4 (aucun événement ajouté). Droits des photos (HOLD). Pages longues (D44) : page sous le seuil C1 à 1 440 px (5 674 px avec exemples), forme C, non inscrite au registre.
+
+**Suite** — HOLD avant toute publication : machines réelles et leurs photos ; contenu de chaque fiche ; garantie PackshotCreator ; accord Orbitvu sur la revente et la présentation en ligne ; frais de transfert de licence ; circuit de la demande ; outil, lieu, double opt-in et durée de conservation de la liste d'attente, puis routes serveur ; politique de confidentialité ; droits photo (showroom : lieu, date, droits ; exemple XXL : `machines/alphastudio-xxl/hero.avif`, droits confirmés, à la place de la vignette de salon Orbitvu de la V4.1, personnes visibles et accord d'OVTECH non obtenu) ; installation, formation et visite pour l'occasion ; validation de la copy par Sébastien (D13, D16) ; fraîcheur maximale d'une machine (`FRAICHEUR_MAX_JOURS = 30`, valeur provisoire). Pop-in : route exclue (`ROUTES_EXCLUES`), #122 étant fusionnée.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
