@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · Landing catalogue All-in-One (#82) fusionnée et publiée ; contrôle de `sysnext.vercel.app` · Claude de Laurent
+
+**Chantier** : landing catalogue All-in-One (#82) | **PR** : #82, fusionnée | **Commit** : `3619e75` (fusion, 10/10 à 05:00:17 UTC)
+
+**Quoi** — #82 sortie du brouillon puis fusionnée dans `main` (méthode « merge », tête `d7331c1`), sur le GO de fusion et de publication de Laurent du 09/10 (D53). Déploiement de production Vercel réussi (statut `success` à 05:01:23 UTC). `/fr/catalogue-orbitvu-all-in-one` est publique, `noindex, nofollow`.
+
+**Pourquoi** — Conditions de D53 réunies : CI verte sur `d7331c1` (4 contrôles sur 4), fusion sans conflit, variables de Production présentes (relevé de Laurent du 10/10, entrée précédente).
+
+**Fichiers** — Aucun dans ce commit de documentation ; contenu publié : description de #82.
+
+**Effet attendu** — Leads brochure depuis la landing : e-mail du lien au prospect, notification à `CATALOGUE_NOTIFICATION_EMAIL`. Aucun effet d'indexation (D53). #122 : le CTA « Recevoir le catalogue » ne mène plus à une 404.
+
+**Vérifié** — Sur `sysnext.vercel.app`, 10/10 entre 05:01 et 05:10 UTC :
+- avant la fusion (04:5x UTC) : page et `/api/catalogue` en 404, politique en 200 ;
+- après : page 200 (05:01:35 UTC) ; `<title>` « Studios photo Orbitvu : recevez le catalogue | PackshotCreator » ; H1 attendu ; `robots` `noindex, nofollow` ; ni canonique ni hreflang ; en-têtes D36 de l'origine présents (`x-robots-tag: noindex`, `x-packshot-origin-noindex: 1`) ; aucun bandeau d'aperçu ; mention P3 présente, ancienne mention absente ; téléphones FR et CH ; aucun lien vers F5 dans `<main>` ;
+- `GET /api/catalogue` : 200, `cache-control: no-store`, `{"disponible":true}` (route ouverte : interrupteurs, PDF et trois variables présents) ;
+- `?origine=brochure_exit_sitewide` : 200 ; `/en/…` et `/de-ch/…` : 404 ; `sitemap.xml` : aucune URL catalogue ;
+- `/fr/confidentialite` et `/en/confidentialite` : article 8 présent ;
+- PDF : 200, `application/pdf`, 15 380 434 octets ;
+- `node scripts/seo/smoke.mjs https://sysnext.vercel.app` : 17 pages et 3 ressources au vert.
+
+**Supposé** — Que la clé Resend de production envoie correctement : non testé en production (aucune soumission sans autorisation) ; elle sert déjà `/api/contact`, et le test réel de la Preview du 09/10 a réussi.
+
+**Non regardé** — `www.packshot-creator.com` : sondé par script le 10/10 (page, API, politique) → 403 pour les trois, politique existante comprise ; ne prouve rien (R4), contrôle dans Chrome par Laurent ; formulaire réel en production ; badge « Needs Attention » de `RESEND_API_KEY` dans Vercel ; [Inférence] limitation de débit derrière le Worker (adresse Cloudflare possible), cela repose sur des schémas observés.
+
+**Suite** — Contrôle de `www` dans Chrome (landing et politique, desktop et mobile, sans soumission). #122 : dépendance à #82 levée côté application ; #122 reste en HOLD pour ses propres points (GO, P4 `sessionStorage`, QA de Laurent).
+
+---
+
 ## 2026-10-10 · Landing catalogue All-in-One (#82) : variables de Production relevées, `CATALOGUE_NOTIFICATION_EMAIL` créée · Claude de Laurent
 
 **Chantier** : landing catalogue All-in-One (#82) | **PR** : #82 | **Commit** : ce commit (documentation seule)
