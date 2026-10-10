@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
+
+**Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
+
+**Quoi** — #128 sortie du brouillon et fusionnée par commit de fusion le 10/10 à 09:58:08 UTC (`f3ca6f9`, parents `0bd8d60` et `6677eeb`), sur le GO de Laurent (D56). **Début de l'activation de la pop-in sur `/fr/packshot-mode` pour l'interprétation des conversions : 10/10, 09:58:08 UTC (fusion) ; production servie à partir de 09:59:36 UTC (déploiement).**
+
+**Pourquoi** — D56 ; CI 4/4 verte sur `6677eeb` (build terminé à 09:57:39 UTC).
+
+**Fichiers** — Aucun fichier du site dans cette entrée ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (ligne `main`, ligne de mesure Mode, #128 en G, contrôle `www` en C).
+
+**Effet attendu** — Pop-in possible sur `/fr/packshot-mode` (desktop FR, 60 s, 70 %, sortie haute, une fois par session).
+
+**Vérifié** — Statut Vercel de `f3ca6f9` : « success » à 09:59:36 UTC (déploiement `3fjoX2wR93LyrFmcgxPrExkjJjUG`). `sysnext.vercel.app` (lecture `curl`, 09:58 puis 10:00 UTC) : avant le déploiement, le code des règles servi portait le motif de gel « Mode (D39) » ; après, il ne le porte plus, et porte toujours « Accueil, mesure M5 (D44) », « F5 (D37) », « Hub mode-textile, mesure Mode » et les exclusions (catalogue, pages légales, Academy) ; composant de la pop-in référencé dans le rendu de `/fr/packshot-mode` (200) ; `smoke.mjs` : vert, 17 pages.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Apparition effective dans un navigateur sur la production (`www`, R4 ; test automatisé contre la production refusé plus tôt par le mode automatique). GA4.
+
+**Suite** — Contrôle Chrome sur `www` : `/fr/packshot-mode` (apparition après 60 s, 70 % et sortie haute) et `/fr/industrie/mode-textile` (aucune pop-in) ; lecture de la mesure Mode à J+28 (29/10) et J+56 (26/11) avec cet événement.
+
+---
+
+## 2026-10-10 · Pop-in d'engagement active sur la landing Mode `/fr/packshot-mode` (D56) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (suite de #122) | **PR** : voir l'historique de `feat/popin-mode-eligible` | **Commit** : voir PR
+
+**Quoi** — `/fr/packshot-mode` retirée de `ROUTES_GELEES` (`lib/engagement/regles.ts`) : la landing Mode devient éligible à la pop-in, avec les mêmes déclencheurs (desktop dès 1 024 px, 60 s cumulées, 70 % de lecture, sortie par le haut, une apparition par session). `/fr`, `/fr/packshot-e-commerce` et `/fr/industrie/mode-textile` restent gelées ; exclusions inchangées.
+
+**Pourquoi** — Décision de Laurent du 10/10 (D56) : « Cette landing est publiée. Je souhaite qu'elle bénéficie du dispositif de conversion déjà en production. » Exception propre à la pop-in.
+
+**Fichiers** — `lib/engagement/regles.ts` (une ligne retirée, commentaire), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`, `docs/seo-geo/DECISIONS.md` (D56), `docs/seo-geo/ETAT.md` (ligne de mesure Mode). Landing Mode non modifiée : ni texte, ni visuel, ni CTA, ni métadonnée, ni composant.
+
+**Effet attendu** — À la fusion (production en environ 3 minutes) : la pop-in peut s'ouvrir sur `/fr/packshot-mode`. Fenêtre de mesure Mode (D39) inchangée, **J+28 le 29/10, J+56 le 26/11** : l'heure de fusion de cette PR marque le début de l'activation, à prendre en compte dans l'interprétation des conversions de la landing (clics démo, demandes de catalogue avec `origine=brochure_exit_sitewide`).
+
+**Vérifié** — `main` `0bd8d60` au départ ; `npx tsc --noEmit` vert ; Vitest `lib/engagement` : 34/34 (nouveau test : `/fr/packshot-mode` couverte, avec barre finale et paramètres ; `/fr/industrie/mode-textile` et `/en/packshot-mode` exclues ; gels restants `/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile`) ; ESLint ciblé : aucune erreur ; `verifier-json` : 195 ; `npx next build` vert (387 pages) ; Playwright Chromium sur `next start` local : 11/11 (apparition sur `/fr/packshot-mode` après 60 s, 70 % et sortie haute ; aucune apparition sur `/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile`, contact, calculateur, mentions légales, Academy, EN, de-ch ; apparition de référence sur un article).
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4) ; GA4 ; effet de la pop-in sur la mesure GSC de la landing (sans objet attendu : aucun contenu prérendu modifié).
+
+**Suite** — Fusion ; contrôle de `sysnext.vercel.app` ; contrôle de `www` dans Chrome sur `/fr/packshot-mode` (apparition après 60 s, 70 % et sortie haute ; hub `mode-textile` sans pop-in).
+
+---
+
 ## 2026-10-10 · #122 fusionnée et publiée (`0bd8d60`) : pop-in d'engagement active en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement (#122) | **PR** : #122 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `0bd8d60`
