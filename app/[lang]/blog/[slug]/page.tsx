@@ -21,6 +21,7 @@ import {
   type HeadingData,
 } from '@/lib/blog-utils';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { externalEmbedTexts } from '@/lib/external-embeds';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -116,13 +117,15 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const article = getArticle(slug, lang as Lang);
   if (!article) notFound();
 
-  // Vidéos YouTube : façade locale au rendu, lecteur après accord (lib/youtube.ts)
+  // Vidéos YouTube et autres contenus externes : façade locale au rendu,
+  // chargement après accord (lib/youtube.ts, lib/external-embeds.ts)
   const processed = processHtmlContent(article.content || '', {
     youtubeLabels: {
       play: (title) => tVideo('facadeLabel', { title }),
       playUntitled: tVideo('facadeLabelUntitled'),
       notice: tVideo('notice'),
     },
+    embedLabels: externalEmbedTexts(lang).facade,
   });
   const title = article.h1 || article.title;
   const description = article.description;
@@ -245,7 +248,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
         </section>
       </FadeInView>
 
-      {processed.videoCount > 0 && <YouTubeConsent />}
+      {(processed.videoCount > 0 || processed.embedCount > 0) && <YouTubeConsent />}
 
       {article.faqs.length > 0 && (
         <section className="py-16 bg-neutral-50">

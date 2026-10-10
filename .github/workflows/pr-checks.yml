@@ -65,7 +65,8 @@ jobs:
         run: npx next build
 
       # Parcours navigateur ciblés, sur le build de production ci-dessus : sélecteur
-      # de machines, sommaire du blog et barre des pages longues (D44). Chaque spec
+      # de machines, sommaire du blog, barre des pages longues (D44) et contenus
+      # externes sous consentement (Vimeo, Sketchfab, saasphoto.com). Chaque spec
       # attendu est inventorié dans le résumé du job : présent, il est exécuté ;
       # absent de la branche testée, il est signalé avec la PR qui l'apporte. Le job
       # échoue si aucun spec n'est présent : pas de passage vert sans test exécuté.
@@ -77,7 +78,7 @@ jobs:
           PLAYWRIGHT_BASE_URL: http://localhost:3000
         run: |
           # spec:PR qui l'apporte
-          ATTENDUS="machine-selector:#86 sommaire-blog:#84 navigation-pages-longues:#85"
+          ATTENDUS="machine-selector:#86 sommaire-blog:#84 navigation-pages-longues:#85 consentement-medias:#117"
           # spec:condition d'activation (spec présent sur main, pas encore exécuté ici)
           DIFFERES="anchors:AR-01/#93"
           PRESENTS=""

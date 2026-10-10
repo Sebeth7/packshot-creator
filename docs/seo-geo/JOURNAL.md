@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #117 — `main` `0f960b5` (#126, #128) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `9646028` (fusion de `main` `0f960b5`)
+
+**Quoi** — Seconde resynchronisation du 10/10 (même GO_CODE de Laurent, renvoyé) : `main` `0f960b5` fusionné dans #117, sans rebase. Conflits dans `JOURNAL.md` (union, entrée #117 de 09:47 UTC placée par heure) et `ETAT.md` (ligne #117 actualisée ; ligne #122 retirée comme sur `main`, PR fusionnée). Les 10 fichiers de code et de test de #117 restent identiques à `2c0261f`.
+
+**Pourquoi** — `main` a avancé après la première resynchronisation (#128 puis #126, vers 10:33 UTC) : #117 de nouveau en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices :
+- `npx tsc --noEmit` vert ; Vitest 641/641 (35 fichiers) ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78.
+- `popin-engagement` (règles de #128) en Desktop Chrome : 39/39 avec le bandeau de #117.
+- HTML prérendu des 6 articles : 0 iframe Vimeo, Sketchfab ou saasphoto.com, façades présentes.
+
+**Supposé** — Les autres non-régressions du premier passage du 10/10 (705 réussis, 45 échecs identiques à `main` `0bd8d60`) restent valables : `main` n'a changé depuis que les règles de la pop-in, leurs tests et la documentation.
+
+**Non regardé** — Preview et Chrome réel ; réponse 402 de saasphoto.com (à vérifier en navigateur réel, non corrigée ici).
+
+**Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
@@ -75,6 +101,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — `www` (R4) ; GA4 ; effet de la pop-in sur la mesure GSC de la landing (sans objet attendu : aucun contenu prérendu modifié).
 
 **Suite** — Fusion ; contrôle de `sysnext.vercel.app` ; contrôle de `www` dans Chrome sur `/fr/packshot-mode` (apparition après 60 s, 70 % et sortie haute ; hub `mode-textile` sans pop-in).
+
+---
+
+## 2026-10-10 · #117 — `main` `0bd8d60` (#122) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `14be5ee` (fusion de `main` `0bd8d60`)
+
+**Quoi** — `main` `0bd8d60` fusionné dans #117, sans rebase (GO_CODE de Laurent du 10/10, limité à la resynchronisation et aux contrôles). Conflits dans `JOURNAL.md` (union, entrée #117 du 08/10 en tête des entrées du 08/10) et `ETAT.md` (ligne #117 actualisée, lignes de `main` conservées, puces F4 de #117 gardées). Les 10 fichiers de code et de test de #117 sont identiques à `2c0261f`.
+
+**Pourquoi** — #117 avait 135 commits de retard sur `main` `0bd8d60` (base `06b18e2`) et un conflit documentaire avec `main`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices :
+- `npx tsc --noEmit` vert ; Vitest 640/640 (35 fichiers) ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78. Un premier passage sans `NEXT_PUBLIC_GA_MEASUREMENT_ID` au build donnait 76/78 (test « GA4 après acceptation ») ; vert avec un identifiant factice.
+- HTML prérendu des 6 articles : 0 iframe Vimeo, Sketchfab ou saasphoto.com, façades présentes.
+- Non-régressions (`popin-engagement`, `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `external-links`, `mobile-overflow`, `seo`) en Desktop Chrome et Pixel 5 : 705 réussis, 45 échecs, **liste identique sur un build de `main` `0bd8d60`** (contre-épreuve) : `seo` 20 (titles et descriptions), `mobile-overflow` 2 (`/fr`), `popin-engagement` 23 en Pixel 5 seulement (spec desktop). `popin-engagement` en Desktop Chrome : aucun échec avec le bandeau de #117.
+- Aucun fichier `content/**` ni `messages/*.json` dans le diff de #117 contre `main` : les changements de #112, #113 et #121 ne sont pas touchés.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview et Chrome réel (Android, lecteur d'écran) ; réponse 402 de saasphoto.com, à vérifier en navigateur réel, non corrigée ici ; ajout du spec `popin-engagement` aux parcours de la CI (hors périmètre de cette resynchronisation).
+
+**Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
 
 ---
 
@@ -885,6 +938,46 @@ Règles du parcours sans CRM :
 **Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
 
 **Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
+## 2026-10-08 · Médias externes et consentement — Vimeo, Sketchfab, saasphoto.com en façade ; bandeau cookies (Pixel 5, focus) · Claude de Laurent
+
+**Chantier** : médias externes, consentement et UX (mission de Laurent du 08/10, GO_CODE sur ce seul périmètre technique ; GO_MERGE = NO ; GO_PUBLICATION = NO) ; backlog F4 « Consentement » et « Bandeau cookies en Pixel 5 » | **PR** : #117, brouillon, « DO NOT MERGE », branche `ccr-9f625584-mumrjt` | **Base** : `main` `06b18e2` (fusion de #106)
+
+**Quoi** — Les 6 iframes Vimeo, Sketchfab et saasphoto.com des articles passent, au rendu, en façade locale : aucune requête vers ces services avant un accord explicite, donné dans une fenêtre d'information, pour ce contenu seulement et sans rien mémoriser. Bandeau cookies recalé sur la zone visible de l'écran (défaut Pixel 5), nommé (repère `region`), focus géré à l'ouverture demandée et rendu à la fermeture.
+
+**Pourquoi** — Mesure du 08/10 (Chromium du conteneur, build local de `main` `06b18e2`, requêtes tierces interceptées et non transmises) :
+- Inventaire des 323 URL du sitemap, avant tout choix : 69 pages émettent au moins une requête hors du site servi. `orbitvu.co` 58 (20 fiches `studio-photo` FR et EN, 10 fiches `fotostudio` de-ch, 28 articles) ; `www.google.com` 3 (carte Google Maps des 3 pages contact) ; `videos.packshot-creator.com` 3 (vidéo de l'accueil, sous-domaine du site) ; `sketchfab.com` 2 ; `player.vimeo.com` 2 ; `saasphoto.com` 1 (et `/en/blog/photographie-de-produits-a-360-degres-en-interne`, hors sitemap, 200). Mesure d'audience : `www.googletagmanager.com` jamais demandé sans acceptation. YouTube : 0 requête.
+- Vimeo, Sketchfab, saasphoto.com et Google Maps : requête émise avant tout choix, après « Tout refuser », après « Tout accepter », après révocation dans la page (iframe toujours présente) et après rechargement. La catégorie « Vidéos YouTube » ne couvre aucun de ces services.
+- `e2e/cookie-banner.spec.ts` en Pixel 5 : 3 échecs reproduits (« Personnaliser » : clic intercepté par « Tout accepter » ou « Tout refuser »). Cause : `/fr` déborde de 49 px en largeur à 393 px (section « Vos défis » de l'accueil, `FloatingDashboard`) ; la fenêtre de mise en page passe à 442 × 818 px pour 393 × 727 px visibles, et le bandeau `fixed bottom-0` s'ancre 91 px sous le bas de l'écran. Le même débordement fait échouer `e2e/mobile-overflow.spec.ts` sur `/fr` (2 échecs, identiques sur `main`).
+- Clavier : après « Enregistrer mes choix », le focus tombait sur `body` ; depuis la fenêtre YouTube, « gérer mes préférences » ouvrait le bandeau en laissant le focus sur la façade : 93 tabulations pour l'atteindre.
+
+**Fichiers** — `lib/external-embeds.ts` (nouveau), `lib/blog-utils.ts`, `lib/youtube.ts` (8 utilitaires exportés, sans autre changement), `components/blog/YouTubeConsent.tsx`, `components/cookies/CookieBanner.tsx`, `app/[lang]/blog/[slug]/page.tsx` (libellés passés au rendu, condition de montage), `lib/__tests__/external-embeds.test.ts` (nouveau), `lib/__tests__/blog-utils.test.ts` (1 test adapté), `e2e/consentement-medias.spec.ts` (nouveau, ajouté aux parcours de `.github/workflows/pr-checks.yml`, Chromium), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Aucun fichier de `content/**`, `messages/*.json`, `app/[lang]/contact/page.tsx`, `components/analytics/**`, `app/globals.css`, Worker ni redirection.
+
+**Effet attendu** — À la mise en production, sur 6 articles (FR et EN) : façade 16:9 à la place de l'iframe (Sketchfab et saasphoto.com n'ont plus l'iframe de 300 × 150) ; aucune requête vers ces services sans clic sur « Autoriser et afficher le contenu ». Bandeau cookies : tous les boutons dans la zone visible, y compris sur `/fr` en mobile. Aucun effet SEO attendu : `<head>` et JSON-LD inchangés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 497/497 (24 fichiers) ; `npx next build` vert, 386 pages générées comme sur `main` (variables factices de la CI, `NEXT_PUBLIC_GA_MEASUREMENT_ID` factice pour mesurer la mesure d'audience). eslint : aucune erreur nouvelle (préexistantes : `set-state-in-effect` de `CookieBanner.tsx` l. 71 sur `main`, 2 `no-explicit-any` de `blog-utils.ts`).
+- HTML prérendu, build de la branche contre build de `main`, identifiant de build neutralisé : 374 pages ; `<head>` (hors scripts et feuilles) et JSON-LD identiques sur 374/374 ; corps identique sauf 6 pages, les 6 articles visés (1 iframe → 0, 1 façade).
+- `e2e/consentement-medias.spec.ts`, Desktop Chrome et Pixel 5 : 40/40 sur la branche ; contre-épreuve sur le build de `main` : 40/40 en échec.
+- `e2e/cookie-banner.spec.ts` et `e2e/youtube-consent.spec.ts` : 38/38 sur la branche (Desktop Chrome et Pixel 5), contre 35/38 sur `main` (les 3 échecs « Personnaliser » en Pixel 5).
+- `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `external-links`, `mobile-overflow` : 200 réussis, 2 échecs, les 2 de `mobile-overflow` sur `/fr`, identiques sur `main`.
+- Mesure réseau sur la branche, mêmes scénarios : Vimeo, Sketchfab, saasphoto.com à 0 requête avant choix, après refus, après « Tout accepter », après rechargement et après navigation interne ; iframe créée et requête émise seulement après « Autoriser et afficher le contenu » ; iframe retirée et façade remise quand un choix sans contenus externes est enregistré. Google Maps et `orbitvu.co` : inchangés (différés, voir Suite).
+- Balayage des 323 URL du sitemap sur la branche, avant tout choix : `sketchfab.com`, `player.vimeo.com`, `saasphoto.com` sur 0 page (5 avant) ; 64 pages avec une requête hors du site (69 avant), Google Maps 3, accueil 3, `orbitvu.co` 58. Le balayage rapide comptait 55 pages `orbitvu.co` : 3 fiches (`/en/studio-photo/alphastudio-compact-v2`, `/de-ch/fotostudio/alphastudio-compact-v2`, `/de-ch/fotostudio/bike-studio`), au HTML identique entre les deux builds, demandent `orbitvu.co` sur les deux builds au défilement lent (visionneuse chargée à l'approche du viewport).
+- Console : 0 erreur ni exception (hors requêtes tierces annulées) sur 9 pages (les 6 articles, un article YouTube, `/fr`, `/fr/contact`), Desktop et Pixel 5, sur `main` comme sur la branche.
+- `git merge-tree` contre les têtes de #104, #105, #107 à #115 : aucun conflit sur les fichiers du site.
+
+**Supposé** — [Inférence] Le recalage du bandeau repose sur `visualViewport`, mesuré dans l'émulation Pixel 5 de Chromium ; le comportement d'un Chrome Android réel sur la page qui déborde n'est pas observé. Cela repose sur des schémas observés. [Non vérifié] Aucun service tiers n'a été contacté : ce que les services font après chargement (cookies, autres domaines) n'est pas mesuré.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Safari, Firefox et appareils réels ; lecteurs d'écran. Contenu réel de saasphoto.com (302 puis 402 depuis le conteneur au 29/09). Qualification juridique des requêtes : hors champ, aucune conclusion de conformité.
+
+**Suite** —
+- Google Maps des 3 pages contact : **différée**, #109 modifie la même iframe (`app/[lang]/contact/page.tsx`, l. 153 à 160). Après le sort de #109 : façade du même modèle ; décision sur la catégorie de consentement (voir ci-dessous).
+- `orbitvu.co` (58 pages) : scripts des articles (32 dans 28 fichiers de `content/blog/**`, exécutés au chargement direct ; aucune requête après la navigation interne mesurée vers un article, visionneuse alors probablement absente [Inférence]) et visionneuse 360° des fiches (`OrbitvuViewer.tsx`, au défilement). **Décision** : consentement exigé ou non pour la visionneuse du fabricant ; en cas de façade, effet commercial sur les fiches à arbitrer.
+- Mesure d'audience à la révocation (constat du 08/10, cookies `_ga` et `_ga_<ID>` posés à la main) : après décochage de « Cookies analytiques », `window.gtag` reste défini, le script `gtag/js` reste dans la page, aucun drapeau `ga-disable-<ID>`, cookies `_ga*` conservés. Envoi effectif de données après révocation : non vérifié (gtag.js non chargé dans le test). `components/analytics/**` est à rayon large (mesure de Laurent) : non modifié.
+- Décisions de consentement : catégorie durable pour les autres services (libellé « Vidéos YouTube » du bandeau, article 6 de la politique de confidentialité, aucune modification sans validation) ; croix « Fermer » du bandeau rouvert, qui vaut « Tout refuser » ; textes de la fenêtre d'information (FR, EN, de-CH) à relire, gardés dans `lib/external-embeds.ts` faute de pouvoir toucher `messages/*.json`.
+- Débordement de 49 px de l'accueil en mobile : cause racine du défaut Pixel 5, non corrigé (accueil gelé jusqu'au 28/10, D44 et M5).
+- Inactifs : `introMedia` des guides (10 iframes `cdn.embedly.com`, 6 scripts `orbitvu.co`, champ non rendu par le gabarit) ; `components/media/VideoFacade.tsx` et `components/video/YouTubeFacade.tsx`, importés par aucun fichier (ils chargeraient `img.youtube.com` ou `i.ytimg.com` à l'affichage).
 
 ---
 

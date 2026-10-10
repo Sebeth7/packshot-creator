@@ -66,7 +66,9 @@ describe('addYouTubeReferrerPolicy — referrerpolicy des embeds YouTube (#46)',
     }
   });
 
-  it('iframes non YouTube : strictement inchangées (fonction et processHtmlContent)', () => {
+  // processHtmlContent passe en façade les seules intégrations reconnues par
+  // lib/external-embeds.ts (ici, les deux sources Vimeo) ; les autres restent intactes.
+  it('iframes non YouTube : inchangées par la fonction ; par processHtmlContent, hors intégrations reconnues', () => {
     const autres = [
       '<iframe src="https://player.vimeo.com/video/123" allowfullscreen="true"></iframe>',
       '<iframe title="Modèle 3D" src="https://sketchfab.com/models/abc/embed" frameborder="0"></iframe>',
@@ -80,7 +82,12 @@ describe('addYouTubeReferrerPolicy — referrerpolicy des embeds YouTube (#46)',
     ];
     for (const html of autres) {
       expect(ref(html)).toBe(html);
-      expect(out(html)).toBe(html);
+      if (/src="https:\/\/player\.vimeo\.com\//.test(html)) {
+        expect(out(html)).not.toMatch(/<iframe/);
+        expect(out(html)).toContain('data-embed-provider="vimeo" data-embed-src="https://player.vimeo.com/video/123"');
+      } else {
+        expect(out(html)).toBe(html);
+      }
     }
   });
 
