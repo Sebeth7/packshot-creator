@@ -7,13 +7,16 @@ import { NavLink as Link } from '@/components/layout/NavLink';
 import { type LinkHref, localeSwitchHref, type AppLocale } from '@/i18n/deChCoverage';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
+import { LIEN_OCCASION } from '@/lib/occasion/navigation';
 
 interface DropdownItem {
   href: LinkHref;
   labelKey: string;
+  /** Libellé direct, hors messages/*.json (lien FR seul « Offres d'occasion »). */
+  label?: string;
   descKey: string;
   icon: React.ReactNode;
 }
@@ -166,7 +169,7 @@ function NavDropdown({
         className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
         onClick={close}
       >
-        {t(item.labelKey)}
+        {item.label ?? t(item.labelKey)}
       </Link>
     );
 
@@ -280,7 +283,7 @@ function MobileNavSection({
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
                     {item.icon}
                   </span>
-                  {t(item.labelKey)}
+                  {item.label ?? t(item.labelKey)}
                 </Link>
               ))}
             </div>
@@ -335,7 +338,12 @@ function LangSwitcher({ locale, pathname, slug }: { locale: string; pathname: st
   );
 }
 
-export default function Header() {
+/**
+ * `lienOccasion` : lien texte « Offres d'occasion » sous Studios (desktop et
+ * mobile). Calculé côté serveur par app/[lang]/layout.tsx : FR seulement, jamais
+ * en production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
+ */
+export default function Header({ lienOccasion = false }: { lienOccasion?: boolean }) {
   const t = useTranslations('common.nav');
   const locale = useLocale();
   const pathname = usePathname();
@@ -355,6 +363,15 @@ export default function Header() {
           descKey: 'studiosDesc',
           icon: <Camera className="h-4 w-4" />,
         },
+        ...(lienOccasion
+          ? [{
+              href: LIEN_OCCASION.href,
+              labelKey: 'occasion',
+              label: LIEN_OCCASION.libelle,
+              descKey: '',
+              icon: <RefreshCw className="h-4 w-4" />,
+            }]
+          : []),
         {
           href: '/ia-photo-produit',
           labelKey: 'aiSoftware',

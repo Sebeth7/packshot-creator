@@ -66,6 +66,7 @@ export const ROUTES_EXCLUES: readonly RegleRoute[] = [
   { chemin: '/fr/calculateur', motif: 'Calculateur interne' },
   { chemin: '/fr/outil-financement', motif: 'Simulateur de financement' },
   { chemin: '/fr/catalogue-orbitvu-all-in-one', motif: 'Landing catalogue (#82)' },
+  { chemin: '/fr/studios-photo-automatises/opportunites', motif: "Offres d'occasion : parcours distinct des ventes neuves" },
   { chemin: '/fr/mentions-legales', motif: 'Page légale' },
   { chemin: '/fr/cgu', motif: 'Page légale' },
   { chemin: '/fr/confidentialite', motif: 'Page légale' },

@@ -11,6 +11,7 @@ import AttributionTracker from '@/components/analytics/AttributionTracker';
 import CookieBanner from '@/components/cookies/CookieBanner';
 import PopinEngagement from '@/components/engagement/PopinEngagement';
 import { popinServie } from '@/lib/engagement/activation';
+import { liensOccasionServis } from '@/lib/occasion/activation';
 import { SmoothScroll } from '@/components/animations';
 import { tx } from '@/lib/locale-text';
 
@@ -83,6 +84,10 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
+  // Lien « Offres d'occasion » (menu haut, pied de page) : FR seulement, absent de
+  // la production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
+  const lienOccasion = lang === 'fr' && liensOccasionServis();
+
   return (
     <html lang={lang} className={inter.variable}>
       <body className="font-body text-text-dark antialiased overflow-x-hidden">
@@ -90,9 +95,9 @@ export default async function LocaleLayout({
           <SmoothScroll />
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
           <AttributionTracker />
-          <Header />
+          <Header lienOccasion={lienOccasion} />
           <main>{children}</main>
-          <Footer />
+          <Footer lienOccasion={lienOccasion} />
           {/* Pop-in d'engagement : FR seulement, absente de la production sans GO (lib/engagement/activation.ts) */}
           {lang === 'fr' && popinServie() && <PopinEngagement />}
           <CookieBanner />
