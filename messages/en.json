@@ -2840,6 +2840,10 @@
         "description": "Some blog articles embed videos hosted by YouTube (Google). When the page is displayed, only a local placeholder is shown: nothing is loaded from YouTube. The player, served from youtube-nocookie.com, is loaded only after your consent: when you click \"Allow and play the video\", or when you click a video if you have accepted the \"YouTube videos\" category in the cookie manager. Once the player is loaded, YouTube receives your IP address and may use cookies or similar technologies. Their use is described in Google's Privacy Policy.",
         "linkLabel": "Google Privacy Policy"
       },
+      "sessionStorage": {
+        "title": "Session storage (suggestion window)",
+        "description": "On French-language pages, on desktop, a window may suggest requesting a demo or receiving the Orbitvu catalogue. So that it appears only once in the same tab, your browser keeps in its session storage (sessionStorage, key \"pkc_popin_engagement\") the time you arrived on the site and the state of this window (shown, closed or followed by a click). This information contains no identifier, never leaves your browser and is erased when the tab's browsing session ends."
+      },
       "managePreferences": "You can change your preferences at any time via the \"Manage cookies\" link at the bottom of each page."
     },
     "article7": {

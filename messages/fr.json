@@ -2843,6 +2843,10 @@
         "description": "Certains articles du blog intègrent des vidéos hébergées par YouTube (Google). À l'affichage de la page, seule une façade locale est présentée : aucune ressource n'est chargée depuis YouTube. Le lecteur, servi depuis youtube-nocookie.com, n'est chargé qu'après votre accord : au clic sur « Autoriser et lire la vidéo », ou au clic sur une vidéo si vous avez accepté la catégorie « Vidéos YouTube » dans le gestionnaire de cookies. Une fois le lecteur chargé, YouTube reçoit votre adresse IP et peut utiliser des cookies ou des technologies similaires. Leur usage est décrit dans les règles de confidentialité de Google.",
         "linkLabel": "Règles de confidentialité de Google"
       },
+      "sessionStorage": {
+        "title": "Stockage de session (fenêtre de suggestion)",
+        "description": "Sur les pages en français, sur ordinateur, une fenêtre peut proposer de demander une démonstration ou de recevoir le catalogue Orbitvu. Pour qu'elle ne s'affiche qu'une fois dans un même onglet, votre navigateur conserve dans son stockage de session (sessionStorage, clé « pkc_popin_engagement ») l'heure de votre arrivée sur le site et l'état de cette fenêtre (affichée, fermée ou suivie d'un clic). Ces informations ne comportent aucun identifiant, ne quittent pas votre navigateur et sont effacées à la fin de la session de navigation de l'onglet."
+      },
       "managePreferences": "Vous pouvez modifier vos preferences a tout moment via le lien \"Gerer les cookies\" en bas de chaque page."
     },
     "article7": {

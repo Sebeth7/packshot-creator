@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #122 — publication autorisée (D55) : interrupteur ouvert, stockage de session mentionné dans la politique de confidentialité · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122 | **Commit** : voir l'historique de #122
+
+**Quoi** — GO_MERGE et GO_PUBLICATION de Laurent du 10/10 et ses réponses aux quatre points ouverts (D55) : `POPIN_PUBLICATION_AUTORISEE = true` ; article 6 de la politique de confidentialité complété d'une entrée « Stockage de session (fenêtre de suggestion) » en FR, EN et de-ch ; commentaires et test des interrupteurs alignés.
+
+**Pourquoi** — Les préalables documentés sur #122 sont levés par décision de Laurent : copy publiée sur son autorité (`SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED`) ; `sessionStorage` tenu pour fonctionnel, sans consentement, et mentionné ; fermeture par X et Échap validée par les tests automatisés ; droits du visuel confirmés.
+
+**Fichiers** — `lib/engagement/activation.ts`, `lib/engagement/session.ts` (commentaire), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts` (commentaire), `app/[lang]/confidentialite/page.tsx` (une entrée), `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (clé `privacy.article6.sessionStorage` ajoutée, aucune clé existante modifiée, mise en forme conservée), `docs/seo-geo/DECISIONS.md` (D55), `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — À la fusion : pop-in montée en production, donc sur `www`, desktop FR seulement ; exclusions, gels et périodes de mesure inchangés. Politique de confidentialité : une entrée de plus à l'article 6. Mesure sur 7 à 14 jours : `exit_modal_view` et `cta_click` (`exit_modal`) dans GA4, consentement requis.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest : 34 fichiers, 626 tests ; ESLint (`lib/engagement`, `components/engagement`, politique, spec) : aucune erreur ; `npx next build` vert (valeurs factices), 387 pages ; `next start` local : entrée de l'article 6 rendue sur `/fr/confidentialite` et `/en/confidentialite` (`/de-ch/confidentialite` : 404, comme sur `main`) ; Playwright Chromium, `e2e/popin-engagement.spec.ts` : 38/38 (conditions, X, Échap, rechargement, exclusions, gels, mobile, session). Sources CNIL relues le 10/10 : page « Cookies et traceurs : comment mettre mon site web en conformité ? » (le stockage local relève des traceurs) ; lignes directrices, délibération n° 2020-091, article 5, point 49 (liste des exemptions).
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4) ; contrôle humain en Chrome de la fermeture (D55 : tests automatisés tenus pour suffisants). `pkc_attribution` (`lib/attribution.ts`, monté dans le layout) : écrit en production dans le `sessionStorage` (UTM, referrer, première page) sans consentement ni mention dans la politique ; hors #122, non modifié, à signaler à Laurent.
+
+**Suite** — CI, sortie du brouillon et fusion ; contrôle de `sysnext.vercel.app` (smoke, pop-in montée), puis de `www` dans Chrome (Laurent) ; mesure sur 7 à 14 jours ; validation de la copy par Sébastien, non bloquante (D55).
+
+---
+
 ## 2026-10-10 · Clôture de #123 et #124 : `main` `3619e75` intégré dans #125, exception renumérotée D54, contrôle de `www` dans Chrome · Claude de Laurent
 
 **Chantier** : maillage et cocons, clôture (mission de Laurent du 10/10 « Réconciliation finale de la PR #125 ») | **PR** : #125, brouillon, documentation seule | **Commit** : fusion de `main` `3619e75` dans la branche `claude/gracious-cerf-rbj12m` (ce commit)
@@ -73,6 +95,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - Fusion de #125 : GO_MERGE distinct de Laurent.
 - #125 et #126 modifient toutes deux la ligne « Dernière mise à jour documentaire » d'`ETAT.md` et le haut de `JOURNAL.md` : la seconde fusionnée devra intégrer `main`. La ligne `main` d'`ETAT.md` est identique dans les deux PR.
 
+## 2026-10-10 · #122 — `main` `3619e75` (fusion de #82) intégré ; dépendance « catalogue 404 » levée · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122, brouillon | **Commit** : fusion de `main` `3619e75` (voir l'historique de #122)
+
+**Quoi** — `main` `3619e75` (fusion de #82, 10/10 à 05:00 UTC) fusionné dans #122, sans rebase. Conflits dans `JOURNAL.md` (union, entrées placées par heure UTC) et `ETAT.md` (historique « Dernière mise à jour » des deux côtés conservé). Aucun fichier de code commun. Ligne #122 d'`ETAT.md` : la landing catalogue est publiée, le CTA secondaire ne mène plus à une 404.
+
+**Pourquoi** — #82 fusionnée et publiée ; #122 en conflit documentaire avec `main`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `e2e/popin-engagement.spec.ts` (aide `lire`).
+
+**Effet attendu** — Aucun ; #122 reste en brouillon, GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — `sysnext.vercel.app/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide` : 200 le 10/10 (05:0x UTC) ; #82 lit `origine` (liste fermée) et l'écrit dans la notification interne. Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné. `tsc`, `verifier-json`, Vitest 626/626, `next build` (387 pages).
+
+Test rendu robuste (`e2e/popin-engagement.spec.ts`, aide `lire`) : la cible de défilement est recalculée jusqu'à stabilisation. L'ancienne aide figeait la cible au premier calcul ; sur `/fr`, la hauteur de page peut changer après le chargement, et le test « aucune apparition sur /fr » échouait par intermittence (délai de 30 s). Contre-épreuve sur serveur relancé à froid : ancienne aide 1 échec sur 3 ; nouvelle aide 3 sur 3 ; spec complète en Chromium 76/76 sur deux répétitions.
+
+**Correction** — Le relevé « `e2e/popin-engagement.spec.ts` 52/52 » sur `f5c3bbb` (description de #122, 09/10) était inexact : la commande n'affichait que la dernière ligne du résumé. La configuration locale exécute 4 projets × 38 tests ; Firefox et WebKit ne démarrent pas avec le binaire Chromium imposé, et le projet Mobile Chrome ne s'applique pas à une pop-in desktop. Le chiffre de référence est le projet Chromium : 38/38.
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4).
+
+**Suite** — Restent pour #122 : GO de fusion et de publication de Laurent, P4 `sessionStorage` (statut juridique NON ÉTABLI), QA de Laurent (X puis rechargement, Échap), spec hors CI jusqu'à #117.
+
 ---
 
 ## 2026-10-10 · Landing catalogue All-in-One (#82) : variables de Production relevées, `CATALOGUE_NOTIFICATION_EMAIL` créée · Claude de Laurent
@@ -100,6 +146,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Suite** — Fusion de #82 (D53), puis contrôle de `sysnext.vercel.app` (`GET /api/catalogue`, page, politique) et de `www` dans Chrome (R4).
 
 ---
+
+## 2026-10-09 · #122 — `main` `f143f61` intégré (#123, #124), sans changement de code · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122, brouillon | **Commit** : fusion de `main` `f143f61` (voir l'historique de #122)
+
+**Quoi** — `main` `f143f61` (fusions de #123 et #124) fusionné dans #122, sans rebase. Conflits dans `JOURNAL.md` (union, entrées placées par heure UTC) et `ETAT.md` (lignes #122, #123 et #124 conservées). Aucun fichier de code commun. Ligne #122 d'`ETAT.md` : `main` intégré, `origine` désormais lue par #82 sur sa branche.
+
+**Pourquoi** — Point de contrôle de 20:49 UTC : `main` avancé, #122 en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun. #122 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION toujours non donnés.
+
+**Vérifié** — Aucune entrée de `main` ni de #122 absente du JOURNAL fusionné ; contrôles de la tête : description de #122.
+
+**Supposé** — Aucun.
+
+**Non regardé** — La D52 de `main` (#124 : liens éditoriaux vers Mode et F5 sans attendre les fenêtres de mesure) ne vise pas la pop-in ; les gels de `ROUTES_GELEES` (F5 jusqu'au 23/11, Mode jusqu'au 26/11) restent ceux de la mission de Laurent du 09/10, non modifiés.
+
+**Suite** — Inchangée : dépendance à #82 (publication de la landing), P4 `sessionStorage`, QA de Laurent (X puis rechargement, Échap).
 
 ## 2026-10-09 · Fusion et publication de #123 puis #124 (exception D54), contrôles de production · Claude de Laurent
 
@@ -263,6 +329,83 @@ Baseline GSC, 90 jours du 09/07 au 06/10/2026 (projet `gsc-crawl-seo`, `gsc_metr
 
 ---
 
+## 2026-10-09 · #122 — contrôle de Laurent en Chrome réel : ouverture confirmée ; diagnostic en texte JSON · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122, brouillon ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122 | **Base** : `main` `3c0909b`, inchangé
+
+**Contrôle de Laurent** — Chrome réel, Preview de `a214dc0`, `/fr/blog/guide-achat-studio-2026?popin-debug=1`, de 17:33 à 17:37 (heure du poste). Constats rapportés par Laurent :
+- **Onglet** : vierge, `{"debut":…,"etat":null}`, sans remise à zéro.
+- **Fenêtre** : `innerWidth` 1321, requête desktop complète vraie.
+- **Conditions** :
+  - environ 275 s sur le site ;
+  - lecture maximale 92 %, environ 87 % à la sortie ;
+  - cookie `cookie-consent` présent ;
+  - aucune autre fenêtre affichée.
+- **Événements reçus** :
+  - 4 `mouseleave` : 3 sorties par la droite vers le panneau Claude (x = 1322, 1335, 1323), ignorées comme sorties latérales ;
+  - 1 sortie par le haut (x = 1324, y = −6) ;
+  - aucun signal `approche` : la montée finale était en diagonale vers le coin haut droit.
+- **Résultat** : **pop-in ouverte** à la première vraie sortie par le haut ; `etat` passé à `shown` ; `<dialog open>` de 960 × 597.
+- **Bilan** : `CODE_BUG_CONFIRMED = NO`. Causes de variabilité relevées par Laurent : page masquée au départ (fenêtre Chrome réduite ou recouverte) ; sorties latérales vers le panneau Claude ; une seule apparition par onglet ; 60 s de session ; 70 % de la page courante.
+- Fermeture (X, Échap) et absence de réapparition après rechargement : non rapportées dans ce contrôle.
+
+**Quoi** — Mode `?popin-debug=1` seulement : le détail des lignes `[popin]` est écrit en texte JSON (au lieu d'un objet que les outils de lecture de console affichent « Object »), avec en plus la visibilité de la page (`page`). Comportement hors diagnostic inchangé.
+
+**Fichiers** — `components/engagement/PopinEngagement.tsx`, `e2e/popin-engagement.spec.ts`.
+
+**Protocole de test, à partir de ce contrôle** —
+- fenêtre Chrome au premier plan ;
+- sortie verticale vers la barre d'onglets, loin du panneau Claude ;
+- un nouvel onglet par essai (onglet saisi, pas dupliqué), ou effacement de `pkc_popin_engagement` dans le `sessionStorage` de l'onglet, sur accord, avant un nouvel essai. Un onglet où la pop-in est apparue reste consommé jusqu'à sa fermeture.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; Vitest : 27 fichiers, 532 tests ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages ; `e2e/popin-engagement.spec.ts` : 38/38, dont la lecture du JSON du diagnostic (`pret`, `page`, `desktop`, `secondes`, `lecture`, `cookies`, `autreFenetre`, `dejaAffichee`).
+**Supposé** — [Inférence] Les observations intermittentes antérieures relèvent des mêmes causes d'environnement ; non vérifiable, le `sessionStorage` des autres onglets n'étant pas accessible. Cela repose sur des schémas observés.
+**Non regardé** — Chrome sous macOS ; plein écran.
+
+**Suite** — Compléter le contrôle de la Preview : fermeture par X puis rechargement, puis Échap dans un nouvel onglet. Puis décisions HOLD (P4, D42 étape 5, publication après #82) ; fusion sur GO distinct.
+
+---
+
+## 2026-10-09 · #122 — intention de sortie fiabilisée (constat de Laurent en Chrome réel) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement, correction ciblée (mission de Laurent du 09/10, « #122 exit intent ne fonctionne pas en Chrome réel » ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b`, inchangé
+
+**Constat** — Laurent, sur la Preview, 60 s et 70 % réunis : la pop-in ne s'affiche pas quand la souris quitte la page par le haut. Les tests Playwright précédents construisaient l'événement de sortie par `dispatchEvent`, taillé pour la règle : ils ne prouvaient rien sur Chrome réel.
+
+**Diagnostic** —
+- Chromium 141 fenêtré (Linux X11, écran virtuel), pointeur système déplacé par XTest jusqu'à la barre d'onglets : l'ancienne version `be503f3` s'ouvre aussi (Chromium y rapporte une coordonnée extérieure, `y = -18`). Le défaut n'est pas reproduit dans cet environnement.
+- [Inférence] Causes couvertes par la correction, faute de reproduction (cela repose sur des schémas observés) :
+  - sortie rapportée à la dernière position intérieure, au-delà des 20 px de l'ancien seuil (comportement prêté à Chrome sous certains systèmes) ;
+  - condition desktop évaluée au chargement seulement : fenêtre étroite à l'ouverture (outils de développement, zoom, mise à l'échelle), aucun écouteur posé ;
+  - une fenêtre `[role="dialog"]` masquée, présente dans le DOM, bloquait la pop-in ;
+  - bord haut atteint sans quitter le document.
+
+**Quoi** — Détection de l'intention de sortie seulement ; design, copy, CTA, `sessionStorage`, 60 s et 70 % inchangés.
+- **Signal principal** : `mouseleave` de `document.documentElement` (et `mouseout` sans cible, équivalent), accepté si la sortie se fait par le haut. Accepté : coordonnée négative ; ou position rapportée dans les 80 px du haut, plus proche du bord haut que des côtés, avec une dernière montée continue. Écartés : côtés, bas, barre de défilement, descente.
+- **Repli** : la souris atteint les 8 px du haut au terme d'une montée continue d'au moins 40 px, sans bouton enfoncé, avant même de quitter le document.
+- **Trajectoire** : dernière suite de pas montants sur 600 ms ; un balayage horizontal (en-tête) l'interrompt ; tremblement latéral léger toléré.
+- **Une seule ouverture** : drapeau et retrait des écouteurs au premier déclenchement.
+- Écouteurs posés dès qu'un pointeur fin capable de survol est présent ; la largeur de 1 024 px est vérifiée au moment du geste. Mobile et tactile : toujours aucun écouteur.
+- Fenêtres bloquantes : seulement celles affichées (`dialog[open]`, `[role="dialog"]` ou `[aria-modal]` visibles, défilement bloqué).
+- **Diagnostic** : `?popin-debug=1` dans l'URL écrit en console l'état du surveillant au montage et chaque signal de sortie avec l'état des conditions. Rien n'est stocké ni envoyé.
+
+**Fichiers** — `lib/engagement/regles.ts`, `components/engagement/PopinEngagement.tsx`, `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Rayon d'action** — Surveillant toujours dans le chunk partagé du layout : +6,9 Ko brut et +2,9 Ko gzip par page, FR, EN et de-ch comprises (contre +4,9 et +2,1 Ko ; écart dû aux messages de diagnostic). Aucun texte ni balise ajoutés au HTML prérendu ni au flux RSC. `CookieBanner.tsx`, `pr-checks.yml`, #82 et #117 non modifiés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages.
+- Vitest : 27 fichiers, 532 tests, dont 33 pour la pop-in : sortie haute à coordonnée extérieure, sortie à la dernière position intérieure (0, 30 et 80 px), sorties latérales et basses, barre de défilement, descente, repli, en-tête (horizontal, immobile, clic), petite remontée, trajectoire.
+- Playwright Chromium sur `next start` local : `e2e/popin-engagement.spec.ts` 38/38 puis 76/76 sur deux répétitions. Souris uniquement par `page.mouse` (événements `isTrusted` émis par Chromium), plus aucun `dispatchEvent`. Les tests « aucune apparition » attendent le message du surveillant, pour ne pas passer avant l'hydratation.
+- Specs de la CI et `youtube-consent` : 89/89.
+- **Chromium 141 fenêtré, pointeur système (XTest), build local de la nouvelle tête** : avant 60 s, rien ; 60 s et 30 % de lecture, rien ; sorties gauche, droite, gauche près du haut et basse, rien ; en-tête (montée sur « Solutions », balayage, deux clics), rien ; montée vers la barre d'onglets, ouverture (par le repli, à `y = 2`) ; X, fermée ; rechargement, 100 % et nouvelle sortie haute, rien (« déjà affichée dans la session (dismissed) »).
+**Supposé** — [Inférence] La correction couvre le défaut observé par Laurent ; non prouvé, faute de l'avoir reproduit. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO Vercel) ; Chrome sous Windows et macOS ; plein écran (l'API Fullscreen ne s'est pas appliquée dans l'écran virtuel).
+
+**Suite** — Nouveau contrôle de Laurent sur la Preview, avec `?popin-debug=1` et la console ouverte en cas d'échec : le message indique la condition manquante. Fusion sur GO distinct.
+
+---
+
 ## 2026-10-09 · Campagne globale de maillage — 34 liens contextuels (D48 b), correction EN de l'article « lens » (D15) et liens des guides rendus visibles · Claude de Laurent
 
 **Chantier** : maillage et cocons, campagne unique (missions de Laurent du 09/10 : R1 « objectifs photographiques », campagne globale, complément « densité par page », réconciliation V4.3, puis « finition finale » avec GO_CODE ponctuel ; GO_PR_SUPPLÉMENTAIRE, GO_MERGE, GO_PUBLICATION, appels payants = NO) | **PR** : #123, brouillon, « DO NOT MERGE », branche `claude/gracious-cerf-rbj12m` | **Base** : `main` `3c0909b` intégré (fusion de #109)
@@ -295,6 +438,32 @@ Baseline GSC, 90 jours du 09/07 au 06/10/2026 (projet `gsc-crawl-seo`, `gsc_metr
 **Non regardé** — Preview Vercel (protégée par SSO) ; `www` (R4) ; Firefox et WebKit ; relecture humaine de l'anglais.
 
 **Suite** — CI verte sur la tête finale ; information de Sébastien publiée le 09/10 à 14:16:03 UTC (aucune nouvelle information demandée par Laurent) ; QA Chrome ; délai D15 de 5 jours ouvrés à compter de la dernière condition remplie sur la tête finale ; GO_MERGE distinct ; J0 = publication constatée sur `www`.
+## 2026-10-09 · #122 — `main` `3c0909b` intégré, plafond de session réel (`sessionStorage`), temps cumulé sur le site · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « #122 — remise à niveau main + vrai cap session + finalisation technique » ; code sur #122 seulement ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `3c0909b` intégré par fusion (`980781c`) ; conflits limités à `JOURNAL.md` et `ETAT.md`, résolus par union (187 entrées de `main` conservées) ; aucun conflit de code
+
+**Quoi** —
+- **Une apparition par session**, rechargement et navigation compris : état dans `sessionStorage` seulement, clé `pkc_popin_engagement`, contenu `{ "debut": <instant d'arrivée, ms>, "etat": null | "shown" | "dismissed" | "converted" }`. `shown` à l'apparition ; `dismissed` à la fermeture (X, Échap, fond) ; `converted` au clic Démo ou Catalogue. Tout état non nul empêche une nouvelle apparition.
+- **60 s sur le site** : écart entre maintenant et l'instant d'arrivée de la session (horodatage, aucun compteur actif) ; conservé par les navigations internes et les rechargements dans l'onglet ; nouvelle session ou nouvel onglet : zéro.
+- **70 % de lecture** : propres à la page courante, remis à zéro à chaque page ; première mesure 250 ms après l'affichage de la page, pour que le défilement de la page précédente ne compte pas.
+- `sessionStorage` indisponible (navigation privée stricte, quota) : repli sur la mémoire de la page, sans erreur.
+- Design, copy, exclusions, gels, CTA, mesure GA4 : inchangés.
+
+**Pourquoi** — Décision de Laurent du 09/10 : une seule apparition par session, fermeture, clic Démo et clic Catalogue compris ; 60 s minimum sur le site ; 70 % de la page courante ; intention de sortie ; conditions cumulatives.
+
+**Statut vie privée** — `SESSION_STORAGE_USED = functional session-only state`. `PRIVACY_LEGAL_STATUS = NON ÉTABLI`, à intégrer à P4 avant publication. Aucun cookie, aucun `localStorage`, aucun identifiant, aucune URL ni historique de navigation stockés.
+
+**Fichiers** — `lib/engagement/session.ts`, `lib/engagement/activation.ts` (`STOCKAGE_SESSION_AUTORISE = true`), `components/engagement/PopinEngagement.tsx`, `components/engagement/FenetreEngagement.tsx`, `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Rayon d'action** — Inchangé dans sa nature : surveillant dans le chunk partagé du layout, +4,9 Ko brut et +2,1 Ko gzip par page, FR, EN et de-ch comprises (contre +4,4 et +1,9 Ko avant ; comparaison avec un build de `main` à code client identique). Aucun texte ni balise ajoutés au HTML prérendu ni au flux RSC. #117 toujours ouverte : `CookieBanner.tsx` et `pr-checks.yml` non modifiés ; le spec Playwright reste hors de la CI.
+
+**Origine** — `ORIGINE_EMITTED_BY_122 = YES` (`/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide`, aucun UTM). `ORIGINE_CONSUMED_BY_82 = NO` : dépendance de #82, non modifiée.
+
+**Vérifié** — Gels relus sur `main` `3c0909b` (`R-UX-LONG.md` § 4 inchangé : accueil 28/10, F5 23/11, Mode et mode-textile 26/11) ; `npx tsc --noEmit` vert ; ESLint ciblé sans erreur ni avertissement ; Vitest : 27 fichiers, 523 tests, dont 24 pour la pop-in ; `verifier-json` : 195 fichiers ; `npx next build` : 386 pages ; Playwright Chromium sur `next start` local : `e2e/popin-engagement.spec.ts` 34/34, dont 9 tests de session (fermeture puis rechargement, clic Démo, clic Catalogue, Échap puis navigation interne, 30 s sur A puis B, temps conservé au rechargement, nouvelle session à zéro, 70 % d'une page précédente ignorés en navigation interne et en chargement complet) ; specs de la CI et `youtube-consent` : 89/89. Contre-épreuve avec `STOCKAGE_SESSION_AUTORISE = false` : les 5 tests qui dépendent du stockage échouent, les 5 autres passent.
+**Supposé** — [Inférence] La Preview se comporte comme le build local ; elle est derrière le SSO Vercel. Cela repose sur des schémas observés.
+**Non regardé** — Preview et production (R4) ; Firefox et Safari (navigateurs absents du conteneur).
+
+**Suite** — Contrôle humain de la Preview par Laurent, rechargement compris (D42, étape 4) ; P4 avant publication ; validation D42 étape 5 ; publication après celle de la landing #82 ; GO de fusion distinct.
 
 ---
 
@@ -359,6 +528,42 @@ Baseline GSC, 90 jours du 09/07 au 06/10/2026 (projet `gsc-crawl-seo`, `gsc_metr
 **Non regardé** — Preview (SSO) ; `www` (R4).
 
 **Suite** — Ordre recommandé : #109 puis #111 ; D42 étapes 4 et 5 portées par les mêmes phrases que #109 ; fusion sur GO distinct de Laurent.
+
+---
+
+## 2026-10-09 · Pop-in d'engagement — démo prioritaire, catalogue Orbitvu en repli (desktop, FR) · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (mission de Laurent du 09/10, « Démo prioritaire + catalogue Orbitvu en repli » ; GO code ; GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : #122, brouillon, branche `feat/catalogue-engagement-popup` | **Base** : `main` `f03f8ca`
+
+**Quoi** — Fenêtre modale desktop, FR, distincte de #82 : « Demander une démo » en CTA principal (`/fr/contact`, cible de tous les CTA démo du site), « Recevoir le catalogue » en CTA secondaire (`/fr/catalogue-orbitvu-all-in-one?origine=brochure_exit_sitewide`, aucun UTM). Apparition une seule fois par session, seulement si trois conditions sont réunies : 60 s sur le site, 70 % de la page lus, puis intention de sortie (souris qui remonte et quitte la fenêtre par le haut). Copy et maquette validées par Laurent, reprises mot pour mot.
+
+**Pourquoi** — Décision de Laurent du 09/10 : démo = conversion prioritaire, catalogue = repli, pop-in = moteur de visibilité des deux ; ni pop-up à l'arrivée, ni minuterie seule, ni mobile, ni formulaire embarqué.
+
+**Fichiers** — `lib/engagement/regles.ts` (routes couvertes, exclusions, gels, seuils, intention de sortie), `lib/engagement/activation.ts` (interrupteurs), `lib/engagement/session.ts` (mémoire de session), `lib/engagement/mesure.ts` (GA4), `components/engagement/PopinEngagement.tsx` (surveillant), `components/engagement/FenetreEngagement.tsx` (fenêtre), `components/engagement/contenu.ts`, `components/engagement/visuel.ts`, `app/[lang]/layout.tsx` (montage), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts`.
+
+**Comportement** —
+- Desktop au sens du dépôt : 1 024 px et plus (seuil D44), pointeur fin capable de survol. Rien n'est monté en EN ni en de-ch ; sur mobile, aucun écouteur et aucun téléchargement du visuel.
+- Exclusions : `/fr/contact`, `/fr/calculateur-roi`, `/fr/calculateur`, `/fr/outil-financement`, `/fr/catalogue-orbitvu-all-in-one`, `/fr/mentions-legales`, `/fr/cgu`, `/fr/confidentialite`, `/fr/academy`, segments de confirmation (`merci`, `confirmation`, `succes`…). Gels (`R-UX-LONG.md`, « aucune modification de la page ») : `/fr` jusqu'au 28/10, `/fr/packshot-e-commerce` jusqu'au 23/11, `/fr/packshot-mode` et `/fr/industrie/mode-textile` jusqu'au 26/11. Aucune levée automatique : une ligne retirée de `ROUTES_GELEES`, sur décision, suffit.
+- Pas d'apparition tant que le bandeau cookies attend un choix ou a été rouvert, ni quand une autre fenêtre occupe l'écran (`dialog[open]`, `role="dialog"`, `aria-modal`, défilement bloqué).
+- `<dialog>` natif en modal : `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, focus initial sur « Fermer », focus piégé, Échap, clic sur le fond, retour du focus. Aucune animation, aucun décalage de mise en page (couche supérieure, défilement non bloqué). Fenêtre, texte et visuel chargés seulement quand 60 s et 70 % sont atteints.
+- GA4, sans donnée personnelle : `exit_modal_view` (dénominateur, aucun événement existant ne le mesurait), `cta_click` `demo` / `brochure` / `close` (+ `close_method`), `cta_location: exit_modal`.
+
+**Rayon d'action** — `app/[lang]/layout.tsx` est commun à toutes les pages : le surveillant rejoint le chunk JS partagé du layout, soit +4,4 Ko brut et +1,9 Ko gzip par page, FR, EN et de-ch comprises (comparaison avec le build de #109, même base de code client). Aucun texte, aucune image, aucune balise ajoutés au HTML prérendu ni au flux RSC d'une page, gelées comprises. `components/cookies/CookieBanner.tsx` et `.github/workflows/pr-checks.yml` non modifiés, car #117 modifie ces deux fichiers : le bandeau est détecté par son cookie `cookie-consent` et ses événements `open-cookie-banner` / `cookie-consent-update`. En conséquence, le spec Playwright n'est pas encore exécuté par la CI ; à ajouter à `ATTENDUS` après #117. Les tests unitaires le sont.
+
+**Effet attendu** — Aucun avant le GO de publication : `POPIN_PUBLICATION_AUTORISEE = false`, la pop-in n'est montée ni sur la production Vercel ni donc sur `www` ; elle l'est sur les Preview et en local. Après publication, mesure de 7 à 14 jours : impressions, fermetures, clics démo et catalogue, envois du catalogue, demandes de consultant, signaux de baisse de la démo.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint ciblé (`components/engagement`, `lib/engagement`, `layout`, spec) sans erreur ni avertissement ; Vitest : 26 fichiers, 516 tests (dont 21 de la pop-in) ; `verifier-json` : 195 fichiers ; `npx next build` (variables factices) : 386 pages ; Playwright Chromium sur `next start` local : 24/24 pour `e2e/popin-engagement.spec.ts` (conditions, Échap, X, focus, démo, catalogue avec `origine`, aucune requête non GET ni `/api/`, autre fenêtre, aucun décalage, 8 routes hors couverture, bandeau cookies, mobile sans visuel, rendu 1920 × 1080, 1440 × 900 et 1280 × 720), 81/81 pour les specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`). `cookie-banner.spec.ts` « GA4 après acceptation » : en échec en local car `NEXT_PUBLIC_GA_MEASUREMENT_ID` est absent du build ; aucun fichier analytics ou cookies modifié.
+**Supposé** — [Inférence] `VERCEL_ENV` vaut `production` au build de production Vercel et `preview` sur les Preview (mécanisme identique à `lib/catalogue/activation.ts` de #82). Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO Vercel) ; production (R4) ; Firefox et Safari (navigateurs absents du conteneur) ; version mobile (hors mission).
+
+**HOLD et décisions ouvertes** —
+- **Stockage de session** : la qualification « vie privée » de `sessionStorage` n'est pas établie par la gouvernance (P4 ouvert) ; `STOCKAGE_SESSION_AUTORISE = false`. La mémoire de session est en mémoire du module : elle couvre les navigations internes, pas un rechargement complet ni un nouvel onglet. `SITE_TIME_CROSS_PAGE` est donc partiel : temps cumulé entre pages en navigation interne, remis à zéro par un rechargement complet.
+- **`origine`** : non lue par la landing de #82 (qui garde le chemin sans paramètre et les UTM) ; lecture et remontée dans la notification interne à prévoir après la fusion de #82, sans modifier #82 maintenant.
+- **Publication** : après la publication de la landing catalogue (#82), sinon le CTA secondaire mène à une 404 ; GO_PUBLICATION distinct.
+- **Copywriting FR** : copy validée par Laurent ; validation de Sébastien selon D13 et D42 (étape 5).
+- **Visuel** : affiche du film de la gamme Orbitvu (`public/images/hero/orbitvu-gamme-2026-poster.avif`, 23 Ko), déjà publiée sur l'accueil ; droits d'usage du film « supposés » (JOURNAL du 04/10), non établis.
+
+**Suite** — Contrôle de la Preview par Laurent (D42, étape 4 ; 1440 et 1280 px) ; validation D42 étape 5 ; décisions P4 et publication ; fusion sur GO distinct.
 
 ---
 
