@@ -25,6 +25,26 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D55 · 2026-10-10 · Publication de la pop-in d'engagement (#122) sur l'autorité de Laurent : copy sans validation de Sébastien, `sessionStorage` tenu pour fonctionnel et mentionné, fermeture validée par les tests automatisés, droits du visuel confirmés
+
+**Décidé par** : Laurent — GO de fusion et de publication de #122 du 10/10/2026, puis réponses du 10/10 aux quatre points ouverts de #122
+**Statut** : en vigueur pour la seule PR #122 ; épuisée par sa fusion et sa publication. D42 reste inchangée pour toute autre PR.
+
+**La décision** — GO_MERGE et GO_PUBLICATION de #122. Réponses de Laurent du 10/10/2026, reproduites sans modification :
+
+> Validation de la copy de la pop-in par Sébastien : « Publier sur mon autorité »
+> Statut du sessionStorage `pkc_popin_engagement` : « Exempté + mention »
+> Contrôles Chrome de fermeture par Échap et par X : « Tests auto suffisants »
+> Droits d'usage de l'image du film Orbitvu utilisée comme visuel : « Droits confirmés »
+
+En conséquence : `POPIN_PUBLICATION_AUTORISEE = true` ; article 6 de la politique de confidentialité complété (FR, EN, de-ch) d'une entrée sur ce stockage de session ; `SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED` ; `PUBLICATION_AUTHORITY = LAURENT`. Exclusions de pages, gels (`ROUTES_GELEES`) et périodes de mesure inchangés.
+
+**Le contexte** — #122 documentait trois préalables à la publication : copy (D42, étape 5) ; statut juridique du `sessionStorage` « NON ÉTABLI » (P4) ; fermeture par X et Échap à contrôler en Chrome réel. Un quatrième point restait ouvert : droits du film « supposés » (JOURNAL du 04/10). La CNIL range le stockage local parmi les traceurs soumis à consentement, sauf exemption ; sa liste d'exemptions (délibération n° 2020-091 du 17/09/2020, article 5, point 49) ne cite pas expressément la limitation d'affichage d'une fenêtre : la qualification « fonctionnel, sans consentement » est une décision de Laurent, pas un avis juridique. Fermeture : Playwright Chromium (Échap, X, rechargement, événements `isTrusted`) et pointeur système XTest (X puis rechargement) verts ; ouverture contrôlée par Laurent en Chrome réel le 09/10.
+
+**Ce qu'elle interdit** — Présenter la copy de la pop-in comme validée par Sébastien ; présenter la qualification du `sessionStorage` comme un avis juridique ou une position de la CNIL ; l'étendre à un autre stockage (`pkc_attribution` de `lib/attribution.ts` compris) ; appliquer cette décision à une autre PR ; lever une exclusion ou un gel au titre de cette publication.
+
+---
+
 ## D54 · 2026-10-09 · Exception ponctuelle D15/D48 pour les PR #123 et #124 : fusion et publication sans attendre l'échéance de D15 ; fusion par commit de fusion
 
 **Décidé par** : Laurent — mission « GO final Laurent — fusion et publication PR #123 puis #124 » du 09/10/2026, confirmée par la mission « Reprise autorisée — PR #124 après fusion de #123 » du même jour

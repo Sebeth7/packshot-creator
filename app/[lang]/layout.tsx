@@ -9,6 +9,8 @@ import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import AttributionTracker from '@/components/analytics/AttributionTracker';
 import CookieBanner from '@/components/cookies/CookieBanner';
+import PopinEngagement from '@/components/engagement/PopinEngagement';
+import { popinServie } from '@/lib/engagement/activation';
 import { SmoothScroll } from '@/components/animations';
 import { tx } from '@/lib/locale-text';
 
@@ -91,6 +93,8 @@ export default async function LocaleLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          {/* Pop-in d'engagement : FR seulement, absente de la production sans GO (lib/engagement/activation.ts) */}
+          {lang === 'fr' && popinServie() && <PopinEngagement />}
           <CookieBanner />
         </NextIntlClientProvider>
       </body>
