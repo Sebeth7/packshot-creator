@@ -2790,6 +2790,10 @@
         "title": "Formulaires de contact",
         "description": "Nom, email, téléphone, entreprise, message"
       },
+      "catalogueForm": {
+        "title": "Demande de catalogue",
+        "description": "Prénom, e-mail, entreprise, pays, produits (facultatif), demande d'échange avec un consultant (facultative)"
+      },
       "interactiveTools": {
         "title": "Outils interactifs",
         "description": "Données saisies dans le calculateur ROI, simulateur OPCO, sélecteur systèmes"
@@ -2805,7 +2809,8 @@
       "purpose2": "Fournir les résultats des outils interactifs",
       "purpose3": "Gérer les inscriptions aux formations",
       "purpose4": "Améliorer notre site et nos services",
-      "purpose5": "Respecter nos obligations légales"
+      "purpose5": "Respecter nos obligations légales",
+      "purpose6": "Vous transmettre le catalogue demandé et assurer le suivi de votre demande"
     },
     "article4": {
       "heading": "Article 4 : Durée de conservation",
@@ -2843,6 +2848,10 @@
     "article7": {
       "heading": "Article 7 : Sécurité",
       "content": "Sysnext met en oeuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, modification, divulgation ou destruction."
+    },
+    "article8": {
+      "heading": "Article 8 : Envoi des e-mails liés à une demande de catalogue",
+      "content": "Les e-mails liés à une demande de catalogue (envoi du lien de téléchargement et notification de la demande à notre équipe) sont expédiés par notre prestataire Resend, qui agit en qualité de sous-traitant. Resend indique que ses principales opérations de traitement ont lieu aux États-Unis. Les transferts depuis l'Espace économique européen sont encadrés par les clauses contractuelles types de la Commission européenne, intégrées à l'accord de traitement des données de Resend ; Resend indique également participer au EU-U.S. Data Privacy Framework. Pour les transferts depuis la Suisse, cet accord applique les mêmes clauses, avec les adaptations qu'il prévoit."
     },
     "cta": {
       "heading": "Questions sur vos données ?",

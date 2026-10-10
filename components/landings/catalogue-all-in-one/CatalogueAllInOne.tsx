@@ -1,0 +1,333 @@
+/**
+ * Landing /fr/catalogue-orbitvu-all-in-one — acquisition du catalogue Orbitvu
+ * All-in-One. Version V3 du 02/10/2026 (retour de Laurent) : ce qui donne envie,
+ * ce sont les possibilités des studios Orbitvu ; le catalogue est la première étape
+ * concrète pour choisir.
+ *
+ * Cinq sections : hero (vidéo de la home, promesse, formulaire), frise des studios
+ * (V4), possibilités, choix du studio avec le catalogue, catalogue / consultant. Page française unique,
+ * commune à la France et à la Suisse. Header et Footer partagés non modifiés
+ * (variante compacte de la maquette : arbitrage ouvert).
+ *
+ * Vidéo : film de présentation de la gamme Orbitvu (version 540p muette, Cloudflare R2),
+ * lu par VideoStudio, variante locale de HeroVideo (non modifié). Pages du catalogue :
+ * exports réels du PDF de contrôle depuis la V5 (visuels.ts) ; téléchargement du PDF
+ * non activé. Aucun lien vers F5 (D37).
+ */
+import Image from 'next/image';
+import { ArrowRight, Phone, Sparkles } from 'lucide-react';
+import { Link } from '@/i18n/routing';
+import { CatalogueForm } from './CatalogueForm';
+import { AgrandirPage } from './AgrandirPage';
+import { LienTelephone } from './LienTelephone';
+import { PageCatalogue } from './PageCatalogue';
+import { SansCoupure } from './SansCoupure';
+import { StudiosRail } from './StudiosRail';
+import { VideoStudio } from './VideoStudio';
+import { FINAL, FORMULAIRE, HERO, POSSIBILITES, STUDIO, TELEPHONES } from './contenu';
+import { ID_VIDEO_GAMME } from './coordination';
+import { studiosGamme } from './studios';
+import { VISUELS, VISUELS_GAMME } from './visuels';
+
+const ANCRE_FORMULAIRE = 'catalogue';
+
+// Film de présentation de la gamme Orbitvu (04/10/2026), version 540p sans piste audio
+// (960 × 540, 42 s, 3,5 Mo) sur Cloudflare R2, comme les démos des fiches produit. La
+// version 1080p avec son est celle du hero de l'accueil ; même affiche (plan à 30,6 s,
+// sans texte incrusté). Les textes anglais incrustés imposent le cadre 16:9 entier dès
+// que la vidéo joue (≥ 768 px) : aucun recadrage ni agrandissement.
+const VIDEO_GAMME = {
+  src: 'https://videos.packshot-creator.com/orbitvu-gamme-2026-540p.mp4',
+  poster: '/images/hero/orbitvu-gamme-2026-poster.avif',
+  cadrage: '50% 50%',
+};
+
+const TRAME = {
+  backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+  backgroundSize: '24px 24px',
+};
+
+const cadrePage = 'rounded-lg bg-white shadow-lg shadow-future-dusk-900/10 ring-1 ring-future-dusk-100';
+
+/** Légende d'une double page, ou de la page seule qui la remplace sous 640 px. */
+function Legende({ id }: { id: 'K4' | 'K5' }) {
+  const seule = VISUELS[id].mobile;
+  return (
+    <figcaption className="mt-2 text-sm text-future-dusk-600">
+      {seule && <span className="sm:hidden">{VISUELS[seule].texte}</span>}
+      <span className={seule ? 'hidden sm:inline' : undefined}>{VISUELS[id].texte}</span>
+    </figcaption>
+  );
+}
+
+const surtitreClair = 'text-xs sm:text-sm font-semibold tracking-[0.12em] text-very-peri-600';
+const surtitreSombre = 'text-xs sm:text-sm font-semibold tracking-[0.12em] text-very-peri-200';
+const boutonPrincipal =
+  'inline-flex min-h-13 items-center justify-center gap-2 rounded-xl bg-very-peri-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-very-peri-500/25 transition-colors hover:bg-very-peri-600 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-very-peri-300';
+
+export default function CatalogueAllInOne({ apercuInterne }: { apercuInterne: boolean }) {
+  return (
+    <>
+      {/* ━━ 1. HERO : vidéo, promesse, formulaire ━━
+          Mobile et tablette : vidéo (image fixe sous 768 px) en bandeau → titre → formulaire → transition.
+          Desktop : texte, vidéo puis transition à gauche ; formulaire à droite. */}
+      <section
+        aria-labelledby="catalogue-titre"
+        className="relative overflow-hidden bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 text-white"
+      >
+        <div aria-hidden="true" className="absolute inset-0 opacity-[0.05]" style={TRAME} />
+        <div className="relative mx-auto max-w-xl px-4 pb-10 sm:px-6 sm:pt-8 lg:max-w-7xl lg:px-8 lg:pb-14 lg:pt-8">
+          {/* 4e ligne en 1fr : la hauteur du formulaire n'écarte pas le texte de la vidéo. */}
+          <div className="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-10 lg:gap-y-0 xl:gap-x-14">
+            <div className="-mx-4 sm:mx-0 lg:col-span-7 lg:row-start-2 lg:mt-7">
+              <VideoStudio
+                id={ID_VIDEO_GAMME}
+                src={VIDEO_GAMME.src}
+                poster={VIDEO_GAMME.poster}
+                cadrage={VIDEO_GAMME.cadrage}
+                className="aspect-[2.4/1] bg-future-dusk-800 sm:aspect-video sm:rounded-2xl sm:shadow-2xl sm:shadow-black/40 sm:ring-1 sm:ring-white/10"
+              />
+            </div>
+
+            <div className="lg:col-span-7 lg:row-start-1">
+              <p className="text-[11px] font-semibold tracking-[0.04em] text-very-peri-200 sm:text-sm sm:tracking-[0.12em]">
+                {HERO.surtitre}
+              </p>
+              <h1
+                id="catalogue-titre"
+                className="mt-3 text-[2rem] font-heading font-bold leading-[1.1] tracking-tight text-balance sm:text-5xl lg:mt-4 lg:text-[3.1rem] xl:text-[3.4rem]"
+              >
+                {HERO.h1}
+              </h1>
+              <div className="mt-4 max-w-2xl space-y-2 text-base leading-relaxed text-future-dusk-100 sm:text-lg">
+                {/* Sous 640 px, le second paragraphe est masqué : le formulaire arrive plus tôt. */}
+                {HERO.valeur.map((paragraphe, i) => (
+                  <p key={paragraphe} className={i > 0 ? 'hidden sm:block' : undefined}>
+                    {paragraphe}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-1 lg:col-span-5 lg:col-start-8 lg:row-span-4 lg:row-start-1 lg:mt-0">
+              <div
+                id={ANCRE_FORMULAIRE}
+                tabIndex={-1}
+                className="scroll-mt-24 rounded-2xl bg-white p-5 text-future-dusk-900 shadow-2xl shadow-black/30 focus:outline-none sm:p-8 lg:p-7"
+              >
+                <CatalogueForm />
+              </div>
+              <div className="mt-3 text-sm text-future-dusk-100">
+                <p>{FORMULAIRE.question}</p>
+                <p className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2">
+                  <LienTelephone pays="FR" lieu="hero" className="inline-flex min-h-11 items-center underline-offset-2 hover:text-white hover:underline">
+                    {TELEPHONES.FR.pays}&nbsp;: <strong className="ml-1 whitespace-nowrap font-semibold">{TELEPHONES.FR.affiche}</strong>
+                  </LienTelephone>
+                  <span aria-hidden="true" className="hidden sm:inline">·</span>
+                  <LienTelephone pays="CH" lieu="hero" className="inline-flex min-h-11 items-center underline-offset-2 hover:text-white hover:underline">
+                    {TELEPHONES.CH.pays}&nbsp;: <strong className="ml-1 whitespace-nowrap font-semibold">{TELEPHONES.CH.affiche}</strong>
+                  </LienTelephone>
+                </p>
+              </div>
+            </div>
+            <div className="mt-3 lg:col-span-7 lg:row-start-3 lg:mt-7">
+              <p className="font-heading text-lg font-semibold sm:text-xl">{HERO.transition.titre}</p>
+              <p className="mt-1.5 max-w-2xl text-base leading-relaxed text-future-dusk-100">
+                <SansCoupure texte={HERO.transition.texte} />
+              </p>
+              <ul className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-future-dusk-200">
+                {HERO.reperes.map((repere, i) => (
+                  <li key={repere} className="flex items-center gap-3">
+                    {i > 0 && <span aria-hidden="true" className="text-very-peri-300">·</span>}
+                    {repere}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-sm text-future-dusk-200">{HERO.signature}</p>
+            </div>
+
+          </div>
+        </div>
+        {apercuInterne && (
+          <p className="relative border-t border-amber-300/30 bg-amber-400/10 px-4 py-2 text-center text-xs text-amber-100">
+            Aperçu de travail, parcours non activé&nbsp;: extraits du catalogue présentés pour revue, téléchargement du
+            PDF non activé, aucune demande enregistrée ni envoyée.
+          </p>
+        )}
+      </section>
+
+      {/* ━━ 1 bis. FRISE DES STUDIOS ━━ MACHINES + getMachineImage (studios.ts). */}
+      <StudiosRail studios={studiosGamme()} />
+
+      {/* ━━ 2. IMAGINEZ LES POSSIBILITÉS ━━ Visuels Orbitvu déjà publiés sur les fiches du site. */}
+      <section aria-labelledby="possibilites-titre" className="bg-white py-14 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 id="possibilites-titre" className="text-3xl font-heading font-bold tracking-tight text-future-dusk-900 sm:text-4xl">
+            {POSSIBILITES.h2}
+          </h2>
+          <ul
+            aria-label={POSSIBILITES.h2}
+            tabIndex={0}
+            data-lenis-prevent
+            className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-400 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+          >
+            {VISUELS_GAMME.map((visuel) => (
+              <li key={visuel.cle} className="w-[78%] shrink-0 snap-start sm:w-auto">
+                <figure>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-white ring-1 ring-future-dusk-100">
+                    <Image
+                      src={visuel.src}
+                      alt={visuel.alt}
+                      fill
+                      sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 78vw"
+                      className={visuel.ajustement === 'contain' ? 'object-contain p-3' : 'object-cover'}
+                      style={visuel.cadrage ? { objectPosition: visuel.cadrage } : undefined}
+                    />
+                  </div>
+                  <figcaption className="mt-3">
+                    <span className="block font-heading text-lg font-semibold text-future-dusk-900">{visuel.titre}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-future-dusk-600">{visuel.legende}</span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 flex max-w-3xl gap-2.5 text-sm leading-relaxed text-future-dusk-600">
+            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-very-peri-500" aria-hidden="true" />
+            {POSSIBILITES.ia}
+          </p>
+        </div>
+      </section>
+
+      {/* ━━ 3. TROUVEZ LE STUDIO ADAPTÉ : le catalogue comme aide au choix ━━
+          V5.1 : composition compacte, pour donner envie sans montrer tout le document.
+          Desktop : texte à gauche ; à droite K5 en grand, puis K4 et la vignette K6
+          côte à côte (matrice lisible en agrandissement). Sous 640 px : pages seules
+          K3 et K2 côte à côte, puis la vignette K6 ; aucune double page minuscule. */}
+      <section aria-labelledby="studio-titre" className="bg-future-dusk-0 py-14 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-5">
+              <h2 id="studio-titre" className="text-3xl font-heading font-bold tracking-tight text-future-dusk-900 sm:text-4xl">
+                {STUDIO.h2}
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-future-dusk-600">{STUDIO.intro}</p>
+              <ol className="mt-6 space-y-5">
+                {STUDIO.lignes.map((ligne, i) => (
+                  <li key={ligne.titre} className="flex gap-4">
+                    <span aria-hidden="true" className="mt-0.5 text-sm font-semibold tabular-nums text-very-peri-500">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="font-heading text-lg font-semibold text-future-dusk-900">{ligne.titre}</h3>
+                      <p className="mt-1 text-base leading-relaxed text-future-dusk-700">
+                        {ligne.texte} <span className="italic text-future-dusk-500">{ligne.pages}</span>
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <a href={`#${ANCRE_FORMULAIRE}`} className={`${boutonPrincipal} mt-8 w-full sm:w-auto`}>
+                {STUDIO.cta}
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-x-4 gap-y-6 self-start sm:gap-x-6 lg:col-span-7 lg:pt-2">
+              <figure className="sm:col-span-2">
+                <PageCatalogue
+                  visuel={VISUELS.K5}
+                  mobile={VISUELS.K3}
+                  sizes="(min-width: 1280px) 690px, (min-width: 1024px) 56vw, 92vw"
+                  sizesMobile="46vw"
+                  className={cadrePage}
+                />
+                <Legende id="K5" />
+              </figure>
+              <figure>
+                <PageCatalogue
+                  visuel={VISUELS.K4}
+                  mobile={VISUELS.K2}
+                  sizes="(min-width: 1280px) 335px, (min-width: 1024px) 28vw, 46vw"
+                  sizesMobile="46vw"
+                  className={cadrePage}
+                />
+                <Legende id="K4" />
+              </figure>
+              <figure className="col-span-2 sm:col-span-1">
+                <AgrandirPage
+                  visuel={VISUELS.K6}
+                  libelle="Agrandir la matrice"
+                  sizes="(min-width: 1280px) 335px, (min-width: 640px) 46vw, 92vw"
+                  className={cadrePage}
+                />
+                <figcaption className="mt-2 text-sm text-future-dusk-600">{VISUELS.K6.texte}</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━ 4. CATALOGUE / CONSULTANT ━━ */}
+      <section
+        aria-label="Recevoir le catalogue ou parler à un consultant"
+        className="relative overflow-hidden bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 py-16 text-white sm:py-20"
+      >
+        <div aria-hidden="true" className="absolute inset-0 opacity-[0.05]" style={TRAME} />
+        <div className="relative mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-5 lg:gap-8 lg:px-8">
+          <div className="flex flex-col gap-8 rounded-2xl bg-white p-6 text-future-dusk-900 shadow-2xl shadow-black/30 sm:flex-row sm:items-center sm:p-10 lg:col-span-3">
+            <div className="flex-1">
+              <p className={surtitreClair}>
+                <SansCoupure texte={FINAL.catalogue.surtitre} />
+              </p>
+              <h2 className="mt-3 text-2xl font-heading font-bold tracking-tight sm:text-3xl">{FINAL.catalogue.titre}</h2>
+              <p className="mt-3 text-base leading-relaxed text-future-dusk-600">{FINAL.catalogue.texte}</p>
+              <a
+                href={`#${ANCRE_FORMULAIRE}`}
+                className={`${boutonPrincipal} mt-6 w-full sm:w-auto`}
+              >
+                {FINAL.catalogue.bouton}
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </div>
+            <div className="hidden w-44 shrink-0 -rotate-2 sm:block lg:w-52">
+              <PageCatalogue
+                visuel={VISUELS.K1}
+                sizes="208px"
+                className="rounded-[4px] shadow-xl shadow-future-dusk-900/30 ring-1 ring-future-dusk-900/10"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col rounded-2xl bg-white/[0.06] p-6 ring-1 ring-white/15 sm:p-8 lg:col-span-2">
+            <p className={surtitreSombre}>{FINAL.consultant.surtitre}</p>
+            <h2 className="mt-3 text-2xl font-heading font-bold tracking-tight">{FINAL.consultant.titre}</h2>
+            <p className="mt-3 text-base leading-relaxed text-future-dusk-100">{FINAL.consultant.texte}</p>
+            <ul className="mt-6 space-y-2">
+              {(['FR', 'CH'] as const).map((pays) => (
+                <li key={pays}>
+                  <LienTelephone
+                    pays={pays}
+                    lieu="consultant"
+                    className="flex min-h-12 items-center gap-3 rounded-xl bg-white/[0.08] px-4 py-2.5 ring-1 ring-white/10 transition-colors hover:bg-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-300"
+                  >
+                    <Phone className="h-4 w-4 text-very-peri-200" aria-hidden="true" />
+                    <span className="text-sm text-future-dusk-100">{TELEPHONES[pays].pays}</span>
+                    <span className="ml-auto font-semibold tabular-nums">{TELEPHONES[pays].affiche}</span>
+                  </LienTelephone>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-future-dusk-200">{FINAL.consultant.zones}</p>
+            <Link
+              href="/contact"
+              className="mt-4 inline-flex min-h-11 items-center self-start text-sm text-future-dusk-200 underline underline-offset-4 transition-colors hover:text-white"
+            >
+              {FINAL.consultant.demo}
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

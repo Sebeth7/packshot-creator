@@ -25,6 +25,34 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D53 · 2026-10-09 · Publication de la landing catalogue All-in-One (#82) sur l'autorité de Laurent, sans validation de la copy par Sébastien
+
+**Décidé par** : Laurent — mission « #82 finalisation et publication, landing catalogue Orbitvu All-in-One » du 09/10/2026
+**Statut** : en vigueur pour la seule PR #82 ; épuisée par sa fusion. D42 reste inchangée pour toute autre PR, #122 comprise. Numérotée « D52 » sur la branche de #82 le 09/10, renumérotée D53 à l'intégration de `main` `f143f61` : la D52 de #124 (maillage) y était fusionnée avant.
+
+**La décision** — Extraits du texte de Laurent du 09/10/2026, reproduits sans modification :
+
+> Laurent donne maintenant le GO pour faire le nécessaire afin de publier la landing catalogue #82.
+> GO_FINALISATION = YES
+> GO_MERGE = YES sous réserve CI/Preview conformes
+> GO_PUBLICATION = YES sous réserve contrôles ci-dessous
+> Ne pas republier silencieusement un état non testé.
+
+> Conserver le copy actuellement testé sauf anomalie manifeste. […] Laurent autorise la publication de cette version.
+> Consigner :
+> SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED
+> PUBLICATION_AUTHORITY = LAURENT
+> PUBLICATION_GO = RECEIVED_2026-10-09
+> Ne pas bloquer uniquement sur l'absence de nouvelle validation copy de Sébastien.
+
+> V1 catalogue reste une landing lead-gen. Conserver : noindex, nofollow. Pas de sitemap. Pas de canonique organique nouvelle. Pas de maillage global dans cette mission. La publication commerciale ≠ décision d'en faire un owner SEO.
+
+**Le contexte** — Décision de Sébastien du 09/10 : aucun CRM dans le parcours brochure (Q24, ex-« Q23 » de la branche de #82). Test réel depuis la Preview le 09/10 par le Claude de Sébastien : deux demandes, quatre e-mails reçus (JOURNAL du 09/10). P3 (mention du formulaire) et P4 (Resend dans la politique de confidentialité) mis en œuvre sur #82 le 09/10. Validation de la copy par Sébastien (D42, étape 5) non reçue.
+
+**Ce qu'elle interdit** — Présenter la copy de la landing, de l'e-mail ou de la mention comme validée par Sébastien ; appliquer cette décision à une autre PR (#122 n'est pas fusionnée au titre de D53) ; indexer la page, l'ajouter au sitemap, lui donner une canonique ou un maillage global au titre de cette publication ; réintroduire un CRM (Pipedrive, personne, organisation, note, Lead, affaire) dans le parcours ; écrire « production end-to-end vérifiée » sans test réel en production.
+
+---
+
 ## D52 · 2026-10-09 · Maillage vers Mode, Packshot e-commerce et Amazon : les fenêtres d'observation ne diffèrent plus les liens éditoriaux ; D37 et le gel Mode amendés sur ce seul point
 
 **Décidé par** : Laurent — mission « Réparation globale des ancres et finalisation des cocons SEO/GEO » du 09/10/2026, § 6 : « Il ne souhaite plus différer systématiquement les améliorations du maillage sur Mode, Amazon et Packshot e-commerce simplement pour préserver des tests SEO. La priorité est l'amélioration du site et l'obtention de résultats. »
