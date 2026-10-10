@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-10 · #122 — publication autorisée (D55) : interrupteur ouvert, stockage de session mentionné dans la politique de confidentialité · Claude de Laurent
+
+**Chantier** : pop-in d'engagement (#122) | **PR** : #122 | **Commit** : voir l'historique de #122
+
+**Quoi** — GO_MERGE et GO_PUBLICATION de Laurent du 10/10 et ses réponses aux quatre points ouverts (D55) : `POPIN_PUBLICATION_AUTORISEE = true` ; article 6 de la politique de confidentialité complété d'une entrée « Stockage de session (fenêtre de suggestion) » en FR, EN et de-ch ; commentaires et test des interrupteurs alignés.
+
+**Pourquoi** — Les préalables documentés sur #122 sont levés par décision de Laurent : copy publiée sur son autorité (`SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED`) ; `sessionStorage` tenu pour fonctionnel, sans consentement, et mentionné ; fermeture par X et Échap validée par les tests automatisés ; droits du visuel confirmés.
+
+**Fichiers** — `lib/engagement/activation.ts`, `lib/engagement/session.ts` (commentaire), `lib/engagement/__tests__/popin-engagement.test.ts`, `e2e/popin-engagement.spec.ts` (commentaire), `app/[lang]/confidentialite/page.tsx` (une entrée), `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (clé `privacy.article6.sessionStorage` ajoutée, aucune clé existante modifiée, mise en forme conservée), `docs/seo-geo/DECISIONS.md` (D55), `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — À la fusion : pop-in montée en production, donc sur `www`, desktop FR seulement ; exclusions, gels et périodes de mesure inchangés. Politique de confidentialité : une entrée de plus à l'article 6. Mesure sur 7 à 14 jours : `exit_modal_view` et `cta_click` (`exit_modal`) dans GA4, consentement requis.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `verifier-json` : 195 fichiers valides ; Vitest : 34 fichiers, 626 tests ; ESLint (`lib/engagement`, `components/engagement`, politique, spec) : aucune erreur ; `npx next build` vert (valeurs factices), 387 pages ; `next start` local : entrée de l'article 6 rendue sur `/fr/confidentialite` et `/en/confidentialite` (`/de-ch/confidentialite` : 404, comme sur `main`) ; Playwright Chromium, `e2e/popin-engagement.spec.ts` : 38/38 (conditions, X, Échap, rechargement, exclusions, gels, mobile, session). Sources CNIL relues le 10/10 : page « Cookies et traceurs : comment mettre mon site web en conformité ? » (le stockage local relève des traceurs) ; lignes directrices, délibération n° 2020-091, article 5, point 49 (liste des exemptions).
+
+**Supposé** — Aucun.
+
+**Non regardé** — `www` (R4) ; contrôle humain en Chrome de la fermeture (D55 : tests automatisés tenus pour suffisants). `pkc_attribution` (`lib/attribution.ts`, monté dans le layout) : écrit en production dans le `sessionStorage` (UTM, referrer, première page) sans consentement ni mention dans la politique ; hors #122, non modifié, à signaler à Laurent.
+
+**Suite** — CI, sortie du brouillon et fusion ; contrôle de `sysnext.vercel.app` (smoke, pop-in montée), puis de `www` dans Chrome (Laurent) ; mesure sur 7 à 14 jours ; validation de la copy par Sébastien, non bloquante (D55).
+
+---
+
 ## 2026-10-10 · Clôture de #123 et #124 : `main` `3619e75` intégré dans #125, exception renumérotée D54, contrôle de `www` dans Chrome · Claude de Laurent
 
 **Chantier** : maillage et cocons, clôture (mission de Laurent du 10/10 « Réconciliation finale de la PR #125 ») | **PR** : #125, brouillon, documentation seule | **Commit** : fusion de `main` `3619e75` dans la branche `claude/gracious-cerf-rbj12m` (ce commit)

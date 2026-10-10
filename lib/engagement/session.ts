@@ -9,8 +9,9 @@ import { STOCKAGE_SESSION_AUTORISE } from './activation';
  * Contenu, et rien d'autre : `{ "debut": <instant d'arrivée, ms>, "etat":
  * null | "shown" | "dismissed" | "converted" }`.
  *
- * Statut « vie privée » de ce stockage : NON ÉTABLI juridiquement, à
- * intégrer à P4 avant publication. Stockage indisponible ou interdit par
+ * Statut « vie privée » de ce stockage : fonctionnel, sans consentement,
+ * mentionné à l'article 6 de la politique de confidentialité (décision de
+ * Laurent du 10/10/2026, D55). Stockage indisponible ou interdit par
  * `STOCKAGE_SESSION_AUTORISE` : repli sur la mémoire de la page.
  */
 

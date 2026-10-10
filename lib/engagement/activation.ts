@@ -4,20 +4,21 @@
  */
 
 /**
- * Publication en production. Faux tant que Laurent n'a pas donné le GO de
- * publication : la pop-in n'est alors montée ni sur la production Vercel, ni
- * donc sur www.packshot-creator.com. Elle l'est sur les Preview et en local.
- * Préalable : la landing catalogue (#82) publiée, sans quoi le lien
- * « Recevoir le catalogue » mènerait à une 404.
+ * Publication en production, donc sur www.packshot-creator.com. VRAI depuis le
+ * GO de fusion et de publication de Laurent du 10/10/2026 (D55 ; copy publiée
+ * sur son autorité, validation de Sébastien non reçue). Préalable rempli : la
+ * landing catalogue (#82) est publiée depuis le 10/10/2026. Faux : pop-in
+ * absente de la production, présente sur les Preview et en local.
  */
-export const POPIN_PUBLICATION_AUTORISEE = false;
+export const POPIN_PUBLICATION_AUTORISEE = true;
 
 /**
  * État de session dans `sessionStorage` (instant d'arrivée ; apparition faite,
  * fermée ou convertie). Vrai sur décision de Laurent du 09/10/2026 : une
  * seule apparition par session, rechargement compris, et 60 s cumulées sur le
- * site. Usage : état fonctionnel de session seulement. Statut juridique
- * « vie privée » NON ÉTABLI, à intégrer à P4 avant publication. Faux : repli
+ * site. Usage : état fonctionnel de session seulement. Statut retenu par
+ * Laurent le 10/10/2026 (D55) : stockage fonctionnel, sans consentement,
+ * mentionné dans la politique de confidentialité (article 6). Faux : repli
  * sur la mémoire de la page (navigations internes seulement).
  */
 export const STOCKAGE_SESSION_AUTORISE = true;

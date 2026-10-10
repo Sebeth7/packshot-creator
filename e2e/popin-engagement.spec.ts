@@ -11,10 +11,12 @@ import { test, expect, type BrowserContext, type Page } from '@playwright/test';
  * (`page.mouse`, événements `isTrusted`), jamais d'événement construit par
  * `dispatchEvent`. Chromium émet alors lui-même `mouseout` et `mouseleave` à
  * la sortie de la fenêtre. Ce n'est pas un geste humain vers les onglets :
- * le contrôle dans Chrome réel reste à faire sur la Preview.
+ * le contrôle dans Chrome réel de l'ouverture a été fait par Laurent sur la
+ * Preview le 09/10 ; ces tests valent pour la fermeture par X et Échap (D55).
  *
- * Cible : un build de production local (`next start`) ou une Preview ; jamais
- * la production, où la pop-in n'est pas montée sans GO de publication.
+ * Cible : un build de production local (`next start`) ou une Preview, pas la
+ * production (pop-in publiée depuis le 10/10, D55) : les sessions simulées
+ * s'ajouteraient aux mesures réelles.
  */
 
 const PAGE_ELIGIBLE = '/fr/blog/guide-achat-studio-2026';

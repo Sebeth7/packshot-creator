@@ -222,13 +222,13 @@ describe('lien catalogue', () => {
 });
 
 describe('interrupteurs', () => {
-  it('pas de publication sans GO ; état de session en sessionStorage (décision du 09/10)', () => {
-    expect(POPIN_PUBLICATION_AUTORISEE).toBe(false);
+  it('publiée depuis le GO de Laurent du 10/10 (D55) ; état de session en sessionStorage (décision du 09/10)', () => {
+    expect(POPIN_PUBLICATION_AUTORISEE).toBe(true);
     expect(STOCKAGE_SESSION_AUTORISE).toBe(true);
   });
 
-  it('absente de la production Vercel, présente sur Preview et en local', () => {
-    expect(popinServie({ VERCEL_ENV: 'production' })).toBe(false);
+  it('servie en production Vercel, sur Preview et en local', () => {
+    expect(popinServie({ VERCEL_ENV: 'production' })).toBe(true);
     expect(popinServie({ VERCEL_ENV: 'preview' })).toBe(true);
     expect(popinServie({})).toBe(true);
   });
