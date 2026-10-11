@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-11 · #129 — landing occasion en FR, EN et DE-CH, menus, confidentialité (article 9) ; collectes toujours fermées · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, mission finale du 11/10 (GO_CODE, GO_TRADUCTION, GO_MENUS = YES ; GO_TEST_REEL_ALERTES = NO ; GO_MERGE, GO_PUBLICATION en attente) | **PR** : #129 (brouillon) | **Commits** : quatre commits successifs sur `89280e0`
+
+**Quoi** —
+- **Trois langues** : textes de la page dans `components/landings/occasion/contenu-{fr,en,de-ch}.ts` (même structure, FR inchangé, vérifié par comparaison), pages et vue de contrôle générées en `/fr`, `/en`, `/de-ch`, au **même chemin** `/studios-photo-automatises/opportunites` (comme le hub, segment non localisé : ni redirection, ni segment nouveau). DE-CH rédigé pour la Suisse alémanique (« Occasion », « Offerte », « MWST », « innert », pas de ß). Bandeau et annotations de l'aperçu : outils internes, restés en français.
+- **Formulaires** : libellés, messages de validation (ceux du serveur remplacés par ceux de la langue), familles et horizons traduits ; valeurs transmises inchangées (canoniques). La langue est transmise aux deux routes : accusé de réception de la recherche et e-mail de confirmation des alertes dans la langue du visiteur ; notification interne en français, avec la langue indiquée. Consentement des alertes : un texte et une **version par langue** (`OPTIN`), la route refuse une version d'une autre langue ; la source conservée (`/en/…`) donne la langue des futurs envois, sans nouvelle propriété Resend.
+- **Navigation** : lien texte du menu Solutions > Studios (desktop et mobile) et du pied de page dans les trois langues (« Offres d'occasion », « Pre-owned offers », « Occasionen »), chacun vers la page de sa locale ; toujours absent en production sans GO. Couverture de-ch et sélecteur de langue mis à jour (`FR_ONLY` → `DE_CH_COVERED_STATIC`).
+- **Confidentialité** : article 2 (deux collectes), article 3 (`purpose7`), nouvel article 9 « Offres d'occasion » (FR, EN ; de-ch.json = copie française, la page légale n'étant servie qu'en FR et EN). **Aucune durée de conservation écrite** pour les alertes : non décidée (Q25).
+- **Cartes** : textes EN et DE-CH par machine (`traductions`), exigés pour une machine réelle « disponible » (`elementsManquants`) ; exemples fictifs traduits.
+
+**Pourquoi** — Mission « Q25 + traductions + navigation + QA » de Laurent du 11/10.
+
+**Fichiers** — `lib/occasion/{langues,formulaires,schema,courriel,fiche,gestionnaire,resend,stock,navigation}.ts`, `lib/occasion/alertes/{schema,jeton,courriel,resend,gestionnaires}.ts`, `components/landings/occasion/{contenu,contenu-fr,contenu-en,contenu-de-ch,cartes,mesure}.ts`, `{OccasionOrbitvu,FormulaireRecherche,FormulaireAlertes,BandeauApercu}.tsx`, `data/occasion/{machines,exemples-fictifs}.ts`, les deux `page.tsx`, `app/[lang]/layout.tsx`, `components/layout/{Header,Footer}.tsx`, `i18n/{routing,deChCoverage}.ts`, `app/[lang]/confidentialite/page.tsx`, `messages/{fr,en,de-ch}.json` (bloc `privacy` seulement), tests `lib/occasion/__tests__/{occasion-langues,alertes-gestionnaires,alertes-validation,recherche-services}.test.ts`.
+
+**Effet attendu** — Production : aucun (pages 404 dans les trois locales, liens absents, quatre routes en 503) ; **mais l'article 9 de la politique de confidentialité devient public dès la fusion**. Preview : page et liens dans les trois langues.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` 43 fichiers, 778 tests verts (dont 22 pour les trois langues) ; ESLint sans erreur ; `npx next build` vert (pages en `/fr`, `/en`, `/de-ch`). Build avec `VERCEL_ENV=production` : six URL en 404, aucun lien sur `/fr`, `/en`, `/de-ch`, `/api/occasion` et les trois routes d'alerte en 503. QA Playwright locales, chacune sur une instance neuve : trilingue 58/58 (h1, CTA, menu desktop et mobile, pied de page, sélecteur, liens de confidentialité FR/EN, validation localisée, 503 réels, alertes 200 et confirmation simulées, exemples fictifs, 390 et 320 px, aucun texte visiteur resté en français, aucune erreur JavaScript), recherche FR 34/34, alertes FR 34/34 (deux attentes adaptées au nouveau comportement voulu : liens EN/DE-CH présents, langue transmise). Une première passe a renvoyé 429 : limitation de l'instance locale épuisée par les passes précédentes, comportement attendu.
+
+**Supposé** — [Non vérifié] Ressources Resend relevées par l'agent Chrome : non transmises à cette session, Q25 non comparée au réel. [Non vérifié] Rendu des e-mails dans les messageries.
+
+**Non regardé** — Traductions Webflow historiques (D9/C5), autres pages du site, Worker (il transmet toutes les locales à Next.js : aucune règle à ajouter). Indexation : `noindex` conservé, recommandation A/B dans la PR. Aucune variable Vercel, aucune ressource Resend, aucun envoi.
+
+**Suite** — Q25 (ressources Resend, variables, durée de conservation, règle de réinscription) ; relecture de la copy EN et DE-CH ; alignement « France et Suisse » du bloc distributeur en EN/DE-CH (source FR : « en France ») ; GO de fusion et de publication.
+
+---
+
 ## 2026-10-11 · #129 — liste d'alerte « prochaines occasions Orbitvu » : double opt-in codé et testé, fermé (sans test réel) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, sprint final du 11/10 (GO_CODE = YES ; GO_TEST_REEL_ALERTES, GO_MERGE, GO_PUBLICATION, GO_CAMPAGNE_EMAIL = NO) | **PR** : #129 (brouillon) | **Commit** : commit de développement qui suit la fermeture `4dddd32`

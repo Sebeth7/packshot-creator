@@ -87,6 +87,10 @@ dans `DECISIONS.md`.
 
 **Ma recommandation** — A, avec la règle 3 telle quelle : elle évite toute réinscription silencieuse ; un assouplissement (réinscription sur nouvelle confirmation explicite) est un changement d'une ligne si vous le décidez.
 
+**Ajout du 11/10 (mission finale, landing en FR, EN et DE-CH)** — Toujours sans réponse ; les ressources Resend relevées dans Chrome n'ont pas été transmises à la session Claude Code, la comparaison au réel reste à faire. Deux points s'ajoutent :
+4. **Durée de conservation** des inscrits aux alertes : non écrite dans l'article 9 de la politique de confidentialité (ajouté en FR et EN) ; l'article 4 prévoit « 3 ans pour les données prospects », sans dire si un inscrit aux alertes en relève.
+5. **Langue** : un texte d'accord et une version par langue (`OPTIN`, `lib/occasion/formulaires.ts`) ; la langue d'un inscrit se déduit de `occasion_alertes_source` (`/en/…`), sans huitième propriété.
+
 ---
 
 ### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
