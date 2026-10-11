@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-11 · Espace de revue interne « Entretiens Sébastien Jourdan » (10 entretiens + 23 croquis), Preview uniquement · Claude de Laurent
+
+**Chantier** : intégration kit entretiens S3 (GO de Laurent : coder, tester, pousser sur #130, Preview ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL_PUBLIQUES = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
+
+**Quoi** — Ajout d'un espace de relecture interne à l'URL `/fr/revue-entretiens-s3`, destiné à relire les dix entretiens montés avec leurs visuels avant validation par Sébastien. Les dix textes (frontmatter « TEXTE PROPOSÉ — VOIX PREMIÈRE PERSONNE À APPROUVER PAR SÉBASTIEN ») sont rendus fidèlement, avec les 23 croquis de méthode (SVG). Les entretiens 01 et 02 y figurent étiquetés comme **propositions d'évolution** des pages A/B de #130 : aucune fusion sur place n'est faite dans cette PR. Entretien 08 : bandeau « relecture juridique requise ».
+
+**Pourquoi** — Laurent veut relire l'ensemble monté sans créer de contenu public ni de nouvelle URL indexable (D16 / anticannibalisation ouverts), et sans publier une voix « je » non encore validée par Sébastien.
+
+**Fichiers** — `app/[lang]/revue-entretiens-s3/page.tsx` (nouvelle route), `content/revue-entretiens-s3/interviews.json` (contenu), `public/images/revue-entretiens-s3/*.svg` (23 croquis), `lib/__tests__/revue-entretiens-s3.test.ts` (gardes). Aucun fichier à rayon large touché (hors carte `01-RAYON-ACTION.md`).
+
+**Effet attendu** — Aucun effet SEO public : la route renvoie 404 en production, porte `noindex, nofollow`, et n'est ni dans le plan de site, ni dans le maillage, ni dans les alternates. Visible seulement en Preview Vercel et en local.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `scripts/seo/verifier-json.mjs` : 196 JSON valides ; `eslint --max-warnings=0` vert ; `vitest run` : 36 fichiers, 658 tests verts (dont 9 nouvelles gardes) ; `npx next build` vert, route émise en dynamique (`ƒ`). Serveur `next start` : `VERCEL_ENV=production` → `/fr/revue-entretiens-s3` = **404** ; `VERCEL_ENV=preview` → **200**, `<meta name="robots" content="noindex, nofollow">`, 10 `<article>`, 23 `<figure>` / 23 SVG servis en `200 image/svg+xml` ; `/en` et `/de-ch` → **404** ; `sitemap.xml` : 0 occurrence de `revue-entretiens` (323 URL). Captures 1440/390 px : aucun débordement horizontal, 0 erreur console.
+
+**Supposé** — [Inférence] La Preview Vercel reproduit le comportement du build local de production vérifié ici ; `VERCEL_ENV` vaut `preview` sur les déploiements de branche. [Non vérifié] directement par l'agent : la Preview réelle est sous SSO Vercel, non authentifiable depuis cette session.
+
+**Non regardé** — La fusion éditoriale sur place des pages A/B publiques (tenue en attente, décision Sébastien). La validité juridique du contenu de l'entretien 08 (relecture juridique à prévoir). Les arbitrages Orbitvu du kit S6 (recherche séparée, `GO_CODE = NO`).
+
+**Suite** — Relecture par Laurent sur la Preview, puis validation de la voix par Sébastien avant toute fusion A/B ou décision D16 sur de nouvelles URL. Aucune publication, aucun merge sans autorisation distincte.
+
+---
+
 ## 2026-10-11 · Série « Produire ses images produit » : réécriture des deux articles studio photo e-commerce (A décider, B produire) · Claude de Laurent
 
 **Chantier** : série éditoriale experte (mission M4 + finition) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
