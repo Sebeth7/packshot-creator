@@ -185,8 +185,11 @@ export function isEnNoindex(href: LinkHref): boolean {
  * directement sur /fr, sans passer par la redirection.
  * - /academy : la formation se résume au catalogue Qualiopi, en français
  *   (décision Seb 30/09/2026, audit de surveillance du 16/10).
+ * - /catalogue-orbitvu-all-in-one : landing FR commune à la France et à la Suisse
+ *   romande (kit du 02/10/2026). Exception : ses URL /en et /de-ch ne sont pas
+ *   redirigées, elles n'existent pas (404) et ne sont liées nulle part.
  */
-const FR_ONLY: ReadonlySet<string> = new Set(['/academy']);
+const FR_ONLY: ReadonlySet<string> = new Set(['/academy', '/catalogue-orbitvu-all-in-one']);
 
 const DE_CH_PIN_FR: ReadonlySet<string> = new Set([
   '/mentions-legales',

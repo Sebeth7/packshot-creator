@@ -235,9 +235,9 @@ export default async function BesoinsPhotographieProduitPage({ params }: PagePro
                 </h2>
                 <p className="mt-6 text-neutral-medium leading-relaxed">
                   {tx(lang,
-                    'Vous avez d\'autres questions ? Contactez nos experts pour un diagnostic gratuit.',
-                    'Have more questions? Contact our experts for a free diagnostic.',
-                    'Weitere Fragen? Kontaktieren Sie unsere Experten für eine kostenlose Analyse.')}
+                    'Vous avez d\'autres questions ? Contactez nos experts.',
+                    'Have more questions? Contact our experts.',
+                    'Weitere Fragen? Kontaktieren Sie unsere Experten.')}
                 </p>
                 <div className="mt-8">
                   <Button asChild variant="outline" className="rounded-xl">

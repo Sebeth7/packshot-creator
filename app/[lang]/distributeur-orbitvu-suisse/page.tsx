@@ -33,17 +33,17 @@ const FAQ = [
   {
     question: 'Qui est le distributeur officiel des studios photo Orbitvu en Suisse ?',
     answer:
-      'PackshotCreator, marque de la société française Sysnext, est le distributeur officiel des studios photo automatisés Orbitvu pour la Suisse et la France. L\'ancien revendeur suisse Light + Byte AG a cessé ses activités en 2025 : les entreprises suisses s\'adressent aujourd\'hui directement à PackshotCreator pour le conseil, la démonstration, la livraison, l\'installation, la formation et le SAV, en français comme en allemand. Contact Suisse : +41 44 580 43 84.',
+      'PackshotCreator, marque de la société française Sysnext, est le distributeur officiel des studios photo automatisés Orbitvu pour la Suisse et la France. L\'ancien revendeur suisse Light + Byte AG a cessé ses activités en 2025 : les entreprises suisses s\'adressent aujourd\'hui directement à PackshotCreator pour le conseil, la démonstration, la livraison, l\'installation, la formation et le SAV, en français, avec un accompagnement commercial possible en allemand. Contact Suisse : +41 44 580 43 84.',
   },
   {
     question: 'Où acheter un studio Orbitvu en Suisse ?',
     answer:
-      'PackshotCreator est le distributeur officiel des studios photo automatisés Orbitvu pour la France et la Suisse. Les entreprises suisses commandent directement auprès de PackshotCreator : conseil, démonstration, livraison, installation et formation sont assurés sur l\'ensemble du territoire suisse. Contact Suisse : +41 44 580 43 84.',
+      'PackshotCreator est le distributeur officiel des studios photo automatisés Orbitvu pour la France et la Suisse. Les entreprises suisses commandent directement auprès de PackshotCreator : conseil, démonstration, livraison et installation (facturées en supplément) et formation (facturée séparément). Contact Suisse : +41 44 580 43 84.',
   },
   {
     question: 'Livrez-vous et installez-vous en Suisse ?',
     answer:
-      'Oui. La livraison, l\'installation sur site et la mise en service de votre studio Orbitvu sont assurées partout en Suisse, en Suisse romande comme en Suisse alémanique. La formation de vos équipes est réalisée sur site, sur votre propre matériel.',
+      'Oui. La livraison et l\'installation sur site de votre studio Orbitvu sont proposées en Suisse et facturées en supplément. La formation est facturée séparément : Essential Training (4 h, à distance) ou Master Training (7 h, en présentiel).',
   },
   {
     question: 'Comment demander une offre depuis la Suisse ?',
@@ -53,7 +53,7 @@ const FAQ = [
   {
     question: 'Proposez-vous des démonstrations pour la Suisse ?',
     answer:
-      'Oui. Notre showroom, situé à moins de 2 heures de Genève, vous accueille sur rendez-vous pour une démonstration avec vos propres produits. Des démonstrations à distance (visioconférence avec prises de vue en direct) sont également proposées.',
+      'Oui. Notre showroom de Beynost (Ain), près de Lyon, vous accueille sur rendez-vous pour une démonstration avec vos propres produits. D\'autres modalités sont à convenir avec nous.',
   },
 ];
 
@@ -63,7 +63,7 @@ function distributorOrganizationSchema() {
   return {
     ...organizationSchema(),
     description:
-      'Distributeur officiel Orbitvu pour la France et la Suisse. Studios photo automatisés, IA BlendAI et formations certifiées Qualiopi.',
+      'Distributeur officiel Orbitvu pour la France et la Suisse. Studios photo automatisés, IA BlendAI et formations. Sysnext est certifiée Qualiopi.',
     areaServed: ['FR', 'CH'],
     contactPoint: [
       {
@@ -121,22 +121,22 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
     {
       Icon: Truck,
       title: 'Livraison en Suisse',
-      description: 'Livraison de votre studio Orbitvu sur l\'ensemble du territoire suisse, en Suisse romande comme en Suisse alémanique.',
+      description: 'Livraison de votre studio Orbitvu en Suisse, facturée en supplément, sur devis.',
     },
     {
       Icon: Wrench,
       title: 'Installation sur site',
-      description: 'Installation, calibrage et mise en service par nos techniciens, directement dans vos locaux.',
+      description: 'Installation de votre studio dans vos locaux, facturée en supplément, sur devis.',
     },
     {
       Icon: GraduationCap,
       title: 'Formation de vos équipes',
-      description: 'Formation sur site, sur votre propre matériel et vos propres produits, jusqu\'à l\'autonomie complète.',
+      description: 'Essential Training (4 h, à distance) ou Master Training (7 h, en présentiel), facturées séparément.',
     },
     {
       Icon: Headset,
       title: 'Support et SAV',
-      description: 'Assistance technique, pièces détachées et suivi assurés par le distributeur officiel du fabricant.',
+      description: 'Assistance technique et SAV assurés par PackshotCreator, distributeur officiel du fabricant.',
     },
   ];
 
@@ -150,7 +150,7 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
     {
       Icon: Camera,
       title: 'Alphashot 360',
-      description: 'Le studio photo automatisé de référence pour le packshot et les animations 360°.',
+      description: 'Studio photo automatisé pour le packshot et les animations 360°.',
       href: { pathname: '/studio-photo/[slug]', params: { slug: 'alphashot-360' } } as const,
     },
     {
@@ -167,7 +167,7 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
         align="left"
         badge={{ icon: <Award className="h-4 w-4" />, label: 'Distributeur officiel Orbitvu' }}
         title="Distributeur Orbitvu pour la Suisse et la France"
-        subtitle="PackshotCreator est le distributeur officiel des studios photo automatisés Orbitvu pour la France et la Suisse : conseil, démonstration, livraison, installation et formation assurés sur l'ensemble des deux territoires."
+        subtitle="PackshotCreator est le distributeur officiel des studios photo automatisés Orbitvu pour la France et la Suisse : conseil, démonstration, livraison, installation et formation."
         ctas={[
           { label: 'Demander un devis', href: '/contact', variant: 'primary' },
           { label: 'Voir les studios Orbitvu', href: '/studio-photo/selecteur-machines', variant: 'secondary' },
@@ -180,7 +180,7 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
           <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-future-dusk-900 prose-p:text-future-dusk-600 prose-li:text-future-dusk-600 prose-strong:text-future-dusk-900">
             <p className="text-xl text-future-dusk-700 leading-relaxed">
               PackshotCreator (société Sysnext) distribue les solutions du fabricant européen Orbitvu
-              depuis 2018 et en est le distributeur officiel pour la France et la Suisse. Les
+              depuis 2023 et en est le distributeur officiel pour la France et la Suisse. Les
               entreprises suisses bénéficient d&apos;un interlocuteur unique pour le conseil, la
               démonstration, la livraison, l&apos;installation, la formation et le support de leur
               studio photo automatisé.
@@ -225,7 +225,7 @@ export default async function DistributeurOrbitvuSuissePage({ params }: PageProp
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-very-peri-100 text-very-peri-700 mb-3">
                 <MapPin className="h-5 w-5" />
               </span>
-              <p className="font-heading font-bold text-future-dusk-900 mb-1">Showroom à moins de 2 h de Genève</p>
+              <p className="font-heading font-bold text-future-dusk-900 mb-1">Showroom à Beynost (Ain), près de Lyon</p>
               <p className="text-sm text-future-dusk-600">
                 Démonstration sur rendez-vous avec vos propres produits, accompagné par nos experts.
               </p>

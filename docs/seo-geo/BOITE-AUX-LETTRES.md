@@ -67,6 +67,101 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : landing catalogue All-in-One (#82)
+**Bloque** : le test réel du parcours (GO de Laurent) pour les points 1 et 2 ; rien d'autre. Le code est prêt et verrouillé (`SERVICES_REELS_AUTORISES = false`).
+
+**Contexte** — Mission de Laurent du 06/10 : rendre #82 prête à l'activation. Une demande de brochure n'est pas un lead qualifié. Elle ne crée donc qu'une personne, une organisation et une note Pipedrive, sans affaire. Le choix de l'objet commercial (Lead ou Deal, pipeline, étape) t'est réservé.
+
+**Vérifié** —
+- `lib/catalogue/pipedrive.ts` : personne retrouvée par e-mail, organisation par nom exact, note portant le requestId. Aucun appel à `/deals` ni à `/leads` (tests A et B).
+- `lib/catalogue/resend.ts` : la demande de consultant envoie une notification interne aux adresses de `NOTIFICATION_EMAIL`, convention de `/api/submit-survey`. Aucune adresse n'est codée en dur. `/api/contact` et `/api/roi-lead` codent les leurs en dur (`sebastien.jourdan@`, `stephane.gormand@`).
+- Mention du formulaire : « Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. » La politique de confidentialité (`privacy` dans `messages/fr.json`) ne nomme ni Pipedrive ni Resend, alors que `/api/contact` les utilise déjà.
+
+**Complément du 06/10, après lecture de tes règles brochure du 02/10** — Laurent a fixé le 06/10 qu'une demande de brochure est un lead PackshotCreator (compté à part, ni démonstration ni affaire), que les téléphones restent visibles et qu'aucune interdiction d'appel n'est codée. En conséquence :
+- chaque demande reçoit une note « [Brochure] » et une notification interne `[Brochure] entreprise`, sans la mention « ne pas appeler » de ton § 5 ;
+- l'e-mail porte « Demander une démo » et « Calculer mon ROI », libellés déjà publiés par `ArticleCTA`, texte à relire ;
+- GA4 : `form_submit` (`brochure_form`), `brochure_download`.
+
+Restent ouverts :
+- ton étiquette Pipedrive « Brochure » (§ 6) ;
+- ta question de qualification et ta case de suivi (§ 4), absentes du formulaire validé.
+
+**La question** —
+1. Demande de consultant : la note et la notification interne suffisent-elles en V1, ou faut-il un Lead Pipedrive, voire une affaire (pipeline et étape) ? Et pour toute demande : faut-il l'étiquette « Brochure » de ton § 6 ? Si oui, quel identifiant d'étiquette ?
+2. `NOTIFICATION_EMAIL` est-elle définie sur Vercel (Preview et Production), et avec quelles adresses pour ces notifications ?
+3. La politique de confidentialité doit-elle nommer les sous-traitants (CRM, e-mail) avant la publication ?
+4. La mention du formulaire validé dit « Un consultant vous contacte uniquement si vous en faites la demande ». Si l'équipe appelle un lead brochure sans case cochée, elle contredit ce texte. Faut-il garder la mention (et ne pas appeler sans demande), ou la réécrire (texte de ta voix) ?
+5. Le texte de l'e-mail (copydeck V2 et liens de retour) te convient-il ?
+
+**Options**
+- A : V1 telle quelle (note et notification) ; `NOTIFICATION_EMAIL` renseignée par toi ; politique relue à part → activation possible sans nouveau code CRM.
+- B : Lead ou affaire pour la demande de consultant → petite PR à part, avec l'identifiant de pipeline et d'étape que tu fixes.
+
+**Ma recommandation** — A, parce que la demande de consultant reste distinguée (note et notification), sans créer d'objet commercial que tu n'as pas choisi.
+
+**Complément du 06/10, réponses de Laurent** — Laurent a répondu lui-même à deux points de cette question (T1, T2) et formulé deux décisions (P3, P5). Tu restes destinataire de la validation de P3 et des points P1, P2, P4.
+
+| Point | Décision de Laurent du 06/10 | Statut |
+|---|---|---|
+| T1 — écritures de test dans Pipedrive | Deux personnes, deux organisations (`TEST PR82 A — à supprimer`, `TEST PR82 B — à supprimer`), deux notes, puis suppression après vérification. Aucune affaire, aucun Lead | Autorisation de principe ; exécution en attente d'un GO distinct de Laurent |
+| T2 — destinataires de la notification | `leads@sysnext.com` | Destinataire métier décidé ; configuration Vercel non vérifiée (aucun accès depuis la session) |
+| P3 — mention du formulaire | Remplacer « Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. » par : « Vos coordonnées sont utilisées pour vous transmettre le catalogue et assurer le suivi de votre demande. Notre équipe est également à votre disposition pour vous conseiller dans le choix du studio Orbitvu adapté à vos produits. » Case consultant facultative conservée ; téléphones France et Suisse visibles | Formulation proposée ; **ta validation est attendue avant la publication** ; formulaire non modifié (`components/landings/catalogue-all-in-one/contenu.ts`, `donnees.avant`) |
+| P5 — API Pipedrive | Personnes et organisations migrées en API v2 sur #82 (commit `c0e4b89`) ; notes en v1 | Migration décidée et implémentée sur #82 ; validée en réel seulement au test |
+
+**Ce qui te reste** —
+1. P3 : valider ou réécrire la mention proposée par Laurent.
+2. P1 : objet CRM définitif (note seule, étiquette « Brochure » et son identifiant, Lead ou affaire pour une demande de consultant). Avec la note seule, les leads brochure ne se comptent ni dans les filtres ni dans les rapports de Pipedrive (non vérifié en réel).
+3. P2 : texte de l'e-mail au prospect (`lib/catalogue/courriel.ts`).
+4. P4 : sous-traitants (Pipedrive, Resend) dans la politique de confidentialité, à aligner sur la mention P3 (suivi commercial). Indice DNS : les envois Resend passent par la région us-east-1 (`send.sysnext.com`).
+5. `NOTIFICATION_EMAIL` est lue aussi par `/api/submit-survey` (notifications du questionnaire). La mettre à `leads@sysnext.com` en production détournerait ces notifications. Proposition, non codée : une variable dédiée, par exemple `CATALOGUE_NOTIFICATION_EMAIL`, lue par la seule route catalogue. Ton avis ?
+6. Pour information : `lib/pipedrive.ts`, `/api/contact`, `/api/roi-lead`, `/api/roi-pdf` et `/api/submit-survey` appellent encore les points d'accès v1 des personnes, organisations et affaires, hors support depuis le 01/08/2026 ([changelog Pipedrive](https://developers.pipedrive.com/changelog/post/deprecated-apiv1-endpoints-become-out-of-support)). Non modifiés : hors du périmètre de #82.
+
+**Bloque, après ces réponses** — le GO d'exécution du test réel attend encore le contrôle Vercel de la Preview (`PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `NOTIFICATION_EMAIL`, `PIPEDRIVE_DOMAIN`), le statut du domaine dans Resend et deux adresses de test absentes de Pipedrive. La publication attend en plus P1 à P4.
+
+**Complément du 06/10, alignement sur le parcours Contact (décisions de Laurent)** —
+- Le parcours Brochure est déjà aligné, sur le plan fonctionnel, sur le principe commercial de `/api/contact` : enregistrement du lead → notification interne → e-mail au prospect → suivi humain possible.
+- Il ne recopie pas les faiblesses techniques de `/api/contact`, qui restent un chantier séparé, hors #82 (pour toi) :
+  - points d'accès Pipedrive v1 hors support depuis le 01/08/2026 ;
+  - échecs Resend non détectés (le SDK renvoie `{ error }` sans lever, le `.catch` ne voit rien) ;
+  - HTML de la notification interne non échappé ;
+  - recherche d'organisation approximative (ni `fields` ni `exact_match`) et personne rattachée à l'organisation trouvée par un `PUT` systématique ;
+  - réponse 200 même si tout a échoué, identifiants Pipedrive renvoyés au navigateur ;
+  - ni limitation de débit, ni champ piège ;
+  - destinataires internes codés en dur ; promesse « 24 heures ouvrées » ; affaire créée d'office (non reprises pour la brochure, P1 restant ouvert).
+- R1, décidé et implémenté sur #82 (`a02f293`) : la notification du catalogue lit **exclusivement** `CATALOGUE_NOTIFICATION_EMAIL`, sans repli sur `NOTIFICATION_EMAIL` (questionnaire). Destinataire métier prévu : `leads@sysnext.com`. La variable n'existe pas encore sur Vercel : elle sera créée par un humain (Preview, puis Production à la publication) sous un GO séparé. Absente, la notification n'est pas envoyée, l'absence est journalisée et consignée dans la note, et une demande de consultant n'est pas déclarée transmise. Ce point remplace le point 5 de « Ce qui te reste ».
+- R2, décidé et implémenté sur #82 (`a02f293`) : la note « [Brochure] » est épinglée sur la fiche de la personne (`pinned_to_person_flag`), à l'image de la note épinglée sur l'affaire de `/api/contact`. Aucune affaire, aucun Lead.
+- Formulaire : ni nom ni téléphone ajoutés (landing à faible friction, décision de Laurent). La mention P3 attend toujours ta validation et n'est pas modifiée.
+
+**Réponse de Sébastien du 09/10 (consignée par le Claude de Sébastien)** —
+
+| Point | Décision | Effet sur #82 |
+|---|---|---|
+| P1 — objet CRM | **Aucun CRM dans le parcours brochure.** Le tri des leads brochure vers le CRM se fait hors du site, par l'assistant IA de Sébastien, à partir de la notification interne | Pipedrive retiré (`pipedrive.ts` supprimé, `crm.ts` devenu `fiche.ts`) ; ni personne, ni organisation, ni note, ni étiquette |
+| T1 — écritures de test Pipedrive | Sans objet | Le test réel ne touche plus Pipedrive |
+| T2 — destinataire de la notification | `sebastien.jourdan@sysnext.com` au lieu de `leads@sysnext.com` | Variable Vercel `CATALOGUE_NOTIFICATION_EMAIL` modifiée (Preview de #82) ; à créer en Production à la publication |
+| P5 — API Pipedrive v2 | Sans objet pour #82 | Le point 6 (v1 dans `/api/contact` et ailleurs) reste un chantier séparé |
+
+Restent ouverts pour Sébastien : P2 (texte de l'e-mail), P3 (mention du formulaire), P4 (Resend dans la politique de confidentialité ; Pipedrive n'est plus sous-traitant de ce formulaire).
+
+**Collision de numéro** — La branche `ccr-e0a4796e-2p18xn` (PR #96, cluster AI Act) porte elle aussi une « Q23 » (« Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) »), sans rapport avec celle-ci. Rien n'est renuméroté ni modifié sur #96 : la numérotation est à arbitrer à la fusion de la seconde des deux PR.
+
+**Mise à jour du 09/10 (Claude de Laurent), GO de publication de Laurent (D53)** —
+
+| Point | État au 09/10 | Où |
+|---|---|---|
+| P2 — texte de l'e-mail | Version testée le 09/10 conservée et autorisée à la publication par Laurent ; `SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED` | D53 |
+| P3 — mention du formulaire | Formulation de Laurent du 06/10 mise en œuvre (`34b8a5f`) | `components/landings/catalogue-all-in-one/contenu.ts` |
+| P4 — sous-traitants | Resend nommé dans la politique de confidentialité (article 8, FR, EN, de-ch), sources Resend relues le 09/10 ; Pipedrive non cité (plus appelé par ce formulaire) | `messages/*.json`, `app/[lang]/confidentialite/page.tsx` |
+| T2 — destinataire | `sebastien.jourdan@sysnext.com` ; `CATALOGUE_NOTIFICATION_EMAIL` à créer en Production avant la fusion | Vercel (tableau de bord) |
+
+Ce qui te reste, pour information seulement : la relecture de la copy (landing, e-mail, mention) reste ouverte, sans bloquer la publication (D53). La politique de confidentialité ne nomme toujours ni Resend ni Pipedrive pour `/api/contact` : chantier séparé.
+
+**Arbitrage du numéro à la fusion de #82 (09/10, Claude de Laurent)** — #82 est la seconde des deux PR à fusionner : cette question, numérotée « Q23 » sur la branche de #82 du 06/10 au 09/10, devient **Q24**. Le texte ci-dessus est conservé tel quel ; les entrées du JOURNAL et les lignes d'`ETAT.md` antérieures au 09/10 qui citent la « Q23 » de #82 désignent cette question.
+
+---
+
 ### Q23 · 2026-10-06 · Pour information — cluster AI Act : publication autorisée par Laurent sans attendre ta validation (D46) ; copywriting FR — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : cluster AI Act (F2 de `ETAT.md`), D46
@@ -90,6 +185,8 @@ dans `DECISIONS.md`.
 **Mise à jour du 07/10 (Claude de Laurent)** — La question historique ci-dessus est conservée telle quelle, y compris sa mention de l'auteur « Sébastien Jourdan » (état du 06/10 avant la décision de Laurent). État au 07/10 : #96 fusionnée le 06/10 à 12:41 UTC (`8247217`) sur GO de Laurent ; `SEBASTIEN_VALIDATION = NOT_RECEIVED` inchangé ; aucune réponse de Sébastien consignée. Point (2), auteur : **décidé par Laurent le 06/10** (`AUTHOR = PackshotCreator`, `SCHEMA_AUTHOR = Organization`) et implémenté dans #96 : les 15 fichiers du cluster portent `author: "PackshotCreator"`, et `components/seo/SchemaOrg.tsx` ne produit un `Person` que pour un autre auteur. Seul le point (1) reste ouvert, pour information : la réserve éventuelle de Sébastien sur le copywriting FR.
 
 **Risque de doublon de numéro** — La branche de #82 (`claude/magical-clarke-rkqimg`, tête `452d49b`, PR ouverte, HOLD, non fusionnée) ajoute à ce fichier une autre « Q23 » (« Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant… »), sans rapport avec celle-ci ; sa description le signale déjà. Rien n'est renuméroté ici et #82 n'est pas modifiée. Si #82 est un jour fusionnée en l'état, ce fichier portera deux Q23 : la numérotation se tranche à cette fusion, sur décision humaine.
+
+**Doublon levé le 09/10 (Claude de Laurent)** — À la fusion de #82, sa question est renumérotée Q24 ; cette Q23 reste celle du cluster AI Act.
 
 ---
 

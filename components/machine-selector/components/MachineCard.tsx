@@ -99,7 +99,7 @@ export function MachineCard({
           </h3>
           {showPrice && (
             <span className="text-very-peri-600 font-bold whitespace-nowrap">
-              {machine.prixSurDevis ? (locale === 'en' ? 'On request' : 'Sur devis') : formatPrice(machine.prix)}
+              {machine.prixSurDevis ? tx(locale, 'Sur devis', 'On request', 'Auf Anfrage') : formatPrice(machine.prix)}
             </span>
           )}
         </div>
@@ -125,6 +125,7 @@ export function MachineCard({
           <Link
             href={{ pathname: '/studio-photo/[slug]', params: { slug: machine.id } }}
             onClick={(e) => e.stopPropagation()}
+            aria-label={`${tx(locale, 'Voir la fiche', 'View product', 'Produkt ansehen')} ${machine.nom}`}
             className="flex-1 py-2 px-4 text-sm font-medium text-white bg-very-peri-600 rounded-xl hover:bg-very-peri-700 transition-colors text-center"
           >
             {tx(locale, 'Voir la fiche', 'View product', 'Produkt ansehen')}
