@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-11 · Refonte UX/UI premium de l'espace de revue des 10 entretiens (Preview) · Claude de Laurent
+
+**Chantier** : finition UX/UI de l'espace de revue S3 (GO de Laurent : coder, tester, pousser sur #130, Preview ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
+
+**Quoi** — L'espace `/fr/revue-entretiens-s3`, jugé trop monolithique, est recomposé en revue éditoriale : hero premium, vue d'ensemble des dix conversations (numéro, titre, promesse), ouverture éditoriale par entretien (grand numéro, chapô, questions abordées), distinction question/réponse, lettrine, encadré « à retenir » et encadré méthode, navigation vers l'entretien suivant. Les 23 croquis deviennent des figures encadrées avec légende numérotée et **agrandissement accessible** (dialogue clavier, `prefers-reduced-motion`). Sommaire D44 réutilisé (`components/blog/TableOfContents`, non modifié) en latéral collant desktop + repliable mobile, avec entrée active au défilement. Liens internes « pour aller plus loin » vers des articles/pages PackshotCreator **existants** (destinations vérifiées).
+
+**Pourquoi** — Retour de Laurent (« pas waouh ») sur la présentation. Objectif : qualité éditoriale, lisibilité, navigation irréprochable, croquis mis en valeur — sans réécrire les entretiens ni relancer d'audit SEO/GEO.
+
+**Fichiers** — `app/[lang]/revue-entretiens-s3/page.tsx` (refonte), `content/revue-entretiens-s3/interviews.json` (contenu restructuré : intro, à-retenir, sections Q/R, croquis positionnés, encadré méthode), `components/revue/CroquisZoom.tsx` (nouveau, zoom accessible), `lib/__tests__/revue-entretiens-s3.test.ts` (gardes mises à jour). Aucun fichier à rayon large touché ; aucune police ni design system ajouté (identité PackshotCreator réutilisée).
+
+**Effet attendu** — Aucun effet SEO public : la route reste 404 en production, `noindex, nofollow`, hors plan de site, hors maillage entrant public, hors alternates. Les articles publics A/B et leurs métadonnées sont inchangés.
+
+**Vérifié** — `tsc` vert ; `verifier-json` 196 JSON ; `eslint` des fichiers touchés sans erreur ni avertissement ; `vitest` 36 fichiers / 660 tests (dont 11 gardes revue) ; `next build` vert, route dynamique (`ƒ`). Playwright sur le build local : 0 débordement horizontal et 0 erreur console à 1920/1440/1024/768/390/375 ; sommaire latéral entrée active correcte ; sommaire mobile ouvre, se replie avant navigation, cible à 96 px sous l'en-tête (pas de chevauchement) ; zoom croquis ouvre et se ferme par Échap ; sans JavaScript : 10 articles, 23 croquis, texte complet rendus. `VERCEL_ENV=production` → 404 ; `preview` → 200 + noindex ; `/en` et `/de-ch` → 404 ; `sitemap.xml` : 0 occurrence.
+
+**Supposé** — [Inférence] La Preview Vercel reproduit le build de production local vérifié ici ; `VERCEL_ENV=preview` sur les déploiements de branche. [Non vérifié] directement : la Preview réelle est sous SSO Vercel, non authentifiable depuis cette session.
+
+**Non regardé** — La fusion éditoriale sur place des pages A/B (en attente, décision Sébastien). La validité juridique de l'entretien 08. Les pages publiques A/B (intouchées).
+
+**Suite** — Relecture finale de la présentation par Laurent sur la Preview, puis revue unique du contenu par Sébastien. Aucun merge, aucune publication, aucune nouvelle URL publique sans autorisation distincte.
+
+---
+
 ## 2026-10-11 · Espace de revue interne « Entretiens Sébastien Jourdan » (10 entretiens + 23 croquis), Preview uniquement · Claude de Laurent
 
 **Chantier** : intégration kit entretiens S3 (GO de Laurent : coder, tester, pousser sur #130, Preview ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL_PUBLIQUES = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
