@@ -34,6 +34,58 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-11 · #129 — liste d'alerte « prochaines occasions Orbitvu » : double opt-in codé et testé, fermé (sans test réel) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, sprint final du 11/10 (GO_CODE = YES ; GO_TEST_REEL_ALERTES, GO_MERGE, GO_PUBLICATION, GO_CAMPAGNE_EMAIL = NO) | **PR** : #129 (brouillon) | **Commit** : commit de développement qui suit la fermeture `4dddd32`
+
+**Quoi** — Décision de Laurent : conserver et activer le parcours d'alerte, secondaire sous la recherche.
+- Formulaire simplifié : e-mail (obligatoire), famille ou type de studio (facultatif), case d'accord décochée (obligatoire) ; prénom retiré ; titre « Soyez informé des prochaines occasions Orbitvu », bouton « M'avertir des prochaines disponibilités ». Textes de simulation retirés ; tant que la liste est fermée, une information honnête : « Les alertes ne sont pas encore ouvertes : aucune inscription n'est enregistrée pour le moment. »
+- Double opt-in sans stockage temporaire : `POST /api/occasion/alertes` n'écrit RIEN chez Resend ; il envoie un e-mail de confirmation dont le lien porte la demande chiffrée et authentifiée (AES-256-GCM, `OCCASION_ALERTES_SECRET`, 48 h, dans le fragment de l'URL). Seul le clic sur « Confirmer mon inscription » (`POST /api/occasion/alertes/confirmation`) crée ou met à jour le contact Resend : segment dédié, topic dédié (créé en « opt_out » par défaut), propriétés de preuve `occasion_alertes_*` (état, date de la demande, date de confirmation, version du texte, source, famille). `POST /api/occasion/alertes/desinscription` sort l'adresse du topic et du segment Occasion seulement.
+- Contacts globaux de Resend : jamais d'écriture de `unsubscribed`, d'un autre topic ni du prénom ; un contact globalement désinscrit ou sorti du topic Occasion n'est jamais réinscrit (« desinscrit ») ; une désinscription ne crée jamais de contact.
+- Verrou indépendant `ALERTES_REELLES_AUTORISEES = false` et `FENETRE_TEST_ALERTES_JUSQUA = null` (`lib/occasion/activation.ts`) : les trois routes répondent 503 sans lire la demande ; en production, publication exigée en plus.
+- Texte d'accord exact et versionné : `TEXTE_OPTIN`, `VERSION_TEXTE_OPTIN = occasion-alertes-v2-2026-10-11` (`lib/occasion/formulaires.ts`) ; la route refuse une version différente.
+
+**Pourquoi** — Message de Laurent « SPRINT FINAL OCCASION #129 » du 11/10, phases 1 à 6.
+
+**Fichiers** — Nouveaux : `lib/occasion/alertes/{schema,jeton,courriel,resend,services,gestionnaires,instance}.ts`, `app/api/occasion/alertes/route.ts`, `app/api/occasion/alertes/{confirmation,desinscription}/route.ts`, `lib/occasion/__tests__/alertes-{validation,registre,gestionnaires,isolation}.test.ts`, `lib/occasion/__tests__/alertes-doublures.ts`. Modifiés : `components/landings/occasion/{FormulaireAlertes.tsx,contenu.ts,BandeauApercu.tsx,OccasionOrbitvu.tsx}`, les deux `page.tsx`, `lib/occasion/{formulaires,activation}.ts`, `lib/occasion/__tests__/occasion.test.ts` (anciens tests du parcours B, remplacés). Le formulaire de recherche et `/api/occasion` ne sont pas modifiés.
+
+**Effet attendu** — Aucun en production (page 404, routes 503). Preview : formulaire d'alerte visible, réponse « Alertes pas encore ouvertes », jamais un succès.
+
+**Vérifié** —
+- SDK `resend` 6.9.3 installé : `contacts.get/create/update`, `contacts.segments.list/add/remove`, `contacts.topics.list/update`, propriétés de contact texte ou nombre (types `index.d.mts`) ; contrôle de types par `clientAlertesResend`. Documentation Resend lue : contacts globaux, propriétés à créer avant usage, topic « opt_out » reçu seulement par les inscrits explicites.
+- Tests à client Resend simulé (aucune requête réelle) : 70 tests d'alerte (4 fichiers) ; suite complète 42 fichiers, 754 tests verts. Validation (e-mail absent, invalide, trop long ; famille inconnue ou absente ; accord non coché ; clés inattendues dont prénom et référence fictive ; HTML ; longueurs), jetons (aller-retour, expiration, altération, autre secret, type croisé), préférences d'un contact existant conservées, désinscription puis tentative de réinscription refusée, pannes Resend et réponses sans identifiant, segment ou topic absents, secret absent ou court, double clic, limitation, champ piège, journal sans donnée personnelle, isolation (aucun import CRM, n8n, Supabase, `/api/contact`, catalogue ; aucune clé côté navigateur).
+- QA Playwright locale 34/34 : position sous la recherche, textes, champs, case décochée, clavier, 503 réel, états 200/400/429/500 et liens (inscrit, déjà inscrit, désinscrit, expiré, invalide, indisponible, erreur, désinscription) simulés par interception, 390 et 320 px sans débordement, aucune erreur JavaScript.
+
+**Supposé** — [Non vérifié] Comportement réel de Resend sur un contact déjà dans le segment (`segments.add` n'est appelé qu'après lecture des segments du contact) et sur une propriété absente du compte (refus attendu, traité comme une erreur). [Non vérifié] Conservation du fragment `#confirmer-alerte=…` par le suivi des clics de Resend s'il est activé.
+
+**Non regardé** — Aucun envoi, aucun contact, segment, topic ou propriété créé chez Resend (GO_TEST_REEL_ALERTES = NO). Aucune variable Vercel modifiée. Campagnes : hors périmètre (GO_CAMPAGNE_EMAIL = NO).
+
+**Suite** — Q25 (ressources Resend, variables, politique de confidentialité, règle de réinscription). Fermer le verrou après une mise en service couperait aussi la désinscription : prévoir alors un verrou d'inscription distinct.
+
+---
+
+## 2026-10-11 · #129 — test réel de la recherche en Preview : ouverture `75d5914`, fermeture `4dddd32` · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_TEST_REEL_RECHERCHE de Laurent, Preview seulement) | **PR** : #129 (brouillon) | **Commits** : `75d5914` (ouverture), `4dddd32` (fermeture)
+
+**Quoi** — `75d5914` (poussé à 15:19 UTC) : `COLLECTE_REELLE_AUTORISEE = true`, `FENETRE_TEST_JUSQUA = '2026-10-11T17:17:00Z'`, `PUBLICATION_AUTORISEE = false`. Fermeture `4dddd32` à 17:17:24 UTC (push) : verrous remis (`false`, `null`), arbre identique à celui de `f265e04`.
+
+**Pourquoi** — Protocole de test réel de la PR (repris de #82) ; `OCCASION_NOTIFICATION_EMAIL` créée par Laurent sur Vercel, portée limitée à la branche Preview.
+
+**Fichiers** — `lib/occasion/activation.ts`.
+
+**Effet attendu** — Production inchangée. Preview fermée de nouveau (503).
+
+**Vérifié** — Déploiement Vercel de `75d5914` terminé à 15:21 UTC ; CI de `75d5914` rouge sur les seuls trois tests de verrou, comme attendu (commentaire sur la PR). Fermeture à l'échéance prévue : le résultat du test B n'avait pas été transmis à cette session. CI de `4dddd32` : 4 contrôles verts (« Types, build et intégrité des données » terminé à 17:23:12 UTC) ; déploiement Vercel de `4dddd32` terminé à 17:18:34 UTC.
+
+**Supposé** — Test A : soumis par Laurent, écran « Demande reçue », HTTP 200 (transmis par Laurent, non vu par cette session).
+
+**Non regardé** — Test B, quatre e-mails (identifiants Resend, `delivered`, réception) : non établis dans cette session. Preview inaccessible par script (SSO Vercel) ; `GET` et `POST` sur l'alias, suppression du déploiement de `75d5914` et 404 : à faire dans Chrome.
+
+**Suite** — Agent Chrome : contrôle 503 et `{"disponible":false}` sur l'alias, suppression de tout déploiement construit sur `75d5914`, 404 `DEPLOYMENT_NOT_FOUND`, relevé Resend et lecture des boîtes pour A (et B s'il a été envoyé avant 17:17 UTC).
+
+---
+
 ## 2026-10-11 · #129 — fenêtre de test datée, bandeau fidèle à l'état réel de la collecte, protocole de test réel (sans test) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la mission S0 (GO_CODE = YES ; GO_TEST_REEL et autres GO = NO) | **PR** : #129 (brouillon) | **Commit** : base `2d9df02`

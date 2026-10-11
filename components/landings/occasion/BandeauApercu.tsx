@@ -13,12 +13,23 @@ export const CHEMIN_EXEMPLES = '/fr/studios-photo-automatises/opportunites/exemp
  * la maquette V4.1. La bascule ne change pas l'état d'une même page : elle mène
  * à l'une des deux vues, chacune calculée côté serveur depuis sa source (stock
  * réel, ou exemples fictifs de contrôle). Le texte suit l'état RÉEL de la
- * collecte (`collecte`) : pendant une fenêtre de test, il annonce les envois réels,
- * et repasse à « recherche fermée (503) » à l'heure de fin (`useCollecteCourante`).
+ * recherche (`collecte`) et de la liste d'alerte (`alertes`) : pendant une fenêtre
+ * de test, il annonce les envois réels, puis repasse à l'état fermé à l'heure de
+ * fin (`useCollecteCourante`).
  */
-export function BandeauApercu({ vue, nombreReel, collecte }: { vue: 'reel' | 'exemples'; nombreReel: number; collecte: CollecteAffichee }) {
+export function BandeauApercu({
+  vue,
+  nombreReel,
+  collecte,
+  alertes,
+}: {
+  vue: 'reel' | 'exemples';
+  nombreReel: number;
+  collecte: CollecteAffichee;
+  alertes: CollecteAffichee;
+}) {
   const [annotations, setAnnotations] = useState(true);
-  const textes = texteBandeau(vue, useCollecteCourante(collecte));
+  const textes = texteBandeau(vue, useCollecteCourante(collecte), useCollecteCourante(alertes));
 
   const basculer = () => {
     const suivant = !annotations;

@@ -1,3 +1,5 @@
+import { TEXTE_OPTIN } from '@/lib/occasion/formulaires';
+
 /**
  * Textes de la landing « Studios Orbitvu d'occasion »
  * (/fr/studios-photo-automatises/opportunites).
@@ -62,39 +64,67 @@ export const MACHINES = {
 
 export const ALERTES = {
   surtitre: 'Alertes de disponibilité',
-  titre: 'Ne manquez pas les prochaines machines disponibles.',
-  texte:
-    "Les équipements Orbitvu d'occasion arrivent au fil des renouvellements de showroom, des démonstrations et des reprises. Inscrivez-vous pour recevoir les nouvelles disponibilités et découvrir les machines qui pourraient vous intéresser.",
+  titre: 'Soyez informé des prochaines occasions Orbitvu',
+  texte: nb(
+    "Vous recherchez un modèle particulier ? Laissez-nous votre adresse e-mail pour être informé lorsque de nouveaux équipements d'occasion sont proposés.",
+  ),
   champs: {
-    email: 'E-mail professionnel *',
-    prenom: 'Prénom',
-    famille: 'Famille ou modèle recherché',
+    email: 'E-mail *',
+    famille: 'Famille ou type de studio',
     facultatif: '(facultatif)',
     familleToutes: 'Tous les équipements Orbitvu',
   },
-  optin:
-    "Je souhaite recevoir par e-mail les nouvelles disponibilités d'équipements Orbitvu d'occasion. Cette inscription est indépendante de la newsletter et ne m'abonne à aucune autre communication. *",
-  bouton: 'Recevoir les nouvelles disponibilités',
+  /** Texte exact et versionné de la case (`lib/occasion/formulaires.ts`), suivi de la marque « obligatoire ». */
+  optin: `${TEXTE_OPTIN} *`,
+  bouton: "M'avertir des prochaines disponibilités",
+  envoi: 'Envoi en cours…',
   mention: nb(
-    'Responsable du traitement : Sysnext (PackshotCreator). Chaque e-mail contient un lien pour vous désinscrire ou modifier vos préférences.',
+    "Responsable du traitement : Sysnext (PackshotCreator). Un e-mail de confirmation vous est envoyé : sans confirmation, rien n'est enregistré. Chaque message permet de vous désinscrire.",
   ),
   lienConfidentialite: 'Politique de confidentialité',
-  annotationMention: "Durée de conservation et outil d'envoi à définir",
   points: [
     "Uniquement des équipements Orbitvu d'occasion, avec leur origine",
     nb('Pas de fréquence fixe : un message quand des machines arrivent'),
-    'Désinscription et préférences accessibles dans chaque e-mail',
+    'Désinscription possible depuis chaque message',
   ],
-  avis: nb("Liste d'alerte pas encore ouverte : aucune inscription n'est enregistrée."),
-  // Liste NON ACTIVÉE (mission S0) : jamais de message de succès, en Preview comme en production.
-  fermee: {
-    titre: 'Alertes pas encore ouvertes',
-    texte: "Aucune inscription n'a été enregistrée : la liste d'alerte n'est pas encore en service.",
-    lienRecherche: 'Décrire votre recherche dès maintenant',
-    textePrevu: nb(
-      'Texte prévu après mise en service : « Votre inscription est prise en compte. Vous serez informé des nouvelles disponibilités. Vous pourrez vous désinscrire ou modifier vos préférences depuis chaque e-mail. »',
+  // Information honnête tant que la liste n'est pas en service (aucun texte de simulation).
+  fermee: nb("Les alertes ne sont pas encore ouvertes : aucune inscription n'est enregistrée pour le moment."),
+  etats: {
+    attenteTitre: 'Vérifiez votre boîte de réception',
+    attente: nb(
+      "Nous vous avons envoyé un e-mail de confirmation. Votre inscription ne sera enregistrée qu'après un clic sur le lien qu'il contient (valable 48 heures).",
     ),
+    indisponibleTitre: 'Alertes pas encore ouvertes',
+    indisponible: nb("Aucune inscription n'a été enregistrée : la liste d'alerte n'est pas encore en service."),
+    lienRecherche: 'Décrire votre recherche dès maintenant',
+    erreur: nb("L'inscription n'a pas pu être envoyée. Vos informations sont conservées : vous pouvez réessayer."),
+    limitation: 'Trop de demandes depuis cette connexion. Réessayez dans quelques minutes.',
   },
+  confirmation: {
+    titre: 'Confirmer votre inscription',
+    texte: "Un clic sur le bouton confirme votre inscription aux disponibilités d'équipements Orbitvu d'occasion.",
+    bouton: 'Confirmer mon inscription',
+    inscritTitre: 'Inscription confirmée',
+    inscrit: nb('Vous serez informé des prochaines disponibilités. Chaque message contiendra un lien de désinscription.'),
+    dejaInscritTitre: 'Inscription déjà confirmée',
+    dejaInscrit: nb("Cette adresse reçoit déjà les alertes Orbitvu d'occasion : rien n'a été modifié."),
+    desinscritTitre: 'Adresse désinscrite',
+    desinscrit: nb(
+      "Cette adresse s'est désinscrite : elle n'est pas réinscrite automatiquement. Pour recevoir de nouveau les alertes, écrivez-nous.",
+    ),
+    expire: nb('Ce lien de confirmation a expiré : inscrivez-vous de nouveau avec le formulaire.'),
+    invalide: nb("Ce lien n'est pas valide : inscrivez-vous de nouveau avec le formulaire."),
+    erreur: nb("La demande n'a pas pu aboutir : rien n'a été modifié, vous pouvez réessayer."),
+  },
+  desinscription: {
+    titre: "Se désinscrire des alertes Orbitvu d'occasion",
+    texte: 'Vos autres préférences (newsletter, autres messages) ne sont pas modifiées.',
+    bouton: 'Me désinscrire',
+    faitTitre: 'Désinscription enregistrée',
+    fait: nb("Vous ne recevrez plus les alertes Orbitvu d'occasion. Aucune autre communication n'est modifiée."),
+  },
+  envoiJeton: 'Traitement en cours…',
+  avisTestReel: nb("Test réel en cours : l'inscription envoie un vrai e-mail de confirmation."),
 };
 
 export const FICHE = {
@@ -217,14 +247,29 @@ export function avisTestReel(c: CollecteAffichee): string {
   );
 }
 
-/** Titre et texte du bandeau de l'aperçu, selon la vue et l'état RÉEL de la collecte. */
-export function texteBandeau(vue: 'reel' | 'exemples', c: CollecteAffichee): { titre: string; texte: string; test: boolean } {
+const FERMEE: CollecteAffichee = { active: false, jusqua: null };
+
+/**
+ * Titre et texte du bandeau de l'aperçu, selon la vue et l'état RÉEL des deux
+ * collectes : recherche (`collecte`) et liste d'alerte (`alertes`), indépendantes.
+ */
+export function texteBandeau(
+  vue: 'reel' | 'exemples',
+  c: CollecteAffichee,
+  alertes: CollecteAffichee = FERMEE,
+): { titre: string; texte: string; test: boolean } {
   const prefixe = vue === 'exemples' ? 'Page non publiée · machines et photos d’illustration · ' : 'Page non publiée · ';
-  if (c.active) {
-    const fin = c.jusqua ? ` jusqu'au ${heureUtc(c.jusqua)}, fermeture automatique ensuite` : '';
+  const fin = (x: CollecteAffichee) => (x.jusqua ? ` jusqu'au ${heureUtc(x.jusqua)}, fermeture automatique ensuite` : '');
+  if (c.active || alertes.active) {
+    const recherche = c.active
+      ? `la recherche envoie de vrais e-mails (notification interne, puis accusé au prospect)${fin(c)}`
+      : 'recherche fermée (503)';
+    const liste = alertes.active
+      ? `liste d'alerte : l'inscription envoie un vrai e-mail de confirmation${fin(alertes)}`
+      : "liste d'alerte non activée";
     return {
       titre: vue === 'exemples' ? 'Test réel en cours · exemples fictifs – aucune offre réelle' : 'Test réel en cours',
-      texte: `${prefixe}la recherche envoie de vrais e-mails (notification interne, puis accusé au prospect)${fin} · liste d'alerte non activée`,
+      texte: `${prefixe}${recherche} · ${liste}`,
       test: true,
     };
   }

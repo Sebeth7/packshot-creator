@@ -67,6 +67,28 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q25 · 2026-10-11 · Liste d'alerte « occasions Orbitvu » (#129) : ressources Resend, variables, politique de confidentialité, règle de réinscription — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : landing occasion Orbitvu (#129, brouillon)
+**Bloque** : la mise en service de la liste d'alerte (GO_TEST_REEL_ALERTES). Le code est livré, testé avec un client Resend simulé, et fermé (`ALERTES_REELLES_AUTORISEES = false`).
+
+**Contexte** — Décision de Laurent du 11/10 : conserver la liste d'alerte, en double opt-in, sur Resend (déjà utilisé par le site), sans CRM ni n8n ni base Supabase SEO.
+
+**Vérifié** — `lib/occasion/alertes/resend.ts` (en-tête) : seuls un segment, un topic et sept propriétés `occasion_alertes_*` sont écrits, uniquement après le clic de confirmation ; jamais `unsubscribed`, ni un autre topic. SDK `resend` 6.9.3 : contacts globaux, propriétés à créer avant usage (documentation Resend, « new contacts experience »).
+
+**La question** — Qui crée, dans le compte Resend de Sysnext, les ressources ci-dessous, et la finalité « alertes Occasion » entre-t-elle dans la politique de confidentialité ?
+1. Segment `PackshotCreator — Occasions Orbitvu` ; topic `Disponibilités Orbitvu d'occasion`, **défaut « opt_out »** (irréversible après création) ; propriétés de contact de type texte : `occasion_alertes_etat`, `occasion_alertes_demande_le`, `occasion_alertes_confirme_le`, `occasion_alertes_version`, `occasion_alertes_source`, `occasion_alertes_famille`, `occasion_alertes_desinscrit_le`.
+2. Variables Vercel (Preview de la branche d'abord) : `OCCASION_ALERTES_SEGMENT_ID`, `OCCASION_ALERTES_TOPIC_ID`, `OCCASION_ALERTES_SECRET` (32 caractères au moins, aléatoire) ; facultative : `OCCASION_ALERTES_URL_BASE`.
+3. Règle retenue dans le code : une adresse désinscrite (globalement ou de la liste Occasion) n'est jamais réinscrite, même par une nouvelle confirmation ; elle doit écrire à l'équipe.
+
+**Options**
+- A : création par Sébastien (ou sur son instruction), puis GO_TEST_REEL_ALERTES de Laurent sur une fenêtre datée, comme la recherche → mise en service tracée.
+- B : report de la liste d'alerte → le formulaire reste visible avec l'information « pas encore ouvertes », sans aucun enregistrement.
+
+**Ma recommandation** — A, avec la règle 3 telle quelle : elle évite toute réinscription silencieuse ; un assouplissement (réinscription sur nouvelle confirmation explicite) est un changement d'une ligne si vous le décidez.
+
+---
+
 ### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : landing catalogue All-in-One (#82)

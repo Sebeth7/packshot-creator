@@ -5,6 +5,7 @@ import { versCartes } from '@/components/landings/occasion/cartes';
 import { META } from '@/components/landings/occasion/contenu';
 import { MACHINES_OCCASION } from '@/data/occasion/machines';
 import { PUBLICATION_AUTORISEE, pageOccasionServie } from '@/lib/occasion/activation';
+import { alertesAffichees, servicesAlertes } from '@/lib/occasion/alertes/services';
 import { collecteAffichee, servicesOccasion } from '@/lib/occasion/services';
 import { machinesDisponibles } from '@/lib/occasion/stock';
 
@@ -56,6 +57,7 @@ export default async function OccasionPage({ params }: { params: Promise<{ lang:
       vue="reel"
       nombreReel={disponibles.length}
       collecte={collecteAffichee(servicesOccasion())}
+      alertes={alertesAffichees(servicesAlertes())}
     />
   );
 }

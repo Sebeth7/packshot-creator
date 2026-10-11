@@ -57,6 +57,7 @@ export default function OccasionOrbitvu({
   vue,
   nombreReel,
   collecte,
+  alertes,
 }: {
   machines: CarteMachine[];
   apercuInterne: boolean;
@@ -64,12 +65,14 @@ export default function OccasionOrbitvu({
   nombreReel: number;
   /** État réel de `/api/occasion` (verrous, fenêtre de test, configuration), calculé au rendu serveur. */
   collecte: CollecteAffichee;
+  /** État réel de la liste d'alerte (`/api/occasion/alertes`), indépendant de la recherche. */
+  alertes: CollecteAffichee;
 }) {
   const stock = machines.length > 0;
 
   return (
     <div id="occasion" data-annot="on" data-etat={stock ? 'stock' : 'vide'} className="group/occasion">
-      {apercuInterne && <BandeauApercu vue={vue} nombreReel={nombreReel} collecte={collecte} />}
+      {apercuInterne && <BandeauApercu vue={vue} nombreReel={nombreReel} collecte={collecte} alertes={alertes} />}
 
       {/* ━━ HERO ━━ */}
       <section aria-labelledby="occasion-titre" className="border-b border-future-dusk-50 bg-bg-warm-white">
@@ -323,7 +326,7 @@ export default function OccasionOrbitvu({
         </div>
       </section>
 
-      {/* ━━ LISTE D'ALERTE (parcours B, secondaire et non activée) ━━ */}
+      {/* ━━ LISTE D'ALERTE (parcours B, secondaire, double opt-in, fermée par défaut) ━━ */}
       <section
         id="alertes"
         aria-labelledby="alertes-titre"
@@ -340,7 +343,7 @@ export default function OccasionOrbitvu({
               <h2 id="alertes-titre" className={`${titre2} mt-3 text-white`}>{ALERTES.titre}</h2>
               <p className="text-[16.5px] text-[#d9daf5]">{ALERTES.texte}</p>
             </div>
-            <FormulaireAlertes apercuInterne={apercuInterne} />
+            <FormulaireAlertes apercuInterne={apercuInterne} alertes={alertes} />
             <ul className="relative z-[1] grid content-start gap-2.5 md:col-start-1 md:row-start-2 md:mt-5">
               {ALERTES.points.map((p, i) => {
                 const Icone = [Mail, Bell, SlidersHorizontal][i];

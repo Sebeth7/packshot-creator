@@ -12,7 +12,6 @@ import {
   pageOccasionServie,
 } from '@/lib/occasion/activation';
 import { FRAICHEUR_MAX_JOURS, elementsManquants, machinesDisponibles, nomModele } from '@/lib/occasion/stock';
-import { VERSION_TEXTE_OPTIN, desinscrire, preuveConsentement, validerAlerte } from '@/lib/occasion/formulaires';
 import { routeCouverte } from '@/lib/engagement/regles';
 import { avisTestReel, texteBandeau } from '@/components/landings/occasion/contenu';
 
@@ -162,25 +161,7 @@ describe('Exemples fictifs de la V4.1', () => {
   });
 });
 
-describe('Parcours B — liste d’attente', () => {
-  it('e-mail obligatoire et opt-in explicite ; prénom et famille facultatifs', () => {
-    expect(validerAlerte({ email: 'a@b.fr', optin: true })).toEqual({});
-    expect(Object.keys(validerAlerte({ email: '', optin: false }))).toEqual(['email', 'optin']);
-    expect(validerAlerte({ email: 'a@b.fr', optin: true, famille: 'Inconnue' })).toHaveProperty('famille');
-  });
-
-  it('preuve de consentement construite sans stockage, désinscription datée', () => {
-    const p = preuveConsentement({ email: ' Contact@Exemple.FR ', optin: true }, '/fr/studios-photo-automatises/opportunites', MAINTENANT);
-    expect(p).toEqual({
-      email: 'contact@exemple.fr',
-      horodatage: '2026-10-10T12:00:00.000Z',
-      versionTexte: VERSION_TEXTE_OPTIN,
-      pageSource: '/fr/studios-photo-automatises/opportunites',
-      etat: 'en_attente',
-    });
-    expect(desinscrire(p, MAINTENANT)).toMatchObject({ etat: 'desinscrit', dateDesinscription: '2026-10-10T12:00:00.000Z' });
-  });
-});
+// Parcours B (liste d'alerte) : lib/occasion/__tests__/alertes-*.test.ts.
 
 describe('Pop-in d’engagement', () => {
   it('jamais sur la landing occasion ni sa vue de contrôle ; le hub Studios reste couvert', () => {

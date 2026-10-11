@@ -68,6 +68,39 @@ export function etatCollecte(env: Env = process.env, maintenant: Date = new Date
   return { ouverte: maintenant.getTime() < fin, jusqua: new Date(fin).toISOString() };
 }
 
+/**
+ * Liste d'alerte « prochaines occasions Orbitvu » (`/api/occasion/alertes/**`,
+ * sprint final du 11/10/2026). FAUX : GO_TEST_REEL_ALERTES = NO. Verrou
+ * INDÉPENDANT de `COLLECTE_REELLE_AUTORISEE` (recherche) : fermer l'un ne ferme
+ * pas l'autre. Faux : les trois routes répondent 503 sans lire la demande, même
+ * si les secrets et identifiants Resend existaient.
+ */
+export const ALERTES_REELLES_AUTORISEES = false;
+
+/** Fin d'une fenêtre de test réel de la liste d'alerte hors production (ISO 8601 UTC), ou `null`. */
+export const FENETRE_TEST_ALERTES_JUSQUA: string | null = null;
+
+export interface VerrousAlertes {
+  alertes: boolean;
+  publication: boolean;
+  fenetreJusqua: string | null;
+}
+
+const VERROUS_ALERTES: VerrousAlertes = {
+  alertes: ALERTES_REELLES_AUTORISEES,
+  publication: PUBLICATION_AUTORISEE,
+  fenetreJusqua: FENETRE_TEST_ALERTES_JUSQUA,
+};
+
+/**
+ * La liste d'alerte est-elle ouverte à cet instant ? Mêmes règles que la
+ * recherche, avec ses propres verrous : en production, publication exigée ;
+ * ailleurs, fenêtre de test datée non échue. Fermée par défaut.
+ */
+export function etatAlertes(env: Env = process.env, maintenant: Date = new Date(), v: VerrousAlertes = VERROUS_ALERTES): EtatCollecte {
+  return etatCollecte(env, maintenant, { collecte: v.alertes, publication: v.publication, fenetreJusqua: v.fenetreJusqua });
+}
+
 /** La page `/fr/studios-photo-automatises/opportunites` est-elle générée dans cet environnement ? */
 export function pageOccasionServie(env: Env = process.env): boolean {
   if (env.VERCEL_ENV === 'production') return PUBLICATION_AUTORISEE;
