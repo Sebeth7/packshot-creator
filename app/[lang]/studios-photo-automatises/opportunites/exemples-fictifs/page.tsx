@@ -5,6 +5,7 @@ import { versCartes } from '@/components/landings/occasion/cartes';
 import { exemplesFictifs } from '@/data/occasion/exemples-fictifs';
 import { MACHINES_OCCASION } from '@/data/occasion/machines';
 import { exemplesFictifsServis, pageOccasionServie } from '@/lib/occasion/activation';
+import { servicesOccasion } from '@/lib/occasion/services';
 import { machinesDisponibles } from '@/lib/occasion/stock';
 
 /**
@@ -35,6 +36,7 @@ export default async function OccasionExemplesPage({ params }: { params: Promise
       apercuInterne
       vue="exemples"
       nombreReel={machinesDisponibles(MACHINES_OCCASION).length}
+      collecteActive={servicesOccasion().mode === 'reel'}
     />
   );
 }

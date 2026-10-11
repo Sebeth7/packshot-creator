@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-11 · #129 — parcours « recherche d'un studio d'occasion » et route `/api/occasion` fermée (mission S0, GO_CODE) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, mission S0 du 11/10 (GO_CODE = YES ; GO_MERGE, GO_PUBLICATION, GO_COLLECTE_REELLE, GO_TEST_REEL, GO_DEPENSE, GO_TRADUCTION = NO) | **PR** : #129 (brouillon) | **Commit** : base de la branche `28177a3`
+
+**Quoi** — Fait métier de Laurent du 11/10 : des machines d'occasion peuvent être recherchées à la demande. Le parcours prioritaire devient une **demande de recherche** visible avec ou sans machine affichée : CTA du hero « Je recherche un studio d'occasion », formulaire (prénom, e-mail, entreprise, besoin obligatoires ; famille, téléphone, budget HT indicatif, horizon, commentaire, référence facultatifs ; aucun opt-in marketing), présélection de la référence par la carte d'une machine. Route `POST /api/occasion` sur le modèle de #82, sans `/api/contact`. La liste d'alerte devient secondaire, en fin de page, non activée : jamais de message de succès. Bloc « contact général » de la V4.1 retiré, remplacé par la recherche.
+
+**Pourquoi** — Mission `MISSION_CLAUDE_CODE_PR129_WORKFLOW_LEADS_GO_CODE_2026-10-11.md` et spec `PSC_OCCASION_PR129_WORKFLOW_LEADS_SPEC_2026-10-11.md` (objectif : contacts chauds à budget contraint, test de quelques mois accepté en principe par Sébastien, sans GO de publication).
+
+**Fichiers** — Nouveaux : `app/api/occasion/route.ts`, `lib/occasion/{schema,gestionnaire,services,resend,fiche,courriel}.ts`, `components/landings/occasion/{FormulaireRecherche.tsx,mesure.ts}`, `lib/occasion/__tests__/recherche-{gestionnaire,services,mesure}.test.ts`. Modifiés : `components/landings/occasion/{OccasionOrbitvu,FormulaireAlertes}.tsx`, `contenu.ts`, `styles.ts`, les deux `page.tsx`, `lib/occasion/{activation,formulaires}.ts`, `lib/occasion/__tests__/occasion.test.ts` (tests du parcours « machine obligatoire » retirés, devenus sans objet). Supprimé : `components/landings/occasion/FormulaireDemande.tsx`.
+
+**Effet attendu** — Aucun en production : page en 404, liens absents, route en 503. Preview : formulaire de recherche visible ; un envoi renvoie l'état « Formulaire pas encore en service », jamais un succès.
+
+**Vérifié** — Local : `npx tsc --noEmit` vert ; `npx vitest run` 38 fichiers, 672 tests verts avant le dernier correctif de lint, puis `lib/occasion` 45/45 ; ESLint sans erreur sur les fichiers touchés ; `npx next build` vert hors production (`/api/occasion` dynamique, pages en `/fr` seulement). Build avec `VERCEL_ENV=production` et de faux secrets Resend et `OCCASION_NOTIFICATION_EMAIL` présents : les deux pages en 404, `POST /api/occasion` 503 `occasion_unavailable`, `GET` `{"disponible":false}`, aucun lien « occasion » sur `/fr`, `/fr/studios-photo-automatises`, `/en`, `/de-ch`. Tests à services simulés (aucun réseau) : recherche sans machine, référence fictive rejetée (409), validations et longueurs, champ piège, limitation, anti-doublon de l'instance, notification puis accusé, panne de la notification (500, aucun accusé, nouvel essai possible), panne du seul accusé (demande reçue, `ackSent: false`), verrou fermé (503 sans lecture du corps), HTML échappé, journal et GA4 sans donnée personnelle, aucun repli sur `CATALOGUE_NOTIFICATION_EMAIL` ni `NOTIFICATION_EMAIL`. QA Playwright locale 34/34 : ordres des sections (vide : hero, recherche, fiche, garantie, alertes ; avec exemples : hero, machines, recherche, fiche, garantie, alertes), validation client sans requête, réponse réelle locale 503 et état « pas encore en service », liste d'alerte sans succès ni requête, états 200 (avec ou sans accusé), 409, 429, 500 simulés par interception, présélection au clic et au toucher, 1440, 390 et 320 px sans débordement, liens en FR seulement, aucune erreur JavaScript.
+
+**Supposé** — La Preview Vercel reçoit `VERCEL_ENV=preview` ; la production `VERCEL_ENV=production` (non revérifié sur la production).
+
+**Non regardé** — Aucun envoi réel (GO_TEST_REEL = NO) : délivrabilité Resend, réception par Sébastien, traitement par son assistant. Preview non ouverte par script (SSO Vercel). Firefox, Safari, appareils réels. Politique de confidentialité non modifiée (hors périmètre).
+
+**Suite** — Avant GO_TEST_REEL : `OCCASION_NOTIFICATION_EMAIL` en Preview seulement, adresses de test approuvées, `COLLECTE_REELLE_AUTORISEE` ouvert sur la branche de test. Avant GO_PUBLICATION : finalité « demandes Occasion » dans la politique, mentions et copy validées, HOLD de la PR levés. L'idempotence et la limitation restent locales à l'instance (pas d'anti-doublon distribué).
+
+---
+
 ## 2026-10-10 · Landing « Studios Orbitvu d'occasion » : intégration Next.js de la V4.1 en Preview (brouillon, DO NOT MERGE) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, GO de Laurent du 10/10 (GO CODE, BRANCHE + PUSH, PR DRAFT, PREVIEW = YES ; MERGE, PUBLICATION, FORMULAIRES RÉELS, ENVOI D'E-MAIL, N8N, RECHERCHE PAYANTE = NO) | **PR** : #129 (brouillon), branche `claude/gallant-galileo-f32xk6` | **Commit** : `1a0af85` (code), base `main` `0f960b5`

@@ -18,6 +18,10 @@ export const facultatif = 'font-normal text-future-dusk-400';
 export const saisieBase =
   'h-[46px] w-full min-w-0 rounded-[10px] border bg-white px-3 text-[15px] text-future-dusk-900 focus:border-very-peri-500 focus:outline-none focus:ring-[3px] focus:ring-very-peri-50';
 export const saisie = (erreur: boolean) => `${saisieBase} ${erreur ? 'border-[#b42318]' : 'border-future-dusk-100'}`;
+/** Zone de texte multiligne : mêmes bordures que `saisie`, hauteur libre. */
+export const zone = (erreur: boolean) =>
+  `min-h-[96px] w-full min-w-0 rounded-[10px] border bg-white px-3 py-2.5 text-[15px] leading-normal text-future-dusk-900 focus:border-very-peri-500 focus:outline-none focus:ring-[3px] focus:ring-very-peri-50 ${erreur ? 'border-[#b42318]' : 'border-future-dusk-100'}`;
+
 /** Liste déroulante : chevron posé par `Liste` (composant), à droite. */
 export const liste = (erreur: boolean) => `${saisie(erreur)} appearance-none truncate pr-[38px]`;
 export const messageErreur = 'text-[12.5px] font-semibold text-[#b42318]';

@@ -4,10 +4,11 @@
  *
  * Deux états, calculés côté serveur depuis la source de stock (jamais depuis
  * l'adresse ni un fragment) :
- * - avec machines : hero, machines, liste d'attente, fiche, garantie, demande ;
- * - sans machine : hero, liste d'attente juste après, fiche, garantie, contact général.
- * Deux parcours séparés : demande sur une machine (A), alertes de disponibilité (B),
- * tous deux en simulation (aucune donnée envoyée).
+ * - avec machines : hero, machines, recherche, fiche, garantie, liste d'alerte ;
+ * - sans machine : hero, recherche juste après, fiche, garantie, liste d'alerte.
+ * Deux parcours séparés (mission S0 du 11/10/2026) : recherche d'un studio
+ * d'occasion (A, prioritaire, `POST /api/occasion`, fermée tant que la collecte
+ * n'est pas autorisée) et liste d'alerte (B, secondaire, non activée).
  *
  * Header et Footer partagés : seul le lien texte « Offres d'occasion » y est ajouté
  * (lib/occasion/navigation.ts). Aucun CTA de démonstration ni lien vers le neuf ajouté.
@@ -15,18 +16,17 @@
 import Image from 'next/image';
 import {
   ArrowLeftRight, Award, Bell, CalendarDays, Check, Flag, History, ImageIcon, KeyRound, Mail, MapPin,
-  MessageSquare, MonitorCheck, MonitorPlay, Phone, RefreshCw, SearchCheck, ShieldCheck, SlidersHorizontal, Store, Wrench,
+  MonitorCheck, MonitorPlay, RefreshCw, Search, SearchCheck, ShieldCheck, SlidersHorizontal, Store, Wrench,
   type LucideIcon,
 } from 'lucide-react';
-import { Link } from '@/i18n/routing';
 import type { OrigineOccasion, PhotoOccasion } from '@/data/occasion/machines';
 import { ORIGINES } from '@/lib/occasion/stock';
 import { Annotation } from './Annotation';
 import { BandeauApercu } from './BandeauApercu';
 import { BoutonMachine } from './BoutonMachine';
 import { FormulaireAlertes } from './FormulaireAlertes';
-import { FormulaireDemande } from './FormulaireDemande';
-import { ALERTES, CONTACT_GENERAL, DEMANDE, FICHE, GARANTIE, HERO, MACHINES } from './contenu';
+import { FormulaireRecherche } from './FormulaireRecherche';
+import { ALERTES, FICHE, GARANTIE, HERO, MACHINES, RECHERCHE } from './contenu';
 import { boutonPrincipal, boutonSecondaire, chapo, enveloppe, section, surtitre, titre2 } from './styles';
 
 export interface CarteMachine {
@@ -56,11 +56,14 @@ export default function OccasionOrbitvu({
   apercuInterne,
   vue,
   nombreReel,
+  collecteActive,
 }: {
   machines: CarteMachine[];
   apercuInterne: boolean;
   vue: 'reel' | 'exemples';
   nombreReel: number;
+  /** Vrai seulement si `/api/occasion` a ses services réels (GO de collecte) ; faux aujourd'hui. */
+  collecteActive: boolean;
 }) {
   const stock = machines.length > 0;
 
@@ -90,20 +93,13 @@ export default function OccasionOrbitvu({
                 ))}
               </ul>
               <div className="mt-[22px] flex flex-col gap-3 md:mt-7 md:flex-row md:flex-wrap">
-                {stock ? (
-                  <>
-                    <a href="#machines" className={`${boutonPrincipal} w-full md:w-auto`} data-test="hero-voir">
-                      {HERO.ctaVoir}
-                    </a>
-                    <a href="#alertes" className={`${boutonSecondaire} w-full md:w-auto`} data-test="hero-alerte">
-                      <Bell aria-hidden="true" className="h-[19px] w-[19px] shrink-0" strokeWidth={TRAIT} />
-                      {HERO.ctaAlerteStock}
-                    </a>
-                  </>
-                ) : (
-                  <a href="#alertes" className={`${boutonPrincipal} w-full md:w-auto`} data-test="hero-alerte-vide">
-                    <Bell aria-hidden="true" className="h-[19px] w-[19px] shrink-0" strokeWidth={TRAIT} />
-                    {HERO.ctaAlerteVide}
+                <a href="#recherche" className={`${boutonPrincipal} w-full md:w-auto`} data-test="hero-recherche">
+                  <Search aria-hidden="true" className="h-[19px] w-[19px] shrink-0" strokeWidth={TRAIT} />
+                  {HERO.ctaRecherche}
+                </a>
+                {stock && (
+                  <a href="#machines" className={`${boutonSecondaire} w-full md:w-auto`} data-test="hero-voir">
+                    {HERO.ctaVoir}
                   </a>
                 )}
               </div>
@@ -155,12 +151,12 @@ export default function OccasionOrbitvu({
                 <p className={chapo}>{MACHINES.texte}</p>
               </div>
               <a
-                href="#alertes"
-                data-test="jump-alerte"
+                href="#recherche"
+                data-test="jump-recherche"
                 className="inline-flex items-center gap-2 rounded-full border border-very-peri-100 bg-white px-3.5 py-2 text-[14.5px] font-semibold text-very-peri-600 no-underline"
               >
-                <Bell aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={TRAIT} />
-                {MACHINES.lienAlerte}
+                <Search aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={TRAIT} />
+                {MACHINES.lienRecherche}
               </a>
             </div>
             <div className="mt-5 grid grid-cols-1 gap-3 md:mt-7 md:grid-cols-3 md:gap-[18px]">
@@ -226,43 +222,39 @@ export default function OccasionOrbitvu({
         </section>
       )}
 
-      {/* ━━ LISTE D'ATTENTE (parcours B) ━━ */}
-      <section
-        id="alertes"
-        aria-labelledby="alertes-titre"
-        className={`scroll-mt-20 bg-future-dusk-0 pb-[52px] md:pb-[76px] ${stock ? '' : 'pt-6 md:pt-14'}`}
-      >
-        <div className={enveloppe}>
-          <div className="relative grid grid-cols-1 gap-y-5 overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#2b2c6e_0%,#4a4ba3_55%,#6667AB_100%)] px-4 py-6 text-[#e9e9fb] shadow-[0_40px_70px_-40px_rgba(43,44,110,.8)] md:grid-cols-2 md:grid-rows-[auto_1fr] md:gap-x-11 md:gap-y-0 md:rounded-[22px] md:p-11">
-            <div aria-hidden="true" className="pointer-events-none absolute -right-[120px] -top-[120px] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(205,205,253,.22),transparent_70%)]" />
-            <div className="relative z-[1] md:col-start-1 md:row-start-1">
-              {stock ? (
-                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#CDCDFD]">
-                  <Bell aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={TRAIT} />
-                  {ALERTES.surtitre}
-                </p>
-              ) : (
-                <p className="mb-1.5 inline-flex items-center gap-2 rounded-full border border-[rgba(205,205,253,.3)] bg-white/[.12] px-3 py-[5px] text-[13.5px] font-semibold text-white">
-                  <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent-gold" />
-                  {ALERTES.statutVide}
-                </p>
-              )}
-              <h2 id="alertes-titre" className={`${titre2} mt-3 text-white`}>{ALERTES.titre}</h2>
-              <p className="text-[16.5px] text-[#d9daf5]">{ALERTES.texte}</p>
-            </div>
-            <FormulaireAlertes apercuInterne={apercuInterne} />
-            <ul className="relative z-[1] grid content-start gap-2.5 md:col-start-1 md:row-start-2 md:mt-5">
-              {ALERTES.points.map((p, i) => {
-                const Icone = [Mail, Bell, SlidersHorizontal][i];
-                return (
-                  <li key={p} className="flex items-start gap-2.5 text-[15px] text-[#eceeff]">
-                    <Icone aria-hidden="true" className="mt-px h-5 w-5 flex-[0_0_20px] text-[#CDCDFD]" strokeWidth={TRAIT} />
-                    {p}
-                  </li>
-                );
-              })}
+      {/* ━━ RECHERCHE D'OCCASION (parcours A, avec ou sans machine affichée) ━━ */}
+      <section id="recherche" aria-labelledby="recherche-titre" className={`${section} scroll-mt-20 ${stock ? '' : 'bg-future-dusk-0'}`}>
+        <div className={`${enveloppe} grid grid-cols-1 items-start gap-6 md:grid-cols-[.9fr_1.1fr] md:gap-14`}>
+          <div>
+            {!stock && (
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-future-dusk-50 bg-white px-3 py-[5px] text-[13.5px] font-semibold text-future-dusk-700">
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent-gold" />
+                {RECHERCHE.statutVide}
+              </p>
+            )}
+            <p className={surtitre}>{RECHERCHE.surtitre}</p>
+            <h2 id="recherche-titre" className={titre2}>{RECHERCHE.titre}</h2>
+            <p className={chapo}>{RECHERCHE.texte}</p>
+            <ul>
+              <li className="mt-3 flex items-start gap-2.5 text-[15px] text-[#3a4450]">
+                <Search aria-hidden="true" className="mt-0.5 h-5 w-5 flex-[0_0_20px] text-very-peri-500" strokeWidth={TRAIT} />
+                {RECHERCHE.point}
+              </li>
             </ul>
+            <div className="mt-[26px] rounded-[14px] border border-very-peri-100 bg-very-peri-50 px-[18px] py-4 text-[14.5px] text-future-dusk-700">
+              {RECHERCHE.alternative}
+              <br />
+              <a href="#alertes" data-test="alt-alerte" className="mt-1.5 inline-flex items-center gap-1.5 font-semibold text-very-peri-600 no-underline">
+                <Bell aria-hidden="true" className="h-[17px] w-[17px]" strokeWidth={TRAIT} />
+                {RECHERCHE.lienAlerte}
+              </a>
+            </div>
           </div>
+          <FormulaireRecherche
+            apercuInterne={apercuInterne}
+            collecteActive={collecteActive}
+            machines={machines.map((m) => ({ ref: m.ref, libelle: `${m.nom} — ${ORIGINES[m.origine].option} (${m.ref})` }))}
+          />
         </div>
       </section>
 
@@ -331,57 +323,38 @@ export default function OccasionOrbitvu({
         </div>
       </section>
 
-      {/* ━━ DEMANDE SUR UNE MACHINE (parcours A, état avec stock) ━━ */}
-      {stock && (
-        <section id="demande" aria-labelledby="demande-titre" className={`${section} scroll-mt-20`}>
-          <div className={`${enveloppe} grid grid-cols-1 items-start gap-6 md:grid-cols-[.9fr_1.1fr] md:gap-14`}>
-            <div>
-              <p className={surtitre}>{DEMANDE.surtitre}</p>
-              <h2 id="demande-titre" className={titre2}>{DEMANDE.titre}</h2>
-              <p className={chapo}>{DEMANDE.texte}</p>
-              <ul>
-                <li className="mt-3 flex items-start gap-2.5 text-[15px] text-[#3a4450]">
-                  <Phone aria-hidden="true" className="mt-0.5 h-5 w-5 flex-[0_0_20px] text-very-peri-500" strokeWidth={TRAIT} />
-                  {DEMANDE.point}
-                </li>
-              </ul>
-              <div className="mt-[26px] rounded-[14px] border border-very-peri-100 bg-very-peri-50 px-[18px] py-4 text-[14.5px] text-future-dusk-700">
-                {DEMANDE.alternative}
-                <br />
-                <a href="#alertes" data-test="alt-alerte" className="mt-1.5 inline-flex items-center gap-1.5 font-semibold text-very-peri-600 no-underline">
-                  <Bell aria-hidden="true" className="h-[17px] w-[17px]" strokeWidth={TRAIT} />
-                  {DEMANDE.lienAlerte}
-                </a>
-              </div>
+      {/* ━━ LISTE D'ALERTE (parcours B, secondaire et non activée) ━━ */}
+      <section
+        id="alertes"
+        aria-labelledby="alertes-titre"
+        className="scroll-mt-20 bg-future-dusk-0 py-[52px] md:py-[76px]"
+      >
+        <div className={enveloppe}>
+          <div className="relative grid grid-cols-1 gap-y-5 overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#2b2c6e_0%,#4a4ba3_55%,#6667AB_100%)] px-4 py-6 text-[#e9e9fb] shadow-[0_40px_70px_-40px_rgba(43,44,110,.8)] md:grid-cols-2 md:grid-rows-[auto_1fr] md:gap-x-11 md:gap-y-0 md:rounded-[22px] md:p-11">
+            <div aria-hidden="true" className="pointer-events-none absolute -right-[120px] -top-[120px] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(205,205,253,.22),transparent_70%)]" />
+            <div className="relative z-[1] md:col-start-1 md:row-start-1">
+              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#CDCDFD]">
+                <Bell aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={TRAIT} />
+                {ALERTES.surtitre}
+              </p>
+              <h2 id="alertes-titre" className={`${titre2} mt-3 text-white`}>{ALERTES.titre}</h2>
+              <p className="text-[16.5px] text-[#d9daf5]">{ALERTES.texte}</p>
             </div>
-            <FormulaireDemande
-              apercuInterne={apercuInterne}
-              machines={machines.map((m) => ({ ref: m.ref, libelle: `${m.nom} — ${ORIGINES[m.origine].option} (${m.ref})` }))}
-            />
+            <FormulaireAlertes apercuInterne={apercuInterne} />
+            <ul className="relative z-[1] grid content-start gap-2.5 md:col-start-1 md:row-start-2 md:mt-5">
+              {ALERTES.points.map((p, i) => {
+                const Icone = [Mail, Bell, SlidersHorizontal][i];
+                return (
+                  <li key={p} className="flex items-start gap-2.5 text-[15px] text-[#eceeff]">
+                    <Icone aria-hidden="true" className="mt-px h-5 w-5 flex-[0_0_20px] text-[#CDCDFD]" strokeWidth={TRAIT} />
+                    {p}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-        </section>
-      )}
-
-      {/* ━━ CONTACT GÉNÉRAL (état sans machine) ━━ */}
-      {!stock && (
-        <section id="contact-general" aria-labelledby="contact-general-titre" className={section}>
-          <div className={enveloppe}>
-            <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-[18px] rounded-[18px] border border-future-dusk-50 bg-white p-5 md:px-[30px] md:py-[26px]">
-              <div>
-                <p className={surtitre}>{CONTACT_GENERAL.surtitre}</p>
-                <h2 id="contact-general-titre" className="mb-1.5 mt-2 font-heading text-2xl font-bold tracking-[-0.015em] text-future-dusk-900">
-                  {CONTACT_GENERAL.titre}
-                </h2>
-                <p className="max-w-[640px] text-[#46505c]">{CONTACT_GENERAL.texte}</p>
-              </div>
-              <Link href="/contact" data-test="contact-general" className={`${boutonSecondaire} w-full md:w-auto`}>
-                <MessageSquare aria-hidden="true" className="h-[19px] w-[19px] shrink-0" strokeWidth={TRAIT} />
-                {CONTACT_GENERAL.bouton}
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
+        </div>
+      </section>
     </div>
   );
 }

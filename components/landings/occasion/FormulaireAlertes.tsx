@@ -1,22 +1,23 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Bell, Check, ChevronDown } from 'lucide-react';
+import { Bell, ChevronDown, Info } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { FAMILLES, validerAlerte, type Erreurs, type SaisieAlerte } from '@/lib/occasion/formulaires';
 import { Annotation, AvisSimulation } from './Annotation';
-import { ALERTES, SIMULATION } from './contenu';
+import { ALERTES } from './contenu';
 import { boutonPrincipal, champ, etiquette, facultatif, liste, mentionFine, messageErreur, saisie } from './styles';
 
 /**
- * Parcours B — inscription volontaire aux prochaines disponibilités.
- * SIMULATION : validation dans le navigateur, puis message « simulée ». Aucune
- * requête réseau, aucun stockage, aucun journal (GO_FORMULAIRES_REELS = NO).
+ * Parcours B — inscription aux prochaines disponibilités : secondaire et NON
+ * ACTIVÉE (mission S0 du 11/10/2026). Validation dans le navigateur, puis un
+ * message « pas encore ouverte », jamais un succès. Aucune requête réseau,
+ * aucun stockage, aucun journal.
  */
 export function FormulaireAlertes({ apercuInterne }: { apercuInterne: boolean }) {
   const [valeurs, setValeurs] = useState<SaisieAlerte>({ email: '', prenom: '', famille: '', optin: false });
   const [erreurs, setErreurs] = useState<Erreurs<SaisieAlerte>>({});
-  const [envoye, setEnvoye] = useState(false);
+  const [fermee, setFermee] = useState(false);
   const refEmail = useRef<HTMLInputElement>(null);
   const refFamille = useRef<HTMLSelectElement>(null);
   const refOptin = useRef<HTMLInputElement>(null);
@@ -27,7 +28,7 @@ export function FormulaireAlertes({ apercuInterne }: { apercuInterne: boolean })
   };
 
   const soumettre = (ev: React.FormEvent<HTMLFormElement>) => {
-    ev.preventDefault(); // simulation : rien n'est envoyé ni stocké
+    ev.preventDefault(); // liste non activée : rien n'est envoyé ni stocké
     const e = validerAlerte(valeurs);
     setErreurs(e);
     const premier = e.email ? refEmail : e.famille ? refFamille : e.optin ? refOptin : null;
@@ -35,7 +36,7 @@ export function FormulaireAlertes({ apercuInterne }: { apercuInterne: boolean })
       premier.current?.focus();
       return;
     }
-    setEnvoye(true);
+    setFermee(true);
   };
 
   return (
@@ -43,12 +44,12 @@ export function FormulaireAlertes({ apercuInterne }: { apercuInterne: boolean })
       id="f-alertes"
       noValidate
       onSubmit={soumettre}
-      data-simulation="true"
+      data-liste-fermee="true"
       className="relative z-[1] self-start rounded-2xl bg-white p-[18px] text-text-dark md:col-start-2 md:row-span-2 md:row-start-1 md:p-6"
     >
-      {!envoye ? (
+      {!fermee ? (
         <div>
-          <AvisSimulation className="mb-3.5">{SIMULATION.avis}</AvisSimulation>
+          <AvisSimulation className="mb-3.5">{ALERTES.avis}</AvisSimulation>
           <div className={champ}>
             <label htmlFor="a-email" className={etiquette}>{ALERTES.champs.email}</label>
             <input
@@ -129,17 +130,17 @@ export function FormulaireAlertes({ apercuInterne }: { apercuInterne: boolean })
           </p>
         </div>
       ) : (
-        <div role="status" className="px-1.5 py-[22px] text-center" data-test="alertes-simulee">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#e6f4ee] text-[#1f7a55]">
-            <Check aria-hidden="true" className="h-7 w-7" strokeWidth={2.2} />
+        <div role="status" className="px-1.5 py-[22px] text-center" data-test="alertes-fermee">
+          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#fff8e9] text-[#7a5200]">
+            <Info aria-hidden="true" className="h-7 w-7" strokeWidth={2} />
           </div>
-          <span className="mb-2 inline-block rounded-md bg-accent-gold px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-future-dusk-800">
-            {SIMULATION.badge}
-          </span>
-          <h4 className="mb-1.5 font-heading text-[19px] font-bold text-future-dusk-900">{ALERTES.fin.titre}</h4>
-          <p className="text-sm text-[#46505c]">{ALERTES.fin.texte}</p>
+          <h4 className="mb-1.5 font-heading text-[19px] font-bold text-future-dusk-900">{ALERTES.fermee.titre}</h4>
+          <p className="text-sm text-[#46505c]">{ALERTES.fermee.texte}</p>
+          <a href="#recherche" className="mt-3 inline-block text-sm font-semibold text-very-peri-600 underline">
+            {ALERTES.fermee.lienRecherche}
+          </a>
           <p className={mentionFine}>
-            <Annotation visible={apercuInterne}>{ALERTES.fin.textePrevu}</Annotation>
+            <Annotation visible={apercuInterne}>{ALERTES.fermee.textePrevu}</Annotation>
           </p>
         </div>
       )}

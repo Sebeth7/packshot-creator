@@ -1,12 +1,11 @@
 /**
- * Les deux parcours de la landing occasion, séparés (mission du 10/10/2026) :
- * - A, demande sur une machine réellement disponible ;
- * - B, inscription volontaire aux prochaines disponibilités (liste d'attente).
+ * Les deux parcours de la landing occasion, séparés :
+ * - A, demande de recherche d'un studio d'occasion, avec ou sans machine
+ *   affichée (mission S0 du 11/10/2026) : schéma `schema.ts`, route
+ *   `POST /api/occasion`, fermée tant que COLLECTE_REELLE_AUTORISEE est faux ;
+ * - B, inscription aux prochaines disponibilités (liste d'alerte) : secondaire,
+ *   NON ACTIVÉE, sans route ni stockage ; règles ci-dessous seulement.
  * Une alerte de stock n'est ni un lead de démonstration ni une affaire « neuve ».
- *
- * Règles pures, sans réseau : validation partagée par les formulaires (navigateur)
- * et, après un GO distinct, par les futures routes serveur. Aujourd'hui aucune
- * route n'existe et rien n'est envoyé (COLLECTE_REELLE_AUTORISEE = false).
  */
 
 export const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -31,26 +30,12 @@ export interface SaisieAlerte {
   optin: boolean;
 }
 
-export interface SaisieDemande {
-  machine: string;
-  prenom: string;
-  nom: string;
-  societe: string;
-  email: string;
-  telephone: string;
-  rappel: boolean;
-  rgpd: boolean;
-}
-
 export type Erreurs<T> = Partial<Record<keyof T, string>>;
 
 export const MESSAGES = {
   email: 'Indiquez une adresse e-mail valide.',
   optin: 'Cochez cette case pour recevoir les disponibilités.',
-  machine: 'Choisissez une machine.',
   requis: 'Champ obligatoire.',
-  emailDemande: 'Adresse e-mail invalide.',
-  rgpd: "Merci d'accepter pour envoyer votre demande.",
 } as const;
 
 /** Parcours B : e-mail valide et opt-in coché ; prénom et famille facultatifs. */
@@ -59,22 +44,6 @@ export function validerAlerte(s: SaisieAlerte): Erreurs<SaisieAlerte> {
   if (!emailValide(s.email)) e.email = MESSAGES.email;
   if (s.famille && !(FAMILLES as readonly string[]).includes(s.famille)) e.famille = MESSAGES.requis;
   if (s.optin !== true) e.optin = MESSAGES.optin;
-  return e;
-}
-
-/**
- * Parcours A : la référence doit appartenir aux machines disponibles au moment
- * de la demande (`refsDisponibles`) ; sinon, la page oriente vers la liste d'attente.
- */
-export function validerDemande(s: SaisieDemande, refsDisponibles: readonly string[]): Erreurs<SaisieDemande> {
-  const e: Erreurs<SaisieDemande> = {};
-  if (!refsDisponibles.includes(s.machine)) e.machine = MESSAGES.machine;
-  if (!s.prenom.trim()) e.prenom = MESSAGES.requis;
-  if (!s.nom.trim()) e.nom = MESSAGES.requis;
-  if (!s.societe.trim()) e.societe = MESSAGES.requis;
-  if (!emailValide(s.email)) e.email = MESSAGES.emailDemande;
-  if (!s.telephone.trim()) e.telephone = MESSAGES.requis;
-  if (s.rgpd !== true) e.rgpd = MESSAGES.rgpd;
   return e;
 }
 

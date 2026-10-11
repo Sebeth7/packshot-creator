@@ -17,9 +17,11 @@
 export const PUBLICATION_AUTORISEE = false;
 
 /**
- * Collecte réelle (liste d'attente, demande sur une machine) : aucune route
- * d'envoi n'existe. FAUX : GO_FORMULAIRES_REELS = NO (10/10/2026). Les deux
- * formulaires valident dans le navigateur et n'émettent aucune requête.
+ * Collecte réelle de la demande de recherche (`POST /api/occasion`, mission S0
+ * du 11/10/2026). FAUX : GO_COLLECTE_REELLE = NO, GO_TEST_REEL = NO. Faux : la
+ * route répond 503 sans lire la demande, même si `RESEND_API_KEY`,
+ * `RESEND_FROM_EMAIL` et `OCCASION_NOTIFICATION_EMAIL` existaient. La liste
+ * d'alerte n'a pas de route : elle n'est pas activée, quel que soit ce verrou.
  */
 export const COLLECTE_REELLE_AUTORISEE = false;
 

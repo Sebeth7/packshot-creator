@@ -10,14 +10,7 @@ import {
   pageOccasionServie,
 } from '@/lib/occasion/activation';
 import { FRAICHEUR_MAX_JOURS, elementsManquants, machinesDisponibles, nomModele } from '@/lib/occasion/stock';
-import {
-  VERSION_TEXTE_OPTIN,
-  desinscrire,
-  preuveConsentement,
-  validerAlerte,
-  validerDemande,
-  type SaisieDemande,
-} from '@/lib/occasion/formulaires';
+import { VERSION_TEXTE_OPTIN, desinscrire, preuveConsentement, validerAlerte } from '@/lib/occasion/formulaires';
 import { routeCouverte } from '@/lib/engagement/regles';
 
 const MAINTENANT = new Date('2026-10-10T12:00:00Z');
@@ -127,23 +120,6 @@ describe('Parcours B — liste d’attente', () => {
       etat: 'en_attente',
     });
     expect(desinscrire(p, MAINTENANT)).toMatchObject({ etat: 'desinscrit', dateDesinscription: '2026-10-10T12:00:00.000Z' });
-  });
-});
-
-describe('Parcours A — demande sur une machine', () => {
-  const saisie: SaisieDemande = {
-    machine: 'OCC-02', prenom: 'Camille', nom: 'Martin', societe: 'Exemple SA',
-    email: 'c.martin@exemple.fr', telephone: '0102030405', rappel: true, rgpd: true,
-  };
-
-  it('valide seulement une référence disponible', () => {
-    expect(validerDemande(saisie, ['OCC-01', 'OCC-02'])).toEqual({});
-    expect(validerDemande(saisie, [])).toHaveProperty('machine');
-  });
-
-  it('champs obligatoires et consentement', () => {
-    const e = validerDemande({ ...saisie, prenom: '', email: 'x', rgpd: false }, ['OCC-02']);
-    expect(Object.keys(e).sort()).toEqual(['email', 'prenom', 'rgpd']);
   });
 });
 
