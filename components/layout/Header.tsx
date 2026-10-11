@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
-import { LIEN_OCCASION } from '@/lib/occasion/navigation';
+import { LIEN_OCCASION, libelleLienOccasion } from '@/lib/occasion/navigation';
 
 interface DropdownItem {
   href: LinkHref;
@@ -340,8 +340,9 @@ function LangSwitcher({ locale, pathname, slug }: { locale: string; pathname: st
 
 /**
  * `lienOccasion` : lien texte « Offres d'occasion » sous Studios (desktop et
- * mobile). Calculé côté serveur par app/[lang]/layout.tsx : FR seulement, jamais
- * en production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
+ * mobile), libellé dans la langue de la page. Calculé côté serveur par
+ * app/[lang]/layout.tsx : jamais en production tant que la publication n'est pas
+ * autorisée (lib/occasion/activation.ts).
  */
 export default function Header({ lienOccasion = false }: { lienOccasion?: boolean }) {
   const t = useTranslations('common.nav');
@@ -367,7 +368,7 @@ export default function Header({ lienOccasion = false }: { lienOccasion?: boolea
           ? [{
               href: LIEN_OCCASION.href,
               labelKey: 'occasion',
-              label: LIEN_OCCASION.libelle,
+              label: libelleLienOccasion(locale),
               descKey: '',
               icon: <RefreshCw className="h-4 w-4" />,
             }]

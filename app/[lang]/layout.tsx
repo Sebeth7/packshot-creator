@@ -86,7 +86,8 @@ export default async function LocaleLayout({
 
   // Lien « Offres d'occasion » (menu haut, pied de page) : FR seulement, absent de
   // la production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
-  const lienOccasion = lang === 'fr' && liensOccasionServis();
+  // Lien « Offres d'occasion » (menu Studios, pied de page) : trois langues, jamais en production sans GO.
+  const lienOccasion = liensOccasionServis();
 
   return (
     <html lang={lang} className={inter.variable}>

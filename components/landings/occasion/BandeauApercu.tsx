@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { cheminExemplesFictifs, cheminOccasion, type LangueOccasion } from '@/lib/occasion/langues';
 import { APERCU, texteBandeau, type CollecteAffichee } from './contenu';
 import { useCollecteCourante } from './useCollecteCourante';
 
-export const CHEMIN_REEL = '/fr/studios-photo-automatises/opportunites';
-export const CHEMIN_EXEMPLES = '/fr/studios-photo-automatises/opportunites/exemples-fictifs';
+export const CHEMIN_REEL = cheminOccasion('fr');
+export const CHEMIN_EXEMPLES = cheminExemplesFictifs('fr');
 
 /**
  * Bandeau de l'aperçu interne (Preview et local seulement), repris du bandeau de
@@ -22,11 +23,14 @@ export function BandeauApercu({
   nombreReel,
   collecte,
   alertes,
+  langue = 'fr',
 }: {
   vue: 'reel' | 'exemples';
   nombreReel: number;
   collecte: CollecteAffichee;
   alertes: CollecteAffichee;
+  /** Langue de la page : la bascule mène aux deux vues de cette langue. */
+  langue?: LangueOccasion;
 }) {
   const [annotations, setAnnotations] = useState(true);
   const textes = texteBandeau(vue, useCollecteCourante(collecte), useCollecteCourante(alertes));
@@ -58,10 +62,10 @@ export function BandeauApercu({
         <span className="flex flex-wrap items-center gap-2">
           <span>{APERCU.etat}</span>
           <span className="inline-flex overflow-hidden rounded-lg border border-white/30" role="group" aria-label="Vue de l'aperçu">
-            <Link href={CHEMIN_REEL} className={segment(vue === 'reel')} aria-current={vue === 'reel' ? 'page' : undefined}>
+            <Link href={cheminOccasion(langue)} className={segment(vue === 'reel')} aria-current={vue === 'reel' ? 'page' : undefined}>
               {APERCU.vueReelle} ({nombreReel === 0 ? 'aucune machine' : `${nombreReel} machine${nombreReel > 1 ? 's' : ''}`})
             </Link>
-            <Link href={CHEMIN_EXEMPLES} className={segment(vue === 'exemples')} aria-current={vue === 'exemples' ? 'page' : undefined}>
+            <Link href={cheminExemplesFictifs(langue)} className={segment(vue === 'exemples')} aria-current={vue === 'exemples' ? 'page' : undefined}>
               {APERCU.vueExemples}
             </Link>
           </span>

@@ -1,5 +1,6 @@
 /**
- * Landing « Studios Orbitvu d'occasion » — /fr/studios-photo-automatises/opportunites.
+ * Landing « Studios Orbitvu d'occasion » — /<langue>/studios-photo-automatises/opportunites
+ * (FR, EN, DE-CH ; textes de `contenu-*.ts`).
  * Intégration de la maquette V4.1 du 10/10/2026 (référence graphique et éditoriale).
  *
  * Deux états, calculés côté serveur depuis la source de stock (jamais depuis
@@ -20,13 +21,13 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import type { OrigineOccasion, PhotoOccasion } from '@/data/occasion/machines';
-import { ORIGINES } from '@/lib/occasion/stock';
+import type { LangueOccasion } from '@/lib/occasion/langues';
 import { Annotation } from './Annotation';
 import { BandeauApercu } from './BandeauApercu';
 import { BoutonMachine } from './BoutonMachine';
 import { FormulaireAlertes } from './FormulaireAlertes';
 import { FormulaireRecherche } from './FormulaireRecherche';
-import { ALERTES, FICHE, GARANTIE, HERO, MACHINES, RECHERCHE, type CollecteAffichee } from './contenu';
+import { contenuOccasion, type CollecteAffichee } from './contenu';
 import { boutonPrincipal, boutonSecondaire, chapo, enveloppe, section, surtitre, titre2 } from './styles';
 
 export interface CarteMachine {
@@ -58,6 +59,7 @@ export default function OccasionOrbitvu({
   nombreReel,
   collecte,
   alertes,
+  langue = 'fr',
 }: {
   machines: CarteMachine[];
   apercuInterne: boolean;
@@ -67,12 +69,15 @@ export default function OccasionOrbitvu({
   collecte: CollecteAffichee;
   /** État réel de la liste d'alerte (`/api/occasion/alertes`), indépendant de la recherche. */
   alertes: CollecteAffichee;
+  /** Langue de la page : textes, formulaires et e-mails au visiteur dans cette langue. */
+  langue?: LangueOccasion;
 }) {
   const stock = machines.length > 0;
+  const { HERO, MACHINES, RECHERCHE, FICHE, GARANTIE, ALERTES, ORIGINES } = contenuOccasion(langue);
 
   return (
     <div id="occasion" data-annot="on" data-etat={stock ? 'stock' : 'vide'} className="group/occasion">
-      {apercuInterne && <BandeauApercu vue={vue} nombreReel={nombreReel} collecte={collecte} alertes={alertes} />}
+      {apercuInterne && <BandeauApercu vue={vue} nombreReel={nombreReel} collecte={collecte} alertes={alertes} langue={langue} />}
 
       {/* ━━ HERO ━━ */}
       <section aria-labelledby="occasion-titre" className="border-b border-future-dusk-50 bg-bg-warm-white">
@@ -196,7 +201,7 @@ export default function OccasionOrbitvu({
                       <h3 className="font-heading text-base font-bold leading-[1.2] tracking-[-0.015em] text-future-dusk-900 md:text-[18.5px]">
                         {m.nom}
                       </h3>
-                      <div className="-mt-1.5 text-xs font-semibold tracking-[0.04em] text-future-dusk-400">Réf. {m.ref}</div>
+                      <div className="-mt-1.5 text-xs font-semibold tracking-[0.04em] text-future-dusk-400">{MACHINES.reference} {m.ref}</div>
                       <dl className="hidden grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 border-t border-future-dusk-50 pt-2.5 text-[13.5px] md:grid">
                         <dt className="text-future-dusk-400">{MACHINES.libelles.origine}</dt>
                         <dd className="font-semibold text-future-dusk-700">{m.origineDetail}</dd>
@@ -256,6 +261,7 @@ export default function OccasionOrbitvu({
           <FormulaireRecherche
             apercuInterne={apercuInterne}
             collecte={collecte}
+            langue={langue}
             machines={machines.map((m) => ({ ref: m.ref, libelle: `${m.nom} — ${ORIGINES[m.origine].option} (${m.ref})` }))}
           />
         </div>
@@ -343,7 +349,7 @@ export default function OccasionOrbitvu({
               <h2 id="alertes-titre" className={`${titre2} mt-3 text-white`}>{ALERTES.titre}</h2>
               <p className="text-[16.5px] text-[#d9daf5]">{ALERTES.texte}</p>
             </div>
-            <FormulaireAlertes apercuInterne={apercuInterne} alertes={alertes} />
+            <FormulaireAlertes apercuInterne={apercuInterne} alertes={alertes} langue={langue} />
             <ul className="relative z-[1] grid content-start gap-2.5 md:col-start-1 md:row-start-2 md:mt-5">
               {ALERTES.points.map((p, i) => {
                 const Icone = [Mail, Bell, SlidersHorizontal][i];

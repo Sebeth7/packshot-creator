@@ -1,9 +1,9 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
-import { LIEN_OCCASION } from '@/lib/occasion/navigation';
+import { LIEN_OCCASION, libelleLienOccasion } from '@/lib/occasion/navigation';
 
 // Fiches machines listées en pied de page (audit Laurent 03/09/2026, §1.4 1.c :
 // 28 liens entrants par fiche contre 163 pour les hubs). Hors machines `delisted`
@@ -27,12 +27,13 @@ const FOOTER_STUDIOS: { id: string; nom: string }[] = [
 ];
 
 /**
- * `lienOccasion` : lien texte « Offres d'occasion » dans la colonne des studios.
- * Calculé côté serveur par app/[lang]/layout.tsx : FR seulement, jamais en
- * production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
+ * `lienOccasion` : lien texte « Offres d'occasion » dans la colonne des studios,
+ * libellé dans la langue de la page. Calculé côté serveur par app/[lang]/layout.tsx :
+ * jamais en production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
  */
 export default function Footer({ lienOccasion = false }: { lienOccasion?: boolean }) {
   const t = useTranslations('common.footer');
+  const locale = useLocale();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -290,7 +291,7 @@ export default function Footer({ lienOccasion = false }: { lienOccasion?: boolea
               {lienOccasion && (
                 <li>
                   <Link href={LIEN_OCCASION.href} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
-                    {LIEN_OCCASION.libelle}
+                    {libelleLienOccasion(locale)}
                   </Link>
                 </li>
               )}

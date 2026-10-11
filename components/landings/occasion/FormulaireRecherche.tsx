@@ -1,22 +1,25 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertCircle, Check, ChevronDown, Info, Loader2, Search } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import { resolveNavHref } from '@/i18n/deChCoverage';
 import { getAttribution } from '@/lib/attribution';
-import { FAMILLES } from '@/lib/occasion/formulaires';
+import { FAMILLES, LIBELLES_FAMILLES } from '@/lib/occasion/formulaires';
+import type { LangueOccasion } from '@/lib/occasion/langues';
 import {
   HORIZONS,
-  champsRechercheSchema,
+  LIBELLES_HORIZONS,
+  creerChampsRechercheSchema,
   type ChampsRecherche,
   type ReponseRecherche,
   type SaisieRecherche,
 } from '@/lib/occasion/schema';
 import { Annotation, AvisSimulation } from './Annotation';
 import { EVENEMENT_MACHINE } from './BoutonMachine';
-import { RECHERCHE, avisTestReel, type CollecteAffichee } from './contenu';
+import { avisTestReel, contenuOccasion, type CollecteAffichee, type ContenuOccasion } from './contenu';
 import { mesurerReponseOccasion } from './mesure';
 import { useCollecteCourante } from './useCollecteCourante';
 import { boutonPrincipal, champ, etiquette, facultatif, liste, mentionFine, messageErreur, saisie, zone } from './styles';
@@ -52,24 +55,41 @@ function nouvelIdentifiant(): string {
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
 }
 
-function Libelle({ pour, texte, optionnel }: { pour: string; texte: string; optionnel?: boolean }) {
+type TextesRecherche = ContenuOccasion['RECHERCHE'];
+
+function Libelle({ pour, texte, optionnel, mention }: { pour: string; texte: string; optionnel?: boolean; mention: string }) {
   return (
     <label htmlFor={pour} className={etiquette}>
-      {texte} {optionnel && <i className={facultatif}>{RECHERCHE.champs.facultatif}</i>}
+      {texte} {optionnel && <i className={facultatif}>{mention}</i>}
     </label>
   );
+}
+
+/** Message d'un champ refusé par le serveur, dans la langue de la page (le serveur répond en français). */
+function messageServeur(textes: TextesRecherche, champ: keyof ChampsRecherche): string {
+  const m = textes.messages;
+  if (champ === 'firstName' || champ === 'email' || champ === 'company' || champ === 'besoin') return m[champ];
+  if (champ === 'famille' || champ === 'horizon') return m.choix;
+  if (champ === 'reference') return textes.etats.reference;
+  return textes.invalide;
 }
 
 export function FormulaireRecherche({
   machines,
   apercuInterne,
   collecte: collecteServeur,
+  langue,
 }: {
   machines: OptionMachine[];
   apercuInterne: boolean;
   /** État réel de la collecte, calculé au rendu serveur ; refermé à l'heure de fin d'une fenêtre de test. */
   collecte: CollecteAffichee;
+  /** Langue de la page ; les textes sont lus ici (une fonction ne se transmet pas à un composant client). */
+  langue: LangueOccasion;
 }) {
+  const RECHERCHE = contenuOccasion(langue).RECHERCHE;
+  const schema = useMemo(() => creerChampsRechercheSchema(RECHERCHE.messages), [RECHERCHE.messages]);
+  const confidentialite = resolveNavHref(langue, '/confidentialite');
   const collecte = useCollecteCourante(collecteServeur);
   const [etat, setEtat] = useState<Etat>({ type: 'saisie' });
   const requestId = useRef<string | null>(null);
@@ -86,7 +106,7 @@ export function FormulaireRecherche({
     clearErrors,
     formState: { errors },
   } = useForm<SaisieRecherche, unknown, ChampsRecherche>({
-    resolver: zodResolver(champsRechercheSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       firstName: '', email: '', company: '', besoin: '', famille: '',
       telephone: '', budget: '', horizon: '', commentaire: '', reference: '',
@@ -127,6 +147,7 @@ export function FormulaireRecherche({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...valeurs,
+          langue,
           requestId: requestId.current,
           attribution: getAttribution() ?? undefined,
           siteWeb: piege.current?.value || undefined,
@@ -138,7 +159,7 @@ export function FormulaireRecherche({
     }
 
     // GA4 : succès seulement sur notification interne confirmée par le serveur.
-    mesurerReponseOccasion(reponse, Boolean(valeurs.reference));
+    mesurerReponseOccasion(reponse, Boolean(valeurs.reference), langue);
 
     if (reponse?.ok === true) {
       setEtat({ type: 'recue', ackSent: reponse.ackSent });
@@ -146,7 +167,8 @@ export function FormulaireRecherche({
     }
     if (reponse?.ok === false && reponse.error === 'invalid' && reponse.fieldErrors) {
       for (const [nom, message] of Object.entries(reponse.fieldErrors)) {
-        if (message) setError(nom as keyof ChampsRecherche, { type: 'server', message }, { shouldFocus: true });
+        const champ = nom as keyof ChampsRecherche;
+        if (message) setError(champ, { type: 'server', message: messageServeur(RECHERCHE, champ) }, { shouldFocus: true });
       }
       setEtat({ type: 'saisie' });
       return;
@@ -210,7 +232,7 @@ export function FormulaireRecherche({
     optionnel = false,
   ) => (
     <div className={champ}>
-      <Libelle pour={`r-${cle}`} texte={libelleTexte} optionnel={optionnel} />
+      <Libelle pour={`r-${cle}`} texte={libelleTexte} optionnel={optionnel} mention={RECHERCHE.champs.facultatif} />
       <input
         id={`r-${cle}`}
         type={type}
@@ -257,7 +279,7 @@ export function FormulaireRecherche({
       {texte('email', RECHERCHE.champs.email, 'email', 'email')}
 
       <div className={champ}>
-        <Libelle pour="r-besoin" texte={RECHERCHE.champs.besoin} />
+        <Libelle pour="r-besoin" texte={RECHERCHE.champs.besoin} mention={RECHERCHE.champs.facultatif} />
         <span id="r-besoin-aide" className="-mt-1 text-[12.5px] text-future-dusk-400">{RECHERCHE.champs.besoinAide}</span>
         <textarea
           id="r-besoin"
@@ -273,24 +295,24 @@ export function FormulaireRecherche({
 
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3">
         <div className={champ}>
-          <Libelle pour="r-famille" texte={RECHERCHE.champs.famille} optionnel />
+          <Libelle pour="r-famille" texte={RECHERCHE.champs.famille} optionnel mention={RECHERCHE.champs.facultatif} />
           <div className="relative">
             <select id="r-famille" className={liste(Boolean(errors.famille))} {...register('famille')}>
               <option value="">{RECHERCHE.champs.familleToutes}</option>
               {FAMILLES.map((f) => (
-                <option key={f} value={f}>{f}</option>
+                <option key={f} value={f}>{LIBELLES_FAMILLES[langue][f]}</option>
               ))}
             </select>
             <ChevronDown aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-future-dusk-400" />
           </div>
         </div>
         <div className={champ}>
-          <Libelle pour="r-horizon" texte={RECHERCHE.champs.horizon} optionnel />
+          <Libelle pour="r-horizon" texte={RECHERCHE.champs.horizon} optionnel mention={RECHERCHE.champs.facultatif} />
           <div className="relative">
             <select id="r-horizon" className={liste(Boolean(errors.horizon))} {...register('horizon')}>
               <option value="">{RECHERCHE.champs.horizonVide}</option>
               {HORIZONS.map((h) => (
-                <option key={h} value={h}>{h}</option>
+                <option key={h} value={h}>{LIBELLES_HORIZONS[langue][h]}</option>
               ))}
             </select>
             <ChevronDown aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-future-dusk-400" />
@@ -305,7 +327,7 @@ export function FormulaireRecherche({
 
       {choix ? (
         <div className={champ}>
-          <Libelle pour="r-reference" texte={RECHERCHE.champs.reference} optionnel />
+          <Libelle pour="r-reference" texte={RECHERCHE.champs.reference} optionnel mention={RECHERCHE.champs.facultatif} />
           <div className="relative">
             <select
               id="r-reference"
@@ -328,7 +350,7 @@ export function FormulaireRecherche({
       )}
 
       <div className={champ}>
-        <Libelle pour="r-commentaire" texte={RECHERCHE.champs.commentaire} optionnel />
+        <Libelle pour="r-commentaire" texte={RECHERCHE.champs.commentaire} optionnel mention={RECHERCHE.champs.facultatif} />
         <textarea id="r-commentaire" rows={2} className={zone(Boolean(errors.commentaire))} {...register('commentaire')} />
         {errors.commentaire && <span className={messageErreur}>{errors.commentaire.message}</span>}
       </div>
@@ -343,7 +365,7 @@ export function FormulaireRecherche({
       </button>
       <p className={mentionFine}>
         {RECHERCHE.mention}{' '}
-        <Link href="/confidentialite" className="text-very-peri-600 underline">
+        <Link href={confidentialite.href} locale={confidentialite.locale} className="text-very-peri-600 underline">
           {RECHERCHE.lienConfidentialite}
         </Link>{' '}
         <Annotation visible={apercuInterne}>{RECHERCHE.annotationMention}</Annotation>

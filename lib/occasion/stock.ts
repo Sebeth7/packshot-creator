@@ -52,7 +52,8 @@ const rempli = (v: string | undefined) => typeof v === 'string' && v.trim() !== 
 /**
  * Éléments manquants d'une fiche, pour une machine réelle « disponible » : les
  * trois promesses du hero (origine et historique, état et vérifications,
- * garantie écrite) et les photos de l'unité. Liste vide : fiche complète.
+ * garantie écrite), les photos de l'unité et les textes de carte EN et DE-CH.
+ * Liste vide : fiche complète.
  */
 export function elementsManquants(m: MachineOccasion): string[] {
   const manquants: string[] = [];
@@ -69,5 +70,10 @@ export function elementsManquants(m: MachineOccasion): string[] {
   }
   if (!m.photos?.length || m.photos.some((p) => !rempli(p.src) || !rempli(p.alt))) manquants.push('photos');
   if (Number.isNaN(Date.parse(m.statutConfirmeLe))) manquants.push('statutConfirmeLe');
+  for (const langue of ['en', 'de-ch'] as const) {
+    const t = m.traductions?.[langue];
+    if (!rempli(t?.origineDetail)) manquants.push(`traductions.${langue}.origineDetail`);
+    if (!rempli(t?.usage)) manquants.push(`traductions.${langue}.usage`);
+  }
   return manquants;
 }

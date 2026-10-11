@@ -41,6 +41,10 @@ export function exemplesFictifs(maintenant: Date = new Date()): MachineOccasion[
       origine: 'showroom',
       origineDetail: 'Showroom PackshotCreator',
       usage: 'Exposition et démonstrations',
+      traductions: {
+        en: { origineDetail: 'PackshotCreator showroom', usage: 'Display and demonstrations', credit: 'Illustrative photo' },
+        'de-ch': { origineDetail: 'Showroom PackshotCreator', usage: 'Ausstellung und Vorführungen', credit: 'Illustrationsfoto' },
+      },
       historique: 'Exemple fictif',
       photos: [{ src: '/images/occasion/exemple-alphadesk.avif', alt: '', credit: "Photo d'illustration" }],
     },
@@ -51,6 +55,10 @@ export function exemplesFictifs(maintenant: Date = new Date()): MachineOccasion[
       origine: 'demonstration',
       origineDetail: 'Démonstrations clients',
       usage: 'Bijoux et horlogerie',
+      traductions: {
+        en: { origineDetail: 'Customer demonstrations', usage: 'Jewellery and watches', credit: 'Illustrative photo' },
+        'de-ch': { origineDetail: 'Kundenvorführungen', usage: 'Schmuck und Uhren', credit: 'Illustrationsfoto' },
+      },
       historique: 'Exemple fictif',
       photos: [{ src: '/images/occasion/exemple-micro.avif', alt: '', credit: "Photo d'illustration" }],
     },
@@ -61,6 +69,10 @@ export function exemplesFictifs(maintenant: Date = new Date()): MachineOccasion[
       origine: 'salon',
       origineDetail: 'Salon professionnel',
       usage: 'Présentation sur stand',
+      traductions: {
+        en: { origineDetail: 'Trade show', usage: 'Stand presentation', credit: 'Illustrative photo' },
+        'de-ch': { origineDetail: 'Fachmesse', usage: 'Präsentation am Messestand', credit: 'Illustrationsfoto' },
+      },
       historique: 'Exemple fictif',
       photos: [{ src: '/images/machines/alphastudio-xxl/hero.avif', alt: '', credit: "Photo d'illustration" }],
     },

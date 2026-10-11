@@ -61,6 +61,21 @@ export interface MachineOccasion {
   photos: PhotoOccasion[];
   /** Vrai seulement pour les exemples fictifs de contrôle : jamais dans ce registre. */
   fictif?: boolean;
+  /**
+   * Textes affichés sur la carte dans les pages EN et DE-CH (le reste de la fiche
+   * est en français). Exigés pour une machine réelle « disponible »
+   * (`elementsManquants`) : une carte anglaise ou allemande n'affiche jamais un
+   * texte français.
+   */
+  traductions?: Partial<Record<'en' | 'de-ch', TraductionCarte>>;
+}
+
+/** Textes d'une carte dans une autre langue que le français. */
+export interface TraductionCarte {
+  origineDetail: string;
+  usage: string;
+  /** Mention de la photo, si elle diffère du français. */
+  credit?: string;
 }
 
 /** Stock réel. Vide tant qu'aucune machine n'est établie. */

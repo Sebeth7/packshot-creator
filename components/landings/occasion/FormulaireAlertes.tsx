@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { AlertCircle, Bell, Check, ChevronDown, Info, Loader2, MailCheck } from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import { FAMILLES, VERSION_TEXTE_OPTIN } from '@/lib/occasion/formulaires';
-import { champsAlerteSchema, type ReponseAlertes } from '@/lib/occasion/alertes/schema';
+import { resolveNavHref } from '@/i18n/deChCoverage';
+import { FAMILLES, LIBELLES_FAMILLES, OPTIN } from '@/lib/occasion/formulaires';
+import type { LangueOccasion } from '@/lib/occasion/langues';
+import { creerChampsAlerteSchema, type ReponseAlertes } from '@/lib/occasion/alertes/schema';
 import { AvisSimulation } from './Annotation';
-import { ALERTES, type CollecteAffichee } from './contenu';
+import { contenuOccasion, type CollecteAffichee, type ContenuOccasion } from './contenu';
 import { boutonPrincipal, champ, etiquette, facultatif, liste, mentionFine, messageErreur, saisie } from './styles';
 import { useCollecteCourante } from './useCollecteCourante';
 
@@ -23,6 +25,7 @@ import { useCollecteCourante } from './useCollecteCourante';
  * personnelle dans le navigateur au-delà de la saisie ; aucune clé côté client.
  */
 
+type TextesAlertes = ContenuOccasion['ALERTES'];
 type EtatSaisie = 'saisie' | 'envoi' | 'attente' | 'indisponible' | 'erreur' | 'limitation';
 type Erreurs = Partial<Record<'email' | 'famille' | 'consentement', string>>;
 
@@ -78,8 +81,20 @@ function etatDepuisReponse(mode: Lien['mode'], status: number, body: ReponseAler
   return 'erreur';
 }
 
-export function FormulaireAlertes({ apercuInterne, alertes: alertesServeur }: { apercuInterne: boolean; alertes: CollecteAffichee }) {
+export function FormulaireAlertes({
+  apercuInterne,
+  alertes: alertesServeur,
+  langue,
+}: {
+  apercuInterne: boolean;
+  alertes: CollecteAffichee;
+  /** Langue de la page ; les textes sont lus ici (une fonction ne se transmet pas à un composant client). */
+  langue: LangueOccasion;
+}) {
+  const ALERTES = contenuOccasion(langue).ALERTES;
   const alertes = useCollecteCourante(alertesServeur);
+  const schema = useMemo(() => creerChampsAlerteSchema(ALERTES.messages), [ALERTES.messages]);
+  const confidentialite = resolveNavHref(langue, '/confidentialite');
   const [valeurs, setValeurs] = useState({ email: '', famille: '', consentement: false });
   const [erreurs, setErreurs] = useState<Erreurs>({});
   const [etat, setEtat] = useState<EtatSaisie>('saisie');
@@ -121,7 +136,7 @@ export function FormulaireAlertes({ apercuInterne, alertes: alertesServeur }: { 
   const soumettre = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     if (etat === 'envoi') return; // double clic
-    const analyse = champsAlerteSchema.safeParse({ email: valeurs.email, famille: valeurs.famille, consentement: valeurs.consentement });
+    const analyse = schema.safeParse({ email: valeurs.email, famille: valeurs.famille, consentement: valeurs.consentement });
     if (!analyse.success) {
       const e: Erreurs = {};
       for (const i of analyse.error.issues) {
@@ -136,16 +151,20 @@ export function FormulaireAlertes({ apercuInterne, alertes: alertesServeur }: { 
     try {
       const { status, body } = await appeler('/api/occasion/alertes', {
         ...analyse.data,
-        versionConsentement: VERSION_TEXTE_OPTIN,
+        langue,
+        versionConsentement: OPTIN[langue].version,
         siteWeb: piege.current?.value ?? '',
       });
       if (status === 200 && body?.ok && body.etat === 'confirmation_envoyee') return setEtat('attente');
       if (status === 503) return setEtat('indisponible');
       if (status === 429) return setEtat('limitation');
       if (status === 400 && body && !body.ok && body.fieldErrors) {
-        setErreurs(body.fieldErrors);
+        // Le serveur répond en français : messages de la langue de la page, par champ.
+        const e: Erreurs = {};
+        for (const c of Object.keys(body.fieldErrors) as (keyof Erreurs)[]) e[c] = ALERTES.messages[c];
+        setErreurs(e);
         setEtat('saisie');
-        return focaliser(body.fieldErrors);
+        return focaliser(e);
       }
       setEtat('erreur');
     } catch {
@@ -168,7 +187,7 @@ export function FormulaireAlertes({ apercuInterne, alertes: alertesServeur }: { 
 
   const cadre = 'relative z-[1] self-start rounded-2xl bg-white p-[18px] text-text-dark md:col-start-2 md:row-span-2 md:row-start-1 md:p-6';
 
-  if (lien) return <PanneauLien lien={lien} onValider={traiterLien} onFermer={() => setLien(null)} className={cadre} />;
+  if (lien) return <PanneauLien lien={lien} onValider={traiterLien} onFermer={() => setLien(null)} className={cadre} textes={ALERTES} />;
 
   if (etat === 'attente' || etat === 'indisponible') {
     const attente = etat === 'attente';
@@ -252,7 +271,7 @@ export function FormulaireAlertes({ apercuInterne, alertes: alertesServeur }: { 
           >
             <option value="">{ALERTES.champs.familleToutes}</option>
             {FAMILLES.map((f) => (
-              <option key={f} value={f}>{f}</option>
+              <option key={f} value={f}>{LIBELLES_FAMILLES[langue][f]}</option>
             ))}
           </select>
           <ChevronDown aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-future-dusk-400" />
@@ -286,7 +305,7 @@ export function FormulaireAlertes({ apercuInterne, alertes: alertesServeur }: { 
       </button>
       <p className={mentionFine}>
         {ALERTES.mention}{' '}
-        <Link href="/confidentialite" className="text-very-peri-600 underline">
+        <Link href={confidentialite.href} locale={confidentialite.locale} className="text-very-peri-600 underline">
           {ALERTES.lienConfidentialite}
         </Link>
       </p>
@@ -294,19 +313,33 @@ export function FormulaireAlertes({ apercuInterne, alertes: alertesServeur }: { 
   );
 }
 
-const TEXTES_LIEN: Record<Exclude<EtatLien, 'pret' | 'envoi'>, { titre: string; texte: string; succes: boolean }> = {
-  inscrit: { titre: ALERTES.confirmation.inscritTitre, texte: ALERTES.confirmation.inscrit, succes: true },
-  deja_inscrit: { titre: ALERTES.confirmation.dejaInscritTitre, texte: ALERTES.confirmation.dejaInscrit, succes: true },
-  desinscrit: { titre: ALERTES.confirmation.desinscritTitre, texte: ALERTES.confirmation.desinscrit, succes: false },
-  desinscription_faite: { titre: ALERTES.desinscription.faitTitre, texte: ALERTES.desinscription.fait, succes: true },
-  expire: { titre: ALERTES.confirmation.titre, texte: ALERTES.confirmation.expire, succes: false },
-  invalide: { titre: ALERTES.confirmation.titre, texte: ALERTES.confirmation.invalide, succes: false },
-  indisponible: { titre: ALERTES.etats.indisponibleTitre, texte: ALERTES.etats.indisponible, succes: false },
-  erreur: { titre: ALERTES.confirmation.titre, texte: ALERTES.confirmation.erreur, succes: false },
-  limitation: { titre: ALERTES.confirmation.titre, texte: ALERTES.etats.limitation, succes: false },
-};
+function textesLien(ALERTES: TextesAlertes): Record<Exclude<EtatLien, 'pret' | 'envoi'>, { titre: string; texte: string; succes: boolean }> {
+  return {
+    inscrit: { titre: ALERTES.confirmation.inscritTitre, texte: ALERTES.confirmation.inscrit, succes: true },
+    deja_inscrit: { titre: ALERTES.confirmation.dejaInscritTitre, texte: ALERTES.confirmation.dejaInscrit, succes: true },
+    desinscrit: { titre: ALERTES.confirmation.desinscritTitre, texte: ALERTES.confirmation.desinscrit, succes: false },
+    desinscription_faite: { titre: ALERTES.desinscription.faitTitre, texte: ALERTES.desinscription.fait, succes: true },
+    expire: { titre: ALERTES.confirmation.titre, texte: ALERTES.confirmation.expire, succes: false },
+    invalide: { titre: ALERTES.confirmation.titre, texte: ALERTES.confirmation.invalide, succes: false },
+    indisponible: { titre: ALERTES.etats.indisponibleTitre, texte: ALERTES.etats.indisponible, succes: false },
+    erreur: { titre: ALERTES.confirmation.titre, texte: ALERTES.confirmation.erreur, succes: false },
+    limitation: { titre: ALERTES.confirmation.titre, texte: ALERTES.etats.limitation, succes: false },
+  };
+}
 
-function PanneauLien({ lien, onValider, onFermer, className }: { lien: Lien; onValider: () => void; onFermer: () => void; className: string }) {
+function PanneauLien({
+  lien,
+  onValider,
+  onFermer,
+  className,
+  textes: ALERTES,
+}: {
+  lien: Lien;
+  onValider: () => void;
+  onFermer: () => void;
+  className: string;
+  textes: TextesAlertes;
+}) {
   const refTitre = useRef<HTMLHeadingElement>(null);
   const confirmer = lien.mode === 'confirmer';
 
@@ -330,7 +363,7 @@ function PanneauLien({ lien, onValider, onFermer, className }: { lien: Lien; onV
     );
   }
 
-  const t = TEXTES_LIEN[lien.etat];
+  const t = textesLien(ALERTES)[lien.etat];
   const relancer = lien.etat === 'erreur' || lien.etat === 'limitation';
   return (
     <div role="status" className={`${className} text-center`} data-test={`alertes-lien-${lien.etat}`}>
@@ -343,12 +376,12 @@ function PanneauLien({ lien, onValider, onFermer, className }: { lien: Lien; onV
       <p className="text-sm text-[#46505c]">{t.texte}</p>
       {relancer ? (
         <button type="button" onClick={onValider} className="mt-3 text-sm font-semibold text-very-peri-600 underline">
-          Réessayer
+          {ALERTES.reessayer}
         </button>
       ) : (
         (lien.etat === 'expire' || lien.etat === 'invalide') && (
           <button type="button" onClick={onFermer} className="mt-3 text-sm font-semibold text-very-peri-600 underline">
-            Revenir au formulaire
+            {ALERTES.revenirFormulaire}
           </button>
         )
       )}
