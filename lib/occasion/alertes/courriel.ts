@@ -1,9 +1,10 @@
-import { SOURCE_ALERTES } from './schema';
+import { libelleFamille } from '../formulaires';
+import { cheminOccasion, type LangueOccasion } from '../langues';
 
 /**
- * E-mail de confirmation de la liste d'alerte (double opt-in). C'est le seul
- * envoi de ce parcours : aucune offre, aucune campagne, aucun e-mail de
- * bienvenue (GO_CAMPAGNE_EMAIL = NO).
+ * E-mail de confirmation de la liste d'alerte (double opt-in), dans la langue de
+ * la page. C'est le seul envoi de ce parcours : aucune offre, aucune campagne,
+ * aucun e-mail de bienvenue (GO_CAMPAGNE_EMAIL = NO).
  *
  * Le jeton est placé dans le FRAGMENT de l'URL (`#confirmer-alerte=…`) : il n'est
  * pas transmis au serveur qui sert la page, donc absent de ses journaux. La page
@@ -14,13 +15,13 @@ import { SOURCE_ALERTES } from './schema';
 export const ANCRE_CONFIRMATION = 'confirmer-alerte';
 export const ANCRE_DESINSCRIPTION = 'desinscrire-alerte';
 
-export function lienConfirmation(base: string, jeton: string): string {
-  return `${base.replace(/\/+$/, '')}${SOURCE_ALERTES}#${ANCRE_CONFIRMATION}=${jeton}`;
+export function lienConfirmation(base: string, jeton: string, langue: LangueOccasion = 'fr'): string {
+  return `${base.replace(/\/+$/, '')}${cheminOccasion(langue)}#${ANCRE_CONFIRMATION}=${jeton}`;
 }
 
 /** Lien de désinscription, à placer dans les futurs envois de la liste (non utilisé en V1). */
-export function lienDesinscription(base: string, jeton: string): string {
-  return `${base.replace(/\/+$/, '')}${SOURCE_ALERTES}#${ANCRE_DESINSCRIPTION}=${jeton}`;
+export function lienDesinscription(base: string, jeton: string, langue: LangueOccasion = 'fr'): string {
+  return `${base.replace(/\/+$/, '')}${cheminOccasion(langue)}#${ANCRE_DESINSCRIPTION}=${jeton}`;
 }
 
 function echapper(valeur: string): string {
@@ -32,9 +33,69 @@ function echapper(valeur: string): string {
     .replace(/'/g, '&#39;');
 }
 
-function dateFr(ms: number): string {
-  return new Date(ms).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'long', timeStyle: 'short' });
+const FORMATS: Record<LangueOccasion, { locale: string; fuseau: string }> = {
+  fr: { locale: 'fr-FR', fuseau: 'Europe/Paris' },
+  en: { locale: 'en-GB', fuseau: 'Europe/Paris' },
+  'de-ch': { locale: 'de-CH', fuseau: 'Europe/Zurich' },
+};
+
+function date(ms: number, langue: LangueOccasion): string {
+  const f = FORMATS[langue];
+  return new Date(ms).toLocaleString(f.locale, { timeZone: f.fuseau, dateStyle: 'long', timeStyle: 'short' });
 }
+
+const TEXTES: Record<
+  LangueOccasion,
+  {
+    objet: string;
+    salutation: string;
+    tous: string;
+    demande: (famille: string) => string;
+    consigne: string;
+    bouton: string;
+    expiration: (d: string) => string;
+    independance: string;
+    ignorer: string;
+    signature: string;
+  }
+> = {
+  fr: {
+    objet: "Confirmez votre inscription aux alertes Orbitvu d'occasion",
+    salutation: 'Bonjour,',
+    tous: 'tous les équipements Orbitvu',
+    demande: (f) => `Vous avez demandé à être informé des prochaines disponibilités d'équipements Orbitvu d'occasion (${f}).`,
+    consigne: 'Pour confirmer votre inscription, ouvrez ce lien puis cliquez sur « Confirmer mon inscription » :',
+    bouton: 'Confirmer mon inscription',
+    expiration: (d) => `Ce lien expire le ${d}. Sans confirmation, aucune inscription n'est enregistrée.`,
+    independance: 'Cette liste est indépendante de la newsletter : elle ne vous abonne à aucune autre communication.',
+    ignorer: "Si vous n'êtes pas à l'origine de cette demande, ignorez ce message.",
+    signature: 'PackshotCreator',
+  },
+  en: {
+    objet: 'Confirm your subscription to pre-owned Orbitvu alerts',
+    salutation: 'Hello,',
+    tous: 'all Orbitvu equipment',
+    demande: (f) => `You asked to be notified when pre-owned Orbitvu equipment becomes available (${f}).`,
+    consigne: 'To confirm your subscription, open this link and click “Confirm my subscription”:',
+    bouton: 'Confirm my subscription',
+    expiration: (d) => `This link expires on ${d}. Without confirmation, no subscription is recorded.`,
+    independance: 'This list is separate from the newsletter: it does not sign you up for any other communication.',
+    ignorer: 'If you did not make this request, please ignore this message.',
+    signature: 'PackshotCreator',
+  },
+  'de-ch': {
+    objet: 'Bitte bestätigen Sie Ihre Anmeldung für die Orbitvu-Occasionen',
+    salutation: 'Guten Tag',
+    tous: 'alle Orbitvu-Geräte',
+    demande: (f) => `Sie möchten informiert werden, sobald Orbitvu-Occasionen verfügbar sind (${f}).`,
+    consigne: 'Um Ihre Anmeldung zu bestätigen, öffnen Sie diesen Link und klicken Sie auf «Anmeldung bestätigen»:',
+    bouton: 'Anmeldung bestätigen',
+    expiration: (d) => `Dieser Link ist bis ${d} gültig. Ohne Bestätigung wird keine Anmeldung gespeichert.`,
+    independance: 'Diese Liste ist vom Newsletter unabhängig: Sie werden für keine weiteren Mitteilungen angemeldet.',
+    ignorer: 'Falls Sie diese Anfrage nicht gestellt haben, können Sie diese Nachricht ignorieren.',
+    signature: 'PackshotCreator',
+  },
+};
 
 export interface CourrielConfirmation {
   objet: string;
@@ -42,30 +103,32 @@ export interface CourrielConfirmation {
   html: string;
 }
 
-export function composerConfirmationAlerte(p: { lien: string; famille: string; expireLe: number }): CourrielConfirmation {
-  const famille = p.famille || 'tous les équipements Orbitvu';
-  const objet = "Confirmez votre inscription aux alertes Orbitvu d'occasion";
+export function composerConfirmationAlerte(p: { lien: string; famille: string; expireLe: number; langue?: LangueOccasion }): CourrielConfirmation {
+  const langue = p.langue ?? 'fr';
+  const t = TEXTES[langue];
+  const famille = p.famille ? libelleFamille(p.famille, langue) : t.tous;
+  const fin = date(p.expireLe, langue);
   const lignes = [
-    'Bonjour,',
+    t.salutation,
     '',
-    `Vous avez demandé à être informé des prochaines disponibilités d'équipements Orbitvu d'occasion (${famille}).`,
-    'Pour confirmer votre inscription, ouvrez ce lien puis cliquez sur « Confirmer mon inscription » :',
+    t.demande(famille),
+    t.consigne,
     p.lien,
     '',
-    `Ce lien expire le ${dateFr(p.expireLe)}. Sans confirmation, aucune inscription n'est enregistrée.`,
-    "Cette liste est indépendante de la newsletter : elle ne vous abonne à aucune autre communication.",
-    "Si vous n'êtes pas à l'origine de cette demande, ignorez ce message.",
+    t.expiration(fin),
+    t.independance,
+    t.ignorer,
     '',
-    'PackshotCreator',
+    t.signature,
   ];
   const html = [
-    '<p>Bonjour,</p>',
-    `<p>Vous avez demandé à être informé des prochaines disponibilités d'équipements Orbitvu d'occasion (${echapper(famille)}).</p>`,
-    `<p><a href="${echapper(p.lien)}">Confirmer mon inscription</a></p>`,
-    `<p>Ce lien expire le ${echapper(dateFr(p.expireLe))}. Sans confirmation, aucune inscription n'est enregistrée.</p>`,
-    "<p>Cette liste est indépendante de la newsletter : elle ne vous abonne à aucune autre communication.</p>",
-    "<p>Si vous n'êtes pas à l'origine de cette demande, ignorez ce message.</p>",
-    '<p>PackshotCreator</p>',
+    `<p>${echapper(t.salutation)}</p>`,
+    `<p>${echapper(t.demande(famille))}</p>`,
+    `<p><a href="${echapper(p.lien)}">${echapper(t.bouton)}</a></p>`,
+    `<p>${echapper(t.expiration(fin))}</p>`,
+    `<p>${echapper(t.independance)}</p>`,
+    `<p>${echapper(t.ignorer)}</p>`,
+    `<p>${echapper(t.signature)}</p>`,
   ].join('\n');
-  return { objet, texte: lignes.join('\n'), html };
+  return { objet: t.objet, texte: lignes.join('\n'), html };
 }

@@ -1,4 +1,5 @@
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'node:crypto';
+import { estLangueOccasion, type LangueOccasion } from '../langues';
 
 /**
  * Jetons des liens de la liste d'alerte (serveur seulement).
@@ -19,6 +20,8 @@ export const SECRET_MIN = 32;
 export interface DonneesConfirmation {
   type: 'confirmation';
   email: string;
+  /** Langue de la page et du texte accepté. */
+  langue: LangueOccasion;
   famille: string;
   versionConsentement: string;
   source: string;
@@ -68,6 +71,8 @@ export function lireJetonConfirmation(jeton: string, secret: string, maintenant:
     !d ||
     d.type !== 'confirmation' ||
     !estTexte(d.email) ||
+    !estTexte(d.langue) ||
+    !estLangueOccasion(d.langue) ||
     !estTexte(d.famille) ||
     !estTexte(d.versionConsentement) ||
     !estTexte(d.source) ||

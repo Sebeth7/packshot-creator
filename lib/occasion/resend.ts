@@ -65,7 +65,7 @@ export function notificationOccasionResend(
 export function accuseOccasionResend(client: ClientCourriel, expediteur: string): AccuseOccasion {
   return {
     async envoyer(demande) {
-      const c = composerAccuseOccasion({ firstName: demande.firstName });
+      const c = composerAccuseOccasion({ firstName: demande.firstName, langue: demande.langue });
       const r = await client.emails.send({
         from: expediteurComplet(expediteur),
         to: [demande.email],

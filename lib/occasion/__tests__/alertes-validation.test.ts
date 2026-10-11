@@ -26,7 +26,7 @@ describe('Validation du formulaire et de la requête', () => {
   it('requête valide : e-mail normalisé en minuscules, famille facultative absente → « »', () => {
     const r = requeteAlerteSchema.safeParse({ ...valide, email: '  Claire@Atelier.FR ', famille: undefined });
     expect(r.success).toBe(true);
-    if (r.success) expect(r.data).toEqual({ email: 'claire@atelier.fr', famille: '', consentement: true, versionConsentement: VERSION_TEXTE_OPTIN, siteWeb: '' });
+    if (r.success) expect(r.data).toEqual({ email: 'claire@atelier.fr', famille: '', consentement: true, langue: 'fr', versionConsentement: VERSION_TEXTE_OPTIN, siteWeb: '' });
   });
 
   it('e-mail absent, invalide ou trop long : refusé', () => {
@@ -83,6 +83,7 @@ describe('Jetons chiffrés du double opt-in', () => {
   const donnees: DonneesConfirmation = {
     type: 'confirmation',
     email: 'claire@atelier.fr',
+    langue: 'fr',
     famille: FAMILLES[0],
     versionConsentement: VERSION_TEXTE_OPTIN,
     source: '/fr/studios-photo-automatises/opportunites',

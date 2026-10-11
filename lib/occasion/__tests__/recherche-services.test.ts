@@ -36,6 +36,7 @@ const demande: DemandeRecherche = {
   requestId: '3f1d2c4b-5a6e-4f70-8a9b-0c1d2e3f4a5b',
   recueLe: '2026-10-11T12:00:00.000Z',
   pageSource: 'occasion_studios_orbitvu',
+  langue: 'fr',
 };
 
 describe('servicesOccasion — fermés sans GO ni configuration', () => {

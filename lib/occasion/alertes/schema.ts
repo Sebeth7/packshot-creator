@@ -1,5 +1,6 @@
 import { z } from 'zod/v4';
-import { FAMILLES, VERSION_TEXTE_OPTIN } from '../formulaires';
+import { FAMILLES, OPTIN } from '../formulaires';
+import { LANGUES_OCCASION, cheminOccasion, type LangueOccasion } from '../langues';
 
 /**
  * Liste d'alerte « prochaines occasions Orbitvu » — schémas partagés entre le
@@ -12,49 +13,76 @@ import { FAMILLES, VERSION_TEXTE_OPTIN } from '../formulaires';
  * newsletter…) fait échouer la validation au lieu d'être ignorée.
  */
 
-/** Source conservée avec chaque inscription (preuve de consentement). */
-export const SOURCE_ALERTES = '/fr/studios-photo-automatises/opportunites';
+/** Source conservée avec chaque inscription (preuve de consentement) : la page, dans sa langue. */
+export function sourceAlertes(langue: LangueOccasion): string {
+  return cheminOccasion(langue);
+}
 
-export const MESSAGES_ALERTES = {
+/** Source de la page française (compatibilité). */
+export const SOURCE_ALERTES = sourceAlertes('fr');
+
+export interface MessagesAlertes {
+  email: string;
+  famille: string;
+  consentement: string;
+  version: string;
+}
+
+/** Messages du serveur (français) ; le formulaire affiche ceux de sa langue (`contenu-*.ts`). */
+export const MESSAGES_ALERTES: MessagesAlertes = {
   email: 'Indiquez une adresse e-mail valide.',
   famille: 'Choisissez une valeur de la liste.',
   consentement: 'Cochez cette case pour recevoir les disponibilités.',
   version: 'Le texte de la case a changé : rechargez la page puis cochez de nouveau la case.',
-} as const;
+};
 
 export const EMAIL_MAX = 254;
 
-const email = z
-  .string({ error: MESSAGES_ALERTES.email })
-  .trim()
-  .max(EMAIL_MAX, MESSAGES_ALERTES.email)
-  .pipe(z.email({ error: MESSAGES_ALERTES.email }))
-  .transform((e) => e.toLowerCase());
+function champsCommuns(m: MessagesAlertes) {
+  return {
+    email: z
+      .string({ error: m.email })
+      .trim()
+      .max(EMAIL_MAX, m.email)
+      .pipe(z.email({ error: m.email }))
+      .transform((e) => e.toLowerCase()),
+    famille: z
+      .union([z.enum(FAMILLES), z.literal('')], { error: m.famille })
+      .optional()
+      .default(''),
+    consentement: z.literal(true, { error: m.consentement }),
+  };
+}
 
-const famille = z
-  .union([z.enum(FAMILLES), z.literal('')], { error: MESSAGES_ALERTES.famille })
-  .optional()
-  .default('');
+/** Champs saisis par le visiteur (validation du navigateur, mêmes règles que le serveur), messages au choix. */
+export function creerChampsAlerteSchema(m: MessagesAlertes) {
+  return z.strictObject(champsCommuns(m));
+}
 
-/** Champs saisis par le visiteur (validation du navigateur, mêmes règles que le serveur). */
-export const champsAlerteSchema = z.strictObject({
-  email,
-  famille,
-  consentement: z.literal(true, { error: MESSAGES_ALERTES.consentement }),
-});
+export const champsAlerteSchema = creerChampsAlerteSchema(MESSAGES_ALERTES);
 
 export type ChampsAlerte = z.output<typeof champsAlerteSchema>;
 
-/** Corps de `POST /api/occasion/alertes`. */
-export const requeteAlerteSchema = z.strictObject({
-  email,
-  famille,
-  consentement: z.literal(true, { error: MESSAGES_ALERTES.consentement }),
-  /** Version du texte affiché à côté de la case, envoyée par le formulaire. */
-  versionConsentement: z.literal(VERSION_TEXTE_OPTIN, { error: MESSAGES_ALERTES.version }),
-  /** Champ piège, invisible : rempli par un automate. */
-  siteWeb: z.string().max(200).optional().default(''),
-});
+/**
+ * Corps de `POST /api/occasion/alertes`. La version du texte accepté doit être
+ * celle de la langue de la page : un texte anglais ne prouve pas l'acceptation
+ * du texte français, et inversement.
+ */
+export const requeteAlerteSchema = z
+  .strictObject({
+    ...champsCommuns(MESSAGES_ALERTES),
+    /** Langue de la page (et du texte de la case) ; français si absente. */
+    langue: z.enum(LANGUES_OCCASION).optional().default('fr'),
+    /** Version du texte affiché à côté de la case, envoyée par le formulaire. */
+    versionConsentement: z.string({ error: MESSAGES_ALERTES.version }).max(80, MESSAGES_ALERTES.version),
+    /** Champ piège, invisible : rempli par un automate. */
+    siteWeb: z.string().max(200).optional().default(''),
+  })
+  .superRefine((r, ctx) => {
+    if (r.versionConsentement !== OPTIN[r.langue].version) {
+      ctx.addIssue({ code: 'custom', path: ['versionConsentement'], message: MESSAGES_ALERTES.version });
+    }
+  });
 
 export type RequeteAlerte = z.output<typeof requeteAlerteSchema>;
 
@@ -68,6 +96,7 @@ export interface InscriptionAlerte {
   email: string;
   famille: string;
   versionConsentement: string;
+  /** Page d'origine, avec sa langue (`/en/…`) : la langue des futurs envois s'en déduit. */
   source: string;
   /** Horodatage ISO de l'envoi du formulaire (case cochée). */
   demandeLe: string;

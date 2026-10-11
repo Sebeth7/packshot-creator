@@ -1,5 +1,8 @@
 import { domaineGrandPublic } from '@/lib/catalogue/fiche';
+import type { LangueOccasion } from './langues';
 import type { DemandeRecherche } from './schema';
+
+const LIBELLES_LANGUE: Record<LangueOccasion, string> = { fr: 'français', en: 'anglais', 'de-ch': 'allemand (Suisse)' };
 
 /**
  * Fiche `[Occasion]` d'une demande de recherche, portée par la notification
@@ -28,6 +31,7 @@ export function lignesFicheOccasion(d: DemandeRecherche): string[] {
     d.horizon ? `Horizon d'achat : ${d.horizon}` : "Horizon d'achat : non indiqué",
     d.commentaire ? `Commentaire : ${d.commentaire}` : null,
     `Page : ${d.pageSource}`,
+    `Langue de la page : ${LIBELLES_LANGUE[d.langue ?? 'fr']} (accusé de réception dans cette langue)`,
     a?.utmSource ? `Source : ${a.utmSource}` : null,
     a?.utmMedium ? `Medium : ${a.utmMedium}` : null,
     a?.utmCampaign ? `Campagne : ${a.utmCampaign}` : null,

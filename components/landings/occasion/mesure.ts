@@ -1,6 +1,7 @@
 import { trackEvent } from '@/lib/analytics';
 import { getAttribution, type Attribution } from '@/lib/attribution';
 import { PAGE_SOURCE_OCCASION, type ReponseRecherche } from '@/lib/occasion/schema';
+import type { LangueOccasion } from '@/lib/occasion/langues';
 
 /**
  * Événements GA4 de la landing occasion (mission S0 du 11/10/2026), sur le
@@ -42,12 +43,12 @@ function domaineSeul(referrer: string | undefined): string | undefined {
 }
 
 /** Paramètres de contexte, sans donnée personnelle. */
-export function parametresContexteOccasion(attribution: Attribution | null): Parametres {
+export function parametresContexteOccasion(attribution: Attribution | null, langue: LangueOccasion = 'fr'): Parametres {
   const a = attribution ?? {};
   const brut: Record<string, string | undefined> = {
     form_name: FORM_NAME_OCCASION,
     page_type: 'landing_occasion',
-    locale: 'fr',
+    locale: langue,
     page_source: PAGE_SOURCE_OCCASION,
     utm_source: valeurSure(a.utmSource),
     utm_medium: valeurSure(a.utmMedium),
@@ -80,8 +81,8 @@ export function evenementsReponseOccasion(
   return [{ nom: 'form_error', parametres: { reason } }];
 }
 
-export function mesurerReponseOccasion(reponse: ReponseRecherche | null, referencePreselectionnee: boolean) {
-  const base = parametresContexteOccasion(getAttribution());
+export function mesurerReponseOccasion(reponse: ReponseRecherche | null, referencePreselectionnee: boolean, langue: LangueOccasion = 'fr') {
+  const base = parametresContexteOccasion(getAttribution(), langue);
   for (const { nom, parametres } of evenementsReponseOccasion(reponse, referencePreselectionnee)) {
     trackEvent(nom, { ...base, ...parametres });
   }

@@ -1,7 +1,7 @@
 import { getClientIp } from '@/lib/rate-limit';
 import { lienConfirmation } from './courriel';
 import { DUREE_CONFIRMATION_MS, creerJeton, lireJetonConfirmation, lireJetonDesinscription } from './jeton';
-import { requeteAlerteSchema, requeteJetonSchema, SOURCE_ALERTES, type ReponseAlertes } from './schema';
+import { requeteAlerteSchema, requeteJetonSchema, sourceAlertes, type ReponseAlertes } from './schema';
 import { alertesOuvertes, type ServicesAlertes } from './services';
 
 /**
@@ -124,16 +124,23 @@ export function creerGestionnairesAlertes(deps: DependancesAlertes) {
         {
           type: 'confirmation',
           email: r.email,
+          langue: r.langue,
           famille: r.famille,
           versionConsentement: r.versionConsentement,
-          source: SOURCE_ALERTES,
+          source: sourceAlertes(r.langue),
           demandeLe: new Date(instant).toISOString(),
           expireLe,
         },
         services.secret,
       );
       try {
-        await services.confirmation.envoyer({ email: r.email, famille: r.famille, lien: lienConfirmation(origine(req, services.urlBase), jeton), expireLe });
+        await services.confirmation.envoyer({
+          email: r.email,
+          famille: r.famille,
+          lien: lienConfirmation(origine(req, services.urlBase), jeton, r.langue),
+          expireLe,
+          langue: r.langue,
+        });
       } catch {
         journal('alertes.confirmation.echec_envoi');
         return TECHNIQUE;

@@ -112,6 +112,7 @@ export function creerGestionnaireOccasion(deps: DependancesOccasion): (req: Requ
       requestId: requete.requestId,
       recueLe: maintenant().toISOString(),
       pageSource: PAGE_SOURCE_OCCASION,
+      langue: requete.langue,
       ...(requete.attribution ? { attribution: requete.attribution } : {}),
     };
 

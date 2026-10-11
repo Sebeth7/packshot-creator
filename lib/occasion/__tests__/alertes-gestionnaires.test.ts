@@ -3,7 +3,7 @@
  * vers Resend, aucun e-mail, aucune écriture réelle.
  */
 import { describe, it, expect, vi } from 'vitest';
-import { FAMILLES, VERSION_TEXTE_OPTIN } from '@/lib/occasion/formulaires';
+import { FAMILLES, OPTIN, VERSION_TEXTE_OPTIN } from '@/lib/occasion/formulaires';
 import {
   ALERTES_REELLES_AUTORISEES,
   FENETRE_TEST_ALERTES_JUSQUA,
@@ -165,6 +165,7 @@ describe('Inscription (étape 1 du double opt-in)', () => {
       donnees: {
         type: 'confirmation',
         email: 'claire@atelier.fr',
+        langue: 'fr',
         famille: FAMILLES[1],
         versionConsentement: VERSION_TEXTE_OPTIN,
         source: '/fr/studios-photo-automatises/opportunites',
@@ -342,6 +343,33 @@ describe('Confirmation (étape 2) puis désinscription', () => {
     const m = monter();
     const jeton = await inscrire(m);
     expect((await m.g.desinscription(requete('/api/occasion/alertes/desinscription', { jeton }))).status).toBe(400);
+  });
+});
+
+describe('Parcours en anglais et en allemand (Suisse)', () => {
+  it('EN : e-mail en anglais vers /en/…, jeton et source de la langue, contact créé avec la source anglaise', async () => {
+    const m = monter();
+    const res = await m.g.inscription(requete('/api/occasion/alertes', { ...corps, langue: 'en', versionConsentement: OPTIN.en.version }));
+    expect(res.status).toBe(200);
+    const envoi = m.f.appels[0].args as { subject: string; text: string };
+    expect(envoi.subject).toBe('Confirm your subscription to pre-owned Orbitvu alerts');
+    expect(envoi.text).toContain('https://apercu.exemple.test/en/studios-photo-automatises/opportunites#confirmer-alerte=');
+    const jeton = jetonEnvoye(m.f);
+    const lu = lireJetonConfirmation(jeton, SECRET, T0);
+    expect(lu.ok && lu.donnees.langue).toBe('en');
+    expect(lu.ok && lu.donnees.source).toBe('/en/studios-photo-automatises/opportunites');
+    await m.g.confirmation(requete('/api/occasion/alertes/confirmation', { jeton }));
+    const c = m.f.contacts.get('claire@atelier.fr');
+    expect(c?.properties[PROPRIETES.source]).toBe('/en/studios-photo-automatises/opportunites');
+    expect(c?.properties[PROPRIETES.version]).toBe(OPTIN.en.version);
+  });
+
+  it('DE-CH : version française envoyée avec la langue de-ch → refusée (texte accepté non prouvé)', async () => {
+    const m = monter();
+    const res = await m.g.inscription(requete('/api/occasion/alertes', { ...corps, langue: 'de-ch', versionConsentement: OPTIN.fr.version }));
+    expect(res.status).toBe(400);
+    expect(Object.keys((await res.json()).fieldErrors)).toEqual(['consentement']);
+    expect(m.f.appels).toEqual([]);
   });
 });
 
