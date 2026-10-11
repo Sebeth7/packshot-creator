@@ -5,7 +5,7 @@ import { versCartes } from '@/components/landings/occasion/cartes';
 import { META } from '@/components/landings/occasion/contenu';
 import { MACHINES_OCCASION } from '@/data/occasion/machines';
 import { PUBLICATION_AUTORISEE, pageOccasionServie } from '@/lib/occasion/activation';
-import { servicesOccasion } from '@/lib/occasion/services';
+import { collecteAffichee, servicesOccasion } from '@/lib/occasion/services';
 import { machinesDisponibles } from '@/lib/occasion/stock';
 
 /**
@@ -55,7 +55,7 @@ export default async function OccasionPage({ params }: { params: Promise<{ lang:
       apercuInterne={!PUBLICATION_AUTORISEE}
       vue="reel"
       nombreReel={disponibles.length}
-      collecteActive={servicesOccasion().mode === 'reel'}
+      collecte={collecteAffichee(servicesOccasion())}
     />
   );
 }

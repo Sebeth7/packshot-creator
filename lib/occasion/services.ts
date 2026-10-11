@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import { destinatairesNotification, type ClientCourriel } from '@/lib/catalogue/resend';
 import { MACHINES_OCCASION } from '@/data/occasion/machines';
-import { COLLECTE_REELLE_AUTORISEE, PUBLICATION_AUTORISEE } from './activation';
+import { etatCollecte, type VerrousCollecte } from './activation';
 import { accuseOccasionResend, notificationOccasionResend, type AccuseOccasion, type NotificationOccasion } from './resend';
 import { machinesDisponibles } from './stock';
 
@@ -17,10 +17,12 @@ import { machinesDisponibles } from './stock';
  * GO_TEST_REEL = NO.
  *
  * Les services réels ne sont assemblés que si TOUT est réuni :
- * `COLLECTE_REELLE_AUTORISEE` (code), `PUBLICATION_AUTORISEE` en production
- * (code), les secrets `RESEND_API_KEY` et `RESEND_FROM_EMAIL`, et au moins une
+ * `COLLECTE_REELLE_AUTORISEE` (code) ; hors production, une fenêtre de test
+ * `FENETRE_TEST_JUSQUA` non échue (code) ; en production, `PUBLICATION_AUTORISEE`
+ * (code) ; les secrets `RESEND_API_KEY` et `RESEND_FROM_EMAIL` ; au moins une
  * adresse valide dans `OCCASION_NOTIFICATION_EMAIL`. Sinon la route répond 503
- * `occasion_unavailable`, sans lire la demande.
+ * `occasion_unavailable`, sans lire la demande. La fin de fenêtre est revérifiée
+ * à CHAQUE demande (`servicesOuverts`) : un déploiement de test oublié se ferme seul.
  */
 
 export type ServicesOccasion =
@@ -31,19 +33,23 @@ export type ServicesOccasion =
       accuse: AccuseOccasion;
       /** Références réellement disponibles au moment de la demande (registre, jamais les exemples fictifs). */
       referencesDisponibles(): readonly string[];
+      /** Fin de la fenêtre de test (ms depuis l'époque) hors production ; null en production publiée. */
+      ouverteJusqua: number | null;
     };
 
 export const SERVICES_OCCASION_DESACTIVES: ServicesOccasion = { mode: 'desactive' };
 
-export interface InterrupteursOccasion {
-  collecteReelle: boolean;
-  publication: boolean;
+/** Les services sont-ils ouverts à cet instant ? (fenêtre de test revérifiée à chaque demande) */
+export function servicesOuverts(services: ServicesOccasion, maintenant: Date = new Date()): boolean {
+  if (services.mode !== 'reel') return false;
+  return services.ouverteJusqua === null || maintenant.getTime() < services.ouverteJusqua;
 }
 
-const INTERRUPTEURS: InterrupteursOccasion = {
-  collecteReelle: COLLECTE_REELLE_AUTORISEE,
-  publication: PUBLICATION_AUTORISEE,
-};
+/** État affiché par la page (bandeau, avis du formulaire), calculé au rendu serveur. */
+export function collecteAffichee(services: ServicesOccasion, maintenant: Date = new Date()): { active: boolean; jusqua: string | null } {
+  if (!servicesOuverts(services, maintenant) || services.mode !== 'reel') return { active: false, jusqua: null };
+  return { active: true, jusqua: services.ouverteJusqua === null ? null : new Date(services.ouverteJusqua).toISOString() };
+}
 
 /** Références du registre réel affichables maintenant (`machinesDisponibles`). */
 export function referencesDuRegistre(maintenant: Date = new Date()): string[] {
@@ -51,8 +57,9 @@ export function referencesDuRegistre(maintenant: Date = new Date()): string[] {
 }
 
 export interface OptionsServicesOccasion {
-  /** Pour les tests seulement : les interrupteurs du code font foi sinon. */
-  interrupteurs?: InterrupteursOccasion;
+  /** Pour les tests seulement : les verrous du code font foi sinon. */
+  verrous?: VerrousCollecte;
+  maintenant?: Date;
   clientCourriel?: (cle: string) => ClientCourriel;
   referencesDisponibles?: () => readonly string[];
 }
@@ -61,10 +68,9 @@ export function servicesOccasion(
   env: Readonly<Record<string, string | undefined>> = process.env,
   options: OptionsServicesOccasion = {},
 ): ServicesOccasion {
-  const i = options.interrupteurs ?? INTERRUPTEURS;
-  if (!i.collecteReelle) return SERVICES_OCCASION_DESACTIVES;
-  // La page est en 404 en production avant le GO de publication : son API est fermée aussi.
-  if (env.VERCEL_ENV === 'production' && !i.publication) return SERVICES_OCCASION_DESACTIVES;
+  // Verrous du code : collecte, publication en production, fenêtre de test hors production.
+  const etat = etatCollecte(env, options.maintenant ?? new Date(), options.verrous);
+  if (!etat.ouverte) return SERVICES_OCCASION_DESACTIVES;
 
   const cle = env.RESEND_API_KEY;
   const expediteur = env.RESEND_FROM_EMAIL;
@@ -78,5 +84,6 @@ export function servicesOccasion(
     notification: notificationOccasionResend(client, expediteur, destinataires),
     accuse: accuseOccasionResend(client, expediteur),
     referencesDisponibles: options.referencesDisponibles ?? (() => referencesDuRegistre()),
+    ouverteJusqua: etat.jusqua === null ? null : Date.parse(etat.jusqua),
   };
 }

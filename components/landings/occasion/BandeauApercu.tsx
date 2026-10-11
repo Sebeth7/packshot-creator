@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { APERCU } from './contenu';
+import { APERCU, texteBandeau, type CollecteAffichee } from './contenu';
+import { useCollecteCourante } from './useCollecteCourante';
 
 export const CHEMIN_REEL = '/fr/studios-photo-automatises/opportunites';
 export const CHEMIN_EXEMPLES = '/fr/studios-photo-automatises/opportunites/exemples-fictifs';
@@ -11,11 +12,13 @@ export const CHEMIN_EXEMPLES = '/fr/studios-photo-automatises/opportunites/exemp
  * Bandeau de l'aperçu interne (Preview et local seulement), repris du bandeau de
  * la maquette V4.1. La bascule ne change pas l'état d'une même page : elle mène
  * à l'une des deux vues, chacune calculée côté serveur depuis sa source (stock
- * réel, ou exemples fictifs de contrôle).
+ * réel, ou exemples fictifs de contrôle). Le texte suit l'état RÉEL de la
+ * collecte (`collecte`) : pendant une fenêtre de test, il annonce les envois réels,
+ * et repasse à « recherche fermée (503) » à l'heure de fin (`useCollecteCourante`).
  */
-export function BandeauApercu({ vue, nombreReel }: { vue: 'reel' | 'exemples'; nombreReel: number }) {
+export function BandeauApercu({ vue, nombreReel, collecte }: { vue: 'reel' | 'exemples'; nombreReel: number; collecte: CollecteAffichee }) {
   const [annotations, setAnnotations] = useState(true);
-  const textes = vue === 'exemples' ? APERCU.exemples : APERCU.reel;
+  const textes = texteBandeau(vue, useCollecteCourante(collecte));
 
   const basculer = () => {
     const suivant = !annotations;
@@ -33,7 +36,13 @@ export function BandeauApercu({ vue, nombreReel }: { vue: 'reel' | 'exemples'; n
     >
       <div className="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-x-[18px] gap-y-2 px-4 py-[9px] md:px-6">
         <span>
-          <b className="uppercase tracking-[0.08em] text-accent-gold">{textes.titre}</b> · {textes.texte}
+          <b
+            data-test="bandeau-titre"
+            className={`uppercase tracking-[0.08em] ${textes.test ? 'rounded bg-[#b42318] px-1.5 py-0.5 text-white' : 'text-accent-gold'}`}
+          >
+            {textes.titre}
+          </b>{' '}
+          · {textes.texte}
         </span>
         <span className="flex flex-wrap items-center gap-2">
           <span>{APERCU.etat}</span>

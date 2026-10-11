@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-11 · #129 — fenêtre de test datée, bandeau fidèle à l'état réel de la collecte, protocole de test réel (sans test) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, suite de la mission S0 (GO_CODE = YES ; GO_TEST_REEL et autres GO = NO) | **PR** : #129 (brouillon) | **Commit** : base `2d9df02`
+
+**Quoi** — Trois constats de Laurent du 11/10, tirés du protocole de #82 (ouverture `4a800f0`, deux demandes, quatre messages, fermeture `971d0bc`, 503, suppression du déploiement de test) :
+- Le bandeau de l'aperçu suit désormais l'état **réel** de la collecte. Collecte fermée : « Aperçu interne · … recherche fermée (503) … ». Collecte ouverte : titre rouge « Test réel en cours », envois réels annoncés avec l'heure de fin ; l'avis du formulaire devient « Test réel en cours : cette demande envoie de vrais e-mails… ».
+- Nouveau verrou `FENETRE_TEST_JUSQUA` (`lib/occasion/activation.ts`, `null`) : hors production, la collecte n'est ouverte que si `COLLECTE_REELLE_AUTORISEE` est vrai **et** que cette heure n'est pas passée. La fin est revérifiée à chaque demande : un déploiement d'ouverture oublié se referme seul (503). En production, la fenêtre est ignorée.
+- Page prérendue au build : le bandeau et l'avis repassent à l'état fermé dans le navigateur à l'heure de fin (`useCollecteCourante`), sans écart d'hydratation.
+
+**Pourquoi** — Le JOURNAL de #82 (09/10, « Non regardé ») consigne un bandeau resté « aucune demande enregistrée ni envoyée » pendant le test réel. Un déploiement Vercel garde le code de sa construction : l'URL propre du commit d'ouverture resterait ouverte après le commit de fermeture si elle n'était pas supprimée.
+
+**Fichiers** — `lib/occasion/{activation,services,gestionnaire}.ts`, `app/api/occasion/route.ts` (`GET` : `servicesOuverts`), `components/landings/occasion/{contenu.ts,BandeauApercu.tsx,FormulaireRecherche.tsx,OccasionOrbitvu.tsx}`, nouveau `components/landings/occasion/useCollecteCourante.ts`, les deux `page.tsx`, tests `lib/occasion/__tests__/{occasion,recherche-gestionnaire,recherche-services}.test.ts`.
+
+**Effet attendu** — Aucun en production (404, 503). Preview : bandeau « recherche fermée (503) » tant qu'aucun test réel n'est ouvert.
+
+**Vérifié** —
+- Aucun déploiement de #129 n'a jamais eu la collecte ouverte : `COLLECTE_REELLE_AUTORISEE = false` dans `1a0af85`, `28177a3` et `2d9df02` (`git show`) ; route absente des deux premiers.
+- Local : `npx tsc --noEmit` vert ; `npx vitest run` 38 fichiers, 686 tests verts (fenêtre en cours, échue, illisible, absente ; production ignorant la fenêtre ; 503 sans lecture du corps après l'heure de fin, revérifiée à chaque demande ; textes du bandeau et de l'avis) ; ESLint sans erreur ; `npx next build` vert hors production et avec `VERCEL_ENV=production` (pages 404, `POST` 503, `GET` `{"disponible":false}`, aucun lien sur `/fr`).
+- QA Playwright S0 locale 34/34 ; bandeau servi : « Aperçu interne · Page non publiée · recherche fermée (503) et liste d'alerte non activée : aucune donnée transmise ni enregistrée ».
+- Simulation locale d'une fenêtre ouverte, dans une copie du dépôt en dehors de la branche (`COLLECTE_REELLE_AUTORISEE = true`, fenêtre de 5 min, valeurs Resend factices, aucune demande POST pendant la fenêtre), QA Playwright 16/16 : pendant la fenêtre, `GET` `{"disponible":true}`, titre rouge « Test réel en cours », envois réels et heure de fin annoncés, avis rouge du formulaire, vue exemples « Test réel en cours · exemples fictifs… » ; après l'heure de fin, sans redémarrage du serveur ni rechargement, bandeau repassé « Aperçu interne · … recherche fermée (503) », avis retiré, `GET` `{"disponible":false}`, `POST` 503 `occasion_unavailable` ; HTML prérendu portant encore « Test réel en cours » (constat), corrigé au montage sur un nouveau chargement ; aucune erreur JavaScript. Un premier passage (fenêtre de 15 min) s'est arrêté sur un délai de chargement dépassé de Playwright après l'attente (serveur sain, page en 200), relancé avec un chargement sans attente du réseau inactif.
+
+**Supposé** — Qu'une variable d'environnement Vercel modifiée ne s'applique qu'aux déploiements construits après la modification (comportement documenté par Vercel, non revérifié ici).
+
+**Non regardé** — Aucun test réel (GO_TEST_REEL = NO) : aucun e-mail, aucune variable Vercel modifiée. Preview non ouverte par script (SSO Vercel). Bandeau de #82 (hors périmètre de #129).
+
+**Suite** — Protocole de test réel inscrit dans la description de #129, à n'exécuter que sur GO_TEST_REEL distinct : ouverture datée (2 h au plus), deux demandes, **quatre messages lus dans les boîtes** (pas seulement `delivered` chez Resend), fermeture, 503 sur l'alias, suppression au dashboard Vercel de tout déploiement construit sur le commit d'ouverture et 404 `DEPLOYMENT_NOT_FOUND` sur son URL.
+
+---
+
 ## 2026-10-11 · #129 — parcours « recherche d'un studio d'occasion » et route `/api/occasion` fermée (mission S0, GO_CODE) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, mission S0 du 11/10 (GO_CODE = YES ; GO_MERGE, GO_PUBLICATION, GO_COLLECTE_REELLE, GO_TEST_REEL, GO_DEPENSE, GO_TRADUCTION = NO) | **PR** : #129 (brouillon) | **Commit** : base de la branche `28177a3`

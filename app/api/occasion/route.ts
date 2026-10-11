@@ -1,5 +1,5 @@
 import { creerGestionnaireOccasion } from '@/lib/occasion/gestionnaire';
-import { servicesOccasion } from '@/lib/occasion/services';
+import { servicesOccasion, servicesOuverts } from '@/lib/occasion/services';
 import { rateLimit } from '@/lib/rate-limit';
 
 /**
@@ -34,7 +34,11 @@ export async function POST(req: Request) {
   return gestionnaire(req);
 }
 
-/** État de la route, sans envoi ni donnée personnelle : `disponible` est vrai seulement si les services réels sont assemblés. */
+/**
+ * État de la route, sans envoi ni donnée personnelle : `disponible` est vrai
+ * seulement si les services réels sont assemblés ET que la fenêtre de test, hors
+ * production, n'est pas échue. Sert au contrôle d'un ancien déploiement.
+ */
 export function GET() {
-  return Response.json({ disponible: services.mode === 'reel' }, { headers: { 'Cache-Control': 'no-store' } });
+  return Response.json({ disponible: servicesOuverts(services) }, { headers: { 'Cache-Control': 'no-store' } });
 }

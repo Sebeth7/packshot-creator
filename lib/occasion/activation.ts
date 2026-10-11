@@ -25,7 +25,48 @@ export const PUBLICATION_AUTORISEE = false;
  */
 export const COLLECTE_REELLE_AUTORISEE = false;
 
+/**
+ * Fin d'une fenêtre de test réel sur Preview (ISO 8601 UTC), ou `null`.
+ *
+ * Hors production, la collecte n'est ouverte QUE si `COLLECTE_REELLE_AUTORISEE`
+ * est vrai ET que cette heure n'est pas passée. Raison (protocole de #82 :
+ * ouverture `4a800f0`, fermeture `971d0bc`, déploiement de test supprimé) : un
+ * déploiement Vercel garde le code et les variables de sa construction ; l'URL
+ * propre du commit d'ouverture resterait ouverte après le commit de fermeture.
+ * Avec une heure de fin, ce déploiement se referme seul (503) même s'il n'a pas
+ * été supprimé. Cela complète sa suppression, sans la remplacer.
+ * En production, la fenêtre est ignorée : seule la publication décide.
+ */
+export const FENETRE_TEST_JUSQUA: string | null = null;
+
 type Env = Readonly<Record<string, string | undefined>>;
+
+export interface VerrousCollecte {
+  collecte: boolean;
+  publication: boolean;
+  fenetreJusqua: string | null;
+}
+
+const VERROUS: VerrousCollecte = {
+  collecte: COLLECTE_REELLE_AUTORISEE,
+  publication: PUBLICATION_AUTORISEE,
+  fenetreJusqua: FENETRE_TEST_JUSQUA,
+};
+
+export interface EtatCollecte {
+  ouverte: boolean;
+  /** Fin de la fenêtre de test (ISO UTC), hors production ; sinon null. */
+  jusqua: string | null;
+}
+
+/** La collecte réelle est-elle ouverte à cet instant, dans cet environnement ? Fermée par défaut. */
+export function etatCollecte(env: Env = process.env, maintenant: Date = new Date(), v: VerrousCollecte = VERROUS): EtatCollecte {
+  if (!v.collecte) return { ouverte: false, jusqua: null };
+  if (env.VERCEL_ENV === 'production') return { ouverte: v.publication, jusqua: null };
+  const fin = v.fenetreJusqua ? Date.parse(v.fenetreJusqua) : Number.NaN;
+  if (!Number.isFinite(fin)) return { ouverte: false, jusqua: null };
+  return { ouverte: maintenant.getTime() < fin, jusqua: new Date(fin).toISOString() };
+}
 
 /** La page `/fr/studios-photo-automatises/opportunites` est-elle générée dans cet environnement ? */
 export function pageOccasionServie(env: Env = process.env): boolean {

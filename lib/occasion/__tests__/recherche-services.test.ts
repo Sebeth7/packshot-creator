@@ -5,7 +5,7 @@
 import { describe, it, expect } from 'vitest';
 import { fauxResend } from '@/lib/catalogue/__tests__/doublures';
 import { COLLECTE_REELLE_AUTORISEE } from '@/lib/occasion/activation';
-import { servicesOccasion, referencesDuRegistre } from '@/lib/occasion/services';
+import { collecteAffichee, servicesOccasion, servicesOuverts, referencesDuRegistre, SERVICES_OCCASION_DESACTIVES } from '@/lib/occasion/services';
 import { accuseOccasionResend, notificationOccasionResend } from '@/lib/occasion/resend';
 import { lignesFicheOccasion } from '@/lib/occasion/fiche';
 import { champsRechercheSchema, type DemandeRecherche } from '@/lib/occasion/schema';
@@ -15,7 +15,12 @@ const ENV_COMPLET = {
   RESEND_FROM_EMAIL: 'contact@exemple.test',
   OCCASION_NOTIFICATION_EMAIL: 'equipe@exemple.test',
 };
-const OUVERT = { collecteReelle: true, publication: false };
+// Simulation d'une fenêtre de test d'une heure : verrous du code remplacés pour le test seulement.
+const MAINTENANT = new Date('2026-10-11T12:00:00Z');
+const OUVERT = {
+  verrous: { collecte: true, publication: false, fenetreJusqua: '2026-10-11T13:00:00Z' },
+  maintenant: MAINTENANT,
+};
 
 const demande: DemandeRecherche = {
   firstName: 'Claire',
@@ -41,26 +46,59 @@ describe('servicesOccasion — fermés sans GO ni configuration', () => {
 
   it('sans OCCASION_NOTIFICATION_EMAIL : fermés, aucun repli sur les variables catalogue ou questionnaire', () => {
     const env = { RESEND_API_KEY: 're', RESEND_FROM_EMAIL: 'a@b.test', CATALOGUE_NOTIFICATION_EMAIL: 'c@d.test', NOTIFICATION_EMAIL: 'e@f.test' };
-    expect(servicesOccasion(env, { interrupteurs: OUVERT }).mode).toBe('desactive');
+    expect(servicesOccasion(env, OUVERT).mode).toBe('desactive');
   });
 
   it('sans clé ou expéditeur Resend : fermés', () => {
-    expect(servicesOccasion({ ...ENV_COMPLET, RESEND_API_KEY: '' }, { interrupteurs: OUVERT }).mode).toBe('desactive');
-    expect(servicesOccasion({ ...ENV_COMPLET, RESEND_FROM_EMAIL: undefined }, { interrupteurs: OUVERT }).mode).toBe('desactive');
+    expect(servicesOccasion({ ...ENV_COMPLET, RESEND_API_KEY: '' }, OUVERT).mode).toBe('desactive');
+    expect(servicesOccasion({ ...ENV_COMPLET, RESEND_FROM_EMAIL: undefined }, OUVERT).mode).toBe('desactive');
   });
 
   it('production sans GO de publication : fermés, même collecte autorisée', () => {
-    expect(servicesOccasion({ ...ENV_COMPLET, VERCEL_ENV: 'production' }, { interrupteurs: OUVERT }).mode).toBe('desactive');
+    expect(servicesOccasion({ ...ENV_COMPLET, VERCEL_ENV: 'production' }, OUVERT).mode).toBe('desactive');
   });
 
-  it('tout réuni (simulation de test) : services réels assemblés avec le client factice', () => {
+  it('collecte autorisée sans fenêtre de test (Preview) : fermés', () => {
+    const verrous = { collecte: true, publication: false, fenetreJusqua: null };
+    expect(servicesOccasion({ ...ENV_COMPLET, VERCEL_ENV: 'preview' }, { verrous, maintenant: MAINTENANT }).mode).toBe('desactive');
+  });
+
+  it('fenêtre de test échue : fermés dès la construction', () => {
+    const verrous = { collecte: true, publication: false, fenetreJusqua: '2026-10-11T11:59:59Z' };
+    expect(servicesOccasion(ENV_COMPLET, { verrous, maintenant: MAINTENANT }).mode).toBe('desactive');
+  });
+
+  it('tout réuni (simulation de test) : services réels assemblés avec le client factice, fin de fenêtre portée', () => {
     const { client } = fauxResend();
-    const s = servicesOccasion(ENV_COMPLET, { interrupteurs: OUVERT, clientCourriel: () => client });
+    const s = servicesOccasion(ENV_COMPLET, { ...OUVERT, clientCourriel: () => client });
     expect(s.mode).toBe('reel');
+    if (s.mode === 'reel') expect(s.ouverteJusqua).toBe(Date.parse('2026-10-11T13:00:00Z'));
   });
 
   it('registre réel : aucune référence disponible, les exemples fictifs n’y sont jamais', () => {
     expect(referencesDuRegistre(new Date('2026-10-11T12:00:00Z'))).toEqual([]);
+  });
+});
+
+describe('État ouvert / affiché (bandeau et avis du formulaire)', () => {
+  it('services désactivés : jamais ouverts, collecte affichée inactive', () => {
+    expect(servicesOuverts(SERVICES_OCCASION_DESACTIVES, MAINTENANT)).toBe(false);
+    expect(collecteAffichee(SERVICES_OCCASION_DESACTIVES, MAINTENANT)).toEqual({ active: false, jusqua: null });
+  });
+
+  it('fenêtre en cours : ouverts, collecte affichée ACTIVE avec son heure de fin', () => {
+    const { client } = fauxResend();
+    const s = servicesOccasion(ENV_COMPLET, { ...OUVERT, clientCourriel: () => client });
+    expect(servicesOuverts(s, MAINTENANT)).toBe(true);
+    expect(collecteAffichee(s, MAINTENANT)).toEqual({ active: true, jusqua: '2026-10-11T13:00:00.000Z' });
+  });
+
+  it('après la fin : fermés et affichés inactifs, sur la même instance', () => {
+    const { client } = fauxResend();
+    const s = servicesOccasion(ENV_COMPLET, { ...OUVERT, clientCourriel: () => client });
+    const apres = new Date('2026-10-11T13:00:00Z');
+    expect(servicesOuverts(s, apres)).toBe(false);
+    expect(collecteAffichee(s, apres)).toEqual({ active: false, jusqua: null });
   });
 });
 

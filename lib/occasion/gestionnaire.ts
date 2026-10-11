@@ -8,7 +8,7 @@ import {
   type RequeteRecherche,
   type ReponseRecherche,
 } from './schema';
-import type { ServicesOccasion } from './services';
+import { servicesOuverts, type ServicesOccasion } from './services';
 
 /**
  * Traitement de `POST /api/occasion`, séparé de la route pour être testé avec des
@@ -86,7 +86,9 @@ export function creerGestionnaireOccasion(deps: DependancesOccasion): (req: Requ
 
   async function traiter(requete: RequeteRecherche): Promise<Resultat> {
     const { services } = deps;
-    if (services.mode !== 'reel') return { status: 503, body: { ok: false, error: 'occasion_unavailable' } };
+    if (services.mode !== 'reel' || !servicesOuverts(services, maintenant())) {
+      return { status: 503, body: { ok: false, error: 'occasion_unavailable' } };
+    }
     const contexte = { requestId: requete.requestId };
 
     // Une référence n'est acceptée que si la machine est réellement disponible
@@ -143,9 +145,9 @@ export function creerGestionnaireOccasion(deps: DependancesOccasion): (req: Requ
       });
     }
 
-    // Fermé par défaut (COLLECTE_REELLE_AUTORISEE = false) : la demande n'est ni
-    // lue, ni validée, ni transmise.
-    if (deps.services.mode !== 'reel') {
+    // Fermé par défaut (COLLECTE_REELLE_AUTORISEE = false) ou fenêtre de test
+    // échue : la demande n'est ni lue, ni validée, ni transmise.
+    if (!servicesOuverts(deps.services, maintenant())) {
       return repondre({ status: 503, body: { ok: false, error: 'occasion_unavailable' } });
     }
 

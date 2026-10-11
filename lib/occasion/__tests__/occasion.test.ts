@@ -4,7 +4,9 @@ import { exemplesFictifs } from '@/data/occasion/exemples-fictifs';
 import { ficheTechnique } from '@/data/produits/fiches-techniques';
 import {
   COLLECTE_REELLE_AUTORISEE,
+  FENETRE_TEST_JUSQUA,
   PUBLICATION_AUTORISEE,
+  etatCollecte,
   exemplesFictifsServis,
   liensOccasionServis,
   pageOccasionServie,
@@ -12,6 +14,7 @@ import {
 import { FRAICHEUR_MAX_JOURS, elementsManquants, machinesDisponibles, nomModele } from '@/lib/occasion/stock';
 import { VERSION_TEXTE_OPTIN, desinscrire, preuveConsentement, validerAlerte } from '@/lib/occasion/formulaires';
 import { routeCouverte } from '@/lib/engagement/regles';
+import { avisTestReel, texteBandeau } from '@/components/landings/occasion/contenu';
 
 const MAINTENANT = new Date('2026-10-10T12:00:00Z');
 
@@ -36,6 +39,62 @@ describe('Verrous de publication (GO_PUBLICATION = NO, GO_FORMULAIRES_REELS = NO
 
   it('pas de publication avec des formulaires simulés', () => {
     if (PUBLICATION_AUTORISEE) expect(COLLECTE_REELLE_AUTORISEE).toBe(true);
+  });
+});
+
+describe('Fenêtre de test réel (protocole de #82, 11/10/2026)', () => {
+  const T0 = new Date('2026-10-11T12:00:00Z');
+  const fenetre = (fenetreJusqua: string | null, publication = false) => ({ collecte: true, publication, fenetreJusqua });
+
+  it('verrous du code : collecte fermée et aucune fenêtre ouverte', () => {
+    expect(FENETRE_TEST_JUSQUA).toBeNull();
+    expect(etatCollecte({}, T0)).toEqual({ ouverte: false, jusqua: null });
+    expect(etatCollecte({ VERCEL_ENV: 'preview' }, T0)).toEqual({ ouverte: false, jusqua: null });
+    expect(etatCollecte({ VERCEL_ENV: 'production' }, T0)).toEqual({ ouverte: false, jusqua: null });
+  });
+
+  it('collecte autorisée sans fenêtre, ou fenêtre illisible : fermée hors production', () => {
+    expect(etatCollecte({ VERCEL_ENV: 'preview' }, T0, fenetre(null)).ouverte).toBe(false);
+    expect(etatCollecte({ VERCEL_ENV: 'preview' }, T0, fenetre('demain')).ouverte).toBe(false);
+  });
+
+  it('fenêtre en cours : ouverte jusqu’à l’heure de fin, puis fermée sans nouveau déploiement', () => {
+    expect(etatCollecte({ VERCEL_ENV: 'preview' }, T0, fenetre('2026-10-11T14:00:00Z'))).toEqual({ ouverte: true, jusqua: '2026-10-11T14:00:00.000Z' });
+    expect(etatCollecte({ VERCEL_ENV: 'preview' }, new Date('2026-10-11T14:00:00Z'), fenetre('2026-10-11T14:00:00Z')).ouverte).toBe(false);
+  });
+
+  it('production : la fenêtre ne compte pas, seule la publication décide', () => {
+    expect(etatCollecte({ VERCEL_ENV: 'production' }, T0, fenetre('2026-10-11T14:00:00Z')).ouverte).toBe(false);
+    expect(etatCollecte({ VERCEL_ENV: 'production' }, T0, fenetre(null, true))).toEqual({ ouverte: true, jusqua: null });
+  });
+});
+
+describe('Bandeau et avis : ils suivent l’état réel de la collecte', () => {
+  const ferme = { active: false, jusqua: null };
+  const test = { active: true, jusqua: '2026-10-11T14:00:00.000Z' };
+
+  it('collecte fermée : « recherche fermée (503) », jamais « vrais e-mails »', () => {
+    for (const vue of ['reel', 'exemples'] as const) {
+      const b = texteBandeau(vue, ferme);
+      expect(b.test).toBe(false);
+      expect(b.texte).toContain('recherche fermée (503)');
+      expect(b.texte).not.toContain('vrais e-mails');
+    }
+    expect(texteBandeau('exemples', ferme).titre).toBe('Exemples fictifs – aucune offre réelle');
+  });
+
+  it('test réel : titre « Test réel en cours », envois réels et heure de fermeture annoncés, jamais « aucune donnée transmise »', () => {
+    for (const vue of ['reel', 'exemples'] as const) {
+      const b = texteBandeau(vue, test);
+      expect(b.test).toBe(true);
+      expect(b.titre.startsWith('Test réel en cours')).toBe(true);
+      expect(b.texte).toContain('vrais e-mails');
+      expect(b.texte).toContain('2026-10-11 14:00 UTC');
+      expect(b.texte).not.toMatch(/aucune donnée transmise|fermée \(503\)/);
+    }
+    expect(texteBandeau('exemples', test).titre).toContain('exemples fictifs');
+    expect(avisTestReel(test)).toContain('vrais e-mails');
+    expect(avisTestReel(test)).toContain('2026-10-11 14:00 UTC');
   });
 });
 

@@ -16,8 +16,9 @@ import {
 } from '@/lib/occasion/schema';
 import { Annotation, AvisSimulation } from './Annotation';
 import { EVENEMENT_MACHINE } from './BoutonMachine';
-import { RECHERCHE } from './contenu';
+import { RECHERCHE, avisTestReel, type CollecteAffichee } from './contenu';
 import { mesurerReponseOccasion } from './mesure';
+import { useCollecteCourante } from './useCollecteCourante';
 import { boutonPrincipal, champ, etiquette, facultatif, liste, mentionFine, messageErreur, saisie, zone } from './styles';
 
 export interface OptionMachine {
@@ -62,12 +63,14 @@ function Libelle({ pour, texte, optionnel }: { pour: string; texte: string; opti
 export function FormulaireRecherche({
   machines,
   apercuInterne,
-  collecteActive,
+  collecte: collecteServeur,
 }: {
   machines: OptionMachine[];
   apercuInterne: boolean;
-  collecteActive: boolean;
+  /** État réel de la collecte, calculé au rendu serveur ; refermé à l'heure de fin d'une fenêtre de test. */
+  collecte: CollecteAffichee;
 }) {
+  const collecte = useCollecteCourante(collecteServeur);
   const [etat, setEtat] = useState<Etat>({ type: 'saisie' });
   const requestId = useRef<string | null>(null);
   const piege = useRef<HTMLInputElement>(null);
@@ -230,7 +233,15 @@ export function FormulaireRecherche({
         <input ref={piege} id="r-site-web" name="siteWeb" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
       </div>
 
-      {!collecteActive && <AvisSimulation className="mb-3.5">{RECHERCHE.avisApercu}</AvisSimulation>}
+      {collecte.active ? (
+        apercuInterne && (
+          <p role="note" data-test="avis-test-reel" className="mb-3.5 rounded-[10px] border border-[#f3c4be] bg-[#fdf1ef] px-3 py-2 text-[12.5px] font-semibold leading-snug text-[#b42318]">
+            {avisTestReel(collecte)}
+          </p>
+        )
+      ) : (
+        <AvisSimulation className="mb-3.5">{RECHERCHE.avisApercu}</AvisSimulation>
+      )}
 
       {messageAlerte && (
         <div ref={alerte} tabIndex={-1} role="alert" className="mb-3.5 flex items-start gap-2 rounded-[10px] border border-[#f3c4be] bg-[#fdf1ef] px-3 py-2 text-[13px] font-semibold text-[#b42318] focus:outline-none">

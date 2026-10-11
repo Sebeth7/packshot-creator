@@ -175,6 +175,7 @@ export const RECHERCHE = {
   annotationMention: "Finalité « demandes Occasion » à ajouter à la politique de confidentialité avant toute collecte réelle",
   bouton: 'Envoyer ma recherche',
   envoi: 'Envoi en cours…',
+  // Collecte fermée seulement ; pendant une fenêtre de test réel, l'avis est `avisTestReel`.
   avisApercu: nb("Aperçu : formulaire pas encore en service. Aucune demande n'est transmise."),
   etats: {
     recue: 'Demande reçue',
@@ -184,22 +185,57 @@ export const RECHERCHE = {
     ),
     indisponibleTitre: 'Formulaire pas encore en service',
     indisponible: nb("Votre demande n'a pas été transmise : aucune donnée n'a été enregistrée."),
-    indisponiblePrevu: nb('Aperçu : route /api/occasion fermée (COLLECTE_REELLE_AUTORISEE = false), réponse 503 sans lecture de la demande.'),
+    indisponiblePrevu: nb(
+      'Aperçu : route /api/occasion fermée (verrou COLLECTE_REELLE_AUTORISEE ou fenêtre de test échue), réponse 503 sans lecture de la demande.',
+    ),
     erreur: nb("La demande n'a pas pu être transmise. Vos informations sont conservées dans le formulaire : vous pouvez réessayer."),
     limitation: 'Trop de demandes depuis cette connexion. Réessayez dans quelques minutes.',
     reference: "Cette machine n'est plus proposée. Votre recherche peut être envoyée sans référence.",
   },
 };
 
+/** État de la collecte tel que la page l'affiche (calculé au rendu serveur, `collecteAffichee`). */
+export interface CollecteAffichee {
+  active: boolean;
+  /** Fin de la fenêtre de test (ISO UTC), ou null. */
+  jusqua: string | null;
+}
+
+/** « 2026-10-12 14:00 UTC » depuis une date ISO. */
+export function heureUtc(iso: string): string {
+  return `${iso.slice(0, 16).replace('T', ' ')} UTC`;
+}
+
+/**
+ * Avis du formulaire pendant un test réel : jamais « aucune donnée transmise »
+ * quand la route envoie (constat du JOURNAL de #82 du 09/10 : bandeau resté
+ * « aucune demande envoyée » pendant le test).
+ */
+export function avisTestReel(c: CollecteAffichee): string {
+  return nb(
+    `Test réel en cours : cette demande envoie de vrais e-mails${c.jusqua ? `, jusqu'au ${heureUtc(c.jusqua)} (fermeture automatique ensuite)` : ''}.`,
+  );
+}
+
+/** Titre et texte du bandeau de l'aperçu, selon la vue et l'état RÉEL de la collecte. */
+export function texteBandeau(vue: 'reel' | 'exemples', c: CollecteAffichee): { titre: string; texte: string; test: boolean } {
+  const prefixe = vue === 'exemples' ? 'Page non publiée · machines et photos d’illustration · ' : 'Page non publiée · ';
+  if (c.active) {
+    const fin = c.jusqua ? ` jusqu'au ${heureUtc(c.jusqua)}, fermeture automatique ensuite` : '';
+    return {
+      titre: vue === 'exemples' ? 'Test réel en cours · exemples fictifs – aucune offre réelle' : 'Test réel en cours',
+      texte: `${prefixe}la recherche envoie de vrais e-mails (notification interne, puis accusé au prospect)${fin} · liste d'alerte non activée`,
+      test: true,
+    };
+  }
+  return {
+    titre: vue === 'exemples' ? 'Exemples fictifs – aucune offre réelle' : 'Aperçu interne',
+    texte: `${prefixe}recherche fermée (503) et liste d'alerte non activée : aucune donnée transmise ni enregistrée`,
+    test: false,
+  };
+}
+
 export const APERCU = {
-  reel: {
-    titre: 'Aperçu interne',
-    texte: "Page non publiée · formulaires fermés : aucune donnée transmise ni enregistrée",
-  },
-  exemples: {
-    titre: 'Exemples fictifs – aucune offre réelle',
-    texte: 'Page non publiée · machines et photos d’illustration · formulaires fermés : aucune donnée transmise ni enregistrée',
-  },
   etat: nb('État du stock :'),
   vueReelle: 'Stock réel',
   vueExemples: 'Exemples fictifs (3 machines)',

@@ -24,7 +24,7 @@ function requete(body: unknown, ip = '203.0.113.7') {
   });
 }
 
-function doublures(references: string[] = []) {
+function doublures(references: string[] = [], ouverteJusqua: number | null = null) {
   const ordre: string[] = [];
   const notifier = vi.fn<(d: DemandeRecherche) => Promise<{ id: string }>>(async () => {
     ordre.push('notification');
@@ -39,6 +39,7 @@ function doublures(references: string[] = []) {
     notification: { notifier },
     accuse: { envoyer },
     referencesDisponibles: () => references,
+    ouverteJusqua,
   };
   return { services, notifier, envoyer, ordre };
 }
@@ -180,6 +181,42 @@ describe('POST /api/occasion — verrou fermé (COLLECTE_REELLE_AUTORISEE = fals
     expect(res.status).toBe(503);
     expect(await res.json()).toEqual({ ok: false, error: 'occasion_unavailable' });
     expect(lecture).not.toHaveBeenCalled();
+  });
+});
+
+describe('POST /api/occasion — fenêtre de test réel (FENETRE_TEST_JUSQUA)', () => {
+  // Heure fixe du gestionnaire de test : 2026-10-11T12:00:00Z.
+  const FIN = Date.parse('2026-10-11T13:00:00Z');
+
+  it('fenêtre en cours : la demande est traitée', async () => {
+    const d = doublures([], FIN);
+    const { g } = gestionnaire(d.services);
+    const res = await g(requete(corps));
+    expect(res.status).toBe(200);
+    expect(d.ordre).toEqual(['notification', 'accuse']);
+  });
+
+  it('fenêtre échue (déploiement de test oublié) : 503 sans lire la demande, aucun envoi', async () => {
+    const d = doublures([], FIN);
+    const { g } = gestionnaire(d.services, { maintenant: () => new Date('2026-10-11T13:00:00Z') });
+    const req = requete(corps);
+    const lecture = vi.spyOn(req, 'json');
+    const res = await g(req);
+    expect(res.status).toBe(503);
+    expect(await res.json()).toEqual({ ok: false, error: 'occasion_unavailable' });
+    expect(lecture).not.toHaveBeenCalled();
+    expect(d.notifier).not.toHaveBeenCalled();
+    expect(d.envoyer).not.toHaveBeenCalled();
+  });
+
+  it('la fin est revérifiée à chaque demande, pas seulement au démarrage de l’instance', async () => {
+    const d = doublures([], FIN);
+    let instant = new Date('2026-10-11T12:59:00Z');
+    const { g } = gestionnaire(d.services, { maintenant: () => instant });
+    expect((await g(requete(corps))).status).toBe(200);
+    instant = new Date('2026-10-11T13:01:00Z');
+    expect((await g(requete({ ...corps, requestId: '4a2e3d5c-6b7f-4a81-9b2c-1d2e3f4a5b6c' }))).status).toBe(503);
+    expect(d.notifier).toHaveBeenCalledTimes(1);
   });
 });
 

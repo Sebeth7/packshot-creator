@@ -26,7 +26,7 @@ import { BandeauApercu } from './BandeauApercu';
 import { BoutonMachine } from './BoutonMachine';
 import { FormulaireAlertes } from './FormulaireAlertes';
 import { FormulaireRecherche } from './FormulaireRecherche';
-import { ALERTES, FICHE, GARANTIE, HERO, MACHINES, RECHERCHE } from './contenu';
+import { ALERTES, FICHE, GARANTIE, HERO, MACHINES, RECHERCHE, type CollecteAffichee } from './contenu';
 import { boutonPrincipal, boutonSecondaire, chapo, enveloppe, section, surtitre, titre2 } from './styles';
 
 export interface CarteMachine {
@@ -56,20 +56,20 @@ export default function OccasionOrbitvu({
   apercuInterne,
   vue,
   nombreReel,
-  collecteActive,
+  collecte,
 }: {
   machines: CarteMachine[];
   apercuInterne: boolean;
   vue: 'reel' | 'exemples';
   nombreReel: number;
-  /** Vrai seulement si `/api/occasion` a ses services réels (GO de collecte) ; faux aujourd'hui. */
-  collecteActive: boolean;
+  /** État réel de `/api/occasion` (verrous, fenêtre de test, configuration), calculé au rendu serveur. */
+  collecte: CollecteAffichee;
 }) {
   const stock = machines.length > 0;
 
   return (
     <div id="occasion" data-annot="on" data-etat={stock ? 'stock' : 'vide'} className="group/occasion">
-      {apercuInterne && <BandeauApercu vue={vue} nombreReel={nombreReel} />}
+      {apercuInterne && <BandeauApercu vue={vue} nombreReel={nombreReel} collecte={collecte} />}
 
       {/* ━━ HERO ━━ */}
       <section aria-labelledby="occasion-titre" className="border-b border-future-dusk-50 bg-bg-warm-white">
@@ -252,7 +252,7 @@ export default function OccasionOrbitvu({
           </div>
           <FormulaireRecherche
             apercuInterne={apercuInterne}
-            collecteActive={collecteActive}
+            collecte={collecte}
             machines={machines.map((m) => ({ ref: m.ref, libelle: `${m.nom} — ${ORIGINES[m.origine].option} (${m.ref})` }))}
           />
         </div>
