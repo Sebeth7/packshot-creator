@@ -34,6 +34,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-11 · Série « Produire ses images produit » : réécriture des deux articles studio photo e-commerce (A décider, B produire) · Claude de Laurent
+
+**Chantier** : série éditoriale experte (mission M4 + finition) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
+
+**Quoi** — Réécriture sur place, en version institutionnelle PackshotCreator, de `/fr/blog/est-il-utile-dinternaliser-sa-production-de-photos-packshot` (décider, 7 questions) et `/fr/blog/e-commerce-comment-mettre-en-place-votre-studio-photo` (produire, 8 questions). Chaque question : réponse courte visible avant tout bloc dépliable, puis méthode, schéma HTML/CSS, liens. Encadrés « L'expérience de Sébastien Jourdan » autour de ses repères de terrain cités mot pour mot de textes publiés (source + date). Listes de contrôle, encadré auteur sans portrait. FAQ Orbitvu et chiffres non sourcés retirés (`faqs: []`, plus de `FAQPage`).
+
+**Pourquoi** — Les deux pages étaient des argumentaires Orbitvu avec FAQ promotionnelles et chiffres non sourcés (« 300-600 €/jour », « 0,48 €/packshot », « -86 % », « 5 à 15 % de retours »). Objectif : expérience éditoriale sourcée orientée décision B2B, deux URL et leur complémentarité préservées.
+
+**Fichiers** — `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json`, `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json`, `app/globals.css` (ajouts append-only sous sélecteurs `.prose .psc-*`), `public/images/blog/e-commerce-comment-mettre-en-place-votre-studio-photo/cover.avif` (recadrage 16:9 du fichier historique de B, HOLD publication), `lib/__tests__/serie-produire-images.test.ts`, `e2e/serie-produire-images.spec.ts`, `lib/seo/__tests__/json-ld-techniques.test.ts` (garde `dateModified` 3 → 5), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — [Inférence] Pages plus complètes, maillage interne renforcé (A↔B et contenus sourcés) ; `dateModified` 2026-10-10. Aucune promesse de position ni de citation par un moteur. Cela repose sur des schémas observés.
+
+**Vérifié** — `verifier-json` : 195 JSON valides ; `npx tsc --noEmit` vert ; `npx vitest run` 645/645 ; `npx eslint` des fichiers TS modifiés `--max-warnings=0` vert ; `npx next build` vert (387 pages, variables factices) ; Playwright `e2e/serie-produire-images.spec.ts` 8/8 (réponse visible, `details` clavier, sommaire desktop+mobile sous l'en-tête, aucun défilement horizontal) ; captures 390/820/1440 px, 0 erreur console, `scrollWidth = innerWidth` dans l'article ; métadonnées (title, h1, description, canonical, hreflang, schéma Article auteur PackshotCreator, pas de FAQPage) ; citations vérifiées mot pour mot contre `messages/fr.json` et les articles signés. `/fr` à 375 px déborde à cause de `animate-marquee` (accueil gelé, 0 diff vs `main`) : préexistant.
+
+**Supposé** — [Inférence] `www` servira le même HTML que le build de production. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO, non vérifiée par l'agent) ; `sysnext.vercel.app` et `www` (R4) ; jumeaux EN (contenu non ré-équivalent, traduction gelée C5/D17) ; `metaTitle`/`title`/`description` de B (gel F5 jusqu'au 23/11, `metaTitle` porté par #119, inchangés) ; droits des 5 photos (NON ÉTABLIS, toutes en HOLD_PUBLICATION_IMAGE).
+
+**Suite** — GO_MERGE et GO_PUBLICATION = NO. Décisions de Laurent : hero de B (recadrage / fichier historique / schéma / cadrage CSS via gabarit #117/#114), `metaTitle` de A (D13/#70), droits des photos, validation de la prose par Sébastien (D42) et sort de la version 1re personne (hors PR). Lien A → F5 à consigner comme événement D52 avant tout merge. Spec e2e à ajouter au registre `ATTENDUS` de `pr-checks.yml` (#117). Avant merge : entrée ETAT.md, smoke `sysnext`, contrôle `www` dans Chrome.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
