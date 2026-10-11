@@ -37,6 +37,19 @@ for (const [nom, { slug, questions }] of Object.entries(SERIE)) {
       expect(article?.author).toBe('PackshotCreator');
     });
 
+    it('affiche une date de mise à jour datée dans le contenu', () => {
+      expect(html).toContain('psc-maj');
+      expect(html).toMatch(/<time datetime="2026-10-10">[^<]*2026<\/time>/);
+    });
+
+    it('a des renvois internes autonomes : chaque ancre #… cible un titre existant', () => {
+      const ids = new Set(headings.map((h) => h.id));
+      const ancres = [...html.matchAll(/href="#([^"]+)"/g)].map((m) => m[1]);
+      for (const a of ancres) expect(ids.has(a), `ancre #${a} sans titre`).toBe(true);
+      // Plus de « (question N) » nu : chaque renvoi nomme la question et la lie.
+      expect(html).not.toMatch(/\(question\s*\d+\)/);
+    });
+
     it(`pose ${questions} questions, chacune suivie de sa réponse courte visible`, () => {
       const blocs = html.split('<h2 class="psc-q">').slice(1);
       expect(blocs).toHaveLength(questions);

@@ -444,6 +444,12 @@
    couche, elles priment sur les utilitaires du gabarit ([&_h2], [&_img]…). */
 .prose .psc-chapo p { font-size: 1.2rem; line-height: 1.65; color: var(--future-dusk-7); }
 .prose .psc-chapo p:first-child { margin-top: 0; }
+.prose p.psc-maj { margin: 0 0 1.25rem; font-size: 0.85rem; color: var(--future-dusk-5); }
+.prose p.psc-maj::before {
+  content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; margin-right: 0.5rem;
+  border-radius: 999px; background: var(--very-peri-5); vertical-align: middle;
+}
+.prose p.psc-maj time { font-weight: 600; color: var(--future-dusk-7); }
 .prose .psc-alerte {
   margin: 0 0 1.5rem; padding: 0.875rem 1rem; border-radius: 0.75rem;
   background: #FFF6E5; border: 1px solid #F2C46D; color: #6B4600; font-size: 0.95rem;
