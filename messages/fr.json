@@ -2801,6 +2801,14 @@
       "navigation": {
         "title": "Navigation",
         "description": "Cookies analytiques, adresse IP (anonymisée)"
+      },
+      "occasionSearch": {
+        "title": "Recherche d'un studio d'occasion",
+        "description": "Prénom, e-mail, entreprise, description du besoin ; famille de studio, téléphone, budget indicatif, horizon d'achat, commentaire et machine présélectionnée (facultatifs)"
+      },
+      "occasionAlerts": {
+        "title": "Alertes de disponibilité « occasions Orbitvu »",
+        "description": "E-mail, famille de studio souhaitée (facultative), date de la demande, date de confirmation, version du texte d'accord accepté et page d'origine"
       }
     },
     "article3": {
@@ -2810,7 +2818,8 @@
       "purpose3": "Gérer les inscriptions aux formations",
       "purpose4": "Améliorer notre site et nos services",
       "purpose5": "Respecter nos obligations légales",
-      "purpose6": "Vous transmettre le catalogue demandé et assurer le suivi de votre demande"
+      "purpose6": "Vous transmettre le catalogue demandé et assurer le suivi de votre demande",
+      "purpose7": "Vous informer, à votre demande confirmée, des nouvelles disponibilités d'équipements Orbitvu d'occasion"
     },
     "article4": {
       "heading": "Article 4 : Durée de conservation",
@@ -2856,6 +2865,13 @@
     "article8": {
       "heading": "Article 8 : Envoi des e-mails liés à une demande de catalogue",
       "content": "Les e-mails liés à une demande de catalogue (envoi du lien de téléchargement et notification de la demande à notre équipe) sont expédiés par notre prestataire Resend, qui agit en qualité de sous-traitant. Resend indique que ses principales opérations de traitement ont lieu aux États-Unis. Les transferts depuis l'Espace économique européen sont encadrés par les clauses contractuelles types de la Commission européenne, intégrées à l'accord de traitement des données de Resend ; Resend indique également participer au EU-U.S. Data Privacy Framework. Pour les transferts depuis la Suisse, cet accord applique les mêmes clauses, avec les adaptations qu'il prévoit."
+    },
+    "article9": {
+      "heading": "Article 9 : Offres d'occasion — recherche de studio et alertes de disponibilité",
+      "p1": "Une demande de recherche d'un studio d'occasion est transmise à notre équipe commerciale, qui l'étudie ; un e-mail d'accusé de réception vous est envoyé. Elle ne vous inscrit à aucune liste.",
+      "p2": "L'inscription aux alertes de disponibilité est facultative et distincte de la newsletter, des demandes commerciales et des demandes de démonstration. Elle repose sur votre consentement, donné en cochant la case prévue puis confirmé par le lien de l'e-mail que nous vous envoyons : sans cette confirmation, rien n'est enregistré. Nous conservons la preuve de ce consentement (date de la demande, date de confirmation, version du texte accepté, page d'origine).",
+      "p3": "Vous pouvez vous désinscrire à tout moment depuis le lien présent dans chaque message, ou en écrivant à info@sysnext.com ; la désinscription ne modifie pas vos autres préférences, et votre adresse n'est pas réinscrite automatiquement.",
+      "p4": "Les e-mails de ces deux parcours et la liste des inscrits sont gérés par notre prestataire Resend, sous-traitant, dans les conditions de transfert décrites à l'article 8."
     },
     "cta": {
       "heading": "Questions sur vos données ?",
