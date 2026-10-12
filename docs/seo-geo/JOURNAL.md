@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · D9 L1 : horlogerie et distributeur suisse traduits en EN, noindex conservé — brouillon · Claude de Laurent
+
+**Chantier** : D9 (L0/L1), kit S7 | **PR** : brouillon, branche `claude/g5-pr-c-traduction-l1` | **Commit** : voir PR
+
+**Quoi** — `/en/industrie/horlogerie` et `/en/distributeur-orbitvu-suisse` traduites (H1, title, description, FAQ, cartes, libellés). `noindex, follow`, canonical, alternates et sitemap inchangés.
+
+**Pourquoi** — Sur `main`, ces deux pages EN portent un title et un H1 en français. D9 L1 ; GO_CODE L0/L1 du 11/10 et GO_PR_DRAFT du 12/10 de Laurent.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `data/secteurs-en-horlogerie.ts` (nouveau), `data/distributeur-suisse-en.ts` (nouveau).
+
+**Effet attendu** — Aucun effet d'indexation tant que la publication (LOT-7b) n'est pas décidée.
+
+**Vérifié** — En local sur `main` + ce patch seul : tsc vert ; Vitest 627/627 ; `next build` vert (deux builds) ; HTML : 2 pages EN modifiées, FR et de-ch identiques, sitemap 323 URL ; Playwright Chromium, 8 specs : 364 réussis, 12 échecs identiques à `main`. CI GitHub et Preview : à compléter.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Claims NON ÉTABLIS (polarisé, « moins de deux heures de Genève », gratuité du devis, Light + Byte, Beynost / D1) ; L2 et L3 (L14, HOLD) ; relecture humaine de l'anglais.
+
+**Suite** — Relecture de l'anglais par Laurent ; publication (LOT-7b) : GO_CODE de publication, GO_MERGE, GO_PUBLICATION, hors J+7 (13-14/10), décision SB-L1.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
