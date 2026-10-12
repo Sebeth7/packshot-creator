@@ -117,6 +117,8 @@ export interface Machine {
   limitations: BilingualText[];           // Limitations
   spaceRequired: string;                  // Espace requis (ex: "Bureau", "Sol", "Studio")
   studioFootprint?: Dimensions;           // Dimensions du studio en cm
+  /** `studioFootprint` = dimensions maximales annoncées par le fabricant (« Dimensions max »), pas l'espace minimal requis. */
+  studioFootprintMaxFabricant?: boolean;
   faqItems?: BilingualFaqItem[];          // FAQ spécifiques à la machine
   keyStats?: KeyStat[];                   // Chiffres clés (3 max)
 }

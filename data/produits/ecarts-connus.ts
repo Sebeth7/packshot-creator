@@ -33,6 +33,11 @@ export const ECARTS_CATALOGUES: readonly EcartConnu[] = [
 /**
  * Clés de messages dont une valeur contredit le référentiel, connues et en attente
  * d'arbitrage. Elles restent affichées telles quelles jusqu'à la réponse de Sébastien.
+ *
+ * F5 Furniture : depuis le 11/10/2026 (G5, LOT-2), la charge du référentiel est
+ * 1 000 kg (version 4 000 kg) : le texte de F5 est conforme sur la charge. L'entrée
+ * reste inscrite parce que la ligne ne porte aucune dimension d'objet, et l'objet
+ * maximal du Furniture est en HOLD (contradiction fabricant E1, question O2).
  */
 export const ECARTS_MESSAGES: readonly { cle: string; valeur: string; q20: string; gel?: string }[] = [
   {

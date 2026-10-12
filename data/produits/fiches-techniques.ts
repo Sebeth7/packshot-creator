@@ -60,9 +60,19 @@ export interface SourceFabricant {
   releveLe: string;
 }
 
+/** Document officiel complémentaire (brochure, fiche technique, billet), sans URL publique stable. */
+export interface SourceComplementaire {
+  /** Référence imprimée ou nom de fichier, et lieu de consultation. */
+  reference: string;
+  intitule: string;
+  releveLe: string;
+}
+
 export interface FicheFabricant {
   nom: string;
   source: SourceFabricant;
+  /** Autres documents officiels concordants ou contradictoires (règle L02 : aucun vote entre sources). */
+  autresSources?: SourceComplementaire[];
   objetMax: Triplet | null;
   /** Quand la source ne donne qu'une valeur ou une phrase. */
   objetMaxTexte?: string;
@@ -95,10 +105,12 @@ export interface FicheTechnique {
 }
 
 const RELEVE = '2026-10-03T05:54Z';
-const orbitvu = (slug: string, intitule: string): SourceFabricant => ({
+/** Relevé S6 du 11/10/2026 (orbitvu.com et orbitvu.fr, 17:05-17:45 UTC). */
+const RELEVE_S6 = '2026-10-11T17:05Z';
+const orbitvu = (slug: string, intitule: string, releveLe: string = RELEVE): SourceFabricant => ({
   url: `https://orbitvu.com/products/${slug}`,
   intitule,
-  releveLe: RELEVE,
+  releveLe,
 });
 
 export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
@@ -106,10 +118,13 @@ export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
     id: 'alphashot-micro-v2',
     nomPsc: 'Alphashot Micro Pro v2',
     version: 'etablie',
-    psc: { objetMax: { l: 18, w: 15, h: 16 }, encombrement: { l: 83, w: 52, h: 72 }, chargeKg: 1 },
+    psc: { objetMax: { l: 18, w: 15, h: 16 }, encombrement: { l: 83, w: 54, h: 72 }, chargeKg: 1 },
     fabricant: {
       nom: 'Alphashot Micro Pro v2',
-      source: orbitvu('alphashot-micro-v2', 'Dimensions 83 cm x 54 cm x 72 cm ; Weight 47 kg ; Maximum photographed object weight 1 kg ; « small objects up to 18 cm long »'),
+      source: orbitvu('alphashot-micro-v2', 'Dimensions 83 cm x 54 cm x 72 cm ; Weight 47 kg ; Maximum photographed object weight 1 kg ; « small objects up to 18 cm long »', RELEVE_S6),
+      autresSources: [
+        { reference: 'Brochure ALPHASHOT MICRO PRO V2, réf. 242.718-FR-2024/11 (copie Drive)', intitule: '[235H3] ; [L×L×H] 83 × 54 × 72 ; 1 kg ; 47 kg', releveLe: '2026-10-11' },
+      ],
       objetMax: null,
       objetMaxTexte: 'up to 18 cm long',
       machine: [83, 54, 72],
@@ -117,7 +132,8 @@ export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
       masseMachineKg: 47,
       charges: [{ kg: 1, type: 'objet' }],
     },
-    statuts: { objetMax: 'non-verifiable', encombrement: 'ecart', charge: 'conforme' },
+    // Encombrement corrigé le 11/10/2026 (G5, LOT-6) : 83 × 52 → 83 × 54.
+    statuts: { objetMax: 'non-verifiable', encombrement: 'conforme', charge: 'conforme' },
     q20: ['Q20.5'],
   },
   {
@@ -142,18 +158,22 @@ export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
     id: 'alphashot-xl-g2',
     nomPsc: 'Alphashot XL G2',
     version: 'etablie',
-    psc: { objetMax: { l: 60, w: 40, h: 70 }, encombrement: { l: 142, w: 87, h: 176 }, chargeKg: 25 },
+    psc: { objetMax: { l: 60, w: 40, h: 70 }, encombrement: { l: 88, w: 140, h: 197 }, chargeKg: 25 },
     fabricant: {
       nom: 'Alphashot XL G2',
-      source: orbitvu('alphashot-xl-g2', 'Studio dimensions 88 × 140 × 197 cm (W × D × H) ; Net weight 140 kg ; Max photographed object size 60 × 40 × 70 cm (W × D × H) ; curseur « max 25 kg »'),
+      source: orbitvu('alphashot-xl-g2', 'Studio dimensions 88 × 140 × 197 cm (W × D × H) ; Net weight 140 kg ; Max photographed object size 60 × 40 × 70 cm (W × D × H) ; Max turntable load 25 kg', RELEVE_S6),
+      autresSources: [
+        { reference: 'https://orbitvu.fr/produits/alphashot-xl-g2', intitule: 'Dimensions du studio 88 × 140 × 197 cm (L × P × H) ; Taille maximale de l’objet photographiable 60 × 40 × 70 cm (L × P × H)', releveLe: RELEVE_S6 },
+        { reference: 'https://orbitvu.com/blog/alphashot-xl-g2-capture-your-product-and-its-data (billet du 16/06/2026)', intitule: 'Studio dimensions 88 x 140 x 197 cm (W x D x H) ; Max product size 60 x 40 x 70 cm ; Max product weight 25 kg', releveLe: '2026-10-11T19:26Z' },
+      ],
       objetMax: [60, 40, 70],
       machine: [88, 140, 197],
       axes: 'W×D×H',
       masseMachineKg: 140,
       charges: [{ kg: 25, type: 'objet' }],
-      remarque: "L'encombrement du site (142 × 87 × 176) est celui de l'Alphashot XL ancienne génération.",
+      remarque: "Jusqu'au 11/10/2026, le site affichait 142 × 87 × 176, l'encombrement de l'Alphashot XL Pro v2 (génération précédente). Corrigé par G5 (LOT-2).",
     },
-    statuts: { objetMax: 'conforme', encombrement: 'ecart', charge: 'conforme' },
+    statuts: { objetMax: 'conforme', encombrement: 'conforme', charge: 'conforme' },
     q20: ['Q20.4'],
   },
   {
@@ -202,29 +222,53 @@ export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
     q20: ['Q20.10'],
   },
   {
+    // Nom identique au fabricant : colonne « Alphashot XL Pro v2 » du billet Orbitvu du
+    // 16/06/2026 ; configuration XL PRO v2 [234H11] de la fiche technique ALPHASHOT XL v2.
     id: 'alphashot-xl-pro-v2',
     nomPsc: 'Alphashot XL Pro v2',
-    version: 'sans-source',
-    psc: { objetMax: { l: 50, w: 70, h: 30 }, encombrement: { l: 142, w: 87, h: 176 }, chargeKg: 25 },
-    fabricant: null,
-    statuts: { objetMax: 'non-verifiable', encombrement: 'non-verifiable', charge: 'non-verifiable' },
+    version: 'etablie',
+    psc: { objetMax: { l: 50, w: 30, h: 70 }, encombrement: { l: 142, w: 87, h: 176 }, chargeKg: 25 },
+    fabricant: {
+      nom: 'Alphashot XL Pro v2',
+      source: {
+        url: 'https://orbitvu.com/blog/alphashot-xl-g2-capture-your-product-and-its-data',
+        intitule: 'Tableau « Feature | Alphashot XL Pro v2 | Alphashot XL G2 » : Studio dimensions 87 x 142 x 176 cm ; Max product size 50 x 30 x 70 cm ; Max product weight 25 kg ; Throughput Up to 150 products a day',
+        releveLe: '2026-10-11T19:26Z',
+      },
+      autresSources: [
+        { reference: 'Fiche technique ALPHASHOT XL v2, fichier PDS_ap xl new_v25-en.pdf (copie Drive du 22/11/2024)', intitule: 'XL PRO v2 [234H11] 137 kg ; « Max size of photographed item [L×W×H] 50×30×70 cm » ; 25 kg ; plateau 75 cm', releveLe: '2026-10-11' },
+        { reference: 'https://orbitvu.com/products/alphashot-xl', intitule: 'Dimensions 142 cm x 87 cm x 176 cm ; Weight 137 kg ; Max object size 50 cm x 30 cm x 70 cm', releveLe: RELEVE_S6 },
+      ],
+      objetMax: [50, 30, 70],
+      machine: [87, 142, 176],
+      axes: 'non-precises',
+      masseMachineKg: 137,
+      plateauCm: 75,
+      charges: [{ kg: 25, type: 'objet' }],
+      remarque: "Jusqu'au 11/10/2026, le site affichait l'objet en 50 × 70 × 30 (hauteur 30). Corrigé par G5 (LOT-2) en 50 × 30 × 70 (hauteur 70, [L×W×H] de la fiche technique). Sans effet sur l'éligibilité : evaluateMachine trie les dimensions.",
+    },
+    statuts: { objetMax: 'conforme', encombrement: 'conforme', charge: 'conforme' },
     q20: ['Q20.7'],
   },
   {
     id: 'alphadesk',
     nomPsc: 'Alphadesk v2',
     version: 'non-etablie',
-    psc: { objetMax: { l: 85, w: 70, h: 5 }, encombrement: { l: 137, w: 123, h: 155 }, chargeKg: 10 },
+    psc: { objetMax: { l: 85, w: 70, h: 5 }, encombrement: { l: 156, w: 124, h: 138 }, chargeKg: 10 },
     fabricant: {
       nom: 'Alphadesk',
-      source: orbitvu('alphadesk', 'Dimensions 156 cm x 124 cm x 138 cm ; Weight 55 kg ; Maximum object size 85 cm x 70 cm x 5 cm ; Maximum object weight 10 kg'),
+      source: orbitvu('alphadesk', 'Dimensions 156 cm x 124 cm x 138 cm ; Weight 55 kg ; Maximum object size 85 cm x 70 cm x 5 cm ; Maximum object weight 10 kg', RELEVE_S6),
+      autresSources: [
+        { reference: 'Brochure ALPHATABLE & DESK, réf. 242.653-EN-2024/11 (copie Drive)', intitule: 'Alphadesk [240H1] [L × W × H] 156 × 124 × 138 ; 55 kg ; objet 85 × 70 × 5 ; 10 kg', releveLe: '2026-10-11' },
+      ],
       objetMax: [85, 70, 5],
       machine: [156, 124, 138],
       axes: 'non-precises',
       masseMachineKg: 55,
       charges: [{ kg: 10, type: 'objet' }],
     },
-    statuts: { objetMax: 'conforme', encombrement: 'a-arbitrer', charge: 'conforme' },
+    // Encombrement corrigé le 11/10/2026 (G5, LOT-6) : 137 × 123 × 155 → 156 × 124 × 138.
+    statuts: { objetMax: 'conforme', encombrement: 'conforme', charge: 'conforme' },
     q20: ['Q20.5', 'Q20.12'],
   },
   {
@@ -303,7 +347,7 @@ export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
       axes: 'non-precises',
       masseMachineKg: 760,
       charges: [{ kg: 35, type: 'ponctuelle' }, { kg: 200, type: 'surfacique' }],
-      remarque: 'Le site affiche « 200 kg/m² » ; la source dit « surface load 200 kg », sans unité par mètre carré.',
+      remarque: "Jusqu'au 11/10/2026, le site affichait « 200 kg/m² » ; la source dit « surface load 200 kg », sans unité par mètre carré. Libellé corrigé par G5 (LOT-6) : 35 kg (charge ponctuelle) / 200 kg (charge répartie). Le seuil de calcul `chargeKg` (0) reste inchangé jusqu'à la réponse de Sébastien (SB2).",
     },
     statuts: { objetMax: 'conforme', encombrement: 'conforme', charge: 'a-arbitrer' },
     q20: ['Q20.9'],
@@ -329,18 +373,23 @@ export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
     id: 'furniture-studio',
     nomPsc: 'Furniture Studio',
     version: 'etablie',
-    psc: { objetMax: { l: 250, w: 200, h: 180 }, encombrement: { l: 500, w: 400, h: 300 }, chargeKg: 500 },
+    psc: { objetMax: { l: 250, w: 200, h: 180 }, encombrement: { l: 670, w: 588, h: 302 }, chargeKg: 1000 },
     fabricant: {
       nom: 'Furniture Studio',
-      source: orbitvu('furniture-studio', 'Dimensions max 670 x 588 x 302 ; Nett weight 663 kg ; Max object size 300 x 300 x 200 ; Max object weight 4000 kg'),
+      source: orbitvu('furniture-studio', 'Dimensions max 670 x 588 x 302 ; Nett weight 663 kg ; Max object size 300 x 300 x 200 ; Max object weight 4000 kg', RELEVE_S6),
+      autresSources: [
+        { reference: 'Brochure E-COMM STUDIO+, réf. 242.718-PL-2024/11 (copie Drive)', intitule: '[242H5] 603 × 588 × 302 [dł. × szer. × wys.] ; objet 300 × 300 × 200 ; FURNITURE STUDIO [242H7] = configuration de la base E-COMM STUDIO+ ; plateforme Ø 5 m 1 000 kg, version 4 000 kg', releveLe: '2026-10-11' },
+        { reference: 'Brochure E-COMM STUDIO+ EN du 22/06/2023 (archive.org, capture du 01/07/2024)', intitule: 'Dimensions [L × W × H] 603 × 588 × 302 ; objet 300 × 300 × 200 ; ORBITVU PLATFORM Ø5M - STANDARD LOAD 1 000 kg / 4 000 kg', releveLe: '2026-10-11' },
+        { reference: 'Catalogue All-in-One FR 2026, réf. 299.0904-FR-2026/05, p. 24', intitule: 'Furniture : objet 300 × 200 × 200 ; 670 × 588 × 302', releveLe: '2026-10-09' },
+      ],
       objetMax: [300, 300, 200],
       machine: [670, 588, 302],
       axes: 'non-precises',
       masseMachineKg: 663,
-      charges: [{ kg: 4000, type: 'objet' }],
-      remarque: "Bloc identique, au caractère près, à celui de la page E-comm Studio+. Landing F5 : « Plateforme de 1 000 kg, version 4 000 kg ».",
+      charges: [{ kg: 1000, type: 'objet' }, { kg: 4000, type: 'objet' }],
+      remarque: "Bloc identique à celui de la page E-comm Studio+. Charge : 1 000 kg en standard, 4 000 kg en version renforcée (brochures) ; la page web donne le maximum. Corrigé par G5 (LOT-2) : 500 → 1 000 kg. Encombrement : 670 × 588 × 302 = « Dimensions max » (web, catalogue), affiché comme maximum fabricant ; la brochure donne 603 × 588 × 302 (E2, non résolu, O2). Objet maximal du site 250 × 200 × 180 sans source : contradiction 300 × 300 × 200 (web, brochures) / 300 × 200 × 200 (catalogue) non résolue (E1, L02 strict) : HOLD jusqu'à la réponse d'Orbitvu (O2).",
     },
-    statuts: { objetMax: 'a-arbitrer', encombrement: 'a-arbitrer', charge: 'a-arbitrer' },
+    statuts: { objetMax: 'a-arbitrer', encombrement: 'conforme', charge: 'conforme' },
     q20: ['Q20.1'],
   },
   {
@@ -355,10 +404,13 @@ export const FICHES_TECHNIQUES: readonly FicheTechnique[] = [
       machine: [670, 588, 302],
       axes: 'non-precises',
       masseMachineKg: 663,
-      charges: [{ kg: 4000, type: 'objet' }],
-      remarque: 'Le site affiche « 1000 kg (4000 kg option) » ; la source ne mentionne pas d’option.',
+      autresSources: [
+        { reference: 'Brochure E-COMM STUDIO+, réf. 242.718-PL-2024/11 (copie Drive) ; brochure EN du 22/06/2023 (archive.org)', intitule: '603 × 588 × 302 ; plateforme Ø 5 m 1 000 kg, version 4 000 kg', releveLe: '2026-10-11' },
+      ],
+      charges: [{ kg: 1000, type: 'objet' }, { kg: 4000, type: 'objet' }],
+      remarque: 'Le site affiche « 1000 kg (4000 kg option) » : conforme aux brochures (1 000 kg en standard, 4 000 kg en version) ; la page web ne donne que le maximum. Encombrement : 670 = « Dimensions max » (web) ; 603 selon les brochures (E2).',
     },
-    statuts: { objetMax: 'conforme', encombrement: 'conforme', charge: 'a-arbitrer' },
+    statuts: { objetMax: 'conforme', encombrement: 'conforme', charge: 'conforme' },
     q20: ['Q20.8'],
   },
   {

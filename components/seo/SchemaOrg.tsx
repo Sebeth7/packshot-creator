@@ -144,6 +144,14 @@ export function productSchema(product: {
     priceCurrency: 'EUR' | 'CHF';
     priceValidUntil: string;
   };
+  /**
+   * Disponibilité, seulement sur preuve actuelle de disponibilité de la
+   * configuration concrète (arbitrage L05, G5 du 11/10/2026). La
+   * commercialisation de l'offre officielle Orbitvu ne prouve ni stock ni
+   * délai : sans preuve, la propriété est omise, jamais remplacée par
+   * `OutOfStock` ou `PreOrder`.
+   */
+  availability?: 'https://schema.org/InStock';
 }) {
   return {
     '@context': 'https://schema.org',
@@ -167,7 +175,7 @@ export function productSchema(product: {
           offers: {
             '@type': 'Offer',
             url: product.url,
-            availability: 'https://schema.org/InStock',
+            ...(product.availability ? { availability: product.availability } : {}),
             itemCondition: 'https://schema.org/NewCondition',
             // `price` au niveau de l'Offer : exigé par Google Merchant Listings
             // (audit Laurent 03/09/2026, erreur « Champ price manquant » sur les
