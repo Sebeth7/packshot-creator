@@ -11,6 +11,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { NextRequest } from 'next/server';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
+import { calculateROI } from '@/components/calculators/ROICalculator/lib/calculations';
+import type { UserInputs } from '@/components/calculators/ROICalculator/lib/types';
 
 const etat = vi.hoisted(() => ({
   envois: [] as Array<{ to: string[]; subject: string; html: string }>,
@@ -157,6 +159,27 @@ describe('POST /api/roi-pdf — parcours légitimes', () => {
     expect(etat.envois).toHaveLength(1);
     expect(etat.envois[0].subject).toBe(`Votre analyse ROI PackshotCreator - ${XL_PRO.nom}`);
     expect(notes[0]).toContain('Calculateur ROI');
+  });
+
+  it('break-even très long issu d’un calcul réel (plus de 10 000 mois) : 200, aucune perte de lead', async () => {
+    // Entrées valides du formulaire (`validation.ts`), trouvées par échantillonnage le 12/10.
+    const entrees: UserInputs = {
+      nbOperateurs: 11, pourcentageTemps: 42, utiliseSolutionExterne: false, budgetMensuelExterne: 24609,
+      capaciteJournaliere: 159, investissementInitialActif: false, photosAnnuelles: 12432, budgetEquipement: 520,
+      tailleProduitsCategory: 'petit', typesContenu: ['360', 'ghost-mannequin', 'lifestyle'], montantAccessoires: 67770,
+      leasingActif: false,
+    };
+    const r = calculateROI(entrees);
+    expect(r.breakEvenMois).toBeGreaterThan(10_000);
+    const res = await POST(requete(corpsPdf({}, {
+      leasingActif: false, leasingMensualite: undefined, leasingNbMois: undefined, montantAccessoires: 67770,
+      machineNom: r.machine.nom, machineId: r.machine.id, economieAnnuelle: r.economieAnnuelle,
+      tempsLibereJours: Math.round(r.tempsLibereJours), valeurTempsLibere: Math.round(r.valeurTempsLibere),
+      roi5ans: r.roi5ans, breakEvenMois: r.breakEvenMois, economie5ans: r.economie5ans, isRentable: r.isRentable,
+      isLeasing: r.isLeasing, coutTotalActuel: r.coutTotalActuel, coutTotalMachine: r.coutTotalMachine,
+    })));
+    expect(res.status).toBe(200);
+    expect(etat.envois).toHaveLength(1);
   });
 
   it('« être recontacté » (MachineRecommendation, données à zéro, catégorie vide) : 200, notification interne', async () => {

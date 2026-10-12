@@ -15,8 +15,10 @@ const PIPEDRIVE_STAGE_ID = 17;   // R0 - Nouvelles demandes
  * - Compteurs en mémoire de l'instance (`lib/rate-limit.ts`) : sur Vercel,
  *   plusieurs instances ne partagent pas leurs compteurs. C'est un frein, pas
  *   une limitation distribuée.
- * - La clé « adresse IP » dépend de `getClientIp` (premier `x-forwarded-for`) :
- *   la chaîne de confiance Cloudflare → Vercel n'est pas établie (S5 M18). Le
+ * - La clé « adresse IP » est le premier `x-forwarded-for` (`getClientIp`).
+ *   Vercel réécrit cet en-tête avec l'adresse qui se connecte à lui
+ *   (documentation Vercel, « Request headers ») : derrière le Worker, c'est une
+ *   adresse Cloudflare, que plusieurs visiteurs peuvent partager (S5 M18). Le
  *   seuil par IP reste donc large ; la limite par destinataire ne dépend
  *   d'aucun en-tête.
  */

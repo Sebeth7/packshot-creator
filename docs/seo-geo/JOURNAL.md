@@ -34,6 +34,63 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · #131 : un break-even de plus de 10 000 mois n'est plus refusé ; R1 levé par D58 ; `main` `4c53314` intégré · Claude de Laurent
+
+**Chantier** : S5 M14, G5 LOT-1 (L09) | **PR** : #131 (brouillon) | **Commit** : voir PR
+
+**Quoi** — `lib/roi-pdf-schema.ts` : plafond de `breakEvenMois` retiré (nombre positif ou nul, ou `null`). Test de non-régression sur un calcul réel (48 132 mois). Commentaires de la clé IP précisés dans les deux routes. `main` `4c53314` (fusion de #135) intégré par union de `JOURNAL.md` et `ETAT.md`.
+
+**Pourquoi** — Audit ciblé du 12/10 (mission « G5 — passe finale décisive », GO_CODE_CIBLE de Laurent). Sur 20 000 entrées valides du formulaire ROI tirées au hasard, 50 (0,25 %) donnaient un break-even supérieur à 10 000 mois : 400, et lead perdu sans signal, l'envoi de `Step3Results` étant silencieux. R1 : exception de Laurent pour #131 seule (D58).
+
+**Fichiers** — `lib/roi-pdf-schema.ts`, `app/api/contact/route.ts` et `app/api/roi-pdf/route.ts` (commentaires), `lib/__tests__/api-roi-pdf-route.test.ts`.
+
+**Effet attendu** — Aucun pour un visiteur, sinon qu'un calcul légitime à très long break-even n'est plus refusé.
+
+**Vérifié** — Contre-épreuve : le nouveau test échoue avec le plafond d'origine. Échantillon : 50 échecs sur 20 000 avant, 0 après. tsc, Vitest, `next build` verts en local avant le push. Vercel réécrit `x-forwarded-for` avec l'adresse qui se connecte à lui (documentation Vercel, « Request headers ») ; le Worker relaie `/api/*` vers `sysnext.vercel.app`.
+
+**Supposé** — Le nombre de visiteurs par adresse de sortie Cloudflare, donc le risque réel de faux 429 (10 par heure, par adresse et par instance), n'est pas établi.
+
+**Non regardé** — Envoi réel (GO_TEST_REEL non donné) ; Preview (SSO).
+
+**Suite** — Protocole QA Preview (dossier G5 du 12/10, 03), puis GO_MERGE de Laurent ; après fusion, journaux Vercel `limite.ip` à J+1 et J+7.
+
+---
+
+## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
+
+**Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
+
+**Quoi** —
+- #64 et #27 fermées sans fusion le 12/10 à 06:42 UTC, avec les textes de clôture préparés le 11/10. Branches conservées.
+- D57 inscrit les lignes de gouvernance ratifiées le 11/10 : D32 à 12 jours, preuve produit, D29, D1 Beynost, disponibilité des fiches.
+- D58 inscrit les deux décisions de pilotage de Laurent du 12/10 : R1, option B, pour #131 seule (exception de périmètre, ni accord de Sébastien, ni envoi réel, ni fusion) ; R3, option A, sur le principe (corrections factuelles XL Pro v2 de #133 pendant M5, sous réserve des gels, de D42 et d'un événement daté au JOURNAL ; ni D42, ni Q20, ni fusion).
+- Q26 demande à Sébastien les arbitrages de fusion de #132 et #133 ; #131 y figure pour information ; ses autres questions G5 y sont regroupées une seule fois (SB1, SB2, S5-D1, D2, D3, D6, SB-R1, SB-N1, claims D42, LOT-6b), aucune ne bloquant une fusion en cours.
+
+**Pourquoi** — L11 et L12 (fermetures) et L01, L02, L03, L05, L15 (gouvernance), ratifiés par Laurent le 11/10. GO de Laurent du 12/10 : « fais tout ce que tu peux et laisse le reste pour chat directeur ». Mission « G5 — passe finale décisive » du 12/10 : R1 et R3, GO_MERGE de cette seule PR.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D57, D58), `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q26), `docs/seo-geo/ETAT.md` (A, B, C, D), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes de #64 (`63e1e92`) et #27 (`e81e5c0`) inchangées depuis le relevé du 11/10 ; `main` `0f960b5`.
+- Fermeture constatée par l'API GitHub : 06:42:15 et 06:42:18 UTC, non fusionnées.
+- Branches `seo/d33-factual-safe-patch-2026-09-30` et `content/maillage-q3` toujours présentes.
+- Numéros D57, D58 et Q26 libres sur `main` et sur les 14 autres branches de PR ouvertes (relevé du 12/10) ; Q25 est prise par #129.
+- Questions regroupées : aucune n'existe déjà dans ce fichier ; SB1 renvoie à Q20.10.
+- `data/navigation/pages-longues.ts`, lu sans modification : la condition de sortie « clôture de #27 » est atteinte pour les lignes 53 à 55 (3 guides FR) et 75 (`budget-studio-photo-automatise`), et la ligne 129 (« clôture de #109 et #27 ») l'est aussi, #109 étant fusionnée le 09/10. Levée sur GO_CODE (D44).
+- Lot F : « tout conforme » du 23/09 présent sur la branche conservée de #27 (`e81e5c0`) ; conformité historique, état courant du Worker non établi (R5).
+
+**Supposé** — Aucun.
+
+**Non regardé** :
+- le reliquat `home.faq.q7` de #64 (accueil gelé jusqu'au 28/10) ;
+- la confirmation de clôture du lot F (ETAT, C), qui revient à Laurent.
+
+**Suite** — Fusion de cette PR (GO_MERGE de Laurent), puis contrôle passif de `sysnext.vercel.app` ; SHA de fusion et résultat du contrôle : commentaire de clôture de la PR. Réponse de Sébastien à Q26 ; une question inscrite ici ne prouve pas qu'il l'a lue.
+
+---
+
 ## 2026-10-12 · Contrat de succès de /api/contact et /api/roi-pdf (P1, L08) — brouillon empilé sur la PR P0 · Claude de Laurent
 
 **Chantier** : S5 M02, G5 LOT-3 (L08) | **PR** : brouillon, branche `claude/g5-pr-a2-contrat-succes` | **Commit** : voir PR

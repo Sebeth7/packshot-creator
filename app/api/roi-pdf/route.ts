@@ -13,8 +13,9 @@ import { roiPdfRequestSchema, nomMachineRoi, type RoiPdfRequest } from '@/lib/ro
  * Freins anti-abus (P0 sécurité, G5 du 11/10/2026) : la route envoie un e-mail à
  * l'adresse saisie. Compteurs en mémoire de l'instance (`lib/rate-limit.ts`),
  * non partagés entre instances Vercel : un frein, pas une limitation
- * distribuée. La clé IP dépend du premier `x-forwarded-for`, dont la chaîne de
- * confiance derrière le Worker n'est pas établie (S5 M18) : seuil large, et
+ * distribuée. La clé IP est le premier `x-forwarded-for`, que Vercel réécrit
+ * avec l'adresse qui se connecte à lui : derrière le Worker, une adresse
+ * Cloudflare que plusieurs visiteurs peuvent partager (S5 M18) : seuil large, et
  * limite par destinataire indépendante des en-têtes.
  */
 const LIMITE_PAR_IP_HEURE = 10;
