@@ -34,6 +34,15 @@ function envoiAccepte(r: ResultatEnvoi): boolean {
   return !!r && !r.error && typeof r.data?.id === 'string' && r.data.id.length > 0;
 }
 
+function creerClientResend(): Resend | null {
+  try {
+    return new Resend(process.env.RESEND_API_KEY);
+  } catch {
+    journal('resend.indisponible');
+    return null;
+  }
+}
+
 
 // ── Pipedrive helpers ─────────────────────────────────────────
 
@@ -69,6 +78,10 @@ async function findOrCreatePerson(
         body: JSON.stringify(personPayload),
       }
     );
+    if (!res.ok) {
+      journal('pipedrive.personne.echec', { status: String(res.status) });
+      return null;
+    }
     const result = await res.json();
     return result.data?.id || null;
   } catch {
@@ -99,6 +112,10 @@ async function findOrCreateOrganization(
         body: JSON.stringify({ name: companyName }),
       }
     );
+    if (!res.ok) {
+      journal('pipedrive.organisation.echec', { status: String(res.status) });
+      return null;
+    }
     const result = await res.json();
     return result.data?.id || null;
   } catch {
@@ -155,42 +172,51 @@ async function createDealWithNote(
         body: JSON.stringify(dealPayload),
       }
     );
+    if (!res.ok) {
+      journal('pipedrive.affaire.echec', { status: String(res.status) });
+      return null;
+    }
     const result = await res.json();
-    const dealId = result.data?.id;
+    const dealId: number | null = result.data?.id || null;
 
+    // L'affaire existe : un échec de la note ne doit pas la faire passer pour absente.
     if (dealId) {
-      const noteLines = [
-        `📋 ${typeLabel}`,
-        ``,
-        `👤 ${data.firstName} ${data.lastName}`,
-        `📧 ${data.email}`,
-        data.phone ? `📱 ${data.phone}` : null,
-        `🏢 ${data.company}`,
-        `🏭 Secteur : ${data.sector}`,
-        ``,
-        data.message ? `💬 Message :\n${data.message}` : null,
-        ``,
-        `📰 Newsletter : ${data.newsletter === 'yes' ? 'Oui' : 'Non'}`,
-        ``,
-        `📅 ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`,
-        data.pageSource ? `🔗 Page d'origine : ${data.pageSource}` : null,
-        data.machineContext ? `🖥 Machine : ${data.machineContext}` : null,
-        ...formatAttributionLines(data.attribution),
-      ].filter(Boolean).join('\n');
+      try {
+        const noteLines = [
+          `📋 ${typeLabel}`,
+          ``,
+          `👤 ${data.firstName} ${data.lastName}`,
+          `📧 ${data.email}`,
+          data.phone ? `📱 ${data.phone}` : null,
+          `🏢 ${data.company}`,
+          `🏭 Secteur : ${data.sector}`,
+          ``,
+          data.message ? `💬 Message :\n${data.message}` : null,
+          ``,
+          `📰 Newsletter : ${data.newsletter === 'yes' ? 'Oui' : 'Non'}`,
+          ``,
+          `📅 ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`,
+          data.pageSource ? `🔗 Page d'origine : ${data.pageSource}` : null,
+          data.machineContext ? `🖥 Machine : ${data.machineContext}` : null,
+          ...formatAttributionLines(data.attribution),
+        ].filter(Boolean).join('\n');
 
-      // Le contenu d'une note Pipedrive est du HTML : les valeurs saisies sont échappées.
-      await fetch(
-        `https://api.pipedrive.com/v1/notes?api_token=${apiToken}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            deal_id: dealId,
-            content: echapperHtml(noteLines),
-            pinned_to_deal_flag: true,
-          }),
-        }
-      );
+        // Le contenu d'une note Pipedrive est du HTML : les valeurs saisies sont échappées.
+        await fetch(
+          `https://api.pipedrive.com/v1/notes?api_token=${apiToken}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              deal_id: dealId,
+              content: echapperHtml(noteLines),
+              pinned_to_deal_flag: true,
+            }),
+          }
+        );
+      } catch {
+        journal('pipedrive.note.erreur');
+      }
     }
 
     return dealId;
@@ -203,10 +229,14 @@ async function createDealWithNote(
 // ── Main handler ──────────────────────────────────────────────
 
 /**
- * P0 sécurité (G5, arbitrage L09) : limites, validation bornée, champ piège,
- * échappement de toute valeur saisie dans les e-mails et les notes, journal
- * sans donnée personnelle. Le contrat de succès (codes de statut, ordre des
- * envois, corps de la réponse) est celui d'origine : il relève de L08.
+ * Contrat de succès (G5 du 11/10/2026, arbitrage L08) : `success: true` n'est
+ * renvoyé que si la demande a laissé une trace exploitable par l'équipe, à
+ * savoir une affaire Pipedrive confirmée OU une notification interne acceptée
+ * par Resend (sans `error`, avec un identifiant). « Accepté par Resend » ne
+ * prouve pas la remise en boîte de réception. Sans aucune trace : 502, le
+ * visiteur voit l'écran d'erreur et peut réessayer ; la confirmation au
+ * prospect n'est envoyée qu'après qu'une trace existe, pour qu'un nouvel essai
+ * ne la double pas. Aucun identifiant CRM n'est renvoyé au navigateur.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -246,36 +276,41 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = creerClientResend();
     const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
     // Libellés en fr et en seulement : de-ch reçoit l'anglais, comme l'email de confirmation.
     const typeLabel = REQUEST_TYPE_LABELS[data.requestType]?.[data.locale === 'fr' ? 'fr' : 'en'] || data.requestType;
     const contexte = { requestType: data.requestType, locale: data.locale };
 
     // 1. Pipedrive: Person + Organization + Deal + Note
-    let pipedriveResult = { personId: null as number | null, dealId: null as number | null };
+    let dealId: number | null = null;
 
     if (PIPEDRIVE_API_TOKEN) {
       const personId = await findOrCreatePerson(PIPEDRIVE_API_TOKEN, data);
       const orgId = await findOrCreateOrganization(PIPEDRIVE_API_TOKEN, data.company);
 
       if (personId) {
-        // Link person to org if both exist
+        // Link person to org if both exist (échec sans effet sur l'affaire)
         if (orgId) {
-          await fetch(
-            `https://api.pipedrive.com/v1/persons/${personId}?api_token=${PIPEDRIVE_API_TOKEN}`,
-            {
-              method: 'PUT',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ org_id: orgId }),
-            }
-          );
+          try {
+            const lien = await fetch(
+              `https://api.pipedrive.com/v1/persons/${personId}?api_token=${PIPEDRIVE_API_TOKEN}`,
+              {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ org_id: orgId }),
+              }
+            );
+            if (!lien.ok) journal('pipedrive.lien_organisation.echec', { status: String(lien.status) });
+          } catch {
+            journal('pipedrive.lien_organisation.erreur');
+          }
         }
 
-        const dealId = await createDealWithNote(PIPEDRIVE_API_TOKEN, personId, orgId, data);
-        pipedriveResult = { personId, dealId };
+        dealId = await createDealWithNote(PIPEDRIVE_API_TOKEN, personId, orgId, data);
       }
     }
+    if (!dealId) journal('pipedrive.sans_affaire', { ...contexte, jeton: PIPEDRIVE_API_TOKEN ? 'present' : 'absent' });
 
     // 2. Enrichissement (INSEE + website + AI) — avant l'email pour l'inclure
     let enriched: EnrichedLead | null = null;
@@ -300,8 +335,8 @@ export async function POST(request: NextRequest) {
     // 3. Email notification interne (avec enrichissement). Toutes les valeurs
     // saisies sont échappées ; `typeLabel` et `dealUrl` sont construits ici.
     const PIPEDRIVE_DOMAIN = process.env.PIPEDRIVE_DOMAIN || 'packshotcreator.pipedrive.com';
-    const dealUrl = pipedriveResult.dealId
-      ? `https://${PIPEDRIVE_DOMAIN}/deal/${pipedriveResult.dealId}`
+    const dealUrl = dealId
+      ? `https://${PIPEDRIVE_DOMAIN}/deal/${dealId}`
       : null;
 
     const enrichmentBlock = enriched ? formatEnrichmentHtml(enriched) : '';
@@ -329,17 +364,29 @@ export async function POST(request: NextRequest) {
       </div>
     `;
 
-    // Résultat Resend vérifié (`{ data, error }` sans exception) : journalisé,
-    // sans effet sur la réponse (contrat de succès : L08).
-    const notification = await resend.emails.send({
-      from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
-      to: ['sebastien.jourdan@sysnext.com', 'stephane.gormand@sysnext.com'],
-      subject: `[Site Web] ${typeLabel} - ${data.company}`,
-      html: notifHtml,
-    }).catch(() => null);
-    if (!envoiAccepte(notification)) journal('notification.non_acceptee', contexte);
+    let notificationAcceptee = false;
+    if (resend) {
+      try {
+        const envoi = await resend.emails.send({
+          from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
+          to: ['sebastien.jourdan@sysnext.com', 'stephane.gormand@sysnext.com'],
+          subject: `[Site Web] ${typeLabel} - ${data.company}`,
+          html: notifHtml,
+        });
+        notificationAcceptee = envoiAccepte(envoi);
+      } catch {
+        notificationAcceptee = false;
+      }
+    }
+    if (!notificationAcceptee) journal('notification.non_acceptee', contexte);
 
-    // 4. Email confirmation prospect
+    // Aucune trace exploitable : erreur, sans confirmation au prospect.
+    if (!dealId && !notificationAcceptee) {
+      journal('aucune_trace', contexte);
+      return NextResponse.json({ error: 'Request not recorded' }, { status: 502 });
+    }
+
+    // 4. Email confirmation prospect (après qu'une trace existe)
     const prenom = echapperHtml(data.firstName);
     const confirmHtml = data.locale === 'fr'
       ? `
@@ -381,18 +428,24 @@ export async function POST(request: NextRequest) {
         </div>
       `;
 
-    const confirmation = await resend.emails.send({
-      from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
-      to: [data.email],
-      subject: data.locale === 'fr'
-        ? 'PackshotCreator — Votre demande a bien été reçue'
-        : 'PackshotCreator — Your request has been received',
-      html: confirmHtml,
-    }).catch(() => null);
-    if (!envoiAccepte(confirmation)) journal('confirmation.non_acceptee', contexte);
+    if (resend) {
+      try {
+        const envoi = await resend.emails.send({
+          from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
+          to: [data.email],
+          subject: data.locale === 'fr'
+            ? 'PackshotCreator — Votre demande a bien été reçue'
+            : 'PackshotCreator — Your request has been received',
+          html: confirmHtml,
+        });
+        if (!envoiAccepte(envoi)) journal('confirmation.non_acceptee', contexte);
+      } catch {
+        journal('confirmation.erreur', contexte);
+      }
+    }
 
     // 5. Note enrichissement dans Pipedrive
-    if (enriched && pipedriveResult.dealId && PIPEDRIVE_API_TOKEN) {
+    if (enriched && dealId && PIPEDRIVE_API_TOKEN) {
       try {
         await fetch(
           `https://api.pipedrive.com/v1/notes?api_token=${PIPEDRIVE_API_TOKEN}`,
@@ -400,7 +453,7 @@ export async function POST(request: NextRequest) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              deal_id: pipedriveResult.dealId,
+              deal_id: dealId,
               content: echapperHtml(formatEnrichmentNote(enriched)),
               pinned_to_deal_flag: false,
             }),
@@ -411,7 +464,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    return NextResponse.json({ success: true, pipedrive: pipedriveResult });
+    return NextResponse.json({ success: true });
   } catch {
     journal('erreur_interne');
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

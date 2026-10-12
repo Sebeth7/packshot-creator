@@ -31,6 +31,15 @@ function envoiAccepte(r: ResultatEnvoi): boolean {
   return !!r && !r.error && typeof r.data?.id === 'string' && r.data.id.length > 0;
 }
 
+function creerClientResend(): Resend | null {
+  try {
+    return new Resend(process.env.RESEND_API_KEY);
+  } catch {
+    journal('resend.indisponible');
+    return null;
+  }
+}
+
 type CalculatorData = RoiPdfRequest['calculatorData'];
 
 function buildDealNote(
@@ -99,10 +108,12 @@ function buildDealNote(
 }
 
 /**
- * P0 sécurité (G5, arbitrage L09) : corps validé au runtime, machine en liste
- * fermée et nom tiré du catalogue, échappement, champ piège, limites, journal
- * sans donnée personnelle. Le contrat de succès (codes de statut, corps de la
- * réponse) est celui d'origine : il relève de L08.
+ * Contrat de succès (G5 du 11/10/2026) : `success: true` seulement si la
+ * demande a laissé une trace — e-mail du PDF accepté par Resend (envoi du PDF)
+ * ou notification interne acceptée (« être recontacté »), OU affaire Pipedrive
+ * confirmée. Sinon 502 : le visiteur peut réessayer. Le routage commercial est
+ * inchangé (étape « Calculs ROI », notification interne pour le recontact).
+ * Aucun identifiant CRM n'est renvoyé au navigateur.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -146,7 +157,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = creerClientResend();
     const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
     // Nom tiré du catalogue du calculateur, jamais du navigateur.
     const machineNom = nomMachineRoi(calculatorData.machineId);
@@ -154,9 +165,9 @@ export async function POST(request: NextRequest) {
     const contexte = { mode: contactRequest ? 'recontact' : 'pdf', locale };
 
     // 1. Send email via Resend (only if user provided an email and not a contact-only request)
-    let emailId: string | undefined;
+    let emailAccepte = false;
 
-    if (email && !contactRequest) {
+    if (email && !contactRequest && resend) {
       const subject = locale === 'fr'
         ? `Votre analyse ROI PackshotCreator - ${machineNom}`
         : `Your PackshotCreator ROI Analysis - ${machineNom}`;
@@ -207,22 +218,23 @@ export async function POST(request: NextRequest) {
           </div>
         `;
 
-      const emailResult = await resend.emails.send({
-        from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
-        to: [email],
-        subject,
-        html: htmlContent,
-      });
-
-      if (envoiAccepte(emailResult)) {
-        emailId = emailResult.data?.id;
-      } else {
-        journal('courriel_pdf.non_accepte', contexte);
+      try {
+        const emailResult = await resend.emails.send({
+          from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
+          to: [email],
+          subject,
+          html: htmlContent,
+        });
+        emailAccepte = envoiAccepte(emailResult);
+      } catch {
+        emailAccepte = false;
       }
+      if (!emailAccepte) journal('courriel_pdf.non_accepte', contexte);
     }
 
     // 1b. Send notification email to internal team when contact request is made
-    if (contactRequest) {
+    let notificationAcceptee = false;
+    if (contactRequest && resend) {
       try {
         const now = new Date();
         const dateStr = now.toLocaleDateString('fr-FR');
@@ -252,33 +264,36 @@ export async function POST(request: NextRequest) {
           subject: `[ROI Calculator] Nouvelle demande de contact - ${machineNom}`,
           html: notifHtml,
         });
-        if (!envoiAccepte(envoi)) journal('notification.non_acceptee', contexte);
+        notificationAcceptee = envoiAccepte(envoi);
       } catch {
-        journal('notification.non_acceptee', contexte);
+        notificationAcceptee = false;
       }
+      if (!notificationAcceptee) journal('notification.non_acceptee', contexte);
     }
 
     // 2. Create Pipedrive contact + deal
-    let pipedriveResult = { personId: null as number | null, dealId: null as number | null };
+    let dealId: number | null = null;
     const contactIdentifier = email || phone || 'unknown';
 
     if (PIPEDRIVE_API_TOKEN) {
       const personId = await findOrCreatePipedrivePerson(PIPEDRIVE_API_TOKEN, { email, phone, company });
       if (personId) {
-        const dealId = await createPipedriveDealWithNote(PIPEDRIVE_API_TOKEN, {
+        dealId = await createPipedriveDealWithNote(PIPEDRIVE_API_TOKEN, {
           personId,
           title: `ROI Calculator - ${machineNom} - ${contactIdentifier}`,
           noteContent: buildDealNote(calculatorData, machineNom, contactIdentifier, phone, company, attribution),
         });
-        pipedriveResult = { personId, dealId };
       }
     }
+    if (!dealId) journal('pipedrive.sans_affaire', { ...contexte, jeton: PIPEDRIVE_API_TOKEN ? 'present' : 'absent' });
 
-    return NextResponse.json({
-      success: true,
-      emailId,
-      pipedrive: pipedriveResult,
-    });
+    const traceCourriel = contactRequest ? notificationAcceptee : emailAccepte;
+    if (!traceCourriel && !dealId) {
+      journal('aucune_trace', contexte);
+      return NextResponse.json({ error: 'Request not recorded' }, { status: 502 });
+    }
+
+    return NextResponse.json({ success: true, emailSent: emailAccepte });
   } catch {
     journal('erreur_interne');
     return NextResponse.json(

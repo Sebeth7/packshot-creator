@@ -1,13 +1,12 @@
 /**
- * `POST /api/roi-pdf` avec des doublures exclusivement (G5, arbitrage L09,
- * P0 sécurité) : Resend et Pipedrive (fetch) sont simulés ; aucune requête
+ * `POST /api/roi-pdf` avec des doublures exclusivement (G5 du 11/10/2026,
+ * arbitrage L09) : Resend et Pipedrive (fetch) sont simulés ; aucune requête
  * réseau, aucun e-mail.
  *
  * Vérifie : validation runtime des deux appelants réels du calculateur
  * (`Step3Results`, `MachineRecommendation`), machine en liste fermée et nom tiré
- * du catalogue, échappement, champ piège, limites, refus Resend journalisé.
- * La sémantique de succès d'origine est conservée (contrat : L08, livré
- * séparément).
+ * du catalogue, échappement, champ piège, limites, contrat de succès, aucun
+ * identifiant CRM renvoyé.
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { NextRequest } from 'next/server';
@@ -131,7 +130,7 @@ function requete(corps: unknown, ip = `10.3.0.${compteur}`): NextRequest {
   }) as unknown as NextRequest;
 }
 
-const journal = vi.spyOn(console, 'warn').mockImplementation(() => {});
+vi.spyOn(console, 'warn').mockImplementation(() => {});
 
 beforeEach(() => {
   etat.envois.length = 0;
@@ -140,7 +139,6 @@ beforeEach(() => {
   panneNote = false;
   notes.length = 0;
   fetchMock.mockClear();
-  journal.mockClear();
   vi.stubGlobal('fetch', fetchMock);
   process.env.RESEND_API_KEY = 're_test';
   process.env.RESEND_FROM_EMAIL = 'expediteur@example.invalid';
@@ -152,10 +150,10 @@ afterEach(() => {
 });
 
 describe('POST /api/roi-pdf — parcours légitimes', () => {
-  it('envoi du PDF (Step3Results) : 200, e-mail accepté, corps de réponse inchangé', async () => {
+  it('envoi du PDF (Step3Results) : 200, e-mail accepté, aucun identifiant CRM', async () => {
     const res = await POST(requete(corpsPdf()));
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ success: true, emailId: 'msg_1', pipedrive: { personId: 11, dealId: 33 } });
+    expect(await res.json()).toEqual({ success: true, emailSent: true });
     expect(etat.envois).toHaveLength(1);
     expect(etat.envois[0].subject).toBe(`Votre analyse ROI PackshotCreator - ${XL_PRO.nom}`);
     expect(notes[0]).toContain('Calculateur ROI');
@@ -185,21 +183,39 @@ describe('POST /api/roi-pdf — parcours légitimes', () => {
   });
 });
 
-describe('POST /api/roi-pdf — sémantique de succès d’origine conservée', () => {
-  it('PDF : e-mail refusé par Resend, jeton absent : refus journalisé, 200 sans emailId', async () => {
+describe('POST /api/roi-pdf — contrat de succès', () => {
+  it('PDF : e-mail refusé par Resend et jeton absent : 502', async () => {
     delete process.env.PIPEDRIVE_API_TOKEN;
+    etat.reponsesResend.push({ data: null, error: { name: 'validation_error' } });
+    expect((await POST(requete(corpsPdf()))).status).toBe(502);
+  });
+
+  it('PDF : e-mail refusé mais affaire créée : 200, emailSent false', async () => {
     etat.reponsesResend.push({ data: null, error: { name: 'validation_error' } });
     const res = await POST(requete(corpsPdf()));
     expect(res.status).toBe(200);
-    expect((await res.json()).emailId).toBeUndefined();
-    const texte = JSON.stringify(journal.mock.calls);
-    expect(texte).toContain('courriel_pdf.non_accepte');
-    expect(texte).not.toContain('example.fr');
+    expect(await res.json()).toEqual({ success: true, emailSent: false });
   });
 
-  it('recontact : notification refusée et affaire en échec : 200, comme avant', async () => {
+  it('recontact : notification refusée et affaire en échec : 502', async () => {
     panneAffaire = 'http500';
     etat.reponsesResend.push({ data: null, error: { name: 'internal_server_error' } });
+    expect((await POST(requete(corpsRecontact()))).status).toBe(502);
+  });
+
+  it('recontact : notification en exception, affaire créée : 200', async () => {
+    etat.reponsesResend.push(new Error('timeout'));
+    expect((await POST(requete(corpsRecontact()))).status).toBe(200);
+  });
+
+  it('note en échec réseau après l’affaire : l’affaire reste comptée (lib/pipedrive)', async () => {
+    panneNote = true;
+    etat.reponsesResend.push({ data: null, error: { name: 'x' } });
+    expect((await POST(requete(corpsRecontact()))).status).toBe(200);
+  });
+
+  it('affaire en échec réseau, notification acceptée : 200', async () => {
+    panneAffaire = 'reseau';
     expect((await POST(requete(corpsRecontact()))).status).toBe(200);
   });
 });

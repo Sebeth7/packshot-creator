@@ -1,15 +1,16 @@
 /**
- * `POST /api/contact` avec des doublures exclusivement (G5, arbitrage L09,
- * P0 sécurité) : Resend, Pipedrive (fetch) et l'enrichissement sont simulés ;
- * aucune requête réseau, aucun e-mail, aucun appel Gemini.
+ * `POST /api/contact` avec des doublures exclusivement (G5 du 11/10/2026,
+ * arbitrages L08 et L09) : Resend, Pipedrive (fetch) et l'enrichissement sont
+ * simulés ; aucune requête réseau, aucun e-mail, aucun appel Gemini.
  *
- * Vérifié :
+ * Contrat vérifié :
+ * - succès seulement avec une affaire Pipedrive confirmée OU une notification
+ *   interne acceptée par Resend (sans `error`, avec un identifiant) ;
+ * - double échec : 502, sans confirmation au prospect (un nouvel essai ne la
+ *   double pas) ;
+ * - aucun identifiant CRM renvoyé au navigateur ;
  * - valeurs saisies échappées dans les e-mails et la note Pipedrive ;
- * - bornes, champ piège, limites par IP et par destinataire ;
- * - refus Resend détecté et journalisé, sans donnée personnelle ;
- * - sémantique de succès d'origine conservée : codes de statut, ordre des
- *   envois et corps de la réponse ne changent pas (le contrat de succès relève
- *   de L08, livré séparément).
+ * - bornes, champ piège, limites par IP et par destinataire.
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { NextRequest } from 'next/server';
@@ -126,18 +127,18 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-describe('POST /api/contact — sémantique de succès d’origine conservée', () => {
-  it('affaire et notification : 200, confirmation envoyée, corps de réponse inchangé', async () => {
+describe('POST /api/contact — contrat de succès (L08)', () => {
+  it('affaire et notification : 200, sans identifiant CRM, confirmation envoyée', async () => {
     const res = await POST(requete(demande()));
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ success: true, pipedrive: { personId: 11, dealId: 33 } });
+    expect(await res.json()).toEqual({ success: true });
     expect(etat.envois).toHaveLength(2);
     expect(etat.envois[0].to).not.toContain(expect.stringContaining('example.ch'));
     expect(etat.envois[1].to[0]).toMatch(/example\.ch$/);
     expect(appels.map((a) => a.etape)).toEqual(['personSearch', 'personCreate', 'orgSearch', 'orgCreate', 'personPut', 'deal', 'note']);
   });
 
-  it('jeton absent : 200 sans appel Pipedrive ni enrichissement', async () => {
+  it('jeton absent, notification acceptée : 200 sans appel Pipedrive ni enrichissement', async () => {
     delete process.env.PIPEDRIVE_API_TOKEN;
     const res = await POST(requete(demande()));
     expect(res.status).toBe(200);
@@ -145,25 +146,83 @@ describe('POST /api/contact — sémantique de succès d’origine conservée', 
     expect(enrichMock).not.toHaveBeenCalled();
   });
 
-  it('notification refusée par Resend ({ error }) : refus journalisé, réponse inchangée (200, confirmation envoyée)', async () => {
+  it('jeton absent, notification refusée par Resend ({ error }) : 502, aucune confirmation', async () => {
     delete process.env.PIPEDRIVE_API_TOKEN;
     etat.reponsesResend.push({ data: null, error: { name: 'validation_error' } });
     const res = await POST(requete(demande()));
-    expect(res.status).toBe(200);
-    expect(etat.envois).toHaveLength(2);
-    expect(JSON.stringify(journal.mock.calls)).toContain('notification.non_acceptee');
+    expect(res.status).toBe(502);
+    expect(etat.envois).toHaveLength(1);
   });
 
-  it('Resend lève une exception : 200, comme avant', async () => {
+  it('jeton absent, réponse Resend sans identifiant : 502', async () => {
+    delete process.env.PIPEDRIVE_API_TOKEN;
+    etat.reponsesResend.push({ data: {}, error: null });
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(502);
+  });
+
+  it('jeton absent, Resend lève une exception : 502', async () => {
     delete process.env.PIPEDRIVE_API_TOKEN;
     etat.reponsesResend.push(new Error('timeout'));
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(502);
+  });
+
+  it('affaire en échec HTTP, notification acceptée : 200', async () => {
+    pannes = { deal: 'http500' };
     const res = await POST(requete(demande()));
     expect(res.status).toBe(200);
   });
 
-  it('Resend impossible à construire : 500, comme avant', async () => {
+  it('affaire en échec HTTP et notification refusée : 502, aucune confirmation', async () => {
+    pannes = { deal: 'http500' };
+    etat.reponsesResend.push({ data: null, error: { name: 'internal_server_error' } });
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(502);
+    expect(etat.envois).toHaveLength(1);
+  });
+
+  it('personne trouvée ou créée mais affaire non créée (4xx), notification refusée : 502', async () => {
+    pannes = { deal: 'http500' };
+    etat.reponsesResend.push({ data: null, error: { name: 'rate_limit_exceeded' } });
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(502);
+  });
+
+  it('réseau Pipedrive coupé et Resend en exception : 502', async () => {
+    pannes = { personSearch: 'reseau', personCreate: 'reseau', orgSearch: 'reseau', orgCreate: 'reseau' };
+    etat.reponsesResend.push(new Error('réseau'));
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(502);
+  });
+
+  it('affaire créée, notification refusée : 200 (l’affaire est la trace), confirmation envoyée', async () => {
+    etat.reponsesResend.push({ data: null, error: { name: 'internal_server_error' } });
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(200);
+    expect(etat.envois).toHaveLength(2);
+  });
+
+  it('note en échec réseau après l’affaire : l’affaire reste comptée', async () => {
+    pannes = { note: 'reseau' };
+    etat.reponsesResend.push({ data: null, error: { name: 'internal_server_error' } });
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(200);
+  });
+
+  it('PUT personne → organisation en échec réseau : l’affaire est quand même créée', async () => {
+    pannes = { personPut: 'reseau' };
+    etat.reponsesResend.push({ data: null, error: { name: 'internal_server_error' } });
+    const res = await POST(requete(demande()));
+    expect(res.status).toBe(200);
+    expect(appels.some((a) => a.etape === 'deal')).toBe(true);
+  });
+
+  it('Resend impossible à construire : 200 si l’affaire existe, 502 sinon', async () => {
     etat.resendIndisponible = true;
-    expect((await POST(requete(demande()))).status).toBe(500);
+    expect((await POST(requete(demande()))).status).toBe(200);
+    delete process.env.PIPEDRIVE_API_TOKEN;
+    expect((await POST(requete(demande()))).status).toBe(502);
   });
 
   it('enrichissement appelé (doublure) seulement avec le jeton, sans réseau', async () => {
@@ -263,6 +322,6 @@ describe('POST /api/contact — validation, piège, limites', () => {
     const texte = JSON.stringify(journal.mock.calls);
     expect(texte).not.toContain(String(corps.email));
     expect(texte).not.toContain('Zéphyrine');
-    expect(texte).toContain('notification.non_acceptee');
+    expect(texte).toContain('aucune_trace');
   });
 });

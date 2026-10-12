@@ -38,6 +38,10 @@ export async function findOrCreatePipedrivePerson(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(personData),
     });
+    if (!res.ok) {
+      console.warn('[pipedrive] personne non créée', { status: res.status });
+      return null;
+    }
     const data = await res.json();
     return data.data?.id || null;
   } catch (error) {
@@ -62,19 +66,28 @@ export async function createPipedriveDealWithNote(
         stage_id: PIPEDRIVE_STAGE_ID,
       }),
     });
+    if (!res.ok) {
+      console.warn('[pipedrive] affaire non créée', { status: res.status });
+      return null;
+    }
     const data = await res.json();
-    const dealId = data.data?.id;
+    const dealId: number | null = data.data?.id || null;
 
+    // L'affaire existe : un échec de la note ne doit pas la faire passer pour absente.
     if (dealId) {
-      await fetch(`https://api.pipedrive.com/v1/notes?api_token=${apiToken}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          deal_id: dealId,
-          content: params.noteContent,
-          pinned_to_deal_flag: true,
-        }),
-      });
+      try {
+        await fetch(`https://api.pipedrive.com/v1/notes?api_token=${apiToken}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            deal_id: dealId,
+            content: params.noteContent,
+            pinned_to_deal_flag: true,
+          }),
+        });
+      } catch {
+        console.warn('[pipedrive] note non créée');
+      }
     }
 
     return dealId;
