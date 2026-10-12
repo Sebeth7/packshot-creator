@@ -15,7 +15,7 @@ de mise en service.
 | Routes | 3 pages + 3 vues `…/exemples-fictifs` (jamais en production) ; `/api/occasion` et `/api/occasion/alertes{,/confirmation,/desinscription}` en 503 sans lecture de la demande | Build `VERCEL_ENV=production` : 6 × 404, 4 × 503 | Rien |
 | Recherche (notification commerciale) | Notification interne `[Occasion]` vers `OCCASION_NOTIFICATION_EMAIL`, puis accusé dans la langue de la page ; aucun CRM | `recherche-*.test.ts` ; test réel Preview du 11/10 (A soumis ; B et quatre e-mails non établis) | Compléter le test réel ; variable en Production |
 | Liste d'alerte | Double opt-in, segment et topic dédiés, jamais de réinscription d'un désinscrit ; promesse « nouvelles offres », consentement `occasion-alertes-v3-2026-10-12` (trois langues) | `alertes-*.test.ts` | Q25 ; test réel sur GO |
-| Bulletin d'arrivage | « Nouvelles occasions Orbitvu disponibles », une ou plusieurs machines, FR/EN/DE-CH, par famille ; brouillon, empreinte, validation nominative ; envoi verrouillé ; aucune route, aucun cron, aucun n8n | `bulletin.test.ts` ; `scripts/occasion-bulletin.mts apercu` (registre vide : aucun bulletin) | Lecture réelle des inscrits et envoi à vérifier au test réel ; GO_ENVOI_REEL |
+| Bulletin d'arrivage | « Nouvelles occasions Orbitvu disponibles », une ou plusieurs machines, FR/EN/DE-CH, par famille ; brouillon, empreinte, validation nominative ; envoi verrouillé ; bulletin de test restreint aux inscrits désignés ; aucune route, aucun cron, aucun n8n | `bulletin.test.ts` ; `scripts/occasion-bulletin.mts apercu` (registre vide : aucun bulletin) | Lecture réelle des inscrits et envoi à vérifier au test réel ; GO_ENVOI_REEL |
 | Politique de confidentialité | Article 9 (FR, EN ; DE-CH servi en FR), finalité « nouvelles disponibilités », preuve du consentement, désinscription, Resend | `occasion-langues.test.ts` | **Devient publique dès la fusion.** Durée de conservation des inscrits non écrite (Q25) |
 | Fichiers de langue | `messages/{fr,en,de-ch}.json` : bloc `privacy` seulement | Intégrité JSON (CI) | Rien |
 | Registre de stock | Vide ; guide `data/occasion/AJOUT-MACHINE.md` ; `FRAICHEUR_MAX_JOURS = 30` **provisoire** | `occasion.test.ts` (garde-fous de saisie) | Machines réelles, photos, garantie écrite, accord Orbitvu |
@@ -69,8 +69,9 @@ liens de désinscription sont refusés), `OCCASION_ALERTES_URL_BASE`.
   autre stockage). **Non décidé, non créé** : la procédure (commit immédiat) suffit
   pour un envoi manuel validé.
 - Le segment est commun à la Preview et à la Production : les adresses du test
-  réel des alertes doivent être désinscrites à la fin du test, sinon elles
-  recevraient les bulletins.
+  réel des alertes servent au bulletin de test (`--test`, publication non
+  exigée, aucune machine marquée annoncée), puis sont désinscrites par le lien
+  du bulletin reçu ; sinon elles recevraient les vrais bulletins.
 
 ## 5. Ordre de mise en service
 

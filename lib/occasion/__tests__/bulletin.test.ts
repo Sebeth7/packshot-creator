@@ -298,7 +298,7 @@ describe('Envoi : verrouillé, validé, désinscription personnelle', () => {
     }) as PlanBulletin;
   const options = (p: PlanBulletin, client: ClientEnvoiBulletin, autre = {}) => ({
     client,
-    expediteur: 'occasions@packshot-creator.com',
+    expediteur: 'occasions@exemple.test',
     secret: SECRET,
     source,
     autorisation: { empreinte: p.empreinte, valideePar: 'Sébastien Jourdan' },
@@ -367,6 +367,59 @@ describe('Envoi : verrouillé, validé, désinscription personnelle', () => {
     const relance = fauxEnvoi();
     await envoyerBulletin(p, options(p, relance.client));
     expect(relance.appels.map((a) => a.cle)).toEqual(appels.map((a) => a.cle));
+  });
+});
+
+describe('Bulletin de test : inscrits désignés seulement, avant publication', () => {
+  const source = [machine('OCC-2026-01', 'alphashot-pro-g2')];
+  const abonnes = qualifierAbonnes([contact('reel@atelier.fr'), contact('test.laurent@atelier.fr'), contact('test.seb@atelier.fr')]);
+  const prep = preparerBulletin({
+    source,
+    abonnes,
+    base: BASE,
+    maintenant: T0,
+    destinatairesTest: ['Test.Laurent@atelier.fr', 'test.seb@atelier.fr', 'inconnu@atelier.fr'],
+  }) as PlanBulletin;
+
+  it('destinataires restreints aux inscrits désignés ; une adresse non inscrite n’est jamais ajoutée', () => {
+    expect(prep.test).toBe(true);
+    expect(prep.lots.flatMap((l) => l.destinataires)).toEqual(['test.laurent@atelier.fr', 'test.seb@atelier.fr']);
+    expect(apercuBulletin(prep, source)).toContain('MODE TEST');
+    const reel = preparerBulletin({ source, abonnes, base: BASE, maintenant: T0 }) as PlanBulletin;
+    expect(reel.test).toBe(false);
+    expect(reel.empreinte).not.toBe(prep.empreinte);
+  });
+
+  it('publication non exigée pour le test ; liste en service et verrou d’envoi exigés ; aucune machine marquée', async () => {
+    const { client } = fauxEnvoi();
+    const base = {
+      client,
+      expediteur: 'occasions@exemple.test',
+      secret: SECRET,
+      source,
+      autorisation: { empreinte: prep.empreinte, valideePar: 'Sébastien Jourdan' },
+      maintenant: T0,
+    };
+    expect(await envoyerBulletin(prep, { ...base, verrous: { bulletin: true, alertes: false, publication: false } })).toMatchObject({ raison: 'verrou_ferme' });
+    expect(await envoyerBulletin(prep, { ...base, verrous: { bulletin: false, alertes: true, publication: false } })).toMatchObject({ raison: 'verrou_ferme' });
+    expect(client.batch.send).not.toHaveBeenCalled();
+    const r = await envoyerBulletin(prep, { ...base, verrous: { bulletin: true, alertes: true, publication: false } });
+    expect(r).toMatchObject({ statut: 'envoye', envoyes: 2, aMarquer: [] });
+  });
+
+  it('bulletin réel : la publication reste exigée', async () => {
+    const { client } = fauxEnvoi();
+    const reel = preparerBulletin({ source, abonnes, base: BASE, maintenant: T0 }) as PlanBulletin;
+    const r = await envoyerBulletin(reel, {
+      client,
+      expediteur: 'occasions@exemple.test',
+      secret: SECRET,
+      source,
+      autorisation: { empreinte: reel.empreinte, valideePar: 'Sébastien Jourdan' },
+      maintenant: T0,
+      verrous: { bulletin: true, alertes: true, publication: false },
+    });
+    expect(r).toMatchObject({ raison: 'verrou_ferme' });
   });
 });
 

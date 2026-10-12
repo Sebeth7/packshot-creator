@@ -16,6 +16,10 @@
  *     destinataires, exclusions, contenu exact, EMPREINTE.
  *
  *   npx tsx scripts/occasion-bulletin.mts envoyer --empreinte <empreinte> --valide-par "<nom>" [--refs …]
+ *
+ *   --test a@exemple.fr,b@exemple.fr (avec plan et envoyer) : bulletin de TEST,
+ *     reçu seulement par ces inscrits confirmés ; publication non exigée (fenêtre
+ *     de test des alertes en Preview) ; aucune machine marquée annoncée.
  *     Recalcule le brouillon et n'envoie que si son empreinte est celle validée
  *     ET si BULLETIN_ENVOI_AUTORISE, ALERTES_REELLES_AUTORISEES et
  *     PUBLICATION_AUTORISEE sont vrais (lib/occasion/activation.ts). Sinon :
@@ -49,6 +53,7 @@ const option = (nom: string) => {
   return i >= 0 ? args[i + 1] : undefined;
 };
 const refs = option('refs')?.split(',').map((r) => r.trim()).filter(Boolean);
+const destinatairesTest = option('test')?.split(',').map((r) => r.trim()).filter(Boolean);
 const maintenant = new Date();
 const BASE_PRODUCTION = 'https://www.packshot-creator.com';
 
@@ -101,7 +106,7 @@ if (mode === 'plan' || mode === 'envoyer') {
     segmentId: exiger('OCCASION_ALERTES_SEGMENT_ID'),
     topicId: exiger('OCCASION_ALERTES_TOPIC_ID'),
   });
-  const prep = preparerBulletin({ source: MACHINES_OCCASION, abonnes: qualifierAbonnes(contacts), base, maintenant, refs });
+  const prep = preparerBulletin({ source: MACHINES_OCCASION, abonnes: qualifierAbonnes(contacts), base, maintenant, refs, destinatairesTest });
   const apercu = apercuBulletin(prep, MACHINES_OCCASION);
 
   if (mode === 'plan') {
@@ -124,11 +129,11 @@ if (mode === 'plan' || mode === 'envoyer') {
     maintenant,
   });
   console.log(JSON.stringify({ ...rapport, identifiants: 'identifiants' in rapport ? rapport.identifiants.length : undefined }, null, 2));
-  if (rapport.statut === 'envoye') {
+  if (rapport.statut === 'envoye' && rapport.aMarquer.length > 0) {
     console.log(`\nÀ faire maintenant : annonce: { bulletin: '${rapport.bulletin}', envoyeLe: '${maintenant.toISOString().slice(0, 10)}' } pour ${rapport.aMarquer.join(', ')}, puis commit.`);
   }
   process.exit(rapport.statut === 'envoye' ? 0 : 1);
 }
 
-console.error('Usage : apercu | plan | envoyer --empreinte <empreinte> --valide-par "<nom>" [--refs A,B]');
+console.error('Usage : apercu | plan | envoyer --empreinte <empreinte> --valide-par "<nom>" [--refs A,B] [--test a@x,b@y]');
 process.exit(2);

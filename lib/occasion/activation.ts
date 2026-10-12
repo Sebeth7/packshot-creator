@@ -124,9 +124,14 @@ const VERROUS_BULLETIN: VerrousBulletin = {
   publication: PUBLICATION_AUTORISEE,
 };
 
-/** Un bulletin peut-il partir ? Les trois verrous ouverts : envoi, liste en service, page publiée. */
-export function bulletinEnvoyable(v: VerrousBulletin = VERROUS_BULLETIN): boolean {
-  return v.bulletin && v.alertes && v.publication;
+/**
+ * Un bulletin peut-il partir ? Les trois verrous ouverts : envoi, liste en
+ * service, page publiée. Bulletin de TEST (destinataires désignés, inscrits de
+ * test seulement) : la publication n'est pas exigée, pour tester avant la mise
+ * en ligne, sur une fenêtre de test des alertes en Preview.
+ */
+export function bulletinEnvoyable(v: VerrousBulletin = VERROUS_BULLETIN, test = false): boolean {
+  return v.bulletin && v.alertes && (test || v.publication);
 }
 
 /** La page `/fr/studios-photo-automatises/opportunites` est-elle générée dans cet environnement ? */

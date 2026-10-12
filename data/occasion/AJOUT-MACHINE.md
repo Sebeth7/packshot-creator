@@ -55,6 +55,10 @@ Jamais périodique, jamais automatique.
 4. `npx tsx scripts/occasion-bulletin.mts envoyer --empreinte <empreinte> --valide-par "<nom>"`
    (refusé tant que `BULLETIN_ENVOI_AUTORISE`, `ALERTES_REELLES_AUTORISEES` et
    `PUBLICATION_AUTORISEE` ne sont pas vrais).
-5. **Aussitôt après** : `annonce: { bulletin: '<identifiant>', envoyeLe: 'AAAA-MM-JJ' }`
+5. Avant le tout premier bulletin réel : bulletin de **test**, `plan` puis
+   `envoyer` avec `--test adresse1,adresse2` (inscrits de test déjà confirmés,
+   fenêtre de test des alertes en Preview ; publication non exigée ; aucune
+   machine marquée annoncée).
+6. **Aussitôt après** un envoi réel : `annonce: { bulletin: '<identifiant>', envoyeLe: 'AAAA-MM-JJ' }`
    sur chaque machine annoncée, par commit. Une machine annoncée ne l'est plus
    jamais : une correction de fiche n'est pas un nouvel arrivage.

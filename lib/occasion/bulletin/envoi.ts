@@ -13,7 +13,8 @@ import { machinesAnnoncables } from './selection';
  *
  * Refus AVANT tout appel au fournisseur si :
  * - `bulletinEnvoyable()` est faux (BULLETIN_ENVOI_AUTORISE, liste en service,
- *   page publiée : sans elles, le lien de désinscription ne fonctionnerait pas) ;
+ *   page publiée : sans elles, le lien de désinscription ne fonctionnerait pas ;
+ *   bulletin de test : publication non exigée, inscrits désignés seulement) ;
  * - l'empreinte fournie n'est pas celle du brouillon recalculé ;
  * - la validation n'est pas nominative ;
  * - une machine du brouillon n'est plus annonçable (vendue, réservée, déjà
@@ -83,7 +84,7 @@ export async function envoyerBulletin(
     verrous?: VerrousBulletin;
   },
 ): Promise<RapportEnvoi> {
-  if (!bulletinEnvoyable(o.verrous)) return { statut: 'refuse', raison: 'verrou_ferme' };
+  if (!bulletinEnvoyable(o.verrous, plan.test)) return { statut: 'refuse', raison: 'verrou_ferme' };
   if (o.autorisation.empreinte !== plan.empreinte) return { statut: 'refuse', raison: 'empreinte_differente' };
   if (o.autorisation.valideePar.trim().length < 3) return { statut: 'refuse', raison: 'validation_absente' };
   if (o.secret.length < SECRET_MIN) return { statut: 'refuse', raison: 'secret_absent' };
@@ -145,5 +146,6 @@ export async function envoyerBulletin(
       identifiants.push(...ids);
     }
   }
-  return { statut: 'envoye', bulletin: plan.id, envoyes: identifiants.length, identifiants, aMarquer: plan.refs };
+  // Un bulletin de test n'annonce rien : les machines restent annonçables pour le vrai bulletin.
+  return { statut: 'envoye', bulletin: plan.id, envoyes: identifiants.length, identifiants, aMarquer: plan.test ? [] : plan.refs };
 }

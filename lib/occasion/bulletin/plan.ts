@@ -42,6 +42,8 @@ export interface LotBulletin {
 export interface PlanBulletin {
   statut: 'pret';
   id: string;
+  /** Bulletin de test : destinataires restreints aux adresses désignées ; aucune machine n'est marquée annoncée. */
+  test: boolean;
   base: string;
   refs: string[];
   lots: LotBulletin[];
@@ -82,6 +84,11 @@ export function preparerBulletin(p: {
   maintenant: Date;
   /** Références retenues ; absent : toutes les machines annonçables. */
   refs?: readonly string[];
+  /**
+   * Bulletin de TEST : seuls ces inscrits (déjà confirmés et retenus) le
+   * reçoivent. Une adresse absente des inscrits n'est jamais ajoutée.
+   */
+  destinatairesTest?: readonly string[];
 }): Preparation {
   const refsInconnues = (p.refs ?? []).filter((r) => !p.source.some((m) => m.ref === r));
   const selection = machinesAnnoncables(p.source, p.maintenant, p.refs);
@@ -93,7 +100,10 @@ export function preparerBulletin(p: {
 
   const parCle = new Map<string, { langue: LangueOccasion; famille: Famille | ''; machines: MachineOccasion[]; destinataires: string[] }>();
   let sansMachineConcernee = 0;
-  for (const a of p.abonnes.retenus as Abonne[]) {
+  const test = p.destinatairesTest !== undefined;
+  const designes = new Set((p.destinatairesTest ?? []).map((e) => e.trim().toLowerCase()));
+  const retenus = (p.abonnes.retenus as Abonne[]).filter((a) => !test || designes.has(a.email));
+  for (const a of retenus) {
     const concernees = machinesPourFamille(machines, a.famille);
     if (concernees.length === 0) {
       sansMachineConcernee++;
@@ -125,12 +135,13 @@ export function preparerBulletin(p: {
     }));
 
   const empreinte = sha256(
-    JSON.stringify({ id, base: p.base, lots: lots.map((l) => [l.langue, l.famille, l.refs, l.destinataires, l.apercu.objet, l.apercu.texte, l.apercu.html]) }),
+    JSON.stringify({ id, test, base: p.base, lots: lots.map((l) => [l.langue, l.famille, l.refs, l.destinataires, l.apercu.objet, l.apercu.texte, l.apercu.html]) }),
   );
 
   return {
     statut: 'pret',
     id,
+    test,
     base: p.base,
     refs,
     lots,
@@ -173,6 +184,7 @@ export function apercuBulletin(prep: Preparation, source: readonly MachineOccasi
   }
   return [
     `# Bulletin d'arrivage ${prep.id} — BROUILLON À VALIDER`,
+    ...(prep.test ? ['', 'MODE TEST : destinataires restreints aux adresses désignées ; aucune machine ne sera marquée annoncée.'] : []),
     '',
     `Empreinte : ${prep.empreinte}`,
     `Machines annoncées (${prep.refs.length}) : ${prep.refs.map(modele).join(', ')}`,
