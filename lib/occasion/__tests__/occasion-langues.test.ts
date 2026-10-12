@@ -112,6 +112,45 @@ describe('Textes de la landing : trois langues de même structure', () => {
   });
 });
 
+describe('Promesse de la liste : « nouvelles offres », sans cadence ni immédiateté (décision du 12/10)', () => {
+  const PAGES = { fr: FR, en: EN, 'de-ch': DE_CH } as const;
+
+  it('titre français exact ; même nombre de points dans les trois langues ; aide sur la famille', () => {
+    expect(FR.ALERTES.titre).toBe("Recevez les nouvelles offres de studios Orbitvu d'occasion");
+    for (const c of Object.values(PAGES)) {
+      expect(c.ALERTES.points).toHaveLength(4);
+      expect(c.ALERTES.champs.familleAide.length).toBeGreaterThan(10);
+    }
+  });
+
+  it('famille ou toutes les familles, confirmation, désinscription, hors newsletter : dits dans chaque langue', () => {
+    const attendus = {
+      fr: ['toutes les familles', 'confirmation', 'désinscription', 'newsletter'],
+      en: ['all families', 'confirm', 'unsubscribe', 'newsletter'],
+      'de-ch': ['alle Familien', 'Bestätigung', 'Abmeldung', 'Newsletter'],
+    } as const;
+    for (const [langue, morceaux] of Object.entries(attendus)) {
+      const a = PAGES[langue as keyof typeof PAGES].ALERTES;
+      const texte = [a.texte, a.mention, a.champs.familleAide, ...a.points].join(' ').toLowerCase();
+      for (const m of morceaux) expect(texte).toContain(m.toLowerCase());
+    }
+  });
+
+  it('aucune fréquence fixe ni notification immédiate promise', () => {
+    for (const c of Object.values(PAGES)) {
+      const a = c.ALERTES;
+      const texte = [a.titre, a.texte, a.bouton, a.optin, a.mention, ...a.points, a.confirmation.inscrit].join(' ');
+      expect(texte).not.toMatch(/dès que|immédiat|chaque semaine|chaque mois|hebdomadaire|mensuel|as soon as|immediately|instant|weekly|monthly|sofort|umgehend|wöchentlich|monatlich/i);
+    }
+  });
+
+  it('liste fermée : le formulaire annonce qu’aucune inscription n’est enregistrée (inchangé)', () => {
+    expect(FR.ALERTES.fermee).toContain("aucune inscription n'est enregistrée");
+    expect(EN.ALERTES.fermee).toContain('no subscription is recorded');
+    expect(DE_CH.ALERTES.fermee).toContain('keine Anmeldung gespeichert');
+  });
+});
+
 describe('Consentement des alertes : un texte et une version par langue', () => {
   it('versions distinctes ; texte de la case affiché = texte versionné', () => {
     const versions = LANGUES_OCCASION.map((l) => OPTIN[l].version);
@@ -137,14 +176,14 @@ describe('E-mails au visiteur dans sa langue ; notification interne en français
 
   it('confirmation des alertes : objet, lien vers la page de la langue, date locale', () => {
     const en = composerConfirmationAlerte({ lien: lienConfirmation('https://e.test', 'abc', 'en'), famille: FAMILLES[3], expireLe: fin, langue: 'en' });
-    expect(en.objet).toBe('Confirm your subscription to pre-owned Orbitvu alerts');
+    expect(en.objet).toBe('Confirm your subscription to new pre-owned Orbitvu offers');
     expect(en.texte).toContain('https://e.test/en/studios-photo-automatises/opportunites#confirmer-alerte=abc');
     expect(en.texte).toContain('Specialised studios (fashion, furniture, bike)');
     expect(en.texte).toContain('13 October 2026');
     const de = composerConfirmationAlerte({ lien: lienConfirmation('https://e.test', 'abc', 'de-ch'), famille: '', expireLe: fin, langue: 'de-ch' });
-    expect(de.objet).toBe('Bitte bestätigen Sie Ihre Anmeldung für die Orbitvu-Occasionen');
+    expect(de.objet).toBe('Bitte bestätigen Sie Ihre Anmeldung für neue Orbitvu-Occasionsangebote');
     expect(de.texte).toContain('/de-ch/studios-photo-automatises/opportunites#confirmer-alerte=abc');
-    expect(de.texte).toContain('alle Orbitvu-Geräte');
+    expect(de.texte).toContain('alle Familien');
     expect(de.texte).toContain('13. Oktober 2026');
     for (const c of [en, de]) expect(c.texte).not.toMatch(/€|CHF|price|Preis/i);
   });

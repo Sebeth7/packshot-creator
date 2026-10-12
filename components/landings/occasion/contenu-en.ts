@@ -155,26 +155,28 @@ export const EN: ContenuOccasion = {
   },
 
   ALERTES: {
-    surtitre: 'Availability alerts',
-    titre: 'Get notified of upcoming pre-owned Orbitvu equipment',
+    surtitre: 'New offers',
+    titre: 'Receive new offers on pre-owned Orbitvu studios',
     texte:
-      'Looking for a specific model? Leave us your email address and we will let you know when new pre-owned equipment becomes available.',
+      'We email you when new pre-owned opportunities become available: choose a machine family, or follow all families.',
     champs: {
       email: 'Email *',
-      famille: 'Studio family or type',
+      famille: 'Machine family',
       facultatif: '(optional)',
-      familleToutes: 'All Orbitvu equipment',
+      familleToutes: 'All families',
+      familleAide: 'Leave “All families” selected to receive every new offer.',
     },
     optin: `${OPTIN.en.texte} *`,
-    bouton: 'Notify me of upcoming availability',
+    bouton: 'Receive new offers',
     envoi: 'Sending…',
     mention:
-      'Data controller: Sysnext (PackshotCreator). A confirmation email is sent to you: without confirmation, nothing is recorded. Every message lets you unsubscribe.',
+      'Your address is used by Sysnext (PackshotCreator) only for these emails. A confirmation email is sent to you: without your confirmation, nothing is recorded.',
     lienConfidentialite: 'Privacy policy',
     points: [
-      'Pre-owned Orbitvu equipment only, with its origin',
-      'No fixed frequency: a message when machines arrive',
-      'Unsubscribe from any message',
+      'One machine family or all families: your choice',
+      'An email when new machines become available, with no fixed frequency',
+      'Confirmation by email, unsubscribe from any message',
+      'Separate from the newsletter: no other communication',
     ],
     fermee: 'Alerts are not open yet: no subscription is recorded for now.',
     etats: {
@@ -189,10 +191,10 @@ export const EN: ContenuOccasion = {
     },
     confirmation: {
       titre: 'Confirm your subscription',
-      texte: 'One click on the button confirms your subscription to pre-owned Orbitvu equipment availability.',
+      texte: 'One click on the button confirms your subscription to new offers on pre-owned Orbitvu studios.',
       bouton: 'Confirm my subscription',
       inscritTitre: 'Subscription confirmed',
-      inscrit: 'You will be notified of upcoming availability. Every message will include an unsubscribe link.',
+      inscrit: 'You will receive new offers on pre-owned Orbitvu studios when they become available. Every message will include an unsubscribe link.',
       dejaInscritTitre: 'Subscription already confirmed',
       dejaInscrit: 'This address already receives pre-owned Orbitvu alerts: nothing has been changed.',
       desinscritTitre: 'Address unsubscribed',

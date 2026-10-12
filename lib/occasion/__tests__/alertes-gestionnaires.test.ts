@@ -352,7 +352,7 @@ describe('Parcours en anglais et en allemand (Suisse)', () => {
     const res = await m.g.inscription(requete('/api/occasion/alertes', { ...corps, langue: 'en', versionConsentement: OPTIN.en.version }));
     expect(res.status).toBe(200);
     const envoi = m.f.appels[0].args as { subject: string; text: string };
-    expect(envoi.subject).toBe('Confirm your subscription to pre-owned Orbitvu alerts');
+    expect(envoi.subject).toBe('Confirm your subscription to new pre-owned Orbitvu offers');
     expect(envoi.text).toContain('https://apercu.exemple.test/en/studios-photo-automatises/opportunites#confirmer-alerte=');
     const jeton = jetonEnvoye(m.f);
     const lu = lireJetonConfirmation(jeton, SECRET, T0);

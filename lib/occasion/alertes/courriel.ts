@@ -19,7 +19,7 @@ export function lienConfirmation(base: string, jeton: string, langue: LangueOcca
   return `${base.replace(/\/+$/, '')}${cheminOccasion(langue)}#${ANCRE_CONFIRMATION}=${jeton}`;
 }
 
-/** Lien de désinscription, à placer dans les futurs envois de la liste (non utilisé en V1). */
+/** Lien de désinscription, placé dans chaque bulletin d'arrivage (`lib/occasion/bulletin/**`). */
 export function lienDesinscription(base: string, jeton: string, langue: LangueOccasion = 'fr'): string {
   return `${base.replace(/\/+$/, '')}${cheminOccasion(langue)}#${ANCRE_DESINSCRIPTION}=${jeton}`;
 }
@@ -55,43 +55,47 @@ const TEXTES: Record<
     bouton: string;
     expiration: (d: string) => string;
     independance: string;
+    desinscription: string;
     ignorer: string;
     signature: string;
   }
 > = {
   fr: {
-    objet: "Confirmez votre inscription aux alertes Orbitvu d'occasion",
+    objet: "Confirmez votre inscription aux nouvelles offres Orbitvu d'occasion",
     salutation: 'Bonjour,',
-    tous: 'tous les équipements Orbitvu',
-    demande: (f) => `Vous avez demandé à être informé des prochaines disponibilités d'équipements Orbitvu d'occasion (${f}).`,
+    tous: 'toutes les familles',
+    demande: (f) => `Vous avez demandé à recevoir par e-mail les nouvelles offres de studios Orbitvu d'occasion (${f}).`,
     consigne: 'Pour confirmer votre inscription, ouvrez ce lien puis cliquez sur « Confirmer mon inscription » :',
     bouton: 'Confirmer mon inscription',
     expiration: (d) => `Ce lien expire le ${d}. Sans confirmation, aucune inscription n'est enregistrée.`,
     independance: 'Cette liste est indépendante de la newsletter : elle ne vous abonne à aucune autre communication.',
+    desinscription: 'Chaque message vous permettra de vous désinscrire.',
     ignorer: "Si vous n'êtes pas à l'origine de cette demande, ignorez ce message.",
     signature: 'PackshotCreator',
   },
   en: {
-    objet: 'Confirm your subscription to pre-owned Orbitvu alerts',
+    objet: 'Confirm your subscription to new pre-owned Orbitvu offers',
     salutation: 'Hello,',
-    tous: 'all Orbitvu equipment',
-    demande: (f) => `You asked to be notified when pre-owned Orbitvu equipment becomes available (${f}).`,
+    tous: 'all families',
+    demande: (f) => `You asked to receive emails about new offers on pre-owned Orbitvu studios (${f}).`,
     consigne: 'To confirm your subscription, open this link and click “Confirm my subscription”:',
     bouton: 'Confirm my subscription',
     expiration: (d) => `This link expires on ${d}. Without confirmation, no subscription is recorded.`,
     independance: 'This list is separate from the newsletter: it does not sign you up for any other communication.',
+    desinscription: 'Every message will let you unsubscribe.',
     ignorer: 'If you did not make this request, please ignore this message.',
     signature: 'PackshotCreator',
   },
   'de-ch': {
-    objet: 'Bitte bestätigen Sie Ihre Anmeldung für die Orbitvu-Occasionen',
+    objet: 'Bitte bestätigen Sie Ihre Anmeldung für neue Orbitvu-Occasionsangebote',
     salutation: 'Guten Tag',
-    tous: 'alle Orbitvu-Geräte',
-    demande: (f) => `Sie möchten informiert werden, sobald Orbitvu-Occasionen verfügbar sind (${f}).`,
+    tous: 'alle Familien',
+    demande: (f) => `Sie möchten per E-Mail neue Angebote für Orbitvu-Studios als Occasion erhalten (${f}).`,
     consigne: 'Um Ihre Anmeldung zu bestätigen, öffnen Sie diesen Link und klicken Sie auf «Anmeldung bestätigen»:',
     bouton: 'Anmeldung bestätigen',
     expiration: (d) => `Dieser Link ist bis ${d} gültig. Ohne Bestätigung wird keine Anmeldung gespeichert.`,
     independance: 'Diese Liste ist vom Newsletter unabhängig: Sie werden für keine weiteren Mitteilungen angemeldet.',
+    desinscription: 'Jede Nachricht enthält einen Abmeldelink.',
     ignorer: 'Falls Sie diese Anfrage nicht gestellt haben, können Sie diese Nachricht ignorieren.',
     signature: 'PackshotCreator',
   },
@@ -117,6 +121,7 @@ export function composerConfirmationAlerte(p: { lien: string; famille: string; e
     '',
     t.expiration(fin),
     t.independance,
+    t.desinscription,
     t.ignorer,
     '',
     t.signature,
@@ -127,6 +132,7 @@ export function composerConfirmationAlerte(p: { lien: string; famille: string; e
     `<p><a href="${echapper(p.lien)}">${echapper(t.bouton)}</a></p>`,
     `<p>${echapper(t.expiration(fin))}</p>`,
     `<p>${echapper(t.independance)}</p>`,
+    `<p>${echapper(t.desinscription)}</p>`,
     `<p>${echapper(t.ignorer)}</p>`,
     `<p>${echapper(t.signature)}</p>`,
   ].join('\n');

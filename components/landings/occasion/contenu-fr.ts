@@ -177,29 +177,31 @@ export const FR = {
   },
 
   ALERTES: {
-    surtitre: 'Alertes de disponibilité',
-    titre: 'Soyez informé des prochaines occasions Orbitvu',
+    surtitre: 'Nouvelles offres',
+    titre: "Recevez les nouvelles offres de studios Orbitvu d'occasion",
     texte: nb(
-      "Vous recherchez un modèle particulier ? Laissez-nous votre adresse e-mail pour être informé lorsque de nouveaux équipements d'occasion sont proposés.",
+      "Nous vous écrivons lorsque de nouvelles opportunités d'occasion sont disponibles : choisissez une famille de machines, ou suivez toutes les familles.",
     ),
     champs: {
       email: 'E-mail *',
-      famille: 'Famille ou type de studio',
+      famille: 'Famille de machines',
       facultatif: '(facultatif)',
-      familleToutes: 'Tous les équipements Orbitvu',
+      familleToutes: 'Toutes les familles',
+      familleAide: 'Laissez « Toutes les familles » pour recevoir toutes les nouvelles offres.',
     },
     /** Texte exact et versionné de la case (`OPTIN`), suivi de la marque « obligatoire ». */
     optin: `${OPTIN.fr.texte} *`,
-    bouton: "M'avertir des prochaines disponibilités",
+    bouton: 'Recevoir les nouvelles offres',
     envoi: 'Envoi en cours…',
     mention: nb(
-      "Responsable du traitement : Sysnext (PackshotCreator). Un e-mail de confirmation vous est envoyé : sans confirmation, rien n'est enregistré. Chaque message permet de vous désinscrire.",
+      "Votre adresse est utilisée par Sysnext (PackshotCreator) uniquement pour ces envois. Un e-mail de confirmation vous est envoyé : sans votre confirmation, rien n'est enregistré.",
     ),
     lienConfidentialite: 'Politique de confidentialité',
     points: [
-      "Uniquement des équipements Orbitvu d'occasion, avec leur origine",
-      nb('Pas de fréquence fixe : un message quand des machines arrivent'),
-      'Désinscription possible depuis chaque message',
+      nb('Une famille de machines ou toutes les familles : à vous de choisir'),
+      'Un e-mail lorsque de nouvelles machines sont disponibles, sans fréquence fixe',
+      'Confirmation par e-mail, désinscription possible depuis chaque message',
+      nb('Distincte de la newsletter : aucune autre communication'),
     ],
     // Information honnête tant que la liste n'est pas en service (aucun texte de simulation).
     fermee: nb("Les alertes ne sont pas encore ouvertes : aucune inscription n'est enregistrée pour le moment."),
@@ -216,10 +218,12 @@ export const FR = {
     },
     confirmation: {
       titre: 'Confirmer votre inscription',
-      texte: "Un clic sur le bouton confirme votre inscription aux disponibilités d'équipements Orbitvu d'occasion.",
+      texte: "Un clic sur le bouton confirme votre inscription aux nouvelles offres de studios Orbitvu d'occasion.",
       bouton: 'Confirmer mon inscription',
       inscritTitre: 'Inscription confirmée',
-      inscrit: nb('Vous serez informé des prochaines disponibilités. Chaque message contiendra un lien de désinscription.'),
+      inscrit: nb(
+        "Vous recevrez les nouvelles offres de studios Orbitvu d'occasion lorsqu'elles seront disponibles. Chaque message contiendra un lien de désinscription.",
+      ),
       dejaInscritTitre: 'Inscription déjà confirmée',
       dejaInscrit: nb("Cette adresse reçoit déjà les alertes Orbitvu d'occasion : rien n'a été modifié."),
       desinscritTitre: 'Adresse désinscrite',

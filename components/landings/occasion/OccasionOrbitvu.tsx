@@ -352,7 +352,7 @@ export default function OccasionOrbitvu({
             <FormulaireAlertes apercuInterne={apercuInterne} alertes={alertes} langue={langue} />
             <ul className="relative z-[1] grid content-start gap-2.5 md:col-start-1 md:row-start-2 md:mt-5">
               {ALERTES.points.map((p, i) => {
-                const Icone = [Mail, Bell, SlidersHorizontal][i];
+                const Icone = [SlidersHorizontal, Bell, Mail, ShieldCheck][i] ?? Bell;
                 return (
                   <li key={p} className="flex items-start gap-2.5 text-[15px] text-[#eceeff]">
                     <Icone aria-hidden="true" className="mt-px h-5 w-5 flex-[0_0_20px] text-[#CDCDFD]" strokeWidth={TRAIT} />

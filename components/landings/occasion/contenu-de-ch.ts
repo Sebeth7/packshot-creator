@@ -160,26 +160,28 @@ export const DE_CH: ContenuOccasion = {
   },
 
   ALERTES: {
-    surtitre: 'Verfügbarkeits-Benachrichtigung',
-    titre: 'Über die nächsten Orbitvu-Occasionen informiert bleiben',
+    surtitre: 'Neue Angebote',
+    titre: 'Erhalten Sie neue Angebote für Orbitvu-Studios als Occasion',
     texte:
-      'Sie suchen ein bestimmtes Modell? Hinterlassen Sie uns Ihre E-Mail-Adresse, und wir informieren Sie, sobald neue Occasionsgeräte angeboten werden.',
+      'Wir schreiben Ihnen, wenn neue Occasionsangebote verfügbar sind: Wählen Sie eine Gerätefamilie oder verfolgen Sie alle Familien.',
     champs: {
       email: 'E-Mail *',
-      famille: 'Studiofamilie oder -typ',
+      famille: 'Gerätefamilie',
       facultatif: '(optional)',
-      familleToutes: 'Alle Orbitvu-Geräte',
+      familleToutes: 'Alle Familien',
+      familleAide: 'Lassen Sie «Alle Familien» ausgewählt, um alle neuen Angebote zu erhalten.',
     },
     optin: `${OPTIN['de-ch'].texte} *`,
-    bouton: 'Bei neuer Verfügbarkeit benachrichtigen',
+    bouton: 'Neue Angebote erhalten',
     envoi: 'Wird gesendet…',
     mention:
-      'Verantwortlich für die Datenbearbeitung: Sysnext (PackshotCreator). Sie erhalten eine Bestätigungs-E-Mail: Ohne Bestätigung wird nichts gespeichert. Jede Nachricht enthält einen Abmeldelink.',
+      'Ihre Adresse wird von Sysnext (PackshotCreator) ausschliesslich für diese E-Mails verwendet. Sie erhalten eine Bestätigungs-E-Mail: Ohne Ihre Bestätigung wird nichts gespeichert.',
     lienConfidentialite: 'Datenschutzerklärung (auf Französisch)',
     points: [
-      'Ausschliesslich Orbitvu-Occasionen, mit Angabe der Herkunft',
-      'Kein fester Rhythmus: eine Nachricht, wenn Maschinen eintreffen',
-      'Abmeldung in jeder Nachricht möglich',
+      'Eine Gerätefamilie oder alle Familien: Sie entscheiden',
+      'Eine E-Mail, wenn neue Maschinen verfügbar sind, ohne festen Rhythmus',
+      'Bestätigung per E-Mail, Abmeldung in jeder Nachricht möglich',
+      'Vom Newsletter unabhängig: keine weiteren Mitteilungen',
     ],
     fermee: 'Die Benachrichtigungen sind noch nicht freigeschaltet: Derzeit wird keine Anmeldung gespeichert.',
     etats: {
@@ -194,10 +196,10 @@ export const DE_CH: ContenuOccasion = {
     },
     confirmation: {
       titre: 'Anmeldung bestätigen',
-      texte: 'Mit einem Klick auf die Schaltfläche bestätigen Sie Ihre Anmeldung für Verfügbarkeitsmeldungen zu Orbitvu-Occasionen.',
+      texte: 'Mit einem Klick auf die Schaltfläche bestätigen Sie Ihre Anmeldung für neue Angebote für Orbitvu-Studios als Occasion.',
       bouton: 'Anmeldung bestätigen',
       inscritTitre: 'Anmeldung bestätigt',
-      inscrit: 'Sie werden über neue Verfügbarkeiten informiert. Jede Nachricht enthält einen Abmeldelink.',
+      inscrit: 'Sie erhalten neue Angebote für Orbitvu-Studios als Occasion, wenn sie verfügbar sind. Jede Nachricht enthält einen Abmeldelink.',
       dejaInscritTitre: 'Anmeldung bereits bestätigt',
       dejaInscrit: 'Diese Adresse erhält bereits die Benachrichtigungen zu Orbitvu-Occasionen: Es wurde nichts geändert.',
       desinscritTitre: 'Adresse abgemeldet',

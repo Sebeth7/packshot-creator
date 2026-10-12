@@ -3,7 +3,7 @@
  * Fonctions pures : aucun réseau, aucun e-mail.
  */
 import { describe, it, expect } from 'vitest';
-import { FAMILLES, TEXTE_OPTIN, TEXTES_OPTIN, VERSION_TEXTE_OPTIN } from '@/lib/occasion/formulaires';
+import { FAMILLES, OPTIN, TEXTE_OPTIN, TEXTES_OPTIN, VERSION_TEXTE_OPTIN } from '@/lib/occasion/formulaires';
 import { EMAIL_MAX, MESSAGES_ALERTES, champsAlerteSchema, requeteAlerteSchema, requeteJetonSchema } from '@/lib/occasion/alertes/schema';
 import {
   DUREE_CONFIRMATION_MS,
@@ -75,7 +75,21 @@ describe('Validation du formulaire et de la requête', () => {
 
   it('texte de consentement versionné : la version désigne le texte exact', () => {
     expect(TEXTES_OPTIN[VERSION_TEXTE_OPTIN]).toBe(TEXTE_OPTIN);
-    expect(TEXTE_OPTIN).toContain('indépendante de la newsletter');
+    expect(VERSION_TEXTE_OPTIN).toBe('occasion-alertes-v3-2026-10-12');
+  });
+
+  it('texte de consentement v3 : nouvelles offres, famille ou toutes les familles, hors newsletter, désinscription (trois langues)', () => {
+    const attendus: Record<string, string[]> = {
+      fr: ["nouvelles offres de studios Orbitvu d'occasion", 'toutes les familles', 'distincte de la newsletter', 'désinscrire'],
+      en: ['new offers on pre-owned Orbitvu studios', 'all families', 'separate from the newsletter', 'unsubscribe'],
+      'de-ch': ['neuen Angeboten für Orbitvu-Studios als Occasion', 'alle Familien', 'vom Newsletter unabhängig', 'abmelden'],
+    };
+    for (const [langue, morceaux] of Object.entries(attendus)) {
+      const o = OPTIN[langue as keyof typeof OPTIN];
+      expect(o.version).toMatch(/^occasion-alertes-v3-2026-10-12/);
+      for (const m of morceaux) expect(o.texte).toContain(m);
+      expect(o.texte).not.toMatch(/€|CHF|prix|price|Preis|chaque semaine|weekly|wöchentlich|immédiat|immediately|sofort/i);
+    }
   });
 });
 
@@ -137,8 +151,9 @@ describe('E-mail de confirmation', () => {
 
   it('contenu : expiration, aucune inscription sans clic, indépendance de la newsletter, aucune offre ni prix', () => {
     const c = composerConfirmationAlerte({ lien: 'https://exemple.test/x#confirmer-alerte=abc', famille: '', expireLe: T0.getTime() + DUREE_CONFIRMATION_MS });
-    expect(c.objet).toBe("Confirmez votre inscription aux alertes Orbitvu d'occasion");
-    expect(c.texte).toContain('tous les équipements Orbitvu');
+    expect(c.objet).toBe("Confirmez votre inscription aux nouvelles offres Orbitvu d'occasion");
+    expect(c.texte).toContain('toutes les familles');
+    expect(c.texte).toContain('Chaque message vous permettra de vous désinscrire.');
     expect(c.texte).toContain("Sans confirmation, aucune inscription n'est enregistrée.");
     expect(c.texte).toContain('indépendante de la newsletter');
     expect(c.texte).toContain('13 octobre 2026');

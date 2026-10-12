@@ -58,26 +58,31 @@ export function libelleFamille(famille: string, langue: LangueOccasion): string 
  * Texte EXACT de la case d'accord de la liste d'alerte, par langue. Toute
  * modification d'un texte impose une nouvelle version : la version conservée
  * avec chaque inscription doit désigner le texte réellement accepté.
+ *
+ * v3 du 12/10/2026 : promesse « nouvelles offres de studios Orbitvu
+ * d'occasion » (décision du 12/10 : alertes sur nouvel arrivage), choix de la
+ * famille, désinscription. Les versions v1 (10/10) et
+ * v2 (11/10) n'ont jamais servi à une inscription réelle (liste fermée).
  */
 export const OPTIN: Readonly<Record<LangueOccasion, { version: string; texte: string }>> = {
   fr: {
-    version: 'occasion-alertes-v2-2026-10-11',
+    version: 'occasion-alertes-v3-2026-10-12',
     texte:
-      "Je souhaite recevoir par e-mail les nouvelles disponibilités d'équipements Orbitvu d'occasion. Cette inscription est indépendante de la newsletter et ne m'abonne à aucune autre communication.",
+      "J'accepte de recevoir par e-mail les nouvelles offres de studios Orbitvu d'occasion de PackshotCreator, pour la famille choisie ou pour toutes les familles. Cette liste est distincte de la newsletter et je peux m'en désinscrire depuis chaque message.",
   },
   en: {
-    version: 'occasion-alertes-v2-2026-10-11-en',
+    version: 'occasion-alertes-v3-2026-10-12-en',
     texte:
-      'I would like to receive emails about newly available pre-owned Orbitvu equipment. This subscription is separate from the newsletter and does not sign me up for any other communication.',
+      'I agree to receive emails from PackshotCreator about new offers on pre-owned Orbitvu studios, for the chosen family or for all families. This list is separate from the newsletter, and I can unsubscribe from any message.',
   },
   'de-ch': {
-    version: 'occasion-alertes-v2-2026-10-11-de-ch',
+    version: 'occasion-alertes-v3-2026-10-12-de-ch',
     texte:
-      'Ich möchte per E-Mail über neu verfügbare Orbitvu-Occasionen informiert werden. Diese Anmeldung ist vom Newsletter unabhängig und meldet mich für keine weiteren Mitteilungen an.',
+      'Ich bin einverstanden, von PackshotCreator E-Mails mit neuen Angeboten für Orbitvu-Studios als Occasion zu erhalten, für die gewählte Familie oder für alle Familien. Diese Liste ist vom Newsletter unabhängig, und ich kann mich in jeder Nachricht abmelden.',
   },
 };
 
-/** Texte et version en français (v1 du 10/10 : même texte suivi d'un astérisque, jamais utilisée en réel). */
+/** Texte et version en français. */
 export const TEXTE_OPTIN = OPTIN.fr.texte;
 export const VERSION_TEXTE_OPTIN = OPTIN.fr.version;
 

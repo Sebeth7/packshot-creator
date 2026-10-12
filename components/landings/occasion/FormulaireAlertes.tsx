@@ -266,7 +266,7 @@ export function FormulaireAlertes({
             value={valeurs.famille}
             onChange={(e) => maj('famille', e.target.value)}
             aria-invalid={Boolean(erreurs.famille)}
-            aria-describedby={erreurs.famille ? 'a-famille-err' : undefined}
+            aria-describedby={erreurs.famille ? 'a-famille-aide a-famille-err' : 'a-famille-aide'}
             className={liste(Boolean(erreurs.famille))}
           >
             <option value="">{ALERTES.champs.familleToutes}</option>
@@ -276,6 +276,7 @@ export function FormulaireAlertes({
           </select>
           <ChevronDown aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-future-dusk-400" />
         </div>
+        <span id="a-famille-aide" className="text-[12.5px] text-future-dusk-400">{ALERTES.champs.familleAide}</span>
         {erreurs.famille && <span id="a-famille-err" className={messageErreur}>{erreurs.famille}</span>}
       </div>
       <div
