@@ -59,7 +59,10 @@ export const roiPdfCalculatorSchema = z.object({
   tempsLibereJours: positif(1_000_000).optional(),
   valeurTempsLibere: montant.optional(),
   roi5ans: montant,
-  breakEvenMois: positif(10_000).nullable(),
+  // Sans plafond : `calculations.ts` divise l'investissement par un flux annuel
+  // qui peut être très faible. Un plafond de 10 000 mois refusait des calculs
+  // légitimes (0,25 % d'un échantillon d'entrées valides du formulaire, 12/10).
+  breakEvenMois: z.number().min(0).nullable(),
   economie5ans: montant,
   isRentable: z.boolean(),
   isLeasing: z.boolean(),
