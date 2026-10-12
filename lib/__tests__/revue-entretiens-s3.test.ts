@@ -41,9 +41,12 @@ describe('revue entretiens S3 — contenu et récits V2', () => {
     }
   });
 
-  it('fournit une biographie et dix récits proposés, à valider', () => {
+  it('fournit une biographie avec portrait réel et dix récits proposés', () => {
     expect(complement.bio.html.length).toBeGreaterThan(400);
-    expect(complement.bio.timeline.length).toBe(5);
+    expect(complement.bio.timeline.length).toBeGreaterThanOrEqual(4);
+    // Portrait réel de Sébastien (pas une image de studio générique).
+    expect(complement.bio.portrait.src).toContain('portrait-sebastien-jourdan');
+    expect(fs.existsSync(path.join(ROOT, 'public', complement.bio.portrait.src))).toBe(true);
     const nums = Object.keys(complement.recits);
     expect(nums).toHaveLength(10);
     for (const r of Object.values(complement.recits)) {
@@ -60,13 +63,20 @@ describe('revue entretiens S3 — contenu et récits V2', () => {
     for (const name of refs) expect(fs.existsSync(path.join(IMG_DIR, `${name}.svg`))).toBe(true);
   });
 
-  it('toutes les vraies photos (bio + récits) existent sur le disque', () => {
-    const srcs = new Set<string>([complement.bio.photo.src]);
+  it('toutes les vraies photos (portrait + récits) existent sur le disque', () => {
+    const srcs = new Set<string>([complement.bio.portrait.src]);
     for (const r of Object.values(complement.recits)) for (const p of r.photos) srcs.add(p.src);
     expect(srcs.size).toBeGreaterThan(5);
     for (const s of srcs) {
       expect(s).toMatch(/^\/images\/.+\.(avif|webp|jpg|png)$/);
       expect(fs.existsSync(path.join(ROOT, 'public', s))).toBe(true);
+    }
+  });
+
+  it('les lunettes ne servent que dans l’entretien 09 (pas de doublon visuel)', () => {
+    for (const [num, r] of Object.entries(complement.recits)) {
+      const lunettes = r.photos.some((p) => p.src.includes('lunettes'));
+      if (num !== '09') expect(lunettes, `entretien ${num}`).toBe(false);
     }
   });
 
@@ -88,6 +98,8 @@ describe('revue entretiens S3 — maillage contextuel vérifié', () => {
 
   it('chaque destination interne existe réellement', () => {
     const secteurs = fs.readFileSync(path.join(ROOT, 'data/secteurs.ts'), 'utf8');
+    const machines = fs.existsSync(path.join(ROOT, 'components/machine-selector/lib/machines.ts'))
+      ? fs.readFileSync(path.join(ROOT, 'components/machine-selector/lib/machines.ts'), 'utf8') : '';
     const slugs = new Set(interviews.map((it) => it.slug));
     for (const h of hrefs) {
       if (h.startsWith('#')) {
@@ -99,7 +111,14 @@ describe('revue entretiens S3 — maillage contextuel vérifié', () => {
         expect(fs.existsSync(path.join(GUIDES_FR, `${h.split('/fr/guide/')[1]}.json`)), h).toBe(true);
       } else if (h.startsWith('/fr/industrie/')) {
         expect(secteurs.includes(`slug: '${h.split('/fr/industrie/')[1]}'`), h).toBe(true);
+      } else if (h.startsWith('/fr/studio-photo/')) {
+        const s = h.split('/fr/studio-photo/')[1];
+        const ok = fs.existsSync(path.join(ROOT, 'app/[lang]/studio-photo', s)) // page dédiée
+          || fs.existsSync(path.join(GUIDES_FR, `${s}.json`))
+          || machines.includes(s); // slug machine (gabarit [slug])
+        expect(ok, h).toBe(true);
       } else if (h.startsWith('/fr/')) {
+        // route dédiée (dossier app/[lang]/<p>)
         expect(fs.existsSync(path.join(ROOT, 'app/[lang]', h.split('/fr/')[1].replace(/\/$/, ''))), h).toBe(true);
       }
     }

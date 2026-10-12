@@ -1,12 +1,12 @@
 {
   "bio": {
-    "titre": "Qui est Sébastien Jourdan ?",
+    "titre": "De la photographie au studio automatisé : le regard de Sébastien Jourdan",
     "statut": "TEXTE PROPOSÉ — BIOGRAPHIE DE PRÉSENTATION, À APPROUVER PAR SÉBASTIEN",
-    "html": "<p>Sébastien Jourdan n’est pas arrivé à la photographie produit par une fiche technique. Il a commencé derrière l’appareil. De 2005 à 2018, il exerce comme photographe professionnel, entre mode, publicité et photographie de produits, avec des références qu’il cite publiquement comme Lancel, McLaren ou Orange. Puis il passe de l’image réalisée par un photographe à un problème plus large : comment permettre à une entreprise de produire des images de manière régulière, avec un résultat reconnaissable d’une session à l’autre ?</p><p>En 2018, il crée <strong>Everleet</strong>, une solution de prise de vue destinée à l’e-commerce. En 2024, il fonde <strong>BlendAI.Studio</strong>, consacré à l’utilisation de l’IA pour prolonger des visuels produits issus de photographies réelles. Depuis janvier 2026, il dirige <strong>PackshotCreator</strong>, qui accompagne des entreprises dans l’organisation et l’automatisation de leur production visuelle, notamment avec les systèmes Orbitvu.</p><p>Son regard traverse donc trois métiers : <strong>faire la photo</strong>, <strong>concevoir l’outil</strong> et <strong>organiser la production</strong>. C’est ce qui rend ses conseils intéressants. Il peut recommander d’automatiser une tâche, mais aussi de conserver un prestataire, de mieux préparer les produits ou de garder une ancienne machine tant qu’elle répond au besoin. Dans ces dix conversations, il ne s’agit pas de choisir un équipement à la place du lecteur : il s’agit d’apprendre à poser les bonnes questions.</p>",
+    "html": "<p>Sébastien Jourdan a d’abord gagné sa vie en faisant des images. Publicité, mode, produits : pendant des années, son travail a consisté à trouver la lumière juste, le bon cadrage et le détail qui fait comprendre un objet. Il a notamment travaillé pour des marques comme Lancel, McLaren et Orange, selon son parcours professionnel publié.</p><p>Puis une autre question a pris de plus en plus de place : comment produire cette qualité non plus sur une image isolée, mais sur toute une collection, avec des délais, des variantes et des personnes qui doivent se relayer ? En 2018, il crée Everleet, une solution de prise de vue destinée au e-commerce. En 2024, il fonde BlendAI.Studio pour explorer ce que l’intelligence artificielle peut apporter <strong>à partir de photographies de produits réels</strong>. Il dirige aujourd’hui PackshotCreator, qui distribue notamment les équipements Orbitvu.</p><p>Ces dix conversations sont construites autour de ce triple regard : celui du photographe qui voit les défauts d’une image, de l’entrepreneur qui connaît les contraintes d’un flux de production, et du dirigeant qui doit choisir des outils sans perdre de vue le produit réel. Elles mêlent ses expériences publiques et des situations pédagogiques clairement signalées. Les formulations à la première personne lui seront soumises avant publication.</p>",
     "timeline": [
       {
         "periode": "2005 – 2018",
-        "label": "Photographe : mode, publicité, photographie de produits"
+        "label": "Photographe : mode, publicité, produits (Lancel, McLaren, Orange)"
       },
       {
         "periode": "2018",
@@ -17,33 +17,29 @@
         "label": "Fonde BlendAI.Studio : prolonger des visuels à partir de photos réelles"
       },
       {
-        "periode": "Janvier 2026",
-        "label": "Prend la direction de PackshotCreator"
-      },
-      {
-        "periode": "Aujourd’hui",
-        "label": "Trois métiers réunis : faire la photo, concevoir l’outil, organiser la production"
+        "periode": "2026",
+        "label": "Dirige PackshotCreator (équipements Orbitvu)"
       }
     ],
-    "note_dossier": "LinkedIn transmis : photographe 2005–2018 ; Everleet 2018–2024 ; BlendAI.Studio depuis 2024 ; PackshotCreator depuis janvier 2026 ; post du 2 octobre sur le maintien d’anciens équipements. Biographie de présentation, pas une signature ni une citation.",
-    "photo": {
-      "src": "/images/blog/67e161c8a4059a38ee100915.avif",
-      "alt": "Scène de prise de vue produit dans un studio automatisé.",
-      "credit": "Photo PackshotCreator",
-      "width": 1920,
-      "height": 850
+    "note_dossier": "LinkedIn transmis : photographe 2005–2018 (Lancel, McLaren, Orange cités) ; Everleet 2018 ; BlendAI.Studio 2024 ; PackshotCreator 2026. Le lien économique avec Orbitvu est mentionné pour la transparence, sans promesse commerciale. Biographie de présentation, pas une signature ni une citation.",
+    "portrait": {
+      "src": "/images/revue-entretiens-s3/portrait-sebastien-jourdan.png",
+      "alt": "Portrait de Sébastien Jourdan.",
+      "legende": "Sébastien Jourdan — photographe de formation, fondateur d’Everleet et de BlendAI.Studio, dirigeant de PackshotCreator.",
+      "width": 800,
+      "height": 800
     }
   },
   "recits": {
     "01": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Récit publié par Sébastien, reformulé à la première personne.",
-      "html": "<p>Je me souviens d’un client qui était convaincu d’avoir trouvé le bon calcul. Il avait comparé ses options et retenu celle qui coûtait le moins cher par image. Sur le papier, c’était défendable. Quelques mois plus tard, les équipes passaient leur temps à reprendre les photos, retrouver les bons réglages et décaler des mises en ligne. L’économie sur la facture ne disait rien de tout <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">ce travail qui revenait par la porte de service</a>.</p><p>C’est pour ça que, quand on me parle d’internaliser, je demande d’abord : « Combien vous coûte une image que vous pouvez <strong>vraiment publier</strong> ? » Pas une photo déclenchée, pas un fichier livré. Une image validée, rattachée au bon produit et disponible le jour où elle doit servir. C’est très différent — et c’est déjà une question d’organisation, celle qu’aborde <a href=\"#entretien-02\">la conversation suivante, sur le studio comme circuit</a>.</p>",
-      "provenance": "Post LinkedIn du 21 avril 2026 — client ayant privilégié la solution la moins chère puis accumulé reprises et retards. Aucun lieu, date client, rôle chez Everleet ni nom de marque inférés. Aucun résultat chiffré repris.",
+      "cadre": "Récit publié par Sébastien (21/04), reformulé à la première personne.",
+      "html": "<p>Je repense à ce cas que j’ai raconté récemment : une entreprise voulait baisser le coût de ses visuels. Elle a comparé plusieurs solutions et retenu la moins chère. Sur un tableau, la décision tenait. Quelques mois plus tard, les reprises s’accumulaient, les réglages changeaient d’une séance à l’autre et les mises en ligne prenaient du retard.</p><p>C’est à partir de là que je pose la question autrement : <strong>combien coûte une image qu’on peut vraiment publier ?</strong> Pas simplement un fichier livré, mais un visuel accepté, associé au bon produit et disponible au bon moment. Pour mettre un ordre de grandeur sur votre propre organisation, le <a href=\"/fr/calculateur-roi\">calculateur de rentabilité du studio</a> aide à chiffrer les étapes que vous payez réellement, et <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">cet article sur le retour sur investissement</a> les met en perspective. Quant à savoir s’il faut remplacer un studio ancien qui tient encore, c’est souvent une question de <a href=\"/fr/blog/migrer-ancien-packshotcreator\">migration d’équipement</a>, pas de prix par image.</p>",
+      "provenance": "Post LinkedIn du 21 avril 2026. Ne pas inventer rôle chez Everleet, montant d’économie, chronologie précise ni attribution de l’audit à Sébastien.",
       "photos": [
         {
           "src": "/images/machines/alphashot-xl-g2/packshot-operator.avif",
-          "alt": "Opérateur préparant une prise de vue produit en studio automatisé.",
+          "alt": "Opérateur préparant une prise de vue produit en studio.",
           "credit": "Photo PackshotCreator / Orbitvu",
           "width": 880,
           "height": 586
@@ -52,9 +48,9 @@
     },
     "02": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Récit publié par Sébastien, reformulé à la première personne.",
-      "html": "<p>Une équipe e-commerce m’a raconté qu’il lui fallait environ trois semaines pour sortir une série d’images. Au début, rien ne m’a semblé absurde : il fallait réceptionner les produits, les trier, les photographier, les retoucher, les faire valider. Puis nous avons regardé ce qu’il se passait <strong>entre</strong> ces étapes. Les produits attendaient une décision, les corrections attendaient une disponibilité, les validations attendaient une personne.</p><p>Dans le récit que j’ai partagé, la même équipe a ensuite revu la préparation et travaillé davantage par séries. Elle a ramené son cycle à quelques jours. Ce n’est pas une formule universelle ni un miracle logiciel — on peut d’ailleurs s’inspirer de ces <a href=\"/fr/blog/votre-studio-photo-interne-3-bonnes-pratiques-pour-lorganiser\">bonnes pratiques d’organisation d’un studio interne</a>. C’est surtout une leçon que je retiens : avant d’accélérer l’appareil photo, regardez ce qui attend autour de lui — à commencer par <a href=\"#entretien-06\">le lien entre l’image et la donnée produit</a>.</p>",
-      "provenance": "Post LinkedIn du 22 avril 2026, faits et ordre du récit conservés. La formulation « nous avons regardé » suggère une participation personnelle à faire confirmer ; sinon remplacer par « Quand on regarde ce qui se passe entre ces étapes… » avant attribution. Ne pas associer l’histoire à Everleet sans preuve.",
+      "cadre": "Récit publié par Sébastien (22/04), sans intervention non prouvée.",
+      "html": "<p>Une équipe e-commerce nous a décrit son quotidien : il lui fallait environ trois semaines pour sortir une série d’images. Réception, tri, shooting, retouche, validation, mise en ligne : aucune de ces opérations ne paraissait extravagante prise séparément.</p><p>Ce qui sautait aux yeux dans le récit, c’était <strong>le temps entre les étapes</strong>. Un produit attendait sa préparation, un fichier son accord, une correction la disponibilité de la bonne personne. Plus tard, à effectifs et volume constants, l’équipe a restructuré le passage au shooting et travaillé davantage par séries ; elle produisait en quelques jours. Ce n’est pas un résultat à promettre à tous les studios : c’est la preuve, dans ce cas précis, que le goulot n’était pas forcément l’appareil. Garder <a href=\"/fr/guide/visuels-collection-produits-homogenes\">des visuels homogènes sur toute une collection</a> tient d’abord à cette organisation ; l’<a href=\"#entretien-06\">identification des références</a> et la <a href=\"#entretien-10\">transmission des profils</a> en sont le prolongement.</p>",
+      "provenance": "LinkedIn 22/04/2026. « Ce qui sautait aux yeux » est une lecture du récit, pas un audit déclaré de Sébastien ; pas d’affectation à Everleet.",
       "photos": [
         {
           "src": "/images/blog/e-commerce-comment-mettre-en-place-votre-studio-photo/cover.avif",
@@ -67,24 +63,17 @@
     },
     "03": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Parcours réel + exemple illustratif explicitement signalé.",
-      "html": "<p>J’ai passé des années à photographier pour la publicité et les marques. C’est un métier où l’on apprend à regarder les détails : une surface, un reflet, un pli, une différence de teinte. Quand je regarde aujourd’hui une image de produit générée ou <a href=\"/fr/blog/retouche-ia-photo-produit\">retouchée par IA</a>, mon premier réflexe n’est donc pas de me demander si elle est spectaculaire. Je regarde ce qu’elle raconte <strong>du vrai produit</strong>.</p><p>Prenons un sac à la boucle dorée et au cuir grainé. L’image est magnifique, mais la boucle a changé de forme et le grain a disparu. L’acheteur voit un autre objet. C’est un <strong>cas illustratif</strong>, pas une histoire de client que je prétends avoir rencontré. Et c’est exactement le genre de question qui justifie de conserver une photographie de référence — un fil que reprend <a href=\"#entretien-07\">la conversation sur l’IA et la photo réelle</a>.</p>",
-      "provenance": "Activité de photographe 2005–2018 et orientation BlendAI.Studio documentées dans le profil LinkedIn. Sac et boucle = scène fictive explicitement annoncée ; pas une prestation attribuée à un client réel.",
-      "photos": [
-        {
-          "src": "/images/packshot-e-commerce/lunettes-detail-charniere.avif",
-          "alt": "Agrandissement du détail de charnière d’une paire de lunettes.",
-          "credit": "Photo PackshotCreator",
-          "width": 1200,
-          "height": 1200
-        }
-      ]
+      "cadre": "Scène illustrative explicitement signalée (cas fictif).",
+      "html": "<p>Prenons un sac au cuir grainé, avec une boucle dorée. Dans une version retouchée, le cuir devient parfaitement lisse et la boucle change légèrement de dessin. L’image est superbe. Mais ce n’est plus tout à fait le sac que l’on va ouvrir en recevant le colis.</p><p>Ce cas est inventé pour expliquer un contrôle très simple : quand on a l’objet et la photo côte à côte, la forme, la matière, la couleur et les détails restent-ils les mêmes ? Si je dois choisir entre un fond spectaculaire et une boucle correcte, je choisis la boucle correcte. C’est précisément là que la <a href=\"/fr/blog/retouche-ia-photo-produit\">retouche IA</a> doit rester un outil de fidélité et non de déformation — un sujet que prolonge la <a href=\"#entretien-07\">conversation sur l’IA et la photo réelle</a>.</p>",
+      "provenance": "Scène fictive annoncée. La phrase « tests Baymard » non sourcée a été retirée de la réponse correspondante.",
+      "photos": [],
+      "photo_hold": "Photo des lunettes retirée (sans rapport avec la scène du sac). Aucune image de cuir/maroquinerie à droits établis dans le dépôt (le visuel disponible est dans un article « images-ia », provenance incertaine) : croquis de contrôle de fidélité conservé."
     },
     "04": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Prise de position publiée par Sébastien ; liste de matières illustrative.",
-      "html": "<p>On m’a déjà demandé s’il fallait remplacer un ancien studio qui fonctionnait encore. Ma réponse n’a rien de spectaculaire : tant qu’il produit des images correctes et qu’il reste exploitable, je ne vois pas l’intérêt de le remplacer pour le principe. Ce qui finit parfois par poser problème, c’est l’ordinateur ou le logiciel autour de la machine.</p><p>Et pour tester une nouvelle solution, je ne demande pas cinq objets faciles et photogéniques. Apportez les cinq produits qui vous compliquent la vie. Un emballage brillant, du verre, un tissu noir, une surface métallique : c’est devant ces difficultés qu’on comprend ce qu’une méthode ou un studio apporte vraiment. Pour les univers les plus exigeants, les repères diffèrent — voir par exemple la <a href=\"/fr/industrie/bijoux-joaillerie\">photographie de bijoux et joaillerie</a> ou les réglages détaillés pour <a href=\"/fr/guide/comment-prendre-photo-nette-bijoux-sans-fond\">photographier un bijou net sur fond neutre</a>. La démonstration doit ressembler à votre semaine de travail, pas à une vitrine.</p>",
-      "provenance": "Post LinkedIn du 2 octobre 2026 sur la machine historique de neuf ans encore fonctionnelle, les risques liés aux anciens logiciels et le conseil d’apporter cinq produits difficiles. La liste de matières est illustrative, pas attribuée au client du post.",
+      "cadre": "Principes photographiques généraux proposés, à approuver ; non récits clients, non méthode certifiée.",
+      "html": "<p>Une montre brillante et un flacon transparent peuvent ruiner un planning établi sur des produits faciles. La caméra n’est pas seule en cause : les surfaces renvoient la lumière, les bords disparaissent, les inscriptions demandent parfois une attention différente du reste de l’objet.</p><p><strong>Une montre polie.</strong> Je commencerais par observer ce que le boîtier <em>reflète</em>, pas seulement ce qu’il reçoit comme lumière. Une grande surface claire peut dessiner une ligne de métal ; un cache noir peut redonner de la forme à un bord que l’on ne voit plus. Déplacer un diffuseur de quelques centimètres change parfois le résultat davantage qu’une longue retouche. Puis je séparerais les problèmes — cadran, verre, aiguilles, carrure — car tout n’a pas la même solution. Les repères diffèrent selon l’univers : voir la <a href=\"/fr/industrie/horlogerie\">photographie d’horlogerie</a> et le guide pour <a href=\"/fr/guide/comment-positionner-montre-avant-shooting-photo\">positionner une montre avant la prise de vue</a>.</p><p><strong>Un flacon transparent.</strong> Le verre a besoin qu’on dessine ses contours. Selon la forme et le contenu, je testerais d’abord une lumière arrière diffuse, puis l’effet de surfaces claires ou sombres sur les côtés. Le but n’est pas d’inonder l’objet de lumière, mais de rendre son volume lisible sans faire disparaître l’étiquette ni inventer la couleur du liquide. Un parfum, une <a href=\"/fr/industrie/vin-spiritueux\">bouteille de spiritueux</a> et un récipient médical n’appellent pas le même protocole ; pour la transparence, l’approche rejoint celle des <a href=\"/fr/guide/comment-faire-animation-360-objet-transparent\">objets transparents en 360</a>.</p><p><strong>La profondeur.</strong> Quand le devant d’une pièce est net mais que le texte gravé plus loin ne l’est plus, je ne demanderais pas d’abord à la retouche de « créer » de la netteté. Le <a href=\"/fr/guide/comment-faire-focus-stacking-pour-photographier-bague\">focus stacking</a> consiste à réaliser plusieurs prises à des plans de mise au point différents, puis à les assembler ; cela demande d’éviter les mouvements entre les images et de vérifier les contours à l’assemblage. Les mêmes exigences valent pour la <a href=\"/fr/industrie/bijoux-joaillerie\">joaillerie</a> et, côté tissus, pour la <a href=\"/fr/industrie/mode-textile\">mode et le textile</a>. La bonne démonstration n’est pas cinq objets photogéniques : ce sont les cinq produits qui vous compliquent la vie.</p>",
+      "provenance": "Post LinkedIn du 2 octobre 2026 (cinq produits difficiles). Les méthodes montre/flacon/focus sont des principes photographiques généraux proposés, à valider avec Sébastien ; ne pas chiffrer le nombre de prises ni affirmer qu’un équipement réalise l’assemblage sans preuve de fiche produit courante.",
       "photos": [
         {
           "src": "/images/blog/migrer-ancien-packshotcreator/bijoux-profil-rendu-constant.avif",
@@ -97,59 +86,61 @@
     },
     "05": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Exemple fictif assumé (pas un souvenir personnel).",
-      "html": "<p>Prenons une situation de studio tout à fait plausible. Je photographie une veste bleu marine ; l’équipe de retouche la voit trop sombre, le responsable catalogue la trouve trop bleue, et quelqu’un finit par demander de « corriger la couleur ». Mais laquelle ? Celle de mon écran, celle du sien, ou celle du vêtement posé sur la table ?</p><p>Cet exemple est fictif. Il sert à poser la vraie question : où est notre référence ? Pour la tenir, mieux vaut une méthode reproductible, comme celle décrite dans le guide pour <a href=\"/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit\">obtenir des couleurs fidèles en photographie produit</a>. Quand j’ai commencé comme photographe, il fallait déjà faire des choix de lumière et de rendu. Aujourd’hui, avec davantage d’étapes et d’outils, la nécessité de garder une référence reproductible n’a pas disparu : elle rejoint directement <a href=\"#entretien-03\">la question de l’image fidèle</a>.</p>",
-      "provenance": "Parcours de photographe confirmé ; situation de la veste entièrement illustrative. Aucune marque, client, mission ni événement réel inventé.",
+      "cadre": "Cas fictif assumé + protocole générique proposé (non pratiqué tel quel, non performance prouvée).",
+      "html": "<p>Une veste bleu marine, photographiée un lundi, paraît presque noire sur un poste et trop bleue sur un autre. Avant de « corriger la couleur », il faut répondre à une question embarrassante : de quelle référence parle-t-on ?</p><p><strong>Ce que je mettrais en place.</strong> Je commencerais petit, mais avec une chaîne cohérente : une lumière de prise de vue dont on retrouve les réglages, une référence physique ou un échantillon quand la teinte est sensible, une balance des blancs maîtrisée, puis un contrôle sur un écran préparé pour cet usage. Comparer la photo à un produit posé sous une lumière complètement différente crée une discussion impossible à trancher. Le test le plus simple : prendre deux variantes proches, refaire la séance quelques jours plus tard et vérifier que les fichiers racontent la même collection — c’est la logique du guide pour <a href=\"/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit\">obtenir des couleurs fidèles</a> et de la <a href=\"/fr/guide/visuels-collection-produits-homogenes\">cohérence d’une collection</a>.</p><p><strong>La recolorisation.</strong> Elle peut avoir du sens lorsque la coupe et la matière sont identiques et qu’on contrôle une vraie référence couleur de chaque variante. Mais je ne créerais pas à l’aveugle une version « rouge » depuis un seul vêtement bleu si le textile, ses reflets ou ses traitements changent : ce ne serait pas une économie, mais une incertitude sur le produit vendu. Les limites de l’exercice sont décrites dans le guide pour <a href=\"/fr/guide/modifier-couleur-produit-photo\">modifier la couleur d’un produit</a>, et la question de la fidélité rejoint l’<a href=\"#entretien-03\">entretien sur l’image fidèle</a>.</p>",
+      "provenance": "Scène de la veste entièrement illustrative. Protocole générique proposé ; ni procédure réellement pratiquée par Sébastien ni performance Orbitvu prouvée. Ne pas invoquer de seuil ΔE « conforme » sans norme ni mesure.",
       "photos": [],
-      "photo_hold": "Pas de vraie photo de variantes colorées à droits établis dans le dépôt (les visuels packshot-mode sont probablement des illustrations) : HOLD, croquis conservé."
+      "photo_hold": "Pas de comparaison couleur réelle à droits établis (les visuels mode sont de probables illustrations IA) : pas de faux avant/après, croquis de la chaîne couleur conservé, manque déclaré."
     },
     "06": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Exemple fictif lié à sa réflexion publique sur image et données.",
-      "html": "<p>Imaginez qu’une équipe photographie parfaitement une série de flacons. L’éclairage est bon, les images sont validées. Pourtant, au moment de l’import, la version de 100 ml est associée à la fiche de 50 ml. Du point de vue du photographe, le travail est fait. Du point de vue du commerce, l’image est inutilisable.</p><p>C’est le genre de situation que je prends comme <strong>cas de méthode</strong>, pas comme une anecdote client précise. Depuis mes travaux sur les solutions de prise de vue, je m’intéresse autant au lien entre l’objet, son identifiant et son fichier qu’à l’image elle-même — c’est tout l’objet de la réunion de la <a href=\"/fr/blog/alphashot-xl-g2-photo-mesures-donnees-produit\">photo, des mesures et des données produit</a>. Quand je parle d’associer photo, dimensions, poids et données, le vrai sujet est là : éviter que l’information se décroche du produit, y compris quand il faut ensuite <a href=\"#entretien-09\">décliner les visuels sur plusieurs canaux</a>.</p>",
-      "provenance": "Publications de Sébastien du 11 juin et du 17 septembre 2026 sur l’association images et données. Flacons/SKU = cas pédagogique fictif. Les spécifications commerciales doivent être fraîches avant toute publication ; ne pas attribuer des fonctions précises à tous les modèles Orbitvu.",
+      "cadre": "Cas illustratif (100/50 ml) lié à sa réflexion publique sur image et données.",
+      "html": "<p>Imaginons deux flacons d’une même gamme, l’un de 50 ml, l’autre de 100 ml. Les photos sont réussies, les étiquettes lisibles, les retouches terminées. Puis, au moment de mettre les images au catalogue, la photo du grand flacon est associée au petit. Le photographe a livré un bon fichier ; le site montre le mauvais produit.</p><p>Ce cas est illustratif, mais il explique pourquoi je m’intéresse autant à l’identifiant qu’à l’image. Une prise de vue ne devrait pas devenir un fichier orphelin dont on devine la référence six mois plus tard. Réunir la <a href=\"/fr/blog/alphashot-xl-g2-photo-mesures-donnees-produit\">photo, les mesures et les données produit</a> répond à ce besoin — à distinguer toutefois de la généralisation à toutes les machines. C’est le pendant, côté données, de l’<a href=\"#entretien-02\">organisation du studio</a>, et la condition pour <a href=\"#entretien-09\">décliner ensuite les visuels sur plusieurs canaux</a>.</p>",
+      "provenance": "Publications des 11 juin et 17 septembre 2026. Flacons/SKU = cas pédagogique fictif. Les spécifications produit doivent être fraîches avant publication ; ne pas attribuer des fonctions précises à tous les modèles Orbitvu.",
       "photos": [
         {
           "src": "/images/blog/migrer-ancien-packshotcreator/alphashot-xl-g2-mesure-pesee.avif",
           "alt": "Poste de prise de vue et de mesure d’un produit en studio.",
           "credit": "Photo PackshotCreator / Orbitvu",
           "width": 900,
-          "height": 1288
+          "height": 1288,
+          "constrain": true
         }
       ]
     },
     "07": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Parcours personnel confirmé ; hypothèses signalées comme formulations proposées.",
-      "html": "<p>Si l’on m’avait dit, lorsque je faisais de la photographie publicitaire, que je créerais plus tard une entreprise autour de l’IA visuelle, j’aurais sûrement posé une question : qu’est-ce qu’on fait du produit réel ? Avec Everleet, j’ai travaillé sur des dispositifs de prise de vue pour le commerce. Avec BlendAI.Studio, le sujet s’est déplacé vers les usages qu’on peut produire <strong>à partir</strong> de ces images, qu’il s’agisse de <a href=\"/fr/blog/generer-images-produit-ia\">générer des images produit</a> ou de les <a href=\"/fr/blog/retouche-ia-photo-produit\">retoucher</a>.</p><p>Prenons un produit bien photographié sur fond clair. On peut imaginer une scène de vie, un autre cadrage, une déclinaison de campagne. Très bien. Mais je veux qu’on conserve de quoi vérifier la forme, les matières, les logos et les détails de ce qu’on vend. Sinon, on n’a pas prolongé une photographie : on a créé un bel objet qui ressemble au produit, peut-être sans être le bon. C’est pourquoi la <a href=\"#entretien-08\">question de la provenance</a> vient tout de suite après.</p>",
-      "provenance": "Parcours Everleet / BlendAI.Studio et positionnement photo réelle + IA confirmés par LinkedIn et Laurent. La phrase hypothétique initiale et les conseils sont des formulations éditoriales proposées, non des citations. Ne pas ajouter de garantie technique.",
+      "cadre": "Parcours personnel confirmé ; exemple illustratif signalé (pas un défaut réellement livré).",
+      "html": "<p>J’ai travaillé comme photographe avant de concevoir avec Everleet un dispositif de prise de vue pour l’e-commerce. Avec BlendAI.Studio, je m’intéresse à ce qu’une image produit réelle permet de créer ensuite : des mises en situation, des présentations, des déclinaisons de campagne. Ce parcours m’a appris à ne pas opposer systématiquement capture et IA. La question est de savoir ce qui doit rester <strong>exact</strong>.</p><p>Prenons une chaussure photographiée avec soin. Dans une scène dérivée, le décor peut changer. Mais si la couture, la semelle ou le logo sont modifiés, je veux que cela se voie au contrôle qualité, pas après publication. C’est un <strong>exemple illustratif</strong>, pas le récit d’un défaut que BlendAI.Studio aurait livré. Ce sujet est au cœur de la <a href=\"/fr/ia-photo-produit\">photographie produit assistée par IA</a>, qu’il s’agisse de <a href=\"/fr/blog/generer-images-produit-ia\">générer des images</a> ou de les <a href=\"/fr/blog/retouche-ia-photo-produit\">retoucher</a> ; sa contrepartie est la <a href=\"#entretien-08\">traçabilité de la provenance</a>.</p>",
+      "provenance": "Parcours Everleet / BlendAI.Studio confirmé. La phrase hypothétique « si l’on m’avait dit… » a été retirée. Aucune garantie technique ajoutée. Vrai couple source/dérivé seulement si fichiers et droits confirmés — non disponible : source réelle + croquis conservés.",
       "photos": [
         {
-          "src": "/images/packshot-e-commerce/lunettes-vue-face.avif",
-          "alt": "Packshot de face d’une paire de lunettes sur fond neutre.",
-          "credit": "Photo PackshotCreator",
-          "width": 1200,
-          "height": 1200
+          "src": "/images/machines/alphashot-xl-g2/packshot-macro.avif",
+          "alt": "Packshot macro d’un produit réel, détails visibles.",
+          "credit": "Photo PackshotCreator / Orbitvu",
+          "width": 714,
+          "height": 447
         }
       ]
     },
     "08": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
       "cadre": "Cas fictif. Aucune qualification juridique ajoutée ; relecture juridique obligatoire.",
-      "html": "<p>Imaginez une équipe qui retrouve une image dans un dossier intitulé « final_v7 ». Personne ne sait plus si le décor a été photographié, généré ou remplacé ; personne ne retrouve la version de départ. Pourtant, l’image est utilisée sur une marketplace. C’est un cas inventé, mais il montre bien pourquoi une simple mention « fait avec l’IA » ne suffit pas à organiser la production.</p><p>La première chose que je voudrais savoir, c’est : de quel fichier est-on parti ? Qu’est-ce qu’on a modifié ? Qui a validé quoi ? Pour le reste, il faut distinguer les usages et vérifier les règles qui s’appliquent — ce que détaillent le <a href=\"/fr/blog/ai-act-images-produit\">dossier AI Act et images produit</a>, le cas de la <a href=\"/fr/blog/images-ia-ecommerce-suisse\">Suisse</a>, celui des <a href=\"/fr/blog/images-ia-metadonnees-marketplaces\">métadonnées des marketplaces</a> et les limites de la <a href=\"/fr/blog/retouche-ia-photo-produit\">retouche</a>. Je ne vais pas transformer ces questions en une recette juridique valable pour toutes les images.</p>",
-      "provenance": "Corpus éditorial AI Act et thèmes de provenance. Cas fictif. Maintenir la relecture juridique spécialisée ; ne pas reprendre « AI Act proof » ni simplifier l’article 50 en règle universelle.",
+      "html": "<p>Sur une chaîne de production, une image peut passer de la capture à la retouche, puis à une scène générée et à plusieurs exports. À la fin, si personne ne sait ce qui a été modifié, le problème est déjà là — avant même la question du marquage réglementaire.</p><p>Prenons un dossier nommé <code>final_v7</code> : personne ne retrouve la photo d’origine, les versions intermédiaires ou la validation du dernier décor. Scénario inventé, mais parlant. Dans une chaîne de travail, je voudrais trois choses : la <strong>source</strong> identifiée, les <strong>transformations</strong> enregistrées et la <strong>validation</strong> associée à la bonne version. Ensuite seulement, l’équipe choisit fichiers et métadonnées selon le canal.</p><p>Et l’AI Act ? Je ne réduis pas la question à « toutes les images IA doivent porter une étiquette » : les situations ne sont pas équivalentes. Pour les obligations de transparence selon le rôle de l’entreprise et l’usage, le plus utile est le <a href=\"/fr/blog/ai-act-images-produit\">dossier consacré à l’AI Act et aux images produit</a>. Lorsqu’un même visuel circule entre la <a href=\"/fr/blog/images-ia-ecommerce-suisse\">Suisse</a> et des marketplaces, on garde la source et les étapes, puis on vérifie <strong>séparément</strong> les règles de la destination et les <a href=\"/fr/blog/images-ia-metadonnees-marketplaces\">métadonnées attendues</a>. On n’improvise pas une réponse juridique à partir d’une seule photo.</p>",
+      "provenance": "Corpus AI Act. Cas fictif. Ces phrases ne valent pas fresh-check juridique au 12/10 ; liens et qualifications à revoir avant publication (D42). Aucune explication autonome de l’article 50 ni résumé du droit suisse ; ne pas reprendre « AI Act proof ».",
       "photos": [],
-      "photo_hold": "Croquis de provenance conservé ; aucun faux certificat ni fausse interface de conformité."
+      "photo_hold": "Aucune photo : une capture de classement de fichiers serait utile mais aucune interface réelle n’est disponible, et une fausse interface est exclue. L’absence de photo est préférable à une image de remplissage (croquis de provenance conservé)."
     },
     "09": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
       "cadre": "Exemple fictif, ancré dans sa vision publique ; images réelles du site.",
-      "html": "<p>Imaginez un fabricant de lunettes qui a besoin de cinq vues pour sa boutique, d’un détail de charnière pour une fiche technique et d’un visuel plus vivant pour sa campagne. Ce n’est pas forcément trois séances différentes. Mais ce n’est pas non plus un seul fichier qu’on envoie partout — chaque canal a ses exigences, à commencer par les <a href=\"/fr/blog/images-ia-metadonnees-marketplaces\">métadonnées attendues par les marketplaces</a>.</p><p>Mon point de départ, c’est le produit réel et une capture suffisamment fiable pour qu’on puisse fabriquer les bons livrables ensuite — y compris une <a href=\"/fr/guide/animation-360-focus-stacking\">animation 360</a> quand elle aide à vendre. La question devient : qu’est-ce que le client doit voir, sur quel canal, et quelle information doit rester exacte ? La séquence ci-dessous montre les vraies vues de lunettes déjà présentes sur PackshotCreator, plutôt qu’une image reconstituée.</p>",
-      "provenance": "Vision multicanal et capture réelle annoncées sur LinkedIn. Fabricant de lunettes = exemple fictif, images réelles disponibles sur le site. Ne pas promettre « une seule prise suffit à tout ».",
+      "html": "<p>Imaginons que nous préparions une fiche pour des lunettes. Une vue de face donne la silhouette ; un profil montre les branches ; le trois-quarts fait percevoir le volume ; le détail de charnière répond à une autre question : comment l’objet est-il construit ? Les cinq photographies ci-dessous sont des exemples de <strong>vues possibles</strong>, pas un cahier des charges imposé à tous les fabricants.</p><p>C’est ainsi que je choisirais les images d’un catalogue : non pas « combien peut-on en produire ? », mais « à quelle question chaque image répond-elle ? ». Le <a href=\"/fr/guide/comment-photographier-lunettes-e-commerce\">guide de la photographie de lunettes en e-commerce</a> détaille ces vues. Le 360 ou la vidéo deviennent intéressants quand le mouvement apporte ce que les vues fixes n’expliquent pas assez — c’est alors, et seulement alors, qu’une solution comme l’<a href=\"/fr/studio-photo/alphashot-360\">AlphaShot 360</a> se discute, sans la vendre par défaut.</p>",
+      "provenance": "Vision multicanal annoncée sur LinkedIn. Fabricant de lunettes = exemple fictif ; images réelles du site. Ne pas promettre « une seule prise suffit à tout ».",
       "photos": [
         {
           "src": "/images/packshot-e-commerce/lunettes-vue-face.avif",
           "alt": "Lunettes, vue de face.",
+          "caption": "Face",
           "credit": "Photo PackshotCreator",
           "width": 1200,
           "height": 1200
@@ -157,6 +148,7 @@
         {
           "src": "/images/packshot-e-commerce/lunettes-vue-profil.avif",
           "alt": "Lunettes, vue de profil.",
+          "caption": "Profil",
           "credit": "Photo PackshotCreator",
           "width": 1200,
           "height": 1200
@@ -164,6 +156,7 @@
         {
           "src": "/images/packshot-e-commerce/lunettes-vue-trois-quarts.avif",
           "alt": "Lunettes, vue de trois quarts.",
+          "caption": "Trois quarts",
           "credit": "Photo PackshotCreator",
           "width": 1600,
           "height": 1600
@@ -171,6 +164,7 @@
         {
           "src": "/images/packshot-e-commerce/lunettes-detail-charniere.avif",
           "alt": "Lunettes, détail de la charnière.",
+          "caption": "Charnière",
           "credit": "Photo PackshotCreator",
           "width": 1200,
           "height": 1200
@@ -178,6 +172,7 @@
         {
           "src": "/images/packshot-e-commerce/lunettes-face-branches-repliees.avif",
           "alt": "Lunettes, face, branches repliées.",
+          "caption": "Branches repliées",
           "credit": "Photo PackshotCreator",
           "width": 1200,
           "height": 1200
@@ -187,11 +182,11 @@
     },
     "10": {
       "statut": "TEXTE PROPOSÉ — À APPROUVER PAR SÉBASTIEN",
-      "cadre": "Récit publié par Sébastien, rapprochement éditorial proposé.",
-      "html": "<p>Je me souviens d’un client qui m’a appelé en urgence. Son lancement produit était prévu pour le lundi suivant. Les stocks étaient là, les campagnes aussi. Mais les images n’étaient pas prêtes : le shooting avait pris du retard, certains fichiers n’étaient pas exploitables et les retouches n’étaient pas terminées. Le lancement a été repoussé de deux semaines.</p><p>Cette histoire résume assez bien ce que je veux dire quand je parle d’organisation — le même sujet que <a href=\"#entretien-02\">la construction d’un studio comme circuit</a>, vu cette fois sous l’angle de la montée en charge. Une photo n’est pas un élément qu’on ajoute à la fin, quand tout le reste est prêt. C’est une pièce du lancement, dont le <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">coût complet se mesure dans la durée</a>. Et lorsqu’une seule personne sait où sont les produits, quels réglages reprendre et quels fichiers valider, l’entreprise dépend de cette personne bien plus qu’elle ne l’imagine.</p>",
-      "provenance": "Post LinkedIn du 20 avril 2026 (appel urgent, lancement prévu lundi, report de deux semaines) + post du 24 avril (mise à l’échelle, structure). La conclusion rassemble deux idées publiques ; ne prétend pas que le client du 20 avril avait le problème de l’opérateur unique. Ne pas attribuer le client à Everleet ou à la période de photographe.",
+      "cadre": "Récit publié par Sébastien (20/04) + cas de méthode explicitement distinct.",
+      "html": "<p>J’ai raconté le cas d’un client qui m’avait appelé en urgence. Son lancement était prévu pour le lundi suivant ; le stock et la campagne étaient prêts, pas les images. Certaines prises de vue avaient pris du retard, plusieurs fichiers n’étaient pas exploitables et les retouches n’étaient pas terminées. Le lancement a été reporté de deux semaines. Ce n’est pas un petit problème de shooting : le visuel fait partie du lancement, et quand il manque, toute la chaîne attend — ce que l’<a href=\"#entretien-02\">organisation du studio</a> cherche justement à éviter.</p><p>Imaginons maintenant un studio où une seule personne connaît le bon placement des produits, les profils de lumière et les noms de fichiers. Elle s’absente. Quelqu’un d’autre peut-il reprendre une série sans improviser ? Si la réponse est non, le studio a une vulnérabilité. C’est un <strong>test de transmission</strong>, pas le récit de ce client précis. Ce que je voudrais transmettre, ce n’est pas une bibliothèque de captures inutilisées : c’est une fiche par famille — positionnement, réglage de départ, critères de refus, rôle de validation, chemin vers le bon fichier maître. Choisir l’équipement avec un <a href=\"/fr/studio-photo/selecteur-machines\">sélecteur adapté</a> et en mesurer le <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">retour sur investissement</a> fait partie de la même discipline.</p>",
+      "provenance": "Post LinkedIn du 20 avril 2026. On ne sait pas si ce client avait un opérateur unique absent : l’épisode publié et le test de transmission sont deux idées distinctes, séparées ici.",
       "photos": [],
-      "photo_hold": "Croquis de transmission des réglages conservé ; pas d’image artificielle ajoutée."
+      "photo_hold": "Pas de photo authentique de passage de relais / préparation des profils à droits établis : croquis de transmission des réglages conservé (pas d’image de remplissage)."
     }
   }
 }

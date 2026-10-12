@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · Revue entretiens S3 V3 : portrait réel, ordre de lecture, substance 04/05, photos corrigées, maillage étendu · Claude de Laurent
+
+**Chantier** : finition éditoriale V3 de l'espace de revue S3, après contre-expertise (GO code explicite du 12/10 ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
+
+**Quoi** — (1) **Portrait réel de Sébastien** (fourni par Laurent) dans la bio, à la place de l'image de studio générique ; nouveau titre et texte de présentation (3ᵉ personne), légende de parcours ; aucun portrait généré. (2) **Ordre de lecture** revu : ouverture compacte (numéro + titre + chapô), récit d'ouverture court, puis **première question dès le premier écran** (0,7–1,1 écran mesuré, contre 1,7–3,7 avant) ; « à retenir » déplacé après les réponses ; pastilles de questions en repli. (3) **Substance technique** des entretiens 04 (montre, flacon, focus stacking) et 05 (chaîne couleur, recolorisation) développée dans la voix de Sébastien (textes V3 proposés). (4) **Photos corrigées** : photo des lunettes retirée de l'entretien 03 (sans rapport avec la scène du sac) ; lunettes réservées au seul entretien 09, **séquence agrandie** (≈ 263 px/vue, légendes Face/Profil/Trois quarts/Charnière/Branches, zoom) ; photo verticale de mesure/pesée (06) **contrainte** en cadre paysage ; packshot macro réel en 07 ; 05/08/10 restent en croquis (photos réelles pertinentes non disponibles → HOLD documenté). (5) **Maillage inline étendu** : 34 liens contextuels dans le corps des récits (ROI, migration, guides montre/bijou/focus/transparent/couleur/lunettes, cocons horlogerie/bijoux/mode/vins, hub IA, piliers AI Act, 360, sélecteur), toutes destinations vérifiées. (6) Phrase « tests Baymard » non sourcée retirée (03) ; attributions non prouvées évitées (« nous avons regardé » 02, hypothèse biographique 07).
+
+**Pourquoi** — Contre-expertise du 12/10 (lecture critique) : entrée trop lente avant la première question, voix trop sage, substance technique faible en 04/05, photos rares/incohérentes (lunettes sous un récit de sac, vignettes 145 px, photo verticale disproportionnée), 0 lien dans le corps des réponses. Reprise éditoriale V3 (ChatGPT) intégrée sans empiler V1/V2/V3.
+
+**Fichiers** — `app/[lang]/revue-entretiens-s3/page.tsx`, `content/revue-entretiens-s3/complement.json` (bio V3 + 10 récits + photos), `content/revue-entretiens-s3/interviews.json` (phrase Baymard retirée), `public/images/revue-entretiens-s3/portrait-sebastien-jourdan.png` (portrait fourni, non modifié), `lib/__tests__/revue-entretiens-s3.test.ts`. **Aucun fichier à rayon large touché** ; le composant D44 `SommaireCollant.tsx` est réutilisé sans modification.
+
+**Effet attendu** — Aucun effet SEO public : route 404 en production, `noindex, nofollow`, hors plan de site, hors maillage entrant public, hors alternates. Articles A/B publics et métadonnées inchangés.
+
+**Vérifié** — `tsc` vert ; `verifier-json` 197 JSON ; `eslint` fichiers touchés sans erreur ni avertissement ; `vitest` 36 fichiers / 663 tests (dont 15 gardes revue : portrait réel, non-doublon lunettes, 34 destinations de maillage vérifiées) ; `next build` vert, route dynamique. Playwright build local : 0 débordement et 0 erreur console à 1920/1440/1024/768/390/375 ; première question à 0,7–1,1 écran ; portrait réel chargé ; vignettes lunettes ≈ 263 px ; photo 06 contrainte ; barre horizontale D44 active, masquée en mobile et sans JS ; sans JavaScript : 10 articles, 23 croquis, 11 photos, portrait ; production 404, preview 200 + noindex, `/en` et `/de-ch` 404, sitemap 0.
+
+**Supposé** — [Inférence] La Preview Vercel reproduit le build local vérifié. [Non vérifié] directement : Preview réelle sous SSO Vercel. [Non vérifié] L'usage public et le cadrage du portrait restent soumis à l'approbation de Sébastien. [Non résolu] Le retard de la section active de la barre D44 est une **réserve P2 connue de `R-UX-LONG`** sur le composant mutualisé (93 pages) : « aucune correction autorisée » sans arbitrage de rayon large ; non modifié ici, signalé à Laurent.
+
+**Non regardé** — La fusion éditoriale sur place des pages A/B (décision Sébastien). La validité juridique de l'entretien 08 (relecture spécialisée obligatoire ; aucune qualification juridique ajoutée). Les images en HOLD (mode/IA, provenance incertaine).
+
+**Suite** — Relecture de la Preview par Laurent, puis revue unique de la voix « je » et du portrait par Sébastien. Aucun merge, aucune publication, aucune nouvelle URL publique sans autorisation distincte.
+
+---
+
 ## 2026-10-12 · Revue entretiens S3 V2 : récits personnels, bio, vraies photos, maillage inline, sticky D44 forme A · Claude de Laurent
 
 **Chantier** : correction éditoriale et UX de l'espace de revue S3 après relecture Laurent (GO code explicite du 12/10 ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
