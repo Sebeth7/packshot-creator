@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · #133 : R3 adopté sur le principe (D58) ; `main` `4c53314` intégré ; aucune modification de code · Claude de Laurent
+
+**Chantier** : G5 LOT-2 + LOT-6 (L02, L05) | **PR** : #133 (brouillon) | **Commit** : voir PR
+
+**Quoi** — Ligne ETAT mise à jour : R3 adopté sur le principe (D58), D42 et Q20 toujours attendues de Sébastien (Q26). `main` `4c53314` (fusion de #135) intégré par union. Aucun fichier du site modifié par cette mise à jour.
+
+**Pourquoi** — Décision R3 de Laurent du 12/10, inscrite dans D58. Elle ne vaut ni D42, ni Q20, ni GO_MERGE.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun.
+
+**Vérifié** — 89 pages prérendues modifiées par rapport à `main` : 51 fiches, 38 hors fiches (3 sélecteurs, 23 hubs `industrie`, 6 `solutions`, 3 `packshot-industriel`, 3 `studios-photo-automatises`). Aucune page de l'accueil, de F5 ou de la surface Mode. La fiche XXL ne reçoit que le JSON-LD de disponibilité, aucune valeur (O1 en HOLD). Objet maximal du Furniture inchangé (O2 en HOLD).
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO).
+
+**Suite** — Réponse de Sébastien à Q26 ; GO_MERGE de Laurent, avec un événement daté au JOURNAL si la fusion tombe pendant M5.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
