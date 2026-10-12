@@ -7,6 +7,8 @@
  * 3. Google Gemini — résumé IA + recommandation machine
  */
 
+import { echapperHtml } from '@/lib/echapper-html';
+
 // ── Types ─────────────────────────────────────────────────────
 
 interface CompanyData {
@@ -323,6 +325,7 @@ export function formatEnrichmentNote(enriched: EnrichedLead): string {
 /**
  * Formate les données enrichies en HTML pour l'email de notification
  */
+/** Bloc HTML de la notification interne : toute valeur (INSEE, site web, IA) est échappée. */
 export function formatEnrichmentHtml(enriched: EnrichedLead): string {
   const parts: string[] = [];
 
@@ -331,28 +334,28 @@ export function formatEnrichmentHtml(enriched: EnrichedLead): string {
 
   if (enriched.company) {
     const c = enriched.company;
-    parts.push(`<p style="margin: 4px 0;"><strong>${c.nom}</strong></p>`);
-    if (c.siren) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">SIREN: ${c.siren} | ${c.categorie} | ${c.effectif}${c.anneeEffectif ? ` (${c.anneeEffectif})` : ''}</p>`);
-    if (c.adresse) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">HQ: ${c.adresse}</p>`);
-    if (c.nbEtablissements > 1) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">${c.nbEtablissements} locations | Founded: ${c.dateCreation}</p>`);
+    parts.push(`<p style="margin: 4px 0;"><strong>${echapperHtml(c.nom)}</strong></p>`);
+    if (c.siren) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">SIREN: ${echapperHtml(c.siren)} | ${echapperHtml(c.categorie)} | ${echapperHtml(c.effectif)}${c.anneeEffectif ? ` (${echapperHtml(c.anneeEffectif)})` : ''}</p>`);
+    if (c.adresse) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">HQ: ${echapperHtml(c.adresse)}</p>`);
+    if (c.nbEtablissements > 1) parts.push(`<p style="margin: 2px 0; font-size: 13px; color: #555;">${echapperHtml(c.nbEtablissements)} locations | Founded: ${echapperHtml(c.dateCreation)}</p>`);
   } else {
     parts.push('<p style="margin: 4px 0; font-size: 13px; color: #888;">Company not found in INSEE (foreign or unregistered)</p>');
   }
 
   if (enriched.website) {
-    parts.push(`<p style="margin: 6px 0 2px 0; font-size: 13px; color: #555;">🌐 ${enriched.website.domain}</p>`);
+    parts.push(`<p style="margin: 6px 0 2px 0; font-size: 13px; color: #555;">🌐 ${echapperHtml(enriched.website.domain)}</p>`);
     if (enriched.website.description) {
       const desc = enriched.website.description.length > 150
         ? enriched.website.description.slice(0, 150) + '...'
         : enriched.website.description;
-      parts.push(`<p style="margin: 2px 0; font-size: 12px; color: #777; font-style: italic;">${desc}</p>`);
+      parts.push(`<p style="margin: 2px 0; font-size: 12px; color: #777; font-style: italic;">${echapperHtml(desc)}</p>`);
     }
   }
 
   if (enriched.aiSummary) {
     parts.push('<hr style="border: none; border-top: 1px solid #d4d0ec; margin: 12px 0;" />');
     parts.push('<p style="margin: 0 0 4px 0; font-size: 13px; color: #5B4CC4; font-weight: bold;">🤖 AI Analysis</p>');
-    parts.push(`<p style="margin: 0; font-size: 13px; color: #333; white-space: pre-line;">${enriched.aiSummary}</p>`);
+    parts.push(`<p style="margin: 0; font-size: 13px; color: #333; white-space: pre-line;">${echapperHtml(enriched.aiSummary)}</p>`);
   }
 
   parts.push('</div>');

@@ -5,59 +5,41 @@ import {
   createPipedriveDealWithNote,
   formatAttributionLines,
 } from '@/lib/pipedrive';
+import { echapperHtml } from '@/lib/echapper-html';
+import { rateLimit, getClientIp } from '@/lib/rate-limit';
+import { roiPdfRequestSchema, nomMachineRoi, type RoiPdfRequest } from '@/lib/roi-pdf-schema';
 
-interface ROIPDFRequest {
-  email?: string;
-  phone?: string;
-  company?: string;
-  contactRequest?: boolean;
-  calculatorData: {
-    // Inputs
-    nbOperateurs: number;
-    pourcentageTemps: number;
-    photosAnnuelles: number;
-    tailleProduitsCategory: string;
-    typesContenu: string[];
-    leasingActif: boolean;
-    leasingMensualite?: number;
-    leasingNbMois?: number;
-    investissementInitialActif: boolean;
-    montantInvestissementInitial?: number;
-    montantAccessoires?: number;
-    // Machine
-    machineNom: string;
-    machineId: string;
-    // Résultats
-    economieAnnuelle: number;
-    tempsLibereJours?: number;
-    valeurTempsLibere?: number;
-    roi5ans: number;
-    breakEvenMois: number | null;
-    economie5ans: number;
-    isRentable: boolean;
-    isLeasing: boolean;
-    coutTotalActuel: number;
-    coutTotalMachine: number;
-  };
-  locale: 'fr' | 'en';
-  // Attribution first-touch de session (mesure GEO : trafic IA / SEO / campagnes)
-  attribution?: {
-    utmSource?: string;
-    utmMedium?: string;
-    utmCampaign?: string;
-    utmTerm?: string;
-    utmContent?: string;
-    referrer?: string;
-    landingPage?: string;
-  };
+/**
+ * Freins anti-abus (P0 sécurité, G5 du 11/10/2026) : la route envoie un e-mail à
+ * l'adresse saisie. Compteurs en mémoire de l'instance (`lib/rate-limit.ts`),
+ * non partagés entre instances Vercel : un frein, pas une limitation
+ * distribuée. La clé IP dépend du premier `x-forwarded-for`, dont la chaîne de
+ * confiance derrière le Worker n'est pas établie (S5 M18) : seuil large, et
+ * limite par destinataire indépendante des en-têtes.
+ */
+const LIMITE_PAR_IP_HEURE = 10;
+const LIMITE_PAR_DESTINATAIRE_HEURE = 3;
+
+/** Journal sans donnée personnelle ni secret. */
+function journal(evenement: string, details: Record<string, string> = {}) {
+  console.warn(`[api/roi-pdf] ${evenement}`, details);
 }
 
+/** Resend renvoie `{ data, error }` sans lever : l'envoi n'est accepté que sur un identifiant. */
+type ResultatEnvoi = { data?: { id?: string } | null; error?: unknown } | null | undefined;
+function envoiAccepte(r: ResultatEnvoi): boolean {
+  return !!r && !r.error && typeof r.data?.id === 'string' && r.data.id.length > 0;
+}
+
+type CalculatorData = RoiPdfRequest['calculatorData'];
+
 function buildDealNote(
-  calculatorData: ROIPDFRequest['calculatorData'],
+  calculatorData: CalculatorData,
+  machineNom: string,
   email: string,
   phone?: string,
   company?: string,
-  attribution?: ROIPDFRequest['attribution']
+  attribution?: RoiPdfRequest['attribution']
 ): string {
     const mode = calculatorData.isLeasing ? 'Leasing' : 'Achat';
 
@@ -97,7 +79,7 @@ function buildDealNote(
     noteLines.push(
       ``,
       `--- MACHINE RECOMMANDÉE ---`,
-      `${calculatorData.machineNom}`,
+      `${machineNom}`,
       ``,
       `--- RÉSULTATS ROI ---`,
       `Rentable : ${calculatorData.isRentable ? 'Oui' : 'Non'}`,
@@ -112,31 +94,72 @@ function buildDealNote(
       `Coût machine/an : ${calculatorData.coutTotalMachine.toLocaleString('fr-FR')}€`
     );
 
-    return noteLines.join('\n');
+    // Le contenu d'une note Pipedrive est du HTML : les valeurs saisies sont échappées.
+    return echapperHtml(noteLines.join('\n'));
 }
 
+/**
+ * P0 sécurité (G5, arbitrage L09) : corps validé au runtime, machine en liste
+ * fermée et nom tiré du catalogue, échappement, champ piège, limites, journal
+ * sans donnée personnelle. Le contrat de succès (codes de statut, corps de la
+ * réponse) est celui d'origine : il relève de L08.
+ */
 export async function POST(request: NextRequest) {
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
-
-    const body: ROIPDFRequest = await request.json();
-    const { email, phone, company, contactRequest, calculatorData, locale, attribution } = body;
-
-    if (!email && !phone) {
+    const ip = getClientIp(request.headers);
+    const limiteIp = rateLimit(`roi-pdf:ip:${ip}`, LIMITE_PAR_IP_HEURE);
+    if (!limiteIp.ok) {
+      journal('limite.ip');
       return NextResponse.json(
-        { error: 'Email or phone is required' },
+        { error: 'Too many requests' },
+        { status: 429, headers: { 'Retry-After': String(limiteIp.resetInSec) } }
+      );
+    }
+
+    let brut: unknown;
+    try {
+      brut = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Validation error' }, { status: 400 });
+    }
+    const parsed = roiPdfRequestSchema.safeParse(brut);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: 'Validation error', details: parsed.error.issues.map((i) => ({ path: i.path, code: i.code })) },
         { status: 400 }
       );
     }
+    const { email, phone, company, contactRequest, calculatorData, locale, attribution, siteWeb } = parsed.data;
+
+    if (siteWeb) {
+      journal('piege');
+      return NextResponse.json({ error: 'Validation error' }, { status: 400 });
+    }
+
+    const destinataire = (email ?? phone ?? '').toLowerCase();
+    const limiteDestinataire = rateLimit(`roi-pdf:dest:${destinataire}`, LIMITE_PAR_DESTINATAIRE_HEURE);
+    if (!limiteDestinataire.ok) {
+      journal('limite.destinataire');
+      return NextResponse.json(
+        { error: 'Too many requests' },
+        { status: 429, headers: { 'Retry-After': String(limiteDestinataire.resetInSec) } }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
+    // Nom tiré du catalogue du calculateur, jamais du navigateur.
+    const machineNom = nomMachineRoi(calculatorData.machineId);
+    const machineHtml = echapperHtml(machineNom);
+    const contexte = { mode: contactRequest ? 'recontact' : 'pdf', locale };
 
     // 1. Send email via Resend (only if user provided an email and not a contact-only request)
     let emailId: string | undefined;
 
     if (email && !contactRequest) {
       const subject = locale === 'fr'
-        ? `Votre analyse ROI PackshotCreator - ${calculatorData.machineNom}`
-        : `Your PackshotCreator ROI Analysis - ${calculatorData.machineNom}`;
+        ? `Votre analyse ROI PackshotCreator - ${machineNom}`
+        : `Your PackshotCreator ROI Analysis - ${machineNom}`;
 
       const htmlContent = locale === 'fr'
         ? `
@@ -147,7 +170,7 @@ export async function POST(request: NextRequest) {
             </div>
             <div style="padding: 30px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
               <p>Bonjour,</p>
-              <p>Merci d'avoir utilisé notre calculateur ROI pour le studio <strong>${calculatorData.machineNom}</strong>.</p>
+              <p>Merci d'avoir utilisé notre calculateur ROI pour le studio <strong>${machineHtml}</strong>.</p>
               <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
                 <h3 style="margin-top: 0; color: #333;">Résumé</h3>
                 ${calculatorData.economieAnnuelle > 0 ? `<p>💰 Économie directe annuelle estimée : <strong>${Math.round(calculatorData.economieAnnuelle).toLocaleString('fr-FR')}€</strong></p>` : ''}
@@ -169,7 +192,7 @@ export async function POST(request: NextRequest) {
             </div>
             <div style="padding: 30px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
               <p>Hello,</p>
-              <p>Thank you for using our ROI calculator for the <strong>${calculatorData.machineNom}</strong> studio.</p>
+              <p>Thank you for using our ROI calculator for the <strong>${machineHtml}</strong> studio.</p>
               <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0;">
                 <h3 style="margin-top: 0; color: #333;">Summary</h3>
                 ${calculatorData.economieAnnuelle > 0 ? `<p>💰 Estimated direct annual savings: <strong>€${Math.round(calculatorData.economieAnnuelle).toLocaleString('en-US')}</strong></p>` : ''}
@@ -191,10 +214,10 @@ export async function POST(request: NextRequest) {
         html: htmlContent,
       });
 
-      if (emailResult.error) {
-        console.error('Resend error:', emailResult.error);
-      } else {
+      if (envoiAccepte(emailResult)) {
         emailId = emailResult.data?.id;
+      } else {
+        journal('courriel_pdf.non_accepte', contexte);
       }
     }
 
@@ -211,26 +234,27 @@ export async function POST(request: NextRequest) {
               <h1 style="color: white; margin: 0; font-size: 20px;">Nouvelle demande de contact - Calculateur ROI</h1>
             </div>
             <div style="padding: 20px; background: #f9f9f9; border-radius: 0 0 12px 12px;">
-              <p><strong>Machine recommandée :</strong> ${calculatorData.machineNom}</p>
+              <p><strong>Machine recommandée :</strong> ${machineHtml}</p>
               <p><strong>Date/Heure :</strong> ${dateStr} à ${timeStr}</p>
               <hr style="border: none; border-top: 1px solid #ddd; margin: 15px 0;" />
               <h3 style="margin-top: 0;">Coordonnées</h3>
-              ${email ? `<p><strong>Email :</strong> ${email}</p>` : ''}
-              ${phone ? `<p><strong>Téléphone :</strong> ${phone}</p>` : ''}
-              ${company ? `<p><strong>Société :</strong> ${company}</p>` : ''}
+              ${email ? `<p><strong>Email :</strong> ${echapperHtml(email)}</p>` : ''}
+              ${phone ? `<p><strong>Téléphone :</strong> ${echapperHtml(phone)}</p>` : ''}
+              ${company ? `<p><strong>Société :</strong> ${echapperHtml(company)}</p>` : ''}
               ${!email && !phone && !company ? '<p><em>Aucune coordonnée fournie</em></p>' : ''}
             </div>
           </div>
         `;
 
-        await resend.emails.send({
+        const envoi = await resend.emails.send({
           from: `PackshotCreator <${process.env.RESEND_FROM_EMAIL}>`,
           to: ['sebastien.jourdan@sysnext.com', 'stephane.gormand@sysnext.com'],
-          subject: `[ROI Calculator] Nouvelle demande de contact - ${calculatorData.machineNom}`,
+          subject: `[ROI Calculator] Nouvelle demande de contact - ${machineNom}`,
           html: notifHtml,
         });
-      } catch (notifError) {
-        console.error('Notification email error:', notifError);
+        if (!envoiAccepte(envoi)) journal('notification.non_acceptee', contexte);
+      } catch {
+        journal('notification.non_acceptee', contexte);
       }
     }
 
@@ -243,8 +267,8 @@ export async function POST(request: NextRequest) {
       if (personId) {
         const dealId = await createPipedriveDealWithNote(PIPEDRIVE_API_TOKEN, {
           personId,
-          title: `ROI Calculator - ${calculatorData.machineNom} - ${contactIdentifier}`,
-          noteContent: buildDealNote(calculatorData, contactIdentifier, phone, company, attribution),
+          title: `ROI Calculator - ${machineNom} - ${contactIdentifier}`,
+          noteContent: buildDealNote(calculatorData, machineNom, contactIdentifier, phone, company, attribution),
         });
         pipedriveResult = { personId, dealId };
       }
@@ -255,8 +279,8 @@ export async function POST(request: NextRequest) {
       emailId,
       pipedrive: pipedriveResult,
     });
-  } catch (error) {
-    console.error('ROI PDF API error:', error);
+  } catch {
+    journal('erreur_interne');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
