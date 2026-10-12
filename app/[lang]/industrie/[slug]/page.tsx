@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { secteurs } from '@/data/secteurs';
+import { secteurHorlogerieEn } from '@/data/secteurs-en-horlogerie';
 import { secteursDeCh } from '@/data/secteurs-de-ch';
 import { tx } from '@/lib/locale-text';
 import { NOINDEX_EN_INDUSTRIE_SLUGS } from '@/lib/seo-config';
@@ -96,7 +97,9 @@ const frSlugForDeCh = (deSlug: string): string => DE_CH_SECTOR_MAP[deSlug] ?? de
 function resolveSecteur(slug: string, lang: string) {
   return lang === 'de-ch'
     ? secteursDeCh.find((s) => s.slug === slug)
-    : secteurs.find((s) => s.slug === slug);
+    : lang === 'en' && slug === 'horlogerie'
+      ? secteurHorlogerieEn
+      : secteurs.find((s) => s.slug === slug);
 }
 
 /** Slug « données » pour les maps keyées en FR (machines, hero, related, solutions). */
@@ -191,8 +194,31 @@ export default async function SecteurPage({ params }: PageProps) {
   ).slice(0, 6);
   // Libellés des secteurs connexes : de-ch traduit ; EN laissé tel quel (pages /en/industrie/*
   // servies en FR, hors de cette correction) ; page de-ch du hub mode inchangée (gel Mode, 26/11).
+  const EN_SECTOR_LABELS: Record<string, string> = {
+    'automobile-pieces-detachees': 'Automotive parts',
+    'bijoux-joaillerie': 'Jewelry',
+    'chaussures': 'Footwear',
+    'cosmetiques-beaute': 'Cosmetics and beauty',
+    'defense-securite': 'Defense and security',
+    'electronique-hightech': 'Electronics',
+    'food-alimentaire': 'Food',
+    'horlogerie': 'Watchmaking',
+    'industrie-manufacturiere': 'Manufacturing',
+    'jouets-puericulture': 'Toys and childcare',
+    'lunetterie': 'Eyewear',
+    'mobilier-decoration': 'Furniture and home decor',
+    'mode-textile': 'Fashion and textiles',
+    'pieces-techniques-industrie': 'Technical parts',
+    'sante-medical': 'Healthcare and medical',
+    'sport-outdoor': 'Sports and outdoor',
+    'vin-spiritueux': 'Wine and spirits',
+  };
   const nomSecteurConnexe = (s: (typeof DEFAULT_SECTORS)[number]) =>
-    lang === 'de-ch' && dataSlug !== 'mode-textile' ? sectorText(s, 'de-ch').name : s.name;
+    lang === 'en' && dataSlug === 'horlogerie'
+      ? (EN_SECTOR_LABELS[s.slug] ?? s.name)
+      : lang === 'de-ch' && dataSlug !== 'mode-textile'
+        ? sectorText(s, 'de-ch').name
+        : s.name;
 
   /* Featured solution (first) + remaining solutions */
   const [featuredSolution, ...otherSolutions] = secteur.solutions.items;
