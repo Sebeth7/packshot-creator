@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · #134 : relecture de l'anglais des deux pages L1 ; `main` `4c53314` intégré ; aucune modification de code · Claude de Laurent
+
+**Chantier** : G5 LOT-7 (D9 L1) | **PR** : #134 (brouillon) | **Commit** : voir PR
+
+**Quoi** — Relecture de l'anglais de `/en/industrie/horlogerie` et `/en/distributeur-orbitvu-suisse` contre le texte FR de `main`. Aucune erreur manifeste : aucun texte modifié. `main` `4c53314` (fusion de #135) intégré par union.
+
+**Pourquoi** — Mission « G5 — passe finale décisive » du 12/10 (dernière relecture de l'anglais).
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun.
+
+**Vérifié** —
+- Sens constant, sans claim ajouté. Deux atténuations voulues par rapport au FR, prudence D42 : « supprime les reflets » devient « control unwanted reflections » ; « netteté absolue » devient « sharpness ».
+- Claims NON ÉTABLIS conservés et signalés en tête de fichier : éclairage polarisé, « less than two hours from Geneva », Light + Byte AG, CTA « Get a free quote ».
+- `noindex` conservé ; sitemap, hreflang et `deChCoverage` non touchés.
+- Suggestions facultatives pour Laurent : « are offered » devient « are provided » (FAQ horlogerie, livraison en Suisse) ; « available on request with your quote » devient « available on request when you ask for a quote » (financement) ; « Qualiopi-certified in France » : « in France » ajouté par rapport au FR.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Rendu dans la Preview (SSO).
+
+**Suite** — Décision de Laurent sur les 3 suggestions ; GO_MERGE facultatif.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
