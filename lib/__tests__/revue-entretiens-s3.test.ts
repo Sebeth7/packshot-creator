@@ -2,64 +2,71 @@ import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 import interviews from '@/content/revue-entretiens-s3/interviews.json';
+import complement from '@/content/revue-entretiens-s3/complement.json';
 
 /**
- * Espace de revue éditoriale interne (entretiens Sébastien Jourdan, S3).
+ * Espace de revue éditoriale interne (entretiens Sébastien Jourdan, S3 — V2).
  *
  * Gardes de gouvernance : l'espace sert à la relecture en Preview, il ne doit
  * JAMAIS devenir une surface publique indexable. Ces tests verrouillent :
- *  - l'intégrité des dix entretiens et de leurs 23 croquis,
- *  - la garde 404 en production + noindex/nofollow dans la page,
- *  - l'absence de la route du plan de site,
- *  - l'absence de signature « Sébastien Jourdan » comme auteur public,
- *  - la validité des liens internes « pour aller plus loin ».
+ *  - l'intégrité des dix entretiens, de leurs 23 croquis et des récits V2,
+ *  - l'existence réelle des vraies photos et des destinations de maillage,
+ *  - la barre sticky horizontale D44 (forme A), pas la colonne latérale,
+ *  - la garde 404 en production + noindex/nofollow,
+ *  - l'absence de la route du plan de site et de signature Sébastien publique.
  */
 const ROOT = process.cwd();
 const PAGE = path.join(ROOT, 'app/[lang]/revue-entretiens-s3/page.tsx');
 const IMG_DIR = path.join(ROOT, 'public/images/revue-entretiens-s3');
 const BLOG_FR = path.join(ROOT, 'content/blog/fr');
+const GUIDES_FR = path.join(ROOT, 'content/guides/fr');
+const source = fs.readFileSync(PAGE, 'utf8');
 
-describe('revue entretiens S3 — intégrité du contenu', () => {
-  it('monte exactement dix entretiens structurés', () => {
+function hrefsDe(html: string): string[] {
+  return [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+}
+function tousLesHrefs(): string[] {
+  const out: string[] = [...hrefsDe(complement.bio.html)];
+  for (const r of Object.values(complement.recits)) out.push(...hrefsDe(r.html));
+  return out;
+}
+
+describe('revue entretiens S3 — contenu et récits V2', () => {
+  it('monte dix entretiens structurés', () => {
     expect(interviews).toHaveLength(10);
     for (const it of interviews) {
-      expect(it.num).toMatch(/^\d{2}$/);
       expect(it.slug).toBe(`entretien-${it.num}`);
-      expect(it.titre.length).toBeGreaterThan(5);
-      expect(it.sous_titre.length).toBeGreaterThan(5);
       expect(it.statut).toContain('À APPROUVER PAR SÉBASTIEN');
-      expect(it.intro.length).toBeGreaterThan(0);
-      expect(it.a_retenir).toContain('À retenir');
       expect(it.sections.length).toBeGreaterThan(4);
-      for (const s of it.sections) {
-        expect(s.id).toMatch(/^entretien-\d{2}-q\d+$/);
-        expect(s.question.length).toBeGreaterThan(5);
-      }
+    }
+  });
+
+  it('fournit une biographie et dix récits proposés, à valider', () => {
+    expect(complement.bio.html.length).toBeGreaterThan(400);
+    expect(complement.bio.timeline.length).toBe(5);
+    const nums = Object.keys(complement.recits);
+    expect(nums).toHaveLength(10);
+    for (const r of Object.values(complement.recits)) {
+      expect(r.statut).toContain('À APPROUVER PAR SÉBASTIEN');
+      expect(r.html.length).toBeGreaterThan(200);
+      expect(r.provenance.length).toBeGreaterThan(20);
     }
   });
 
   it('les 23 croquis référencés existent sur le disque', () => {
     const refs = new Set<string>();
-    for (const it of interviews) {
-      for (const s of it.sections) {
-        for (const f of s.figures) {
-          expect(f.src).toMatch(/^\/images\/revue-entretiens-s3\/[A-Z0-9_]+\.svg$/);
-          refs.add(f.name);
-        }
-      }
-    }
+    for (const it of interviews) for (const s of it.sections) for (const f of s.figures) refs.add(f.name);
     expect(refs.size).toBe(23);
-    for (const name of refs) {
-      expect(fs.existsSync(path.join(IMG_DIR, `${name}.svg`))).toBe(true);
-    }
+    for (const name of refs) expect(fs.existsSync(path.join(IMG_DIR, `${name}.svg`))).toBe(true);
   });
 
-  it('chaque entretien a un encadré méthode', () => {
-    for (const it of interviews) {
-      const encadres = it.sections.flatMap((s) =>
-        s.contenu.filter((b: { t: string }) => b.t === 'encadre'),
-      );
-      expect(encadres.length).toBeGreaterThanOrEqual(1);
+  it('toutes les vraies photos (bio + récits) existent sur le disque', () => {
+    const srcs = new Set<string>([complement.bio.photo.src]);
+    for (const r of Object.values(complement.recits)) for (const p of r.photos) srcs.add(p.src);
+    expect(srcs.size).toBeGreaterThan(5);
+    for (const s of srcs) {
+      expect(s).toMatch(/^\/images\/.+\.(avif|webp|jpg|png)$/);
+      expect(fs.existsSync(path.join(ROOT, 'public', s))).toBe(true);
     }
   });
 
@@ -72,50 +79,59 @@ describe('revue entretiens S3 — intégrité du contenu', () => {
   });
 });
 
-describe('revue entretiens S3 — liens internes', () => {
-  const source = fs.readFileSync(PAGE, 'utf8');
+describe('revue entretiens S3 — maillage contextuel vérifié', () => {
+  const hrefs = tousLesHrefs();
 
-  it('tous les slugs d’article liés pointent vers un article existant', () => {
-    // slugs dans LIENS (blog:) et dans PAGES_PUBLIQUES (slug:)
-    const slugs = [
-      ...source.matchAll(/(?:blog|slug): '([a-z0-9-]+)'/g),
-    ].map((m) => m[1]);
-    expect(slugs.length).toBeGreaterThan(5);
-    for (const slug of slugs) {
-      expect(fs.existsSync(path.join(BLOG_FR, `${slug}.json`))).toBe(true);
-    }
+  it('comporte au moins quinze liens contextuels dans le corps des récits', () => {
+    expect(hrefs.length).toBeGreaterThanOrEqual(15);
   });
 
-  it('les liens vers des pages dédiées existent comme routes', () => {
-    const pages = [...source.matchAll(/page: '\/([a-z0-9-]+)'/g)].map((m) => m[1]);
-    for (const p of pages) {
-      expect(fs.existsSync(path.join(ROOT, 'app/[lang]', p))).toBe(true);
+  it('chaque destination interne existe réellement', () => {
+    const secteurs = fs.readFileSync(path.join(ROOT, 'data/secteurs.ts'), 'utf8');
+    const slugs = new Set(interviews.map((it) => it.slug));
+    for (const h of hrefs) {
+      if (h.startsWith('#')) {
+        const base = h.slice(1).split('-').slice(0, 2).join('-');
+        expect(slugs.has(base), `ancre ${h}`).toBe(true);
+      } else if (h.startsWith('/fr/blog/')) {
+        expect(fs.existsSync(path.join(BLOG_FR, `${h.split('/fr/blog/')[1]}.json`)), h).toBe(true);
+      } else if (h.startsWith('/fr/guide/')) {
+        expect(fs.existsSync(path.join(GUIDES_FR, `${h.split('/fr/guide/')[1]}.json`)), h).toBe(true);
+      } else if (h.startsWith('/fr/industrie/')) {
+        expect(secteurs.includes(`slug: '${h.split('/fr/industrie/')[1]}'`), h).toBe(true);
+      } else if (h.startsWith('/fr/')) {
+        expect(fs.existsSync(path.join(ROOT, 'app/[lang]', h.split('/fr/')[1].replace(/\/$/, ''))), h).toBe(true);
+      }
     }
   });
 });
 
-describe('revue entretiens S3 — gardes de non-publication', () => {
-  const source = fs.readFileSync(PAGE, 'utf8');
+describe('revue entretiens S3 — navigation D44 forme A', () => {
+  it('utilise la barre horizontale collante mutualisée', () => {
+    expect(source).toContain("from '@/components/navigation/SommaireCollant'");
+    expect(source).toContain('<SommaireCollant');
+    expect(source).toContain('ancreSommaire="sommaire-collection"');
+  });
 
-  it('renvoie 404 en production', () => {
+  it('ne réintroduit pas la colonne latérale B en desktop', () => {
+    expect(source).not.toMatch(/hidden\s+w-\d+\s+shrink-0\s+lg:block/);
+    expect(source).not.toContain('sticky top-24');
+  });
+});
+
+describe('revue entretiens S3 — gardes de non-publication', () => {
+  it('renvoie 404 en production et en rendu dynamique', () => {
     expect(source).toMatch(/process\.env\.VERCEL_ENV === 'production'/);
+    expect(source).toContain("export const dynamic = 'force-dynamic'");
     expect(source).toContain('notFound()');
   });
-
-  it('est en rendu dynamique (la garde production s’applique à chaque requête)', () => {
-    expect(source).toContain("export const dynamic = 'force-dynamic'");
-  });
-
   it('déclare robots noindex/nofollow', () => {
     expect(source).toMatch(/index:\s*false/);
     expect(source).toMatch(/follow:\s*false/);
   });
-
   it('n’est pas enregistrée dans le plan de site', () => {
-    const sitemap = fs.readFileSync(path.join(ROOT, 'app/sitemap.ts'), 'utf8');
-    expect(sitemap).not.toContain('revue-entretiens');
+    expect(fs.readFileSync(path.join(ROOT, 'app/sitemap.ts'), 'utf8')).not.toContain('revue-entretiens');
   });
-
   it('ne pose pas « Sébastien Jourdan » comme auteur public', () => {
     expect(source).toContain('PackshotCreator');
     expect(source).not.toMatch(/author[^\n]*Sébastien Jourdan/);

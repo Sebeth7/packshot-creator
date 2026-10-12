@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · Revue entretiens S3 V2 : récits personnels, bio, vraies photos, maillage inline, sticky D44 forme A · Claude de Laurent
+
+**Chantier** : correction éditoriale et UX de l'espace de revue S3 après relecture Laurent (GO code explicite du 12/10 ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
+
+**Quoi** — (1) Séquence « Qui est Sébastien Jourdan ? » **avant** le sommaire : récit + frise 2005→aujourd'hui, **sans portrait**, en regard d'une vraie photo de studio. (2) Dix **récits à la première personne** (ADDENDUM V2 de ChatGPT) intégrés dans le corps de chaque entretien, encadrés « La voix de Sébastien », statut « texte proposé à approuver » ; récits publiés reformulés « je me souviens », scènes fictives en « imaginez » ; provenance renvoyée à la note de dossier interne. (3) **Maillage contextuel inline** dans les récits (cocons `/fr/industrie/*`, guides `/fr/guide/*`, piliers et satellites AI Act, ROI, organisation, ancres inter-entretiens) au lieu d'un bloc terminal. (4) **Vraies photographies du site** réemployées par référence (studio, opérateur, bijoux, poste de mesure, séquence de 5 vues de lunettes pour l'entretien 09) ; `gallery/` écarté (infographies avec claims chiffrés), `hero/` écarté (illustrations au trait), `packshot-mode/` en HOLD (probables illustrations IA). (5) Navigation **D44 forme A** : barre horizontale collante mutualisée `components/navigation/SommaireCollant.tsx` (importée, non modifiée) à la place de la colonne latérale B ; mobile : sommaire repliable dans le flux, aucun sticky concurrent.
+
+**Pourquoi** — Retour de Laurent (« pas waouh ») : maillage trop pauvre et relégué en pied, on ne sait pas qui est Sébastien, voix trop sage, sticky non conforme, trop de croquis seuls. Correction ciblée sur la Preview, sans réécrire les entretiens ni relancer d'audit SEO/GEO.
+
+**Fichiers** — `app/[lang]/revue-entretiens-s3/page.tsx`, `content/revue-entretiens-s3/complement.json` (nouveau : bio + 10 récits + photos), `components/revue/CroquisZoom.tsx` (figure généralisée croquis/photo avec crédit), `lib/__tests__/revue-entretiens-s3.test.ts`. **Aucun fichier à rayon large touché** ; aucune police ni design system ajouté ; registre `data/navigation/pages-longues.ts` non modifié (le composant forme A lit le DOM par `id`).
+
+**Effet attendu** — Aucun effet SEO public : route 404 en production, `noindex, nofollow`, hors plan de site, hors maillage entrant public, hors alternates. Les articles A/B publics et leurs métadonnées sont inchangés. Le nouveau maillage sortant ne vit que dans la Preview non publique.
+
+**Vérifié** — `tsc` vert ; `verifier-json` 197 JSON ; `eslint` des fichiers touchés sans erreur ni avertissement ; `vitest` 36 fichiers / 662 tests (dont 13 gardes revue, incluant la vérification d'existence des 18 destinations de maillage et des vraies photos) ; `next build` vert, route dynamique (`ƒ`). Playwright build local : 0 débordement et 0 erreur console à 1920/1440/1024/768/390/375 ; barre horizontale D44 visible dès que la vue d'ensemble sort de l'écran, numéro actif correct, libellé en zone fixe ; masquée en mobile et sans JavaScript ; zoom croquis/photo ouvre et se ferme par Échap ; sans JavaScript : 10 articles, 23 croquis, 12 photos ; `VERCEL_ENV=production` → 404, `preview` → 200 + noindex, `/en` et `/de-ch` → 404, `sitemap.xml` : 0 occurrence.
+
+**Supposé** — [Inférence] La Preview Vercel reproduit le build de production local vérifié ici. [Non vérifié] directement : la Preview réelle est sous SSO Vercel, non authentifiable depuis cette session. [Non vérifié] Droits des assets réemployés : images déjà publiées sur des pages publiques ; réemploi dans une page non publique. La confirmation des droits des 5 photos de #130 transmise par Laurent le 12/10 contredit la revue de droits « NON ÉTABLIS » consignée dans #130 — écart signalé, non résolu en silence ; seules des images déjà publiées ont été réemployées.
+
+**Non regardé** — La fusion éditoriale sur place des pages A/B (en attente, décision Sébastien). La validité juridique de l'entretien 08 (relecture spécialisée obligatoire ; aucune qualification juridique ajoutée). Les pages publiques A/B (intouchées).
+
+**Suite** — Relecture finale de la présentation par Laurent sur la Preview, puis revue unique du contenu par Sébastien (voix « je » à valider). Aucun merge, aucune publication, aucune nouvelle URL publique sans autorisation distincte.
+
+---
+
 ## 2026-10-11 · Refonte UX/UI premium de l'espace de revue des 10 entretiens (Preview) · Claude de Laurent
 
 **Chantier** : finition UX/UI de l'espace de revue S3 (GO de Laurent : coder, tester, pousser sur #130, Preview ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`

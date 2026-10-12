@@ -7,28 +7,39 @@ export interface CroquisZoomProps {
   src: string;
   alt: string;
   caption?: string;
+  /** Crédit affiché sous la figure (vraies photos). */
+  credit?: string;
   /** Numéro affiché dans le filet (ex. « Croquis 4 »). */
   index?: number;
-  /** `large` = pleine largeur de la colonne ; `inset` = encadré plus resserré. */
+  /** Type de média : croquis de méthode (SVG) ou vraie photographie. */
+  kind?: 'croquis' | 'photo';
+  /** Dimensions intrinsèques (anti-CLS). Par défaut 1600×900 (croquis). */
+  width?: number;
+  height?: number;
+  /** `large` = pleine largeur ; `inset` = encadré plus resserré. */
   variant?: 'large' | 'inset';
   className?: string;
 }
 
 /**
- * Croquis de méthode avec agrandissement accessible.
+ * Figure zoomable : croquis de méthode (SVG) ou vraie photographie du site.
  *
  * - L'image reste visible et lisible sans JavaScript (contenu essentiel) ;
  *   l'agrandissement est une amélioration progressive.
  * - Dialogue modal au clavier : Échap ferme, le focus revient au déclencheur,
  *   fond cliquable pour fermer.
  * - `prefers-reduced-motion` respecté : aucune transition si l'utilisateur le demande.
- * - Dimensions explicites (1600×900) : pas de décalage de mise en page (CLS).
+ * - Dimensions explicites : pas de décalage de mise en page (CLS).
  */
 export function CroquisZoom({
   src,
   alt,
   caption,
+  credit,
   index,
+  kind = 'croquis',
+  width = 1600,
+  height = 900,
   variant = 'large',
   className = '',
 }: CroquisZoomProps) {
@@ -56,19 +67,31 @@ export function CroquisZoom({
     };
   }, [open, fermer]);
 
+  const etiquette =
+    kind === 'photo'
+      ? index
+        ? `Photo ${index}`
+        : 'Photo'
+      : index
+        ? `Croquis ${index}`
+        : 'Croquis';
+  const fondImage = kind === 'photo' ? 'bg-future-dusk-50' : 'bg-white';
+
   return (
     <figure
       className={`revue-figure not-prose my-10 ${
         variant === 'large' ? '' : 'mx-auto max-w-2xl'
       } ${className}`}
     >
-      <div className="group relative overflow-hidden rounded-xl border border-future-dusk-150 bg-white shadow-sm">
+      <div
+        className={`group relative overflow-hidden rounded-xl border border-future-dusk-150 shadow-sm ${fondImage}`}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
           alt={alt}
-          width={1600}
-          height={900}
+          width={width}
+          height={height}
           loading="lazy"
           decoding="async"
           className="block h-auto w-full"
@@ -78,20 +101,25 @@ export function CroquisZoom({
           type="button"
           onClick={() => setOpen(true)}
           className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-future-dusk-150 bg-white/90 px-3 py-1.5 text-xs font-medium text-future-dusk-700 shadow-sm backdrop-blur transition-colors hover:bg-white hover:text-very-peri-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-500 motion-reduce:transition-none"
-          aria-label={`Agrandir le croquis${index ? ` ${index}` : ''}`}
+          aria-label={`Agrandir : ${etiquette.toLowerCase()}`}
         >
           <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
           Agrandir
         </button>
       </div>
-      {caption && (
-        <figcaption className="mt-3 flex items-baseline gap-2 text-sm text-future-dusk-500">
+      {(caption || credit) && (
+        <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-future-dusk-500">
           {index && (
             <span className="shrink-0 font-mono text-xs uppercase tracking-wider text-very-peri-600">
-              Croquis {index}
+              {etiquette}
             </span>
           )}
-          <span className="italic">{caption}</span>
+          {caption && <span className="italic">{caption}</span>}
+          {credit && (
+            <span className="ml-auto shrink-0 text-xs not-italic text-future-dusk-400">
+              {credit}
+            </span>
+          )}
         </figcaption>
       )}
 
@@ -109,7 +137,7 @@ export function CroquisZoom({
           >
             <div className="mb-3 flex items-center justify-between gap-4">
               <p id={titreId} className="text-sm text-white/90">
-                {index ? `Croquis ${index} — ` : ''}
+                {index ? `${etiquette} — ` : ''}
                 {alt}
               </p>
               <button
@@ -126,8 +154,8 @@ export function CroquisZoom({
             <img
               src={src}
               alt={alt}
-              width={1600}
-              height={900}
+              width={width}
+              height={height}
               decoding="async"
               className="max-h-[80vh] w-full rounded-lg bg-white object-contain shadow-2xl"
             />
