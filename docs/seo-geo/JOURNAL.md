@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · Caractéristiques Orbitvu prouvées, InStock retiré, prompt des leads (G5 LOT-2 + LOT-6) — brouillon · Claude de Laurent
+
+**Chantier** : S6 Q20, référentiel D45 (L02, L05, D6) | **PR** : brouillon, branche `claude/g5-pr-b-produit-orbitvu` | **Commit** : voir PR
+
+**Quoi** — XL Pro v2 50 × 30 × 70 ; XL G2 88 × 140 × 197 (dimensions de la machine) ; Furniture 1 000 / 4 000 kg et encombrement « max. fabricant » ; Micro Pro v2 83 × 54 × 72, Alphadesk 156 × 124 × 138, Fashion 35 kg ponctuel / 200 kg réparti ; JSON-LD sans `InStock` et sans `Offer` pour les fiches hors offre officielle ; prompt des leads « official ».
+
+**Pourquoi** — Valeurs non conformes aux sources fabricant (S6 Q20.1, Q20.4, Q20.5, Q20.7, Q20.9, Q20.12, Q20.16 ; contre-enquête du 11/10) ; disponibilité déclarée sans preuve. Arbitrages L02, L05 et D6 ; GO_CODE du 11/10 et GO_PR_DRAFT du 12/10 de Laurent.
+
+**Fichiers** — `data/produits/fiches-techniques.ts`, `data/produits/offre-officielle.ts` (nouveau), `data/produits/ecarts-connus.ts`, les deux `machines.ts`, `ROICalculator/lib/types.ts`, `app/[lang]/studio-photo/[slug]/page.tsx`, `components/seo/SchemaOrg.tsx`, `lib/lead-enrichment.ts`, 3 fichiers de test.
+
+**Effet attendu** — 89 pages prérendues modifiées : 51 fiches, sélecteur (× 3), 23 hubs `industrie`, 6 `solutions`, `packshot-industriel` (× 3), Studios (× 3). Événement de mesure à déclarer à la fusion : fenêtre M5 (14-28/10) et J0 Studios (29/10) ; hors fiches, la seule valeur qui change est « 50×70×30 » → « 50×30×70 ».
+
+**Vérifié** — En local sur `main` + ce patch seul : tsc vert ; Vitest 643/643 (16 nouveaux cas ; `lib/produits` 33/33) ; `next build` vert ; HTML : 89 pages, identiques à celles de la pile validée le 11/10, aucune page gelée (accueil, F5, Mode, `mode-textile`) ; entrée `alphastudio-compact-v2` (réservée F5) non modifiée ; Playwright Chromium, 8 specs, sur `next start` local : 364 réussis, 12 échecs identiques à `main`. Aucune collision textuelle nouvelle avec les 12 PR ouvertes (12/10, 05:10 UTC). CI GitHub et Preview : à compléter.
+
+**Supposé** — Sources fabricant de la contre-enquête du 11/10 à jour.
+
+**Non regardé** — Objet maximal Furniture (E1, HOLD, question O2) ; 603 / 670 (E2) ; axes XXL (E4) ; hauteur 360 (E5) ; « polarisé » ; cadences (SB2) ; liste des machines du prompt dérivée du référentiel (LOT-6b, conditionnel).
+
+**Suite** — En attente d'arbitrage de Sébastien : Q20 / D45 (catalogues), validation D42 des textes de FAQ (R2) ; R3 (propagation pendant M5). Contrôle GSC J+7 à J+21 après publication.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
