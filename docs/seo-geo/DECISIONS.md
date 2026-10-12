@@ -25,6 +25,31 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D58 · 2026-10-12 · Pilotage G5 : R1, exception de périmètre pour le seul P0 de #131 ; R3, propagation des corrections factuelles XL Pro v2 pendant M5, sur le principe
+
+**Décidé par** : Laurent — mission « G5 — passe finale décisive » du 12/10/2026 (« R1 = OPTION B POUR #131 UNIQUEMENT » ; « R3 = OPTION A, SUR LE PRINCIPE »)
+**Statut** : en vigueur à la fusion de cette PR documentaire. Ne vaut aucun GO_MERGE
+
+**La décision** —
+1. **R1, option B, pour #131 uniquement** : exception ponctuelle de périmètre, sur le modèle de D51, D53 et D55. Le correctif P0 de sécurité de `/api/contact` et `/api/roi-pdf` (chaîne des leads, périmètre de Sébastien selon `/CLAUDE.md`) est instruit sans attendre l'accord préalable de Sébastien.
+   - Ne vaut ni validation de Sébastien, ni GO_TEST_REEL, ni GO_MERGE de #131.
+   - #132 (contrat de succès) reste soumise à l'accord de Sébastien (Q26).
+2. **R3, option A, sur le principe** : la propagation documentée des corrections factuelles XL Pro v2 de #133 sur les pages concernées (38 pages prérendues hors fiches, toutes langues confondues : 3 sélecteurs, 23 hubs `industrie`, 6 `solutions`, 3 `packshot-industriel`, 3 `studios-photo-automatises`) est acceptée pendant la fenêtre de mesure M5 (14 au 28/10). Trois conditions :
+   - les gels sont respectés : accueil jusqu'au 28/10, F5 jusqu'au 23/11, surface Mode jusqu'au 26/11 ;
+   - la validation métier D42 des textes modifiés est rendue ;
+   - un événement daté est inscrit au JOURNAL à la fusion.
+
+   Ne vaut ni validation D42, ni réponse à Q20, ni GO_MERGE de #133. Les autres corrections de #133 (51 fiches : valeurs XL G2, Furniture, Micro, Alphadesk, Fashion ; JSON-LD de disponibilité) ne relevaient pas de R3 : elles restent soumises à D42, Q20 / D45 et au GO_MERGE.
+
+**Le contexte** — Décisions 1 et 5 du tableau des décisions G5 du 12/10. Le même jour, Laurent donne un GO_MERGE limité à cette PR documentaire ; aucun GO_MERGE pour #131, #132, #133 ou #134.
+
+**Ce qu'elle interdit** —
+- Étendre l'exception R1 à #132, à une autre route ou à un autre fichier de Sébastien.
+- Présenter R1 ou R3 comme un accord de Sébastien.
+- Fusionner #133 sans validation D42, sans GO_MERGE, ou en modifiant une page gelée.
+
+---
+
 ## D57 · 2026-10-12 · Arbitrages G5 ratifiés le 11/10/2026 : délai, preuve produit, redirections XL, showroom, disponibilité des fiches
 
 **Décidé par** : Laurent — ratification du 11/10/2026 des arbitrages L01 à L15 (« Je ratifie les arbitrages L01 à L15 selon les options, limites et HOLD détaillés dans ce prompt ») ; inscription demandée le 12/10/2026
