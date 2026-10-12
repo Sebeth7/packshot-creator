@@ -195,7 +195,7 @@ export default async function RevueEntretiensPage({ params }: PageProps) {
             <figure className="mx-auto w-44 shrink-0 text-center sm:mx-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={bio.portrait.src} alt={bio.portrait.alt} width={bio.portrait.width} height={bio.portrait.height}
-                className="h-44 w-44 rounded-2xl object-cover shadow-md ring-1 ring-future-dusk-150" decoding="async" />
+                className="mx-auto h-44 w-44 rounded-full object-cover shadow-md ring-1 ring-future-dusk-200/70" decoding="async" />
               <figcaption className="mt-3 text-left text-xs leading-snug text-future-dusk-500">{bio.portrait.legende}</figcaption>
             </figure>
             <div>
@@ -255,19 +255,20 @@ export default async function RevueEntretiensPage({ params }: PageProps) {
                   </div>
                   <h2 className="mt-5 max-w-3xl font-heading text-3xl font-bold leading-tight text-future-dusk-900 sm:text-4xl">{it.titre}</h2>
                   {it.sous_titre && <p className="mt-3 max-w-2xl text-lg italic leading-relaxed text-future-dusk-600">{it.sous_titre}</p>}
-                  <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-                    <StatutPropose small />
-                    {pagePublique && (
-                      <a href={`/fr/blog/${pagePublique.slug}`} className="inline-flex items-center gap-1 rounded-md bg-future-dusk-50 px-2.5 py-1 text-future-dusk-500 hover:text-very-peri-600">
-                        <FileText className="h-3.5 w-3.5" aria-hidden="true" />{pagePublique.label}
-                      </a>
-                    )}
-                    {juridique && (
-                      <span className="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1 text-amber-900">
-                        <Scale className="h-3.5 w-3.5" aria-hidden="true" />Relecture juridique requise
-                      </span>
-                    )}
-                  </div>
+                  {(pagePublique || juridique) && (
+                    <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                      {pagePublique && (
+                        <a href={`/fr/blog/${pagePublique.slug}`} className="inline-flex items-center gap-1 rounded-md bg-future-dusk-50 px-2.5 py-1 text-future-dusk-500 hover:text-very-peri-600">
+                          <FileText className="h-3.5 w-3.5" aria-hidden="true" />{pagePublique.label}
+                        </a>
+                      )}
+                      {juridique && (
+                        <span className="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1 text-amber-900">
+                          <Scale className="h-3.5 w-3.5" aria-hidden="true" />Relecture juridique requise
+                        </span>
+                      )}
+                    </div>
+                  )}
                   {it.sections.length > 0 && (
                     <details className="mt-4 text-sm">
                       <summary className="inline-flex cursor-pointer items-center gap-1.5 text-future-dusk-500 hover:text-very-peri-600">

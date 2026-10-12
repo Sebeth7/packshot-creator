@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · Revue entretiens S3 V3.1 : portrait en médaillon, suppression des mentions de travail, condensation 04/05/10, badges · Claude de Laurent
+
+**Chantier** : passe corrective V3.1 après QA read-only (GO code explicite du 12/10 ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_AUTRE_PR = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
+
+**Quoi** — (1) **Portrait** : vignette passée de `rounded-2xl` à `rounded-full` → médaillon circulaire, le fond carré sombre de la photo n'est plus visible (photo d'origine conservée, aucune IA). (2) **Mentions de travail** : les 10 occurrences de « Réponse proposée pour Sébastien » retirées des premières réponses (le statut reste porté par les badges de l'interface). (3) **Condensation** : réponses 04 (montre/flacon/focus) et 05 (méthode couleur/recolorisation) resserrées à un paragraphe distinct pour réduire la redondance avec les récits, sans perdre la profondeur technique. (4) **Entretien 10** : question Q6 « métiers & IA » retirée (déjà traitée en 07), Q7 « photo après la vente » resserrée ; le croquis 23 (fiche de transmission) réaffecté à Q4 pour **préserver les 23 croquis**. (5) **Badges** dédoublonnés (un seul « texte proposé » par entretien, dans « La voix de Sébastien » ; rangée d'en-tête conditionnelle). (6) Notes de provenance internes : préfixe « DOSSIER RÉDACTION : » reformulé en « Provenance — ».
+
+**Pourquoi** — QA critique du 12/10 : deux P0 (portrait disgracieux, mention de travail visible) et finition mesurée (redondances récit⇄questions, digressions de 10, doublon de badges).
+
+**Fichiers** — `app/[lang]/revue-entretiens-s3/page.tsx`, `content/revue-entretiens-s3/interviews.json`. **Aucun fichier à rayon large** ; `SommaireCollant.tsx` non modifié (réserve D44 « section active » laissée en HOLD pour arbitrage distinct).
+
+**Effet attendu** — Aucun effet SEO public : route 404 en production, `noindex, nofollow`, hors plan de site, hors maillage entrant, hors alternates. Articles A/B publics et métadonnées inchangés.
+
+**Vérifié** — `tsc` vert ; `verifier-json` 197 JSON ; `eslint` fichiers touchés sans erreur ni avertissement ; `vitest` 36 fichiers / 663 tests ; `next build` vert, route dynamique. HTML rendu : portrait `rounded-full`, 0 occurrence de « Réponse proposée », entretien 10 à 7 questions, 11 badges « texte proposé » (1 bio + 1/entretien), 23 croquis utilisés. Playwright build local : 0 débordement et 0 erreur console à 1920/1440/1024/768/390/375 ; production 404, preview 200, `/en` et `/de-ch` 404, sitemap 0.
+
+**Supposé** — [Non vérifié] directement : Preview réelle sous SSO Vercel. [Non résolu] Retard de la section active de la barre D44 (réserve P2 de `R-UX-LONG`, composant mutualisé) — HOLD, arbitrage distinct.
+
+**Non regardé** — Fusion A/B (décision Sébastien). Validité juridique de l'entretien 08 (relecture spécialisée obligatoire ; aucune qualification juridique ajoutée). Affirmations produit Orbitvu mutables (fraîcheur à vérifier avant publication).
+
+**Suite** — Relecture de la Preview par Laurent, puis revue unique de la voix « je » et du portrait par Sébastien. Aucun merge, aucune publication sans autorisation distincte.
+
+---
+
 ## 2026-10-12 · Revue entretiens S3 V3 : portrait réel, ordre de lecture, substance 04/05, photos corrigées, maillage étendu · Claude de Laurent
 
 **Chantier** : finition éditoriale V3 de l'espace de revue S3, après contre-expertise (GO code explicite du 12/10 ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`

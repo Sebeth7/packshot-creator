@@ -31,7 +31,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Par lui demander pourquoi. Est-ce que le sujet, c'est le délai entre l'arrivée d'une référence et sa mise en ligne ? Une collection dont les photos ne se ressemblent pas ? Le coût ? Ou le fait de dépendre du calendrier d'un prestataire ? Ce sont quatre problèmes différents, et je ne proposerais pas la même organisation pour chacun."
+            "html": "Par lui demander pourquoi. Est-ce que le sujet, c'est le délai entre l'arrivée d'une référence et sa mise en ligne ? Une collection dont les photos ne se ressemblent pas ? Le coût ? Ou le fait de dépendre du calendrier d'un prestataire ? Ce sont quatre problèmes différents, et je ne proposerais pas la même organisation pour chacun."
           },
           {
             "t": "p",
@@ -164,7 +164,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : Propos à la première personne = rédaction proposée, non interview enregistrée. Parcours confirmé par LinkedIn fourni 11/10/2026. Positions externalisation (post 23 avril), coût complet (post sélectionné), cinq produits et migration (post 2 octobre) = propos publics. Méthode « semaine de vérité » = proposition rédactionnelle à valider. Aucun seuil ni gain garanti."
+    "note_dossier": "Provenance — Propos à la première personne = rédaction proposée, non interview enregistrée. Parcours confirmé par LinkedIn fourni 11/10/2026. Positions externalisation (post 23 avril), coût complet (post sélectionné), cinq produits et migration (post 2 octobre) = propos publics. Méthode « semaine de vérité » = proposition rédactionnelle à valider. Aucun seuil ni gain garanti."
   },
   {
     "num": "02",
@@ -198,7 +198,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Je demanderais à voir le catalogue et le trajet d'un produit. Avant de choisir un équipement, je veux comprendre comment la référence arrive, ce qui permet de l'identifier, qui prépare l'objet et qui récupère les fichiers. Un studio très bien éclairé peut rester une mauvaise organisation."
+            "html": "Je demanderais à voir le catalogue et le trajet d'un produit. Avant de choisir un équipement, je veux comprendre comment la référence arrive, ce qui permet de l'identifier, qui prépare l'objet et qui récupère les fichiers. Un studio très bien éclairé peut rester une mauvaise organisation."
           },
           {
             "t": "p",
@@ -334,7 +334,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : parcours confirmé LinkedIn. Posts 22/24 avril sur flux et montée en volume. Exemple d'identifiant SKU = construction pédagogique. Cas équipe cité par Sébastien sur LinkedIn, sans client identifié ni délai promis. Autres réponses = propositions à faire valider."
+    "note_dossier": "Provenance — parcours confirmé LinkedIn. Posts 22/24 avril sur flux et montée en volume. Exemple d'identifiant SKU = construction pédagogique. Cas équipe cité par Sébastien sur LinkedIn, sans client identifié ni délai promis. Autres réponses = propositions à faire valider."
   },
   {
     "num": "03",
@@ -361,7 +361,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> La photo produit doit d'abord répondre à la question : <em>qu'est-ce que je vais recevoir ?</em> On doit pouvoir reconnaître la forme, la couleur, le matériau, les détails et, lorsque c'est important, le contenu du colis. Une image de campagne peut raconter une ambiance ; une photo de référence doit rester vérifiable."
+            "html": "La photo produit doit d'abord répondre à la question : <em>qu'est-ce que je vais recevoir ?</em> On doit pouvoir reconnaître la forme, la couleur, le matériau, les détails et, lorsque c'est important, le contenu du colis. Une image de campagne peut raconter une ambiance ; une photo de référence doit rester vérifiable."
           },
           {
             "t": "p",
@@ -467,7 +467,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : profil LinkedIn ; vision photo réelle + IA BlendAI ; recueil de 99 Q Q01-Q06. Référence Baymard retirée (non sourcée). Droit volontairement non qualifié. Voix « je » à valider."
+    "note_dossier": "Provenance — profil LinkedIn ; vision photo réelle + IA BlendAI ; recueil de 99 Q Q01-Q06. Référence Baymard retirée (non sourcée). Droit volontairement non qualifié. Voix « je » à valider."
   },
   {
     "num": "04",
@@ -494,7 +494,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> À sa démonstration. Si on me montre seulement une boîte mate sur fond blanc, je n'ai presque rien appris sur la capacité d'un studio à servir un vrai catalogue. Je préfère voir ce qui complique les journées : métal, verre, produit noir, petit détail, surface très brillante, série de variantes."
+            "html": "À sa démonstration. Si on me montre seulement une boîte mate sur fond blanc, je n'ai presque rien appris sur la capacité d'un studio à servir un vrai catalogue. Je préfère voir ce qui complique les journées : métal, verre, produit noir, petit détail, surface très brillante, série de variantes."
           },
           {
             "t": "p",
@@ -507,10 +507,6 @@
         "question": "« Prenons une montre. Pourquoi est-ce si compliqué ? »",
         "figures": [],
         "contenu": [
-          {
-            "t": "p",
-            "html": "Parce qu'elle renvoie le monde autour d'elle. La couronne, le verre, le boîtier, les aiguilles et le bracelet ne demandent pas tous le même type de lumière. Vous pouvez obtenir un très beau cadran et un reflet impossible sur la lunette. Vous pouvez éclaircir le métal et perdre sa forme."
-          },
           {
             "t": "p",
             "html": "En photographie professionnelle, on apprend à construire les reflets autant qu'à éclairer l'objet. L'important est de garder des informations lisibles : silhouette, finition, gravure, petits détails. Un automate peut rappeler un ensemble de conditions. Il faut encore regarder si ces conditions fonctionnent pour <em>cette</em> montre et <em>cet</em> angle."
@@ -529,10 +525,6 @@
           }
         ],
         "contenu": [
-          {
-            "t": "p",
-            "html": "Le danger est presque inverse : si la lumière est mal placée, le flacon disparaît. On ne distingue ni son contour ni son contenu. Une étiquette brillante ajoute son propre problème. Je travaillerais d'abord le dessin du verre et la lisibilité des informations, quitte à séparer le traitement d'une vue de catalogue et celui d'une photographie de campagne."
-          },
           {
             "t": "p",
             "html": "C'est une bonne raison d'éviter les démonstrations où l'on juge seulement la vitesse de capture. Un produit délicat peut demander davantage de préparation, de calage et de contrôle que dix objets courants. Ce temps-là doit entrer dans le calcul de la production."
@@ -583,10 +575,6 @@
         "contenu": [
           {
             "t": "p",
-            "html": "Quand la profondeur de champ disponible ne permet pas de garder nette la zone nécessaire, surtout sur de petits objets. Le focus stacking consiste à réunir plusieurs prises de vue focalisées à des distances différentes. Il apporte une solution technique, mais il suppose que le produit ne bouge pas et que les images s'assemblent correctement."
-          },
-          {
-            "t": "p",
             "html": "Un exemple : une petite pièce mécanique photographiée de biais. La face avant peut être nette quand une inscription plus profonde ne l'est pas. L'important n'est pas de proposer systématiquement un empilement, mais de définir quelles informations doivent être lisibles dans l'image finale."
           }
         ]
@@ -629,7 +617,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : vrai conseil cinq produits durs publié sur LinkedIn 02/10, et sources existantes sur focus stacking/Mode. Situations techniques pédagogiques ; pas de preuve de performance Orbitvu."
+    "note_dossier": "Provenance — vrai conseil cinq produits durs publié sur LinkedIn 02/10, et sources existantes sur focus stacking/Mode. Situations techniques pédagogiques ; pas de preuve de performance Orbitvu."
   },
   {
     "num": "05",
@@ -656,7 +644,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Parce qu'une photographie ne voyage pas seule. Il y a la lumière dans laquelle on a photographié l'objet, le traitement appliqué au fichier, le profil couleur, l'écran du retoucheur et, à la fin, les réglages du téléphone de quelqu'un que vous ne connaissez pas. Quand on parle d'exactitude, il faut dire à quelle étape on peut agir."
+            "html": "Parce qu'une photographie ne voyage pas seule. Il y a la lumière dans laquelle on a photographié l'objet, le traitement appliqué au fichier, le profil couleur, l'écran du retoucheur et, à la fin, les réglages du téléphone de quelqu'un que vous ne connaissez pas. Quand on parle d'exactitude, il faut dire à quelle étape on peut agir."
           },
           {
             "t": "p",
@@ -669,10 +657,6 @@
         "question": "« Que mettez-vous en place dans un studio qui commence ? »",
         "figures": [],
         "contenu": [
-          {
-            "t": "p",
-            "html": "Une lumière stable, une prise de vue de référence, un affichage correctement réglé et une procédure de comparaison avec le vrai produit. Inutile de commencer par la norme la plus intimidante si personne ne sait où est l'échantillon de référence. Il faut que le geste existe avant de chercher à le perfectionner."
-          },
           {
             "t": "p",
             "html": "Je consignerais aussi l'éclairage et les réglages par famille. Pour une collection qui revient six mois plus tard, cette mémoire vaut de l'or : les images nouvelles doivent pouvoir vivre avec les anciennes sans qu'une rangée du catalogue semble provenir d'un autre studio."
@@ -723,10 +707,6 @@
         "contenu": [
           {
             "t": "p",
-            "html": "Elle peut aider, mais il faut rester très prudent. Changer la couleur dans une image n'est pas démontrer que cette couleur existe avec les mêmes reflets, la même texture et les mêmes contrastes. Certaines matières réagissent à la lumière autrement selon la teinte. Le produit réel reste l'arbitre."
-          },
-          {
-            "t": "p",
             "html": "Mon approche serait de partir de la capture réelle, puis de vérifier une déclinaison avec l'échantillon correspondant. S'il n'existe pas d'échantillon ou si l'on ne peut pas contrôler le résultat, mieux vaut différer la publication qu'inventer une variante crédible sur écran."
           }
         ]
@@ -761,7 +741,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : techniques générales issues questions Q41-Q45 et archives ICC/FADGI, pas de chiffre de tolérance sans mesure. Recolorisation = prudence déjà présente dans Mode / sources métier."
+    "note_dossier": "Provenance — techniques générales issues questions Q41-Q45 et archives ICC/FADGI, pas de chiffre de tolérance sans mesure. Recolorisation = prudence déjà présente dans Mode / sources métier."
   },
   {
     "num": "06",
@@ -788,7 +768,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Parce qu'une image n'est exploitable que si l'on sait précisément à quoi elle correspond. J'ai récemment présenté des solutions réunissant prise de vue, dimensions et poids autour d'un même poste. Ce qui m'intéresse n'est pas seulement la machine : c'est le fait d'éviter des transferts manuels où l'on recopie une information, puis une autre."
+            "html": "Parce qu'une image n'est exploitable que si l'on sait précisément à quoi elle correspond. J'ai récemment présenté des solutions réunissant prise de vue, dimensions et poids autour d'un même poste. Ce qui m'intéresse n'est pas seulement la machine : c'est le fait d'éviter des transferts manuels où l'on recopie une information, puis une autre."
           },
           {
             "t": "p",
@@ -908,7 +888,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : postes photo + dimensions + poids évoqués dans posts LinkedIn 17 septembre et 11 juin ; ne pas prétendre toutes fonctions disponibles pour tous modèles. Normes GS1/IPTC citées uniquement comme familles, pas comme fonctions Orbitvu démontrées."
+    "note_dossier": "Provenance — postes photo + dimensions + poids évoqués dans posts LinkedIn 17 septembre et 11 juin ; ne pas prétendre toutes fonctions disponibles pour tous modèles. Normes GS1/IPTC citées uniquement comme familles, pas comme fonctions Orbitvu démontrées."
   },
   {
     "num": "07",
@@ -942,7 +922,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Parce qu'un produit n'est pas une idée abstraite. Il a une forme, une étiquette, une couture, un bouton, une couleur que le client pourra comparer à ce qu'il reçoit. Mon point de départ, c'est la photographie du vrai produit. Je connais la valeur de ce travail depuis mes années de photographe ; et c'est aussi la logique que je présente pour BlendAI.Studio : construire de nouveaux usages à partir d'une base réelle."
+            "html": "Parce qu'un produit n'est pas une idée abstraite. Il a une forme, une étiquette, une couture, un bouton, une couleur que le client pourra comparer à ce qu'il reçoit. Mon point de départ, c'est la photographie du vrai produit. Je connais la valeur de ce travail depuis mes années de photographe ; et c'est aussi la logique que je présente pour BlendAI.Studio : construire de nouveaux usages à partir d'une base réelle."
           },
           {
             "t": "p",
@@ -1063,7 +1043,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : vision capture réelle + IA de LinkedIn fourni, BlendAI historique vérifié par Laurent, distinction technique issue du dossier questions Q57-Q64. Aucune fonctionnalité Orbitvu/BlendAI détaillée ou garantie commerciale."
+    "note_dossier": "Provenance — vision capture réelle + IA de LinkedIn fourni, BlendAI historique vérifié par Laurent, distinction technique issue du dossier questions Q57-Q64. Aucune fonctionnalité Orbitvu/BlendAI détaillée ou garantie commerciale."
   },
   {
     "num": "08",
@@ -1090,7 +1070,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Ne pas commencer par la question du logo à mettre sur l'image. Commencer par documenter le flux. Quelle est la photographie source ? Qui l'a produite ? Qu'est-ce que l'outil a changé ? Est-ce qu'un humain a vérifié la sortie contre le produit ? Et où sera-t-elle diffusée ?"
+            "html": "Ne pas commencer par la question du logo à mettre sur l'image. Commencer par documenter le flux. Quelle est la photographie source ? Qui l'a produite ? Qu'est-ce que l'outil a changé ? Est-ce qu'un humain a vérifié la sortie contre le produit ? Et où sera-t-elle diffusée ?"
           },
           {
             "t": "p",
@@ -1218,7 +1198,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : questions Q65-Q80 et recherche primaires du 10/10/2026. Exclure claims LinkedIn absolus « AI Act proof ». Contrôle juridique obligatoire ; ne pas créer de page concurrente au cluster AI Act sans arbitrage D16."
+    "note_dossier": "Provenance — questions Q65-Q80 et recherche primaires du 10/10/2026. Exclure claims LinkedIn absolus « AI Act proof ». Contrôle juridique obligatoire ; ne pas créer de page concurrente au cluster AI Act sans arbitrage D16."
   },
   {
     "num": "09",
@@ -1245,7 +1225,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Pas par principe. Elle a besoin des bonnes images. Pour une pièce mécanique, il faut peut-être montrer un connecteur et une cote visuelle. Pour une chaussure, la semelle, le profil, la matière et le porté sont importants. Pour un meuble, on voudra comprendre le volume et la finition."
+            "html": "Pas par principe. Elle a besoin des bonnes images. Pour une pièce mécanique, il faut peut-être montrer un connecteur et une cote visuelle. Pour une chaussure, la semelle, le profil, la matière et le porté sont importants. Pour un meuble, on voudra comprendre le volume et la finition."
           },
           {
             "t": "p",
@@ -1365,7 +1345,7 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : polyvalence capture + usages issus profil LinkedIn; liens canaux Q81-Q90. Pas de tailles plateformes mutables ni chiffres 360/retours invérifiables."
+    "note_dossier": "Provenance — polyvalence capture + usages issus profil LinkedIn; liens canaux Q81-Q90. Pas de tailles plateformes mutables ni chiffres 360/retours invérifiables."
   },
   {
     "num": "10",
@@ -1392,7 +1372,7 @@
         "contenu": [
           {
             "t": "p",
-            "html": "<strong>Réponse proposée pour Sébastien.</strong> Je commence par le délai entre un produit disponible et un fichier validé pour publication. C'est celui que le commerce ressent. Ensuite, je veux connaître le volume de références réellement terminées, le nombre de reprises et les étapes où les produits attendent."
+            "html": "Je commence par le délai entre un produit disponible et un fichier validé pour publication. C'est celui que le commerce ressent. Ensuite, je veux connaître le volume de références réellement terminées, le nombre de reprises et les étapes où les produits attendent."
           },
           {
             "t": "p",
@@ -1440,7 +1420,14 @@
       {
         "id": "entretien-10-q4",
         "question": "« Comment transmet-on les gestes qui font la qualité ? »",
-        "figures": [],
+        "figures": [
+          {
+            "name": "23_FICHE_TRANSMISSION",
+            "src": "/images/revue-entretiens-s3/23_FICHE_TRANSMISSION.svg",
+            "alt": "Croquis : changer d’opérateur sans changer le résultat. Une fiche simple au poste vaut mieux qu’une procédure oubliée.",
+            "caption": "Changer d’opérateur sans changer le résultat — croquis explicatif de méthode, sans simulation de machine ni preuve de performance."
+          }
+        ],
         "contenu": [
           {
             "t": "p",
@@ -1468,28 +1455,6 @@
         ]
       },
       {
-        "id": "entretien-10-q6",
-        "question": "« Que deviennent les métiers de l'image avec l'IA ? »",
-        "figures": [
-          {
-            "name": "23_FICHE_TRANSMISSION",
-            "src": "/images/revue-entretiens-s3/23_FICHE_TRANSMISSION.svg",
-            "alt": "Croquis : changer d’opérateur sans changer le résultat. Une fiche simple au poste vaut mieux qu’une procédure oubliée.",
-            "caption": "Changer d’opérateur sans changer le résultat — croquis explicatif de méthode, sans simulation de machine ni preuve de performance."
-          }
-        ],
-        "contenu": [
-          {
-            "t": "p",
-            "html": "Ils évoluent, mais je me méfie des annonces de disparition immédiate. Il faudra des personnes capables de préparer un objet, construire une lumière, vérifier la fidélité, piloter les actifs et décider qu'une génération n'est pas acceptable. Certains traitements répétitifs se transformeront. Ce qui augmente, à mon sens, c'est l'importance de pouvoir expliquer <em>pourquoi</em> une image est juste."
-          },
-          {
-            "t": "p",
-            "html": "Un opérateur qui maîtrise le produit, la prise de vue et la vérification devient central dans un environnement où les images peuvent être produites de multiples façons. La qualité n'est plus le seul savoir-faire technique ; c'est aussi la capacité à arbitrer."
-          }
-        ]
-      },
-      {
         "id": "entretien-10-q7",
         "question": "« Une photo peut-elle servir après la vente ? »",
         "figures": [],
@@ -1497,10 +1462,6 @@
           {
             "t": "p",
             "html": "Bien sûr, selon les usages. Une image de référence peut aider à documenter une configuration, à comparer l'état d'une pièce ou à expliquer une intervention. Mais il faut définir l'objectif, le niveau de preuve requis et les règles de conservation. Une photographie commerciale ne devient pas automatiquement une preuve de contrôle qualité au sens industriel."
-          },
-          {
-            "t": "p",
-            "html": "Si l'entreprise veut développer ces usages, je commencerais par un pilote distinct, avec des critères de capture et de traçabilité adaptés. Le potentiel m'intéresse, notamment dans l'industrie, mais je ne confondrais pas la promesse technique et un processus effectivement validé."
           }
         ]
       },
@@ -1527,6 +1488,6 @@
         ]
       }
     ],
-    "note_dossier": "DOSSIER RÉDACTION : posts LinkedIn 24 avril et 22 avril, orientations marchés industriels dans profil, axes Q91-Q99. Photo qualité industrielle = potentiel, pas fonction validée."
+    "note_dossier": "Provenance — posts LinkedIn 24 avril et 22 avril, orientations marchés industriels dans profil, axes Q91-Q99. Photo qualité industrielle = potentiel, pas fonction validée."
   }
 ]
