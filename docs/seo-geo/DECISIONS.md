@@ -25,6 +25,49 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D57 · 2026-10-12 · Arbitrages G5 ratifiés le 11/10/2026 : délai, preuve produit, redirections XL, showroom, disponibilité des fiches
+
+**Décidé par** : Laurent — ratification du 11/10/2026 des arbitrages L01 à L15 (« Je ratifie les arbitrages L01 à L15 selon les options, limites et HOLD détaillés dans ce prompt ») ; inscription demandée le 12/10/2026
+**Statut** : principe approuvé par Laurent le 11/10/2026 ; inscrit par une PR documentaire en brouillon (12/10) ; en vigueur à sa fusion. Les HOLD restent des HOLD
+
+**La décision** —
+1. **D32, amendement (L01)** : délai indicatif d'environ 12 jours, jamais présenté comme garanti, en texte comme en données structurées. Faits métier : Laurent, 30/09 et 08/10 ; publié par #109. F5, gelée jusqu'au 23/11/2026, reste à 10 jours jusqu'à la fin du gel.
+2. **Preuve produit (L02), complément de D45** :
+   - hiérarchie : page fabricant en vigueur, puis fiche technique ou brochure avec version et code de commande, puis catalogue 2026 s'il concorde, puis billets datés ;
+   - le code PSC n'est jamais une preuve ;
+   - une contradiction entre sources officielles comparables reste non résolue : aucune valeur n'est choisie par vote.
+3. **D29 (L03)** :
+   - inventaire du 11/10/2026 : 24 règles (22 au Worker, 2 dans `next.config.ts`), dont 8 de la famille Alphashot XL et 16 historiques ;
+   - la séparation XL v2 / XL Pro v2 / XL G2 est établie (billet Orbitvu du 16/06/2026) ;
+   - toute modification de cible passe par la resynchronisation R5 et un GO de déploiement ; l'exécution reste en HOLD.
+4. **D1, actualisation (L15)** : le showroom est à Beynost (Ain), fait métier de Laurent et Sébastien du 30/09. La commune figure sur les pages pratiques (contact, distributeur, schema, mentions légales) ; l'éditorial général dit « près de Lyon ». Actualisation transmise à Sébastien pour information (Q26).
+5. **Disponibilité des fiches (L05)** :
+   - aucune disponibilité déclarée en JSON-LD sans preuve actuelle de la configuration concrète : la propriété est omise, jamais remplacée par `OutOfStock` ni `PreOrder` ;
+   - aucune `Offer` pour une fiche hors de l'offre officielle actuelle.
+
+**Le contexte** — Mission G5 du 11/10/2026 : consolidation des audits S5 (formulaires et API), S6 (vérité produit) et S7 (traduction).
+- Arbitrages du même jour, mis en œuvre par des PR en brouillon :
+  - L09, P0 sécurité des routes d'envoi : #131 ;
+  - L08, contrat de succès : #132 ;
+  - L02 et L05 : #133 ;
+  - D9 L1 : #134.
+- Arbitrages exécutés sans code :
+  - L11 et L12 : #64 et #27 fermées sans fusion le 12/10 ;
+  - L04 : 48 propositions de claims, aucune appliquée, validation D42 attendue ;
+  - L10 : rien à coder ;
+  - L13 : à la charge du propriétaire de #114, exclure `/de-ch/branchen/mode` jusqu'au 26/11.
+- HOLD : L06 (champs CRM), L07 (registre des demandes, HOLD prudent), L14 (traductions L2 et L3).
+
+**Ce qu'elle interdit** —
+- Présenter un délai comme garanti.
+- Trancher par vote une contradiction entre sources officielles, ou tenir le code PSC pour une preuve.
+- Modifier une cible de redirection XL hors R5 et sans GO de déploiement.
+- Déclarer `InStock`, `OutOfStock` ou `PreOrder` sans preuve.
+- Présenter l'actualisation de D1 comme une approbation de Sébastien.
+- Lever L06, L07 ou L14 au titre de cette décision.
+
+---
+
 ## D56 · 2026-10-10 · Pop-in d'engagement active sur la landing Mode `/fr/packshot-mode` : levée de son gel pour la seule pop-in
 
 **Décidé par** : Laurent — mission « GO — activer la pop-in sur la landing Mode » du 10/10/2026 (GO_CODAGE, GO_MERGE, GO_PUBLICATION = YES)

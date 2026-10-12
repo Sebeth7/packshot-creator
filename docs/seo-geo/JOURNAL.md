@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5) et Q26 (arbitrages attendus de Sébastien) en brouillon · Claude de Laurent
+
+**Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15) | **PR** : brouillon, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
+
+**Quoi** —
+- #64 et #27 fermées sans fusion le 12/10 à 06:42 UTC, avec les textes de clôture préparés le 11/10. Branches conservées.
+- D57 inscrit les lignes de gouvernance ratifiées le 11/10 : D32 à 12 jours, preuve produit, D29, D1 Beynost, disponibilité des fiches.
+- Q26 demande à Sébastien les arbitrages de fusion de #131, #132 et #133.
+
+**Pourquoi** — L11 et L12 (fermetures) et L01, L02, L03, L05, L15 (gouvernance), ratifiés par Laurent le 11/10. GO de Laurent du 12/10 : « fais tout ce que tu peux et laisse le reste pour chat directeur ».
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D57), `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q26), `docs/seo-geo/ETAT.md` (A, B, C, D), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes de #64 (`63e1e92`) et #27 (`e81e5c0`) inchangées depuis le relevé du 11/10 ; `main` `0f960b5`.
+- Fermeture constatée par l'API GitHub : 06:42:15 et 06:42:18 UTC, non fusionnées.
+- Branches `seo/d33-factual-safe-patch-2026-09-30` et `content/maillage-q3` toujours présentes.
+- Numéros D57 et Q26 libres sur `main` et sur les 10 branches de PR ouvertes ; Q25 est prise par #129.
+
+**Supposé** — Aucun.
+
+**Non regardé** :
+- les exceptions de `data/navigation/pages-longues.ts` dont l'échéance est « clôture de #27 » (lignes 53 à 55, 75 et 129) : à relire ;
+- le reliquat `home.faq.q7` de #64 (accueil gelé jusqu'au 28/10) ;
+- la confirmation de clôture du lot F (ETAT, C).
+
+**Suite** — Réponse de Sébastien à Q26 ; fusion de cette PR sur GO de Laurent ; relecture des exceptions du registre des pages longues.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`

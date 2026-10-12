@@ -67,6 +67,46 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q26 · 2026-10-12 · Arbitrages attendus sur trois brouillons G5 : #131 et #132 (routes d'envoi), #133 (catalogues de machines) — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : G5 (consolidation S5, S6, S7) ; chaîne des leads et catalogues de machines, ton périmètre (`/CLAUDE.md`)
+**Bloque** : la fusion de #131, #132 et #133 ; rien d'autre. Les trois PR sont en brouillon, CI verte (4 contrôles sur 4, 12/10).
+
+**Contexte** — Corrections codées le 11/10 sur des arbitrages ratifiés par Laurent (L08, L09, L02, L05 ; D57), ouvertes en brouillon le 12/10 sur GO de Laurent. Aucune n'est fusionnée.
+
+**Vérifié** —
+- #131, P0 sécurité de `/api/contact` et `/api/roi-pdf` :
+  - corps validé au runtime, nom de machine tiré du catalogue, échappement HTML, champ piège côté serveur, limites par clé IP et par destinataire ;
+  - codes de statut, ordre des envois et corps des réponses inchangés (7 tests de caractérisation) ;
+  - HTML prérendu identique sur 375 pages.
+- #132, contrat de succès, empilée sur #131 :
+  - succès seulement avec une affaire Pipedrive confirmée ou une notification acceptée par Resend, sinon 502 sans confirmation au prospect ;
+  - `lib/pipedrive.ts` (aussi `/api/roi-lead`) vérifie `res.ok` ;
+  - les clients ne lisent que `res.ok`.
+- #133, les deux `machines.ts` et le référentiel, valeurs fabricant de catégorie A (D45) :
+  - XL Pro v2 50 × 30 × 70 ; XL G2 88 × 140 × 197 (dimensions de la machine) ;
+  - Furniture 1 000 kg (version 4 000 kg), encombrement 670 × 588 × 302 « max. fabricant » ;
+  - Micro Pro v2 83 × 54 × 72 ; Alphadesk 156 × 124 × 138 ; Fashion 35 kg ponctuels / 200 kg répartis ;
+  - JSON-LD sans `InStock`, sans `Offer` hors offre officielle ; prompt des leads « official ».
+- Contradictions conservées : objet maximal Furniture, 603 / 670. Points de Q20 couverts : Q20.1 (en partie), Q20.4, Q20.5 (Micro, Alphadesk), Q20.7, Q20.9, Q20.12 (`Offer`), Q20.16 (prompt, en partie).
+- Textes de FAQ modifiés (D42) : réponses XL G2, Furniture, Micro, Alphadesk, XL Pro v2 ; libellés de charge Fashion et Furniture.
+
+**La question** — Acceptes-tu la fusion : (1) de #131 ; (2) de #132 ; (3) de #133, textes de FAQ compris (D42) ?
+
+**Options**
+- A : accord pour les trois. Fusion après un envoi réel depuis la Preview pour #131 et #132, et après la décision de Laurent sur le calendrier de #133 (fenêtre M5, J0 Studios le 29/10).
+- B : accord pour #131 seul. #132 et #133 restent en brouillon ; précise ce qui bloque.
+- C : relecture demandée sur des valeurs ou des textes précis de #133 : cite-les, la correction se fait dans la PR.
+
+**Ma recommandation** — A.
+- #131 ne change aucun parcours légitime dans les bornes.
+- #132 n'affiche une erreur que lorsque ni Pipedrive ni Resend n'ont reçu la demande.
+- #133 n'applique que des valeurs fabricant de catégorie A.
+
+Pour information : l'actualisation de D1 (showroom à Beynost, L15) est inscrite dans D57. Elle n'est pas présentée comme ton approbation.
+
+---
+
 ### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : landing catalogue All-in-One (#82)
