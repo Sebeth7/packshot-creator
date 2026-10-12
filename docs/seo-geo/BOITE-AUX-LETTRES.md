@@ -91,6 +91,12 @@ dans `DECISIONS.md`.
 4. **Durée de conservation** des inscrits aux alertes : non écrite dans l'article 9 de la politique de confidentialité (ajouté en FR et EN) ; l'article 4 prévoit « 3 ans pour les données prospects », sans dire si un inscrit aux alertes en relève.
 5. **Langue** : un texte d'accord et une version par langue (`OPTIN`, `lib/occasion/formulaires.ts`) ; la langue d'un inscrit se déduit de `occasion_alertes_source` (`/en/…`), sans huitième propriété.
 
+**Ajout du 12/10 (lot final, décision de cadrage de Laurent : alertes sur nouvel arrivage)** — Toujours sans réponse. Le bulletin d'arrivage est codé et verrouillé (`BULLETIN_ENVOI_AUTORISE = false`) ; ce qu'il attend de Q25, en plus des points 1 à 4 :
+6. **Variables** : `OCCASION_ALERTES_URL_BASE` à fixer en Production (`https://www.packshot-creator.com`) ; le script du bulletin lit les variables de Production sur le poste de la personne qui envoie (`OCCASION_ALERTES_SECRET` de Production, sinon les liens de désinscription sont refusés).
+7. **Lecture des inscrits** : `contacts.list` (segment), `contacts.get`, `contacts.topics.list`, en lecture seule ; envoi par `batch.send` avec clé d'idempotence. Clé API Resend avec ces droits.
+8. **Dédoublonnage durable** : assuré par le champ `annonce` du registre (commit juste après l'envoi). Un journal des envois chez Resend (propriété supplémentaire) ou ailleurs n'est **pas** créé : à décider seulement si la procédure ne suffit pas.
+9. **Consentement** : texte v3 du 12/10 (`occasion-alertes-v3-2026-10-12`, trois langues) ; les versions v1 et v2 n'ont servi à aucune inscription réelle.
+
 ---
 
 ### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
