@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · Contrat de succès de /api/contact et /api/roi-pdf (P1, L08) — brouillon empilé sur la PR P0 · Claude de Laurent
+
+**Chantier** : S5 M02, G5 LOT-3 (L08) | **PR** : brouillon, branche `claude/g5-pr-a2-contrat-succes` | **Commit** : voir PR
+
+**Quoi** — Succès seulement si une affaire Pipedrive est confirmée ou si la notification (ou l'e-mail du PDF) est acceptée par Resend ; sinon 502 sans confirmation au prospect. Plus d'identifiant CRM dans les réponses. `lib/pipedrive.ts` : `res.ok` vérifié, une note en échec ne fait plus perdre l'affaire.
+
+**Pourquoi** — Un lead perdu affichait l'écran de succès (S5 M02). Arbitrage L08 ratifié par Laurent le 11/10 ; GO_CODE et GO_PR_DRAFT de Laurent du 12/10.
+
+**Fichiers** — `app/api/contact/route.ts`, `app/api/roi-pdf/route.ts`, `lib/pipedrive.ts`, 2 fichiers de test.
+
+**Effet attendu** — Écran d'erreur, au lieu de l'écran de succès, dans le seul cas où ni Pipedrive ni Resend n'ont reçu la demande. Événement de mesure à la fusion : une conversion `contact_form` n'est plus comptée dans ce cas (F5, Mode, M5).
+
+**Vérifié** — En local sur `main` + PR P0 + ce patch : tsc vert ; Vitest 682/682 ; contre-épreuve : 14 des 49 cas échouent sur la PR P0 seule, tous du contrat ; `next build` vert ; HTML identique sur 375 pages. CI GitHub et Preview : à compléter.
+
+**Supposé** — « Accepté par Resend » ne prouve pas la remise en boîte de réception.
+
+**Non regardé** — Envoi réel (GO_TEST_REEL) ; registre des demandes (L07, HOLD prudent) ; champs CRM (L06, HOLD) ; Pipedrive v2 (LOT-4).
+
+**Suite** — Fusion après la PR P0, soumise à R1 (accord de Sébastien recommandé) et à un envoi réel depuis la Preview.
+
+---
+
 ## 2026-10-12 · Sécurité des routes d'envoi /api/contact et /api/roi-pdf (P0, L09), contrat de succès inchangé — brouillon · Claude de Laurent
 
 **Chantier** : S5 M14, G5 LOT-1 (L09) | **PR** : brouillon, branche `claude/nice-carson-qc299m` | **Commit** : voir PR
