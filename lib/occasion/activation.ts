@@ -101,6 +101,34 @@ export function etatAlertes(env: Env = process.env, maintenant: Date = new Date(
   return etatCollecte(env, maintenant, { collecte: v.alertes, publication: v.publication, fenetreJusqua: v.fenetreJusqua });
 }
 
+/**
+ * Envoi d'un bulletin d'arrivage « Nouvelles occasions Orbitvu disponibles » aux
+ * inscrits confirmés (`lib/occasion/bulletin/**`, décision du 12/10/2026 : un
+ * bulletin par nouvel arrivage vérifié, validé par Sébastien, jamais périodique
+ * ni automatique). FAUX : GO_ENVOI_REEL = NO. Faux : `envoyerBulletin` refuse
+ * avant tout appel. Vrai ne suffit pas : la liste doit être en service et publiée
+ * (`bulletinEnvoyable`), pour que le lien de désinscription de chaque message
+ * fonctionne, et l'empreinte du brouillon validé doit être fournie.
+ */
+export const BULLETIN_ENVOI_AUTORISE = false;
+
+export interface VerrousBulletin {
+  bulletin: boolean;
+  alertes: boolean;
+  publication: boolean;
+}
+
+const VERROUS_BULLETIN: VerrousBulletin = {
+  bulletin: BULLETIN_ENVOI_AUTORISE,
+  alertes: ALERTES_REELLES_AUTORISEES,
+  publication: PUBLICATION_AUTORISEE,
+};
+
+/** Un bulletin peut-il partir ? Les trois verrous ouverts : envoi, liste en service, page publiée. */
+export function bulletinEnvoyable(v: VerrousBulletin = VERROUS_BULLETIN): boolean {
+  return v.bulletin && v.alertes && v.publication;
+}
+
 /** La page `/fr/studios-photo-automatises/opportunites` est-elle générée dans cet environnement ? */
 export function pageOccasionServie(env: Env = process.env): boolean {
   if (env.VERCEL_ENV === 'production') return PUBLICATION_AUTORISEE;

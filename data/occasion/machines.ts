@@ -68,6 +68,21 @@ export interface MachineOccasion {
    * texte français.
    */
   traductions?: Partial<Record<'en' | 'de-ch', TraductionCarte>>;
+  /**
+   * Bulletin d'arrivage qui a annoncé cette machine aux inscrits
+   * (`lib/occasion/bulletin/**`). Renseigné PAR COMMIT juste après l'envoi : une
+   * machine annoncée ne l'est plus jamais (une correction de fiche, un passage
+   * réservée → disponible ne sont pas un nouvel arrivage). Absent : jamais annoncée.
+   */
+  annonce?: AnnonceOccasion;
+}
+
+/** Trace de l'annonce d'une machine, conservée dans le registre (dédoublonnage durable). */
+export interface AnnonceOccasion {
+  /** Identifiant du bulletin (`arrivage-AAAA-MM-JJ-…`), tel qu'affiché par l'aperçu. */
+  bulletin: string;
+  /** Date de l'envoi, ISO `AAAA-MM-JJ`. */
+  envoyeLe: string;
 }
 
 /** Textes d'une carte dans une autre langue que le français. */
