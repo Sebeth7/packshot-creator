@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · #131 : un break-even de plus de 10 000 mois n'est plus refusé ; R1 levé par D58 ; `main` `4c53314` intégré · Claude de Laurent
+
+**Chantier** : S5 M14, G5 LOT-1 (L09) | **PR** : #131 (brouillon) | **Commit** : voir PR
+
+**Quoi** — `lib/roi-pdf-schema.ts` : plafond de `breakEvenMois` retiré (nombre positif ou nul, ou `null`). Test de non-régression sur un calcul réel (48 132 mois). Commentaires de la clé IP précisés dans les deux routes. `main` `4c53314` (fusion de #135) intégré par union de `JOURNAL.md` et `ETAT.md`.
+
+**Pourquoi** — Audit ciblé du 12/10 (mission « G5 — passe finale décisive », GO_CODE_CIBLE de Laurent). Sur 20 000 entrées valides du formulaire ROI tirées au hasard, 50 (0,25 %) donnaient un break-even supérieur à 10 000 mois : 400, et lead perdu sans signal, l'envoi de `Step3Results` étant silencieux. R1 : exception de Laurent pour #131 seule (D58).
+
+**Fichiers** — `lib/roi-pdf-schema.ts`, `app/api/contact/route.ts` et `app/api/roi-pdf/route.ts` (commentaires), `lib/__tests__/api-roi-pdf-route.test.ts`.
+
+**Effet attendu** — Aucun pour un visiteur, sinon qu'un calcul légitime à très long break-even n'est plus refusé.
+
+**Vérifié** — Contre-épreuve : le nouveau test échoue avec le plafond d'origine. Échantillon : 50 échecs sur 20 000 avant, 0 après. tsc, Vitest, `next build` verts en local avant le push. Vercel réécrit `x-forwarded-for` avec l'adresse qui se connecte à lui (documentation Vercel, « Request headers ») ; le Worker relaie `/api/*` vers `sysnext.vercel.app`.
+
+**Supposé** — Le nombre de visiteurs par adresse de sortie Cloudflare, donc le risque réel de faux 429 (10 par heure, par adresse et par instance), n'est pas établi.
+
+**Non regardé** — Envoi réel (GO_TEST_REEL non donné) ; Preview (SSO).
+
+**Suite** — Protocole QA Preview (dossier G5 du 12/10, 03), puis GO_MERGE de Laurent ; après fusion, journaux Vercel `limite.ip` à J+1 et J+7.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
