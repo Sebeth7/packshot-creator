@@ -15,6 +15,8 @@
  * `FRAICHEUR_MAX_JOURS` jours (lib/occasion/stock.ts) n'est plus affichée.
  *
  * Les trois exemples de la maquette ne sont pas ici : `exemples-fictifs.ts`.
+ *
+ * Ajouter une machine : `data/occasion/AJOUT-MACHINE.md` (guide de saisie).
  */
 
 export type StatutOccasion = 'disponible' | 'reservee' | 'vendue' | 'retiree';

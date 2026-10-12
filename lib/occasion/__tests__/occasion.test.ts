@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { MACHINES_OCCASION, type MachineOccasion } from '@/data/occasion/machines';
 import { exemplesFictifs } from '@/data/occasion/exemples-fictifs';
@@ -116,6 +118,37 @@ describe('Registre du stock réel', () => {
     const refs = MACHINES_OCCASION.map((m) => m.ref);
     expect(new Set(refs).size).toBe(refs.length);
     for (const m of MACHINES_OCCASION) expect(ficheTechnique(m.modeleId), m.ref).toBeDefined();
+  });
+});
+
+describe('Registre : garde-fous de saisie (data/occasion/AJOUT-MACHINE.md)', () => {
+  const ISO_JOUR = /^\d{4}-\d{2}-\d{2}$/;
+
+  it('dates de confirmation au format AAAA-MM-JJ, jamais dans le futur', () => {
+    for (const m of MACHINES_OCCASION) {
+      expect(m.statutConfirmeLe, m.ref).toMatch(ISO_JOUR);
+      expect(Date.parse(`${m.statutConfirmeLe}T00:00:00Z`), m.ref).toBeLessThanOrEqual(Date.now() + 86_400_000);
+    }
+  });
+
+  it('photos : fichiers présents dans public/, texte alternatif renseigné', () => {
+    for (const m of MACHINES_OCCASION) {
+      for (const p of m.photos) {
+        expect(existsSync(join(process.cwd(), 'public', p.src)), `${m.ref} ${p.src}`).toBe(true);
+        expect(p.alt.trim().length, `${m.ref} ${p.src}`).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('annonce : seulement après un bulletin réel (identifiant et date d’envoi)', () => {
+    for (const m of MACHINES_OCCASION.filter((x) => x.annonce)) {
+      expect(m.annonce?.bulletin, m.ref).toMatch(/^arrivage-\d{4}-\d{2}-\d{2}-[0-9a-f]{8}$/);
+      expect(m.annonce?.envoyeLe, m.ref).toMatch(ISO_JOUR);
+    }
+  });
+
+  it('fraîcheur : valeur provisoire de 30 jours, à arbitrer', () => {
+    expect(FRAICHEUR_MAX_JOURS).toBe(30);
   });
 });
 
