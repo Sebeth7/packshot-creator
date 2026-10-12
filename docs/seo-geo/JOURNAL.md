@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · Sécurité des routes d'envoi /api/contact et /api/roi-pdf (P0, L09), contrat de succès inchangé — brouillon · Claude de Laurent
+
+**Chantier** : S5 M14, G5 LOT-1 (L09) | **PR** : brouillon, branche `claude/nice-carson-qc299m` | **Commit** : voir PR
+
+**Quoi** — `/api/roi-pdf` : corps validé au runtime, machine en liste fermée et nom tiré du catalogue, échappement, champ piège, limites (10/h par clé IP, 3/h par destinataire). `/api/contact` : bornes, caractères de contrôle refusés, échappement, champ piège, mêmes limites. Codes de statut, ordre des envois et corps des réponses inchangés.
+
+**Pourquoi** — Des valeurs envoyées par le navigateur entraient sans validation ni échappement dans des e-mails expédiés par le site (S5 M14, G5-S5-N1). Arbitrage L09 ratifié par Laurent le 11/10 ; GO_CODE et GO_PR_DRAFT de Laurent du 12/10.
+
+**Fichiers** — `app/api/contact/route.ts`, `app/api/roi-pdf/route.ts`, `lib/contact-schema.ts`, `lib/roi-pdf-schema.ts` (nouveau), `lib/echapper-html.ts` (nouveau), `lib/lead-enrichment.ts` (`formatEnrichmentHtml`), 4 fichiers de test.
+
+**Effet attendu** — Aucun effet visible pour un visiteur légitime dans les bornes. Refus 400 ou 429 journalisés pour les envois hors bornes, piégés ou répétés (message de plus de 5 000 caractères, tabulation dans un champ d'une ligne, 4e envoi vers la même adresse dans l'heure, 11e de la même clé IP par instance).
+
+**Vérifié** — En local sur `main` `0f960b5` + ce patch seul : tsc vert ; Vitest 670/670, dont 43 nouveaux cas (doublures Resend, Pipedrive, enrichissement ; aucun réseau) ; contre-épreuve : 26 des 38 cas échouent sur `main`, et les 12 qui passent sont les parcours légitimes, la sémantique d'origine et des règles déjà présentes ; `next build` vert ; HTML prérendu identique sur 375 pages. Aucune collision textuelle nouvelle avec les 12 PR ouvertes (relevé du 12/10, 05:10 UTC). CI GitHub et Preview : à compléter.
+
+**Supposé** — Compteurs en mémoire par instance : un frein, pas une limite distribuée. La clé IP suppose que le premier `x-forwarded-for` est l'adresse du visiteur (S5 M18, non établi).
+
+**Non regardé** — Envoi réel (GO_TEST_REEL non donné) ; champ piège côté client (`ContactForm` gelé jusqu'au 23/11 : LOT-1b conditionnel) ; contrat de succès (PR suivante) ; `/api/roi-lead` et `/api/catalogue`, non modifiées.
+
+**Suite** — Fusion soumise à R1 (périmètre de Sébastien) et à un envoi réel depuis la Preview. Puis la PR du contrat de succès (L08).
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
