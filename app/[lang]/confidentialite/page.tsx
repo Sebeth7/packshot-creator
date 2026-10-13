@@ -76,6 +76,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
       description: t('article6.externalMedia.description'),
       link: { href: googlePrivacyUrl(lang), label: t('article6.externalMedia.linkLabel') },
     },
+    { key: 'sessionStorage', title: t('article6.sessionStorage.title'), description: t('article6.sessionStorage.description') },
   ];
 
   return (

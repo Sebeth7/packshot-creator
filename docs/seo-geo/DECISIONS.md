@@ -25,6 +25,107 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D58 · 2026-10-12 · Pilotage G5 : R1, exception de périmètre pour le seul P0 de #131 ; R3, propagation des corrections factuelles XL Pro v2 pendant M5, sur le principe
+
+**Décidé par** : Laurent — mission « G5 — passe finale décisive » du 12/10/2026 (« R1 = OPTION B POUR #131 UNIQUEMENT » ; « R3 = OPTION A, SUR LE PRINCIPE »)
+**Statut** : en vigueur à la fusion de cette PR documentaire. Ne vaut aucun GO_MERGE
+
+**La décision** —
+1. **R1, option B, pour #131 uniquement** : exception ponctuelle de périmètre, sur le modèle de D51, D53 et D55. Le correctif P0 de sécurité de `/api/contact` et `/api/roi-pdf` (chaîne des leads, périmètre de Sébastien selon `/CLAUDE.md`) est instruit sans attendre l'accord préalable de Sébastien.
+   - Ne vaut ni validation de Sébastien, ni GO_TEST_REEL, ni GO_MERGE de #131.
+   - #132 (contrat de succès) reste soumise à l'accord de Sébastien (Q26).
+2. **R3, option A, sur le principe** : la propagation documentée des corrections factuelles XL Pro v2 de #133 sur les pages concernées (38 pages prérendues hors fiches, toutes langues confondues : 3 sélecteurs, 23 hubs `industrie`, 6 `solutions`, 3 `packshot-industriel`, 3 `studios-photo-automatises`) est acceptée pendant la fenêtre de mesure M5 (14 au 28/10). Trois conditions :
+   - les gels sont respectés : accueil jusqu'au 28/10, F5 jusqu'au 23/11, surface Mode jusqu'au 26/11 ;
+   - la validation métier D42 des textes modifiés est rendue ;
+   - un événement daté est inscrit au JOURNAL à la fusion.
+
+   Ne vaut ni validation D42, ni réponse à Q20, ni GO_MERGE de #133. Les autres corrections de #133 (51 fiches : valeurs XL G2, Furniture, Micro, Alphadesk, Fashion ; JSON-LD de disponibilité) ne relevaient pas de R3 : elles restent soumises à D42, Q20 / D45 et au GO_MERGE.
+
+**Le contexte** — Décisions 1 et 5 du tableau des décisions G5 du 12/10. Le même jour, Laurent donne un GO_MERGE limité à cette PR documentaire ; aucun GO_MERGE pour #131, #132, #133 ou #134.
+
+**Ce qu'elle interdit** —
+- Étendre l'exception R1 à #132, à une autre route ou à un autre fichier de Sébastien.
+- Présenter R1 ou R3 comme un accord de Sébastien.
+- Fusionner #133 sans validation D42, sans GO_MERGE, ou en modifiant une page gelée.
+
+---
+
+## D57 · 2026-10-12 · Arbitrages G5 ratifiés le 11/10/2026 : délai, preuve produit, redirections XL, showroom, disponibilité des fiches
+
+**Décidé par** : Laurent — ratification du 11/10/2026 des arbitrages L01 à L15 (« Je ratifie les arbitrages L01 à L15 selon les options, limites et HOLD détaillés dans ce prompt ») ; inscription demandée le 12/10/2026
+**Statut** : principe approuvé par Laurent le 11/10/2026 ; inscrit par une PR documentaire en brouillon (12/10) ; en vigueur à sa fusion. Les HOLD restent des HOLD
+
+**La décision** —
+1. **D32, amendement (L01)** : délai indicatif d'environ 12 jours, jamais présenté comme garanti, en texte comme en données structurées. Faits métier : Laurent, 30/09 et 08/10 ; publié par #109. F5, gelée jusqu'au 23/11/2026, reste à 10 jours jusqu'à la fin du gel.
+2. **Preuve produit (L02), complément de D45** :
+   - hiérarchie : page fabricant en vigueur, puis fiche technique ou brochure avec version et code de commande, puis catalogue 2026 s'il concorde, puis billets datés ;
+   - le code PSC n'est jamais une preuve ;
+   - une contradiction entre sources officielles comparables reste non résolue : aucune valeur n'est choisie par vote.
+3. **D29 (L03)** :
+   - inventaire du 11/10/2026 : 24 règles (22 au Worker, 2 dans `next.config.ts`), dont 8 de la famille Alphashot XL et 16 historiques ;
+   - la séparation XL v2 / XL Pro v2 / XL G2 est établie (billet Orbitvu du 16/06/2026) ;
+   - toute modification de cible passe par la resynchronisation R5 et un GO de déploiement ; l'exécution reste en HOLD.
+4. **D1, actualisation (L15)** : le showroom est à Beynost (Ain), fait métier de Laurent et Sébastien du 30/09. La commune figure sur les pages pratiques (contact, distributeur, schema, mentions légales) ; l'éditorial général dit « près de Lyon ». Actualisation transmise à Sébastien pour information (Q26).
+5. **Disponibilité des fiches (L05)** :
+   - aucune disponibilité déclarée en JSON-LD sans preuve actuelle de la configuration concrète : la propriété est omise, jamais remplacée par `OutOfStock` ni `PreOrder` ;
+   - aucune `Offer` pour une fiche hors de l'offre officielle actuelle.
+
+**Le contexte** — Mission G5 du 11/10/2026 : consolidation des audits S5 (formulaires et API), S6 (vérité produit) et S7 (traduction).
+- Arbitrages du même jour, mis en œuvre par des PR en brouillon :
+  - L09, P0 sécurité des routes d'envoi : #131 ;
+  - L08, contrat de succès : #132 ;
+  - L02 et L05 : #133 ;
+  - D9 L1 : #134.
+- Arbitrages exécutés sans code :
+  - L11 et L12 : #64 et #27 fermées sans fusion le 12/10 ;
+  - L04 : 48 propositions de claims, aucune appliquée, validation D42 attendue ;
+  - L10 : rien à coder ;
+  - L13 : à la charge du propriétaire de #114, exclure `/de-ch/branchen/mode` jusqu'au 26/11.
+- HOLD : L06 (champs CRM), L07 (registre des demandes, HOLD prudent), L14 (traductions L2 et L3).
+
+**Ce qu'elle interdit** —
+- Présenter un délai comme garanti.
+- Trancher par vote une contradiction entre sources officielles, ou tenir le code PSC pour une preuve.
+- Modifier une cible de redirection XL hors R5 et sans GO de déploiement.
+- Déclarer `InStock`, `OutOfStock` ou `PreOrder` sans preuve.
+- Présenter l'actualisation de D1 comme une approbation de Sébastien.
+- Lever L06, L07 ou L14 au titre de cette décision.
+
+---
+
+## D56 · 2026-10-10 · Pop-in d'engagement active sur la landing Mode `/fr/packshot-mode` : levée de son gel pour la seule pop-in
+
+**Décidé par** : Laurent — mission « GO — activer la pop-in sur la landing Mode » du 10/10/2026 (GO_CODAGE, GO_MERGE, GO_PUBLICATION = YES)
+**Statut** : en vigueur
+
+**La décision** — Retirer `/fr/packshot-mode` des routes gelées de la pop-in (`ROUTES_GELEES`, `lib/engagement/regles.ts`) : la landing Mode, publiée, bénéficie de la pop-in d'engagement déjà en production (#122, D55), avec les mêmes déclencheurs (desktop dès 1 024 px, 60 s cumulées, 70 % de lecture, sortie par le haut, une apparition par session). Texte de Laurent : « Cette landing est publiée. Je souhaite qu'elle bénéficie du dispositif de conversion déjà en production. »
+
+**Le contexte** — Les gels de la pop-in reprenaient les fenêtres de mesure des pages sous expérience SEO (mission de Laurent du 09/10 ; D55 interdisait d'en lever un au titre de la publication de #122). La fenêtre de mesure Mode (D39, J+28 le 29/10, J+56 le 26/11) n'est pas annulée : l'activation de la pop-in sur la landing est un événement à prendre en compte dans l'interprétation des conversions.
+
+**Ce qu'elle interdit** — Étendre cette levée à une autre page gelée (`/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile` restent exclues) ; modifier au titre de cette décision les textes, visuels, CTA, métadonnées ou composants de la landing Mode ; tenir la fenêtre de mesure Mode pour annulée.
+
+---
+
+## D55 · 2026-10-10 · Publication de la pop-in d'engagement (#122) sur l'autorité de Laurent : copy sans validation de Sébastien, `sessionStorage` tenu pour fonctionnel et mentionné, fermeture validée par les tests automatisés, droits du visuel confirmés
+
+**Décidé par** : Laurent — GO de fusion et de publication de #122 du 10/10/2026, puis réponses du 10/10 aux quatre points ouverts de #122
+**Statut** : en vigueur pour la seule PR #122 ; épuisée par sa fusion et sa publication. D42 reste inchangée pour toute autre PR.
+
+**La décision** — GO_MERGE et GO_PUBLICATION de #122. Réponses de Laurent du 10/10/2026, reproduites sans modification :
+
+> Validation de la copy de la pop-in par Sébastien : « Publier sur mon autorité »
+> Statut du sessionStorage `pkc_popin_engagement` : « Exempté + mention »
+> Contrôles Chrome de fermeture par Échap et par X : « Tests auto suffisants »
+> Droits d'usage de l'image du film Orbitvu utilisée comme visuel : « Droits confirmés »
+
+En conséquence : `POPIN_PUBLICATION_AUTORISEE = true` ; article 6 de la politique de confidentialité complété (FR, EN, de-ch) d'une entrée sur ce stockage de session ; `SEBASTIEN_COPY_VALIDATION = NOT_RECEIVED` ; `PUBLICATION_AUTHORITY = LAURENT`. Exclusions de pages, gels (`ROUTES_GELEES`) et périodes de mesure inchangés.
+
+**Le contexte** — #122 documentait trois préalables à la publication : copy (D42, étape 5) ; statut juridique du `sessionStorage` « NON ÉTABLI » (P4) ; fermeture par X et Échap à contrôler en Chrome réel. Un quatrième point restait ouvert : droits du film « supposés » (JOURNAL du 04/10). La CNIL range le stockage local parmi les traceurs soumis à consentement, sauf exemption ; sa liste d'exemptions (délibération n° 2020-091 du 17/09/2020, article 5, point 49) ne cite pas expressément la limitation d'affichage d'une fenêtre : la qualification « fonctionnel, sans consentement » est une décision de Laurent, pas un avis juridique. Fermeture : Playwright Chromium (Échap, X, rechargement, événements `isTrusted`) et pointeur système XTest (X puis rechargement) verts ; ouverture contrôlée par Laurent en Chrome réel le 09/10.
+
+**Ce qu'elle interdit** — Présenter la copy de la pop-in comme validée par Sébastien ; présenter la qualification du `sessionStorage` comme un avis juridique ou une position de la CNIL ; l'étendre à un autre stockage (`pkc_attribution` de `lib/attribution.ts` compris) ; appliquer cette décision à une autre PR ; lever une exclusion ou un gel au titre de cette publication.
+
+---
+
 ## D54 · 2026-10-09 · Exception ponctuelle D15/D48 pour les PR #123 et #124 : fusion et publication sans attendre l'échéance de D15 ; fusion par commit de fusion
 
 **Décidé par** : Laurent — mission « GO final Laurent — fusion et publication PR #123 puis #124 » du 09/10/2026, confirmée par la mission « Reprise autorisée — PR #124 après fusion de #123 » du même jour
