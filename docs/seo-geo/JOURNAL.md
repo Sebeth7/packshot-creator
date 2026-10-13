@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · Maillage entrant vers le hub « Conversations avec Sébastien Jourdan » · Claude de Laurent
+
+**Chantier** : Phase 3 du GO FINAL GLOBAL (maillage entrant, 3 liens) | **PR** : maillage dédié, brouillon | **Base** : `main` `ea01846` | **Branche** : `claude/maillage-conversations-sebastien`
+
+**Quoi** — Trois liens entrants vers le hub trilingue :
+1. `app/[lang]/a-propos/page.tsx` : dans la section parcours (frise), un lien typé (`Link` de `@/i18n/routing`, pas `NavLink`) vers `/conversations-sebastien-jourdan`, localisé FR/EN/de-ch — « les conversations de méthode de Sébastien Jourdan » / « Sébastien Jourdan's conversations on product photography methods » / « die Methodengespräche von Sébastien Jourdan ». Destination = hub dans la même langue.
+2. `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json` : dans le passage « internaliser ou externaliser », lien `/fr/conversations-sebastien-jourdan#entretien-01`, ancre « le regard de Sébastien Jourdan sur la décision d'internaliser ».
+3. `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json` : dans le passage « organisation claire / rôles clés », lien `/fr/conversations-sebastien-jourdan#entretien-02`, ancre « organiser le studio, vu par Sébastien Jourdan ».
+
+**Pourquoi** — Le hub est désormais réellement publié et vérifié en production (Phase 2 positive). Le maillage entrant depuis des pages à autorité (à-propos, deux articles de blog pertinents) alimente le hub sans cannibalisation. Séquencé après la publication effective, conformément à la consigne de ne pas pointer vers un hub non encore en production.
+
+**Fichiers** — `app/[lang]/a-propos/page.tsx`, `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json`, `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Trois liens internes supplémentaires vers le hub. Pas de modification des métadonnées, canonical, titres ni des autres textes des pages. Pas de page gelée touchée (`ROUTES_GELEES` = `/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile` — hors périmètre).
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx next build` vert ; ancres `#entretien-01` et `#entretien-02` présentes sur le hub FR en production (`id="entretien-01"`…`10`) ; JSON des deux articles reparsés OK ; pathname `/conversations-sebastien-jourdan` déclaré dans `i18n/routing.ts` (lien typé localisé). Contrôle production du hotfix de-ch (#137, merge `ea01846`) : `/de-ch/conversations-sebastien-jourdan` = 200, 0 slug FR résiduel sur 4 fetches, cibles `/de-ch/branchen/{schmuck,uhren,wein}` = 200. Hub trilingue (Phase 2) : 3 URL 200, indexables, canonical `www` auto-référents, hreflang réciproque complet (fr/fr-CH/en/de-CH/x-default), 3 URL au sitemap, JSON-LD sans Interview/VideoObject (Article + Person + Organization + 10 ListItem).
+**Supposé** — Le comportement localisé du lien typé de-ch (→ `/de-ch/conversations-sebastien-jourdan`) est confirmé par le build et la déclaration de pathname ; contrôle visuel final sur Preview/production après merge.
+**Non regardé** — Les versions EN/de-ch des deux articles de blog (liens 2 et 3 ciblent les articles FR uniquement, comme spécifié). Les autres pages candidates au maillage.
+
+**Suite** — Après merge et déploiement, contrôler les 3 liens sur la production réelle. Pas de mesure GSC/GEO annoncée avant relevé réel.
+
+---
+
 ## 2026-10-13 · Hotfix — liens de-ch du hub vers l'industrie : slugs allemands · Claude de Laurent
 
 **Chantier** : correctif post-publication #136, anomalie relevée en contrôle production (Phase 2 du GO FINAL GLOBAL) | **PR** : hotfix dédié, brouillon | **Base** : `main` `e241218` | **Branche** : `claude/hotfix-liens-dech-branchen`
