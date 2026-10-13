@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · Hotfix — liens de-ch du hub vers l'industrie : slugs allemands · Claude de Laurent
+
+**Chantier** : correctif post-publication #136, anomalie relevée en contrôle production (Phase 2 du GO FINAL GLOBAL) | **PR** : hotfix dédié, brouillon | **Base** : `main` `e241218` | **Branche** : `claude/hotfix-liens-dech-branchen`
+
+**Quoi** — `content/conversations-sebastien-jourdan/de-ch.json` : trois liens internes vers les pages industrie pointaient vers les slugs français sous le segment allemand `/de-ch/branchen/…` (`bijoux-joaillerie`, `horlogerie`, `vin-spiritueux`), qui renvoient 404 en production. Corrigés vers les slugs allemands réels : `schmuck`, `uhren`, `wein`. Aucune autre modification du hub, aucun autre fichier.
+
+**Pourquoi** — En de-ch, le segment `industrie` est localisé en `branchen` ET les slugs sont allemands (`i18n/deChCoverage.ts`, mapping `bijoux-joaillerie→schmuck`, `horlogerie→uhren`, `vin-spiritueux→wein`). Ma localisation de #136 avait traduit le segment mais pas les slugs → trois liens internes cassés livrés en production.
+
+**Fichiers** — `content/conversations-sebastien-jourdan/de-ch.json`
+
+**Effet attendu** — Les trois liens de-ch résolvent en 200 dès le déploiement. Pas d'impact sur FR/EN (déjà corrects), ni sur les métadonnées, canonical, hreflang ou JSON-LD du hub.
+
+**Vérifié** — `/de-ch/branchen/{schmuck,uhren,wein}` = 200 sur `sysnext.vercel.app` ; mapping confirmé dans `i18n/deChCoverage.ts` ; JSON reparsé OK ; chaque slug FR unique dans le fichier (une occurrence, uniquement en `href`).
+**Supposé** — Rien au-delà du contrôle ci-dessus.
+**Non regardé** — Les replis francophones `/fr/blog/*`, `/fr/guide/*`, `/fr/studio-photo/*`, `/fr/industrie/mode-textile` présents dans le fichier de-ch : ils renvoient 200 (non cassés), hors périmètre de ce hotfix.
+
+**Suite** — Après merge et déploiement, re-contrôler les trois liens sur la production réelle, puis reprendre la Phase 3 (maillage entrant).
+
+---
+
 ## 2026-10-13 · PR #136 — correctifs ciblés : localisation de CroquisZoom + URL Person de-ch · Claude de Laurent
 
 **Chantier** : correctifs demandés par Laurent sur #136 (`GO_CODE_CORRECTIFS_PR136 = YES`, `GO_MERGE = NO`) | **PR** : #136, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`
