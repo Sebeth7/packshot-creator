@@ -34,6 +34,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #134 : visuel U03 dans le HERO horlogerie en FR, EN et de-ch ; droits confirmés par Laurent (fait métier) ; `main` `2759239` intégré · Claude de Laurent
+
+**Chantier** : G5 LOT-7 (D9 L1), visuel U03 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** —
+- `main` `2759239` intégré (fusion de #114 : `Service.url` de `/de-ch/branchen/mode` conservé selon D57, L13). Conflit sur `JOURNAL.md` seul, résolu par union.
+- `public/images/hero/horlogerie-hero-montre-chronographe.webp` ajouté : WebP RGBA, 1 400 × 1 434 px, SHA-256 `1b3f5542eddf7e444b908828f2f6e132e50cf5a88e20f21e21debf9ea31ca6f7`, identique au paquet `u03-transmission-pr134.zip`.
+- `app/[lang]/industrie/[slug]/page.tsx` : patch U03 appliqué. Branche dédiée `dataSlug === 'horlogerie'` dans le bloc `media` du HERO : `next/image` en `fill`, `object-contain`, `priority`, ALT localisé FR, EN et de-ch. Écart volontaire avec le patch : `relative` est posé sur une enveloppe propre à l'horlogerie, et non sur le conteneur commun à tous les secteurs. Ainsi, le HTML des autres secteurs reste identique à `main`.
+
+**Pourquoi** — GO_CODE ciblé de Laurent du 13/10, pour #134 seule. **FAIT MÉTIER LAURENT du 13/10** : Laurent confirme personnellement disposer des droits d'utilisation de la photographie Hamilton du paquet U03 ; le HOLD fondé sur l'absence de cette confirmation est levé. **Extension de périmètre** décidée par Laurent le 13/10 : le visuel est intégré dans les trois langues, FR, EN et de-ch.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `public/images/hero/horlogerie-hero-montre-chronographe.webp`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Le placeholder vide du HERO horlogerie est remplacé par la photographie de la montre, sur les trois pages. Aucun autre changement de rendu.
+
+**Vérifié** —
+- tsc, Vitest 627/627, `next build` (387 pages) et `verifier-json` verts en local.
+- HTML visible comparé à `main` `2759239`, scripts retirés : 4 pages sur 375 diffèrent.
+  - `fr/industrie/horlogerie` et `de-ch/branchen/uhren` : seul le bloc du visuel change (préchargement de l'image ; placeholder remplacé par l'image).
+  - Les deux pages EN de #134 : traduction et visuel.
+- Sitemap identique hors dates `lastmod` (323 URL). Canonical et alternates des quatre pages identiques à `main`. `noindex, follow` présent sur les deux pages EN.
+- Playwright Chromium local, `next start`, 3 pages × 4 largeurs (320, 390, 768, 1 440 px) :
+  - image chargée, `object-contain`, rapport d'aspect identique à l'original (0,977) ;
+  - montre entière dans son cadre, placeholder absent ;
+  - aucun débordement créé par le visuel. Le débordement horizontal de `/de-ch/branchen/uhren` à 320 px (362 px pour 320) existe à l'identique sur `main` : il vient du H2 allemand de la section « Herausforderungen ». Préexistant, hors périmètre, non corrigé.
+- L'optimiseur d'images sert du WebP aux navigateurs qui l'acceptent ; transparence préservée.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview Vercel (SSO). `www` (non fusionné). Claims commerciaux non établis : inchangés, toujours soumis à décision (SB-L1). L'image ne démontre pas un équipement Orbitvu précis ; aucune légende ne l'affirme.
+
+**Suite** — QA de la Preview par Laurent (FR, EN, de-ch), puis GO_MERGE distinct. Pas de levée du `noindex`, pas de publication L1.
+
+---
+
 ## 2026-10-13 · #114 : D57 (L13) appliqué, `main` `4c53314` intégré, exception de Laurent au préalable J+7 · Claude de Laurent
 
 **Chantier** : Repair Factory PR-C | **PR** : #114, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
