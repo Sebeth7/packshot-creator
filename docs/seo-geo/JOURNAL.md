@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #127 : G3 retiré sur décision de Laurent, article FR IA rendu à `main` ; G1 et G2 seuls · Claude de Laurent
+
+**Chantier** : cocons et maillage, finition ciblée (suite de l'entrée du 10/10 ci-dessous, conservée) | **PR** : #127, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
+
+**Quoi** — `content/blog/fr/generer-images-produit-ia.json` restauré octet pour octet à sa version de `main` : l'offre BlendAI (étape « Choisissez votre outil », paragraphe « en 30 secondes », CTA, FAQ et champ `faqs`) et les 2 liens vers `/fr/ia-photo-produit` sont rétablis. G1 (ANC-131, 132, 142, 143) et G2 (ANC-121, 122, 126) inchangés.
+
+**Pourquoi** — Décision de Laurent du 13/10 (GO_CODE ciblé) : le site officiel `blendai.studio/en` décrit toujours publiquement 3 crédits gratuits permettant 6 photos sans carte bancaire ; la validité opérationnelle actuelle n'est pas établie. G3 est retiré de #127, sans autre correction éditoriale.
+
+**Fichiers** — `content/blog/fr/generer-images-produit-ia.json` (retour à `main`) ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Diff de #127 contre `main` : 5 JSON (7 hyperliens retirés, texte visible inchangé) et le JOURNAL. Liens de contenu entrants vers `/fr/ia-photo-produit` : inchangés par rapport à `main` (7).
+
+**Vérifié** — Article FR IA identique à `main` (diff vide) ; `verifier-json` ; `next build` ; CI : voir la PR.
+**Supposé** — Rien de nouveau.
+**Non regardé** — Landing IA (non modifiée, sur décision) ; validité de l'offre BlendAI (non recherchée, sur décision) ; HOLD PACK-D9 (D9-02) maintenu ; ANC-125, ANC-152 et ANC-112 à ANC-118 hors de cette PR.
+
+**Suite** — Contrôle de la Preview par Laurent ; G1 et G2 relèvent de l'information au titre de D42 (liens retirés, sens inchangé) ; GO_MERGE de Laurent.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
