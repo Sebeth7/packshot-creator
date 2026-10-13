@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #114 : D57 (L13) appliqué, `main` `4c53314` intégré, exception de Laurent au préalable J+7 · Claude de Laurent
+
+**Chantier** : Repair Factory PR-C | **PR** : #114, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
+
+**Quoi** — `main` `4c53314` intégré (conflit sur `JOURNAL.md` seul, union, aucune entrée retirée). D57 (L13) : `/de-ch/branchen/mode` garde son `Service.url` de `main` (`/de-ch/industrie/mode`) jusqu'à la fin du gel Mode (26/11/2026) ; les 7 autres hubs de-ch passent à `/de-ch/branchen/<slug>`. Métadonnées sociales des 140 articles du gabarit commun inchangées.
+
+**Pourquoi** — D57, L13 (« exclure `/de-ch/branchen/mode` jusqu'au 26/11 »). Décision de Laurent du 13/10, reproduite sans modification : « Pour #114 uniquement, je lève le préalable « lecture J+7 GSC obligatoirement consignée avant fusion ». C'est une exception ponctuelle au gate de cette PR, et non une affirmation que la mesure J+7 a été réalisée. Conserver explicitement son statut NON RÉALISÉE si elle manque, et maintenir le protocole de suivi du cluster AI Act. »
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun tant que la PR n'est pas fusionnée. À la fusion : `og:*` et `twitter:*` des 15 URL du cluster AI Act modifiés → **événement concomitant** à consigner (date et heure de fusion) pour l'interprétation des lectures J+7 et J+28 du cluster.
+
+**Vérifié** — Lecture J+7 technique du cluster AI Act : **NON RÉALISÉE** au 13/10 (aucune consignation sur `main` ni dans les branches actives) ; statut conservé, protocole `CLUSTER.md` § 6 maintenu. Contrôles de build : voir la PR.
+**Supposé** — Rien de nouveau.
+**Non regardé** — Lecture GSC (non faite, sur décision) ; surface Mode hors `Service.url` (non touchée) ; pages gelées (non touchées).
+
+**Suite** — Contrôle Chrome de la Preview par Laurent ; GO_MERGE distinct ; à la fusion, consigner l'événement concomitant en `ETAT.md`, section E.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
