@@ -100,6 +100,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
+
+**Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
+
+**Quoi** —
+- #64 et #27 fermées sans fusion le 12/10 à 06:42 UTC, avec les textes de clôture préparés le 11/10. Branches conservées.
+- D57 inscrit les lignes de gouvernance ratifiées le 11/10 : D32 à 12 jours, preuve produit, D29, D1 Beynost, disponibilité des fiches.
+- D58 inscrit les deux décisions de pilotage de Laurent du 12/10 : R1, option B, pour #131 seule (exception de périmètre, ni accord de Sébastien, ni envoi réel, ni fusion) ; R3, option A, sur le principe (corrections factuelles XL Pro v2 de #133 pendant M5, sous réserve des gels, de D42 et d'un événement daté au JOURNAL ; ni D42, ni Q20, ni fusion).
+- Q26 demande à Sébastien les arbitrages de fusion de #132 et #133 ; #131 y figure pour information ; ses autres questions G5 y sont regroupées une seule fois (SB1, SB2, S5-D1, D2, D3, D6, SB-R1, SB-N1, claims D42, LOT-6b), aucune ne bloquant une fusion en cours.
+
+**Pourquoi** — L11 et L12 (fermetures) et L01, L02, L03, L05, L15 (gouvernance), ratifiés par Laurent le 11/10. GO de Laurent du 12/10 : « fais tout ce que tu peux et laisse le reste pour chat directeur ». Mission « G5 — passe finale décisive » du 12/10 : R1 et R3, GO_MERGE de cette seule PR.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D57, D58), `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q26), `docs/seo-geo/ETAT.md` (A, B, C, D), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes de #64 (`63e1e92`) et #27 (`e81e5c0`) inchangées depuis le relevé du 11/10 ; `main` `0f960b5`.
+- Fermeture constatée par l'API GitHub : 06:42:15 et 06:42:18 UTC, non fusionnées.
+- Branches `seo/d33-factual-safe-patch-2026-09-30` et `content/maillage-q3` toujours présentes.
+- Numéros D57, D58 et Q26 libres sur `main` et sur les 14 autres branches de PR ouvertes (relevé du 12/10) ; Q25 est prise par #129.
+- Questions regroupées : aucune n'existe déjà dans ce fichier ; SB1 renvoie à Q20.10.
+- `data/navigation/pages-longues.ts`, lu sans modification : la condition de sortie « clôture de #27 » est atteinte pour les lignes 53 à 55 (3 guides FR) et 75 (`budget-studio-photo-automatise`), et la ligne 129 (« clôture de #109 et #27 ») l'est aussi, #109 étant fusionnée le 09/10. Levée sur GO_CODE (D44).
+- Lot F : « tout conforme » du 23/09 présent sur la branche conservée de #27 (`e81e5c0`) ; conformité historique, état courant du Worker non établi (R5).
+
+**Supposé** — Aucun.
+
+**Non regardé** :
+- le reliquat `home.faq.q7` de #64 (accueil gelé jusqu'au 28/10) ;
+- la confirmation de clôture du lot F (ETAT, C), qui revient à Laurent.
+
+**Suite** — Fusion de cette PR (GO_MERGE de Laurent), puis contrôle passif de `sysnext.vercel.app` ; SHA de fusion et résultat du contrôle : commentaire de clôture de la PR. Réponse de Sébastien à Q26 ; une question inscrite ici ne prouve pas qu'il l'a lue.
+
+---
+
 ## 2026-10-11 · Refonte UX/UI premium de l'espace de revue des 10 entretiens (Preview) · Claude de Laurent
 
 **Chantier** : finition UX/UI de l'espace de revue S3 (GO de Laurent : coder, tester, pousser sur #130, Preview ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_NOUVELLES_URL = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
@@ -164,7 +199,6 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Preview Vercel (SSO, non vérifiée par l'agent ; QA Chrome mobile BLOCKED, viewport bloqué — preuves mobiles acquises en local uniquement) ; `sysnext.vercel.app` et `www` (R4) ; jumeaux EN (contenu non ré-équivalent, traduction gelée C5/D17) ; `metaTitle`/`title`/`description` de B (gel F5 jusqu'au 23/11, `metaTitle` porté par #119, inchangés) ; droits des 5 photos (NON ÉTABLIS, toutes en HOLD_PUBLICATION_IMAGE).
 
 **Suite** — GO_MERGE et GO_PUBLICATION = NO. Décisions de Laurent : hero de B (recadrage / fichier historique / schéma / cadrage CSS via gabarit #117/#114), `metaTitle` de A (D13/#70), droits des photos, validation de la prose par Sébastien (D42) et sort de la version 1re personne (hors PR). Lien A → F5 à consigner comme événement D52 avant tout merge. Spec e2e à ajouter au registre `ATTENDUS` de `pr-checks.yml` (#117). Avant merge : entrée ETAT.md, smoke `sysnext`, contrôle `www` dans Chrome.
-
 ---
 
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
