@@ -30,7 +30,7 @@ const DATE_MODIFIED = '2026-10-13';
 
 // Langues réellement publiées (traduction en ligne). FR seul tant que EN/de-ch
 // ne sont pas finalisées et validées ; ajouter 'en' / 'de-ch' à la bascule.
-const PUBLISHED_LANGS = ['fr'] as const;
+const PUBLISHED_LANGS = ['fr', 'en', 'de-ch'] as const;
 type PublishedLang = (typeof PUBLISHED_LANGS)[number];
 
 /* ------------------------------------------------------------------ types */

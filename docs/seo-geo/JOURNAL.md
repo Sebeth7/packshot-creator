@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · Hub « Conversations avec Sébastien Jourdan » : traductions EN + adaptation de-ch, publication trilingue coordonnée (D38) · Claude de Laurent
+
+**Chantier** : GO RELANCE / reprise après dépassement de tokens — traduction (architecture hybride C). `VOICE = EDITORIAL_ATTRIBUTED`, `GO_TRADUCTION = YES`, `GO_MERGE = NO`, `GO_PUBLICATION = NO` | **PR** : #130 (brouillon) | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `2759239`
+
+**Quoi** — Traduction EN complète et adaptation de-ch (allemand suisse, sans « ß ») des dix conversations + bio + bannière de transparence, depuis le FR validé (D38). `content/conversations-sebastien-jourdan/en.json` et `de-ch.json` remplacent les stubs. `PUBLISHED_LANGS` passe à `fr/en/de-ch` : les trois routes sont servies, indexées, chacune dans sa langue (aucun repli FR silencieux). Entretien 08 (juridique) traduit par l'agent principal dans les deux langues : cadrage suisse conservé (la Suisse n'applique pas automatiquement le droit UE), aucune qualification réglementaire affirmée. **Maillage localisé avec prudence** : liens vers `ia-photo-produit` et `calculateur-roi` localisés (FR/EN/de-ch réels et indexables) ; en de-ch, `industrie/<slug>` → `branchen/<slug>` pour bijoux, horlogerie, vin (pages de-ch réelles). Blog (10), guides (7), studio-photo (2) et `mode-textile` restent en `/fr/` : aucun équivalent EN/de-ch indexable (blog/guides non traduits ; industrie EN en `NOINDEX_EN_*`, D9 ; `mode-textile` gelé jusqu'au 26/11). Ancres `#entretien-XX` inchangées (intra-page). **Aucun set `NOINDEX_EN_*` levé.**
+
+**Pourquoi** — Série réellement publiable dans les trois langues (objectif de la mission), sans casser de lien ni passer de jus vers une page `noindex` ou inexistante. Localiser le blog/les guides aurait produit des 404 (pas de contenu EN/de-ch). HOLD de maillage documenté, à lever au fil de la traduction de chaque cocon.
+
+**Fichiers** — `content/conversations-sebastien-jourdan/{en,de-ch}.json` (traductions), `app/[lang]/conversations-sebastien-jourdan/page.tsx` (`PUBLISHED_LANGS`), `app/sitemap.ts` (+`/en/` et +`/de-ch/`). **Aucun autre fichier à rayon large** (seo-config, hreflang, SchemaOrg, Worker, messages inchangés).
+
+**Effet attendu** — [Inférence] À la fusion (gelée) : hub indexable FR/EN/de-ch, hreflang réciproque complet, maillage sortant correct. Aucune promesse de position ni de citation par un moteur. Cela repose sur des schémas observés.
+
+**Vérifié** — `tsc` vert ; `verifier-json` 200 JSON ; `eslint` fichiers touchés vert ; `next build` vert (391 pages), route prérendue en `fr`, `en`, `de-ch`. `next start` `VERCEL_ENV=production` : les 3 locales = **200**, indexables (aucune balise robots), canonical auto-référent par langue, hreflang `fr/fr-CH/en/de-CH/x-default` complet et réciproque sur les 3, 10 `<article>` chacune, **0 `Interview`/`VideoObject`** ; `sitemap.xml` : 3 URL (fr/en/de-ch). Playwright build local : 0 débordement et 0 erreur console à 1440/768/390 sur les 3 langues ; `h1` propre à chaque langue (« Conversations avec » / « Conversations with » / « Gespräche mit ») ; 23 croquis + portrait réel chargés partout. Localisation des liens vérifiée (EN : 2 ; de-ch : 5 ; aucun `/fr/ia-photo-produit` ni `/fr/calculateur-roi` résiduel en en/de-ch). de-ch : 0 occurrence de « ß ».
+
+**Supposé** — [Inférence] La Preview Vercel reproduit le build local vérifié. [Non vérifié] directement : Preview réelle sous SSO Vercel. [Non vérifié] L'accord de principe de Sébastien (rapporté par Laurent) n'est pas une validation mot à mot : `PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_LINE_BY_LINE_BY_SEBASTIEN`. Traductions produites par sous-agents puis relues (attribution, garde-fous, liens, balises) ; relecture humaine fine non effectuée.
+
+**Non regardé** — L14 (HOLD traductions L2/L3 d'un autre chantier) : non levé ni étendu ; la couverture de cette collection reste à confirmer par Laurent au checkpoint. Relecture juridique spécialisée de 08 (recommandée avant merge, isolable). Maillage entrant vers le hub (Phase 5). Signalements source mineurs à revoir côté FR : 03-q5 (tournure « l'article »), 04-q3 (léger décalage question/réponse sur le flacon). `datePublished/dateModified` = 2026-10-13, à aligner sur la date réelle de publication au merge.
+
+**Suite** — Maillage entrant (D52, gels), diff A/B vs `main`, dossier de checkpoint. Aucun merge ni publication sans `GO_MERGE` explicite de Laurent.
+
+---
+
 ## 2026-10-13 · Hub public « Conversations avec Sébastien Jourdan » (FR) : collection éditoriale indexable à partir des 10 entretiens · Claude de Laurent
 
 **Chantier** : GO RELANCE du 13/10/2026 — publication de la série (architecture hybride C). `VOICE = EDITORIAL_ATTRIBUTED`, `GO_CODE_PR130 = YES`, `GO_TRADUCTION_PREPARATION = YES`, `GO_SEO_GEO = YES`, `GO_MERGE = NO`, `GO_PUBLICATION = NO` | **PR** : #130 (brouillon) | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `4c53314`
