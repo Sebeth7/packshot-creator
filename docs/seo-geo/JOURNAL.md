@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #117 — `main` `2759239` (#114, #127, #135) intégré, sans changement de code ; QA locale desktop et mobile 390 · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `e619b34` (fusion de `main` `2759239`)
+
+**Quoi** — `main` `2759239` fusionné dans #117 dans un worktree isolé, sans rebase (GO ciblé de Laurent du 13/10). Conflits dans `JOURNAL.md` (union, entrées placées par date) et `ETAT.md` (ligne #117 actualisée, ligne #135 de `main` conservée). `app/[lang]/blog/[slug]/page.tsx` fusionné sans conflit : métadonnées sociales de #114 conservées, les 2 retouches de #117 identiques à `2c0261f`. Les 9 autres fichiers de code et de test de #117 inchangés.
+
+**Pourquoi** — #114, #127 et #135 fusionnées les 12 et 13/10 : #117 de nouveau en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices, Chromium du conteneur, résolution DNS hors `localhost` bloquée (aucun service tiers contacté ; réponses des services simulées par `page.route`) :
+- `npx tsc --noEmit` vert ; Vitest 641/641 ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` et une QA locale non versionnée des 6 articles FR et EN (façade, aucune iframe ni requête tierce sans choix, après refus et après « Tout accepter » ; fenêtre d'information au clic ; Échap et retour du focus ; Entrée puis accord : iframe titrée, non mémorisée au rechargement), en desktop et en mobile 390 × 844 : 137/138 sur chacun des 2 passages complets.
+- Échec unique, différent à chaque passage, toujours le même symptôme : délai de 30 s dépassé dans la boucle de défilement des tests (`page.evaluate`), sur l'article photogrammétrie en mobile 390, sous 3 workers. Rejoué : 3/3 isolé, 59/60 puis 60/60 sous charge ciblée ; mesure directe de la boucle : 18/18, médiane 1,07 s, maximum 1,23 s.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Lecteurs tiers réels (Vimeo, Sketchfab, saasphoto.com) : simulés, non contactés ; réponse 402 de saasphoto.com à vérifier en navigateur réel. Cause des dépassements de délai intermittents de la boucle de défilement : non établie. Google Maps, `orbitvu.co` et révocation de la mesure d'audience : décisions hors #117, non résolues par #117.
+
+**Suite** — QA Chrome réelle de la Preview, validation humaine des textes, GO de fusion distinct.
+
+---
+
 ## 2026-10-13 · #114 : D57 (L13) appliqué, `main` `4c53314` intégré, exception de Laurent au préalable J+7 · Claude de Laurent
 
 **Chantier** : Repair Factory PR-C | **PR** : #114, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
