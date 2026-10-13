@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { secteurs } from '@/data/secteurs';
@@ -168,6 +169,13 @@ export default async function SecteurPage({ params }: PageProps) {
   // Slug « données » (FR) pour les maps machines/hero/related/solutions, et
   // base d'URL localisée pour le fil d'Ariane (de-ch → /de-ch/branchen/...).
   const dataSlug = dataSlugFor(slug, lang);
+  // U03 : ALT localisé du HERO horlogerie (jamais de repli FR pour EN/DE-CH).
+  const heroImageAlt = tx(
+    lang,
+    'Packshot d’une montre chronographe à cadran bleu, boîtier en acier poli et bracelet en cuir brun.',
+    'Product photograph of a chronograph watch with a blue dial, polished steel case and brown leather strap.',
+    'Produktfoto einer Chronographenuhr mit blauem Zifferblatt, poliertem Stahlgehäuse und braunem Lederarmband.',
+  );
   const industrieBase =
     lang === 'de-ch'
       ? `https://www.packshot-creator.com/de-ch/branchen`
@@ -260,7 +268,25 @@ export default async function SecteurPage({ params }: PageProps) {
         ]}
         media={
           <div className="w-full h-[360px] lg:h-[440px] rounded-2xl overflow-hidden">
-            {SECTOR_HERO_IMAGE_MAP[dataSlug] ? (
+            {dataSlug === 'horlogerie' ? (
+              /* U03 : HERO horlogerie — packshot réel (WebP transparent), cadré
+                 sans recadrage par object-contain sur le fond existant. Rendu
+                 dédié, hors de SECTOR_HERO_IMAGE_MAP/HeroImage : ce composant,
+                 partagé par tous les secteurs, impose object-cover et des
+                 variantes AVIF, incompatibles avec la transparence et l'intégrité
+                 de la montre. Le conteneur commun reste celui de main ; aucun
+                 autre secteur n'est modifié. */
+              <div className="relative w-full h-full">
+                <Image
+                  src="/images/hero/horlogerie-hero-montre-chronographe.webp"
+                  alt={heroImageAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain p-4"
+                />
+              </div>
+            ) : SECTOR_HERO_IMAGE_MAP[dataSlug] ? (
               <HeroImage
                 basePath={`/images/hero/${SECTOR_HERO_IMAGE_MAP[dataSlug]}`}
                 alt={secteur.hero.titre}
