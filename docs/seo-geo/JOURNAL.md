@@ -34,6 +34,79 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #114 : D57 (L13) appliqué, `main` `4c53314` intégré, exception de Laurent au préalable J+7 · Claude de Laurent
+
+**Chantier** : Repair Factory PR-C | **PR** : #114, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
+
+**Quoi** — `main` `4c53314` intégré (conflit sur `JOURNAL.md` seul, union, aucune entrée retirée). D57 (L13) : `/de-ch/branchen/mode` garde son `Service.url` de `main` (`/de-ch/industrie/mode`) jusqu'à la fin du gel Mode (26/11/2026) ; les 7 autres hubs de-ch passent à `/de-ch/branchen/<slug>`. Métadonnées sociales des 140 articles du gabarit commun inchangées.
+
+**Pourquoi** — D57, L13 (« exclure `/de-ch/branchen/mode` jusqu'au 26/11 »). Décision de Laurent du 13/10, reproduite sans modification : « Pour #114 uniquement, je lève le préalable « lecture J+7 GSC obligatoirement consignée avant fusion ». C'est une exception ponctuelle au gate de cette PR, et non une affirmation que la mesure J+7 a été réalisée. Conserver explicitement son statut NON RÉALISÉE si elle manque, et maintenir le protocole de suivi du cluster AI Act. »
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun tant que la PR n'est pas fusionnée. À la fusion : `og:*` et `twitter:*` des 15 URL du cluster AI Act modifiés → **événement concomitant** à consigner (date et heure de fusion) pour l'interprétation des lectures J+7 et J+28 du cluster.
+
+**Vérifié** — Lecture J+7 technique du cluster AI Act : **NON RÉALISÉE** au 13/10 (aucune consignation sur `main` ni dans les branches actives) ; statut conservé, protocole `CLUSTER.md` § 6 maintenu. Contrôles de build : voir la PR.
+**Supposé** — Rien de nouveau.
+**Non regardé** — Lecture GSC (non faite, sur décision) ; surface Mode hors `Service.url` (non touchée) ; pages gelées (non touchées).
+
+**Suite** — Contrôle Chrome de la Preview par Laurent ; GO_MERGE distinct ; à la fusion, consigner l'événement concomitant en `ETAT.md`, section E.
+
+## 2026-10-13 · #127 : G3 retiré sur décision de Laurent, article FR IA rendu à `main` ; G1 et G2 seuls · Claude de Laurent
+
+**Chantier** : cocons et maillage, finition ciblée (suite de l'entrée du 10/10 ci-dessous, conservée) | **PR** : #127, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
+
+**Quoi** — `content/blog/fr/generer-images-produit-ia.json` restauré octet pour octet à sa version de `main` : l'offre BlendAI (étape « Choisissez votre outil », paragraphe « en 30 secondes », CTA, FAQ et champ `faqs`) et les 2 liens vers `/fr/ia-photo-produit` sont rétablis. G1 (ANC-131, 132, 142, 143) et G2 (ANC-121, 122, 126) inchangés.
+
+**Pourquoi** — Décision de Laurent du 13/10 (GO_CODE ciblé) : le site officiel `blendai.studio/en` décrit toujours publiquement 3 crédits gratuits permettant 6 photos sans carte bancaire ; la validité opérationnelle actuelle n'est pas établie. G3 est retiré de #127, sans autre correction éditoriale.
+
+**Fichiers** — `content/blog/fr/generer-images-produit-ia.json` (retour à `main`) ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Diff de #127 contre `main` : 5 JSON (7 hyperliens retirés, texte visible inchangé) et le JOURNAL. Liens de contenu entrants vers `/fr/ia-photo-produit` : inchangés par rapport à `main` (7).
+
+**Vérifié** — Article FR IA identique à `main` (diff vide) ; `verifier-json` ; `next build` ; CI : voir la PR.
+**Supposé** — Rien de nouveau.
+**Non regardé** — Landing IA (non modifiée, sur décision) ; validité de l'offre BlendAI (non recherchée, sur décision) ; HOLD PACK-D9 (D9-02) maintenu ; ANC-125, ANC-152 et ANC-112 à ANC-118 hors de cette PR.
+
+**Suite** — Contrôle de la Preview par Laurent ; G1 et G2 relèvent de l'information au titre de D42 (liens retirés, sens inchangé) ; GO_MERGE de Laurent.
+
+---
+
+## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
+
+**Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
+
+**Quoi** —
+- #64 et #27 fermées sans fusion le 12/10 à 06:42 UTC, avec les textes de clôture préparés le 11/10. Branches conservées.
+- D57 inscrit les lignes de gouvernance ratifiées le 11/10 : D32 à 12 jours, preuve produit, D29, D1 Beynost, disponibilité des fiches.
+- D58 inscrit les deux décisions de pilotage de Laurent du 12/10 : R1, option B, pour #131 seule (exception de périmètre, ni accord de Sébastien, ni envoi réel, ni fusion) ; R3, option A, sur le principe (corrections factuelles XL Pro v2 de #133 pendant M5, sous réserve des gels, de D42 et d'un événement daté au JOURNAL ; ni D42, ni Q20, ni fusion).
+- Q26 demande à Sébastien les arbitrages de fusion de #132 et #133 ; #131 y figure pour information ; ses autres questions G5 y sont regroupées une seule fois (SB1, SB2, S5-D1, D2, D3, D6, SB-R1, SB-N1, claims D42, LOT-6b), aucune ne bloquant une fusion en cours.
+
+**Pourquoi** — L11 et L12 (fermetures) et L01, L02, L03, L05, L15 (gouvernance), ratifiés par Laurent le 11/10. GO de Laurent du 12/10 : « fais tout ce que tu peux et laisse le reste pour chat directeur ». Mission « G5 — passe finale décisive » du 12/10 : R1 et R3, GO_MERGE de cette seule PR.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D57, D58), `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q26), `docs/seo-geo/ETAT.md` (A, B, C, D), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun sur le site : documentation seule.
+
+**Vérifié** —
+- Têtes de #64 (`63e1e92`) et #27 (`e81e5c0`) inchangées depuis le relevé du 11/10 ; `main` `0f960b5`.
+- Fermeture constatée par l'API GitHub : 06:42:15 et 06:42:18 UTC, non fusionnées.
+- Branches `seo/d33-factual-safe-patch-2026-09-30` et `content/maillage-q3` toujours présentes.
+- Numéros D57, D58 et Q26 libres sur `main` et sur les 14 autres branches de PR ouvertes (relevé du 12/10) ; Q25 est prise par #129.
+- Questions regroupées : aucune n'existe déjà dans ce fichier ; SB1 renvoie à Q20.10.
+- `data/navigation/pages-longues.ts`, lu sans modification : la condition de sortie « clôture de #27 » est atteinte pour les lignes 53 à 55 (3 guides FR) et 75 (`budget-studio-photo-automatise`), et la ligne 129 (« clôture de #109 et #27 ») l'est aussi, #109 étant fusionnée le 09/10. Levée sur GO_CODE (D44).
+- Lot F : « tout conforme » du 23/09 présent sur la branche conservée de #27 (`e81e5c0`) ; conformité historique, état courant du Worker non établi (R5).
+
+**Supposé** — Aucun.
+
+**Non regardé** :
+- le reliquat `home.faq.q7` de #64 (accueil gelé jusqu'au 28/10) ;
+- la confirmation de clôture du lot F (ETAT, C), qui revient à Laurent.
+
+**Suite** — Fusion de cette PR (GO_MERGE de Laurent), puis contrôle passif de `sysnext.vercel.app` ; SHA de fusion et résultat du contrôle : commentaire de clôture de la PR. Réponse de Sébastien à Q26 ; une question inscrite ici ne prouve pas qu'il l'a lue.
+
+---
+
 ## 2026-10-10 · #117 — `main` `0f960b5` (#126, #128) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
 
 **Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `9646028` (fusion de `main` `0f960b5`)
@@ -177,6 +250,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — `www` (R4) ; contrôle humain en Chrome de la fermeture (D55 : tests automatisés tenus pour suffisants). `pkc_attribution` (`lib/attribution.ts`, monté dans le layout) : écrit en production dans le `sessionStorage` (UTM, referrer, première page) sans consentement ni mention dans la politique ; hors #122, non modifié, à signaler à Laurent.
 
 **Suite** — CI, sortie du brouillon et fusion ; contrôle de `sysnext.vercel.app` (smoke, pop-in montée), puis de `www` dans Chrome (Laurent) ; mesure sur 7 à 14 jours ; validation de la copy par Sébastien, non bloquante (D55).
+
+---
+
+## 2026-10-10 · Neutralisation ciblée : liens produit historiques, liens IA vers l'ancienne route `alphashot-g2`, offre d'essai BlendAI de l'article FR IA · Claude de Laurent
+
+**Chantier** : cocons et maillage, finition ciblée (kit `PSC_COCONS_FINITION_CIBLE_PRET_CLAUDE_CODE_2026-10-10.zip`, SHA-256 `d7c94f19…48e6`, transmis par Laurent le 10/10 ; GO_CODE_CIBLÉ et GO_PR_DRAFT, GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : brouillon, « DO NOT MERGE » | **Base** : `main` `48a2ce2`
+
+**Quoi** — Script du kit (`PSC_PATCH_COCONS_CIBLE_2026-10-10.mjs`, exécuté hors dépôt depuis un worktree isolé, contrôle des SHA des 6 fichiers et de l'unicité de chaque remplacement) :
+1. G1 (ANC-131, 132, 142, 143) : articles 3D FR et EN, hyperliens retirés sur « Packshot Macro DL » et « Packshot Macro DIS » (vers `alphashot-micro-v2`) ; noms, `<strong>` et `<em>` conservés.
+2. G2 (ANC-121, 122, 126) : article Amazon EN et articles eBooks EN et FR, hyperlien vers l'ancienne route `alphashot-g2` retiré des expressions IA / automatisation ; texte et gras conservés ; aucune destination de substitution.
+3. G3 (ANC-153) : `content/blog/fr/generer-images-produit-ia.json`, retrait de l'offre « 6 visuels offerts, sans carte bancaire » (phrase de l'étape « Choisissez votre outil », avec « Connectez-vous et accédez au tableau de bord. »), du paragraphe de promotion « en 30 secondes », du CTA « Tester BlendAI gratuitement », et de la mention de l'offre dans la FAQ (texte de l'article et champ `faqs`, qui alimente le JSON-LD FAQPage).
+
+**Pourquoi** — Liens qui associent des désignations historiques ou des affirmations IA à une fiche d'un autre produit (G1, G2) ; offre d'essai non confirmée (G3).
+
+**Fichiers** — 6 JSON de `content/blog/{fr,en}/` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Liens de contenu entrants, `main` → PR : `/fr/ia-photo-produit` 7 → 5 ; `/fr/studio-photo/alphashot-g2` 2 → 1 (le restant : ANC-125, HOLD) ; `/en/photo-studio/alphashot-g2` 2 → 0 ; `alphashot-micro-v2` FR 14 → 12, EN 15 → 13. Aucun lien ni texte ajouté.
+
+**Vérifié** — `main` `48a2ce2` = base attendue par le kit ; SHA des 6 fichiers conformes ; dry-run puis apply : 11 remplacements au nombre d'occurrences attendu ; diff champ par champ : seuls des `href` retirés et les passages G3 listés ; aucune PR ouverte ne touche ces 6 fichiers (#27 : Amazon FR seulement ; #64 : aucun). Contrôles de build : voir la PR.
+**Supposé** — Le classement ANC du kit (pilotage externe du 10/10) n'est pas re-audité ici (consigne du kit).
+**Non regardé** — 15 références historiques G1 conservées sans conversion ; ANC-125 (Amazon FR, collision #27) ; ANC-112 à ANC-118 (landing IA actuelle) ; ANC-152 (collision #64) ; la landing `/fr/ia-photo-produit` de `main` affiche toujours « Essai gratuit — 6 visuels offerts » et lie `blendai.studio` (hors mandat) ; dans l'article FR IA, la légende « en moins de 30 secondes » et les durées « 30 secondes par image » restent (hors liste du kit) ; affirmations techniques IA restant dans la prose G2 : HOLD éditorial D42 avant fusion.
+
+**Suite** — Brouillon ; QA ciblée des 6 URL sur la Preview ; validations D42 à relever ; GO_MERGE et GO_PUBLICATION distincts de Laurent.
 
 ---
 
@@ -1323,6 +1419,33 @@ Aucun mot ajouté, aucun claim ajouté, intention inchangée. H1, description, s
 **Non regardé** — Preview (SSO) et `www` (R4) ; Firefox, WebKit ; contrôle humain D42, étapes 4 et 5.
 
 **Suite** — Contrôle de la Preview de #109 par Laurent (desktop, tablette, mobile) ; validation selon D42 ; fusion uniquement sur GO distinct ; fermeture de #64 sur GO distinct, branche conservée (ses entrées JOURNAL du 30/09 et du 01/10 n'existent que sur elle) ; micro-patch `home.faq.q7` après le 28/10 ; mise à jour de D32 (« 10 jours »), D1 et `00-BRIEFING.md` (Saint-Bonnet) par leur auteur.
+
+---
+
+## 2026-10-08 · Repair Factory, PR-C — Service.url des hubs de-ch et métadonnées sociales des articles (G-011 partiel, BL-43-1) · Claude de Laurent
+
+**Chantier** : SEO/GEO Repair Factory du 08/10 | **PR** : #114, brouillon, « DO NOT MERGE », branche `claude/focused-hypatia-ygys0g-tech-seo` | **Base** : `main` `06b18e2`
+
+**Quoi** — Deux commits :
+1. G-011 (backlog de #55), partie hubs : `Service.url` des 8 hubs de-ch visait `/de-ch/industrie/<slug>` (redirigée) ; il reprend l'URL servie, calculée comme le fil d'Ariane. Partie fiches (`Product.url`, `Offer.url`) : retirée de cette PR après l'ouverture de #110 (sprint parallèle, 14:36 UTC), qui la traite dans `app/[lang]/studio-photo/[slug]/page.tsx` (COLLISION_OTHER_SPRINT).
+2. BL-43-1 : l'openGraph de l'article remplace en bloc celui du layout ; `og:url`, `og:site_name` et `og:locale` manquaient sur les 140 articles du gabarit commun, et la carte twitter héritée affichait le titre, la description et l'image du site. Le gabarit pose désormais ces champs à l'image de l'article.
+
+**Pourquoi** — URL de données structurées en redirection (audit C, AC-14 ; registre 582, G-011) ; métadonnées sociales génériques sur tous les articles (backlog AI Act BL-43-1, ouvert depuis #43).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx` ; `docs/seo-geo/JOURNAL.md`. `components/seo/SchemaOrg.tsx` non modifié (fichier de #109) : `author.url` `/fr/a-propos` des articles de-ch reste à traiter.
+
+**Effet attendu** — JSON-LD des 8 hubs de-ch sans URL redirigée ; aperçus sociaux des articles à leur titre et à leur image. `<title>`, description, canonical, hreflang et robots inchangés. Aucun effet de classement attendu en propre.
+
+**Vérifié**
+- `tsc` vert ; `next build` vert (386 pages) ; Vitest 483/483.
+- HTML prérendu contre `main` : 140 pages modifiées, toutes des articles du gabarit commun (têtes `og:*` et `twitter:*` seules) ; 140 articles conformes (`og:url` = canonique, `og:locale` selon la langue, `twitter:title` = `og:title`).
+- JSON-LD (build avant retrait des fiches) : 8 hubs de-ch avec `Service`, 0 URL redirigée ; JSON-LD identique à `main` sur les fiches et hubs FR et EN. Après retrait : fiches identiques à `main`.
+- Fichiers de PR ouvertes : `industrie/[slug]/page.tsx` est aussi modifié par #104 et #107 (HOLD), à une autre ligne.
+
+**Supposé** — Aucun.
+**Non regardé** — Test des résultats enrichis de Google ; aperçus réels sur les réseaux sociaux ; Preview (SSO) ; `www` (R4).
+
+**Suite** — **Événement concomitant à consigner à la fusion** : les 15 URL du cluster AI Act (#96) changent de métadonnées sociales (`AI_ACT_CONCURRENT_EVENT = YES`, mesure J+7 du 13 ou 14/10) ; fusion de préférence hors de la fenêtre J+7. GO de fusion distinct ; GSC « Données structurées » à J+7-21.
 
 ---
 
