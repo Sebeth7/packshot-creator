@@ -1,0 +1,1577 @@
+{
+  "transparence": "<p>These conversations were put together by PackshotCreator’s editorial team from Sébastien Jourdan’s career, his publications and his public positions. They are not recorded interviews or word-for-word quotations: the questions and answers are an editorial shaping of his point of view as a photographer and company director. The dated experiences and positions are attributed to him; the examples presented as such are illustrative.</p>",
+  "bio": {
+    "titre": "From photography to the automated studio: Sébastien Jourdan’s perspective",
+    "html": "<p>Sébastien Jourdan first earned his living making images. Advertising, fashion, products: for years, his work meant finding the right light, the right framing and the detail that makes an object understandable. According to his published professional background, he has worked for brands such as Lancel, McLaren and Orange.</p><p>Then another question took up more and more space: how do you produce that quality not on a single image, but across a whole collection, with deadlines, variants and people who have to take over from one another? In 2018, he created Everleet, a shooting solution for e-commerce. In 2024, he founded BlendAI.Studio to explore what artificial intelligence can add <strong>from photographs of real products</strong>. He now runs PackshotCreator, which distributes Orbitvu equipment among others.</p><p>These ten conversations are built around that threefold perspective: the photographer who sees an image’s flaws, the entrepreneur who knows the constraints of a production flow, and the director who must choose tools without losing sight of the real product. They draw on his public positions and on clearly flagged teaching situations.</p>",
+    "timeline": [
+      {
+        "periode": "2005 – 2018",
+        "label": "Photographer: fashion, advertising, products (Lancel, McLaren, Orange)"
+      },
+      {
+        "periode": "2018",
+        "label": "Creates Everleet, a shooting solution for e-commerce"
+      },
+      {
+        "periode": "2024",
+        "label": "Founds BlendAI.Studio: extending visuals from real photos"
+      },
+      {
+        "periode": "2026",
+        "label": "Runs PackshotCreator (Orbitvu equipment)"
+      }
+    ],
+    "portrait": {
+      "src": "/images/revue-entretiens-s3/portrait-sebastien-jourdan.png",
+      "alt": "Portrait of Sébastien Jourdan.",
+      "legende": "Sébastien Jourdan — photographer by training, founder of Everleet and BlendAI.Studio, director of PackshotCreator.",
+      "width": 800,
+      "height": 800
+    }
+  },
+  "entretiens": [
+    {
+      "num": "01",
+      "slug": "entretien-01",
+      "serie": "Conversations on product photography",
+      "entretien": "1/10",
+      "sujet": "Choosing between an external provider, an in-house studio and a mixed model",
+      "titre": "Before buying a photo studio, look at how your products move",
+      "sous_titre": "Should you bring product photography in-house? The view of a photographer turned designer of e-commerce solutions.",
+      "intro": [
+        "The first answer is not a machine brand or a budget: it is a diagnosis. After photographing products for brands, then designing shooting solutions and supporting companies that want to produce more images, Sébastien Jourdan brings the question back to its essence: what problem are you really trying to solve?"
+      ],
+      "ouverture": "<p>In a publication from April 2026, Sébastien Jourdan described the case of a company that wanted to cut the cost of its visuals: it had compared several solutions and picked the cheapest one. On a spreadsheet, the decision held up. A few months later, retouches were piling up, settings changed from one session to the next and go-live dates were slipping.</p><p>That is where he reframes the question: <strong>how much does an image you can actually publish cost?</strong> Not simply a delivered file, but a visual that has been approved, matched to the right product and available at the right time. To put a figure on your own organization, the <a href=\"/en/calculateur-roi\">studio profitability calculator</a> helps you put numbers on the steps you actually pay for, and <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">this article on return on investment</a> puts them in perspective. As for whether to replace an older studio that still works, it is often a question of <a href=\"/fr/blog/migrer-ancien-packshotcreator\">equipment migration</a>, not of price per image.</p>",
+      "sections": [
+        {
+          "id": "entretien-01-q1",
+          "question": "“When a company tells you: we want to shoot our photos ourselves, where do you start?”",
+          "figures": [
+            {
+              "name": "01_CHOIX_PRODUCTION",
+              "src": "/images/revue-entretiens-s3/01_CHOIX_PRODUCTION.svg",
+              "alt": "Diagram of the three possible setups: external production, in-house and mixed.",
+              "caption": "Method sketch — editorial illustration, not a demonstration of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "By asking why. Is the issue the time between a new item arriving and going online? A collection whose photos don’t look alike? The cost? Or dependence on a provider’s schedule? Those are four different problems, and they don’t call for the same organization."
+            },
+            {
+              "t": "p",
+              "html": "Sébastien Jourdan’s background sheds light on this reflex. A photographer by training, he knows that a beautiful image takes time, choices and sometimes several attempts; with Everleet and then PackshotCreator, he turned to a different question: how to retain that quality when the goal is no longer to get <em>one</em> photo right, but to produce every image in a catalog. The trigger is rarely the whole story."
+            },
+            {
+              "t": "p",
+              "html": "The right first meeting doesn’t take place in front of a brochure: it takes place in front of a list of products, examples of approved images, real lead times and the people who manage the flow."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q2",
+          "question": "“Is outsourcing necessarily outdated once a catalog grows?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "No, and that needs to be said. For a brand that launches few items, with complex products and occasional campaigns, an excellent provider can be more rational than setting up a studio. It brings a perspective, skills and production capacity that would be costly to maintain permanently."
+            },
+            {
+              "t": "p",
+              "html": "The question changes when the catalog is alive every day. In a publication from April 2026, Sébastien Jourdan framed the problem in terms of control over rhythm: when visual production becomes a continuous flow, every shipment, every wait for a slot and every round trip counts. That is not necessarily the provider’s fault; it is how the company organizes itself around them."
+            },
+            {
+              "t": "p",
+              "html": "Hence a useful comparison: look at three scenarios on the same products — outsource everything, produce everything in-house, or bring recurring views in-house and entrust special cases to specialists. You compare the reliability of the result, not just an invoice."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q3",
+          "question": "“There is a lot of talk about price per photo. Is it a bad indicator?”",
+          "figures": [
+            {
+              "name": "04_TEMPS_INVISIBLE",
+              "src": "/images/revue-entretiens-s3/04_TEMPS_INVISIBLE.svg",
+              "alt": "Sketch: where does the delay hide? The time of a photo does not sum up the time of a published image.",
+              "caption": "Where does the delay hide? — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It is an incomplete indicator. An image that looks cheap can cost a lot if it ties up three people to prepare the products, multiplies corrections, makes variants hard to find and forces a session to be redone. Conversely, an in-house studio has a cost even when nobody is shooting: space, training, maintenance and the operator’s time don’t go away."
+            },
+            {
+              "t": "p",
+              "html": "The right benchmark is the <strong>cost of an accepted, usable image</strong>, not that of an exported file. For twenty representative products, time five stages: preparation, settings, capture, checking/retouching and export/approval. Add the retakes, external costs and the share of employee time. You will have a basis for deciding, even though it is nothing like a universal price."
+            },
+            {
+              "t": "p",
+              "html": "This is the reasoning Sébastien Jourdan has developed publicly around full cost: the equipment and the quote don’t tell the whole story of the chain. A calculator can help compare assumptions; it must not announce guaranteed profitability."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q4",
+          "question": "“Is there a volume at which you say: this time, you need to bring it in-house?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Magic thresholds deserve suspicion. Five hundred identical products shot from two angles and five hundred pieces of jewelry with complex reflections are not at all the same working days. You need to count <strong>items</strong>, <strong>views</strong> and <strong>final files</strong> separately. A shot is not a product, and an image that works on the first try is not a rule."
+            },
+            {
+              "t": "p",
+              "html": "What matters most is regularity. A company with a hundred new items every week has to think in terms of flow. One that prepares two collections a year may prefer to rent or reserve capacity. The number alone doesn’t buy a decision."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q5",
+          "question": "“Which products do you bring to a demonstration?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Not the five most beautiful ones. The five most difficult. Glossy packaging, a black item, a transparent bottle, a metallic piece, a product whose label is hard to read: that is what reveals the reality of a method. Sébastien Jourdan has publicly recommended this test when deciding whether to upgrade an older studio; it is just as valid when you are looking at your first equipment."
+            },
+            {
+              "t": "p",
+              "html": "The result is judged at full size, then on repeatability. Will you get the same lighting in three months? Who corrects a reflection? How long does it take to prepare the object? Does a different operator get an acceptable result? A demonstration that doesn’t answer these questions is incomplete."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q6",
+          "question": "“And what if the old equipment still works?”",
+          "figures": [
+            {
+              "name": "05_PRODUITS_A_TESTER",
+              "src": "/images/revue-entretiens-s3/05_PRODUITS_A_TESTER.svg",
+              "alt": "Sketch: a useful test is not a parade. Choose the objects that truly put the method to the test.",
+              "caption": "A useful test is not a parade — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It’s better not to replace for the sake of replacing. In a publication from October 2026, Sébastien Jourdan explained that an older studio can keep producing properly, even if the software and its environment become fragile. It is when the tools around the machine prevent you from working that the question of a migration really arises."
+            },
+            {
+              "t": "p",
+              "html": "A reasonable transition is prepared: you build profiles for the difficult products, check the exports and keep a way to produce during the switchover. What is at stake is the continuity of the catalog, not novelty for novelty’s sake."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q7",
+          "question": "“What is your advice before signing?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Run a week of truth. Select a representative sample, note the path each item follows and compare two or three possible setups. Involve the person who prepares the objects, the one who shoots and the one who approves the final file. Some decisions become obvious when these people are around the same table."
+            },
+            {
+              "t": "p",
+              "html": "And give yourself the right to conclude: <em>for this product family, we stay with a provider</em>. You don’t build a studio to win an internal debate. You build it, if necessary, to produce reliable images at the pace of the company."
+            },
+            {
+              "t": "encadre",
+              "titre": "What you can do on Monday",
+              "paras": [
+                "Take ten everyday products and five difficult cases. For each one, note the full lead time between receipt and approved image, the number of views, the retakes and the people involved. Then compare the three scenarios — in-house, external and mixed — without any promise of throughput.",
+                "<strong>Next:</strong> <a href=\"/fr/blog/e-commerce-comment-mettre-en-place-votre-studio-photo\">How to organize the studio and its production flow in practice</a>."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> Bringing photography in-house is not automatically cheaper, faster or better. The right choice depends on the real flow of items, the types of products, the approval steps, the skills available and the full cost of the <em>published</em> image. A mixed model is often an option to test, not a shameful compromise.",
+      "recitPhotos": [
+        {
+          "src": "/images/machines/alphashot-xl-g2/packshot-operator.avif",
+          "alt": "Operator preparing a product shoot in the studio.",
+          "credit": "Photo PackshotCreator / Orbitvu",
+          "width": 880,
+          "height": 586
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "02",
+      "slug": "entretien-02",
+      "serie": "Conversations on product photography",
+      "entretien": "2/10",
+      "sujet": "Organizing an e-commerce photo studio, from intake to approved file",
+      "titre": "An e-commerce photo studio is first and foremost a production circuit",
+      "sous_titre": "Who prepares the products? Who checks the SKU? Who decides the image is good? And why these questions matter as much as the camera.",
+      "intro": [
+        "On a studio’s walls, you see the lighting and the backdrops. You see far less of the products waiting, the incomplete requests and the image versions that get mixed up. Sébastien Jourdan, a photographer by training who became an entrepreneur in imaging solutions, suggests starting there."
+      ],
+      "ouverture": "<p>In a publication from April 2026, Sébastien Jourdan described the daily routine of an e-commerce team: it took them about three weeks to get a series of images out. Receiving, sorting, shooting, retouching, approval, going live: none of these operations looked extravagant taken separately.</p><p>What stands out in the account was <strong>the time between the steps</strong>. A product waited for its preparation, a file waited for sign-off, a correction waited for the right person to be available. Later, with the same headcount and volume, the team restructured the handover to shooting and worked more in series; it was producing in a few days. This is not a result to promise to every studio: it is proof, in this specific case, that the bottleneck was not necessarily the camera. Keeping <a href=\"/fr/guide/visuels-collection-produits-homogenes\">consistent visuals across an entire collection</a> comes down first of all to this organization; <a href=\"#entretien-06\">identifying items</a> and <a href=\"#entretien-10\">handing over profiles</a> are its extension.</p>",
+      "sections": [
+        {
+          "id": "entretien-02-q1",
+          "question": "“You are handed an empty room and a catalog. What do you do first?”",
+          "figures": [
+            {
+              "name": "02_FLUX_STUDIO",
+              "src": "/images/revue-entretiens-s3/02_FLUX_STUDIO.svg",
+              "alt": "Eight method steps, from product receipt to publication.",
+              "caption": "Method sketch — editorial illustration, not a demonstration of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "You start by looking at the catalog and at the path a product takes. Before choosing equipment, you need to understand how the item arrives, what allows it to be identified, who prepares the object and who collects the files. A very well-lit studio can still be badly organized."
+            },
+            {
+              "t": "p",
+              "html": "A photographer by training, he learned to look at details; with Everleet, he became interested in systems capable of making the work repeatable. Today, photography is part of a much larger circuit: e-commerce, data, approval, distribution and sometimes AI. Each link has to know what it expects from the one before."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q2",
+          "question": "“How do you avoid photographing the wrong variant?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "With an identifier that follows the object, not with human memory. An item and its color are checked on receipt; the link must stay intact as the product passes in front of the camera and then through the exports. If the photographer receives a blue bottle while the order file says green, you stop and correct the information. You don’t silently decide that “it must be this one.”"
+            },
+            {
+              "t": "p",
+              "html": "Naming has to be readable by both systems and people. For example, an internal convention might look like `SKU123-BLEU-V01-FACE.jpg`: SKU, variant, view. This is not a universal standard or a GS1 requirement; it is an example of a rule to document. The most important thing is that it be the same for shooting, the media library and the catalog integration."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q3",
+          "question": "“Who exactly should approve the image?”",
+          "figures": [
+            {
+              "name": "06_REFERENCE_VARIANTE",
+              "src": "/images/revue-entretiens-s3/06_REFERENCE_VARIANTE.svg",
+              "alt": "Sketch: one image, one exact item. The link to the SKU and its variant must survive the whole chain.",
+              "caption": "One image, one exact item — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "A clear responsibility is better than a chain of people in copy. The photographer can approve sharpness and lighting; the product team checks the variant, the details and the packaging; the e-commerce team makes sure the file matches the channel. An important decision shouldn’t get lost in an email thread."
+            },
+            {
+              "t": "p",
+              "html": "You also need to define <em>when</em> to approve. If you discover after a hundred items that the framing wasn’t accepted, you don’t have a retouching problem, you have a procedure problem. Every new product family benefits from starting with a few approved reference files before the series is launched."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q4",
+          "question": "“Do saved settings replace the photographer’s expertise?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "No. They save you from going through the same trials every morning. The operator keeps their eye; they simply have reliable starting points. This is particularly useful when several people take turns, or when a collection comes back six months later."
+            },
+            {
+              "t": "p",
+              "html": "A single setting cannot cover watches, black fabrics and transparent bottles. It is better to build profiles by family, with an example of the expected result. For a reflective object, the angle changes everything; a profile must still be checked in real conditions. The system reduces avoidable variation; it does not abolish photography."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q5",
+          "question": "“What do you automate, and what do you refuse to automate?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "You readily automate repetitive operations when their result can be observed: a sequence of shots, exports, file names, variants prepared according to a profile. But the decision that a logo, a material or a color faithfully represents the product is not something to hand over to blind automation."
+            },
+            {
+              "t": "p",
+              "html": "In a publication on catalogs growing from a few hundred to several thousand items, Sébastien Jourdan stressed that the problem becomes structural. The right answer is not simply “photograph faster”: it consists of standardizing the steps and knowing how they connect."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q6",
+          "question": "“How do you avoid endless retouching?”",
+          "figures": [
+            {
+              "name": "07_QUI_FAIT_QUOI",
+              "src": "/images/revue-entretiens-s3/07_QUI_FAIT_QUOI.svg",
+              "alt": "Sketch: four roles, clear decisions. Reliable production rests on explicit handovers.",
+              "caption": "Four roles, clear decisions — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "By separating the correction of a technical defect from a request for an artistic change. A visible speck of dust? You deal with it. A color that no longer looks like the sample? You go back to the reference. A new staging request after the packshot has been approved? That is not a retouch: it is a new order."
+            },
+            {
+              "t": "p",
+              "html": "It is better to keep the approved version and the reason for a redo. After a few weeks, the team discovers the real reasons for retakes. Many could have been avoided at the brief, at preparation or at the check of the first batch."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q7",
+          "question": "“How do you know whether the studio is really more efficient?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Don’t look only at photos taken per hour. Look at the time between product receipt and publishable images, the number of items that go back into retouching, the rate of files correctly matched to the SKU and the time spent searching for a version. A good studio is a system in which you can find what you have done."
+            },
+            {
+              "t": "p",
+              "html": "Sébastien Jourdan shared the case of a team whose circuit took several weeks, even though each step taken on its own seemed logical. The point of this account is not to claim that everyone will get the same result: it is to show that lost time slips in between the steps."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q8",
+          "question": "“And when it comes to rolling all this out across several workstations?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It is better to start small: one product family, one circuit, one person in charge, rules written on a single page. You then widen the scope once the exceptions are understood. Training shouldn’t look like an oral transfer of tricks that only the longtime operator knows."
+            },
+            {
+              "t": "p",
+              "html": "Someone joining the team must know where the product is, which setting to use, how to name the file and who to show an anomaly to. It is not spectacular. It is what makes a production professional."
+            },
+            {
+              "t": "encadre",
+              "titre": "The practical tool from this conversation",
+              "paras": [
+                "Draw a single line: <strong>product received → SKU confirmed → preparation → shooting → check → processing → export → publication</strong>. Under each step, write the person responsible and the reason that can block it. If two people don’t give the same answer, start by fixing that, before buying one more piece of software.",
+                "<strong>Read first:</strong> <a href=\"/fr/blog/est-il-utile-dinternaliser-sa-production-de-photos-packshot\">Should you bring it in-house or keep a provider?</a>."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> A reliable e-commerce studio connects physical receipt, identification, preparation, shooting, checking, processing and distribution. Quality must be reproducible; every file must match one item and one variant without ambiguity; automation is only useful if the circuit already works.",
+      "recitPhotos": [
+        {
+          "src": "/images/blog/e-commerce-comment-mettre-en-place-votre-studio-photo/cover.avif",
+          "alt": "Shooting station in an e-commerce photo studio.",
+          "credit": "Photo PackshotCreator",
+          "width": 1600,
+          "height": 900
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "03",
+      "slug": "entretien-03",
+      "serie": "Conversations on product photography",
+      "entretien": "3/10",
+      "sujet": "Product image fidelity and trust before purchase",
+      "titre": "A beautiful photo that misleads about the product is still a bad photo",
+      "sous_titre": "The photographer, the merchant and AI don’t always look at the same image. Where should the dial sit between desirability and fidelity?",
+      "intro": [
+        "Most discussions about product images start with the look: bright enough? sharp enough? premium enough? Sébastien Jourdan proposes a more uncomfortable question: what does this image let the customer understand — or misunderstand — about what they are buying?"
+      ],
+      "ouverture": "<p>Take a bag in grained leather, with a gold buckle. In a retouched version, the leather becomes perfectly smooth and the buckle’s design changes slightly. The image is superb. But it is no longer quite the bag you will open when the package arrives.</p><p>This case is invented to explain a very simple check: when you have the object and the photo side by side, do the shape, the material, the color and the details stay the same? Between a spectacular background and a correct buckle, the correct buckle wins. That is precisely where <a href=\"/fr/blog/retouche-ia-photo-produit\">AI retouching</a> must remain a tool for fidelity and not for distortion — a subject taken further in the <a href=\"#entretien-07\">conversation on AI and real photography</a>.</p>",
+      "sections": [
+        {
+          "id": "entretien-03-q1",
+          "question": "“What distinguishes a product photo from an advertising image?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "A product photo must first answer the question: <em>what am I going to receive?</em> You should be able to recognize the shape, the color, the material, the details and, where it matters, the contents of the package. A campaign image can tell a mood story; a reference photo must remain verifiable."
+            },
+            {
+              "t": "p",
+              "html": "As a photographer of fashion, objects and campaigns, he knows these are not the same choices. You can showcase light and material without inventing a finish, rounding an edge or hiding a decisive feature. AI now multiplies the possibilities — and makes this real starting point all the more important."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q2",
+          "question": "“Does retouching necessarily become distortion?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "No. Removing a speck of dust from the background, balancing the light or cleanly cutting out an object doesn’t necessarily change what it is. But if you erase a seam, change the look of a glass or transform the texture of leather, you have crossed another line."
+            },
+            {
+              "t": "p",
+              "html": "A simple test: put the image next to the object. Would a reasonable person think they were buying exactly the product shown? A treatment that makes the object easier to read does not play the same role as one that adds a quality to it. This judgment remains contextual, notably when the rendering depends on the customer’s screen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q3",
+          "question": "“Why keep a reference photograph if you can generate ten moods?”",
+          "figures": [
+            {
+              "name": "08_IMAGE_SOURCE_DERIVEE",
+              "src": "/images/revue-entretiens-s3/08_IMAGE_SOURCE_DERIVEE.svg",
+              "alt": "Sketch: what can change, what must not change. A new scene must not reinvent the product.",
+              "caption": "What can change, what must not change — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Because the ten moods need a fixed point. The setting can change; the product promise should not. With BlendAI.Studio, Sébastien Jourdan starts from the real capture of the product: it anchors the variations, the staged scenes and the views intended for communication."
+            },
+            {
+              "t": "p",
+              "html": "A reference photograph is not a talisman. It still has to be checked: right color, right variant, visible details, up-to-date label. But without this basis, how do you prove that a generated scene has kept the shape of the product? You would end up comparing one image to another image, without ever going back to the object."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q4",
+          "question": "“Does more images mean more trust?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Not necessarily. Three relevant views that answer three real hesitations are better than a gallery of fifteen nearly identical images. An overall view, a close-up of the material, a view of the opening or of a mechanism can contribute more than a new setting."
+            },
+            {
+              "t": "p",
+              "html": "It depends on the product. A pair of shoes and an industrial part don’t call for the same proof. What matters is that each image answers a real question from the buyer; the number of images per item is not universal. It is up to the seller to decide what really needs to be shown."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q5",
+          "question": "“How do you take color seriously when everyone is looking at a different screen?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "You don’t control every buyer’s phone. You can, however, control your own work. Consistent settings at capture, a reference screen, comparison with the real product and validation of sensitive shades: that is already a lot."
+            },
+            {
+              "t": "p",
+              "html": "The “colours not contractual” notice must not become permission to show any shade at all. The applicable law and the information given to the customer are separate matters that do not come down to a line of small print. The legal weight of such a notice is a matter for specialist analysis, not a rule improvised in the studio."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q6",
+          "question": "“What is the most discreet mistake in a product image?”",
+          "figures": [
+            {
+              "name": "09_CONTROLE_FIDELITE",
+              "src": "/images/revue-entretiens-s3/09_CONTROLE_FIDELITE.svg",
+              "alt": "Sketch: the review through four lenses. An appealing image is not necessarily an accurate image.",
+              "caption": "The review through four lenses — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "A wrong variant, sometimes. The photo can be flawless but show the wrong handle, the wrong button, packaging that is no longer shipped. A purely aesthetic check won’t detect this: hence the importance of the link between the image and the product data."
+            },
+            {
+              "t": "p",
+              "html": "You also have to think about what comes next: a campaign version becomes the main image of a product page, then it circulates at a distributor. If nobody knows where it came from anymore, each reuse extends a possible error. Fidelity is a property of the flow, not only of retouching."
+            },
+            {
+              "t": "encadre",
+              "titre": "A short validation method",
+              "paras": [
+                "Before publishing a derived image, compare five elements with the real reference: <strong>silhouette, distinctive details, color and material, text/logo, variant or configuration</strong>. If an element can’t be verified, the image waits. This grid applies to traditional retouching as much as to AI.",
+                "<em>This conversation describes a professional method. The precise legal obligations on modified images fall under official sources and specialized regulatory articles.</em>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> A sales visual must be attractive without altering the reality of the product shown. To work with retouching or AI, you need to keep a reference photo, identify the attributes that cannot change and validate derived images against a real unit.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "04",
+      "slug": "entretien-04",
+      "serie": "Conversations on product photography",
+      "entretien": "4/10",
+      "sujet": "Capture, lighting and difficult products",
+      "titre": "Reflections, transparency, materials: what difficult products teach the studio",
+      "sous_titre": "The cases that resist standard settings, and the value of testing a system with truly representative products.",
+      "intro": [
+        "You can take a hundred beautiful photos of simple products and believe you are ready for an entire catalog. Then a transparent bottle, a polished watch or a black garment turns up, and the schedule goes off the rails. These exceptions are not marginal: they force you to think about lighting, gestures and production profiles."
+      ],
+      "ouverture": "<p>A shiny watch and a transparent bottle can wreck a schedule built around easy products. The camera is not the only culprit: surfaces throw light back, edges disappear, and inscriptions sometimes need different attention from the rest of the object.</p><p><strong>A polished watch.</strong> It first requires observing what the case <em>reflects</em>, not just the light it receives. A large light surface can draw a line of metal; a black flag can give shape back to an edge you can no longer see. Moving a diffuser by a few centimeters sometimes changes the result more than a long retouch. You then separate the problems — dial, crystal, hands, case — because not everything has the same solution. The reference points differ depending on the field: see <a href=\"/fr/industrie/horlogerie\">watch photography</a> and the guide on <a href=\"/fr/guide/comment-positionner-montre-avant-shooting-photo\">positioning a watch before the shoot</a>.</p><p><strong>A transparent bottle.</strong> Glass needs its outlines to be drawn. Depending on the shape and the contents, you first test a diffuse backlight, then the effect of light or dark surfaces at the sides. The aim is not to flood the object with light, but to make its volume legible without making the label disappear or inventing the color of the liquid. A perfume, a <a href=\"/fr/industrie/vin-spiritueux\">spirits bottle</a> and a medical container don’t call for the same protocol; for transparency, the approach is akin to that for <a href=\"/fr/guide/comment-faire-animation-360-objet-transparent\">transparent objects in 360</a>.</p><p><strong>Depth.</strong> When the front of a piece is sharp but the engraved text further back is not, it is better not to ask retouching to “create” sharpness first. <a href=\"/fr/guide/comment-faire-focus-stacking-pour-photographier-bague\">Focus stacking</a> consists of taking several shots at different focus planes, then merging them; this requires avoiding movement between frames and checking the outlines at the merge. The same requirements apply to <a href=\"/fr/industrie/bijoux-joaillerie\">jewelry</a> and, on the fabric side, to <a href=\"/fr/industrie/mode-textile\">fashion and textiles</a>. That is the whole point of the advice Sébastien Jourdan has given publicly: the best demonstration is not five photogenic objects, but the five products that really make the studio’s life difficult.</p>",
+      "sections": [
+        {
+          "id": "entretien-04-q1",
+          "question": "“How do you recognize an overly optimistic organization?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It all comes down to the demonstration. A simple matte box on a white background tells you almost nothing about a studio’s ability to serve a real catalog. What matters is seeing what complicates the days: metal, glass, a black product, a small detail, a very shiny surface, a series of variants."
+            },
+            {
+              "t": "p",
+              "html": "Sébastien Jourdan has publicly recommended coming to test five difficult products before a migration — not to catch the machine out, but to know what work will remain for the operator. Technology should be evaluated on the materials the company actually sells, not on a product chosen to flatter the light."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q2",
+          "question": "“Take a watch. Why is it so complicated?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "In professional photography, you learn to build reflections as much as to light the object. The important thing is to keep information legible: silhouette, finish, engraving, small details. An automated system can recall a set of conditions. You still have to check whether those conditions work for <em>this</em> watch and <em>this</em> angle."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q3",
+          "question": "“And a transparent bottle?”",
+          "figures": [
+            {
+              "name": "10_PLAN_LUMIERE",
+              "src": "/images/revue-entretiens-s3/10_PLAN_LUMIERE.svg",
+              "alt": "Sketch: light is built around the object. Principle sketch — not a machine installation plan.",
+              "caption": "Light is built around the object — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The transparent bottle is the textbook case of a product that resists standard settings: glass needs its contours drawn rather than being flooded with light, and both the label and the colour of the liquid must stay legible. It is also a good reason to avoid demonstrations judged on capture speed alone: a delicate product calls for more preparation, positioning and checking than ten ordinary objects, and that time must be built into the production calculation."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q4",
+          "question": "“Should the studio be set up once and for all?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "No, but there is no need to start over every time either. It is better to start from a common core — height, background, framing, order of views and basic settings — and then add profiles specific to each family. A pair of jeans laid flat, a piece of jewelry in macro and a large lamp don’t have the same needs."
+            },
+            {
+              "t": "p",
+              "html": "A profile is working memory, not a promise of an automatic result. Associating each profile with a few accepted reference images helps the person taking over production: they understand what the setting is trying to achieve — and can see when it fails."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q5",
+          "question": "“How do you choose between flat-lay, ghost mannequin and worn for a garment?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It all starts with what the buyer needs to understand. The silhouette and drape of a jacket may call for a worn presentation; a flat view lets you emphasize seams, details or the cut. The ghost mannequin has its own logic for presenting volume without showing a person, but it requires preparation and sometimes careful compositing."
+            },
+            {
+              "t": "p",
+              "html": "There is no single valid answer for all of fashion. There are families of items, levels of representation and production constraints. AI can help with certain steps; it must not reinvent a drape that the source photo does not allow you to verify."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q6",
+          "question": "“When should you consider focus stacking?”",
+          "figures": [
+            {
+              "name": "11_QUATRE_MATIERES",
+              "src": "/images/revue-entretiens-s3/11_QUATRE_MATIERES.svg",
+              "alt": "Sketch: four materials, four difficulties. The same lighting recipe doesn’t suit everything.",
+              "caption": "Four materials, four difficulties — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "An example: a small mechanical part photographed at an angle. The front face can be sharp while a deeper inscription is not. The point is not to systematically propose a stack, but to define which information must be legible in the final image."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q7",
+          "question": "“What do you do with oversized or one-of-a-kind objects?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "For a bulky object, everything starts with space and handling safety. If the product has to pass through a doorway that is too narrow or be moved for every view, the protocol is poorly sized. For one-of-a-kind pieces, such as certain second-hand items, the real challenge is often to match the right images to the right object, with no second chance to redo the batch."
+            },
+            {
+              "t": "p",
+              "html": "These are two cases where the best equipment is not necessarily the most automatic. You need a solution that is compatible with the catalog’s volumes, shapes and variability."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q8",
+          "question": "“What is the best test at the end of a demonstration?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Come back the next day, if possible, or ask another person to reproduce two shots with the documented profiles. Does the result remain consistent? Does the file name match the item? How many retouches are needed? Was the product put back correctly in its place?"
+            },
+            {
+              "t": "p",
+              "html": "The goal is a production you can repeat, not just an impressive session."
+            },
+            {
+              "t": "encadre",
+              "titre": "The five-product protocol",
+              "paras": [
+                "Prepare a matte object, a reflective object, a transparent one, a textured item and an atypical case from your own catalog. For each: <strong>expected view → preparation time → setting → fidelity check → export</strong>. It is a useful demonstration because it also exposes the limits."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> You don’t photograph marketing categories, you photograph materials and shapes. A useful protocol includes common rules, variants by family and a way to quickly identify the cases that need different treatment.",
+      "recitPhotos": [
+        {
+          "src": "/images/blog/migrer-ancien-packshotcreator/bijoux-profil-rendu-constant.avif",
+          "alt": "Three rings photographed in profile with consistent rendering.",
+          "credit": "Photo PackshotCreator",
+          "width": 1600,
+          "height": 520
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "05",
+      "slug": "entretien-05",
+      "serie": "Conversations on product photography",
+      "entretien": "5/10",
+      "sujet": "Color and visual reproduction",
+      "titre": "A product’s color shouldn’t depend on who opens the file",
+      "sous_titre": "From studio lighting to the customer’s phone: what you can control, and what you shouldn’t promise.",
+      "intro": [
+        "A jacket looks navy blue in the studio, almost black at the retouching workstation, then plainly blue on a product page. Nobody necessarily “cheated.” Yet the image no longer says the same thing. For a photographer, color fidelity is a discipline. For a seller, it also becomes a question of trust."
+      ],
+      "ouverture": "<p>A navy blue jacket, photographed on a Monday, looks almost black on one workstation and too blue on another. Before “correcting the color,” you have to answer an awkward question: which reference are we talking about?</p><p><strong>A possible protocol.</strong> You start small, but with a coherent chain: shooting light whose settings you can recover, a physical reference or a sample when the shade is sensitive, a controlled white balance, then a check on a screen prepared for this purpose. Comparing the photo to a product placed under a completely different light creates a discussion that can’t be settled. The simplest test: take two similar variants, redo the session a few days later and check that the files tell the story of the same collection — this is the logic of the guide on <a href=\"/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit\">getting accurate colors</a> and on <a href=\"/fr/guide/visuels-collection-produits-homogenes\">collection consistency</a>.</p><p><strong>Recoloring.</strong> It can make sense when the cut and the material are identical and you check a real color reference for each variant. But creating a “red” version blindly from a single blue garment, if the textile, its reflections or its treatments change, would not be a saving but an uncertainty about the product sold. The limits of the exercise are described in the guide on <a href=\"/fr/guide/modifier-couleur-produit-photo\">changing a product’s color</a>, and the question of fidelity ties in with the <a href=\"#entretien-03\">conversation on the faithful image</a>.</p>",
+      "sections": [
+        {
+          "id": "entretien-05-q1",
+          "question": "“Why does a color look different from one screen to another?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Because a photograph doesn’t travel alone. There is the light in which the object was photographed, the processing applied to the file, the color profile, the retoucher’s screen and, at the end, the settings of the phone of someone you don’t know. When you talk about accuracy, you have to say at which stage you can act."
+            },
+            {
+              "t": "p",
+              "html": "At capture, two light sources can completely change the appearance of a fabric or a leather. A good organization seeks to reduce surprises <em>on its own side</em>, not to guarantee that every device in the world will give the same rendering."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q2",
+          "question": "“What do you put in place in a studio that is just starting out?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "You need to record the lighting and the settings by family. For a collection that comes back six months later, this memory is worth its weight in gold: new images must be able to live alongside the old ones without a row of the catalog looking as if it came from another studio."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q3",
+          "question": "“Are blacks and whites the most difficult?”",
+          "figures": [
+            {
+              "name": "12_CHAINE_COULEUR",
+              "src": "/images/revue-entretiens-s3/12_CHAINE_COULEUR.svg",
+              "alt": "Sketch: color goes through a chain. The decisions made at each step remain linked.",
+              "caption": "Color goes through a chain — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "They can be. A black product is not a hole with no detail; you need to see its texture, the seams and the changes of material. A white product must not disappear into a white background. Highly saturated, metallic or fluorescent shades add other difficulties."
+            },
+            {
+              "t": "p",
+              "html": "It is better to look at the important areas of the product than to seek a magic number that claims to sum up all fidelity. A textile that differs slightly depending on the screen is not the same problem as a commercial color that has been completely changed."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q4",
+          "question": "“How do you approve an image when nobody agrees?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It all rests on a single observation protocol. The real product must be present, under a defined control light. You designate the person responsible for approval and keep the accepted version. Without this, everyone decides on their own computer, in their own office, and the discussion starts over with the next batch."
+            },
+            {
+              "t": "p",
+              "html": "It can be useful to document a technical tolerance for a particular production, but it must be decided for the product and the use. Publishing a universal Delta E value would give a false impression of certainty."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q5",
+          "question": "“Can recoloring avoid photographing every color?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The safe approach is to start from the real capture, then check a variation against the corresponding sample. If there is no sample or if you can’t check the result, it is better to postpone publication than to invent a variant that looks credible on screen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q6",
+          "question": "“And that little phrase, colors not contractual?”",
+          "figures": [
+            {
+              "name": "13_REPETABILITE_COULEUR",
+              "src": "/images/revue-entretiens-s3/13_REPETABILITE_COULEUR.svg",
+              "alt": "Sketch: picking up the same family three months later. Keeping a reference and reproducible settings.",
+              "caption": "Picking up the same family three months later — explanatory method sketch, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It is never a photographic solution. A disclaimer doesn’t improve a color chain. As for its legal effect, it depends on the context and the applicable law; that is a question for legal analysis, not a rule that can be settled in one sentence."
+            },
+            {
+              "t": "p",
+              "html": "The best prevention remains much simpler: show the important details with care and keep the ability to verify what was presented."
+            },
+            {
+              "t": "encadre",
+              "titre": "To take into the studio",
+              "paras": [
+                "Build a mini-library of <strong>reference products</strong>: a textured black, a white, a saturated color, a reflective surface and a sensitive material. Reshoot them whenever you change light, software or export chain. It is a concrete continuity test, not a guarantee of identical rendering on every screen."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> You don’t control every buyer’s screen. You can control a production chain: repeatable lighting, a physical reference, consistent profiles, verification of sensitive shades and archiving of the right version.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "06",
+      "slug": "entretien-06",
+      "serie": "Conversations on product photography",
+      "entretien": "6/10",
+      "sujet": "Identifiers, metadata, files and distribution",
+      "titre": "A photo without a product reference is lost information",
+      "sous_titre": "SKUs, versions, data, PIM, DAM: why traceability matters as much as sharpness.",
+      "intro": [
+        "The file is beautiful. Yet there is no way to tell whether it shows the black model or the blue one, the new packaging or the old. This is not a marginal incident: it is a very ordinary way of losing the benefit of a well-run photo production. For Sébastien Jourdan, the product image is not just an image: it is a part of the product record."
+      ],
+      "ouverture": "<p>Imagine two bottles from the same range, one of 50 ml, the other of 100 ml. The photos are successful, the labels legible, the retouching finished. Then, when the images go into the catalogue, the photo of the large bottle gets linked to the small one. The photographer delivered a good file; the site shows the wrong product.</p><p>This case is illustrative, but it shows why Sébastien Jourdan cares as much about the identifier as about the image. A shoot should not turn into an orphan file whose reference someone has to guess six months later. Bringing together the <a href=\"/fr/blog/alphashot-xl-g2-photo-mesures-donnees-produit\">photo, the measurements and the product data</a> answers that need — though that should be kept distinct from generalising it to every machine. It is the data-side counterpart of the <a href=\"#entretien-02\">organisation of the studio</a>, and the condition for <a href=\"#entretien-09\">then adapting the visuals for several channels</a>.</p>",
+      "sections": [
+        {
+          "id": "entretien-06-q1",
+          "question": "“You insist a great deal on the link between photo and data. Why?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "An image is only usable if you know precisely what it corresponds to. Sébastien Jourdan has publicly presented workstations that bring together shooting, dimensions and weight at a single work position. The point is not only the machine: it is to avoid manual transfers in which one piece of information is copied, then another."
+            },
+            {
+              "t": "p",
+              "html": "In an e-commerce team, there are often several successive truths: the product that arrives, the catalogue's item record, the file name, the retouched visual, then the page shown to the customer. The whole job is to keep these truths compatible."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q2",
+          "question": "“Is a good file name enough?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It helps a lot, but it is not enough. A name such as `REF-COLOUR-VIEW-VERSION` can make errors visible, provided that each element corresponds to a rule everyone understands. The SKU is not a marketing description, and two variants should not accidentally share the same image identifier."
+            },
+            {
+              "t": "p",
+              "html": "Above all, the link has to live beyond the name. What happens when a file is compressed, renamed by a platform or exported to another format? If the association exists only in the local name, it is lost. You need a reference record in the system that drives the catalogue."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q3",
+          "question": "“What difference do you make between PIM and DAM?”",
+          "figures": [
+            {
+              "name": "14_IMAGE_ET_DONNEES",
+              "src": "/images/revue-entretiens-s3/14_IMAGE_ET_DONNEES.svg",
+              "alt": "Sketch: one reference, several pieces of information. Photo and descriptive data must speak about the same product.",
+              "caption": "One reference, several pieces of information — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "These are two responsibilities that need to talk to each other. The PIM organises product information: identity, attributes, variants, commercial data. The DAM organises assets: source files, versions, rights, formats, uses. A company does not always need two large software packages; it needs these functions to be covered somewhere."
+            },
+            {
+              "t": "p",
+              "html": "So the useful question is not “do we need to buy a DAM?” but “where is the master file, who is allowed to replace it, how do we find its approved version, and which channels use it?” If nobody can answer, the problem comes before the choice of tool."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q4",
+          "question": "“Which metadata should be entered right at the shoot?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The minimum is often less spectacular than you might imagine: reference identifier, variant, view, date or campaign, check status, link to the master file. For some organisations, the shooting profile and the operator are useful too. There is no point filling in twenty fields that nobody will look at."
+            },
+            {
+              "t": "p",
+              "html": "IPTC metadata, GS1 identifiers and internal information do not all play the same role. It is better to use them according to the target system and the proof required, without assuming that a piece of software passes all this information on automatically: you have to test the real path of the export."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q5",
+          "question": "“What do you do when a product or its packaging changes?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The first thing to know is whether the old image is still valid, who decides, and how the channels will be updated. Silently replacing a file under an identical name can be dangerous when a marketplace, a distributor or a cache keeps the old version."
+            },
+            {
+              "t": "p",
+              "html": "You need to keep a trace of the change and define what is archived. There is no universal retention period: it depends on contracts, uses, and legal or internal constraints that each company must examine. On the other hand, losing the source file and the validation decisions is rarely a good strategy."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q6",
+          "question": "“How do you know whether distribution to several channels can be automated?”",
+          "figures": [
+            {
+              "name": "15_FICHIER_MAITRE",
+              "src": "/images/revue-entretiens-s3/15_FICHIER_MAITRE.svg",
+              "alt": "Sketch: one identifier to avoid collisions. Organising the flow between the image and the product data.",
+              "caption": "One identifier to avoid collisions — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "When the master file is approved and the output rules are clear. Size, background, framing, name, compression, channel: each destination may have its own constraints. You then produce <em>derivatives</em> from an identified master, rather than hand-corrected files copied from folder to folder."
+            },
+            {
+              "t": "p",
+              "html": "Marketplace rules change. It is better to keep the specifications in a maintained reference and to test whether the exports are accepted, rather than publish a table of dimensions that will be out of date next season."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q7",
+          "question": "“And when the company changes its site or its PIM?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "That is when you discover the real quality of your media library. If images are tied to products by arbitrary paths, they have to be reconciled one by one. If the identifier, the variant and the version are properly tracked, the migration is still work, but it is not a treasure hunt."
+            },
+            {
+              "t": "p",
+              "html": "A reconstruction test on a small sample helps settle the matter: starting from the product record, can you immediately find the original, its derivatives and the validation date? If not, that is probably the first thing to fix."
+            },
+            {
+              "t": "encadre",
+              "titre": "The five-file test",
+              "paras": [
+                "Choose a reference with several colourways, two views, a packaging change and a retouched file. Ask someone who did not attend the shoot to find the master, the right colourway and the version in circulation. <strong>If they hesitate, your chain still needs a rule.</strong>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> A reliable chain must preserve the identity of the reference, the variant, the version, the shooting conditions that matter and the intended use. Capturing data and photos in the same place can reduce some handling, but does not on its own prevent organisational errors.",
+      "recitPhotos": [
+        {
+          "src": "/images/blog/migrer-ancien-packshotcreator/alphashot-xl-g2-mesure-pesee.avif",
+          "alt": "Workstation for shooting and measuring a product in a studio.",
+          "credit": "Photo PackshotCreator / Orbitvu",
+          "width": 900,
+          "height": 1288,
+          "constrain": true
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "07",
+      "slug": "entretien-07",
+      "serie": "Conversations on product photography",
+      "entretien": "7/10",
+      "sujet": "AI, retouching, generation and fidelity",
+      "titre": "AI has not eliminated the photographer. It has shifted the right questions.",
+      "sous_titre": "From the first shoot to the generated scene: a conversation with Sébastien Jourdan, a photographer turned entrepreneur in AI tools for product imagery.",
+      "intro": [
+        "“You can generate anything” is a seductive sentence. Yet it leaves one question unanswered: how can you be certain that the image really shows the product the company sells? Sébastien Jourdan began by taking real photographs, developed capture systems, then founded BlendAI.Studio. For him, these worlds complement one another — provided you do not confuse an appealing image with a faithful one."
+      ],
+      "ouverture": "<p>Sébastien Jourdan worked as a photographer before designing, with Everleet, a shooting system for e-commerce. With BlendAI.Studio, he is interested in what a real product image makes it possible to create afterwards: staged settings, presentations, campaign variations. This path has taught him not to systematically set capture against AI. The question is what has to remain <strong>exact</strong>.</p><p>Take a carefully photographed shoe. In a derived scene, the setting can change. But if the stitching, the sole or the logo is altered, that should be caught at quality control, not after publication. This is an <strong>illustrative example</strong>, not the account of a defect that BlendAI.Studio delivered. This subject is at the heart of <a href=\"/en/ia-photo-produit\">AI-assisted product photography</a>, whether it is a matter of <a href=\"/fr/blog/generer-images-produit-ia\">generating images</a> or <a href=\"/fr/blog/retouche-ia-photo-produit\">retouching</a> them; its counterpart is the <a href=\"#entretien-08\">traceability of provenance</a>.</p>",
+      "sections": [
+        {
+          "id": "entretien-07-q1",
+          "question": "“Why keep photographing if an AI can create an image?”",
+          "figures": [
+            {
+              "name": "03_PHOTO_REELLE_IA_CONTROLE",
+              "src": "/images/revue-entretiens-s3/03_PHOTO_REELLE_IA_CONTROLE.svg",
+              "alt": "Principle diagram: capture the real product, produce a derivative, check its fidelity.",
+              "caption": "Method sketch — editorial illustration, with no demonstration of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Because a product is not an abstract idea. It has a shape, a label, a stitch, a button, a colour that the customer will be able to compare with what they receive. The starting point remains the photograph of the real product. Sébastien Jourdan has known its value since his years as a photographer, and it is also the logic he carries into BlendAI.Studio: building new uses from a real base."
+            },
+            {
+              "t": "p",
+              "html": "A style image can invent an atmosphere. It should not invent a detail of the reference being sold. So the real question is not “photo or AI?” but “where does the rendering of the product end, and where does creative freedom begin?”"
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q2",
+          "question": "“Which operations would you automate without hesitation?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Those whose result can be checked precisely. Clipping paths, certain dust corrections, format preparation or batch processing can save time in a suitable organisation. But each automation must have an objective and someone responsible for it: it is not good simply because it carries the AI label."
+            },
+            {
+              "t": "p",
+              "html": "Three uses need to be separated. Capture assistance helps produce a better photograph. Retouching corrects an existing image. Generation builds a new representation. The further you move from capture, the more you need to know what must remain unchanged."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q3",
+          "question": "“Can you produce lifestyle views from a single packshot?”",
+          "figures": [
+            {
+              "name": "16_FRONTIERE_TRAITEMENT_IA",
+              "src": "/images/revue-entretiens-s3/16_FRONTIERE_TRAITEMENT_IA.svg",
+              "alt": "Sketch: three gestures, three levels of vigilance. Cleaning an image is not the same as inventing a characteristic.",
+              "caption": "Three gestures, three levels of vigilance — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "You can work in that direction, yes. It is at the heart of the vision Sébastien Jourdan defends: a good photographic base can feed more than just the product page on a neutral background. You can imagine different environments, content for social networks or collection presentations."
+            },
+            {
+              "t": "p",
+              "html": "But there is a clear limit: if the scene alters the apparent size, the material or the way the object opens, it is not suitable as it stands. The number of scenes obtained is not a quality criterion. Better two accurate images than ten images that call for a human correction impossible to verify."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q4",
+          "question": "“Why do small texts, patterns and logos cause problems?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Because these elements are both very precise and sometimes tiny in the source photo. A generator can produce something that looks like an inscription without reproducing the letters exactly. It can also interpret a texture as a decorative pattern and alter it."
+            },
+            {
+              "t": "p",
+              "html": "This is one of the reasons for keeping a reference image at the centre of the check. You need to compare the logo, the visible codes, the stitching, the position of a button, the colour of a part and the characteristics that let the customer recognise the variant. An image that is convincing at first glance can fail when zoomed in."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q5",
+          "question": "“And a garment worn by a generated person?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It is a demanding case. A garment is not just a texture laid over a silhouette; it has a drape, volumes, seams, a cut. If the result changes these characteristics, the photo no longer represents the product correctly. The virtual model can be a creative tool, but you must be able to verify the garment beyond its aesthetics."
+            },
+            {
+              "t": "p",
+              "html": "It is always better to distinguish the photographed product, the derived representation and the context that was generated. That is far clearer for a team than calling all these files “AI photos”."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q6",
+          "question": "“How do you evaluate an AI provider, beyond the demos?”",
+          "figures": [
+            {
+              "name": "17_CONTROLE_SORTIE_IA",
+              "src": "/images/revue-entretiens-s3/17_CONTROLE_SORTIE_IA.svg",
+              "alt": "Sketch: AI proposes; someone accepts. A control loop to keep a reliable link with reality.",
+              "caption": "AI proposes; someone accepts — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The right test: five difficult products and written criteria. The reference must remain legible. Variants must not get mixed up. The system must allow human checking, and the company must understand what happens to its files and its data. The subject of confidentiality and usage rights deserves a contractual answer, not a general claim in a brochure."
+            },
+            {
+              "t": "p",
+              "html": "The outputs must also be tested by the people who manage the catalogue, not only by a creative team. A perfect scene that cannot be linked to the right reference is not ready for commerce."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q7",
+          "question": "“What place will be left for the photographer?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "That of the eye, of judgement and of control. Someone will always have to decide what the image must show, build a capture that renders the material, recognise an anomaly and arbitrate a correction. Some repetitive gestures will change, perhaps quickly. But the demand for accuracy remains."
+            },
+            {
+              "t": "p",
+              "html": "One conviction runs through Sébastien Jourdan's career: the product image is reduced neither to a camera nor to an AI model. It is a production organised around the real product, with tools chosen for a specific use."
+            },
+            {
+              "t": "encadre",
+              "titre": "The exercise to do before generating a hundred images",
+              "paras": [
+                "For a single product, draw up a <strong>list of untouchable elements</strong>: brand and inscriptions, shape, colour, material, accessories, proportions. Produce one derived scene, then have it checked by someone who has the product in front of them. The result of this test is more useful than the number of generations carried out.",
+                "<em>The legal transparency requirements for certain AI content are a separate legal matter; this conversation deals with the method of production and control.</em>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> AI can assist with clipping, defect correction, certain processing tasks and the creation of new visual uses. But the product's distinctive information — shape, material, colour, details, text, configuration — requires a reference and a check. A plausible output is not proof that it conforms to the product.",
+      "recitPhotos": [
+        {
+          "src": "/images/machines/alphashot-xl-g2/packshot-macro.avif",
+          "alt": "Macro packshot of a real product, details visible.",
+          "credit": "Photo PackshotCreator / Orbitvu",
+          "width": 714,
+          "height": 447
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "08",
+      "slug": "entretien-08",
+      "serie": "Conversations on product photography",
+      "entretien": "8/10",
+      "sujet": "AI transparency, provenance and image governance",
+      "titre": "Product images and AI: being able to explain what you did, before looking for a label",
+      "sous_titre": "Visual provenance, control of transformations, the line between photographic practice and legal requirements. A method conversation — not legal advice.",
+      "intro": [
+        "When an image becomes a retouched photo, then a generated scene, then a version adapted to a platform, its provenance can be lost. “Is it a real photo?” is no longer a precise enough question: you need to know what is real, what was changed, by whom and for what use."
+      ],
+      "ouverture": "<p>On a production line, an image can move from capture to retouching, then to a generated scene and several exports. In the end, if no one knows what was changed, the problem is already there — even before the question of regulatory labelling.</p><p>Take a folder named <code>final_v7</code>: no one can find the original photo, the intermediate versions or the sign-off on the last set. The scene is invented, but telling. Across a workflow, three things are worth keeping: the identified <strong>source</strong>, the recorded <strong>transformations</strong> and the <strong>sign-off</strong> tied to the right version. Only then does the team choose files and metadata by channel.</p><p>And the AI Act? The question does not come down to “every AI image must carry a label”: situations are not equivalent. For transparency obligations according to a company’s role and use, the most useful starting point is the <a href=\"/fr/blog/ai-act-images-produit\">dossier devoted to the AI Act and product images</a>. When the same visual circulates between <a href=\"/fr/blog/images-ia-ecommerce-suisse\">Switzerland</a> and marketplaces, keep the source and the steps, then check the destination’s rules and the <a href=\"/fr/blog/images-ia-metadonnees-marketplaces\">expected metadata</a> <strong>separately</strong>. You do not improvise a legal answer from a single photo.</p>",
+      "sections": [
+        {
+          "id": "entretien-08-q1",
+          "question": "“What’s the first reflex when a team starts using AI?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Don’t start with which logo to put on the image. Start by documenting the flow. What is the source photograph? Who produced it? What did the tool change? Did a human check the output against the product? And where will it be published?"
+            },
+            {
+              "t": "p",
+              "html": "The logic of real capture and controlled transformations has business value in itself, regardless of regulatory vocabulary. If a partner asks tomorrow to prove an image’s provenance, the team must be able to find an answer."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q2",
+          "question": "“Is removing dust the same thing as an entirely invented scene?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "No. They have neither the same role nor the same risk. A technical correction can help show a photographed object better. A generated scene can introduce new elements, sometimes even a visually transformed product. Legal classification depends on precise definitions; simply passing through AI does not automatically trigger every possible obligation."
+            },
+            {
+              "t": "p",
+              "html": "Classifying the case is for legal specialists. On the studio side, good practice is to keep a simple record: capture, retouching, generation, sign-off, destination. Without that basis, you end up debating an obligation without knowing exactly what was done."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q3",
+          "question": "“What does Article 50 of the AI Act change?”",
+          "figures": [
+            {
+              "name": "18_PROVENANCE_IMAGES",
+              "src": "/images/revue-entretiens-s3/18_PROVENANCE_IMAGES.svg",
+              "alt": "Sketch: being able to tell where an image comes from. Source, transformations and sign-off responsibility.",
+              "caption": "Being able to tell where an image comes from — explanatory method sketch, no machine simulation or proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "It is a transparency framework that distinguishes, among other things, obligations for providers of generative systems and others for deployers in certain situations. Reading it must take account of definitions, exceptions, territorial conditions and implementing texts."
+            },
+            {
+              "t": "p",
+              "html": "The shortcut “any photo improved with AI must display a visible label” is not a serious legal analysis. The <a href=\"/fr/blog/ai-act-images-produit\">PackshotCreator dossier on the AI Act</a> details these categories and their limits. What a team can do on its own side is simpler: document what is needed to answer the question correctly, when the time comes."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q4",
+          "question": "“IPTC, C2PA, marking: what use are they to the studio?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "These are provenance concepts that address different needs. IPTC metadata can express information about the origin and type of a digital source. C2PA aims to document certain provenance assertions and transformations. None of these replaces checking the real product, nor proves on its own that an image is faithful."
+            },
+            {
+              "t": "p",
+              "html": "Above all, nothing guarantees that every piece of software preserves this information automatically. You have to test the chain: source file, processing, export, compression, publication. A piece of metadata that disappears before going live no longer meets the need it was intended for."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q5",
+          "question": "“A marketplace accepts an image today. Can we assume it will accept it tomorrow?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "No. Platform policies change, sometimes separately from the law. You have to read them as they stand, by channel and by image type: main image, lifestyle, model, advertising. Technical acceptance is neither a general validation of rights nor of truthfulness."
+            },
+            {
+              "t": "p",
+              "html": "It is better to keep a destination sheet attached to the visual: where it is used, under what constraints, and what check was carried out. That is far more robust than relying on a project manager’s memory."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q6",
+          "question": "“How do you handle rights when a third party supplies the images or a person appears?”",
+          "figures": [
+            {
+              "name": "19_QUESTIONS_TRANSPARENCE",
+              "src": "/images/revue-entretiens-s3/19_QUESTIONS_TRANSPARENCE.svg",
+              "alt": "Sketch: the questions before publishing. A verification reasoning, not a universal rule of law.",
+              "caption": "The questions before publishing — explanatory method sketch, no machine simulation or proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "This is a check distinct from photographic quality. Right to use the source, permissions of the people shown, the supplier’s terms and the scope of distribution: you assume nothing. And you do not attribute to a generator universal rights that are not established by its terms and by the applicable law."
+            },
+            {
+              "t": "p",
+              "html": "When the team lacks the authorisations or the information it needs, the right answer is not to produce the image and hope no one asks. It is to put it on hold until it is cleared up."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q7",
+          "question": "“And for sales into Switzerland?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Switzerland has its own framework. A Swiss company may also face European rules depending on its role, its activity and the exact territorial conditions; but selling into Europe is not enough, on its own, to infer every obligation under Article 50. Here again, separate the legal obligations from good practice: being able to prove what the image shows and how it was produced."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q8",
+          "question": "“What do you ask your team before authorising a publication?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Three accessible pieces of evidence: the reference product or the source, the list of transformations, and the name of the person who accepted the result. Add the rights and the channel’s requirements. If one is missing, decide who completes it — don’t paper over the uncertainty."
+            },
+            {
+              "t": "encadre",
+              "titre": "A three-line provenance sheet",
+              "paras": [
+                "<strong>Origin:</strong> real photograph, third party or creation. <strong>Transformations:</strong> correction, compositing, generation, variants. <strong>Sign-off:</strong> owner, verified reference, authorised channels. This sheet is not a legal certification; it makes a better-informed decision possible.",
+                "<em>Important note: this conversation is about production method and control, not about the law. For the applicable obligations, refer to the <a href=\"/fr/blog/ai-act-images-produit\">AI Act dossier</a>, re-checked at the time of use, and to each platform’s current guidelines.</em>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> A company should be able to reconstruct the origin of every commercial visual. The obligations of the AI Act, consumer law and platforms do not come down to a universal “AI image” label: their scope depends in particular on the actors’ roles, the type of output and the use. Legal review is done against the applicable texts and each platform’s current guidelines.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "09",
+      "slug": "entretien-09",
+      "serie": "Conversations on product photography",
+      "entretien": "9/10",
+      "sujet": "Commerce, marketplaces, formats, 360 and video",
+      "titre": "How many images do you really need to sell a product?",
+      "sous_titre": "One reference photo, a few details, a video, a 360° rotation: a conversation with Sébastien Jourdan on the right use of formats, rather than piling them up.",
+      "intro": [
+        "The same object may be photographed for an e-commerce site, a marketplace, a trade catalogue, an advertisement and a reseller. Do you have to start over five times? Sébastien Jourdan defends a different approach: define one reliable capture, then organise deliverables suited to each channel, without losing the match with the real product."
+      ],
+      "ouverture": "<p>Imagine preparing a product page for a pair of glasses. A front view gives the silhouette; a profile shows the temples; the three-quarter view conveys volume; the hinge detail answers another question: how is the object built? The five photographs below are examples of <strong>possible views</strong>, not a specification imposed on every maker.</p><p>This is how Sébastien Jourdan approaches the choice of images for a catalogue: not “how many can we produce?” but “which question does each image answer?” The <a href=\"/fr/guide/comment-photographier-lunettes-e-commerce\">guide to photographing glasses for e-commerce</a> details these views. 360 or video become interesting when movement provides what still views do not explain well enough — and it is then, and only then, that a solution such as the <a href=\"/fr/studio-photo/alphashot-360\">AlphaShot 360</a> is worth discussing, without selling it by default.</p>",
+      "sections": [
+        {
+          "id": "entretien-09-q1",
+          "question": "“Does a product page need ten images?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Not as a matter of principle. It needs the right images. For a mechanical part, you may need to show a connector and a visual dimension. For a shoe, the sole, the profile, the material and the worn view are important. For a piece of furniture, you will want to understand the volume and the finish."
+            },
+            {
+              "t": "p",
+              "html": "It all starts from the questions a buyer asks before clicking: what does the product really look like, what is its perceived size, how does it work, which detail can't be seen on the front face? Only then do you choose the views you need. Adding content without intent does not make the page clearer."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q2",
+          "question": "“Why keep a very plain main image when you can do lifestyle?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Because the two do not have the same role. A plain image isolates the product and makes it easier to compare with another reference. A usage scene provides context and desire. Both are useful, but it is better to distinguish them, especially when platforms impose rules on the main image."
+            },
+            {
+              "t": "p",
+              "html": "Exact specifications should not be copied at random from an article: they change according to marketplaces and categories. A team has to maintain its own rules sheet, then check that files are accepted."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q3",
+          "question": "“Video, 360°, three dimensions: how do you choose?”",
+          "figures": [
+            {
+              "name": "20_CHOISIR_UN_FORMAT",
+              "src": "/images/revue-entretiens-s3/20_CHOISIR_UN_FORMAT.svg",
+              "alt": "Sketch: the format answers a question. The main image does not play the role of a demonstration video.",
+              "caption": "The format answers a question — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The starting point is the missing information. If the product has to be seen from every side, a rotation can help. If you need to understand a gesture, an opening or a mechanism, a short video is sometimes more useful. A 3D model or an augmented reality experience can make sense for some uses, but it is not a mandatory step."
+            },
+            {
+              "t": "p",
+              "html": "The demonstration must stay honest. For a bag, what matters is seeing how it opens. For a decorative object, the side views may count. For a textile, movement and drape can be more telling than an object rotation. The format follows the question, not the other way round."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q4",
+          "question": "“Can one photo session feed all channels?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "This is a direction Sébastien Jourdan is pursuing: preparing the initial capture better in order to avoid needlessly redoing the same shots. A well-thought-out session produces reference images, details and, depending on the equipment and the product, other assets that can then be used."
+            },
+            {
+              "t": "p",
+              "html": "But nothing guarantees that <em>any</em> product and <em>any</em> channel will be covered without additional preparation. A complex advertising set-up calls for something other than a catalogue export. A good organisation knows what can be derived and what deserves a new production."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q5",
+          "question": "“How do you reuse files without creating a forest of versions?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "With a simple hierarchy: an approved master, identified working versions and derivatives per channel. Technical operations can be automated when they have stable rules. On the other hand, a main image, an advertising banner or a video should not go through the same validation circuit simply for convenience."
+            },
+            {
+              "t": "p",
+              "html": "A team should be able to answer this: if a colour or a label changes today, which files must be replaced and on which channels? If nobody knows, the problem lies in the links between the assets, not in the resolution of the photo."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q6",
+          "question": "“What do you do with images supplied by customers or users?”",
+          "figures": [
+            {
+              "name": "21_DERIVES_MULTICANAUX",
+              "src": "/images/revue-entretiens-s3/21_DERIVES_MULTICANAUX.svg",
+              "alt": "Sketch: one master, several deliverables. Limiting inconsistent files and orphan versions.",
+              "caption": "One master, several deliverables — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "They can bring a real-life use and complement the images controlled by the brand. But they do not replace the reference photos needed for a reliable product page. Their quality, the rights and the permission to reuse them also have to be managed."
+            },
+            {
+              "t": "p",
+              "html": "It is therefore better to keep a visible separation: reference visuals, brand content, user content. They are complementary when you know what each one proves — and what it does not prove."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q7",
+          "question": "“How do you measure the usefulness of a new format?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "With a precise hypothesis. Does the video answer a question the photos do not explain? Does the 360° view reduce requests for information in a given category? You can observe interactions and, where possible, test a change on a comparable group of products."
+            },
+            {
+              "t": "p",
+              "html": "A spectacular percentage seen in a sales presentation is not the truth. A format must serve the customer, not serve to tick the innovation box."
+            },
+            {
+              "t": "encadre",
+              "titre": "The multichannel roadmap",
+              "paras": [
+                "For a single reference, write: <strong>buyer's question → visual needed → master file → distribution channels → check required</strong>. If two visuals do not provide different information, ask yourself whether both are indispensable."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> There is no universal number of images and no format that wins for every product. The goal is to answer the buyer's questions, then prepare derivatives that meet the needs of each channel from controlled master files.",
+      "recitPhotos": [
+        {
+          "src": "/images/packshot-e-commerce/lunettes-vue-face.avif",
+          "alt": "Glasses, front view.",
+          "caption": "Front",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-vue-profil.avif",
+          "alt": "Glasses, profile view.",
+          "caption": "Profile",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-vue-trois-quarts.avif",
+          "alt": "Glasses, three-quarter view.",
+          "caption": "Three-quarter",
+          "credit": "Photo PackshotCreator",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-detail-charniere.avif",
+          "alt": "Glasses, hinge detail.",
+          "caption": "Hinge",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-face-branches-repliees.avif",
+          "alt": "Glasses, front view, temples folded.",
+          "caption": "Folded temples",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        }
+      ],
+      "recitPhotosSequence": true
+    },
+    {
+      "num": "10",
+      "slug": "entretien-10",
+      "serie": "Conversations on product photography",
+      "entretien": "10/10",
+      "sujet": "Management, indicators, team changes and quality uses",
+      "titre": "The real test of a studio: working when its best operator is not there",
+      "sous_titre": "A conversation with Sébastien Jourdan on teams, indicators and what lets quality last.",
+      "intro": [
+        "A successful product photo often depends on many small gestures. The risk appears when the whole company relies on a single person to remember them. Sébastien Jourdan knew photography as a profession, then the development of solutions and the management of a more structured production. His question as a manager: how do you maintain quality without leaving the whole process in the heads of a few people?"
+      ],
+      "ouverture": "<p>Sébastien Jourdan recounted the case of a client who had called him urgently. The launch was scheduled for the following Monday; the stock and the campaign were ready, the images were not. Some shoots had fallen behind, several files were unusable and the retouching was not finished. The launch was postponed by two weeks. That is not a minor shooting problem: the visual is part of the launch, and when it is missing, the whole chain waits — which is exactly what the <a href=\"#entretien-02\">organisation of the studio</a> seeks to avoid.</p><p>Now imagine a studio where only one person knows the right placement of the products, the lighting profiles and the file names. They are away. Can someone else take over a series without improvising? If the answer is no, the studio has a vulnerability. This is a <strong>handover test</strong>, not the account of that specific client. What needs to be handed over is not a library of unused captures: it is a sheet per family — positioning, starting settings, rejection criteria, validation role, path to the right master file. Choosing equipment with a <a href=\"/fr/studio-photo/selecteur-machines\">suitable selector</a> and measuring its <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">return on investment</a> is part of the same discipline.</p>",
+      "sections": [
+        {
+          "id": "entretien-10-q1",
+          "question": "“Which indicators do you really look at?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The first indicator is the time between a product being available and a file being validated for publication: the one the sales side feels. Next come the volume of references actually completed, the number of reshoots and the stages where products wait."
+            },
+            {
+              "t": "p",
+              "html": "Shots per hour can be useful for understanding an operation, but they do not describe the result of the whole chain. A day with a thousand shutter releases and fifty references stuck at validation is not necessarily a good day. Better to have few figures, but figures you can act on."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q2",
+          "question": "“How do you keep tracking from turning into a spreadsheet factory?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "The starting point is not choosing a dashboard, but giving each visual order an understandable status: received, ready, photographed, under review, to redo, accepted, delivered. Each status must correspond to a verifiable event and to a responsible person."
+            },
+            {
+              "t": "p",
+              "html": "Good visibility is not a screen displaying twenty charts. It is the ability to answer a simple question immediately: <em>where does this reference stand, and what is blocking it?</em> If the team cannot say, the best dashboard will not fix the problem."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q3",
+          "question": "“Can a new machine solve an organisational problem?”",
+          "figures": [
+            {
+              "name": "22_GOULOTS_PRODUCTION",
+              "src": "/images/revue-entretiens-s3/22_GOULOTS_PRODUCTION.svg",
+              "alt": "Sketch: measure the flow rather than the shutter releases. What waits between two teams delays going live.",
+              "caption": "Measure the flow rather than the shutter releases — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Sometimes it removes a real bottleneck: too much handling, long settings to redo, repetitive operations. But if products arrive without an identifier, if validations contradict one another or if the brief changes every day, the equipment cannot decide in place of the team."
+            },
+            {
+              "t": "p",
+              "html": "Sébastien Jourdan has written publicly that when you go from a few hundred to several thousand references, the question becomes one of the system. The distinction stands: increasing the speed of one stage is not the same as improving the complete flow."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q4",
+          "question": "“How do you pass on the gestures that make quality?”",
+          "figures": [
+            {
+              "name": "23_FICHE_TRANSMISSION",
+              "src": "/images/revue-entretiens-s3/23_FICHE_TRANSMISSION.svg",
+              "alt": "Sketch: change the operator without changing the result. A simple sheet at the workstation beats a forgotten procedure.",
+              "caption": "Change the operator without changing the result — explanatory sketch of a method, with no machine simulation and no proof of performance."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "With visual references and short rules. For each family: an acceptable photo, a list of views, a shooting profile, a way of naming the file, a check threshold and a person in charge. Thirty-page procedures that nobody opens count for less than a sheet that is actually used at the workstation."
+            },
+            {
+              "t": "p",
+              "html": "Training must also cover exceptions. A transparent material, a very fine logo, a garment that creases: everyone should know when the standard profile is no longer enough and whom to ask for help. That is how you recognise a team that has understood its tool."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q5",
+          "question": "“Do people always resist standardisation?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Not necessarily. They often resist rules that do not help them. If a profile saves them from redoing the same settings and if the check reduces late reshoots, the benefit becomes obvious. You need to involve them in the tests and document their objections, not roll out a process designed solely in a meeting."
+            },
+            {
+              "t": "p",
+              "html": "The right balance is to keep the photographer's eye while making operations repeatable. Standardising is not asking everyone to stop thinking. It is avoiding wasting their attention on what can be memorised."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q7",
+          "question": "“Can a photo be useful after the sale?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Of course, depending on the uses. A reference image can help document a configuration, compare the condition of a part or explain an intervention. But you need to define the objective, the level of proof required and the retention rules. A commercial photograph does not automatically become proof of quality control in the industrial sense."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q8",
+          "question": "“What advice would you leave to someone who has to take over the studio tomorrow morning?”",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Ask to be shown a difficult product, its final file and the trace of what was done. If you can find the right object, the right settings, the right version and the person who validated it, the production is already much sturdier than a studio that can only make a beautiful photo when everyone is there."
+            },
+            {
+              "t": "p",
+              "html": "Good solutions make teams autonomous, instead of preventing them from understanding what is going on."
+            },
+            {
+              "t": "encadre",
+              "titre": "The twenty-minute production review",
+              "paras": [
+                "Take five published references and five blocked ones. For each: <strong>status, owner, next action, last validation, total lead time</strong>. Look for the recurring cause rather than discussing each incident in isolation. You will often find concrete progress before you need a new tool."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Key takeaway.</strong> The robustness of a production is measured by the complete lead time, reshoots, variant errors, the availability of references and a team's ability to reproduce a result. AI can change tasks; it does not replace the assignment of responsibilities.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    }
+  ]
+}
