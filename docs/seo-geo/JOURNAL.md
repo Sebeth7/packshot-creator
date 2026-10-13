@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · PR #136 — correctifs ciblés : localisation de CroquisZoom + URL Person de-ch · Claude de Laurent
+
+**Chantier** : correctifs demandés par Laurent sur #136 (`GO_CODE_CORRECTIFS_PR136 = YES`, `GO_MERGE = NO`) | **PR** : #136, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`
+
+**Quoi** — (1) `components/revue/CroquisZoom.tsx` : les libellés codés en français (« Agrandir », « Fermer », « Photo », « Croquis », y compris l'`aria-label` du déclencheur et le bouton de fermeture du dialogue) sont localisés via `tx(lang, …)`. Nouvelle prop optionnelle `lang` (défaut `fr` → compatibilité ascendante avec l'espace de revue de #130). EN : Enlarge / Close / Photo / Sketch ; de-ch : Vergrössern / Schliessen / Foto / Skizze (sans « ß »). La page passe `lang` à chaque `CroquisZoom` et à `PhotoFigure` (dont le libellé « Photo » du cadre contraint est aussi localisé). (2) `app/[lang]/conversations-sebastien-jourdan/page.tsx` : `Person.url` du JSON-LD pointe la page « à propos » localisée — `/de-ch/wer-sind-wir` en de-ch, `/fr|/en/a-propos` inchangés (conforme à `i18n/routing.ts`).
+
+**Pourquoi** — Deux défauts relevés par Laurent en lecture directe du code : libellés d'interface non traduits et `Person.url` de-ch incorrect (`/de-ch/a-propos` n'existe pas).
+
+**Fichiers** — `components/revue/CroquisZoom.tsx`, `app/[lang]/conversations-sebastien-jourdan/page.tsx`. Aucun fichier à rayon large. Contenu des dix entretiens, trois langues et entretien 08 : **inchangés** (aucune réécriture).
+
+**Vérifié** — `tsc` vert ; `eslint` (fichiers touchés) vert ; `vitest` test dédié 6/6 ; `next build` vert (390 pages, 3 locales). `next start` prod : `Person.url` = `/de-ch/wer-sind-wir`, `/fr/a-propos`, `/en/a-propos`. Playwright (clavier + mobile, 3 langues) : boutons « Agrandir/Enlarge/Vergrössern » et « Fermer/Close/Schliessen » localisés, zoom ouvre, ferme par Échap et par bouton, 0 erreur ; 0 débordement / 0 erreur console à 1440/768/390. de-ch sans « ß ».
+
+**Supposé** — [Inférence] La Preview reproduit le build local. [Non vérifié] directement : Preview sous SSO.
+
+**Non regardé** — Maillage entrant (PR distincte depuis `main`, diff avant application). Relecture juridique humaine de 08. `datePublished` à aligner sur la date réelle au merge.
+
+**Suite** — Rapporter à Laurent le nouveau SHA, la CI 4/4 et les deux correctifs vérifiés ; attendre le GO final de publication.
+
+---
+
 ## 2026-10-13 · PR de publication propre : hub trilingue « Conversations avec Sébastien Jourdan » (Option B) · Claude de Laurent
 
 **Chantier** : GO RELANCE — publication de la série (arbitrage Laurent du 13/10, Option B : PR propre) | **PR** : nouvelle, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`

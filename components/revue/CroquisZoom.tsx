@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Maximize2, X } from 'lucide-react';
+import { tx } from '@/lib/locale-text';
 
 export interface CroquisZoomProps {
   src: string;
@@ -18,6 +19,8 @@ export interface CroquisZoomProps {
   height?: number;
   /** `large` = pleine largeur ; `inset` = encadré plus resserré. */
   variant?: 'large' | 'inset';
+  /** Locale pour les libellés d'interface (FR par défaut). */
+  lang?: string;
   className?: string;
 }
 
@@ -41,6 +44,7 @@ export function CroquisZoom({
   width = 1600,
   height = 900,
   variant = 'large',
+  lang = 'fr',
   className = '',
 }: CroquisZoomProps) {
   const [open, setOpen] = useState(false);
@@ -67,14 +71,12 @@ export function CroquisZoom({
     };
   }, [open, fermer]);
 
-  const etiquette =
-    kind === 'photo'
-      ? index
-        ? `Photo ${index}`
-        : 'Photo'
-      : index
-        ? `Croquis ${index}`
-        : 'Croquis';
+  const motPhoto = tx(lang, 'Photo', 'Photo', 'Foto');
+  const motCroquis = tx(lang, 'Croquis', 'Sketch', 'Skizze');
+  const motAgrandir = tx(lang, 'Agrandir', 'Enlarge', 'Vergrössern');
+  const motFermer = tx(lang, 'Fermer', 'Close', 'Schliessen');
+  const base = kind === 'photo' ? motPhoto : motCroquis;
+  const etiquette = index ? `${base} ${index}` : base;
   const fondImage = kind === 'photo' ? 'bg-future-dusk-50' : 'bg-white';
 
   return (
@@ -101,10 +103,10 @@ export function CroquisZoom({
           type="button"
           onClick={() => setOpen(true)}
           className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-future-dusk-150 bg-white/90 px-3 py-1.5 text-xs font-medium text-future-dusk-700 shadow-sm backdrop-blur transition-colors hover:bg-white hover:text-very-peri-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-500 motion-reduce:transition-none"
-          aria-label={`Agrandir : ${etiquette.toLowerCase()}`}
+          aria-label={`${motAgrandir} — ${etiquette}`}
         >
           <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
-          Agrandir
+          {motAgrandir}
         </button>
       </div>
       {(caption || credit) && (
@@ -147,7 +149,7 @@ export function CroquisZoom({
                 className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-sm text-white transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white motion-reduce:transition-none"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
-                Fermer
+                {motFermer}
               </button>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}

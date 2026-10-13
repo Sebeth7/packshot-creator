@@ -115,7 +115,7 @@ const prose = [
   '[&_code]:rounded [&_code]:bg-future-dusk-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm',
 ].join(' ');
 
-function PhotoFigure({ p }: { p: Photo }) {
+function PhotoFigure({ p, lang }: { p: Photo; lang: string }) {
   if (p.constrain) {
     return (
       <figure className="revue-figure not-prose my-10">
@@ -124,14 +124,14 @@ function PhotoFigure({ p }: { p: Photo }) {
           <img src={p.src} alt={p.alt} width={p.width} height={p.height} loading="lazy" decoding="async" className="max-h-[460px] w-auto object-contain" />
         </div>
         <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-2 text-sm text-future-dusk-500">
-          <span className="shrink-0 font-mono text-xs uppercase tracking-wider text-very-peri-600">Photo</span>
+          <span className="shrink-0 font-mono text-xs uppercase tracking-wider text-very-peri-600">{tx(lang, 'Photo', 'Photo', 'Foto')}</span>
           {p.caption && <span className="italic">{p.caption}</span>}
           {p.credit && <span className="ml-auto shrink-0 text-xs text-future-dusk-400">{p.credit}</span>}
         </figcaption>
       </figure>
     );
   }
-  return <CroquisZoom kind="photo" src={p.src} alt={p.alt} caption={p.caption} credit={p.credit} width={p.width} height={p.height} variant="inset" />;
+  return <CroquisZoom kind="photo" src={p.src} alt={p.alt} caption={p.caption} credit={p.credit} width={p.width} height={p.height} variant="inset" lang={lang} />;
 }
 
 /* ------------------------------------------------------------------- page */
@@ -166,7 +166,8 @@ export default async function ConversationsPage({ params }: PageProps) {
     '@id': `${SITE_URL}/#person-sebastien-jourdan`,
     name: 'Sébastien Jourdan',
     jobTitle: tx(lang, 'Dirigeant & expert photo produit', 'Managing director & product photography expert', 'Geschäftsführer & Experte für Produktfotografie'),
-    url: `${SITE_URL}/${lang}/a-propos`,
+    // Page « à propos » localisée : /de-ch/wer-sind-wir (cf. i18n/routing.ts) ; /fr|/en/a-propos.
+    url: `${SITE_URL}/${lang}/${lang === 'de-ch' ? 'wer-sind-wir' : 'a-propos'}`,
     sameAs: ['https://www.linkedin.com/in/sebastienjourdan/'],
     worksFor: { '@id': `${SITE_URL}/#organization` },
   };
@@ -332,7 +333,7 @@ export default async function ConversationsPage({ params }: PageProps) {
                       <figure className="not-prose mt-6">
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                           {it.recitPhotos.map((ph) => (
-                            <CroquisZoom key={ph.src} kind="photo" src={ph.src} alt={ph.alt} caption={ph.caption} credit={ph.credit} width={ph.width} height={ph.height} />
+                            <CroquisZoom key={ph.src} kind="photo" src={ph.src} alt={ph.alt} caption={ph.caption} credit={ph.credit} width={ph.width} height={ph.height} lang={lang} />
                           ))}
                         </div>
                       </figure>
@@ -347,7 +348,7 @@ export default async function ConversationsPage({ params }: PageProps) {
                     return (
                       <section key={s.id} id={s.id} className="scroll-mt-32">
                         {s.figures.map((f) => (
-                          <CroquisZoom key={f.name} src={f.src} alt={f.alt} caption={f.caption} index={croquisNumero.get(f.name)} />
+                          <CroquisZoom key={f.name} src={f.src} alt={f.alt} caption={f.caption} index={croquisNumero.get(f.name)} lang={lang} />
                         ))}
                         {s.question && <h3 className="font-heading text-xl font-semibold leading-snug text-future-dusk-900 sm:text-2xl">{s.question}</h3>}
                         {paras.length > 0 && (
@@ -361,7 +362,7 @@ export default async function ConversationsPage({ params }: PageProps) {
                             <div className={`mt-3 ${prose} prose-base`} dangerouslySetInnerHTML={{ __html: (e.paras ?? []).map((p) => `<p>${p}</p>`).join('\n') }} />
                           </aside>
                         ))}
-                        {si === 0 && recitPhoto && <PhotoFigure p={recitPhoto} />}
+                        {si === 0 && recitPhoto && <PhotoFigure p={recitPhoto} lang={lang} />}
                       </section>
                     );
                   })}
