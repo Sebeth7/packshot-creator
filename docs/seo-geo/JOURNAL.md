@@ -52,6 +52,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Suite** — Contrôle Chrome de la Preview par Laurent ; GO_MERGE distinct ; à la fusion, consigner l'événement concomitant en `ETAT.md`, section E.
 
+## 2026-10-13 · #127 : G3 retiré sur décision de Laurent, article FR IA rendu à `main` ; G1 et G2 seuls · Claude de Laurent
+
+**Chantier** : cocons et maillage, finition ciblée (suite de l'entrée du 10/10 ci-dessous, conservée) | **PR** : #127, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
+
+**Quoi** — `content/blog/fr/generer-images-produit-ia.json` restauré octet pour octet à sa version de `main` : l'offre BlendAI (étape « Choisissez votre outil », paragraphe « en 30 secondes », CTA, FAQ et champ `faqs`) et les 2 liens vers `/fr/ia-photo-produit` sont rétablis. G1 (ANC-131, 132, 142, 143) et G2 (ANC-121, 122, 126) inchangés.
+
+**Pourquoi** — Décision de Laurent du 13/10 (GO_CODE ciblé) : le site officiel `blendai.studio/en` décrit toujours publiquement 3 crédits gratuits permettant 6 photos sans carte bancaire ; la validité opérationnelle actuelle n'est pas établie. G3 est retiré de #127, sans autre correction éditoriale.
+
+**Fichiers** — `content/blog/fr/generer-images-produit-ia.json` (retour à `main`) ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Diff de #127 contre `main` : 5 JSON (7 hyperliens retirés, texte visible inchangé) et le JOURNAL. Liens de contenu entrants vers `/fr/ia-photo-produit` : inchangés par rapport à `main` (7).
+
+**Vérifié** — Article FR IA identique à `main` (diff vide) ; `verifier-json` ; `next build` ; CI : voir la PR.
+**Supposé** — Rien de nouveau.
+**Non regardé** — Landing IA (non modifiée, sur décision) ; validité de l'offre BlendAI (non recherchée, sur décision) ; HOLD PACK-D9 (D9-02) maintenu ; ANC-125, ANC-152 et ANC-112 à ANC-118 hors de cette PR.
+
+**Suite** — Contrôle de la Preview par Laurent ; G1 et G2 relèvent de l'information au titre de D42 (liens retirés, sens inchangé) ; GO_MERGE de Laurent.
+
 ---
 
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
@@ -179,6 +197,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — `www` (R4) ; contrôle humain en Chrome de la fermeture (D55 : tests automatisés tenus pour suffisants). `pkc_attribution` (`lib/attribution.ts`, monté dans le layout) : écrit en production dans le `sessionStorage` (UTM, referrer, première page) sans consentement ni mention dans la politique ; hors #122, non modifié, à signaler à Laurent.
 
 **Suite** — CI, sortie du brouillon et fusion ; contrôle de `sysnext.vercel.app` (smoke, pop-in montée), puis de `www` dans Chrome (Laurent) ; mesure sur 7 à 14 jours ; validation de la copy par Sébastien, non bloquante (D55).
+
+---
+
+## 2026-10-10 · Neutralisation ciblée : liens produit historiques, liens IA vers l'ancienne route `alphashot-g2`, offre d'essai BlendAI de l'article FR IA · Claude de Laurent
+
+**Chantier** : cocons et maillage, finition ciblée (kit `PSC_COCONS_FINITION_CIBLE_PRET_CLAUDE_CODE_2026-10-10.zip`, SHA-256 `d7c94f19…48e6`, transmis par Laurent le 10/10 ; GO_CODE_CIBLÉ et GO_PR_DRAFT, GO_MERGE = NO, GO_PUBLICATION = NO) | **PR** : brouillon, « DO NOT MERGE » | **Base** : `main` `48a2ce2`
+
+**Quoi** — Script du kit (`PSC_PATCH_COCONS_CIBLE_2026-10-10.mjs`, exécuté hors dépôt depuis un worktree isolé, contrôle des SHA des 6 fichiers et de l'unicité de chaque remplacement) :
+1. G1 (ANC-131, 132, 142, 143) : articles 3D FR et EN, hyperliens retirés sur « Packshot Macro DL » et « Packshot Macro DIS » (vers `alphashot-micro-v2`) ; noms, `<strong>` et `<em>` conservés.
+2. G2 (ANC-121, 122, 126) : article Amazon EN et articles eBooks EN et FR, hyperlien vers l'ancienne route `alphashot-g2` retiré des expressions IA / automatisation ; texte et gras conservés ; aucune destination de substitution.
+3. G3 (ANC-153) : `content/blog/fr/generer-images-produit-ia.json`, retrait de l'offre « 6 visuels offerts, sans carte bancaire » (phrase de l'étape « Choisissez votre outil », avec « Connectez-vous et accédez au tableau de bord. »), du paragraphe de promotion « en 30 secondes », du CTA « Tester BlendAI gratuitement », et de la mention de l'offre dans la FAQ (texte de l'article et champ `faqs`, qui alimente le JSON-LD FAQPage).
+
+**Pourquoi** — Liens qui associent des désignations historiques ou des affirmations IA à une fiche d'un autre produit (G1, G2) ; offre d'essai non confirmée (G3).
+
+**Fichiers** — 6 JSON de `content/blog/{fr,en}/` ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Liens de contenu entrants, `main` → PR : `/fr/ia-photo-produit` 7 → 5 ; `/fr/studio-photo/alphashot-g2` 2 → 1 (le restant : ANC-125, HOLD) ; `/en/photo-studio/alphashot-g2` 2 → 0 ; `alphashot-micro-v2` FR 14 → 12, EN 15 → 13. Aucun lien ni texte ajouté.
+
+**Vérifié** — `main` `48a2ce2` = base attendue par le kit ; SHA des 6 fichiers conformes ; dry-run puis apply : 11 remplacements au nombre d'occurrences attendu ; diff champ par champ : seuls des `href` retirés et les passages G3 listés ; aucune PR ouverte ne touche ces 6 fichiers (#27 : Amazon FR seulement ; #64 : aucun). Contrôles de build : voir la PR.
+**Supposé** — Le classement ANC du kit (pilotage externe du 10/10) n'est pas re-audité ici (consigne du kit).
+**Non regardé** — 15 références historiques G1 conservées sans conversion ; ANC-125 (Amazon FR, collision #27) ; ANC-112 à ANC-118 (landing IA actuelle) ; ANC-152 (collision #64) ; la landing `/fr/ia-photo-produit` de `main` affiche toujours « Essai gratuit — 6 visuels offerts » et lie `blendai.studio` (hors mandat) ; dans l'article FR IA, la légende « en moins de 30 secondes » et les durées « 30 secondes par image » restent (hors liste du kit) ; affirmations techniques IA restant dans la prose G2 : HOLD éditorial D42 avant fusion.
+
+**Suite** — Brouillon ; QA ciblée des 6 URL sur la Preview ; validations D42 à relever ; GO_MERGE et GO_PUBLICATION distincts de Laurent.
 
 ---
 
