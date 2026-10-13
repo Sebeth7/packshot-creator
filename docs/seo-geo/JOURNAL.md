@@ -34,6 +34,56 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #134 : arbitrages de Laurent sur les claims EN (éclairage polarisé, Genève, Light + Byte AG) ; devis gratuit consigné ; `main` `e241218` intégré · Claude de Laurent
+
+**Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** —
+- `main` `e241218` intégré (fusion de #136, hub « Conversations avec Sébastien Jourdan »). Conflit sur `JOURNAL.md` seul, résolu par union.
+- `data/secteurs-en-horlogerie.ts` :
+  - puce « Polarized lighting: controlled reflections on sapphire crystals, polished cases and bracelet links » et réponse de FAQ « Orbitvu studios use polarized LED lighting to control unwanted reflections […] during capture, without manual retouching. » remplacées par « Controlled lighting helps reduce unwanted reflections on watch crystals and polished cases. » ;
+  - FAQ « Can we test a studio with our own watches before buying? » : « Our showroom, less than two hours from Geneva » devient « Our showroom in Beynost (Ain), near Lyon ».
+- `data/distributeur-suisse-en.ts`, FAQ « Who is the official distributor of Orbitvu photo studios in Switzerland? » : « The former Swiss reseller, Light + Byte AG, ceased trading in 2025: Swiss companies now deal directly with PackshotCreator for […] » devient « For enquiries from Switzerland, contact PackshotCreator. Advice, demonstrations, delivery, installation, training and after-sales service are provided in French […] ». Aucune autre affirmation sur le statut de Light + Byte AG ou sur une relation commerciale.
+- En-têtes des deux modules : arbitrages du 13/10 ajoutés, historique conservé.
+
+**Pourquoi** — Arbitrages et faits métier de Laurent du 13/10/2026, GO_CODE limité à ces micro-corrections :
+- éclairage polarisé : assertion non démontrée ; formulation prudente, sans technologie attribuée aux équipements ;
+- showroom : Beynost établi par D57 ; « moins de deux heures de Genève » retiré ;
+- Light + Byte AG : cessation d'activité sans preuve écrite suffisante ; rien n'est affirmé sur son statut actuel ;
+- **FAIT MÉTIER LAURENT du 13/10** : les devis PackshotCreator sont gratuits et sans engagement. Le CTA « Get a free quote » du gabarit commun est autorisé et conservé ; le gabarit n'est pas modifié ;
+- droits d'utilisation de la photographie Hamilton : réglés (entrée U03 ci-dessous).
+
+**Fichiers** — `data/secteurs-en-horlogerie.ts`, `data/distributeur-suisse-en.ts`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet SEO avant publication L1 : les deux pages EN restent en `noindex, follow`, sitemap, canonical et hreflang inchangés. Le `noindex` ne protège pas les textes : après fusion, ils sont lisibles publiquement sur les deux URL EN.
+
+**Vérifié** —
+- tsc, Vitest 633/633, `verifier-json` (198 fichiers) et `next build` (390 pages générées) verts en local.
+- HTML prérendu complet, scripts compris, comparé à `main` `e241218` : 374 pages sur 378 identiques. Les 4 pages qui diffèrent sont celles de l'entrée U03 : `fr/industrie/horlogerie` et `de-ch/branchen/uhren` (bloc du visuel seulement), les deux pages EN (traduction et visuel).
+- Sitemap identique hors `lastmod` (326 URL).
+- Playwright Chromium local, `next start`, 2 pages EN × 3 largeurs (320, 390, 1 440 px) :
+  - nouvelles phrases visibles et présentes dans le JSON-LD ;
+  - « polarized », « two hours from Geneva », « Light + Byte », « ceased » absents du texte visible et du JSON-LD ;
+  - « Get a free quote » présent ;
+  - `noindex, follow` ; canonical et alternates identiques à `main` ;
+  - aucun débordement horizontal ; visuel Hamilton chargé, `object-contain`.
+- Les 12 contrôles Playwright U03 (3 pages × 4 largeurs) sont réutilisés : visuel, ALT et gabarit inchangés depuis.
+- D57 (L13) : l'exception `Service.url` de `/de-ch/branchen/mode` issue de #114 est présente et inchangée.
+
+**Supposé** — Aucun.
+
+**Non regardé** —
+- Preview Vercel (SSO) ; `www` (non fusionné).
+- Occurrences publiées hors périmètre, non modifiées :
+  - Light + Byte AG : `home.faq.q7.answer` dans `messages/fr.json`, `en.json` et `de-ch.json` (accueil gelé jusqu'au 28/10) ; FAQ FR de `app/[lang]/distributeur-orbitvu-suisse/page.tsx` ;
+  - éclairage polarisé, horlogerie : `data/secteurs.ts` (puce et FAQ) et `data/secteurs-de-ch.ts` (puce et FAQ) ;
+  - « 2 heures de Genève » : FAQ horlogerie de `data/secteurs.ts` et `data/secteurs-de-ch.ts` ; articles `migrer-ancien-packshotcreator` en FR, EN et de-ch.
+- Source des deux pages EN : `home.faq.q7.answer` (Light + Byte AG) et deux clés `packshotIndustriel` (« polarized ») de `messages/en.json` restent dans la charge utile RSC, non visibles.
+
+**Suite** — GO_MERGE distinct de Laurent, pas avant le 15/10 (J+7 AI Act les 13 et 14/10) sauf décision explicite. QA de la Preview non effectuée. Pas de levée du `noindex`, pas de publication L1.
+
+---
+
 ## 2026-10-13 · PR #136 — correctifs ciblés : localisation de CroquisZoom + URL Person de-ch · Claude de Laurent
 
 **Chantier** : correctifs demandés par Laurent sur #136 (`GO_CODE_CORRECTIFS_PR136 = YES`, `GO_MERGE = NO`) | **PR** : #136, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`

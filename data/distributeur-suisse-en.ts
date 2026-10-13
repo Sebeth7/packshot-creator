@@ -3,7 +3,12 @@
  *
  * G5 du 11/10/2026 : traduction à sens constant ; aucun claim ajouté. Points
  * maintenus provisoirement et NON ÉTABLIS, publication bloquée sans décision
- * (SB-L1) : cas Light + Byte AG ; showroom « Beynost » (D1, arbitrage L15).
+ * (SB-L1) : cas Light + Byte AG ; showroom « Beynost » (D1, arbitrage L15),
+ * établi depuis par D57.
+ * Décision de Laurent du 13/10/2026 : affirmation de cessation d'activité de
+ * Light + Byte AG retirée, faute de preuve écrite, sans autre affirmation sur
+ * son statut ; formule neutre « For enquiries from Switzerland, contact
+ * PackshotCreator. »
  * Ajout EN seulement : « Sales enquiries can also be handled in English »
  * (fait métier de Laurent du 11/10 : commercial seulement, ni SAV ni formation).
  */
@@ -45,7 +50,7 @@ export const distributeurSuisseEn = {
   faq: [
     {
       question: 'Who is the official distributor of Orbitvu photo studios in Switzerland?',
-      answer: 'PackshotCreator, a brand of the French company Sysnext, is the official distributor of Orbitvu automated photo studios for Switzerland and France. The former Swiss reseller, Light + Byte AG, ceased trading in 2025: Swiss companies now deal directly with PackshotCreator for advice, demonstrations, delivery, installation, training and after-sales service in French, with commercial support also available in German. Sales enquiries can also be handled in English. Swiss contact: +41 44 580 43 84.',
+      answer: 'PackshotCreator, a brand of the French company Sysnext, is the official distributor of Orbitvu automated photo studios for Switzerland and France. For enquiries from Switzerland, contact PackshotCreator. Advice, demonstrations, delivery, installation, training and after-sales service are provided in French, with commercial support also available in German. Sales enquiries can also be handled in English. Swiss contact: +41 44 580 43 84.',
     },
     {
       question: 'Where can I buy an Orbitvu studio in Switzerland?',

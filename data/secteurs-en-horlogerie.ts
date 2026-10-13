@@ -11,6 +11,15 @@
  *   le catalogue 2026 : « contrôle avancé de l'éclairage » seulement) ;
  * - « less than two hours from Geneva » (showroom) ;
  * - CTA du gabarit « Get a free quote » (gratuité non sourcée).
+ *
+ * Arbitrages de Laurent du 13/10/2026 (#134) :
+ * - éclairage polarisé retiré ; formulation prudente, sans technologie
+ *   attribuée : « Controlled lighting helps reduce unwanted reflections on
+ *   watch crystals and polished cases. » ;
+ * - « less than two hours from Geneva » remplacé par le showroom de Beynost
+ *   (Ain), près de Lyon (D57) ;
+ * - devis gratuits et sans engagement : fait métier de Laurent ; le CTA du
+ *   gabarit « Get a free quote » est conservé.
  */
 import type { Secteur } from './secteurs';
 
@@ -42,7 +51,7 @@ export const secteurHorlogerieEn: Secteur = {
         description: 'High-resolution packshots and 360° views produced in-house, with automatic focus stacking',
         avantages: [
           'Focus stacking: sharpness across dials, markers, hands and complications',
-          'Polarized lighting: controlled reflections on sapphire crystals, polished cases and bracelet links',
+          'Controlled lighting helps reduce unwanted reflections on watch crystals and polished cases.',
           'High-resolution macro: guilloché patterns, stone settings and engravings captured in detail',
           'Interactive 360° rotation: show the watch from every angle for e-commerce',
           'In-house production: prototypes and new models stay within your premises',
@@ -70,7 +79,7 @@ export const secteurHorlogerieEn: Secteur = {
   faq: [
     {
       question: 'How can I photograph a watch without reflections on sapphire crystal?',
-      answer: 'Orbitvu studios use polarized LED lighting to control unwanted reflections on sapphire crystals, polished cases and metal bracelets during capture, without manual retouching.',
+      answer: 'Controlled lighting helps reduce unwanted reflections on watch crystals and polished cases.',
     },
     {
       question: 'Can 360° watch packshots be automated?',
@@ -82,7 +91,7 @@ export const secteurHorlogerieEn: Secteur = {
     },
     {
       question: 'Can we test a studio with our own watches before buying?',
-      answer: 'Yes. Our showroom, less than two hours from Geneva, welcomes you by appointment for a demonstration with your own watches and assistance from our experts.',
+      answer: 'Yes. Our showroom in Beynost (Ain), near Lyon, welcomes you by appointment for a demonstration with your own watches and assistance from our experts.',
     },
     {
       question: 'How can we keep prototypes confidential before launch?',
