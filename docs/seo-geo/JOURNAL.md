@@ -34,6 +34,50 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · PR #136 — correctifs ciblés : localisation de CroquisZoom + URL Person de-ch · Claude de Laurent
+
+**Chantier** : correctifs demandés par Laurent sur #136 (`GO_CODE_CORRECTIFS_PR136 = YES`, `GO_MERGE = NO`) | **PR** : #136, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`
+
+**Quoi** — (1) `components/revue/CroquisZoom.tsx` : les libellés codés en français (« Agrandir », « Fermer », « Photo », « Croquis », y compris l'`aria-label` du déclencheur et le bouton de fermeture du dialogue) sont localisés via `tx(lang, …)`. Nouvelle prop optionnelle `lang` (défaut `fr` → compatibilité ascendante avec l'espace de revue de #130). EN : Enlarge / Close / Photo / Sketch ; de-ch : Vergrössern / Schliessen / Foto / Skizze (sans « ß »). La page passe `lang` à chaque `CroquisZoom` et à `PhotoFigure` (dont le libellé « Photo » du cadre contraint est aussi localisé). (2) `app/[lang]/conversations-sebastien-jourdan/page.tsx` : `Person.url` du JSON-LD pointe la page « à propos » localisée — `/de-ch/wer-sind-wir` en de-ch, `/fr|/en/a-propos` inchangés (conforme à `i18n/routing.ts`).
+
+**Pourquoi** — Deux défauts relevés par Laurent en lecture directe du code : libellés d'interface non traduits et `Person.url` de-ch incorrect (`/de-ch/a-propos` n'existe pas).
+
+**Fichiers** — `components/revue/CroquisZoom.tsx`, `app/[lang]/conversations-sebastien-jourdan/page.tsx`. Aucun fichier à rayon large. Contenu des dix entretiens, trois langues et entretien 08 : **inchangés** (aucune réécriture).
+
+**Vérifié** — `tsc` vert ; `eslint` (fichiers touchés) vert ; `vitest` test dédié 6/6 ; `next build` vert (390 pages, 3 locales). `next start` prod : `Person.url` = `/de-ch/wer-sind-wir`, `/fr/a-propos`, `/en/a-propos`. Playwright (clavier + mobile, 3 langues) : boutons « Agrandir/Enlarge/Vergrössern » et « Fermer/Close/Schliessen » localisés, zoom ouvre, ferme par Échap et par bouton, 0 erreur ; 0 débordement / 0 erreur console à 1440/768/390. de-ch sans « ß ».
+
+**Supposé** — [Inférence] La Preview reproduit le build local. [Non vérifié] directement : Preview sous SSO.
+
+**Non regardé** — Maillage entrant (PR distincte depuis `main`, diff avant application). Relecture juridique humaine de 08. `datePublished` à aligner sur la date réelle au merge.
+
+**Suite** — Rapporter à Laurent le nouveau SHA, la CI 4/4 et les deux correctifs vérifiés ; attendre le GO final de publication.
+
+---
+
+## 2026-10-13 · PR de publication propre : hub trilingue « Conversations avec Sébastien Jourdan » (Option B) · Claude de Laurent
+
+**Chantier** : GO RELANCE — publication de la série (arbitrage Laurent du 13/10, Option B : PR propre) | **PR** : nouvelle, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`
+
+**Quoi** — Sous-ensemble **propre** de #130 destiné à la publication : uniquement le hub éditorial public « Conversations avec Sébastien Jourdan » et ses dépendances. **#130 reste ouverte et intacte** (travaux historiques A/B, espace de revue interne). Contenu : route `app/[lang]/conversations-sebastien-jourdan/page.tsx` (indexable, trilingue FR/EN/de-ch) ; `content/conversations-sebastien-jourdan/{fr,en,de-ch}.json` (dix conversations en voix éditoriale attribuée, bio, transparence) ; composant de rendu `components/revue/CroquisZoom.tsx` ; 23 croquis SVG + portrait réel + `cover.avif` (nouveaux) ; +1 `pathname` dans `i18n/routing.ts` ; +3 URL dans `app/sitemap.ts` ; test dédié `lib/__tests__/conversations-sebastien-jourdan.test.ts`. Les 9 autres photos réutilisées sont **déjà publiées sur `main`**.
+
+**Pourquoi** — Laurent, 13/10 : « Préférer une PR de publication propre contenant le hub trilingue et toutes ses dépendances nécessaires. Conserver l'intégralité de #130. » Objectif : publier la collection sans embarquer la réécriture série A/B ni l'espace de revue interne.
+
+**Gouvernance** — D16 : le hub est **hors blog**, donc non soumis aux trois critères de D16 ; l'anti-cannibalisation est documentée (les dix sujets renvoient aux cocons existants, intention distincte « regard du dirigeant »), **sans exception réglementaire**. D42 étape 5 / 01-RAYON-ACTION : validation de Sébastien remplacée, pour cette série, par l'autorité de publication de Laurent (`PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_LINE_BY_LINE_BY_SEBASTIEN`). D38 : publication trilingue coordonnée. D9 / D57-L14 : routes nouvelles ; aucun set `NOINDEX_EN_*` levé ; L14 (chantier G5) hors périmètre de cette collection (confirmé par Laurent). Entretien 08 : affirmations vérifiées conformes au dossier AI Act publié ; relecture juriste recommandée.
+
+**Fichiers rayon large** — `i18n/routing.ts` (+1), `app/sitemap.ts` (+3). seo-config, hreflang, SchemaOrg, messages, Worker : inchangés.
+
+**Effet attendu** — [Inférence] À la fusion (gelée) : hub indexable `/fr|/en|/de-ch/conversations-sebastien-jourdan`, hreflang réciproque complet, maillage sortant vers les cocons. Aucune promesse de position ni de citation moteur.
+
+**Vérifié** — (au packaging) `tsc`, `verifier-json`, `eslint`, `next build`, `vitest` (test dédié), Playwright trilingue : voir le commentaire de la PR et le dossier de checkpoint. `datePublished/dateModified` à aligner sur la date réelle de publication au merge.
+
+**Supposé** — [Inférence] La Preview reproduit le build local. [Non vérifié] Preview réelle sous SSO. Droits : portrait et `cover.avif` introduits par cette PR (droits confirmés par Laurent le 12/10) ; les 9 autres photos sont déjà publiées.
+
+**Non regardé** — Maillage entrant (A, B, à-propos) : diff présenté séparément avant application. Relecture juridique humaine de 08.
+
+**Suite** — Présenter à Laurent le périmètre exact, le SHA, les tests et la QA Preview. Aucun merge ni publication sans `GO_MERGE` explicite.
+
+---
+
 ## 2026-10-13 · #114 : D57 (L13) appliqué, `main` `4c53314` intégré, exception de Laurent au préalable J+7 · Claude de Laurent
 
 **Chantier** : Repair Factory PR-C | **PR** : #114, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
