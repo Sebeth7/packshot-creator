@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · PR de publication propre : hub trilingue « Conversations avec Sébastien Jourdan » (Option B) · Claude de Laurent
+
+**Chantier** : GO RELANCE — publication de la série (arbitrage Laurent du 13/10, Option B : PR propre) | **PR** : nouvelle, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`
+
+**Quoi** — Sous-ensemble **propre** de #130 destiné à la publication : uniquement le hub éditorial public « Conversations avec Sébastien Jourdan » et ses dépendances. **#130 reste ouverte et intacte** (travaux historiques A/B, espace de revue interne). Contenu : route `app/[lang]/conversations-sebastien-jourdan/page.tsx` (indexable, trilingue FR/EN/de-ch) ; `content/conversations-sebastien-jourdan/{fr,en,de-ch}.json` (dix conversations en voix éditoriale attribuée, bio, transparence) ; composant de rendu `components/revue/CroquisZoom.tsx` ; 23 croquis SVG + portrait réel + `cover.avif` (nouveaux) ; +1 `pathname` dans `i18n/routing.ts` ; +3 URL dans `app/sitemap.ts` ; test dédié `lib/__tests__/conversations-sebastien-jourdan.test.ts`. Les 9 autres photos réutilisées sont **déjà publiées sur `main`**.
+
+**Pourquoi** — Laurent, 13/10 : « Préférer une PR de publication propre contenant le hub trilingue et toutes ses dépendances nécessaires. Conserver l'intégralité de #130. » Objectif : publier la collection sans embarquer la réécriture série A/B ni l'espace de revue interne.
+
+**Gouvernance** — D16 : le hub est **hors blog**, donc non soumis aux trois critères de D16 ; l'anti-cannibalisation est documentée (les dix sujets renvoient aux cocons existants, intention distincte « regard du dirigeant »), **sans exception réglementaire**. D42 étape 5 / 01-RAYON-ACTION : validation de Sébastien remplacée, pour cette série, par l'autorité de publication de Laurent (`PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_LINE_BY_LINE_BY_SEBASTIEN`). D38 : publication trilingue coordonnée. D9 / D57-L14 : routes nouvelles ; aucun set `NOINDEX_EN_*` levé ; L14 (chantier G5) hors périmètre de cette collection (confirmé par Laurent). Entretien 08 : affirmations vérifiées conformes au dossier AI Act publié ; relecture juriste recommandée.
+
+**Fichiers rayon large** — `i18n/routing.ts` (+1), `app/sitemap.ts` (+3). seo-config, hreflang, SchemaOrg, messages, Worker : inchangés.
+
+**Effet attendu** — [Inférence] À la fusion (gelée) : hub indexable `/fr|/en|/de-ch/conversations-sebastien-jourdan`, hreflang réciproque complet, maillage sortant vers les cocons. Aucune promesse de position ni de citation moteur.
+
+**Vérifié** — (au packaging) `tsc`, `verifier-json`, `eslint`, `next build`, `vitest` (test dédié), Playwright trilingue : voir le commentaire de la PR et le dossier de checkpoint. `datePublished/dateModified` à aligner sur la date réelle de publication au merge.
+
+**Supposé** — [Inférence] La Preview reproduit le build local. [Non vérifié] Preview réelle sous SSO. Droits : portrait et `cover.avif` introduits par cette PR (droits confirmés par Laurent le 12/10) ; les 9 autres photos sont déjà publiées.
+
+**Non regardé** — Maillage entrant (A, B, à-propos) : diff présenté séparément avant application. Relecture juridique humaine de 08.
+
+**Suite** — Présenter à Laurent le périmètre exact, le SHA, les tests et la QA Preview. Aucun merge ni publication sans `GO_MERGE` explicite.
+
+---
+
 ## 2026-10-13 · #114 : D57 (L13) appliqué, `main` `4c53314` intégré, exception de Laurent au préalable J+7 · Claude de Laurent
 
 **Chantier** : Repair Factory PR-C | **PR** : #114, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
