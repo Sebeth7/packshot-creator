@@ -1,0 +1,16 @@
+{
+  "transparence": "",
+  "bio": {
+    "titre": "",
+    "html": "",
+    "timeline": [],
+    "portrait": {
+      "src": "",
+      "alt": "",
+      "legende": "",
+      "width": 0,
+      "height": 0
+    }
+  },
+  "entretiens": []
+}

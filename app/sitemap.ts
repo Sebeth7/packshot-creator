@@ -43,6 +43,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/en/studios-photo-automatises', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/fr/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/en/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
+    // Hub éditorial « Conversations avec Sébastien Jourdan » — FR publié ; /en et
+    // /de-ch à ajouter ici (et dans deChPages) à la mise en ligne des traductions.
+    { path: '/fr/conversations-sebastien-jourdan', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/industrie', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/industrie', priority: 0.8, changeFrequency: 'monthly' as const },

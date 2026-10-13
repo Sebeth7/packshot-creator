@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · Hub public « Conversations avec Sébastien Jourdan » (FR) : collection éditoriale indexable à partir des 10 entretiens · Claude de Laurent
+
+**Chantier** : GO RELANCE du 13/10/2026 — publication de la série (architecture hybride C). `VOICE = EDITORIAL_ATTRIBUTED`, `GO_CODE_PR130 = YES`, `GO_TRADUCTION_PREPARATION = YES`, `GO_SEO_GEO = YES`, `GO_MERGE = NO`, `GO_PUBLICATION = NO` | **PR** : #130 (brouillon) | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `4c53314`
+
+**Quoi** — Nouvelle route publique **hors blog** `app/[lang]/conversations-sebastien-jourdan/page.tsx` : hub éditorial d'autorité présentant les dix conversations, **indexable** (pas de garde 404 prod, pas de `noindex`), construit à partir des entretiens de la revue interne. Voix passée du « je » (revue) à une **synthèse éditoriale attribuée** (arbitrage Laurent du 13/10) : positions/expériences documentées attribuées et datées, explications générales en voix experte impersonnelle, scènes fictives signalées, aucune attribution non adossée à une provenance. Bannière de **transparence éditoriale** (conversations construites éditorialement, non interviews enregistrées, non relues phrase par phrase). Badges internes, notes de dossier, mentions « Preview/à approuver/relecture juridique » retirés de l'affichage public. Entretien 08 : voix impersonnelle, aucune qualification réglementaire affirmée, renvoi au dossier AI Act, note « conversation de méthode, pas un avis juridique ». Contenu dans `content/conversations-sebastien-jourdan/fr.json` (10 entretiens, bio, transparence) ; `en.json`/`de-ch.json` = stubs non servis (traduction à venir, D38). Portrait réel conservé ; 23 croquis + vraies photos réutilisés.
+
+**Pourquoi** — Les dix sujets sont déjà couverts par des cocons existants : créer dix URL cannibaliserait (échec critère 1 de D16). D16 ne vise que le blog ; un hub hors blog y échappe formellement, mais l'anti-cannibalisation est documentée et l'URL unique reste à ratifier au checkpoint (modèle D46). Objectif : une série réellement publiée et intégrée, pas une Preview privée indéfinie.
+
+**Fichiers** — `app/[lang]/conversations-sebastien-jourdan/page.tsx` (nouveau), `content/conversations-sebastien-jourdan/{fr,en,de-ch}.json` (nouveaux), `i18n/routing.ts` (+1 pathname — rayon large), `app/sitemap.ts` (+1 URL FR — rayon large). Métadonnées + libellés via `tx()` inline : **aucune modification de `messages/*.json`, `lib/seo-config.ts`, `lib/hreflang.ts`, `components/seo/SchemaOrg.tsx`, Worker**.
+
+**Effet attendu** — [Inférence] À la fusion (gelée, `GO_MERGE = NO`) : nouvelle page FR indexable `/fr/conversations-sebastien-jourdan`, maillage sortant vers les cocons existants, autorité/E-E-A-T autour de Sébastien Jourdan. Aucune promesse de position ni de citation par un moteur. Articles A/B publics et autres pages inchangés. Cela repose sur des schémas observés.
+
+**Vérifié** — `tsc` vert ; `verifier-json` 200 JSON ; `eslint` fichiers touchés `--max-warnings=0` vert ; `next build` vert (389 pages, variables factices), route `/fr/conversations-sebastien-jourdan` prérendue (`●`, FR seule). `next start` `VERCEL_ENV=production` : `/fr/...` = **200** sans balise robots (indexable), canonical auto-référent FR, hreflang fr/fr-CH/x-default → /fr, JSON-LD Organization + BreadcrumbList + Article (auteur = PackshotCreator, `about` = Person Sébastien Jourdan) + ItemList(10) + Person, **aucun `Interview` ni `VideoObject`**, 10 `<article>` ; `/en` et `/de-ch` = **404** (traduction non faite) ; `sitemap.xml` : 1 occurrence (FR). Playwright build local : 0 débordement et 0 erreur console à 1920/1440/1024/768/390/375 ; portrait réel chargé ; 23 croquis + 10 photos ; barre D44 desktop, masquée mobile ; sans JavaScript : 10 articles + 23 croquis rendus. Scan d'attribution : « Sébastien Jourdan » 0 à 7 selon l'entretien (0 pour 05/08), 0 occurrence de « selon lui/il explique » ; termes « garanti » uniquement en négation (garde-fous).
+
+**Supposé** — [Inférence] La Preview Vercel reproduit le build local vérifié. [Non vérifié] directement : Preview réelle sous SSO Vercel. [Non vérifié] L'accord de principe de diffusion de Sébastien (rapporté par Laurent) n'est pas une validation mot à mot : statut `PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_LINE_BY_LINE_BY_SEBASTIEN`.
+
+**Non regardé** — Traductions EN/de-ch (à produire, D38 ; stubs non servis en attendant). Maillage entrant vers le hub (Phase 5, dans le respect de D52 et des gels). Relecture juridique spécialisée de l'entretien 08 (recommandée avant merge ; isolable sans bloquer les neuf autres). URL publique définitive et exception D16 à ratifier au checkpoint.
+
+**Suite** — Traduction EN + adaptation de-ch depuis le FR, maillage entrant, QA trilingue, puis dossier de checkpoint. Aucun merge ni publication sans `GO_MERGE` explicite.
+
+---
+
 ## 2026-10-12 · Revue entretiens S3 V3.1 : portrait en médaillon, suppression des mentions de travail, condensation 04/05/10, badges · Claude de Laurent
 
 **Chantier** : passe corrective V3.1 après QA read-only (GO code explicite du 12/10 ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_AUTRE_PR = NO`) | **PR** : #130 (brouillon, « DO NOT MERGE ») | **Commit** : branche `claude/vibrant-wright-q18tsp`, base `main` `0f960b5`
