@@ -856,7 +856,13 @@ export default async function SecteurPage({ params }: PageProps) {
           name: secteur.titre,
           description: secteur.description,
           serviceType: tx(lang, 'Photographie produit automatisée', 'Automated product photography', 'Automatisierte Produktfotografie'),
-          url: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
+          // URL servie (de-ch : /de-ch/branchen/<slug>), comme le fil d'Ariane ;
+          // Service.url visait /de-ch/industrie/<slug>, redirigée.
+          // D57 (L13) : /de-ch/branchen/mode garde son Service.url de main
+          // jusqu'à la fin du gel Mode (26/11/2026).
+          url: lang === 'de-ch' && slug === 'mode'
+            ? `https://www.packshot-creator.com/${lang}/industrie/${slug}`
+            : `${industrieBase}/${slug}`,
           category: secteur.titre.split(':')[0].trim(),
         }),
         ...(secteur.faq ? [faqSchema(secteur.faq)] : []),
