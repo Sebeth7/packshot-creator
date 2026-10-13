@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #129 — `main` (#135) intégré, conflits de gouvernance résolus ; Q25 préparée pour l'accès Resend de Laurent (aucune écriture) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, reprise Q25 du 13/10 (GO_AUDIT_READ_ONLY, GO_PRÉPARATION_Q25 = YES ; écritures Resend et Vercel en attente de GO) | **PR** : #129 (brouillon) | **Commits** : fusion `56f9382`, puis ce commit
+
+**Quoi** —
+- `main` `4c53314` (#135 : D57, D58, Q26) fusionné dans la branche : GitHub signalait `mergeable_state = dirty`. Conflits additifs sur `ETAT.md` (ligne #129 et ligne #135 au même endroit), `JOURNAL.md` (entrée #135 du 12/10 au-dessus des entrées #129) et `BOITE-AUX-LETTRES.md` (Q26 au-dessus de Q25) : les deux côtés conservés, rien d'écrasé. `DECISIONS.md` sans conflit. Aucun fichier du site concerné.
+- Dossier de release complété : documentation primaire Resend relue (topic `opt_out` non modifiable, visibilité, propriétés, limites de l'offre gratuite, `batch` contre Broadcasts), consigne unique de lecture pour Claude dans Chrome, lot de configuration à valider (R1 à R4, V1, V2), protocole du test réel des alertes, dernière checklist de release.
+- Q25 complétée (ajout du 13/10).
+
+**Pourquoi** — Mission « Reprise Q25 — nouvel accès Resend » de Laurent du 13/10 : Sébastien lui a ouvert le compte Resend de Sysnext.
+
+**Fichiers** — `docs/seo-geo/{RELEASE-129-OCCASION,BOITE-AUX-LETTRES,ETAT,JOURNAL}.md` ; fusion : `docs/seo-geo/{DECISIONS,BOITE-AUX-LETTRES,ETAT,JOURNAL}.md` venant de `main`.
+
+**Effet attendu** — Aucun sur le site ; PR de nouveau fusionnable sans conflit.
+
+**Vérifié** — Tête de PR `bf3f00d` et `main` `4c53314` relus avant intervention ; `git merge-tree` : trois conflits, tous dans `docs/seo-geo/` ; après résolution, aucun marqueur restant, Q24, Q25, Q26 et les entrées du JOURNAL présentes une fois chacune ; `npx next build` vert avant le push. Documentation Resend : pages « Topics », « Create topic », « Create contact property », « Batch sending », « What sending feature to use », tarifs (13/10).
+
+**Supposé** — [Inférence] Le Worker du dépôt relaie vers `NEXTJS_ORIGIN` : sans `OCCASION_ALERTES_URL_BASE`, les liens des e-mails pointeraient vers l'origine Vercel ; le Worker déployé peut différer du dépôt (R5).
+
+**Non regardé** — Compte Resend et variables Vercel : aucun accès depuis cette session (pas de clé, pas de navigateur), d'où la consigne Chrome. Aucune ressource créée, aucune variable écrite, aucun envoi.
+
+**Suite** — Inventaire Chrome en lecture seule ; GO groupé sur le lot de configuration ; durée de conservation et règle de non-réinscription (Sébastien) ; GO_TEST_REEL_ALERTES.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR

@@ -151,6 +151,8 @@ dans `DECISIONS.md`.
 8. **Dédoublonnage durable** : assuré par le champ `annonce` du registre (commit juste après l'envoi). Un journal des envois chez Resend (propriété supplémentaire) ou ailleurs n'est **pas** créé : à décider seulement si la procédure ne suffit pas.
 9. **Consentement** : texte v3 du 12/10 (`occasion-alertes-v3-2026-10-12`, trois langues) ; les versions v1 et v2 n'ont servi à aucune inscription réelle.
 
+**Ajout du 13/10 (accès Resend accordé à Laurent par Sébastien)** — Consentement v3 validé définitivement par Laurent le 12/10. Les opérations techniques de Q25 peuvent passer par Laurent ; restent à Sébastien la **durée de conservation** (point 4) et la validation de la **règle de non-réinscription** (point 3). Documentation primaire Resend relue : topic `opt_out` = seuls les inscrits explicites reçoivent, abonnement par défaut non modifiable après création ; offre gratuite limitée à 3 segments ; la documentation oriente les campagnes vers Broadcasts (le bulletin utilise l'envoi groupé : à arbitrer avant le premier envoi réel). Inventaire réel en lecture seule, lot de configuration et protocole de test : `docs/seo-geo/RELEASE-129-OCCASION.md`, sections 5 à 7.
+
 ---
 
 ### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
