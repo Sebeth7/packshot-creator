@@ -2,7 +2,7 @@
 
 État au 12/10/2026, complété le 13/10 et le 14/10 (Claude de Laurent). PR brouillon, DO NOT MERGE.
 GO_CODE = YES ; 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS,
-GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129 = YES. Restent à NO ou en attente :
+GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129, GO_NAVIGATION_129 = YES. Restent à NO ou en attente :
 GO_ENVOI_TEST (destinataires et autorisation ciblée), GO_TEST_REEL_ALERTES,
 GO_NETTOYAGE_DEPLOIEMENTS, écriture Vercel Production, GO_MERGE, GO_PUBLICATION,
 GO_ENVOI_REEL (bulletin).
@@ -43,7 +43,7 @@ le verrou de publication (`exemplesFictifsServis()`, testé dans
 | Surface | État dans la branche | Preuve | Reste à faire |
 |---|---|---|---|
 | Landing FR, EN, DE-CH | `/{fr,en,de-ch}/studios-photo-automatises/opportunites`, même chemin, textes par langue (`components/landings/occasion/contenu-*.ts`) | `occasion-langues.test.ts` ; QA trilingue locale | Relecture de la copy par Sébastien ; relecture native EN et DE-CH recommandée |
-| Menus et pied de page | Un seul lien : Solutions > Studios (ordinateur et mobile), colonne des studios du pied de page ; « Offres d'occasion », « Pre-owned offers », « Occasionen » ; vers la page de la même langue ; absent en production tant que la page n'est pas publiée | `occasion-langues.test.ts` ; QA (clavier, 390 et 320 px) | Rien |
+| Menus et pied de page | Décision de Laurent du 14/10 (remplace le 10/10) : menu déroulant Solutions, **en dernier, après la rubrique Guides**, hors de son sous-menu, lien secondaire séparé et discret (ordinateur et mobile), jamais sous « Studios Photo Automatisés » ni dans la barre principale ; pied de page, **colonne Solutions après « Questions clés »**, une seule occurrence, retiré de la colonne des studios ; « Offres d'occasion », « Pre-owned offers », « Occasionen » ; vers la page de la même langue ; absent en production tant que la page n'est pas publiée | `occasion-langues.test.ts` (emplacements) ; QA locale du 14/10, trois langues, 1280 et 390 px | Rien |
 | Métadonnées | Titre et description par langue, Open Graph par locale ; `noindex, nofollow` ; ni canonique, ni hreflang | Test des pages | Choix A ou B (section 2) |
 | Routes | 3 pages + 3 vues `…/exemples-fictifs` (jamais en production) ; `/api/occasion` et `/api/occasion/alertes{,/confirmation,/desinscription}` en 503 sans lecture de la demande | Build `VERCEL_ENV=production` : 6 × 404, 4 × 503 | Rien |
 | Recherche (notification commerciale) | Notification interne `[Occasion]` vers `OCCASION_NOTIFICATION_EMAIL`, puis accusé dans la langue de la page ; aucun CRM | `recherche-*.test.ts` ; test réel Preview du 11/10 (A soumis ; B et quatre e-mails non établis) | Reliquat du test réel (section 7) ; variable en Production (`sebastien.jourdan@sysnext.com`, décision du 14/10) |

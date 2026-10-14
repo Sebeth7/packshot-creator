@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #129 — rectificatif de navigation : « Offres d'occasion » en fin de menu Solutions et dans la colonne Solutions du pied de page · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_NAVIGATION_129 de Laurent, 14/10 ; remplace la seule décision de navigation du 10/10) | **PR** : #129 (brouillon) | **Commit** : ce commit
+
+**Quoi** —
+- Menu haut : le lien quitte la position sous « Studios Photo Automatisés » ; il devient la dernière entrée du menu déroulant Solutions, après les rubriques Par secteur, Documentation pour industriels et Guides, hors du sous-menu Guides, séparé par un trait et en texte discret (desktop et mobile). Les trois offres principales restent en tête ; aucune entrée nouvelle dans la barre principale.
+- Pied de page : le lien quitte la colonne des studios (modèles neufs seuls) pour la colonne Solutions, après « Questions clés » ; une seule occurrence.
+- Libellés (« Offres d'occasion », « Pre-owned offers », « Occasionen »), destinations localisées et condition de publication inchangés. Commentaires et tests d'emplacement mis à jour.
+
+**Pourquoi** — Décision de Laurent du 14/10 : rendre les offres d'occasion accessibles sans détourner les prospects des studios neufs.
+
+**Fichiers** — `components/layout/Header.tsx`, `components/layout/Footer.tsx`, `app/[lang]/layout.tsx` (commentaire), `lib/occasion/navigation.ts` (commentaire), `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Aucun en production (lien absent tant que `PUBLICATION_AUTORISEE` est faux). Preview : nouvel emplacement.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` 45 fichiers, 824 tests verts (dont 2 nouveaux sur les emplacements) ; `npx next build` vert. QA locale sur ce build (Chromium, `/fr`, `/en`, `/de-ch`) : 33 contrôles sur 36 verts — barre principale sans le lien ; menu desktop : lien unique, dernier, après les trois rubriques en flyout, absent du sous-menu Guides, cible localisée ; pied de page : une occurrence, dernière de la colonne Solutions ; mobile : lien présent, dernier de Solutions avant « Formations ». Les 3 contrôles en échec mesurent un débordement horizontal de 53 px sur l'accueil à 390 px : bandeau défilant de logos (`animate-marquee`), présent menu fermé, sans débordement sur la page occasion menu ouvert : défaut antérieur, hors de ce changement.
+
+**Supposé** — Rien.
+
+**Non regardé** — Avertissement ESLint `Calculator` importé et inutilisé dans `Header.tsx` : déjà présent sur `main`, lint non bloquant en CI ; non corrigé ici. Preview Vercel (protégée par SSO).
+
+**Suite** — Inchangée : préalables en lecture seule, GO des essais réels, décisions de Sébastien, GO d'écriture Vercel Production, GO_MERGE puis GO_PUBLICATION.
+
+---
+
 ## 2026-10-14 · #129 — finalisation avant publication : e-mail de confirmation DE-CH corrigé, configuration réelle consignée, protocole de test mis à jour, `main` `1ebda83` intégré · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (GO de Laurent du 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS, GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129 = YES) | **PR** : #129 (brouillon) | **Commits** : correctif DE-CH, gouvernance, fusion de `main`

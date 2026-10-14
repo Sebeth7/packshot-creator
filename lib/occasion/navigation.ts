@@ -1,10 +1,16 @@
 import type { LangueOccasion } from './langues';
 
 /**
- * Lien texte « Offres d'occasion » : seuls emplacements autorisés, le menu haut
- * (sous Solutions > Studios, desktop et mobile) et la colonne des studios du pied
- * de page (mission du 10/10/2026). Aucun bouton, bloc ni CTA ailleurs : la page
- * vise un public à intention occasion, distinct des leads du neuf.
+ * Lien texte « Offres d'occasion » : seuls emplacements autorisés (décision de
+ * Laurent du 14/10/2026, qui remplace celle du 10/10) :
+ * - menu haut, menu déroulant Solutions : en dernier, après la rubrique Guides et
+ *   hors de son sous-menu, lien secondaire séparé et discret (desktop et mobile) ;
+ *   jamais sous « Studios Photo Automatisés », jamais dans la barre principale ;
+ * - pied de page : colonne Solutions, après « Questions clés », une seule fois ;
+ *   la colonne des studios ne présente que les modèles neufs.
+ * Aucun bouton, bloc ni CTA ailleurs, aucune mise en avant sur les pages des
+ * machines neuves : la page vise un public à intention occasion, distinct des
+ * leads du neuf.
  *
  * Affiché seulement si `liensOccasionServis()` (lib/occasion/activation.ts), dans
  * les trois langues (mission finale du 11/10/2026) ; chaque locale pointe vers sa

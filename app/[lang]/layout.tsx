@@ -84,9 +84,9 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
-  // Lien « Offres d'occasion » (menu haut, pied de page) : FR seulement, absent de
-  // la production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
-  // Lien « Offres d'occasion » (menu Studios, pied de page) : trois langues, jamais en production sans GO.
+  // Lien « Offres d'occasion » (menu Solutions après Guides, colonne Solutions du pied
+  // de page) : trois langues, absent de la production tant que la publication n'est
+  // pas autorisée (lib/occasion/activation.ts, lib/occasion/navigation.ts).
   const lienOccasion = liensOccasionServis();
 
   return (

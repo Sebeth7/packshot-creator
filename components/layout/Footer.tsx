@@ -27,8 +27,10 @@ const FOOTER_STUDIOS: { id: string; nom: string }[] = [
 ];
 
 /**
- * `lienOccasion` : lien texte « Offres d'occasion » dans la colonne des studios,
- * libellé dans la langue de la page. Calculé côté serveur par app/[lang]/layout.tsx :
+ * `lienOccasion` : lien texte « Offres d'occasion » dans la colonne Solutions, après
+ * « Questions clés », seule occurrence du pied de page (décision de Laurent du
+ * 14/10/2026 ; la colonne des studios ne présente que les modèles neufs), libellé
+ * dans la langue de la page. Calculé côté serveur par app/[lang]/layout.tsx :
  * jamais en production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
  */
 export default function Footer({ lienOccasion = false }: { lienOccasion?: boolean }) {
@@ -108,6 +110,13 @@ export default function Footer({ lienOccasion = false }: { lienOccasion?: boolea
                   {t('guidesQuestions')}
                 </Link>
               </li>
+              {lienOccasion && (
+                <li>
+                  <Link href={LIEN_OCCASION.href} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                    {libelleLienOccasion(locale)}
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -288,13 +297,6 @@ export default function Footer({ lienOccasion = false }: { lienOccasion?: boolea
                   {t('allStudios')} &rarr;
                 </Link>
               </li>
-              {lienOccasion && (
-                <li>
-                  <Link href={LIEN_OCCASION.href} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
-                    {libelleLienOccasion(locale)}
-                  </Link>
-                </li>
-              )}
             </ul>
           </div>
 

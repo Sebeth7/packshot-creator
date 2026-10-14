@@ -259,6 +259,54 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
     expect(libelleLienOccasion('de-ch')).toBe('Occasionen');
   });
 
+  describe('emplacements du lien (décision de Laurent du 14/10/2026)', () => {
+    // Code seul : les commentaires décrivent les emplacements en toutes lettres.
+    const code = (f: string) =>
+      readFileSync(join(process.cwd(), f), 'utf8')
+        .split('\n')
+        .filter((l) => !/^\s*(\*|\/\/|\/\*\*)/.test(l))
+        .join('\n');
+    const occurrences = (s: string, motif: string) => s.split(motif).length - 1;
+
+    it('menu Solutions : en dernier, après Guides et hors de son sous-menu, séparé et discret (desktop et mobile)', () => {
+      const header = code('components/layout/Header.tsx');
+      expect(occurrences(header, 'LIEN_OCCASION.href')).toBe(1);
+      const debut = header.indexOf('const solutionSections');
+      const secteurs = header.indexOf("titleKey: 'bySector'");
+      const guides = header.indexOf("titleKey: 'guides'");
+      const secondaire = header.indexOf('secondaire: true');
+      const lien = header.indexOf('LIEN_OCCASION.href');
+      const fin = header.indexOf('];', lien);
+      expect(debut).toBeGreaterThan(-1);
+      // Trois offres principales en tête, sans le lien d'occasion.
+      expect([...header.slice(debut, secteurs).matchAll(/href: '([^']+)'/g)].map((m) => m[1])).toEqual([
+        '/studios-photo-automatises',
+        '/ia-photo-produit',
+        '/calculateur-roi',
+      ]);
+      // Rubriques conservées dans l'ordre, puis le lien, dernière entrée du menu.
+      expect(header.indexOf("titleKey: 'industrialDoc'")).toBeGreaterThan(secteurs);
+      expect(guides).toBeGreaterThan(header.indexOf("titleKey: 'industrialDoc'"));
+      expect(secondaire).toBeGreaterThan(guides);
+      expect(lien).toBeGreaterThan(secondaire);
+      expect(header.slice(lien, fin)).not.toMatch(/titleKey|href:/);
+      // Desktop : sections secondaires rendues après les flyouts ; mobile : sans icône.
+      expect(header).toContain('const mainSections = sections.filter((s) => !s.titleKey && !s.secondaire);');
+      expect(header).toContain('const secondarySections = sections.filter((s) => s.secondaire);');
+      expect(header.indexOf('secondarySections.map')).toBeGreaterThan(header.indexOf('flyoutSections.map'));
+      expect(header).toContain('section.secondaire ?');
+    });
+
+    it('pied de page : une seule occurrence, colonne Solutions après « Questions clés », absente de la colonne des studios', () => {
+      const footer = code('components/layout/Footer.tsx');
+      expect(occurrences(footer, 'LIEN_OCCASION.href')).toBe(1);
+      const lien = footer.indexOf('LIEN_OCCASION.href');
+      expect(lien).toBeGreaterThan(footer.indexOf("t('guidesQuestions')"));
+      expect(lien).toBeLessThan(footer.indexOf("t('industries')"));
+      expect(footer.slice(footer.indexOf("t('studiosRange')"), footer.indexOf("t('academy')"))).not.toContain('LIEN_OCCASION');
+    });
+  });
+
   it('politique de confidentialité citée : FR ou EN (pas de version de-ch servie)', () => {
     expect(urlConfidentialite('fr')).toBe('https://www.packshot-creator.com/fr/confidentialite');
     expect(urlConfidentialite('en')).toBe('https://www.packshot-creator.com/en/confidentialite');
