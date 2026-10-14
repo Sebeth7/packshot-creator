@@ -43,6 +43,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/en/studios-photo-automatises', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/fr/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/en/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
+    // Hub éditorial « Conversations avec Sébastien Jourdan » — trilingue (D38).
+    { path: '/fr/conversations-sebastien-jourdan', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/en/conversations-sebastien-jourdan', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/industrie', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/industrie', priority: 0.8, changeFrequency: 'monthly' as const },
@@ -154,6 +157,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/de-ch', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/de-ch/studios-photo-automatises', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/de-ch/ia-photo-produit', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/de-ch/conversations-sebastien-jourdan', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/de-ch/branchen', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/de-ch/wer-sind-wir', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/de-ch/kontakt', priority: 0.6, changeFrequency: 'monthly' },
