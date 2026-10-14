@@ -52,9 +52,9 @@ Les deux nouvelles formulations ne sont plus des copies du H1 : elles recomposen
 **Fichiers** — `content/blog/fr/comment-shotflow-permet-optimiser-production-contenu.json` et `content/blog/fr/joailliers-nos-conseils-pour-reussir-vos-visuels-produits.json` (champ `metaTitle` seul) ; `docs/seo-geo/ETAT.md` et `JOURNAL.md`.
 
 **Vérifié** —
-- tête de départ `581d9d9`, `main` `fef5109` inchangé, aucune collision : les 2 JSON ne sont touchés par aucune autre PR ouverte ; le diff contre `main` reste limité aux 8 fichiers de site de #119 (7 JSON FR, `data/solutions.ts`), seul `metaTitle` ou `titre` changeant ;
+- tête de départ `581d9d9` ; `main` `fef5109`, puis `2ae6e15` (#145, qui ne touche aucun fichier de #119) intégré ; aucune collision : les 2 JSON ne sont touchés par aucune autre PR ouverte ; le diff contre `main` reste limité aux 8 fichiers de site de #119 (7 JSON FR, `data/solutions.ts`), seul `metaTitle` ou `titre` changeant ;
 - `npx tsc --noEmit` vert ; `verifier-json` : 200 JSON valides ; Vitest 655/655 ; `npx next build` vert ; CSS compilée identique à `main` (`f1014956bf63`) ;
-- HTML prérendu, `main` `fef5109` contre branche : 380 pages communes, 371 identiques, 9 différentes, les 9 déjà visées ; pour chacune, `<body>` hors `<head>`, H1 et JSON-LD identiques ; `description`, `og:description`, canonical, robots et hreflang inchangés ; les 2 pages ajustées ne changent que `<title>`, `og:title` et `twitter:title` (aucune URL `og:image` modifiée sur ces 2 articles, qui ont une image).
+- HTML prérendu, `main` `fef5109` contre branche (comparaison non refaite contre `2ae6e15` : #145 ne change que des fichiers de-ch, du hub Conversations et `i18n/deChCoverage.ts`) : 380 pages communes, 371 identiques, 9 différentes, les 9 déjà visées ; pour chacune, `<body>` hors `<head>`, H1 et JSON-LD identiques ; `description`, `og:description`, canonical, robots et hreflang inchangés ; les 2 pages ajustées ne changent que `<title>`, `og:title` et `twitter:title` (aucune URL `og:image` modifiée sur ces 2 articles, qui ont une image).
 
 **Supposé** — [Inférence] Les titles seront servis tels quels par `www` ; Google peut les réécrire. Cela repose sur des schémas observés.
 **Non regardé** — Preview Vercel (SSO) : QA humaine toujours manquante ; `sysnext.vercel.app` et `www` (R4) ; GSC.
@@ -105,6 +105,28 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 **Non regardé** — `e2e/seo.spec.ts` : non exécuté, le Chromium installé par la version de Playwright du dépôt est absent de l'environnement ; remplacé par le contrôle Chromium ci-dessus et par les tests Vitest de `lib/seo`. Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). GSC : aucune lecture.
 
 **Suite** — Validation D13/D42 des 8 titles FR par Sébastien (liste minimale dans le rapport de la session du 14/10), puis GO de fusion distinct de Laurent. Le `metaTitle` e-commerce reste en HOLD (choix de #140, gel F5 jusqu'au 23/11) : décision de Laurent à la fin du gel. Après fusion : `smoke.mjs`, puis Chrome sur `www`.
+
+---
+
+## 2026-10-14 · Maillage A/B/hub : liens EN/de-ch localisés + couverture de-ch du hub · Claude de Laurent
+
+**Chantier** : GO AUDIT SEO/MAILLAGE A-B-HUB (14/10/2026) — audit ciblé des 9 URL (A, B, hub × fr/en/de-ch), corrections de liens | **PR** : #<n> | **Base** : `main` `fef5109` | **Branche** : `claude/seo-maillage-a-b-hub`
+
+**Quoi** — Les hubs EN/de-ch (`content/conversations-sebastien-jourdan/{en,de-ch}.json`) liaient A, B et d'autres articles/guides/studios vers leurs URL **FR** alors que des versions localisées publiées existent. Remappage vers les destinations localisées **vérifiées au sitemap** : 23 liens EN, 15 liens de-ch. Les articles de-ch A/B liaient la landing e-commerce vers `/fr/packshot-e-commerce` ; remappés vers `/de-ch/packshot-e-commerce` (7 liens). Ajout de `/conversations-sebastien-jourdan` à `DE_CH_COVERED_STATIC` (`i18n/deChCoverage.ts`) : le hub est publié en de-ch, mais la couverture ne le savait pas → le menu « Méthodes » et le sélecteur de langue épinglaient le lien de-ch vers **/en** au lieu de /de-ch. Test de non-régression ajouté.
+
+**Pourquoi** — Terminer le maillage interne localisé des 9 pages. Un hub de-ch qui renvoie vers les articles FR dilue l'autorité de-ch et dégrade l'expérience ; un menu de-ch qui mène au hub EN envoie le visiteur hors de sa langue alors que la page de-ch existe.
+
+**Règles appliquées** — Localisation uniquement si la version cible est **publiée et indexable** (secteurs EN noindex → `/fr` conservé ; articles/guides sans de-ch → `/fr` conservé). Aucun slug inventé. Ancres contextuelles : aucune cible remappée ne portait de fragment. Prose éditoriale inchangée (liens seuls).
+
+**Fichiers** — `content/conversations-sebastien-jourdan/{en,de-ch}.json`, `content/blog/de-ch/{lohnt-sich-ein-internes-produktfotostudio,e-commerce-fotostudio-organisieren}.json`, `i18n/deChCoverage.ts`, `lib/__tests__/hub-conversations-maillage.test.ts`.
+
+**Rayon d'action** — `i18n/deChCoverage.ts` (fichier à rayon large) : ajout **purement additif** d'un pathname couvert. Effet : les `NavLink` de-ch vers le hub rendent `/de-ch/conversations-sebastien-jourdan` (page servie, sitemap) au lieu de `/en`. Aucune couverture retirée. Retour arrière : `git revert`.
+
+**Vérifié** — `verifier-json` (200 OK) ; `tsc` vert ; `vitest` (655 + 8 nouveaux tests) ; `next build` vert ; audit liens build prod local (D59 §3) : **0 lien cassé** sur les 9 pages et les 3 hubs (72–76 liens/hub contrôlés en 200) ; les `/fr` résiduels sont des hreflang/x-default, des liens Header/Footer épinglés par règle (FR-only, secteurs/solutions EN-noindex) et les conservations volontaires documentées ; menu « Méthodes » de-ch → `/de-ch/conversations-sebastien-jourdan` (était `/en`) ; SEO des 3 hubs : 200, indexables, canonical auto-référents, hreflang réciproque (fr/fr-CH/en/de-CH/x-default), schémas Article/BreadcrumbList/ItemList.
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé** — Backlinks externes (données GSC non relevées ici : **NON VÉRIFIÉ**, hors périmètre de correction interne). Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4, puis contrôle production (sysnext → www).
 
 ---
 
