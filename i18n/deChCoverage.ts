@@ -89,6 +89,7 @@ export const DE_CH_COVERED_STATIC: ReadonlySet<string> = new Set([
   '/packshot-industriel', // → /de-ch/packshot-industrie
   '/blog', // listing servi en de-ch (generateStaticParams de-ch)
   '/guide', // listing servi en de-ch
+  '/conversations-sebastien-jourdan', // hub « Méthodes » servi en de-ch (content/.../de-ch.json)
   // Landing « Offres d'occasion », non publiée (lib/occasion/activation.ts), et sa
   // vue de contrôle des exemples fictifs (jamais en production).
   '/studios-photo-automatises/opportunites',
