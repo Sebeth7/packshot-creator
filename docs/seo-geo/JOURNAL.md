@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · S16 : assainissement FR de 3 articles (claims neutralisés) — EN ATTENTE DE VALIDATION D42 · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) | **PR** : brouillon dédié, branche `claude/traductions-en-dech-s16` (distincte de #141) | **Commit** : voir PR
+
+**Quoi** — Neutralisation éditoriale des affirmations commerciales non prouvées dans les 3 articles encore en français sous `/en` (fichiers FR) : 2D (8 changements), 360° (3), 3D (3). Claims retirés/adoucis : « leader mondial », « 20 000 utilisateurs / 35 pays », « best-sellers », « le plus puissant/accessible/unique du marché », « le meilleur de l'innovation », « garantissent … » → formulations prudentes. **Rien inventé, aucun chiffre ajouté.** Technique (100 % LED, brevets, formats, specs), médias, liens, structure, métadonnées et slugs : **inchangés**. **EN non traduit** (D42). `noindex` des 3 pages EN conservé.
+
+**Pourquoi** — Mission « GO traductions en une passe » puis « finition des 3 articles » (14/10) : préparer des FR fiables pour permettre la traduction EN ultérieure, sans publier de contenu non validé. GO_CODE limité à la préparation/neutralisation ; GO_MERGE = NO.
+
+**Fichiers** — `content/blog/fr/photographie-2d-de-produits.json`, `content/blog/fr/photographie-de-produits-a-360-degres-en-interne.json`, `content/blog/fr/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre.json`, `docs/seo-geo/traductions-s16/VALIDATION-D42-3-ARTICLES.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q27), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun avant validation + traduction : les 3 pages EN restent en français et en `noindex`. Les FR assainis sont des **propositions** (D42) jusqu'à l'accord de Sébastien (Q27).
+
+**Vérifié** — 3 JSON parse OK ; aucun claim ciblé résiduel (`leader mondial`, `20.000`, `best-seller`, `le plus … du marché`, `garanti*`) ; `tsc`/`vitest`/`verifier-json`/`next build` relancés (voir ligne de contrôle au push). `noindex` EN confirmé (`NOINDEX_EN_BLOG_SLUGS` → `robots: index:false, follow:true`).
+**Supposé** — La version FR assainie est publiable une fois validée par Sébastien.
+**Non regardé** — `www` / QA Preview (SSO). Deux faits conservés non revérifiés : « plus de 70 brevets » (2D), « Depuis 2001 » (360°, arbitrage date D33).
+
+**Suite** — Q27 (validation D42 de Sébastien). Après accord : traduction EN depuis la FR validée, `noindex` conservé, GO_MERGE distinct. Ne pas étendre D59 à ces articles.
+
 ## 2026-10-14 · Maillage A/B/hub : liens EN/de-ch localisés + couverture de-ch du hub · Claude de Laurent
 
 **Chantier** : GO AUDIT SEO/MAILLAGE A-B-HUB (14/10/2026) — audit ciblé des 9 URL (A, B, hub × fr/en/de-ch), corrections de liens | **PR** : #<n> | **Base** : `main` `fef5109` | **Branche** : `claude/seo-maillage-a-b-hub`
