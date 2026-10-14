@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · PR-A brouillon — réécriture « Internaliser ses photos produit » (extraction de #130) · Claude de Laurent
+
+**Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article A depuis #130, PR brouillon, sans fusion ni publication | **PR** : PR-A dédiée, brouillon | **Base** : `main` `1ebda83` | **Branche** : `claude/reecriture-a-internaliser`
+
+**Quoi** — `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json` : réécriture éditoriale de #130 (7 questions, réponse courte visible avant tout bloc dépliable, `faqs: []`, auteur PackshotCreator, aucune narration à la première personne), **rebasée sur le maillage déjà publié** : le lien `/fr/conversations-sebastien-jourdan#entretien-01` (ancre « le regard de Sébastien Jourdan sur la décision d'internaliser », introduit par #138) est ré-injecté dans le nouveau contenu (Q5, décision interne/prestataire). `app/globals.css` : bloc append-only `.prose .psc-*` (partagé avec l'article B — voir dépendance ci-dessous). Tests : `lib/__tests__/serie-produire-images.test.ts` (réduit à l'article 1), `lib/seo/__tests__/json-ld-techniques.test.ts` (A ajouté, compte porté à 4), `e2e/serie-produire-images.spec.ts` (article 1).
+
+**Pourquoi** — #130 est antérieure à #138 ; reprise brute, elle écraserait le maillage en production. L'extraction prend la réécriture de #130 et préserve l'acquis de #138. L'ancienne page était un argumentaire Orbitvu avec FAQ promotionnelles et chiffres non sourcés.
+
+**Fichiers** — article A JSON, `app/globals.css`, les 3 fichiers de test, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — [Inférence] Page plus complète, structurée en questions/réponses, orientée décision B2B. Aucune promesse de position ni de CTR. `dateModified` = 2026-10-14 (date de finition ; à réaligner sur la date de publication réelle au merge, sans antidatage). Cela repose sur des schémas observés.
+
+**Vérifié** — `verifier-json` : 198 JSON valides ; `npx tsc --noEmit` vert ; `npx vitest run` : 644 tests verts ; `eslint --max-warnings=0` des fichiers modifiés vert ; `npx next build` vert ; images de A (hero `67e161c8…`, inline Q3 `67e162818…`) déjà en usage établi sur la page (présentes sur `main`) ; liens internes résolus sur `main` (dont guides sous `content/guides/fr/`).
+**Supposé** — Le rendu visuel sur Preview (SSO) reste à contrôler. La prose institutionnelle (D42) et le `metaTitle` de A restent des arbitrages Sébastien/Laurent.
+**Non regardé** — Versions EN/de-ch de A (jumeaux non équivalents, traduction gelée C5/D17). L'article B (PR distincte).
+
+**Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique), `lib/__tests__/serie-produire-images.test.ts` et `lib/seo/__tests__/json-ld-techniques.test.ts` (compteur global `dateModified`) sont communs aux deux PR. Ordre de fusion sûr : A puis B ; au merge de B, rebaser sur `main`, garder le bloc CSS déjà présent, réunir les deux articles dans les tests et porter le compteur `dateModified` à 5.
+
+**Suite** — PR-A en brouillon pour arbitrage. Pas de fusion ni de publication (GO_MERGE_PR_A = NO, GO_PUBLICATION = NO). Événement D52 (lien A → `/fr/packshot-e-commerce`) à consigner au moment d'un éventuel merge.
+
+---
+
 ## 2026-10-13 · Maillage entrant vers le hub « Conversations avec Sébastien Jourdan » · Claude de Laurent
 
 **Chantier** : Phase 3 du GO FINAL GLOBAL (maillage entrant, 3 liens) | **PR** : maillage dédié, brouillon | **Base** : `main` `ea01846` | **Branche** : `claude/maillage-conversations-sebastien`
