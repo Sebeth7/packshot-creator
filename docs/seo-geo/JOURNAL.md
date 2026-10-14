@@ -36,9 +36,9 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-14 · PR-A brouillon — réécriture « Internaliser ses photos produit » (extraction de #130) · Claude de Laurent
 
-**Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article A depuis #130, PR brouillon, sans fusion ni publication | **PR** : PR-A dédiée, brouillon | **Base** : `main` `1ebda83` | **Branche** : `claude/reecriture-a-internaliser`
+**Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article A depuis #130, PR brouillon, sans fusion ni publication ; réconciliée sur `main` après #134 | **PR** : PR-A dédiée, brouillon | **Base** : `main` `6717c4f` (merge de `main`, conflit `JOURNAL` résolu par union — entrée #134 préservée) | **Branche** : `claude/reecriture-a-internaliser`
 
-**Quoi** — `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json` : réécriture éditoriale de #130 (7 questions, réponse courte visible avant tout bloc dépliable, `faqs: []`, auteur PackshotCreator, aucune narration à la première personne), **rebasée sur le maillage déjà publié** : le lien `/fr/conversations-sebastien-jourdan#entretien-01` (ancre « le regard de Sébastien Jourdan sur la décision d'internaliser », introduit par #138) est ré-injecté dans le nouveau contenu (Q5, décision interne/prestataire). `app/globals.css` : bloc append-only `.prose .psc-*` (partagé avec l'article B — voir dépendance ci-dessous). Tests : `lib/__tests__/serie-produire-images.test.ts` (réduit à l'article 1), `lib/seo/__tests__/json-ld-techniques.test.ts` (A ajouté, compte porté à 4), `e2e/serie-produire-images.spec.ts` (article 1).
+**Quoi** — `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json` : réécriture éditoriale de #130 (7 questions, réponse courte visible avant tout bloc dépliable, `faqs: []`, auteur PackshotCreator, aucune narration à la première personne), **rebasée sur le maillage déjà publié** : le lien `/fr/conversations-sebastien-jourdan#entretien-01` (ancre « le regard de Sébastien Jourdan sur la décision d'internaliser », introduit par #138) est ré-injecté dans le nouveau contenu (Q5, décision interne/prestataire). `app/globals.css` : bloc append-only `.prose .psc-*` (partagé avec l'article B — voir dépendance ci-dessous). Tests **auto-adaptatifs et identiques dans les deux PR** : `serie-produire-images.test.ts` et `e2e/serie-produire-images.spec.ts` décrivent A ET B et ne contrôlent un article que s'il est en forme réécrite (présence de `psc-q`) ; `json-ld-techniques.test.ts` compte dynamiquement les fichiers portant `dateModified` (3 sans la série, 4 avec un article, 5 avec les deux).
 
 **Pourquoi** — #130 est antérieure à #138 ; reprise brute, elle écraserait le maillage en production. L'extraction prend la réécriture de #130 et préserve l'acquis de #138. L'ancienne page était un argumentaire Orbitvu avec FAQ promotionnelles et chiffres non sourcés.
 
@@ -50,9 +50,44 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Supposé** — Le rendu visuel sur Preview (SSO) reste à contrôler. La prose institutionnelle (D42) et le `metaTitle` de A restent des arbitrages Sébastien/Laurent.
 **Non regardé** — Versions EN/de-ch de A (jumeaux non équivalents, traduction gelée C5/D17). L'article B (PR distincte).
 
-**Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique), `lib/__tests__/serie-produire-images.test.ts` et `lib/seo/__tests__/json-ld-techniques.test.ts` (compteur global `dateModified`) sont communs aux deux PR. Ordre de fusion sûr : A puis B ; au merge de B, rebaser sur `main`, garder le bloc CSS déjà présent, réunir les deux articles dans les tests et porter le compteur `dateModified` à 5.
+**Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique), `serie-produire-images.test.ts`, `e2e/serie-produire-images.spec.ts` et `json-ld-techniques.test.ts` sont **identiques** dans les deux PR. Étant identiques et auto-adaptatifs, ils ne créent **aucun conflit** à la fusion du second et contrôlent automatiquement A et B une fois les deux publiés — aucune réconciliation manuelle de test. Ordre de fusion sûr : #139 (A) d'abord, #140 (B) ensuite ; au merge de #140, `git merge main` apporte le CSS déjà présent (identique, pas de conflit), le JOURNAL par union, et le compteur `dateModified` passe de 4 à 5 tout seul.
 
-**Suite** — PR-A en brouillon pour arbitrage. Pas de fusion ni de publication (GO_MERGE_PR_A = NO, GO_PUBLICATION = NO). Événement D52 (lien A → `/fr/packshot-e-commerce`) à consigner au moment d'un éventuel merge.
+**Suite** — PR-A en brouillon pour arbitrage. Pas de fusion ni de publication (GO_MERGE_PR139 = NO, GO_PUBLICATION = NO). Événement D52 (lien A → `/fr/packshot-e-commerce`) à consigner au moment d'un éventuel merge.
+
+---
+
+## 2026-10-14 · #134 : Light + Byte AG, affirmation de cessation d'activité CONSERVÉE (décision définitive de Laurent) ; `main` `1ebda83` intégré · Claude de Laurent
+
+**Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** —
+- `data/distributeur-suisse-en.ts`, FAQ « Who is the official distributor of Orbitvu photo studios in Switzerland? » : réponse rétablie à l'identique de `fa6c489` : « […] The former Swiss reseller, Light + Byte AG, ceased trading in 2025: Swiss companies now deal directly with PackshotCreator for advice, demonstrations, delivery, installation, training and after-sales service in French, with commercial support also available in German. Sales enquiries can also be handled in English. Swiss contact: +41 44 580 43 84. » La formule neutre du 13/10 (« For enquiries from Switzerland, contact PackshotCreator. ») est retirée. Services, langues et coordonnées : inchangés.
+- En-tête du module : historique des deux décisions.
+- `main` `1ebda83` intégré (fusions de #137 et #138). Conflit sur `JOURNAL.md` seul, résolu par union ; aucune entrée supprimée.
+- Entrée du 13/10 (arbitrages des claims EN) : mention de remplacement ajoutée en tête pour son volet Light + Byte AG, rien d'effacé.
+
+**Pourquoi** — Décision définitive de Laurent du 13/10/2026, confirmée le 14/10 : CONSERVER l'affirmation « Light + Byte AG a cessé ses activités en 2025 ». Elle remplace sa demande de suppression du 13/10, appliquée dans `161935c`. C'est un **arbitrage éditorial de Laurent, pas une preuve documentaire** : la capture Google « Définitivement fermé » n'établit pas, à elle seule, l'année 2025 ni la cessation juridique de la société.
+
+**Fichiers** — `data/distributeur-suisse-en.ts`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet SEO avant publication L1 : les deux pages EN restent en `noindex, follow`. Après fusion, la FAQ EN de la page Suisse affirme la cessation en 2025, comme les pages déjà publiées (accueils FR, EN et de-ch ; page Suisse FR), non modifiées.
+
+**Vérifié** —
+- Diff fonctionnel contre `161935c`, hors apport de `main` : `data/distributeur-suisse-en.ts` seul. Gabarits, `data/secteurs-en-horlogerie.ts` et visuel U03 (SHA-256 `1b3f5542…`) inchangés.
+- tsc, Vitest 633/633, `verifier-json` (198 fichiers) et `next build` (390 pages générées) verts en local.
+- HTML prérendu complet comparé à `main` `1ebda83` : 374 pages sur 378 identiques ; les 4 mêmes pages diffèrent (visuel seul en FR et de-ch). Sitemap identique hors `lastmod` (326 URL).
+- Playwright Chromium local, `next start`, 2 pages EN × 3 largeurs (320, 390, 1 440 px) :
+  - FAQ Suisse EN complète, Light + Byte AG compris, visible et dans le JSON-LD ;
+  - « Controlled lighting… », « Our showroom in Beynost (Ain), near Lyon » et « Get a free quote » présents ;
+  - « polarized », « two hours from Geneva » et « For enquiries from Switzerland » absents ;
+  - `noindex, follow` ; canonical et alternates identiques à `main` ; aucun débordement ; visuel chargé, `object-contain`.
+- D57 (L13) : exception `Service.url` de `/de-ch/branchen/mode` présente et inchangée.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (non fusionné). Preuve documentaire de la date de cessation : aucune au dossier.
+
+**Suite** — GO_MERGE distinct de Laurent, pas avant le 15/10 (J+7 AI Act les 13 et 14/10). QA de la Preview non effectuée. Pas de levée du `noindex`, pas de publication L1.
 
 ---
 
@@ -96,6 +131,58 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Les replis francophones `/fr/blog/*`, `/fr/guide/*`, `/fr/studio-photo/*`, `/fr/industrie/mode-textile` présents dans le fichier de-ch : ils renvoient 200 (non cassés), hors périmètre de ce hotfix.
 
 **Suite** — Après merge et déploiement, re-contrôler les trois liens sur la production réelle, puis reprendre la Phase 3 (maillage entrant).
+
+---
+
+## 2026-10-13 · #134 : arbitrages de Laurent sur les claims EN (éclairage polarisé, Genève, Light + Byte AG) ; devis gratuit consigné ; `main` `e241218` intégré · Claude de Laurent
+
+> **Mise à jour du 14/10** : le volet Light + Byte AG de cette entrée est remplacé. Décision définitive de Laurent : affirmation de cessation d'activité en 2025 CONSERVÉE (entrée du 14/10 ci-dessus). Le reste de l'entrée est inchangé.
+
+**Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** —
+- `main` `e241218` intégré (fusion de #136, hub « Conversations avec Sébastien Jourdan »). Conflit sur `JOURNAL.md` seul, résolu par union.
+- `data/secteurs-en-horlogerie.ts` :
+  - puce « Polarized lighting: controlled reflections on sapphire crystals, polished cases and bracelet links » et réponse de FAQ « Orbitvu studios use polarized LED lighting to control unwanted reflections […] during capture, without manual retouching. » remplacées par « Controlled lighting helps reduce unwanted reflections on watch crystals and polished cases. » ;
+  - FAQ « Can we test a studio with our own watches before buying? » : « Our showroom, less than two hours from Geneva » devient « Our showroom in Beynost (Ain), near Lyon ».
+- `data/distributeur-suisse-en.ts`, FAQ « Who is the official distributor of Orbitvu photo studios in Switzerland? » : « The former Swiss reseller, Light + Byte AG, ceased trading in 2025: Swiss companies now deal directly with PackshotCreator for […] » devient « For enquiries from Switzerland, contact PackshotCreator. Advice, demonstrations, delivery, installation, training and after-sales service are provided in French […] ». Aucune autre affirmation sur le statut de Light + Byte AG ou sur une relation commerciale.
+- En-têtes des deux modules : arbitrages du 13/10 ajoutés, historique conservé.
+
+**Pourquoi** — Arbitrages et faits métier de Laurent du 13/10/2026, GO_CODE limité à ces micro-corrections :
+- éclairage polarisé : assertion non démontrée ; formulation prudente, sans technologie attribuée aux équipements ;
+- showroom : Beynost établi par D57 ; « moins de deux heures de Genève » retiré ;
+- Light + Byte AG : cessation d'activité sans preuve écrite suffisante ; rien n'est affirmé sur son statut actuel ;
+- **FAIT MÉTIER LAURENT du 13/10** : les devis PackshotCreator sont gratuits et sans engagement. Le CTA « Get a free quote » du gabarit commun est autorisé et conservé ; le gabarit n'est pas modifié ;
+- droits d'utilisation de la photographie Hamilton : réglés (entrée U03 ci-dessous).
+
+**Fichiers** — `data/secteurs-en-horlogerie.ts`, `data/distributeur-suisse-en.ts`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet SEO avant publication L1 : les deux pages EN restent en `noindex, follow`, sitemap, canonical et hreflang inchangés. Le `noindex` ne protège pas les textes : après fusion, ils sont lisibles publiquement sur les deux URL EN.
+
+**Vérifié** —
+- tsc, Vitest 633/633, `verifier-json` (198 fichiers) et `next build` (390 pages générées) verts en local.
+- HTML prérendu complet, scripts compris, comparé à `main` `e241218` : 374 pages sur 378 identiques. Les 4 pages qui diffèrent sont celles de l'entrée U03 : `fr/industrie/horlogerie` et `de-ch/branchen/uhren` (bloc du visuel seulement), les deux pages EN (traduction et visuel).
+- Sitemap identique hors `lastmod` (326 URL).
+- Playwright Chromium local, `next start`, 2 pages EN × 3 largeurs (320, 390, 1 440 px) :
+  - nouvelles phrases visibles et présentes dans le JSON-LD ;
+  - « polarized », « two hours from Geneva », « Light + Byte », « ceased » absents du texte visible et du JSON-LD ;
+  - « Get a free quote » présent ;
+  - `noindex, follow` ; canonical et alternates identiques à `main` ;
+  - aucun débordement horizontal ; visuel Hamilton chargé, `object-contain`.
+- Les 12 contrôles Playwright U03 (3 pages × 4 largeurs) sont réutilisés : visuel, ALT et gabarit inchangés depuis.
+- D57 (L13) : l'exception `Service.url` de `/de-ch/branchen/mode` issue de #114 est présente et inchangée.
+
+**Supposé** — Aucun.
+
+**Non regardé** —
+- Preview Vercel (SSO) ; `www` (non fusionné).
+- Occurrences publiées hors périmètre, non modifiées :
+  - Light + Byte AG : `home.faq.q7.answer` dans `messages/fr.json`, `en.json` et `de-ch.json` (accueil gelé jusqu'au 28/10) ; FAQ FR de `app/[lang]/distributeur-orbitvu-suisse/page.tsx` ;
+  - éclairage polarisé, horlogerie : `data/secteurs.ts` (puce et FAQ) et `data/secteurs-de-ch.ts` (puce et FAQ) ;
+  - « 2 heures de Genève » : FAQ horlogerie de `data/secteurs.ts` et `data/secteurs-de-ch.ts` ; articles `migrer-ancien-packshotcreator` en FR, EN et de-ch.
+- Source des deux pages EN : `home.faq.q7.answer` (Light + Byte AG) et deux clés `packshotIndustriel` (« polarized ») de `messages/en.json` restent dans la charge utile RSC, non visibles.
+
+**Suite** — GO_MERGE distinct de Laurent, pas avant le 15/10 (J+7 AI Act les 13 et 14/10) sauf décision explicite. QA de la Preview non effectuée. Pas de levée du `noindex`, pas de publication L1.
 
 ---
 
@@ -143,6 +230,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · #134 : visuel U03 dans le HERO horlogerie en FR, EN et de-ch ; droits confirmés par Laurent (fait métier) ; `main` `2759239` intégré · Claude de Laurent
+
+**Chantier** : G5 LOT-7 (D9 L1), visuel U03 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** —
+- `main` `2759239` intégré (fusion de #114 : `Service.url` de `/de-ch/branchen/mode` conservé selon D57, L13). Conflit sur `JOURNAL.md` seul, résolu par union.
+- `public/images/hero/horlogerie-hero-montre-chronographe.webp` ajouté : WebP RGBA, 1 400 × 1 434 px, SHA-256 `1b3f5542eddf7e444b908828f2f6e132e50cf5a88e20f21e21debf9ea31ca6f7`, identique au paquet `u03-transmission-pr134.zip`.
+- `app/[lang]/industrie/[slug]/page.tsx` : patch U03 appliqué. Branche dédiée `dataSlug === 'horlogerie'` dans le bloc `media` du HERO : `next/image` en `fill`, `object-contain`, `priority`, ALT localisé FR, EN et de-ch. Écart volontaire avec le patch : `relative` est posé sur une enveloppe propre à l'horlogerie, et non sur le conteneur commun à tous les secteurs. Ainsi, le HTML des autres secteurs reste identique à `main`.
+
+**Pourquoi** — GO_CODE ciblé de Laurent du 13/10, pour #134 seule. **FAIT MÉTIER LAURENT du 13/10** : Laurent confirme personnellement disposer des droits d'utilisation de la photographie Hamilton du paquet U03 ; le HOLD fondé sur l'absence de cette confirmation est levé. **Extension de périmètre** décidée par Laurent le 13/10 : le visuel est intégré dans les trois langues, FR, EN et de-ch.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `public/images/hero/horlogerie-hero-montre-chronographe.webp`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Le placeholder vide du HERO horlogerie est remplacé par la photographie de la montre, sur les trois pages. Aucun autre changement de rendu.
+
+**Vérifié** —
+- tsc, Vitest 627/627, `next build` (387 pages) et `verifier-json` verts en local.
+- HTML visible comparé à `main` `2759239`, scripts retirés : 4 pages sur 375 diffèrent.
+  - `fr/industrie/horlogerie` et `de-ch/branchen/uhren` : seul le bloc du visuel change (préchargement de l'image ; placeholder remplacé par l'image).
+  - Les deux pages EN de #134 : traduction et visuel.
+- Sitemap identique hors dates `lastmod` (323 URL). Canonical et alternates des quatre pages identiques à `main`. `noindex, follow` présent sur les deux pages EN.
+- Playwright Chromium local, `next start`, 3 pages × 4 largeurs (320, 390, 768, 1 440 px) :
+  - image chargée, `object-contain`, rapport d'aspect identique à l'original (0,977) ;
+  - montre entière dans son cadre, placeholder absent ;
+  - aucun débordement créé par le visuel. Le débordement horizontal de `/de-ch/branchen/uhren` à 320 px (362 px pour 320) existe à l'identique sur `main` : il vient du H2 allemand de la section « Herausforderungen ». Préexistant, hors périmètre, non corrigé.
+- L'optimiseur d'images sert du WebP aux navigateurs qui l'acceptent ; transparence préservée.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview Vercel (SSO). `www` (non fusionné). Claims commerciaux non établis : inchangés, toujours soumis à décision (SB-L1). L'image ne démontre pas un équipement Orbitvu précis ; aucune légende ne l'affirme.
+
+**Suite** — QA de la Preview par Laurent (FR, EN, de-ch), puis GO_MERGE distinct. Pas de levée du `noindex`, pas de publication L1.
+
+---
+
 ## 2026-10-13 · #114 : D57 (L13) appliqué, `main` `4c53314` intégré, exception de Laurent au préalable J+7 · Claude de Laurent
 
 **Chantier** : Repair Factory PR-C | **PR** : #114, brouillon, « DO NOT MERGE » | **Base** : `main` `4c53314`
@@ -181,6 +303,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-12 · #134 : relecture de l'anglais des deux pages L1 ; `main` `4c53314` intégré ; aucune modification de code · Claude de Laurent
+
+**Chantier** : G5 LOT-7 (D9 L1) | **PR** : #134 (brouillon) | **Commit** : voir PR
+
+**Quoi** — Relecture de l'anglais de `/en/industrie/horlogerie` et `/en/distributeur-orbitvu-suisse` contre le texte FR de `main`. Aucune erreur manifeste : aucun texte modifié. `main` `4c53314` (fusion de #135) intégré par union.
+
+**Pourquoi** — Mission « G5 — passe finale décisive » du 12/10 (dernière relecture de l'anglais).
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun.
+
+**Vérifié** —
+- Sens constant, sans claim ajouté. Deux atténuations voulues par rapport au FR, prudence D42 : « supprime les reflets » devient « control unwanted reflections » ; « netteté absolue » devient « sharpness ».
+- Claims NON ÉTABLIS conservés et signalés en tête de fichier : éclairage polarisé, « less than two hours from Geneva », Light + Byte AG, CTA « Get a free quote ».
+- `noindex` conservé ; sitemap, hreflang et `deChCoverage` non touchés.
+- Suggestions facultatives pour Laurent : « are offered » devient « are provided » (FAQ horlogerie, livraison en Suisse) ; « available on request with your quote » devient « available on request when you ask for a quote » (financement) ; « Qualiopi-certified in France » : « in France » ajouté par rapport au FR.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Rendu dans la Preview (SSO).
+
+**Suite** — Décision de Laurent sur les 3 suggestions ; GO_MERGE facultatif.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
@@ -213,6 +361,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - la confirmation de clôture du lot F (ETAT, C), qui revient à Laurent.
 
 **Suite** — Fusion de cette PR (GO_MERGE de Laurent), puis contrôle passif de `sysnext.vercel.app` ; SHA de fusion et résultat du contrôle : commentaire de clôture de la PR. Réponse de Sébastien à Q26 ; une question inscrite ici ne prouve pas qu'il l'a lue.
+
+---
+
+## 2026-10-12 · D9 L1 : horlogerie et distributeur suisse traduits en EN, noindex conservé — brouillon · Claude de Laurent
+
+**Chantier** : D9 (L0/L1), kit S7 | **PR** : brouillon, branche `claude/g5-pr-c-traduction-l1` | **Commit** : voir PR
+
+**Quoi** — `/en/industrie/horlogerie` et `/en/distributeur-orbitvu-suisse` traduites (H1, title, description, FAQ, cartes, libellés). `noindex, follow`, canonical, alternates et sitemap inchangés.
+
+**Pourquoi** — Sur `main`, ces deux pages EN portent un title et un H1 en français. D9 L1 ; GO_CODE L0/L1 du 11/10 et GO_PR_DRAFT du 12/10 de Laurent.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `app/[lang]/distributeur-orbitvu-suisse/page.tsx`, `data/secteurs-en-horlogerie.ts` (nouveau), `data/distributeur-suisse-en.ts` (nouveau).
+
+**Effet attendu** — Aucun effet d'indexation tant que la publication (LOT-7b) n'est pas décidée.
+
+**Vérifié** — En local sur `main` + ce patch seul : tsc vert ; Vitest 627/627 ; `next build` vert (deux builds) ; HTML : 2 pages EN modifiées, FR et de-ch identiques, sitemap 323 URL ; Playwright Chromium, 8 specs : 364 réussis, 12 échecs identiques à `main`. CI GitHub et Preview : à compléter.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Claims NON ÉTABLIS (polarisé, « moins de deux heures de Genève », gratuité du devis, Light + Byte, Beynost / D1) ; L2 et L3 (L14, HOLD) ; relecture humaine de l'anglais.
+
+**Suite** — Relecture de l'anglais par Laurent ; publication (LOT-7b) : GO_CODE de publication, GO_MERGE, GO_PUBLICATION, hors J+7 (13-14/10), décision SB-L1.
 
 ---
 

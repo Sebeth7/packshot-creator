@@ -1,15 +1,20 @@
 import { test, expect, type Page } from '@playwright/test';
 
 /**
- * Série éditoriale « Produire ses images produit » — article 1 (décider).
- * Cette PR ne traite que l'article A ; l'article B « produire » est dans une PR
- * distincte. Au moment de réunir les deux, restaurer l'entrée B ci-dessous.
+ * Série éditoriale « Produire ses images produit » : article 1 (décider) et
+ * article 2 (produire).
  *
- * Parcours de lecture : réponse courte visible sans interaction, blocs dépliables au
+ * Fichier partagé par les deux PR et IDENTIQUE dans les deux. Chaque article
+ * n'est contrôlé que s'il est en forme réécrite sur la Preview visée (présence
+ * de `h2.psc-q`) ; sinon le test est ignoré. Chaque PR est donc verte avec sa
+ * seule Preview, et une fois A ET B publiés les deux articles sont couverts.
+ *
+ * Parcours : réponse courte visible sans interaction, blocs dépliables au
  * clavier, sommaire vers une question, absence de défilement horizontal.
  */
 const ARTICLES = [
   { url: '/fr/blog/est-il-utile-dinternaliser-sa-production-de-photos-packshot', questions: 7 },
+  { url: '/fr/blog/e-commerce-comment-mettre-en-place-votre-studio-photo', questions: 8 },
 ];
 
 test.beforeEach(async ({ context, baseURL }) => {
@@ -17,6 +22,13 @@ test.beforeEach(async ({ context, baseURL }) => {
     { name: 'cookie-consent', value: encodeURIComponent(JSON.stringify({ necessary: true })), url: baseURL! },
   ]);
 });
+
+/** Ignore le test si l'article n'est pas (encore) réécrit sur cette Preview. */
+async function sauterSiAncien(page: Page, url: string) {
+  await page.goto(url);
+  const n = await page.locator('h2.psc-q').count();
+  test.skip(n === 0, 'article non réécrit sur cette Preview (contrôlé dans sa PR dédiée)');
+}
 
 /** Fin du défilement doux et des corrections d'arrivée du sommaire (voir sommaire-blog.spec.ts). */
 async function attendreFinDefilement(page: Page) {
@@ -53,7 +65,7 @@ async function sansDebordement(page: Page) {
 for (const { url, questions } of ARTICLES) {
   test.describe(url, () => {
     test('chaque question affiche sa réponse courte sans interaction', async ({ page }) => {
-      await page.goto(url);
+      await sauterSiAncien(page, url);
       await expect(page.locator('h2.psc-q')).toHaveCount(questions);
       const breves = page.locator('h2.psc-q + .psc-bref');
       await expect(breves).toHaveCount(questions);
@@ -61,7 +73,7 @@ for (const { url, questions } of ARTICLES) {
     });
 
     test('un bloc dépliable s’ouvre et se referme au clavier', async ({ page }) => {
-      await page.goto(url);
+      await sauterSiAncien(page, url);
       const bloc = page.locator('details.psc-details').first();
       const resume = bloc.locator('summary');
       await resume.focus();
@@ -76,7 +88,7 @@ for (const { url, questions } of ARTICLES) {
 
     test('desktop : le sommaire mène à la quatrième question, visible sous l’en-tête', async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 900 });
-      await page.goto(url);
+      await sauterSiAncien(page, url);
       const cible = page.locator('h2.psc-q').nth(3);
       const libelle = (await cible.innerText()).replace(/^\d+\s*/, '').trim();
       await page.locator('aside nav button').filter({ hasText: libelle.slice(0, 30) }).click();
@@ -87,7 +99,7 @@ for (const { url, questions } of ARTICLES) {
 
     test('mobile : sommaire repliable, question atteinte, aucun défilement horizontal', async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.goto(url);
+      await sauterSiAncien(page, url);
       await sansDebordement(page);
       const cible = page.locator('h2.psc-q').nth(2);
       const libelle = (await cible.innerText()).replace(/^\d+\s*/, '').trim();
