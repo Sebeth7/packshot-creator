@@ -34,6 +34,55 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · Menu « Solutions → Guides » : 5 entrées, slug par locale (A/B 3 langues + hub) · Claude de Laurent
+
+**Chantier** : GO EXÉCUTION FINALE A/B (14/10/2026) — menu Guides, PR dédiée au Header global | **PR** : #142 | **Base** : `main` `dd67d3f` (resync post-#144 : de-ch A/B publiés) | **Branche** : `claude/menu-guides-conversations`
+
+**Quoi** — `components/layout/Header.tsx` : sous-menu « Solutions → Guides » porté à 5 entrées, après les 2 existantes (« Identifier votre besoin », « Questions clés ») :
+1. « Choisir son studio photo » → article A ;
+2. « Organiser son studio photo » → article B ;
+3. « Méthodes & bonnes pratiques » → hub `/conversations-sebastien-jourdan` (libellé **neutre** : « Entretiens avec Sébastien Jourdan » n'apparaît pas dans le menu).
+`messages/{fr,en,de-ch}.json` : 6 clés (nav) localisées naturellement. Liens typés (desktop + mobile via `solutionSections`).
+
+**Pourquoi** — Rendre la série de méthode accessible depuis la navigation globale, sans exposer l'identité éditoriale du hub dans le menu.
+
+**Slug par locale** — Les slugs d'article ne sont PAS localisés par next-intl (fichiers séparés `content/blog/<locale>/<slug>.json`, slugs distincts dans `alternates.json`). Le Header passe donc le slug de la locale courante (`serieSlug`) : `fr` = `est-il-utile-…` / `e-commerce-comment-…`, `en` = `5-questions-before-investing-…` / `e-commerce-set-up-internal-packshots`, `de-ch` = `lohnt-sich-ein-internes-produktfotostudio` / `e-commerce-fotostudio-organisieren`. A et B affichés dans **les 3 langues** (les 6 versions sont publiées depuis #144) ; `NavLink` rend l'URL native (en de-ch, les slugs de-ch sont couverts via `alternates.json`). Le hub est affiché dans les 3 langues (ses destinations existent, épinglage `NavLink` sinon).
+
+**Fichiers** — `components/layout/Header.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — Header global (desktop + mobile). Non listé dans la carte à rayon large (`garde-consequences`), mais touche toute la navigation. Ajout de 3 items au sous-menu Guides (5 au total) : contrôle UX (débordement, ouverture clavier, mobile) et résolution des 6 liens A/B par locale. Retour arrière : `git revert`.
+
+**Vérifié** — `messages` JSON valides (3 langues, parité des clés) ; `npx tsc --noEmit` vert ; `npx next build` vert. QA build prod local (D59 §3, Playwright + examen des captures) : sous-menu « Solutions → Guides » rendu en cascade (desktop 1440) et en accordéon (mobile 390) dans les 3 locales ; 5 entrées présentes ; libellés A/B/hub localisés ; les 6 liens A/B portent le slug de leur locale (`/fr/blog/est-il-utile-…` & `/e-commerce-comment-…`, `/en/blog/5-questions-before-investing-…` & `/e-commerce-set-up-internal-packshots`, `/de-ch/blog/lohnt-sich-ein-internes-produktfotostudio` & `/e-commerce-fotostudio-organisieren`) et résolvent **HTTP 200** ; 0 erreur console ; overflow du flyout desktop = 0.
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé / hors périmètre** — Un overflow horizontal ~53px au chargement mobile (390) provient du bandeau de logos `animate-marquee` (élément préexistant, intentionnellement plus large que le viewport) : présent avant toute interaction avec le menu, non introduit par cette PR. Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4, puis contrôle production (sysnext → www).
+
+---
+
+## 2026-10-14 · Traductions EN + localisations de-ch des articles A et B · Claude de Laurent
+
+**Chantier** : GO EXÉCUTION FINALE A/B — traductions, sous exception **D59** (EN + de-ch autorisés et publiables depuis le FR stabilisé ; de-ch : exception D16/C5/D17 pour ces 2 seules créations) | **PR** : traductions dédiée | **Base** : `main` `bf1165a` | **Branche** : `claude/traductions-a-b`
+
+**Quoi** —
+- **EN** : mise à jour des deux jumeaux existants depuis le FR stabilisé — `content/blog/en/5-questions-before-investing-in-an-in-house-photo-studio.json` (A, 7 questions) et `content/blog/en/e-commerce-set-up-internal-packshots.json` (B, 8 questions). URL EN conservées. `faqs: []`, auteur PackshotCreator, metaTitle/description B préservés (Orbitvu & PackshotCreator), metaTitle A traduit. Liens remappés vers l'anglais ; ancres `#…` recalculées sur les titres EN (slugify).
+- **de-ch** (créations) : `content/blog/de-ch/lohnt-sich-ein-internes-produktfotostudio.json` (A, 7 q) et `content/blog/de-ch/e-commerce-fotostudio-organisieren.json` (B, 8 q). Allemand suisse, **0 « ß »**. Adaptation juridique suisse : aucune obligation FR/UE transférée automatiquement ; le cadre AI Act est explicitement qualifié « in der EU ». Aucun claim renforcé. Liens remappés vers de-ch (articles liés, hub, roi-rechner) ; replis `/fr/` pour les cibles sans de-ch (guides, F5).
+- `content/blog/alternates.json` : ajout des slugs `de-ch` pour A et B (hreflang réciproque fr/en/de-CH).
+
+**Pourquoi** — Rendre A et B disponibles en 3 langues, conformément au GO d'accélération. Traduction depuis les FR validés (D42 étape 7).
+
+**Fichiers** — 2 JSON EN, 2 JSON de-ch (nouveaux), `content/blog/alternates.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — 6 versions (FR/EN/de-ch × A/B) indexables. Aucune promesse de position. NOINDEX_EN hors périmètre A/B inchangé. Gels de landings inchangés.
+
+**Vérifié** — `verifier-json` : 200 JSON valides ; `tsc` vert ; `vitest` 655 verts ; `next build` vert ; de-ch : 0 « ß ». QA build prod local (D59 §3) des 6 pages : HTTP 200, questions 7/8, indexables (noindex=0), canonical auto-référents par locale, **hreflang réciproque complet** (fr/fr-CH/en/de-CH/x-default), Article JSON-LD sans FAQPage, overflow 0 (desktop+mobile), 0 erreur console, dépliables clavier OK, maillage #entretien-01/02 présent, **tous liens internes de-ch 200**, 6 URL au sitemap. Captures desktop examinées (de-ch-A, en-B rendus conformes).
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé** — Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4. Puis menu Guides (#142) avec entrées A/B de-ch désormais valides, et contrôle production.
+
+---
+
 ## 2026-10-14 · #117 — `main` `6717c4f`, `a014993` puis `bf1165a` (#134, #136 à #140) intégrés, sans changement de code ; contrôles relancés · Claude de Laurent
 
 **Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `2d8cb36` (fusion de `main` `6717c4f`), `e525c16` (fusion de `main` `a014993`), `685a0cd` (fusion de `main` `bf1165a`)
