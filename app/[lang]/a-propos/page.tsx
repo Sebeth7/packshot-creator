@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { NavLink as Link } from '@/components/layout/NavLink';
-import { getPathname } from '@/i18n/routing';
+import { getPathname, Link as HubLink } from '@/i18n/routing';
 import Image from 'next/image';
 import { ArrowRight, Lightbulb, Zap, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -212,6 +212,19 @@ export default async function AProposPage({ params }: PageProps) {
               ))}
             </div>
           </div>
+
+          <ScrollReveal>
+            <p className="mt-16 text-center text-lg text-future-dusk-600">
+              {tx(lang, 'Pour prolonger ce parcours, découvrez ', 'To continue this journey, explore ', 'Um diesen Werdegang zu vertiefen, entdecken Sie ')}
+              <HubLink
+                href="/conversations-sebastien-jourdan"
+                className="font-semibold text-very-peri-600 underline underline-offset-4 hover:text-very-peri-700"
+              >
+                {tx(lang, 'les conversations de méthode de Sébastien Jourdan', "Sébastien Jourdan's conversations on product photography methods", 'die Methodengespräche von Sébastien Jourdan')}
+              </HubLink>
+              .
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
