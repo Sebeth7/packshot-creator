@@ -100,15 +100,23 @@ describe('Article.dateModified — valeur des sources de contenu', () => {
     expect(articleSchema(base).dateModified).toBe('2024-01-08T00:00:00.000Z');
   });
 
-  it('le chargeur expose dateModified des 4 fichiers qui le portent, et seulement eux', () => {
-    const avec = [
+  it('le chargeur expose dateModified des fichiers qui le portent, et seulement eux', () => {
+    type Ligne = readonly ['fr' | 'en' | 'de-ch', string, string, string]; // lang, slug, dateModified, date
+    // Fichiers historiques qui portent toujours dateModified.
+    const FIXE: ReadonlyArray<Ligne> = [
       ['fr', 'guide-photographie-packshot-pourquoi-faire-packshots', '2026-05-02', '2024-01-08T00:00:00.000Z'],
       ['en', 'packshot-photography-guide-why-make-product-packshots', '2026-05-02', '2024-01-08T00:00:00.000Z'],
       ['de-ch', 'leitfaden-packshot-fotografie-warum-packshots-machen', '2026-05-02', '2024-01-08T00:00:00.000Z'],
-      // Série « Produire ses images produit », article 2 (produire) — cette PR.
-      // Au moment de réunir A et B, ajouter l'article 1 et porter le compte à 5.
+    ];
+    // Série « Produire ses images produit » (réécriture 10/10, maillage 14/10). Chaque
+    // article est compté dès que sa PR est présente (il porte alors dateModified) :
+    // 3 sans la série, 4 avec un article, 5 avec les deux. La garde reconnaît donc les
+    // cinq contenus une fois A ET B publiés, sans valeur figée.
+    const SERIE: ReadonlyArray<Ligne> = [
+      ['fr', 'est-il-utile-dinternaliser-sa-production-de-photos-packshot', '2026-10-14', '2024-10-13T00:00:00.000Z'],
       ['fr', 'e-commerce-comment-mettre-en-place-votre-studio-photo', '2026-10-14', '2023-09-16T00:00:00.000Z'],
-    ] as const;
+    ];
+    const avec: Ligne[] = [...FIXE, ...SERIE.filter(([lang, slug]) => getArticle(slug, lang)?.dateModified !== undefined)];
     for (const [lang, slug, modifie, publie] of avec) {
       const a = getArticle(slug, lang);
       expect(a?.dateModified).toBe(modifie);
