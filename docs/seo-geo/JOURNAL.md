@@ -34,6 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · Maillage A/B/hub : liens EN/de-ch localisés + couverture de-ch du hub · Claude de Laurent
+
+**Chantier** : GO AUDIT SEO/MAILLAGE A-B-HUB (14/10/2026) — audit ciblé des 9 URL (A, B, hub × fr/en/de-ch), corrections de liens | **PR** : #<n> | **Base** : `main` `fef5109` | **Branche** : `claude/seo-maillage-a-b-hub`
+
+**Quoi** — Les hubs EN/de-ch (`content/conversations-sebastien-jourdan/{en,de-ch}.json`) liaient A, B et d'autres articles/guides/studios vers leurs URL **FR** alors que des versions localisées publiées existent. Remappage vers les destinations localisées **vérifiées au sitemap** : 23 liens EN, 15 liens de-ch. Les articles de-ch A/B liaient la landing e-commerce vers `/fr/packshot-e-commerce` ; remappés vers `/de-ch/packshot-e-commerce` (7 liens). Ajout de `/conversations-sebastien-jourdan` à `DE_CH_COVERED_STATIC` (`i18n/deChCoverage.ts`) : le hub est publié en de-ch, mais la couverture ne le savait pas → le menu « Méthodes » et le sélecteur de langue épinglaient le lien de-ch vers **/en** au lieu de /de-ch. Test de non-régression ajouté.
+
+**Pourquoi** — Terminer le maillage interne localisé des 9 pages. Un hub de-ch qui renvoie vers les articles FR dilue l'autorité de-ch et dégrade l'expérience ; un menu de-ch qui mène au hub EN envoie le visiteur hors de sa langue alors que la page de-ch existe.
+
+**Règles appliquées** — Localisation uniquement si la version cible est **publiée et indexable** (secteurs EN noindex → `/fr` conservé ; articles/guides sans de-ch → `/fr` conservé). Aucun slug inventé. Ancres contextuelles : aucune cible remappée ne portait de fragment. Prose éditoriale inchangée (liens seuls).
+
+**Fichiers** — `content/conversations-sebastien-jourdan/{en,de-ch}.json`, `content/blog/de-ch/{lohnt-sich-ein-internes-produktfotostudio,e-commerce-fotostudio-organisieren}.json`, `i18n/deChCoverage.ts`, `lib/__tests__/hub-conversations-maillage.test.ts`.
+
+**Rayon d'action** — `i18n/deChCoverage.ts` (fichier à rayon large) : ajout **purement additif** d'un pathname couvert. Effet : les `NavLink` de-ch vers le hub rendent `/de-ch/conversations-sebastien-jourdan` (page servie, sitemap) au lieu de `/en`. Aucune couverture retirée. Retour arrière : `git revert`.
+
+**Vérifié** — `verifier-json` (200 OK) ; `tsc` vert ; `vitest` (655 + 8 nouveaux tests) ; `next build` vert ; audit liens build prod local (D59 §3) : **0 lien cassé** sur les 9 pages et les 3 hubs (72–76 liens/hub contrôlés en 200) ; les `/fr` résiduels sont des hreflang/x-default, des liens Header/Footer épinglés par règle (FR-only, secteurs/solutions EN-noindex) et les conservations volontaires documentées ; menu « Méthodes » de-ch → `/de-ch/conversations-sebastien-jourdan` (était `/en`) ; SEO des 3 hubs : 200, indexables, canonical auto-référents, hreflang réciproque (fr/fr-CH/en/de-CH/x-default), schémas Article/BreadcrumbList/ItemList.
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé** — Backlinks externes (données GSC non relevées ici : **NON VÉRIFIÉ**, hors périmètre de correction interne). Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4, puis contrôle production (sysnext → www).
+
+---
+
 ## 2026-10-14 · Menu « Solutions → Guides » : 5 entrées, slug par locale (A/B 3 langues + hub) · Claude de Laurent
 
 **Chantier** : GO EXÉCUTION FINALE A/B (14/10/2026) — menu Guides, PR dédiée au Header global | **PR** : #142 | **Base** : `main` `dd67d3f` (resync post-#144 : de-ch A/B publiés) | **Branche** : `claude/menu-guides-conversations`
