@@ -60,6 +60,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · PR-B brouillon — réécriture « Studio photo e-commerce » (extraction de #130) · Claude de Laurent
+
+**Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article B depuis #130, PR brouillon, sans fusion ni publication ; réconciliée sur `main` après #134 | **PR** : PR-B dédiée, brouillon | **Base** : `main` `6717c4f` (merge de `main`, conflit `JOURNAL` résolu par union — entrée #134 préservée) | **Branche** : `claude/reecriture-b-studio-ecommerce`
+
+**Quoi** — `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json` : réécriture éditoriale de #130 (8 questions, réponse courte visible avant tout bloc dépliable, `faqs: []`, auteur PackshotCreator), **rebasée sur le maillage déjà publié** : le lien `/fr/conversations-sebastien-jourdan#entretien-02` (ancre « organiser le studio, vu par Sébastien Jourdan », introduit par #138) est ré-injecté dans la nouvelle Q1 (responsabilités / organisation). `metaTitle` et `description` **inchangés** (cartes de F5 gelée jusqu'au 23/11 identiques). `app/globals.css` : même bloc append-only `.prose .psc-*` que PR-A. Tests **auto-adaptatifs et identiques à PR-A** : `serie-produire-images.test.ts` et `e2e` décrivent A ET B et ne contrôlent un article que s'il est réécrit (présence de `psc-q`) ; `json-ld-techniques.test.ts` compte dynamiquement les fichiers portant `dateModified` (3/4/5).
+
+**Droits images** — Hero : retour au **visuel historique** `67dbae80….avif` (usage établi) au lieu du dérivé `cover.avif` (HOLD, non embarqué) — aucun fichier nouveau, aucun élargissement de droits, pas de modification du gabarit partagé. Les deux photos inline de #130 (poste Orbitvu `packshot-operator.avif`, bagues `bijoux-profil….avif`), toutes deux **HOLD** (droits non établis / contredits), sont **retirées** ; l'article s'appuie sur ses schémas éditoriaux. Réintégration possible par Sébastien après confirmation des droits.
+
+**Pourquoi** — #130 est antérieure à #138 ; reprise brute, elle écraserait le maillage. L'ancienne page était un argumentaire Orbitvu avec FAQ promotionnelles. La réécriture en fait une page d'organisation de studio sourcée.
+
+**Fichiers** — article B JSON, `app/globals.css`, les 3 fichiers de test, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — [Inférence] Page plus complète, orientée mise en œuvre. Aucune promesse de position ni de CTR. `dateModified` = 2026-10-14 (à réaligner sur la publication réelle au merge, sans antidatage). Baseline interne (14/10, source `gsc-crawl-seo`, dernier jour 10/10, **pas un relevé GSC en direct**) : 1 264 impressions, 2 clics, position pondérée ≈ 17,2 ; visible sur « studio photo e commerce », « studio e-commerce », « studio photo ecommerce ». Cela repose sur des schémas observés.
+
+**Vérifié** — `verifier-json` ; `npx tsc --noEmit` ; `npx vitest run` ; `eslint --max-warnings=0` des fichiers modifiés ; `npx next build` (résultats consignés à l'exécution) ; `cover.avif` et les 2 photos HOLD absentes du JSON ; `metaTitle`/`description` identiques à `main` ; hero historique présent dans `public/`.
+**Supposé** — Rendu visuel sur Preview (SSO) à contrôler. Prose institutionnelle (D42) : arbitrage Sébastien.
+**Non regardé** — Versions EN/de-ch de B (jumeaux non équivalents, traduction gelée C5/D17). L'article A (PR distincte).
+
+**Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique) et les 3 fichiers de test (identiques et auto-adaptatifs) sont communs aux deux PR. Étant identiques, ils ne créent **aucun conflit** à la fusion du second, et contrôlent automatiquement A et B une fois les deux publiés (compteur `dateModified` 4 → 5 tout seul). Ordre de fusion sûr : #139 (A) d'abord, #140 (B) ensuite ; au merge de #140, `git merge main` apporte le CSS et les tests déjà présents sans conflit, et le JOURNAL par union.
+
+**Suite** — Publication autorisée le 14/10 (GO_MERGE_PR140 = YES, exception D15 consignée en **D59**). `dateModified` = 2026-10-14 = date réelle de publication. Fusion après resynchronisation sur `main` (post-#139) et QA visuelle effective.
+
+---
+
 ## 2026-10-14 · PR-A brouillon — réécriture « Internaliser ses photos produit » (extraction de #130) · Claude de Laurent
 
 **Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article A depuis #130, PR brouillon, sans fusion ni publication ; réconciliée sur `main` après #134 | **PR** : PR-A dédiée, brouillon | **Base** : `main` `6717c4f` (merge de `main`, conflit `JOURNAL` résolu par union — entrée #134 préservée) | **Branche** : `claude/reecriture-a-internaliser`
