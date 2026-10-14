@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #119 — QA locale substitutive (exception propre) et consignation de l'exception D13/D42 · Claude de Laurent
+
+**Chantier** : Ubersuggest résiduel, PR-B, lot A du désengorgement V9 (GO_QA_LOCALE_119 de Laurent du 14/10 ; GO_MERGE_119 et GO_PUBLICATION_119 conditionnels à la QA PASS) | **PR** : #119 | **Commit** : ce commit
+
+**Quoi** — QA locale des métadonnées des 9 pages de #119, en remplacement de la Preview bloquée par SSO (exception propre à #119, consignée dans `DECISIONS.md` sans numéro attribué). Aucun fichier de site modifié par ce commit.
+
+**Pourquoi** — La Preview répond par la connexion Vercel ; D59 ne couvre que #139, #140 et #142. Sans substitution écrite, la QA restait BLOCKED.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site. Traçabilité de l'exception D13/D42 et de la substitution de QA.
+
+**Vérifié** — Builds de production de `main` `2ae6e15` et de la tête `a37fa9f` (variables factices de la CI, code retour 0 pour les deux), servis en local, 9 pages en HTTP 200. Sur les 7 articles FR : seuls `title`, `og:title` et `twitter:title` changent, vers les 7 valeurs attendues ; `og:image` change aussi pour `photographie-2d-de-produits` (l'URL `/api/og` suit le nouveau title). Sur les 2 pages `documentation-qualite-produit` (FR, et EN en `noindex, follow`) : `title`, `og:title` et `og:image` changent, le suffixe « | PackshotCreator » disparaît ; `twitter:title` est inchangé (valeur générique du site, identique à `main`). Pour les 9 pages : corps de page identique (scripts retirés, empreintes `_next/static` normalisées), JSON-LD identique, `canonical`, `hreflang`, `description` et `robots` identiques à `main`. Résultat : PASS.
+**Supposé** — Que `/api/og` rend correctement les deux nouveaux titles : constaté par l'auteur de la PR (200, `image/png`), non rejoué ici. Que les builds locaux reflètent la production : variables factices, sans Cloudflare ni Vercel.
+**Non regardé** — Rendu visuel à trois largeurs, aperçu social réel, lecture dans Chrome sur `www` (R4), `smoke.mjs` sur `sysnext.vercel.app` : à faire après fusion. `ETAT.md` non modifié par ce commit.
+
+**Suite** — Fusion de #119 sur GO conditionnel de Laurent si la CI du HEAD final est verte, puis contrôles post-fusion consignés par la PR documentaire suivante.
+
+---
+
 ## 2026-10-14 · #119 — arbitrage éditorial ponctuel de Laurent : 2 titles ajustés (ShotFlow, bijoux), 6 conservés · Claude de Laurent
 
 **Chantier** : Ubersuggest résiduel, PR-B (GO de Laurent du 14/10 midi : code, commit et push sur la branche de #119 seule ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, pas de passage en Ready) | **PR** : #119 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR

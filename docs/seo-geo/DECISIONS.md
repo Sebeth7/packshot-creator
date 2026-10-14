@@ -25,6 +25,26 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-14 · Exception ponctuelle D13/D42 pour les 8 titles FR de #119, et QA locale substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — arbitrage éditorial du 14/10/2026 (midi) et « V9 — Arbitrage lot A » du 14/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous ; épuisée par la fusion de #119. Aucun numéro de décision n'est attribué ici : il se prend au moment de la consignation définitive, après vérification de `main` (D60 est pris par #129).
+
+**La décision** —
+1. **D13/D42, exception ponctuelle limitée à #119** : les 8 `metaTitle` (ou `titre`) FR de la PR sont publiables sans validation de Sébastien. Six titles sont conservés tels que proposés ; deux sont remplacés par Laurent : ShotFlow (« ShotFlow : automatisation de la production visuelle », 51 caractères) et bijoux (« Photographier des bijoux : techniques pour joailliers », 53 caractères). Laurent assume la responsabilité de cet arbitrage ; la revue ChatGPT qui l'a motivé n'est pas versée au dépôt (non vérifiée ici). Aucune validation n'est attribuée à Sébastien.
+2. **QA pré-fusion substitutive, propre à #119** : la Preview Vercel étant bloquée par SSO, la vérification locale du rendu des métadonnées des neuf pages concernées remplace l'étape Preview, pour #119 seule. Elle ne vaut pas QA de production.
+
+**Le contexte** — #119 modifie un champ de titre dans 8 fichiers (7 JSON de `content/blog/fr/`, `data/solutions.ts`) ; neuf pages servies sont touchées (7 articles FR, `/fr/solutions/documentation-qualite-produit` et sa version `/en`, en `noindex`). La question générale « un `<title>` relève-t-il du copywriting réservé à Sébastien ? » reste ouverte (ETAT, ligne #70).
+
+**Limites de la QA locale** — Build de production avec les variables factices de la CI, servi sur `localhost` : ni Cloudflare, ni Worker, ni WAF, ni Vercel. Compare `main` `2ae6e15` et la tête `a37fa9f` sur les seules balises `title`, `og:title`, `twitter:title`, `og:image`, `canonical`, `hreflang`, `description`, `robots`, le corps de page et le JSON-LD. Pas de rendu visuel à trois largeurs, pas de test de l'aperçu social réel, pas de lecture dans Chrome sur `www` (R4).
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, aux 8 `REVIEW_CONTENT` historiques, à l'article e-commerce (`e-commerce-comment-mettre-en-place-votre-studio-photo`, HOLD #140 / gel F5) ou à la question générale « `<title>` et D13 ».
+- Tenir la QA locale pour un contrôle de production, ou pour une validation de Sébastien.
+- Réutiliser la substitution de QA Preview pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
 ## D59 · 2026-10-14 · Exceptions ponctuelles pour la publication de la série A/B : D15 (délai), D16/C5/D17 (de-ch) et substitution de QA Preview (SSO)
 
 **Décidé par** : Laurent — « DÉCISION FINALE LAURENT — PUBLICATION ASAP ET CLÔTURE A/B » du 14/10/2026
