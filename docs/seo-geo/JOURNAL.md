@@ -59,6 +59,93 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-13 · Maillage entrant vers le hub « Conversations avec Sébastien Jourdan » · Claude de Laurent
+
+**Chantier** : Phase 3 du GO FINAL GLOBAL (maillage entrant, 3 liens) | **PR** : maillage dédié, brouillon | **Base** : `main` `ea01846` | **Branche** : `claude/maillage-conversations-sebastien`
+
+**Quoi** — Trois liens entrants vers le hub trilingue :
+1. `app/[lang]/a-propos/page.tsx` : dans la section parcours (frise), un lien typé (`Link` de `@/i18n/routing`, pas `NavLink`) vers `/conversations-sebastien-jourdan`, localisé FR/EN/de-ch — « les conversations de méthode de Sébastien Jourdan » / « Sébastien Jourdan's conversations on product photography methods » / « die Methodengespräche von Sébastien Jourdan ». Destination = hub dans la même langue.
+2. `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json` : dans le passage « internaliser ou externaliser », lien `/fr/conversations-sebastien-jourdan#entretien-01`, ancre « le regard de Sébastien Jourdan sur la décision d'internaliser ».
+3. `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json` : dans le passage « organisation claire / rôles clés », lien `/fr/conversations-sebastien-jourdan#entretien-02`, ancre « organiser le studio, vu par Sébastien Jourdan ».
+
+**Pourquoi** — Le hub est désormais réellement publié et vérifié en production (Phase 2 positive). Le maillage entrant depuis des pages à autorité (à-propos, deux articles de blog pertinents) alimente le hub sans cannibalisation. Séquencé après la publication effective, conformément à la consigne de ne pas pointer vers un hub non encore en production.
+
+**Fichiers** — `app/[lang]/a-propos/page.tsx`, `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json`, `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Trois liens internes supplémentaires vers le hub. Pas de modification des métadonnées, canonical, titres ni des autres textes des pages. Pas de page gelée touchée (`ROUTES_GELEES` = `/fr`, `/fr/packshot-e-commerce`, `/fr/industrie/mode-textile` — hors périmètre).
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx next build` vert ; ancres `#entretien-01` et `#entretien-02` présentes sur le hub FR en production (`id="entretien-01"`…`10`) ; JSON des deux articles reparsés OK ; pathname `/conversations-sebastien-jourdan` déclaré dans `i18n/routing.ts` (lien typé localisé). Contrôle production du hotfix de-ch (#137, merge `ea01846`) : `/de-ch/conversations-sebastien-jourdan` = 200, 0 slug FR résiduel sur 4 fetches, cibles `/de-ch/branchen/{schmuck,uhren,wein}` = 200. Hub trilingue (Phase 2) : 3 URL 200, indexables, canonical `www` auto-référents, hreflang réciproque complet (fr/fr-CH/en/de-CH/x-default), 3 URL au sitemap, JSON-LD sans Interview/VideoObject (Article + Person + Organization + 10 ListItem).
+**Supposé** — Le comportement localisé du lien typé de-ch (→ `/de-ch/conversations-sebastien-jourdan`) est confirmé par le build et la déclaration de pathname ; contrôle visuel final sur Preview/production après merge.
+**Non regardé** — Les versions EN/de-ch des deux articles de blog (liens 2 et 3 ciblent les articles FR uniquement, comme spécifié). Les autres pages candidates au maillage.
+
+**Suite** — Après merge et déploiement, contrôler les 3 liens sur la production réelle. Pas de mesure GSC/GEO annoncée avant relevé réel.
+
+---
+
+## 2026-10-13 · Hotfix — liens de-ch du hub vers l'industrie : slugs allemands · Claude de Laurent
+
+**Chantier** : correctif post-publication #136, anomalie relevée en contrôle production (Phase 2 du GO FINAL GLOBAL) | **PR** : hotfix dédié, brouillon | **Base** : `main` `e241218` | **Branche** : `claude/hotfix-liens-dech-branchen`
+
+**Quoi** — `content/conversations-sebastien-jourdan/de-ch.json` : trois liens internes vers les pages industrie pointaient vers les slugs français sous le segment allemand `/de-ch/branchen/…` (`bijoux-joaillerie`, `horlogerie`, `vin-spiritueux`), qui renvoient 404 en production. Corrigés vers les slugs allemands réels : `schmuck`, `uhren`, `wein`. Aucune autre modification du hub, aucun autre fichier.
+
+**Pourquoi** — En de-ch, le segment `industrie` est localisé en `branchen` ET les slugs sont allemands (`i18n/deChCoverage.ts`, mapping `bijoux-joaillerie→schmuck`, `horlogerie→uhren`, `vin-spiritueux→wein`). Ma localisation de #136 avait traduit le segment mais pas les slugs → trois liens internes cassés livrés en production.
+
+**Fichiers** — `content/conversations-sebastien-jourdan/de-ch.json`
+
+**Effet attendu** — Les trois liens de-ch résolvent en 200 dès le déploiement. Pas d'impact sur FR/EN (déjà corrects), ni sur les métadonnées, canonical, hreflang ou JSON-LD du hub.
+
+**Vérifié** — `/de-ch/branchen/{schmuck,uhren,wein}` = 200 sur `sysnext.vercel.app` ; mapping confirmé dans `i18n/deChCoverage.ts` ; JSON reparsé OK ; chaque slug FR unique dans le fichier (une occurrence, uniquement en `href`).
+**Supposé** — Rien au-delà du contrôle ci-dessus.
+**Non regardé** — Les replis francophones `/fr/blog/*`, `/fr/guide/*`, `/fr/studio-photo/*`, `/fr/industrie/mode-textile` présents dans le fichier de-ch : ils renvoient 200 (non cassés), hors périmètre de ce hotfix.
+
+**Suite** — Après merge et déploiement, re-contrôler les trois liens sur la production réelle, puis reprendre la Phase 3 (maillage entrant).
+
+---
+
+## 2026-10-13 · PR #136 — correctifs ciblés : localisation de CroquisZoom + URL Person de-ch · Claude de Laurent
+
+**Chantier** : correctifs demandés par Laurent sur #136 (`GO_CODE_CORRECTIFS_PR136 = YES`, `GO_MERGE = NO`) | **PR** : #136, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`
+
+**Quoi** — (1) `components/revue/CroquisZoom.tsx` : les libellés codés en français (« Agrandir », « Fermer », « Photo », « Croquis », y compris l'`aria-label` du déclencheur et le bouton de fermeture du dialogue) sont localisés via `tx(lang, …)`. Nouvelle prop optionnelle `lang` (défaut `fr` → compatibilité ascendante avec l'espace de revue de #130). EN : Enlarge / Close / Photo / Sketch ; de-ch : Vergrössern / Schliessen / Foto / Skizze (sans « ß »). La page passe `lang` à chaque `CroquisZoom` et à `PhotoFigure` (dont le libellé « Photo » du cadre contraint est aussi localisé). (2) `app/[lang]/conversations-sebastien-jourdan/page.tsx` : `Person.url` du JSON-LD pointe la page « à propos » localisée — `/de-ch/wer-sind-wir` en de-ch, `/fr|/en/a-propos` inchangés (conforme à `i18n/routing.ts`).
+
+**Pourquoi** — Deux défauts relevés par Laurent en lecture directe du code : libellés d'interface non traduits et `Person.url` de-ch incorrect (`/de-ch/a-propos` n'existe pas).
+
+**Fichiers** — `components/revue/CroquisZoom.tsx`, `app/[lang]/conversations-sebastien-jourdan/page.tsx`. Aucun fichier à rayon large. Contenu des dix entretiens, trois langues et entretien 08 : **inchangés** (aucune réécriture).
+
+**Vérifié** — `tsc` vert ; `eslint` (fichiers touchés) vert ; `vitest` test dédié 6/6 ; `next build` vert (390 pages, 3 locales). `next start` prod : `Person.url` = `/de-ch/wer-sind-wir`, `/fr/a-propos`, `/en/a-propos`. Playwright (clavier + mobile, 3 langues) : boutons « Agrandir/Enlarge/Vergrössern » et « Fermer/Close/Schliessen » localisés, zoom ouvre, ferme par Échap et par bouton, 0 erreur ; 0 débordement / 0 erreur console à 1440/768/390. de-ch sans « ß ».
+
+**Supposé** — [Inférence] La Preview reproduit le build local. [Non vérifié] directement : Preview sous SSO.
+
+**Non regardé** — Maillage entrant (PR distincte depuis `main`, diff avant application). Relecture juridique humaine de 08. `datePublished` à aligner sur la date réelle au merge.
+
+**Suite** — Rapporter à Laurent le nouveau SHA, la CI 4/4 et les deux correctifs vérifiés ; attendre le GO final de publication.
+
+---
+
+## 2026-10-13 · PR de publication propre : hub trilingue « Conversations avec Sébastien Jourdan » (Option B) · Claude de Laurent
+
+**Chantier** : GO RELANCE — publication de la série (arbitrage Laurent du 13/10, Option B : PR propre) | **PR** : nouvelle, brouillon | **Base** : `main` `2759239` | **Branche** : `claude/pub-conversations-sebastien-jourdan`
+
+**Quoi** — Sous-ensemble **propre** de #130 destiné à la publication : uniquement le hub éditorial public « Conversations avec Sébastien Jourdan » et ses dépendances. **#130 reste ouverte et intacte** (travaux historiques A/B, espace de revue interne). Contenu : route `app/[lang]/conversations-sebastien-jourdan/page.tsx` (indexable, trilingue FR/EN/de-ch) ; `content/conversations-sebastien-jourdan/{fr,en,de-ch}.json` (dix conversations en voix éditoriale attribuée, bio, transparence) ; composant de rendu `components/revue/CroquisZoom.tsx` ; 23 croquis SVG + portrait réel + `cover.avif` (nouveaux) ; +1 `pathname` dans `i18n/routing.ts` ; +3 URL dans `app/sitemap.ts` ; test dédié `lib/__tests__/conversations-sebastien-jourdan.test.ts`. Les 9 autres photos réutilisées sont **déjà publiées sur `main`**.
+
+**Pourquoi** — Laurent, 13/10 : « Préférer une PR de publication propre contenant le hub trilingue et toutes ses dépendances nécessaires. Conserver l'intégralité de #130. » Objectif : publier la collection sans embarquer la réécriture série A/B ni l'espace de revue interne.
+
+**Gouvernance** — D16 : le hub est **hors blog**, donc non soumis aux trois critères de D16 ; l'anti-cannibalisation est documentée (les dix sujets renvoient aux cocons existants, intention distincte « regard du dirigeant »), **sans exception réglementaire**. D42 étape 5 / 01-RAYON-ACTION : validation de Sébastien remplacée, pour cette série, par l'autorité de publication de Laurent (`PUBLICATION_AUTHORIZED_BY_LAURENT`, jamais `VALIDATED_LINE_BY_LINE_BY_SEBASTIEN`). D38 : publication trilingue coordonnée. D9 / D57-L14 : routes nouvelles ; aucun set `NOINDEX_EN_*` levé ; L14 (chantier G5) hors périmètre de cette collection (confirmé par Laurent). Entretien 08 : affirmations vérifiées conformes au dossier AI Act publié ; relecture juriste recommandée.
+
+**Fichiers rayon large** — `i18n/routing.ts` (+1), `app/sitemap.ts` (+3). seo-config, hreflang, SchemaOrg, messages, Worker : inchangés.
+
+**Effet attendu** — [Inférence] À la fusion (gelée) : hub indexable `/fr|/en|/de-ch/conversations-sebastien-jourdan`, hreflang réciproque complet, maillage sortant vers les cocons. Aucune promesse de position ni de citation moteur.
+
+**Vérifié** — (au packaging) `tsc`, `verifier-json`, `eslint`, `next build`, `vitest` (test dédié), Playwright trilingue : voir le commentaire de la PR et le dossier de checkpoint. `datePublished/dateModified` à aligner sur la date réelle de publication au merge.
+
+**Supposé** — [Inférence] La Preview reproduit le build local. [Non vérifié] Preview réelle sous SSO. Droits : portrait et `cover.avif` introduits par cette PR (droits confirmés par Laurent le 12/10) ; les 9 autres photos sont déjà publiées.
+
+**Non regardé** — Maillage entrant (A, B, à-propos) : diff présenté séparément avant application. Relecture juridique humaine de 08.
+
+**Suite** — Présenter à Laurent le périmètre exact, le SHA, les tests et la QA Preview. Aucun merge ni publication sans `GO_MERGE` explicite.
+
+---
+
 ## 2026-10-13 · #129 — `main` (#135) intégré, conflits de gouvernance résolus ; Q25 préparée pour l'accès Resend de Laurent (aucune écriture) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, reprise Q25 du 13/10 (GO_AUDIT_READ_ONLY, GO_PRÉPARATION_Q25 = YES ; écritures Resend et Vercel en attente de GO) | **PR** : #129 (brouillon) | **Commits** : fusion `56f9382`, puis ce commit

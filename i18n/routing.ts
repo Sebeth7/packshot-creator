@@ -42,6 +42,7 @@ export const routing = defineRouting({
     '/': '/',
     '/studios-photo-automatises': '/studios-photo-automatises',
     '/ia-photo-produit': '/ia-photo-produit',
+    '/conversations-sebastien-jourdan': '/conversations-sebastien-jourdan',
     '/calculateur-roi': { fr: '/calculateur-roi', en: '/calculateur-roi', 'de-ch': '/roi-rechner' },
     '/calculateur': '/calculateur',
     '/contact': { fr: '/contact', en: '/contact', 'de-ch': '/kontakt' },
