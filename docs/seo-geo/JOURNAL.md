@@ -34,6 +34,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #134 : Light + Byte AG, affirmation de cessation d'activité CONSERVÉE (décision définitive de Laurent) ; `main` `1ebda83` intégré · Claude de Laurent
+
+**Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** —
+- `data/distributeur-suisse-en.ts`, FAQ « Who is the official distributor of Orbitvu photo studios in Switzerland? » : réponse rétablie à l'identique de `fa6c489` : « […] The former Swiss reseller, Light + Byte AG, ceased trading in 2025: Swiss companies now deal directly with PackshotCreator for advice, demonstrations, delivery, installation, training and after-sales service in French, with commercial support also available in German. Sales enquiries can also be handled in English. Swiss contact: +41 44 580 43 84. » La formule neutre du 13/10 (« For enquiries from Switzerland, contact PackshotCreator. ») est retirée. Services, langues et coordonnées : inchangés.
+- En-tête du module : historique des deux décisions.
+- `main` `1ebda83` intégré (fusions de #137 et #138). Conflit sur `JOURNAL.md` seul, résolu par union ; aucune entrée supprimée.
+- Entrée du 13/10 (arbitrages des claims EN) : mention de remplacement ajoutée en tête pour son volet Light + Byte AG, rien d'effacé.
+
+**Pourquoi** — Décision définitive de Laurent du 13/10/2026, confirmée le 14/10 : CONSERVER l'affirmation « Light + Byte AG a cessé ses activités en 2025 ». Elle remplace sa demande de suppression du 13/10, appliquée dans `161935c`. C'est un **arbitrage éditorial de Laurent, pas une preuve documentaire** : la capture Google « Définitivement fermé » n'établit pas, à elle seule, l'année 2025 ni la cessation juridique de la société.
+
+**Fichiers** — `data/distributeur-suisse-en.ts`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet SEO avant publication L1 : les deux pages EN restent en `noindex, follow`. Après fusion, la FAQ EN de la page Suisse affirme la cessation en 2025, comme les pages déjà publiées (accueils FR, EN et de-ch ; page Suisse FR), non modifiées.
+
+**Vérifié** —
+- Diff fonctionnel contre `161935c`, hors apport de `main` : `data/distributeur-suisse-en.ts` seul. Gabarits, `data/secteurs-en-horlogerie.ts` et visuel U03 (SHA-256 `1b3f5542…`) inchangés.
+- tsc, Vitest 633/633, `verifier-json` (198 fichiers) et `next build` (390 pages générées) verts en local.
+- HTML prérendu complet comparé à `main` `1ebda83` : 374 pages sur 378 identiques ; les 4 mêmes pages diffèrent (visuel seul en FR et de-ch). Sitemap identique hors `lastmod` (326 URL).
+- Playwright Chromium local, `next start`, 2 pages EN × 3 largeurs (320, 390, 1 440 px) :
+  - FAQ Suisse EN complète, Light + Byte AG compris, visible et dans le JSON-LD ;
+  - « Controlled lighting… », « Our showroom in Beynost (Ain), near Lyon » et « Get a free quote » présents ;
+  - « polarized », « two hours from Geneva » et « For enquiries from Switzerland » absents ;
+  - `noindex, follow` ; canonical et alternates identiques à `main` ; aucun débordement ; visuel chargé, `object-contain`.
+- D57 (L13) : exception `Service.url` de `/de-ch/branchen/mode` présente et inchangée.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview Vercel (SSO) ; `www` (non fusionné). Preuve documentaire de la date de cessation : aucune au dossier.
+
+**Suite** — GO_MERGE distinct de Laurent, pas avant le 15/10 (J+7 AI Act les 13 et 14/10). QA de la Preview non effectuée. Pas de levée du `noindex`, pas de publication L1.
+
+---
+
 ## 2026-10-13 · Maillage entrant vers le hub « Conversations avec Sébastien Jourdan » · Claude de Laurent
 
 **Chantier** : Phase 3 du GO FINAL GLOBAL (maillage entrant, 3 liens) | **PR** : maillage dédié, brouillon | **Base** : `main` `ea01846` | **Branche** : `claude/maillage-conversations-sebastien`
@@ -78,6 +113,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 ---
 
 ## 2026-10-13 · #134 : arbitrages de Laurent sur les claims EN (éclairage polarisé, Genève, Light + Byte AG) ; devis gratuit consigné ; `main` `e241218` intégré · Claude de Laurent
+
+> **Mise à jour du 14/10** : le volet Light + Byte AG de cette entrée est remplacé. Décision définitive de Laurent : affirmation de cessation d'activité en 2025 CONSERVÉE (entrée du 14/10 ci-dessus). Le reste de l'entrée est inchangé.
 
 **Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
 
