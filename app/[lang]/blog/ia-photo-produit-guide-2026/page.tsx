@@ -3,7 +3,7 @@ import { Link } from '@/i18n/routing';
 import { BookOpen, Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import SchemaOrg, { breadcrumbSchema, articleSchema, faqSchema } from '@/components/seo/SchemaOrg';
 import { HeroSection } from '@/components/hero';
-import { Callout, ComparisonTable, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
+import { Callout, TableOfContents, ArticleCTA, RelatedArticles } from '@/components/blog';
 import type { HeadingData } from '@/lib/blog-utils';
 import { buildLanguages } from '@/lib/hreflang';
 
@@ -12,7 +12,7 @@ import { buildLanguages } from '@/lib/hreflang';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const title = 'IA Photo Produit 2026 : Guide Complet BlendAI pour E-commerce';
-  const description = 'Guide complet IA photo produit 2026. BlendAI : détourage, backgrounds, retouche automatique. Intégration studios Orbitvu. ROI, workflow, cas d\'usage.';
+  const description = "Guide IA photo produit 2026 : principes, fonctionnalités (détourage, arrière-plans, retouche), workflow studio + IA et critères de choix pour l'e-commerce.";
 
   return {
     title,
@@ -53,17 +53,17 @@ const headings: HeadingData[] = [
   { id: 'la-difference-fondamentale-avec-lia-generative-pure', text: 'La différence fondamentale avec l\'IA générative pure', level: 3 },
   { id: 'les-4-cas-dusage-principaux', text: 'Les 4 cas d\'usage principaux', level: 3 },
   { id: 'les-4-fonctionnalites-cles-de-lia-photo-produit', text: 'Les 4 fonctionnalités clés de l\'IA Photo Produit', level: 2 },
-  { id: 'lifestyle-generator-du-studio-a-la-vraie-vie', text: 'Lifestyle Generator : Du Studio à la Vraie Vie', level: 3 },
+  { id: 'lifestyle-generator-du-studio-a-la-vraie-vie', text: 'Lifestyle Generator : Du Studio à la Mise en Scène', level: 3 },
   { id: 'background-generator-contextualisez-vos-produits', text: 'Background Generator : Contextualisez Vos Produits', level: 3 },
   { id: 'retouche-photo-ia-post-production-automatisee', text: 'Retouche Photo IA : Post-Production Automatisée', level: 3 },
-  { id: 'batch-processing-traitez-10-000-photos-en-2-heures', text: 'Batch Processing : Traitez 10 000 Photos en 2 Heures', level: 3 },
-  { id: 'comparatif-blendai-vs-photoroom-vs-flair-ai', text: 'Comparatif : BlendAI vs Photoroom vs Flair AI', level: 2 },
-  { id: 'blendai-le-specialiste-du-packshot-haute-precision', text: 'BlendAI : Le Spécialiste du Packshot Haute Précision', level: 3 },
-  { id: 'photoroom-le-couteau-suisse-grand-public', text: 'Photoroom : Le Couteau Suisse Grand Public', level: 3 },
-  { id: 'flair-ai-le-creatif-lifestyle', text: 'Flair AI : Le Créatif Lifestyle', level: 3 },
-  { id: 'verdict-quelle-ia-choisir-en-2026', text: 'Verdict : Quelle IA choisir en 2026 ?', level: 3 },
+  { id: 'batch-processing-traitez-10-000-photos-en-2-heures', text: "Batch Processing : Traiter des Lots d'Images", level: 3 },
+  { id: 'comparatif-blendai-vs-photoroom-vs-flair-ai', text: 'Comparatif : BlendAI, Photoroom et Flair AI', level: 2 },
+  { id: 'blendai-le-specialiste-du-packshot-haute-precision', text: 'BlendAI', level: 3 },
+  { id: 'photoroom-le-couteau-suisse-grand-public', text: 'Photoroom', level: 3 },
+  { id: 'flair-ai-le-creatif-lifestyle', text: 'Flair AI', level: 3 },
+  { id: 'verdict-quelle-ia-choisir-en-2026', text: 'Comment choisir en 2026 ?', level: 3 },
   { id: 'comment-integrer-lia-dans-votre-workflow-photo', text: 'Comment Intégrer l\'IA dans Votre Workflow Photo ?', level: 2 },
-  { id: 'roi-de-lia-photo-produit-calculs-reels', text: 'ROI de l\'IA Photo Produit : Calculs Réels', level: 2 },
+  { id: 'roi-de-lia-photo-produit-calculs-reels', text: "ROI de l'IA Photo Produit : Comment l'Estimer", level: 2 },
   { id: 'questions-frequentes', text: 'Questions fréquentes', level: 2 },
   { id: 'conclusion-lia-photo-produit-en-2026', text: "Conclusion : L'IA Photo Produit en 2026", level: 2 },
 ];
@@ -73,15 +73,15 @@ const headings: HeadingData[] = [
 const faqItems = [
   {
     question: "Quelle est la différence entre l'IA photo produit et l'IA générative comme Midjourney ?",
-    answer: "L'IA photo produit spécialisée (BlendAI, Photoroom) part d'un packshot studio réel pour générer des déclinaisons en préservant à 100% la fidélité du produit. Midjourney génère des images de toutes pièces, avec des risques de déformation des couleurs, des proportions et des détails — incompatible avec les exigences du e-commerce professionnel.",
+    answer: "L'IA photo produit part d'un packshot studio réel pour générer des déclinaisons. Midjourney génère des images de toutes pièces, avec des risques de déformation des couleurs, des proportions et des détails. Dans les deux cas, la fidélité du produit se contrôle sur chaque visuel.",
   },
   {
     question: 'Combien coûte BlendAI pour une entreprise e-commerce ?',
-    answer: "BlendAI propose des forfaits entreprise à partir de 530€/mois pour la production industrielle de catalogues. Photoroom est plus accessible dès 10€/mois pour les TPE/PME à faible volume, tandis que Flair AI se situe entre 30 et 200€/mois pour les usages créatifs.",
+    answer: "BlendAI est proposé sur devis, selon votre volume de production ; contactez-nous. Nous ne publions pas les tarifs de Photoroom ni de Flair AI, faute de source vérifiée.",
   },
   {
     question: "Quel ROI peut-on espérer avec l'IA photo produit ?",
-    answer: "Le ROI est positif dès 40–50 photos traitées par mois. Sur 3 ans, les économies atteignent 75–95% pour les catalogues de 100+ produits par rapport à une production photo traditionnelle externalisée. Les économies proviennent de la réduction du temps de post-production et de l'élimination des shootings lifestyle en studio.",
+    answer: "Il dépend de votre volume, de vos coûts actuels de shooting et de retouche, et du tarif de l'outil retenu. Comparez ces coûts avant de vous engager.",
   },
   {
     question: "L'IA peut-elle remplacer complètement le photographe produit ?",
@@ -89,11 +89,11 @@ const faqItems = [
   },
   {
     question: 'BlendAI fonctionne-t-il avec les studios Orbitvu ?',
-    answer: "Oui, BlendAI s'intègre nativement dans le workflow Orbitvu. Les photos shootées avec un studio Orbitvu sont automatiquement exportées vers BlendAI pour la post-production IA. C'est cette combinaison Hardware + IA qui offre le meilleur rapport vitesse/qualité/coût sur le marché en 2026.",
+    answer: "Les packshots produits par un studio Orbitvu peuvent ensuite être traités par BlendAI. Les modalités d'export et d'automatisation se vérifient avec nous selon vos outils.",
   },
   {
     question: 'Quelle IA choisir entre BlendAI, Photoroom et Flair AI en 2026 ?',
-    answer: "BlendAI est recommandé pour la production industrielle de catalogues (précision, volume, API). Photoroom convient aux TPE/PME avec un budget serré et un volume modéré. Flair AI est idéal pour les campagnes marketing créatives nécessitant des visuels lifestyle stylisés. Les trois outils répondent à des besoins distincts et peuvent être complémentaires.",
+    answer: "Le choix dépend de votre usage (production de catalogue ou campagnes), de vos produits, de votre volume et de vos outils. Testez les solutions sur un échantillon de vos produits.",
   },
 ];
 
@@ -124,7 +124,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
           colorClass: 'bg-very-peri-500/15 text-very-peri-300',
         }}
         title="IA Photo Produit 2026 : Le Guide Complet pour Révolutionner Votre E-commerce"
-        subtitle="BlendAI, Photoroom, Flair AI : comparez les solutions leaders, découvrez les workflows, calculez votre ROI. Tout ce qu'il faut savoir pour automatiser votre production photo."
+        subtitle="BlendAI, Photoroom, Flair AI : principes, fonctionnalités, workflow et critères de choix pour automatiser votre production photo."
       >
         <div className="flex flex-wrap items-center gap-4 mt-6 text-sm text-future-dusk-300">
           <span className="px-3 py-1 rounded-full bg-very-peri-500/20 text-very-peri-300 font-medium text-xs uppercase tracking-wide">
@@ -180,10 +180,10 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
           {/* ── INTRO ── */}
 
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
-              L'explosion de l'intelligence artificielle entre 2024 et 2026 a radicalement transformé le paysage de la photographie produit e-commerce. Alors que des IA généralistes comme Midjourney ou DALL-E ont démocratisé la création d'images, elles se révèlent inadaptées aux exigences strictes du packshot professionnel. Les marques ont besoin de cohérence produit, de précision des couleurs et de respect absolu de leur identité visuelle. C'est précisément cette problématique qui a donné naissance à une nouvelle génération d'IA spécialisées : <strong>BlendAI</strong>, <strong>Photoroom</strong> et <strong>Flair AI</strong>. Ces solutions ne génèrent pas vos produits de toutes pièces, elles transforment intelligemment vos packshots existants en déclinaisons lifestyle, backgrounds contextuels et retouches automatisées.
+              Les IA généralistes comme Midjourney ou DALL-E créent des images à partir d'un texte. Pour le packshot e-commerce, où le produit doit rester conforme à la réalité, une autre approche existe : partir d'une photo réelle du produit et générer autour de lui des déclinaisons (arrière-plans, mises en scène, retouches). C'est le principe d'outils comme <strong>BlendAI</strong>, <strong>Photoroom</strong> ou <strong>Flair AI</strong>.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600 text-lg">
-              Dans ce guide complet, nous décortiquons l'écosystème des IA photo produit, comparons les solutions leaders du marché, détaillons les workflows d'intégration et calculons le ROI réel pour votre entreprise. Que vous gériez un catalogue de 100 ou 10 000 références, ce guide vous donnera les clés pour automatiser votre production photo sans compromis sur la qualité.
+              Ce guide présente les principes, les fonctionnalités et le workflow de l'IA photo produit. Il ne publie ni caractéristique, ni tarif, ni performance de Photoroom ou de Flair AI sans source vérifiée, et ne reprend pour BlendAI aucun chiffre de performance non vérifié.
             </p>
 
           <hr className="my-8 border-neutral-200" />
@@ -194,32 +194,32 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               Qu'est-ce que l'IA Photo Produit ?
             </h2>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              L'<strong>IA photo produit</strong> désigne une catégorie d'intelligence artificielle spécialisée dans le traitement et la transformation de photographies de produits (packshots). Contrairement aux IA génératives pures, ces solutions partent <strong>d'une photo réelle</strong> pour générer des déclinaisons tout en préservant à 100% la fidélité du produit original.
+              L'<strong>IA photo produit</strong> désigne des outils d'intelligence artificielle appliqués au traitement de photographies de produits (packshots). Contrairement aux IA génératives pures, ces outils partent <strong>d'une photo réelle</strong> pour générer des déclinaisons ; la fidélité du produit au résultat se contrôle sur chaque visuel.
             </p>
 
             <h3 id="la-difference-fondamentale-avec-lia-generative-pure" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               La différence fondamentale avec l'IA générative pure
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Lorsque vous utilisez Midjourney ou DALL-E pour créer une image produit, l'IA génère l'intégralité de l'image à partir de votre description textuelle. Le résultat peut être visuellement impressionnant, mais présente plusieurs risques majeurs :
+              Lorsque vous utilisez Midjourney ou DALL-E pour créer une image produit, l'IA génère l'intégralité de l'image à partir de votre description textuelle. Le résultat peut être visuellement impressionnant, mais présente plusieurs risques :
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Incohérences produit</strong> : Couleurs approximatives, proportions déformées, détails inventés</li>
-              <li className="text-future-dusk-600"><strong>Non-reproductibilité</strong> : Chaque génération produit un résultat différent</li>
-              <li className="text-future-dusk-600"><strong>Impossibilité de garantir la fidélité</strong> : Le produit final ne correspond jamais exactement au produit réel</li>
-              <li className="text-future-dusk-600"><strong>Problèmes légaux</strong> : Risque de fausses représentations, non-conformité e-commerce</li>
+              <li className="text-future-dusk-600"><strong>Incohérences produit</strong> : couleurs approximatives, proportions déformées, détails inventés</li>
+              <li className="text-future-dusk-600"><strong>Non-reproductibilité</strong> : chaque génération produit un résultat différent</li>
+              <li className="text-future-dusk-600"><strong>Fidélité non maîtrisée</strong> : le produit généré peut différer du produit réel</li>
+              <li className="text-future-dusk-600"><strong>Risque juridique</strong> : représentation trompeuse du produit vendu</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              À l'inverse, les <strong>IA photo produit spécialisées</strong> fonctionnent sur un principe radicalement différent :
+              À l'inverse, l'<strong>IA photo produit</strong> suit un autre principe :
             </p>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Vous fournissez un <strong>packshot fond blanc</strong> de qualité (photo studio)</li>
-              <li className="text-future-dusk-600">L'IA <strong>isole le produit</strong> avec une précision chirurgicale</li>
-              <li className="text-future-dusk-600">Elle <strong>génère l'environnement</strong> (background, mise en scène lifestyle) autour du produit</li>
-              <li className="text-future-dusk-600">Le produit original reste <strong>100% fidèle</strong> à la réalité</li>
+              <li className="text-future-dusk-600">L'IA <strong>isole le produit</strong></li>
+              <li className="text-future-dusk-600">Elle <strong>génère l'environnement</strong> (arrière-plan, mise en scène) autour du produit</li>
+              <li className="text-future-dusk-600">Le produit reste issu de la photo réelle ; sa fidélité se vérifie au contrôle qualité</li>
             </ol>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Cette approche hybride combine le meilleur des deux mondes : la créativité de l'IA générative pour les arrière-plans, et la garantie de fidélité photo pour le produit lui-même.
+              Cette approche hybride associe la génération d'arrière-plans par l'IA et une photo réelle du produit.
             </p>
 
             <h3 id="les-4-cas-dusage-principaux" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -228,51 +228,38 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">1. Lifestyle Generator</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Transforme un packshot fond blanc en mise en scène lifestyle réaliste. Exemple : un bijou sur fond blanc devient un bijou porté par un mannequin dans un environnement luxueux.
+              Place un packshot fond blanc dans une mise en scène. Exemple : un bijou sur fond blanc est présenté dans un décor (matière, présentoir, lumière).
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Use case</strong> : E-commerce haut de gamme, bijouterie, mode, cosmétiques
+              <strong>Use case</strong> : e-commerce haut de gamme, bijouterie, mode, cosmétiques
             </p>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">2. Background Generator</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Remplace le fond blanc par des arrière-plans contextuels adaptés à votre secteur. Exemple : une chaussure de sport sur fond urbain dynamique, ou un produit alimentaire dans une cuisine moderne.
+              Remplace le fond blanc par des arrière-plans contextuels adaptés à votre secteur. Exemple : une chaussure de sport sur fond urbain, ou un produit alimentaire dans une cuisine.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Use case</strong> : Publicités Meta/Google, landing pages, marketplaces premium
+              <strong>Use case</strong> : publicités Meta/Google, landing pages, marketplaces
             </p>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">3. Retouche Photo Automatisée</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Suppression automatique des défauts, ajustement des couleurs, nettoyage des reflets et poussières, corrections chromatiques.
+              Suppression de défauts, ajustement des couleurs, nettoyage des reflets et poussières, corrections chromatiques.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Use case</strong> : Post-production catalogue, harmonisation batch de milliers de photos
+              <strong>Use case</strong> : post-production catalogue, harmonisation de séries
             </p>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">4. Batch Processing</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Traitement de catalogues entiers en quelques heures au lieu de semaines. Appliquez le même style lifestyle ou background à 10 000 produits simultanément.
+              Traitement d'un lot d'images avec les mêmes réglages (style, arrière-plan, retouche).
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Use case</strong> : Migrations e-commerce, refontes visuelles, catalogues saisonniers
+              <strong>Use case</strong> : migrations e-commerce, refontes visuelles, catalogues saisonniers
             </p>
 
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Tableau comparatif : IA Générative vs IA Photo Produit</h4>
-            <ComparisonTable
-              headers={['IA Générative Pure', 'IA Photo Produit']}
-              rows={[
-                { label: 'Point de départ', values: ['Prompt texte uniquement', 'Photo réelle du produit'] },
-                { label: 'Précision produit', values: ['❌ Variable (50-80%)', '✅ 100% fidèle'] },
-                { label: 'Cohérence marque', values: ['❌ Difficile à garantir', '✅ Garantie absolue'] },
-                { label: 'Volume traitement', values: ['❌ Limité (génération lente)', '✅ Batch illimité'] },
-                { label: 'Conformité e-commerce', values: ['⚠️ Risqué', '✅ Totale'] },
-                { label: 'Coût par image', values: ['0,10–0,50€', '0,50–5€'] },
-              ]}
-            />
-
             <Callout type="success" title="Recommandation">
-              Pour le e-commerce professionnel, <strong>privilégiez toujours l'IA photo produit</strong> plutôt que l'IA générative pure. La fidélité produit n'est pas négociable.
+              Pour le e-commerce, où le produit doit rester conforme à la réalité, une IA qui part d'une photo réelle est plus adaptée qu'une IA générative pure. Contrôlez la fidélité du produit sur chaque visuel.
             </Callout>
 
           <hr className="my-8 border-neutral-200" />
@@ -284,60 +271,44 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
             </h2>
 
             <h3 id="lifestyle-generator-du-studio-a-la-vraie-vie" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              1. Lifestyle Generator : Du Studio à la Vraie Vie
+              1. Lifestyle Generator : Du Studio à la Mise en Scène
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Le <strong>Lifestyle Generator</strong> est la fonctionnalité phare des IA photo produit spécialisées. Elle transforme vos packshots cliniques en mises en scène immersives qui racontent une histoire.
+              Le <strong>Lifestyle Generator</strong> place le produit d'un packshot dans une mise en scène.
             </p>
-
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Comment ça fonctionne ?</h4>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Upload du packshot</strong> : Vous fournissez une photo fond blanc haute résolution</li>
-              <li className="text-future-dusk-600"><strong>Détection intelligente</strong> : L'IA identifie le type de produit (vêtement, bijou, chaussure, etc.)</li>
-              <li className="text-future-dusk-600"><strong>Génération du contexte</strong> : L'IA crée un environnement réaliste adapté au produit</li>
-              <li className="text-future-dusk-600"><strong>Intégration seamless</strong> : Le produit est intégré dans la scène avec ombres, reflets et perspectives cohérentes</li>
+              <li className="text-future-dusk-600"><strong>Upload du packshot</strong> : vous fournissez une photo fond blanc haute résolution</li>
+              <li className="text-future-dusk-600"><strong>Isolation du produit</strong> : l'IA sépare le produit de son fond</li>
+              <li className="text-future-dusk-600"><strong>Génération du contexte</strong> : l'IA crée un environnement autour du produit</li>
+              <li className="text-future-dusk-600"><strong>Intégration</strong> : ombres, reflets et perspective, à contrôler sur chaque visuel</li>
             </ol>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Exemples concrets</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Exemples</h4>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Bijouterie</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-1">
-              <li className="text-future-dusk-600">Avant : Bague sur fond blanc</li>
-              <li className="text-future-dusk-600">Après : Main portant la bague, décor luxueux, lumière naturelle douce</li>
+            <ul className="list-disc pl-6 mb-4 space-y-2">
+              <li className="text-future-dusk-600">Avant : bague sur fond blanc</li>
+              <li className="text-future-dusk-600">Après : bague dans un décor (matière, lumière douce)</li>
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Mode</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-1">
+            <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Avant : T-shirt posé à plat</li>
-              <li className="text-future-dusk-600">Après : Mannequin portant le T-shirt, environnement urbain ou studio lifestyle</li>
+              <li className="text-future-dusk-600">Après : T-shirt dans un environnement urbain ou un décor studio</li>
             </ul>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Cosmétiques</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-1">
-              <li className="text-future-dusk-600">Avant : Flacon de parfum isolé</li>
-              <li className="text-future-dusk-600">Après : Flacon dans une salle de bain moderne avec accessoires lifestyle</li>
-            </ul>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Pricing indicatif</h4>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>BlendAI Pro</strong> : 150–530€/mois (lifestyle illimité)</li>
-              <li className="text-future-dusk-600"><strong>Photoroom Business</strong> : 10–50€/mois (fonctionnalité basique)</li>
-              <li className="text-future-dusk-600"><strong>Flair AI</strong> : 30–200€/mois (templates lifestyle prédéfinis)</li>
+              <li className="text-future-dusk-600">Avant : flacon de parfum isolé</li>
+              <li className="text-future-dusk-600">Après : flacon dans une salle de bain avec accessoires</li>
             </ul>
-
-            <Callout type="info" title="Astuce ROI">
-              Le Lifestyle Generator permet d'économiser <strong>95% du coût</strong> d'une séance photo mannequin traditionnelle (1 500–5 000€ par shooting).
-            </Callout>
-
-          <hr className="my-8 border-neutral-200" />
 
             <h3 id="background-generator-contextualisez-vos-produits" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               2. Background Generator : Contextualisez Vos Produits
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Le <strong>Background Generator</strong> remplace vos fonds blancs par des arrière-plans contextuels qui améliorent la conversion e-commerce.
+              Le <strong>Background Generator</strong> remplace le fond blanc par des arrière-plans contextuels.
             </p>
-
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Pourquoi changer le fond blanc ?</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Les études montrent que les fonds blancs sont optimaux pour les <strong>fiches produit</strong> (comparaison facile), mais les <strong>backgrounds contextuels</strong> surperforment de <strong>40–60%</strong> sur :
+              Le fond blanc reste la référence des <strong>fiches produit</strong>, où il facilite la comparaison. Les <strong>arrière-plans contextuels</strong> servent d'autres supports :
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600">Landing pages publicitaires</li>
@@ -345,170 +316,74 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <li className="text-future-dusk-600">Bannières homepage</li>
               <li className="text-future-dusk-600">Emails marketing</li>
             </ul>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Types de backgrounds disponibles</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Types d'arrière-plans</h4>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Backgrounds environnementaux</strong> : Nature, urbain, intérieur moderne</li>
-              <li className="text-future-dusk-600"><strong>Backgrounds abstraits</strong> : Dégradés, formes géométriques, textures</li>
-              <li className="text-future-dusk-600"><strong>Backgrounds sectoriels</strong> : Cuisine pour alimentaire, salle de sport pour sportswear</li>
-              <li className="text-future-dusk-600"><strong>Backgrounds saisonniers</strong> : Noël, été, rentrée scolaire</li>
+              <li className="text-future-dusk-600"><strong>Environnementaux</strong> : nature, urbain, intérieur</li>
+              <li className="text-future-dusk-600"><strong>Abstraits</strong> : dégradés, formes géométriques, textures</li>
+              <li className="text-future-dusk-600"><strong>Sectoriels</strong> : cuisine pour l'alimentaire, salle de sport pour le sportswear</li>
+              <li className="text-future-dusk-600"><strong>Saisonniers</strong> : Noël, été, rentrée scolaire</li>
             </ol>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Use case : Campagne publicitaire multi-canal</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Use case : campagne multi-canal</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               Imaginez que vous lancez une campagne pour une nouvelle gamme de chaussures de running :
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Fiche produit</strong> : Fond blanc (référence)</li>
-              <li className="text-future-dusk-600"><strong>Ad Meta/Google</strong> : Fond urbain dynamique (ville au petit matin)</li>
-              <li className="text-future-dusk-600"><strong>Story Instagram</strong> : Fond abstrait énergique (dégradé orange-rouge)</li>
-              <li className="text-future-dusk-600"><strong>Email marketing</strong> : Fond nature (chemin forestier)</li>
+              <li className="text-future-dusk-600"><strong>Fiche produit</strong> : fond blanc (référence)</li>
+              <li className="text-future-dusk-600"><strong>Ad Meta/Google</strong> : fond urbain (ville au petit matin)</li>
+              <li className="text-future-dusk-600"><strong>Story Instagram</strong> : fond abstrait (dégradé orange-rouge)</li>
+              <li className="text-future-dusk-600"><strong>Email marketing</strong> : fond nature (chemin forestier)</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Avec le Background Generator, vous générez ces <strong>4 variantes en 2 minutes</strong> à partir du même packshot fond blanc.
+              Un Background Generator permet de produire ces variantes à partir du même packshot fond blanc.
             </p>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Pricing</h4>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>BlendAI</strong> : 75–300€/mois (backgrounds illimités, IA personnalisable)</li>
-              <li className="text-future-dusk-600"><strong>Photoroom</strong> : Inclus dans tous les plans (10–50€/mois)</li>
-              <li className="text-future-dusk-600"><strong>Flair AI</strong> : 30–200€/mois (bibliothèque de templates)</li>
-            </ul>
-
-          <hr className="my-8 border-neutral-200" />
 
             <h3 id="retouche-photo-ia-post-production-automatisee" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               3. Retouche Photo IA : Post-Production Automatisée
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              La <strong>retouche photo IA</strong> automatise 80% du travail de post-production réalisé manuellement par les retoucheurs.
+              La <strong>retouche photo IA</strong> automatise une partie du travail de post-production.
             </p>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Fonctionnalités de retouche automatique</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Corrections automatisables</h4>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Suppression des défauts</strong> : Poussières, rayures, reflets parasites</li>
-              <li className="text-future-dusk-600"><strong>Ajustement des couleurs</strong> : Balance des blancs, saturation, contraste</li>
-              <li className="text-future-dusk-600"><strong>Nettoyage des ombres</strong> : Suppression ou adoucissement des ombres portées</li>
-              <li className="text-future-dusk-600"><strong>Correction des perspectives</strong> : Redressement des lignes, corrections de distorsion</li>
-              <li className="text-future-dusk-600"><strong>Uniformisation catalogue</strong> : Application du même profil colorimétrique à 10 000 photos</li>
+              <li className="text-future-dusk-600"><strong>Suppression des défauts</strong> : poussières, rayures, reflets parasites</li>
+              <li className="text-future-dusk-600"><strong>Ajustement des couleurs</strong> : balance des blancs, saturation, contraste</li>
+              <li className="text-future-dusk-600"><strong>Nettoyage des ombres</strong> : suppression ou adoucissement des ombres portées</li>
+              <li className="text-future-dusk-600"><strong>Correction des perspectives</strong> : redressement des lignes, corrections de distorsion</li>
+              <li className="text-future-dusk-600"><strong>Uniformisation</strong> : application d'un même profil colorimétrique à une série de photos</li>
             </ol>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">ROI de la retouche automatisée</h4>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Calcul comparatif pour 1 000 photos :
-            </p>
-            <div className="overflow-x-auto my-6">
-              <table className="min-w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden text-sm">
-                <thead>
-                  <tr className="bg-future-dusk-900 text-white">
-                    <th className="px-4 py-3 text-left font-heading font-bold">Méthode</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Temps par photo</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Coût par photo</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">1 000 photos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-neutral-100 bg-neutral-50">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">Retouche manuelle (freelance)</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">15–30 min</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">10–25€</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">10 000–25 000€</td>
-                  </tr>
-                  <tr className="border-b border-neutral-100 bg-white">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">Retouche manuelle (interne)</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">20 min</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">5€ (salaire chargé)</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">5 000€</td>
-                  </tr>
-                  <tr className="border-b border-neutral-100 bg-neutral-50">
-                    <td className="px-4 py-3 font-bold text-future-dusk-900">Retouche IA</td>
-                    <td className="px-4 py-3 text-center font-bold text-very-peri-700">30 sec</td>
-                    <td className="px-4 py-3 text-center font-bold text-very-peri-700">0,50–2€</td>
-                    <td className="px-4 py-3 text-center font-bold text-very-peri-700">500–2 000€</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Économie</strong> : <strong>75–95%</strong> du coût et <strong>95%</strong> du temps.
-            </p>
-
-            <Callout type="success" title="Cas client réel">
-              Un pure player mode (8 000 références) a divisé son budget retouche annuel par <strong>10</strong> en passant à l'IA : de 80 000€ à 8 000€/an.
-            </Callout>
-
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Limites de la retouche IA</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              L'IA excelle sur les corrections <strong>répétitives et standardisées</strong>, mais a encore des limites sur :
+              L'IA convient aux corrections <strong>répétitives et standardisées</strong>, mais a des limites sur :
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Retouches créatives complexes (ex : suppression d'un élément majeur)</li>
-              <li className="text-future-dusk-600">Corrections de perspective extrêmes</li>
-              <li className="text-future-dusk-600">Retouches artistiques personnalisées (ex : changement de texture matière)</li>
+              <li className="text-future-dusk-600">Les retouches créatives complexes (ex : suppression d'un élément majeur)</li>
+              <li className="text-future-dusk-600">Les corrections de perspective extrêmes</li>
+              <li className="text-future-dusk-600">Les retouches artistiques personnalisées (ex : changement de texture matière)</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Workflow recommandé</strong> : IA pour 90% du volume, retouche manuelle pour 10% des cas complexes.
+              <strong>Workflow recommandé</strong> : l'IA pour les corrections répétitives, la retouche manuelle pour les cas complexes.
             </p>
-
-          <hr className="my-8 border-neutral-200" />
 
             <h3 id="batch-processing-traitez-10-000-photos-en-2-heures" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              4. Batch Processing : Traitez 10 000 Photos en 2 Heures
+              4. Batch Processing : Traiter des Lots d'Images
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Le <strong>Batch Processing</strong> est la killer feature qui différencie les IA photo produit professionnelles des outils grand public.
-            </p>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Qu'est-ce que le Batch Processing ?</h4>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Le Batch Processing permet d'appliquer <strong>le même traitement IA</strong> (lifestyle, background, retouche) à des <strong>milliers de photos simultanément</strong>, avec :
+              Le <strong>Batch Processing</strong> applique le même traitement IA (mise en scène, arrière-plan, retouche) à un lot de photos, avec :
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Upload par lots (jusqu'à 10 000 images)</li>
-              <li className="text-future-dusk-600">Application de templates ou prompts unifiés</li>
-              <li className="text-future-dusk-600">Export automatisé (format, résolution, nommage)</li>
-              <li className="text-future-dusk-600">Intégration API pour workflows automatisés</li>
+              <li className="text-future-dusk-600">Upload par lots</li>
+              <li className="text-future-dusk-600">Application de réglages unifiés</li>
+              <li className="text-future-dusk-600">Export selon vos formats (format, résolution, nommage)</li>
+              <li className="text-future-dusk-600">Intégration à vos outils, selon les possibilités de chaque solution</li>
             </ul>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Use cases critiques</h4>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>1. Migration e-commerce</strong></p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Vous migrez de Magento vers Shopify et devez mettre à jour 5 000 visuels au nouveau format lifestyle ?
-            </p>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Cas d'usage</h4>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Sans IA</strong> : 3–6 mois de travail manuel</li>
-              <li className="text-future-dusk-600"><strong>Avec Batch Processing</strong> : 2–5 jours</li>
+              <li className="text-future-dusk-600"><strong>Migration e-commerce</strong> : mise à jour des visuels au format de la nouvelle plateforme</li>
+              <li className="text-future-dusk-600"><strong>Refonte saisonnière</strong> : déclinaison d'une collection avec un arrière-plan saisonnier</li>
+              <li className="text-future-dusk-600"><strong>Harmonisation d'un catalogue ancien</strong> : uniformisation de photos de qualité hétérogène</li>
             </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>2. Refonte visuelle saisonnière</strong></p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Vous lancez une collection Noël et devez créer 1 000 visuels avec background hivernal ?
-            </p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Sans IA</strong> : Budget 15 000–30 000€ (shooting + retouche)</li>
-              <li className="text-future-dusk-600"><strong>Avec Batch Processing</strong> : 1 500–3 000€ + 1 journée</li>
-            </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>3. Harmonisation catalogue ancien</strong></p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Votre catalogue contient 8 000 photos de qualité hétérogène (2015–2026) ?
-            </p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Sans IA</strong> : Refaire toutes les photos (coût prohibitif)</li>
-              <li className="text-future-dusk-600"><strong>Avec Batch Processing</strong> : Uniformisation automatique en 48h</li>
-            </ul>
-
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Comparatif capacités Batch</h4>
-            <ComparisonTable
-              headers={['BlendAI', 'Photoroom', 'Flair AI']}
-              rows={[
-                { label: 'Upload max par batch', values: ['10 000 images', '100 images', '500 images'] },
-                { label: 'Temps traitement (1 000 photos)', values: ['15–30 min', '2–4h', '1–2h'] },
-                { label: 'API disponible', values: ['✅ Oui', '⚠️ Limitée', '❌ Non'] },
-                { label: 'Templates personnalisables', values: ['✅ Illimités', '⚠️ 10 max', '✅ 50 max'] },
-              ]}
-            />
-
-            <Callout type="warning" title="Attention capacité serveur">
-              Le Batch Processing sollicite fortement les serveurs IA. Vérifiez les <strong>limites de concurrence</strong> de votre plan (nombre de batchs simultanés autorisés).
+            <Callout type="warning" title="Limites de votre formule">
+              Le traitement par lots dépend des limites de la formule souscrite (volume, traitements simultanés) : vérifiez-les avant un traitement volumineux.
             </Callout>
 
           <hr className="my-8 border-neutral-200" />
@@ -516,114 +391,49 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
           {/* ── SECTION 3 : COMPARATIF ── */}
 
             <h2 id="comparatif-blendai-vs-photoroom-vs-flair-ai" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
-              Comparatif : BlendAI vs Photoroom vs Flair AI
+              Comparatif : BlendAI, Photoroom et Flair AI
             </h2>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Maintenant que vous maîtrisez les fonctionnalités clés, analysons en détail les <strong>3 solutions leaders</strong> du marché de l'IA photo produit en 2026.
+              Nous ne publions pas de comparatif chiffré de ces trois outils : les données de Photoroom et de Flair AI ne sont pas vérifiées, et les performances de BlendAI se vérifient sur vos propres produits.
             </p>
 
             <h3 id="blendai-le-specialiste-du-packshot-haute-precision" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Vue d'ensemble comparative
-            </h3>
-            <ComparisonTable
-              headers={['BlendAI', 'Photoroom', 'Flair AI']}
-              rows={[
-                { label: 'Lifestyle Generator', values: ['✅ Excellent', '⚠️ Basique', '✅ Bon'] },
-                { label: 'Background Generator', values: ['✅ Excellent', '✅ Excellent', '✅ Bon'] },
-                { label: 'Retouche Photo', values: ['✅ Avancée', '⚠️ Basique', '⚠️ Basique'] },
-                { label: 'Batch Processing', values: ['✅ Illimité', '❌ Limité (100)', '⚠️ Moyen (500)'] },
-                { label: 'Intégration photo réelle', values: ['✅ 100%', '⚠️ 70%', '✅ 90%'] },
-                { label: 'Prix mensuel', values: ['75–530€', '10–50€', '30–200€'] },
-                { label: 'Spécialisation packshot', values: ['✅ Oui (bijoux, luxe)', '❌ Généraliste', '⚠️ Partiel'] },
-                { label: 'Compatible studios Orbitvu', values: ['✅ Oui (natif)', '❌ Non', '❌ Non'] },
-              ]}
-            />
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              BlendAI : Le Spécialiste du Packshot Haute Précision
+              BlendAI
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Positionnement</strong> : Solution premium pour marques exigeantes (bijouterie, haute couture, luxe)
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Précision packshot inégalée</strong> : Préserve 100% des détails (brillance, transparence, reflets)</li>
-              <li className="text-future-dusk-600"><strong>Intégration Orbitvu native</strong> : Workflow direct depuis studios AlphaShot/Station</li>
-              <li className="text-future-dusk-600"><strong>Batch illimité</strong> : Traitement de catalogues complets sans limite</li>
-              <li className="text-future-dusk-600"><strong>IA personnalisable</strong> : Entraînement sur votre charte graphique (moyennant setup)</li>
-            </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Faiblesses</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Prix élevé</strong> : 530€/mois pour le plan Pro (75€ pour Basic)</li>
-              <li className="text-future-dusk-600"><strong>Courbe d'apprentissage</strong> : Interface professionnelle (moins intuitive que Photoroom)</li>
-              <li className="text-future-dusk-600"><strong>Overkill pour e-commerce généraliste</strong> : Investissement disproportionné si vous vendez des T-shirts basiques</li>
-            </ul>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Pour qui ?</strong> : Marques avec catalogues premium (&gt;100€/produit), exigences strictes sur la fidélité couleur et matière.
+              Sur ce site, BlendAI est présenté pour la déclinaison de packshots en visuels e-commerce (arrière-plans, mises en scène, retouche). Ses capacités, ses intégrations et son tarif, sur devis, se vérifient avec nous sur vos propres produits.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Lien</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir BlendAI</Link>
             </p>
 
-          <hr className="my-8 border-neutral-200" />
-
             <h3 id="photoroom-le-couteau-suisse-grand-public" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Photoroom : Le Couteau Suisse Grand Public
+              Photoroom
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Positionnement</strong> : Solution accessible pour TPE/PME et solopreneurs
+              Nous ne détaillons pas ici les fonctionnalités, les limites ni les tarifs de Photoroom : faute de source vérifiée, reportez-vous directement à l'éditeur.
             </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Prix imbattable</strong> : 10€/mois pour le plan Business (vs 530€ BlendAI)</li>
-              <li className="text-future-dusk-600"><strong>UX exceptionnelle</strong> : App mobile + web, prise en main immédiate</li>
-              <li className="text-future-dusk-600"><strong>Background Generator excellent</strong> : Bibliothèque riche, rendu professionnel</li>
-              <li className="text-future-dusk-600"><strong>Communauté active</strong> : Tutoriels, templates partagés</li>
-            </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Faiblesses</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Lifestyle Generator basique</strong> : Résultats moins réalistes que BlendAI/Flair</li>
-              <li className="text-future-dusk-600"><strong>Batch limité</strong> : 100 images max par batch (bloquant pour gros catalogues)</li>
-              <li className="text-future-dusk-600"><strong>Précision produit moyenne</strong> : 70% de fidélité (vs 100% BlendAI) sur matières complexes</li>
-            </ul>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Pour qui ?</strong> : E-commerçants généralistes (mode, maison, déco), budgets serrés (&lt;500€/mois photo).
-            </p>
-
-          <hr className="my-8 border-neutral-200" />
 
             <h3 id="flair-ai-le-creatif-lifestyle" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Flair AI : Le Créatif Lifestyle
+              Flair AI
             </h3>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Positionnement</strong> : Compromis créativité/prix pour marques lifestyle
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Forces</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Templates lifestyle époustouflants</strong> : Bibliothèque de 500+ scènes prédéfinies</li>
-              <li className="text-future-dusk-600"><strong>Rapport qualité/prix</strong> : 30–200€/mois (entre Photoroom et BlendAI)</li>
-              <li className="text-future-dusk-600"><strong>Génération rapide</strong> : 10–30 sec par image lifestyle</li>
-              <li className="text-future-dusk-600"><strong>Bon pour réseaux sociaux</strong> : Output optimisé Instagram/TikTok</li>
-            </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Faiblesses</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Pas d'API</strong> : Impossible d'automatiser (bloquant pour gros volumes)</li>
-              <li className="text-future-dusk-600"><strong>Batch moyen</strong> : 500 images max (vs 10 000 BlendAI)</li>
-              <li className="text-future-dusk-600"><strong>Retouche photo limitée</strong> : Focus sur lifestyle, pas sur post-prod</li>
-            </ul>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Pour qui ?</strong> : Marques lifestyle (cosmétiques, food, déco) cherchant des visuels Instagram percutants.
+              Nous ne détaillons pas ici les fonctionnalités, les limites ni les tarifs de Flair AI : faute de source vérifiée, reportez-vous directement à l'éditeur.
             </p>
 
             <h3 id="verdict-quelle-ia-choisir-en-2026" className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Verdict : Quelle IA choisir en 2026 ?
+              Comment Choisir en 2026 ?
             </h3>
-            <Callout type="info" title="Recommandation par profil">
-              <p><strong>Vous êtes une marque luxe/bijoux</strong> → <strong>BlendAI</strong> (fidélité absolue requise)</p>
-              <p className="mt-2"><strong>Vous débutez en e-commerce (&lt;100 produits)</strong> → <strong>Photoroom</strong> (prix imbattable, simplicité)</p>
-              <p className="mt-2"><strong>Vous faites du lifestyle/food/déco</strong> → <strong>Flair AI</strong> (créativité maximale)</p>
-              <p className="mt-2"><strong>Vous gérez 5000+ produits</strong> → <strong>BlendAI</strong> (seul à offrir batch illimité + API)</p>
-            </Callout>
+            <ul className="list-disc pl-6 mb-4 space-y-2">
+              <li className="text-future-dusk-600"><strong>Fidélité au produit source</strong> : à contrôler sur vos matières difficiles (verre, bijoux, textile)</li>
+              <li className="text-future-dusk-600"><strong>Volume</strong> : nombre d'images à traiter et possibilité de traitement par lots</li>
+              <li className="text-future-dusk-600"><strong>Intégration</strong> : export et connexion à vos outils (PIM, DAM, CMS)</li>
+              <li className="text-future-dusk-600"><strong>Coût</strong> : selon votre volume et la formule retenue</li>
+              <li className="text-future-dusk-600"><strong>Conditions d'usage</strong> : droits sur les visuels générés</li>
+            </ul>
+            <p className="mb-4 leading-relaxed text-future-dusk-600">
+              Le plus sûr reste de tester les outils sur un échantillon représentatif de votre catalogue.
+            </p>
 
           <hr className="my-8 border-neutral-200" />
 
@@ -633,7 +443,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               Comment Intégrer l'IA dans Votre Workflow Photo ?
             </h2>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              L'intégration de l'IA photo produit ne remplace pas votre workflow existant : elle le <strong>prolonge</strong> et <strong>l'automatise</strong>. Voici le workflow recommandé en 4 étapes.
+              L'IA photo produit ne remplace pas votre workflow existant : elle le <strong>prolonge</strong>. Voici un workflow en 4 étapes.
             </p>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
@@ -642,32 +452,31 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 1 : Packshot Studio (BASE)</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Objectif</strong> : Créer la photo source haute qualité
+              <strong>Objectif</strong> : créer la photo source de qualité
             </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Matériel recommandé</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li className="text-future-dusk-600"><strong>Studio automatisé Orbitvu</strong> (AlphaShot G2, Station M)</li>
-              <li className="text-future-dusk-600"><strong>Éclairage LED contrôlé</strong> (lumière diffuse, sans reflets parasites)</li>
+              <li className="text-future-dusk-600"><strong>Éclairage contrôlé</strong> (lumière diffuse)</li>
               <li className="text-future-dusk-600"><strong>Fond blanc pur</strong> (Munsell N9.5 minimum)</li>
             </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Spécifications techniques</strong> :</p>
+            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Spécifications recommandées</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Résolution : <strong>Min 3 000×3 000px</strong> (4 000×4 000px idéal)</li>
-              <li className="text-future-dusk-600">Format : <strong>PNG ou TIFF</strong> (jamais JPEG pour source)</li>
+              <li className="text-future-dusk-600">Résolution : <strong>min 3 000×3 000px</strong> (4 000×4 000px idéal)</li>
+              <li className="text-future-dusk-600">Format : <strong>PNG ou TIFF</strong> (éviter le JPEG pour la source)</li>
               <li className="text-future-dusk-600">Profondeur : <strong>16 bits</strong> si possible (8 bits minimum)</li>
               <li className="text-future-dusk-600">Colorimétrie : <strong>sRGB</strong> ou <strong>Adobe RGB</strong> (selon votre workflow)</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
               <strong>Temps</strong> : 30 sec à 2 min par photo (selon complexité produit)
             </p>
-
-            <Callout type="warning" title="CRITIQUE : Qualité source = Qualité finale">
-              L'IA ne peut pas <strong>inventer</strong> des détails absents de la photo source. Un packshot flou ou sous-exposé donnera un résultat IA médiocre. <strong>Ne négligez jamais la prise de vue initiale</strong>.
+            <Callout type="warning" title="Qualité source = qualité finale">
+              L'IA ne restitue pas fidèlement des détails absents de la photo source : un packshot flou ou sous-exposé donnera un résultat médiocre. <strong>Soignez la prise de vue initiale</strong>.
             </Callout>
 
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 2 : Export Haute Qualité</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 2 : Export</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Objectif</strong> : Préparer les fichiers pour ingestion IA
+              <strong>Objectif</strong> : préparer les fichiers pour le traitement IA
             </p>
             <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Checklist avant export</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -676,231 +485,69 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               <li className="text-future-dusk-600">Ombres portées supprimées (ou nettoyées)</li>
               <li className="text-future-dusk-600">Métadonnées EXIF préservées (traçabilité)</li>
             </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Workflow Orbitvu → IA</strong> :</p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Si vous utilisez des studios Orbitvu (AlphaShot, Station), BlendAI propose une <strong>intégration native</strong> :
-            </p>
-            <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Photo capturée dans le studio</li>
-              <li className="text-future-dusk-600">Export automatique vers BlendAI (API)</li>
-              <li className="text-future-dusk-600">Traitement IA déclenché immédiatement</li>
-              <li className="text-future-dusk-600">Import des résultats dans votre DAM</li>
-            </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Gain de temps</strong> : 5–10 min par produit économisées (vs export manuel + upload)
+              Si vous utilisez un studio Orbitvu, les modalités d'export vers un outil d'IA (formats, dossiers, automatisation possible) se vérifient avec nous selon vos outils.
             </p>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Lien</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les studios Orbitvu IA Ready</Link>
+              <strong>Lien</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Découvrir les studios Orbitvu</Link>
             </p>
 
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 3 : Traitement IA (BlendAI / Photoroom / Flair)</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 3 : Traitement IA</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Objectif</strong> : Générer les déclinaisons lifestyle, backgrounds, retouches
+              <strong>Objectif</strong> : générer les déclinaisons (mises en scène, arrière-plans, retouches)
             </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Sous-étapes</strong> :</p>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Upload batch</strong> : Uploadez vos packshots (1 à 10 000 selon la solution)</li>
-              <li className="text-future-dusk-600"><strong>Sélection du traitement</strong> : Lifestyle Generator, Background Generator, ou Retouche auto</li>
-              <li className="text-future-dusk-600"><strong>Configuration avancée</strong> (BlendAI uniquement) : Prompt personnalisé, références de style, contraintes</li>
-              <li className="text-future-dusk-600"><strong>Lancement du batch</strong> : 1 image = 10–30 sec | 100 images = 15–45 min | 1 000 images = 2–6h | 10 000 images = 12–48h</li>
+              <li className="text-future-dusk-600"><strong>Upload</strong> : envoi de vos packshots, à l'unité ou par lots</li>
+              <li className="text-future-dusk-600"><strong>Sélection du traitement</strong> : Lifestyle Generator, Background Generator ou retouche</li>
+              <li className="text-future-dusk-600"><strong>Configuration</strong> : réglages de style, références, contraintes, selon l'outil</li>
+              <li className="text-future-dusk-600"><strong>Lancement du traitement</strong></li>
             </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Monitoring</strong> : Toutes les solutions proposent un dashboard temps réel avec le nombre d'images traitées, le temps restant et des aperçus des résultats.
-            </p>
 
             <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Étape 4 : Validation / Retouche Finale</h4>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Objectif</strong> : Contrôle qualité humain + retouches mineures si nécessaire
+              <strong>Objectif</strong> : contrôle qualité humain et retouches mineures si nécessaire
             </p>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Contrôle visuel batch</strong> : Parcourir 100% des résultats en mode galerie</li>
-              <li className="text-future-dusk-600"><strong>Triage</strong> : ✅ Validés (85–95%) | ⚠️ À retravailler (5–10%) | ❌ À refaire (&lt;5%)</li>
-              <li className="text-future-dusk-600"><strong>Retouches mineures</strong> : Ajustement luminosité, correction d'artefacts ponctuels, harmonisation finale</li>
-              <li className="text-future-dusk-600"><strong>Export final</strong> : JPEG haute qualité (e-commerce) ou PNG/TIFF (print), nommage automatisé SKU</li>
+              <li className="text-future-dusk-600"><strong>Contrôle visuel</strong> : parcourir l'ensemble des résultats en mode galerie</li>
+              <li className="text-future-dusk-600"><strong>Triage</strong> : validés, à retravailler, à refaire</li>
+              <li className="text-future-dusk-600"><strong>Retouches mineures</strong> : ajustement de luminosité, correction d'artefacts ponctuels, harmonisation finale</li>
+              <li className="text-future-dusk-600"><strong>Export final</strong> : JPEG haute qualité (e-commerce) ou PNG/TIFF (print), nommage selon vos SKU</li>
             </ol>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Temps QA</strong> : 2–5 sec par image (vs 20 min retouche manuelle)
-            </p>
 
-            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Schéma workflow visuel</h4>
+            <h4 className="font-heading text-lg font-semibold text-future-dusk-800 mt-6 mb-2">Schéma du workflow</h4>
             <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-6 font-mono text-sm text-future-dusk-700 my-6">
-              <p>[Studio Orbitvu] → [Packshot fond blanc 4K]</p>
+              <p>[Studio Orbitvu] → [Packshot fond blanc]</p>
               <p className="mt-1 ml-8">↓</p>
-              <p>[Export PNG/TIFF] → [Upload BlendAI batch]</p>
+              <p>[Export PNG/TIFF] → [Upload vers l'outil d'IA]</p>
               <p className="mt-1 ml-8">↓</p>
-              <p>[Traitement IA 30 sec/image]</p>
+              <p>[Traitement IA]</p>
               <p className="mt-1 ml-8">↓</p>
-              <p>[Lifestyle + Background + Retouche]</p>
+              <p>[Mise en scène + Arrière-plan + Retouche]</p>
               <p className="mt-1 ml-8">↓</p>
-              <p>[QA humain 5 sec/image] → [Export e-commerce]</p>
+              <p>[Contrôle qualité humain] → [Export e-commerce]</p>
               <p className="mt-1 ml-8">↓</p>
               <p>[DAM / Shopify / Magento]</p>
             </div>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Temps total pour 100 produits</strong> : Sans IA = 30–50h | Avec IA = 5–8h | <strong>Gain : 80–85% du temps</strong>
-            </p>
 
           <hr className="my-8 border-neutral-200" />
 
           {/* ── SECTION 5 : ROI ── */}
 
             <h2 id="roi-de-lia-photo-produit-calculs-reels" className="font-heading text-2xl font-bold text-future-dusk-900 mt-12 mb-4 scroll-mt-24">
-              ROI de l'IA Photo Produit : Calculs Réels
+              ROI de l'IA Photo Produit : Comment l'Estimer
             </h2>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Analysons le <strong>retour sur investissement</strong> de l'IA photo produit avec des chiffres concrets.
+              Le retour sur investissement de l'IA photo produit dépend de votre volume, de vos coûts actuels de prise de vue et de retouche, et du tarif de l'outil retenu. Pour l'estimer, comparez :
             </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Calcul 1 : Temps Économisé
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Scénario</strong> : Catalogue de 500 produits, 3 déclinaisons par produit (fond blanc, lifestyle, background contextuel)
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Workflow traditionnel</strong> :</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Shooting fond blanc : 500 produits × 2 min = <strong>16,7h</strong></li>
-              <li className="text-future-dusk-600">Shooting lifestyle mannequin : 500 produits × 30 min = <strong>250h</strong> (ou 15 000–25 000€ de budget shooting externe)</li>
-              <li className="text-future-dusk-600">Retouche manuelle : 1 500 images × 20 min = <strong>500h</strong></li>
-              <li className="text-future-dusk-600"><strong>TOTAL : 766,7h</strong> (ou <strong>96 jours de travail</strong> à 8h/jour)</li>
-            </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Workflow avec IA</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Shooting fond blanc : <strong>16,7h</strong> (identique)</li>
-              <li className="text-future-dusk-600">Génération lifestyle IA : 500 produits × 30 sec = <strong>4,2h</strong></li>
-              <li className="text-future-dusk-600">Génération background IA : 500 produits × 30 sec = <strong>4,2h</strong></li>
-              <li className="text-future-dusk-600">Retouche IA : 1 500 images × 30 sec = <strong>12,5h</strong></li>
-              <li className="text-future-dusk-600">QA humain : 1 500 images × 5 sec = <strong>2h</strong></li>
-              <li className="text-future-dusk-600"><strong>TOTAL : 39,6h</strong> (ou <strong>5 jours de travail</strong>)</li>
+              <li className="text-future-dusk-600">Vos coûts actuels (shooting, retouche, prestataires)</li>
+              <li className="text-future-dusk-600">Le coût de l'outil d'IA à votre volume (BlendAI : sur devis)</li>
+              <li className="text-future-dusk-600">Le temps de contrôle qualité et de retouche manuelle restant</li>
             </ul>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Gain : 727h économisées = 95% du temps</strong>
+              Pour un studio Orbitvu, notre calculateur établit une étude de retour sur investissement par machine :{' '}
+              <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">calculateur ROI</Link>.
             </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Calcul 2 : Coûts Directs
-            </h3>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts traditionnels</strong> (freelances ou interne) :</p>
-            <div className="overflow-x-auto my-6">
-              <table className="min-w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden text-sm">
-                <thead>
-                  <tr className="bg-future-dusk-900 text-white">
-                    <th className="px-4 py-3 text-left font-heading font-bold">Poste</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Quantité</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Coût unitaire</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-neutral-100 bg-neutral-50">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">Shooting lifestyle externe</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">10 sessions (50 prod/session)</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">2 500€</td>
-                    <td className="px-4 py-3 text-center font-bold text-future-dusk-900">25 000€</td>
-                  </tr>
-                  <tr className="border-b border-neutral-100 bg-white">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">Retouche freelance</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">1 500 images</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">15€</td>
-                    <td className="px-4 py-3 text-center font-bold text-future-dusk-900">22 500€</td>
-                  </tr>
-                  <tr className="border-b border-neutral-100 bg-neutral-50">
-                    <td className="px-4 py-3 font-bold text-future-dusk-900">TOTAL</td>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3 text-center font-bold text-future-dusk-900">47 500€</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Coûts avec IA</strong> :</p>
-            <div className="overflow-x-auto my-6">
-              <table className="min-w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden text-sm">
-                <thead>
-                  <tr className="bg-future-dusk-900 text-white">
-                    <th className="px-4 py-3 text-left font-heading font-bold">Poste</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Quantité</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Coût unitaire</th>
-                    <th className="px-4 py-3 text-center font-heading font-bold">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-neutral-100 bg-neutral-50">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">Abonnement BlendAI Pro (1 an)</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">12 mois</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">530€</td>
-                    <td className="px-4 py-3 text-center font-bold text-future-dusk-900">6 360€</td>
-                  </tr>
-                  <tr className="border-b border-neutral-100 bg-white">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">Génération IA</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">1 500 images</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">2€ (coût estimé)</td>
-                    <td className="px-4 py-3 text-center font-bold text-future-dusk-900">3 000€</td>
-                  </tr>
-                  <tr className="border-b border-neutral-100 bg-neutral-50">
-                    <td className="px-4 py-3 font-medium text-future-dusk-900">QA/Retouche humain (10%)</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">150 images</td>
-                    <td className="px-4 py-3 text-center text-future-dusk-600">15€</td>
-                    <td className="px-4 py-3 text-center font-bold text-future-dusk-900">2 250€</td>
-                  </tr>
-                  <tr className="border-b border-neutral-100 bg-white">
-                    <td className="px-4 py-3 font-bold text-future-dusk-900">TOTAL</td>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3 text-center font-bold text-very-peri-700">11 610€</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Économie : 35 890€</strong> soit <strong>76% du budget</strong>
-            </p>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Calcul 3 : Breakeven (Seuil de Rentabilité)
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Question</strong> : À partir de combien de photos/mois l'IA devient-elle rentable ?
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Hypothèses</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Coût retouche manuelle : 15€/photo</li>
-              <li className="text-future-dusk-600">Coût IA (BlendAI Pro) : 530€/mois + 2€/photo</li>
-            </ul>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              Équation : 15€ × N = 530€ + (2€ × N) → 13€ × N = 530€ → <strong>N = 41 photos</strong>
-            </p>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Breakeven : 41 photos/mois</strong>
-            </p>
-
-            <Callout type="success" title="Conclusion ROI">
-              Si vous traitez <strong>plus de 50 photos par mois</strong>, l'IA photo produit est <strong>systématiquement rentable dès le 1er mois</strong>.
-              <p className="mt-2">Pour les catalogues 100+ produits, le ROI est <strong>massif</strong> : économie de <strong>75–95%</strong> sur 1 an.</p>
-            </Callout>
-
-            <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Calcul 4 : ROI Complet sur 3 Ans
-            </h3>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Scénario</strong> : E-commerçant mode, 1 000 produits/an, 3 déclinaisons/produit
-            </p>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Sans IA (3 ans)</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Coût shooting + retouche : 95 000€/an × 3 = <strong>285 000€</strong></li>
-              <li className="text-future-dusk-600">Temps humain : 1 500h/an × 3 = <strong>4 500h</strong></li>
-            </ul>
-            <p className="mb-2 leading-relaxed text-future-dusk-600"><strong>Avec IA (3 ans)</strong> :</p>
-            <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600">Abonnement BlendAI : 6 360€/an × 3 = <strong>19 080€</strong></li>
-              <li className="text-future-dusk-600">Coût génération IA : 6 000€/an × 3 = <strong>18 000€</strong></li>
-              <li className="text-future-dusk-600">Retouche humain (10%) : 4 500€/an × 3 = <strong>13 500€</strong></li>
-              <li className="text-future-dusk-600"><strong>TOTAL : 50 580€</strong></li>
-            </ul>
-            <p className="mb-4 leading-relaxed text-future-dusk-600">
-              <strong>Économie sur 3 ans : 234 420€ | Temps libéré : 4 000h | ROI : 463%</strong> (4,63€ économisés pour 1€ investi)
-            </p>
-
           {/* ── FAQ ── */}
           <section className="mt-16 pt-12 border-t border-neutral-200">
             <h2 id="questions-frequentes" className="font-heading text-2xl font-bold text-future-dusk-900 mb-8 scroll-mt-24">
@@ -929,30 +576,29 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
               Conclusion : L'IA Photo Produit en 2026
             </h2>
             <p className="mb-4 leading-relaxed text-future-dusk-600">
-              L'<strong>IA photo produit</strong> n'est plus un gadget expérimental : c'est devenu un <strong>standard industriel</strong> pour tout e-commerce gérant plus de 100 références. La différence entre IA générative pure et IA photo produit spécialisée est critique : <strong>la fidélité produit n'est pas négociable</strong>.
+              L'<strong>IA photo produit</strong> part d'une photo réelle pour en générer des déclinaisons. Pour le e-commerce, la fidélité du produit reste le critère central : elle se contrôle sur chaque visuel.
             </p>
 
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
-              Les 5 points clés à retenir
+              Les points clés à retenir
             </h3>
             <ol className="list-decimal pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>L'IA photo produit prolonge la photo, ne la remplace pas</strong> : Vous devez toujours partir d'un packshot studio de qualité</li>
-              <li className="text-future-dusk-600"><strong>BlendAI, Photoroom et Flair répondent à des besoins différents</strong> : BlendAI pour le luxe/précision (530€/mois), Photoroom pour TPE/PME budget serré (10€/mois), Flair pour lifestyle créatif (30–200€/mois)</li>
-              <li className="text-future-dusk-600"><strong>Le ROI est positif dès 40–50 photos/mois</strong> : Pour les catalogues 100+ produits, l'économie est de 75–95% sur 3 ans</li>
-              <li className="text-future-dusk-600"><strong>Le workflow optimal intègre studio automatisé + IA</strong> : La combinaison Orbitvu (studio) + BlendAI (IA) offre le meilleur rapport vitesse/qualité/coût</li>
+              <li className="text-future-dusk-600"><strong>L'IA photo produit prolonge la photo, ne la remplace pas</strong> : partez d'un packshot studio de qualité</li>
+              <li className="text-future-dusk-600"><strong>Les outils répondent à des usages différents</strong> : comparez-les sur vos propres produits</li>
+              <li className="text-future-dusk-600"><strong>Le ROI dépend de votre volume et de vos coûts actuels</strong> : estimez-le avant de vous engager</li>
+              <li className="text-future-dusk-600"><strong>Studio et IA se complètent</strong> : la qualité de la capture conditionne celle des déclinaisons</li>
             </ol>
 
             <Callout type="info" title="Parcours recommandé">
-              <p><strong>Étape 1</strong> : Tester BlendAI gratuitement (14 jours d'essai)</p>
-              <p className="mt-2"><strong>Étape 2</strong> : Réserver une démo personnalisée (IA + Studio Orbitvu)</p>
-              <p className="mt-2"><strong>Étape 3</strong> : Déploiement workflow complet sur votre catalogue</p>
+              <p><strong>Étape 1</strong> : réserver une démonstration (IA + studio Orbitvu)</p>
+              <p className="mt-2"><strong>Étape 2</strong> : tester sur un échantillon de votre catalogue</p>
+              <p className="mt-2"><strong>Étape 3</strong> : déployer le workflow sur votre catalogue</p>
             </Callout>
-
             <h3 className="font-heading text-xl font-semibold text-future-dusk-800 mt-8 mb-3 scroll-mt-24">
               Ressources Complémentaires
             </h3>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li className="text-future-dusk-600"><strong>Hub IA Photo Produit</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">Toutes nos solutions IA</Link></li>
+              <li className="text-future-dusk-600"><strong>Hub IA Photo Produit</strong> : <Link href="/ia-photo-produit" className="text-very-peri-600 hover:text-very-peri-700 underline">L'IA photo produit</Link></li>
               <li className="text-future-dusk-600"><strong>Hub Studios Photo Automatisés</strong> : <Link href="/studios-photo-automatises" className="text-very-peri-600 hover:text-very-peri-700 underline">Gamme Orbitvu 2026</Link></li>
               <li className="text-future-dusk-600"><strong>Calculateur ROI</strong> : <Link href="/calculateur-roi" className="text-very-peri-600 hover:text-very-peri-700 underline">Estimez vos économies</Link></li>
               <li className="text-future-dusk-600"><strong>Academy</strong> : <Link href="/academy" locale="fr" className="text-very-peri-600 hover:text-very-peri-700 underline">Formations aux studios photo Orbitvu</Link></li>
@@ -982,7 +628,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
         breadcrumbSchema(breadcrumbs),
         articleSchema({
           title: 'IA Photo Produit 2026 : Guide Complet BlendAI pour E-commerce',
-          description: 'Guide complet IA photo produit 2026. BlendAI : détourage, backgrounds, retouche automatique. Intégration studios Orbitvu. ROI, workflow, cas d\'usage.',
+          description: "Guide IA photo produit 2026 : principes, fonctionnalités (détourage, arrière-plans, retouche), workflow studio + IA et critères de choix pour l'e-commerce.",
           url: `https://www.packshot-creator.com/${lang}/blog/ia-photo-produit-guide-2026`,
           datePublished: '2026-01-22',
           author: 'Sébastien Jourdan',

@@ -497,6 +497,26 @@
   :where(.blog-article) :where(pre code) { background: none; padding: 0; color: inherit; font-size: inherit; }
 }
 
+/* Liens du texte des guides (gabarit app/[lang]/guide/[slug], classe
+   .guide-content sur l'introduction et le contenu des étapes). Même cause que
+   ci-dessus : sans le plugin typography, prose-a:* ne produit rien et les liens
+   prenaient la couleur du texte, sans soulignement. Seuls les liens sont
+   concernés : aucune règle de mise en page des articles n'est reprise ici.
+   Couleurs et survol identiques aux articles ; focus clavier visible. */
+@layer components {
+  :where(.guide-content a) {
+    color: var(--very-peri-6);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+  }
+  :where(.guide-content a):hover { color: var(--very-peri-7); }
+  :where(.guide-content a):focus-visible {
+    outline: 2px solid var(--very-peri-6);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
 /* Anciens blocs vidéo Webflow sans légende (aujourd'hui les 2 figures Vimeo ;
    les figures YouTube sont remplacées par la façade de lib/youtube.ts) :
    <figure style="padding-bottom:N%"><div><iframe></iframe></div></figure>.

@@ -154,6 +154,15 @@ const BRAND_COLORS: Record<string, { bg: string; border: string; text: string; b
   },
 };
 
+// Nom accessible du repère de navigation du fil d'Ariane, repris du gabarit
+// d'article (UB-04). Gardé ici et non dans messages/*.json, modifiés par
+// plusieurs PR ouvertes au 08/10/2026 ; à y migrer ensuite.
+const BREADCRUMB_LABEL: Record<string, string> = {
+  fr: "Fil d'Ariane",
+  en: 'Breadcrumb',
+  'de-ch': 'Brotkrümelnavigation',
+};
+
 /* ──────────────────────── Page ──────────────────────── */
 
 export default async function ComparatifPage({ params }: PageProps) {
@@ -217,28 +226,31 @@ export default async function ComparatifPage({ params }: PageProps) {
           icon: <BarChart3 className="h-4 w-4" />,
           colorClass: 'bg-white/10 text-white',
         }}
-        title={
-          <>
-            {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-sm font-sans font-normal text-future-dusk-300 mb-6">
-              <Link href="/" className="hover:text-white transition-colors">
-                {t('breadcrumb.home')}
-              </Link>
-              <span>/</span>
-              <Link
-                href="/blog"
-                className="hover:text-white transition-colors"
-              >
-                {t('breadcrumb.blog')}
-              </Link>
-              <span>/</span>
-              <span className="text-very-peri-300">
-                {t('breadcrumb.category')}
-              </span>
-            </div>
-            {t('hero.title')}
-          </>
+        breadcrumb={
+          // Hors du <h1> : le H1 ne porte que le titre de l'article (même
+          // principe que UB-04, #74). font-heading et non font-sans : dans le
+          // <h1>, le fil héritait d'Inter ; rendu inchangé.
+          <nav
+            aria-label={BREADCRUMB_LABEL[lang] ?? BREADCRUMB_LABEL.en}
+            className="flex items-center gap-2 text-sm font-heading font-normal text-future-dusk-300 mb-6"
+          >
+            <Link href="/" className="hover:text-white transition-colors">
+              {t('breadcrumb.home')}
+            </Link>
+            <span aria-hidden="true">/</span>
+            <Link
+              href="/blog"
+              className="hover:text-white transition-colors"
+            >
+              {t('breadcrumb.blog')}
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span className="text-very-peri-300">
+              {t('breadcrumb.category')}
+            </span>
+          </nav>
         }
+        title={t('hero.title')}
       >
         <div className="flex flex-wrap items-center gap-4 text-sm text-future-dusk-200 mt-2">
           <span className="inline-flex items-center gap-1.5">
