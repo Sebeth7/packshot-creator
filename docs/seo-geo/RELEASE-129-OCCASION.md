@@ -3,7 +3,7 @@
 État au 12/10/2026, complété le 13/10 et le 14/10 (Claude de Laurent). PR brouillon, DO NOT MERGE.
 GO_CODE = YES ; 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS,
 GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129, GO_NAVIGATION_129, GO_SEO_OPTION_B,
-GO_CORRECTIFS_SEO_BRANCHE_129 = YES (décision D59). « Arbitrages groupés pour la
+GO_CORRECTIFS_SEO_BRANCHE_129 = YES (décision D60, ex-D59 de la branche). « Arbitrages groupés pour la
 clôture » (14/10, section 0 bis) : GO_CODE ciblé (e-mail « Inscription confirmée »,
 fait) ; GO_TEST_REEL_ALERTES, GO_TEST_REEL_RECHERCHE, GO_ENVOI_TEST,
 GO_NETTOYAGE_DEPLOIEMENTS, GO_VERCEL_PRODUCTION, GO_MERGE_PR129 et GO_PUBLICATION
@@ -31,7 +31,7 @@ publication »), enregistrés tels quels :
    `index, follow` dès sa mise en ligne, même à stock vide (section 2).
 
 Ces décisions, avec le rectificatif de navigation du même jour, sont inscrites
-en **D59** (`docs/seo-geo/DECISIONS.md`).
+en **D60** (`docs/seo-geo/DECISIONS.md` ; proposée D59 sur la branche, renumérotée le 14/10 : la D59 de `main` concerne la série A/B).
 
 ## 0 bis. Arbitrages groupés pour la clôture (Laurent, 14/10/2026)
 
@@ -80,10 +80,10 @@ le verrou de publication (`exemplesFictifsServis()`, testé dans
 | Politique de confidentialité | Article 9 (FR, EN ; DE-CH servi en FR), finalité « nouvelles disponibilités », preuve du consentement, désinscription, Resend | `occasion-langues.test.ts` | **Devient publique dès la fusion.** Durée de conservation des inscrits non écrite : décision et texte préparé en section 9 |
 | Fichiers de langue | `messages/{fr,en,de-ch}.json` : bloc `privacy` seulement | Intégrité JSON (CI) | Rien |
 | Registre de stock | Vide ; guide `data/occasion/AJOUT-MACHINE.md` ; `FRAICHEUR_MAX_JOURS = 30` **provisoire** | `occasion.test.ts` (garde-fous de saisie) | Publication à stock vide autorisée (14/10). Avant toute première machine : photos de l'unité, garantie écrite, accord Orbitvu |
-| SEO | Option B (D59). Avant publication, aucun effet en production : 404, aucun lien, aucune entrée de sitemap. À la publication : `index, follow`, trois entrées de sitemap (`cheminsSitemapOccasion`), encadré de maillage sous deux articles de blog (FR `acheter-studio-photo-packshot-occasion`, EN `second-hand-packshot-photo-studio`) ; jamais `Product`/`Offer` sans machine réelle ; exemples fictifs en 404 et hors sitemap | `occasion-langues.test.ts` ; build `VERCEL_ENV=production` du 14/10 (6 × 404, sitemap et articles sans lien) | Rien avant publication |
+| SEO | Option B (D60). Avant publication, aucun effet en production : 404, aucun lien, aucune entrée de sitemap. À la publication : `index, follow`, trois entrées de sitemap (`cheminsSitemapOccasion`), encadré de maillage sous deux articles de blog (FR `acheter-studio-photo-packshot-occasion`, EN `second-hand-packshot-photo-studio`) ; jamais `Product`/`Offer` sans machine réelle ; exemples fictifs en 404 et hors sitemap | `occasion-langues.test.ts` ; build `VERCEL_ENV=production` du 14/10 (6 × 404, sitemap et articles sans lien) | Rien avant publication |
 | Verrous (`lib/occasion/activation.ts`) | `PUBLICATION_AUTORISEE`, `COLLECTE_REELLE_AUTORISEE`, `ALERTES_REELLES_AUTORISEES`, `BULLETIN_ENVOI_AUTORISE` = `false` ; fenêtres de test `null` | `occasion.test.ts`, `bulletin.test.ts` | Ouverture par commit, sur GO |
 
-## 2. Indexation : option B, décision définitive de Laurent du 14/10 (D59)
+## 2. Indexation : option B, décision définitive de Laurent du 14/10 (D60)
 
 **Décidé et implémenté le 14/10** : page publiée en `index, follow` dès sa mise
 en ligne, y compris sans machine disponible. Remplace la recommandation A.
@@ -323,7 +323,7 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
 1. **Préalables** : tests réels de la section 7 en PASS, ou reliquat explicitement
    reporté par Laurent ; décision de conservation écrite à l'article 9
    (section 9) ; textes validés (D42, étape 5) ou exception explicite de Laurent ;
-   SEO option B en place dans le code (D59, section 2).
+   SEO option B en place dans le code (D60, section 2).
 2. **Configuration Production** (sur GO d'écriture Vercel Production, dashboard,
    jamais la CLI) : `OCCASION_NOTIFICATION_EMAIL` = `sebastien.jourdan@sysnext.com` ;
    `OCCASION_ALERTES_SEGMENT_ID` et `OCCASION_ALERTES_TOPIC_ID` = identifiants
