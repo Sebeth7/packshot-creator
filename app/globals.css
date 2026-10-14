@@ -437,6 +437,315 @@
 .prose .article-signature p { margin: 0; font-size: 0.95rem; color: var(--future-dusk-7); }
 .prose .article-signature strong { color: var(--future-dusk-9); }
 
+/* Série éditoriale « Produire ses images produit » : deux articles du blog FR,
+   est-il-utile-dinternaliser-sa-production-de-photos-packshot (décider) et
+   e-commerce-comment-mettre-en-place-votre-studio-photo (produire). Toutes les
+   règles visent des classes psc-* que seuls ces deux contenus portent ; hors
+   couche, elles priment sur les utilitaires du gabarit ([&_h2], [&_img]…). */
+.prose .psc-chapo p { font-size: 1.2rem; line-height: 1.65; color: var(--future-dusk-7); }
+.prose .psc-chapo p:first-child { margin-top: 0; }
+.prose p.psc-maj { margin: 0 0 1.25rem; font-size: 0.85rem; color: var(--future-dusk-5); }
+.prose p.psc-maj::before {
+  content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; margin-right: 0.5rem;
+  border-radius: 999px; background: var(--very-peri-5); vertical-align: middle;
+}
+.prose p.psc-maj time { font-weight: 600; color: var(--future-dusk-7); }
+.prose .psc-alerte {
+  margin: 0 0 1.5rem; padding: 0.875rem 1rem; border-radius: 0.75rem;
+  background: #FFF6E5; border: 1px solid #F2C46D; color: #6B4600; font-size: 0.95rem;
+}
+
+.prose .psc-serie-nav {
+  margin: 2rem 0 2.5rem; padding: 1rem; border: 1px solid var(--very-peri-1-5);
+  border-radius: 1rem; background: #fff;
+}
+.prose .psc-serie-nav__titre {
+  margin: 0 0 0.75rem !important; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--very-peri-7);
+}
+.prose .psc-serie-nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.prose .psc-serie-nav li { margin: 0; }
+.prose .psc-serie-nav li::marker { content: none; }
+.prose .psc-serie-nav .psc-serie-nav__item {
+  display: flex; gap: 0.75rem; align-items: flex-start; height: 100%; padding: 0.75rem;
+  border-radius: 0.75rem; color: var(--future-dusk-8); font-size: 0.95rem; line-height: 1.45;
+  text-decoration: none;
+}
+.prose .psc-serie-nav li[aria-current] .psc-serie-nav__item { background: var(--very-peri-0-5); }
+.prose .psc-serie-nav a.psc-serie-nav__item:hover { background: var(--future-dusk-0); color: var(--very-peri-7); }
+.prose .psc-serie-nav a.psc-serie-nav__item:focus-visible { outline: 3px solid var(--very-peri-4); outline-offset: 2px; }
+.prose .psc-serie-nav strong {
+  display: block; margin-bottom: 0.15rem; font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--very-peri-7);
+}
+.prose .psc-serie-nav__num {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem; border-radius: 999px; background: var(--very-peri-5);
+  color: #fff; font-weight: 700; font-size: 0.85rem;
+}
+@media (min-width: 640px) {
+  .prose .psc-serie-nav ol { grid-template-columns: 1fr 1fr; }
+}
+
+/* Questions : numéro au-dessus du titre, filet de séparation */
+.prose:has(.psc-chapo) { counter-reset: psc-q; }
+.prose h2.psc-q {
+  counter-increment: psc-q; margin-top: 3.5rem; padding-top: 2.25rem;
+  border-top: 1px solid var(--future-dusk-0-5); line-height: 1.3;
+}
+.prose h2.psc-q::before {
+  content: counter(psc-q, decimal-leading-zero); display: block; margin-bottom: 0.4rem;
+  font-size: 0.8rem; letter-spacing: 0.14em; color: var(--very-peri-5);
+}
+.prose h2.psc-h-liste, .prose h2.psc-h-sources { margin-top: 3.5rem; }
+
+.prose .psc-bref {
+  margin: 1rem 0 1.75rem; padding: 1rem 1.25rem; border-left: 4px solid var(--very-peri-5);
+  border-radius: 0 0.75rem 0.75rem 0; background: var(--very-peri-0-5);
+}
+.prose .psc-bref p { margin: 0; font-size: 1.06rem; line-height: 1.6; color: var(--future-dusk-8); }
+.prose .psc-bref p.psc-bref__titre {
+  margin-bottom: 0.35rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--very-peri-7);
+}
+
+.prose blockquote.psc-citation {
+  margin: 1.75rem 0; padding: 0.25rem 0 0.25rem 1.25rem; border-left: 3px solid var(--very-peri-3);
+  font-style: normal; color: var(--future-dusk-8);
+}
+.prose blockquote.psc-citation p {
+  margin: 0 0 0.5rem; font-family: var(--font-inter), system-ui, sans-serif; font-size: 1.12rem;
+  font-weight: 500; line-height: 1.55; color: var(--future-dusk-8);
+}
+.prose blockquote.psc-citation footer { font-size: 0.85rem; line-height: 1.5; color: var(--future-dusk-5); }
+
+/* Encadré « L'expérience de Sébastien Jourdan » : repère de terrain cité d'un texte
+   publié, distinct des positions institutionnelles (psc-citation). Pas de portrait. */
+.prose .psc-expert {
+  margin: 2rem 0; padding: 1.25rem 1.5rem; border-radius: 1rem;
+  background: var(--future-dusk-0-5); border-left: 4px solid var(--future-dusk-5);
+}
+.prose .psc-expert .psc-expert__label {
+  margin: 0 0 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--future-dusk-7);
+}
+.prose .psc-expert .psc-expert__label::before {
+  content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; margin-right: 0.5rem;
+  border-radius: 999px; background: var(--very-peri-5); vertical-align: middle;
+}
+.prose .psc-expert .psc-expert__ctx { margin: 0 0 0.5rem; font-size: 0.92rem; color: var(--future-dusk-6); }
+.prose blockquote.psc-expert__cit {
+  margin: 0; padding: 0; border: 0; background: none; font-style: normal;
+}
+.prose blockquote.psc-expert__cit p {
+  margin: 0; font-family: var(--font-inter), system-ui, sans-serif; font-size: 1.14rem;
+  font-weight: 500; line-height: 1.55; color: var(--future-dusk-9);
+}
+.prose .psc-expert .psc-expert__source {
+  margin: 0.6rem 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--future-dusk-5);
+}
+
+.prose .psc-photo { margin: 2.25rem 0; }
+.prose .psc-photo img { display: block; width: 100%; height: auto; margin: 0; border-radius: 0.75rem; box-shadow: none; }
+.prose .psc-photo figcaption, .prose .psc-schema figcaption {
+  margin-top: 0.65rem; font-size: 0.85rem; line-height: 1.5; color: var(--future-dusk-5);
+}
+.prose .psc-credit { color: var(--future-dusk-4); }
+.prose .psc-photo--etroite { max-width: 28rem; margin-inline: auto; }
+
+/* Schémas éditoriaux (HTML et CSS, sans image) */
+.prose .psc-schema {
+  margin: 2.25rem 0; padding: 1.25rem; border-radius: 1rem; background: var(--future-dusk-0);
+  border: 1px solid var(--future-dusk-0-5);
+}
+.prose .psc-schema p.psc-schema__titre {
+  margin: 0 0 1rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--future-dusk-6);
+}
+.prose .psc-calcul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: stretch; }
+.prose .psc-calcul li { margin: 0; }
+.prose .psc-calcul li::marker { content: none; }
+.prose .psc-calcul__terme {
+  flex: 1 1 9rem; display: flex; flex-direction: column; gap: 0.2rem; padding: 0.75rem;
+  border-radius: 0.75rem; background: #fff; border: 1px solid var(--very-peri-1-5);
+  font-size: 0.85rem; line-height: 1.4; color: var(--future-dusk-6);
+}
+.prose .psc-calcul__terme strong { font-size: 0.98rem; color: var(--future-dusk-9); }
+.prose .psc-calcul__op { align-self: center; font-size: 1.3rem; font-weight: 700; color: var(--very-peri-5); }
+.prose .psc-calcul__resultat { background: var(--very-peri-5); border-color: var(--very-peri-5); color: #fff; }
+.prose .psc-calcul__resultat strong { color: #fff; }
+
+.prose .psc-flux { list-style: none; margin: 0; padding: 0; counter-reset: psc-flux; }
+.prose .psc-flux li {
+  position: relative; margin: 0; padding: 0 0 1rem 2.6rem; counter-increment: psc-flux;
+  display: flex; flex-direction: column; gap: 0.1rem; font-size: 0.9rem; line-height: 1.45; color: var(--future-dusk-6);
+}
+.prose .psc-flux li::marker { content: none; }
+.prose .psc-flux li::before {
+  content: counter(psc-flux); position: absolute; left: 0; top: 0; width: 1.75rem; height: 1.75rem;
+  display: flex; align-items: center; justify-content: center; border-radius: 999px;
+  background: #fff; border: 2px solid var(--very-peri-3); font-size: 0.8rem; font-weight: 700; color: var(--very-peri-7);
+}
+.prose .psc-flux li:not(:last-child)::after {
+  content: ""; position: absolute; left: calc(0.875rem - 1px); top: 1.85rem; bottom: 0.15rem;
+  width: 2px; background: var(--very-peri-1-5);
+}
+.prose .psc-flux li strong { font-size: 0.98rem; color: var(--future-dusk-9); }
+.prose .psc-flux li.psc-flux__court::before { background: var(--very-peri-5); border-color: var(--very-peri-5); color: #fff; }
+.prose .psc-flux li.psc-flux__long::before { background: #F6D7A7; border-color: #E0A14A; color: #6B4600; }
+.prose p.psc-flux__legende { display: flex; gap: 0.5rem; align-items: center; margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--future-dusk-7); }
+.prose .psc-flux__pastille { flex: none; width: 0.9rem; height: 0.9rem; border-radius: 999px; background: #F6D7A7; border: 2px solid #E0A14A; }
+
+.prose .psc-nom__fichier { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.25rem; margin: 0 0 1rem; }
+.prose .psc-nom__seg { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+.prose .psc-nom__seg code {
+  padding: 0.35rem 0.6rem; border-radius: 0.5rem; background: #fff; border: 1px solid var(--very-peri-3);
+  font-size: 1rem; color: var(--very-peri-8);
+}
+.prose .psc-nom__seg--ext code { border-style: dashed; }
+.prose .psc-nom__seg small { font-size: 0.75rem; color: var(--future-dusk-5); }
+.prose .psc-nom__sep { padding-top: 0.35rem; font-family: ui-monospace, monospace; font-size: 1rem; color: var(--future-dusk-5); }
+.prose .psc-nom__gs1 { margin: 0; font-size: 0.9rem; color: var(--future-dusk-7); }
+
+.prose .psc-export__maitre {
+  display: flex; flex-direction: column; gap: 0.15rem; padding: 0.85rem 1rem; border-radius: 0.75rem;
+  background: var(--very-peri-5); color: #fff; font-size: 0.88rem;
+}
+.prose .psc-export__maitre strong { color: #fff; font-size: 1rem; }
+.prose .psc-export__profils {
+  list-style: none; margin: 0.75rem 0 0; padding: 0.75rem 0 0 1rem; display: grid; gap: 0.5rem;
+  border-left: 2px solid var(--very-peri-3);
+}
+.prose .psc-export__profils li {
+  margin: 0; display: flex; flex-direction: column; gap: 0.1rem; padding: 0.65rem 0.85rem; border-radius: 0.75rem;
+  background: #fff; border: 1px solid var(--very-peri-1-5); font-size: 0.85rem; color: var(--future-dusk-6);
+}
+.prose .psc-export__profils li::marker { content: none; }
+.prose .psc-export__profils li strong { color: var(--future-dusk-9); font-size: 0.95rem; }
+@media (min-width: 640px) {
+  .prose .psc-export__profils { grid-template-columns: repeat(3, 1fr); border-left: 0; border-top: 2px solid var(--very-peri-3); padding: 0.75rem 0 0; }
+}
+
+/* Familles de produits difficiles (article 1, question 4) */
+.prose .psc-familles { list-style: none; margin: 2rem 0; padding: 0; display: grid; gap: 0.75rem; }
+.prose .psc-familles li {
+  margin: 0; padding: 1rem; border-radius: 0.875rem; border: 1px solid var(--future-dusk-0-5); background: #fff;
+}
+.prose .psc-familles li::marker { content: none; }
+.prose .psc-familles li > strong { display: block; color: var(--future-dusk-9); font-size: 1rem; }
+.prose .psc-familles__ex { display: block; font-size: 0.82rem; color: var(--future-dusk-4); }
+.prose .psc-familles li p { margin: 0.5rem 0 0; font-size: 0.92rem; line-height: 1.5; color: var(--future-dusk-7); }
+.prose .psc-familles li p.psc-familles__prevoir { color: var(--very-peri-7); font-weight: 600; }
+@media (min-width: 640px) {
+  .prose .psc-familles { grid-template-columns: 1fr 1fr; }
+}
+
+/* Deux colonnes de postes de coût (article 1, question 6) */
+.prose .psc-colonnes { display: grid; gap: 1rem; margin: 1.5rem 0; }
+.prose .psc-colonnes > div { padding: 1rem 1.25rem; border-radius: 0.875rem; background: var(--future-dusk-0); }
+.prose .psc-colonnes p.psc-colonnes__titre { margin: 0 0 0.25rem; font-weight: 700; color: var(--future-dusk-9); }
+.prose .psc-colonnes ul { margin: 0; }
+@media (min-width: 640px) {
+  .prose .psc-colonnes { grid-template-columns: 1fr 1fr; }
+}
+
+/* Grilles : tableau sur grand écran, cartes empilées sous 640 px */
+.prose .psc-grille-wrap { margin: 2rem 0; }
+.prose .psc-grille { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.92rem; line-height: 1.45; }
+.prose .psc-grille caption {
+  caption-side: top; text-align: left; padding-bottom: 0.75rem; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--future-dusk-6);
+}
+.prose .psc-grille thead th {
+  padding: 0.7rem 0.85rem; background: var(--future-dusk-8); color: #fff; font-weight: 600; text-align: left;
+}
+.prose .psc-grille thead th:first-child { border-top-left-radius: 0.75rem; }
+.prose .psc-grille thead th:last-child { border-top-right-radius: 0.75rem; }
+.prose .psc-grille tbody th, .prose .psc-grille tbody td {
+  padding: 0.75rem 0.85rem; vertical-align: top; border-bottom: 1px solid var(--future-dusk-0-5); text-align: left;
+}
+.prose .psc-grille tbody th { font-weight: 600; color: var(--future-dusk-9); background: var(--future-dusk-0); }
+.prose .psc-grille tbody td { color: var(--future-dusk-7); }
+@media (max-width: 639px) {
+  .prose .psc-grille thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .prose .psc-grille, .prose .psc-grille tbody, .prose .psc-grille tr,
+  .prose .psc-grille tbody th, .prose .psc-grille tbody td { display: block; width: 100%; }
+  .prose .psc-grille caption { display: block; }
+  .prose .psc-grille tr { margin-bottom: 0.75rem; border: 1px solid var(--future-dusk-0-5); border-radius: 0.75rem; overflow: hidden; }
+  .prose .psc-grille tbody th { border-bottom: 0; }
+  .prose .psc-grille tbody td { border-bottom: 0; padding-top: 0.35rem; }
+  .prose .psc-grille tbody td::before {
+    content: attr(data-label); display: block; margin-bottom: 0.15rem; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--very-peri-7);
+  }
+}
+
+/* Définitions, blocs dépliables, liens de fin de question */
+.prose .psc-def { margin: 1.25rem 0; }
+.prose .psc-def dt { margin-top: 0.85rem; font-weight: 700; color: var(--future-dusk-9); }
+.prose .psc-def dd { margin: 0.2rem 0 0; color: var(--future-dusk-7); line-height: 1.55; }
+
+.prose details.psc-details {
+  margin: 1.5rem 0; border: 1px solid var(--very-peri-1-5); border-radius: 0.875rem; background: #fff;
+}
+.prose details.psc-details > summary {
+  cursor: pointer; padding: 0.85rem 1.1rem; font-weight: 600; color: var(--very-peri-7);
+  list-style: none; display: flex; align-items: center; gap: 0.6rem; border-radius: 0.875rem;
+}
+.prose details.psc-details > summary::-webkit-details-marker { display: none; }
+.prose details.psc-details > summary::before {
+  content: ""; flex: none; width: 0.55rem; height: 0.55rem; border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor; transform: rotate(-45deg); transition: transform 0.15s ease;
+}
+.prose details.psc-details[open] > summary::before { transform: rotate(45deg); }
+.prose details.psc-details > summary:hover { background: var(--very-peri-0-5); }
+.prose details.psc-details > summary:focus-visible { outline: 3px solid var(--very-peri-4); outline-offset: 2px; }
+.prose .psc-details__corps { padding: 0 1.1rem 1rem; }
+.prose .psc-details__corps > :first-child { margin-top: 0.25rem; }
+@media (prefers-reduced-motion: reduce) {
+  .prose details.psc-details > summary::before { transition: none; }
+}
+
+.prose p.psc-voir { margin: 1.5rem 0 0; font-size: 0.92rem; color: var(--future-dusk-6); }
+.prose p.psc-voir span {
+  margin-right: 0.4rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--future-dusk-5);
+}
+
+/* Liste de contrôle : cases dessinées, non interactives (impression comprise) */
+.prose .psc-checklist { margin: 1.5rem 0; padding: 1.25rem 1.25rem 0.5rem; border-radius: 1rem; background: var(--future-dusk-0); }
+.prose .psc-checklist p.psc-checklist__groupe {
+  margin: 0 0 0.4rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--very-peri-7);
+}
+.prose .psc-checklist ul { list-style: none; margin: 0 0 1rem; padding: 0; }
+.prose .psc-checklist li { position: relative; margin: 0.45rem 0; padding-left: 1.9rem; color: var(--future-dusk-8); line-height: 1.5; }
+.prose .psc-checklist li::marker { content: none; }
+.prose .psc-checklist li::before {
+  content: ""; position: absolute; left: 0; top: 0.2rem; width: 1.1rem; height: 1.1rem;
+  border: 2px solid var(--very-peri-4); border-radius: 0.3rem; background: #fff;
+}
+
+.prose p.psc-suite {
+  margin: 2.5rem 0 0; padding: 1rem 1.25rem; border-radius: 0.875rem; border: 1px solid var(--very-peri-1-5);
+  background: var(--very-peri-0-5); color: var(--future-dusk-8);
+}
+
+/* Encadré auteur typographique, sans portrait */
+.prose .psc-auteur {
+  display: flex; gap: 1rem; align-items: flex-start; margin: 2.5rem 0 0; padding: 1.25rem 1.5rem;
+  border-top: 3px solid var(--very-peri-5); border-radius: 0 0 0.875rem 0.875rem; background: var(--future-dusk-0-5);
+}
+.prose .psc-auteur__monogramme {
+  flex: none; display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem;
+  border-radius: 999px; background: var(--future-dusk-8); color: #fff; font-weight: 700; letter-spacing: 0.04em;
+}
+.prose .psc-auteur p { margin: 0 0 0.35rem; font-size: 0.95rem; line-height: 1.55; color: var(--future-dusk-7); }
+.prose .psc-auteur p.psc-auteur__nom { font-weight: 700; color: var(--future-dusk-9); }
+.prose .psc-auteur p.psc-auteur__note { font-size: 0.85rem; color: #6B4600; }
+
+.prose .psc-sources { margin: 1rem 0 0; font-size: 0.85rem; line-height: 1.5; color: var(--future-dusk-6); }
+.prose .psc-sources li { margin: 0.35rem 0; }
+
 /* Rendu structurel des articles (gabarit app/[lang]/blog/[slug], classe
    .blog-article). Le plugin @tailwindcss/typography n'est pas chargé : Tailwind v4
    ignore tailwind.config.ts sans @config ni @plugin, les classes prose-* ne

@@ -25,6 +25,24 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D59 · 2026-10-14 · Exceptions ponctuelles pour la publication de la série A/B : D15 (délai), D16/C5/D17 (de-ch) et substitution de QA Preview (SSO)
+
+**Décidé par** : Laurent — « DÉCISION FINALE LAURENT — PUBLICATION ASAP ET CLÔTURE A/B » du 14/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous ; épuisée par la publication de ce périmètre. D15, D16, D42, C5 et D17 restent inchangées pour tout le reste.
+
+**Portée** : réécritures A (`est-il-utile-dinternaliser-…`, PR #139) et B (`e-commerce-comment-mettre-en-place-…`, PR #140), leurs traductions EN et localisations de-ch, et le menu Guides (PR #142). Aucune extension à une autre PR, page, création ou chantier.
+
+**La décision** — Texte de Laurent du 14/10, en substance :
+1. **D15, délai levé** pour #139 et #140 seulement : les 5 jours ouvrés d'attente de validation tacite sont supprimés. `metaTitle` de A confirmé : « Internaliser ses photos produit : 7 questions avant d'investir ». Pas de nouvelle relecture préalable de Sébastien exigée pour les formulations **déjà documentées et vérifiées dans les sources existantes**.
+2. **de-ch A/B** : exception ponctuelle à la priorité **C5/D17** et à l'exigence de validation préalable de Sébastien prévue par **D16** pour les **deux seules** localisations de-ch de A et B, sous la responsabilité éditoriale de Laurent. Publication coordonnée EN + de-ch depuis les versions FR stabilisées.
+3. **Substitution de QA Preview** pour #139, #140 et #142 seulement : si le SSO rend la Preview Vercel inaccessible, le contrôle visuel de D42 (étape 4) peut être réalisé sur un **build de production local** réellement inspecté (pages ouvertes, captures desktop/tablette/mobile examinées, clavier/tactile/éléments dépliables, liens, images, débordements, erreurs console, changements hors articles dont le Header). Dérogation ponctuelle à l'étape Preview de D42.
+
+**Le contexte** — Les trois PR sont préparées et 4/4 vertes (fd922d0, 0c3d983, abd77af sur `main` 6717c4f). Le délai D15 ne pouvait démarrer faute de contrôle Preview (SSO). Laurent, responsable du pilotage SEO/GEO, lève ces attentes sous sa responsabilité pour publier.
+
+**Ce qu'elle n'est pas / ce qu'elle interdit** — Ne vaut **pas** validation personnelle de Sébastien des articles A/B ni confirmation par lui de faits métier. Toute affirmation métier **nouvelle, non sourcée, contradictoire ou engageante** reste bloquée jusqu'à clarification (D42 demeure applicable : véracité, sources, droits, qualité). N'autorise aucun nouveau claim commercial ou juridique sans preuve, aucun renforcement de claim par traduction, aucun transfert automatique d'obligations FR/UE à une entreprise suisse. Ne s'étend à aucune autre PR ni création. Ne lève ni `NOINDEX_EN_*` hors périmètre A/B, ni un gel de landing (F5…). Interdit de déclarer qu'une Preview SSO a été vérifiée si elle ne l'a pas été.
+
+---
+
 ## D58 · 2026-10-12 · Pilotage G5 : R1, exception de périmètre pour le seul P0 de #131 ; R3, propagation des corrections factuelles XL Pro v2 pendant M5, sur le principe
 
 **Décidé par** : Laurent — mission « G5 — passe finale décisive » du 12/10/2026 (« R1 = OPTION B POUR #131 UNIQUEMENT » ; « R3 = OPTION A, SUR LE PRINCIPE »)
