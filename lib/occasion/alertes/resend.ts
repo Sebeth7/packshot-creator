@@ -1,6 +1,6 @@
 import type { Resend } from 'resend';
 import type { LangueOccasion } from '../langues';
-import { composerConfirmationAlerte } from './courriel';
+import { composerConfirmationAlerte, composerInscriptionConfirmee } from './courriel';
 import type { InscriptionAlerte } from './schema';
 
 /**
@@ -113,12 +113,25 @@ function estIntrouvable(e: ErreurResend): boolean {
 export interface EnvoiConfirmation {
   /** Envoie l'e-mail de confirmation ; lève si Resend ne renvoie pas d'identifiant. */
   envoyer(p: { email: string; famille: string; lien: string; expireLe: number; langue?: LangueOccasion }): Promise<{ id: string }>;
+  /** Après une inscription effective : e-mail « Inscription confirmée » avec le lien personnel de désinscription. */
+  inscriptionConfirmee(p: { email: string; famille: string; lienDesinscription: string; langue?: LangueOccasion }): Promise<{ id: string }>;
 }
 
 export function envoiConfirmationResend(client: ClientAlertes, expediteur: string): EnvoiConfirmation {
   return {
     async envoyer(p) {
       const c = composerConfirmationAlerte({ lien: p.lien, famille: p.famille, expireLe: p.expireLe, langue: p.langue });
+      const r = await client.emails.send({
+        from: `PackshotCreator <${expediteur}>`,
+        to: [p.email],
+        subject: c.objet,
+        text: c.texte,
+        html: c.html,
+      });
+      return { id: exiger('emails.send', r).id };
+    },
+    async inscriptionConfirmee(p) {
+      const c = composerInscriptionConfirmee({ lienDesinscription: p.lienDesinscription, famille: p.famille, langue: p.langue });
       const r = await client.emails.send({
         from: `PackshotCreator <${expediteur}>`,
         to: [p.email],

@@ -1,5 +1,5 @@
 import { getClientIp } from '@/lib/rate-limit';
-import { lienConfirmation } from './courriel';
+import { lienConfirmation, lienDesinscription } from './courriel';
 import { DUREE_CONFIRMATION_MS, creerJeton, lireJetonConfirmation, lireJetonDesinscription } from './jeton';
 import { requeteAlerteSchema, requeteJetonSchema, sourceAlertes, type ReponseAlertes } from './schema';
 import { alertesOuvertes, type ServicesAlertes } from './services';
@@ -12,7 +12,9 @@ import { alertesOuvertes, type ServicesAlertes } from './services';
  *
  * - `inscription` : e-mail + famille + case d'accord → e-mail de confirmation
  *   (jeton chiffré, 48 h). AUCUNE écriture chez Resend à ce stade.
- * - `confirmation` : jeton valide → contact Resend (segment, topic, preuve).
+ * - `confirmation` : jeton valide → contact Resend (segment, topic, preuve) ;
+ *   si l'inscription est créée par ce clic, un e-mail « Inscription confirmée »
+ *   avec le lien personnel de désinscription (14/10/2026).
  * - `desinscription` : jeton de désinscription → sortie de la liste Occasion.
  *
  * Ordre commun : limitation → services fermés (503, la demande n'est pas lue) →
@@ -190,6 +192,25 @@ export function creerGestionnairesAlertes(deps: DependancesAlertes) {
           demandeLe: d.demandeLe,
           confirmeLe: maintenant().toISOString(),
         });
+        // Inscription créée par CE clic (ni « deja_inscrit », ni « desinscrit ») :
+        // un seul e-mail « Inscription confirmée », avec le lien personnel de
+        // désinscription. Son échec n'annule pas l'inscription, déjà enregistrée.
+        if (etat === 'inscrit') {
+          try {
+            await services.confirmation.inscriptionConfirmee({
+              email: d.email,
+              famille: d.famille,
+              lienDesinscription: lienDesinscription(
+                origine(req, services.urlBase),
+                creerJeton({ type: 'desinscription', email: d.email }, services.secret),
+                d.langue,
+              ),
+              langue: d.langue,
+            });
+          } catch {
+            journal('alertes.inscription_confirmee.echec_envoi');
+          }
+        }
         return { status: 200, body: { ok: true, etat } };
       } catch (e) {
         journal('alertes.confirmation.echec', { etape: e instanceof Error && 'etape' in e ? String(e.etape) : 'inconnue' });

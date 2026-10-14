@@ -2,9 +2,14 @@ import { libelleFamille } from '../formulaires';
 import { cheminOccasion, type LangueOccasion } from '../langues';
 
 /**
- * E-mail de confirmation de la liste d'alerte (double opt-in), dans la langue de
- * la page. C'est le seul envoi de ce parcours : aucune offre, aucune campagne,
- * aucun e-mail de bienvenue (GO_CAMPAGNE_EMAIL = NO).
+ * E-mails de la liste d'alerte, dans la langue de la page. Deux envois seulement,
+ * aucune offre, aucune campagne (GO_CAMPAGNE_EMAIL = NO) :
+ * 1. la demande de confirmation (double opt-in), sans lien de désinscription :
+ *    le destinataire n'est pas encore inscrit ;
+ * 2. après le clic de confirmation qui crée l'inscription, un unique e-mail
+ *    « Inscription confirmée » portant le lien personnel de désinscription
+ *    (décision de Laurent du 14/10/2026) : un inscrit peut se désinscrire seul
+ *    sans attendre un bulletin d'arrivage.
  *
  * Le jeton est placé dans le FRAGMENT de l'URL (`#confirmer-alerte=…`) : il n'est
  * pas transmis au serveur qui sert la page, donc absent de ses journaux. La page
@@ -19,7 +24,10 @@ export function lienConfirmation(base: string, jeton: string, langue: LangueOcca
   return `${base.replace(/\/+$/, '')}${cheminOccasion(langue)}#${ANCRE_CONFIRMATION}=${jeton}`;
 }
 
-/** Lien de désinscription, placé dans chaque bulletin d'arrivage (`lib/occasion/bulletin/**`). */
+/**
+ * Lien de désinscription, placé dans l'e-mail « Inscription confirmée » et dans
+ * chaque bulletin d'arrivage (`lib/occasion/bulletin/**`).
+ */
 export function lienDesinscription(base: string, jeton: string, langue: LangueOccasion = 'fr'): string {
   return `${base.replace(/\/+$/, '')}${cheminOccasion(langue)}#${ANCRE_DESINSCRIPTION}=${jeton}`;
 }
@@ -134,6 +142,63 @@ export function composerConfirmationAlerte(p: { lien: string; famille: string; e
     `<p>${echapper(t.independance)}</p>`,
     `<p>${echapper(t.desinscription)}</p>`,
     `<p>${echapper(t.ignorer)}</p>`,
+    `<p>${echapper(t.signature)}</p>`,
+  ].join('\n');
+  return { objet: t.objet, texte: lignes.join('\n'), html };
+}
+
+const TEXTES_INSCRIPTION: Record<
+  LangueOccasion,
+  {
+    objet: string;
+    salutation: string;
+    confirmee: (famille: string) => string;
+    independance: string;
+    desinscription: string;
+    lienLibelle: string;
+    signature: string;
+  }
+> = {
+  fr: {
+    objet: "Inscription confirmée : nouvelles offres Orbitvu d'occasion",
+    salutation: 'Bonjour,',
+    confirmee: (f) => `Votre inscription est confirmée : vous recevrez par e-mail les nouvelles offres de studios Orbitvu d'occasion (${f}) lorsqu'elles seront disponibles.`,
+    independance: 'Cette liste est indépendante de la newsletter.',
+    desinscription: 'Pour vous désinscrire à tout moment, utilisez ce lien :',
+    lienLibelle: 'Me désinscrire',
+    signature: 'PackshotCreator',
+  },
+  en: {
+    objet: 'Subscription confirmed: new pre-owned Orbitvu offers',
+    salutation: 'Hello,',
+    confirmee: (f) => `Your subscription is confirmed: you will receive emails about new offers on pre-owned Orbitvu studios (${f}) when they become available.`,
+    independance: 'This list is separate from the newsletter.',
+    desinscription: 'To unsubscribe at any time, use this link:',
+    lienLibelle: 'Unsubscribe',
+    signature: 'PackshotCreator',
+  },
+  'de-ch': {
+    objet: 'Anmeldung bestätigt: neue Orbitvu-Occasionsangebote',
+    salutation: 'Guten Tag',
+    confirmee: (f) => `Ihre Anmeldung ist bestätigt: Sie erhalten per E-Mail neue Angebote für Orbitvu-Studios als Occasion (${f}), wenn sie verfügbar sind.`,
+    independance: 'Diese Liste ist vom Newsletter unabhängig.',
+    desinscription: 'Über diesen Link können Sie sich jederzeit abmelden:',
+    lienLibelle: 'Abmelden',
+    signature: 'PackshotCreator',
+  },
+};
+
+/** E-mail « Inscription confirmée », avec le lien personnel de désinscription. */
+export function composerInscriptionConfirmee(p: { lienDesinscription: string; famille: string; langue?: LangueOccasion }): CourrielConfirmation {
+  const langue = p.langue ?? 'fr';
+  const t = TEXTES_INSCRIPTION[langue];
+  const famille = p.famille ? libelleFamille(p.famille, langue) : TEXTES[langue].tous;
+  const lignes = [t.salutation, '', t.confirmee(famille), t.independance, '', t.desinscription, p.lienDesinscription, '', t.signature];
+  const html = [
+    `<p>${echapper(t.salutation)}</p>`,
+    `<p>${echapper(t.confirmee(famille))}</p>`,
+    `<p>${echapper(t.independance)}</p>`,
+    `<p>${echapper(t.desinscription)} <a href="${echapper(p.lienDesinscription)}">${echapper(t.lienLibelle)}</a></p>`,
     `<p>${echapper(t.signature)}</p>`,
   ].join('\n');
   return { objet: t.objet, texte: lignes.join('\n'), html };

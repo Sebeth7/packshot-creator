@@ -3,10 +3,12 @@
 État au 12/10/2026, complété le 13/10 et le 14/10 (Claude de Laurent). PR brouillon, DO NOT MERGE.
 GO_CODE = YES ; 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS,
 GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129, GO_NAVIGATION_129, GO_SEO_OPTION_B,
-GO_CORRECTIFS_SEO_BRANCHE_129 = YES (décision D59). Restent à NO ou en attente :
-GO_ENVOI_TEST (destinataires et autorisation ciblée), GO_TEST_REEL_ALERTES,
-GO_NETTOYAGE_DEPLOIEMENTS, écriture Vercel Production, GO_MERGE, GO_PUBLICATION,
-GO_ENVOI_REEL (bulletin).
+GO_CORRECTIFS_SEO_BRANCHE_129 = YES (décision D59). « Arbitrages groupés pour la
+clôture » (14/10, section 0 bis) : GO_CODE ciblé (e-mail « Inscription confirmée »,
+fait) ; GO_TEST_REEL_ALERTES, GO_TEST_REEL_RECHERCHE, GO_ENVOI_TEST,
+GO_NETTOYAGE_DEPLOIEMENTS, GO_VERCEL_PRODUCTION, GO_MERGE_PR129 et GO_PUBLICATION
+= YES **sous conditions** ; conservation et validation éditoriale **EN ATTENTE**
+(HOLD de la fusion et de la publication). GO_ENVOI_REEL (bulletin) = NO.
 Ce dossier ne déclenche rien : il liste ce qui est prêt, ce qui manque et l'ordre
 de mise en service.
 
@@ -30,6 +32,26 @@ publication »), enregistrés tels quels :
 
 Ces décisions, avec le rectificatif de navigation du même jour, sont inscrites
 en **D59** (`docs/seo-geo/DECISIONS.md`).
+
+## 0 bis. Arbitrages groupés pour la clôture (Laurent, 14/10/2026)
+
+| # | Objet | Décision | État au 14/10 |
+|---|---|---|---|
+| 1 | Conservation (actifs, désinscrits, point de départ, purge) et validation éditoriale | **EN ATTENTE**, rien n'est inventé. Règle de non-réinscription conservée. Validation éditoriale de Sébastien (D42), sauf exception explicite et ciblée de Laurent. La confirmation RGPD générale de Laurent ne fixe pas ces paramètres | **HOLD** de la fusion et de la publication (section 9) |
+| 2 | Désinscription autonome | **E-MAIL** : un unique e-mail « Inscription confirmée », lien personnel de désinscription, après confirmation effective du double opt-in | **Implémenté** sur la branche (section 10), textes à valider (D42), aucun envoi réel avant GO_ENVOI_TEST |
+| 3 | Adresses et plafond | 11 e-mails au plus ; T1, T2, T3 (alertes), B (recherche si nécessaire), désignées par Laurent dans Chrome, jamais dans le dépôt ni les rapports ; début seulement après vérification Resend (statut des adresses, quotas, cumul mensuel) | Phase 0 Chrome à exécuter |
+| 4 | GO_TEST_REEL_RECHERCHE | YES conditionnel : reliquat B seulement si la phase 0 confirme qu'il n'est pas établi ; 2 e-mails au plus, dans le plafond | Attend la phase 0 |
+| 5 | GO_TEST_REEL_ALERTES | YES conditionnel : fenêtre Preview datée de 2 h au plus ; double opt-in, propriétés, isolation, désinscription, non-réinscription ; verrous refermés, 503 vérifié | Attend la phase 0 |
+| 6 | GO_ENVOI_TEST | YES conditionnel : adresses désignées seulement, plafond 11, marge de quota vérifiée ; aucun client réel, aucune campagne, aucun bulletin | Attend la phase 0 |
+| 7 | GO_NETTOYAGE_DEPLOIEMENTS | YES conditionnel : seuls les déploiements identifiés de `75d5914` et du futur commit d'ouverture, après vérification des identifiants, des verrous refermés et du 503 | Attend la phase 0 et la fermeture |
+| 8 | GO_VERCEL_PRODUCTION | YES conditionnel : les cinq variables de la section 3 seulement, secret Production distinct en Sensitive, aucune valeur affichée | Phase 3 Chrome, exécutable à tout moment |
+| 9 | GO_MERGE_PR129 | YES strictement conditionnel (section 8, étape 1) ; prérequis manquant → HOLD | **HOLD** (item 1) |
+| 10 | GO_PUBLICATION | YES distinct, strictement conditionnel, après fusion vérifiée ; PR dédiée sur une branche dédiée autorisée pour cette seule publication ; `BULLETIN_ENVOI_AUTORISE = false` ; anomalie bloquante → suspension, retour arrière autorisé | **HOLD** (item 1) |
+
+**Budget d'e-mails de la fenêtre (plafond 11)** : alertes T1, T2, T3 = 3 demandes de
+confirmation + 3 « Inscription confirmée » = 6 ; recherche B, si nécessaire = 2 ;
+total 8, marge de 3 pour un renvoi. Les clics « déjà inscrite », « Adresse
+désinscrite » et les désinscriptions n'envoient rien (testé).
 
 Ne valent pas validation : les claims commerciaux, les droits photographiques et
 les textes encore non validés (section 8). Aucune machine, aucun prix, aucune
@@ -251,28 +273,33 @@ publication est exigée par le code).
   au projet ; ouvrir l'alias avant de coller un lien reçu par e-mail (le cookie
   d'accès est propre à chaque URL). La protection n'est jamais désactivée.
 
-**Volume** : alertes, 3 e-mails de confirmation (6 au plus avec les renvois) et
-3 contacts créés ; recherche B, 2 e-mails (notification et accusé). Coût :
-[Inférence] nul dans le quota inclus.
+**Volume** (plafond du 14/10 : 11 e-mails, section 0 bis) : alertes, 3 demandes de
+confirmation et 3 e-mails « Inscription confirmée », 3 contacts créés ; recherche
+B, 2 e-mails (notification et accusé) ; total 8. Coût : [Inférence] nul dans le
+quota inclus.
 
 **Alertes**
 1. Inscription FR, puis EN ou DE-CH, chacune avec une famille, et une « toutes les familles » (T1, T2, T3).
 2. E-mail de confirmation reçu (boîte de réception, langue de la page, lien vers la page de la langue).
-3. Clic sur « Confirmer mon inscription » : état « Inscription confirmée ».
+3. Clic sur « Confirmer mon inscription » : état « Inscription confirmée » ; puis
+   e-mail « Inscription confirmée » reçu (boîte de réception, langue de la page),
+   un seul, avec le lien personnel de désinscription vers la page de la langue.
 4. Resend : contact créé, segment Occasion, topic Occasion en `opt_in`, sept propriétés remplies.
 5. `occasion_alertes_source` donne la langue, `occasion_alertes_famille` la famille ; `occasion_alertes_version` = v3 de la langue.
 6. Aucun autre topic ni segment modifié ; aucun abonnement newsletter (compteurs des autres segments et topics relevés avant et après).
 7. Nouveau clic sur le même lien de confirmation : « déjà inscrite », rien d'écrit.
-8. **Désinscription manuelle dans Resend** (décision du 13/10) : pour T1, T2 et T3,
-   topic Occasion mis à `opt_out` et contact retiré du segment Occasion, sans
-   désinscription globale. Puis nouveau clic sur le lien de confirmation initial :
-   « Adresse désinscrite », rien n'est réécrit (non-réinscription,
-   `lib/occasion/alertes/resend.ts`, `confirmer`).
-   **Cette étape ne démontre pas la route publique `POST /api/occasion/alertes/desinscription`** :
-   aucun lien de désinscription n'existe hors d'un bulletin. Statut de la route :
-   **NON VÉRIFIÉE EN BOUT EN BOUT** (testée avec des doublures seulement,
-   `alertes-*.test.ts`), jusqu'au premier bulletin de test ou au dispositif de la
-   section 10.
+8. **Désinscription par le lien de l'e-mail « Inscription confirmée »** (décision
+   du 14/10, section 10) : pour T1, T2 et T3, ouvrir le lien dans le navigateur
+   connecté, cliquer « Me désinscrire » (ou équivalent de la langue) : état
+   « désinscription faite ». Resend : topic Occasion en `opt_out`, contact retiré
+   du segment Occasion, propriété `etat` = `desinscrit`, statut global inchangé.
+   Puis nouveau clic sur le lien de confirmation initial : « Adresse désinscrite »,
+   rien n'est réécrit ni envoyé (non-réinscription,
+   `lib/occasion/alertes/resend.ts`, `confirmer`). Cette étape démontre la route
+   publique `POST /api/occasion/alertes/desinscription` en bout en bout.
+   Repli si l'e-mail n'est pas reçu : désinscription manuelle dans Resend (topic
+   `opt_out`, retrait du segment, jamais de désinscription globale), et la route
+   reste alors NON VÉRIFIÉE EN BOUT EN BOUT.
 9. Bulletin de test : reporté (registre vide, GO_ENVOI_REEL = NO).
 10. Fermeture par commit (verrous et fenêtres remis), `GET /api/occasion/alertes`
     → `{"disponible":false}` et `POST` → 503 sur l'alias ; déploiement du commit
@@ -356,20 +383,48 @@ le bloc DE-CH étant la copie française), crochets à remplacer par la décisio
 À la même occasion : test `occasion-langues.test.ts` (« sans durée de conservation
 inventée ») réécrit pour exiger la durée décidée.
 
-## 10. Désinscription autonome sans bulletin : constat et proposition (non implémentée)
+## 10. Désinscription autonome : e-mail « Inscription confirmée » (implémenté le 14/10)
 
-Constat : un inscrit confirmé n'a pas de lien de désinscription tant qu'aucun
-bulletin n'est parti (le jeton n'est créé que par `lib/occasion/bulletin/envoi.ts`).
-Moyen existant : écrire à info@sysnext.com (article 9, `p3`). Les bulletins n'ayant
-pas de fréquence fixe, l'attente peut être longue. Décision du 13/10 : pas de lien
-dans l'e-mail de double opt-in (le destinataire n'est pas encore inscrit).
+Constat initial : un inscrit confirmé n'avait pas de lien de désinscription tant
+qu'aucun bulletin n'était parti. Décision du 13/10 maintenue : pas de lien dans
+l'e-mail de double opt-in (le destinataire n'est pas encore inscrit). Décision de
+Laurent du 14/10 (option E-MAIL, GO_CODE ciblé) : implémentée sur la branche.
 
-Plus petit dispositif fiable proposé, **à n'implémenter que sur GO** : un e-mail
-« Inscription confirmée », envoyé une fois après le clic de confirmation réussi,
-portant le lien personnel `#desinscrire-alerte=` (jeton existant, sans expiration),
-en FR, EN et DE-CH. Il réutilise le jeton, le lien, la route et la page de
-désinscription existants ; son échec d'envoi n'annule pas l'inscription. Coût : un
-e-mail transactionnel par inscrit. Effet de bord utile : la route publique de
-désinscription devient testable en bout en bout sans bulletin. Texte à valider
-(D42). Alternative sans e-mail : afficher ce lien sur l'écran « Inscription
-confirmée » (moins fiable : le visiteur ne le conserve pas forcément).
+Fonctionnement (`lib/occasion/alertes/gestionnaires.ts`, `confirmation`) :
+- envoyé **seulement** quand le clic crée l'inscription (`registre.confirmer` →
+  `inscrit`) ; rien pour `deja_inscrit` ni `desinscrit` (non-réinscription
+  intacte) ; double clic simultané : un seul traitement, donc un seul e-mail
+  (`confirmationsEnCours`, mémoire de l'instance) ;
+- envoyé **après** l'écriture du contact : le consentement V3 et sa preuve sont
+  enregistrés comme avant, rien n'est changé dans le registre ;
+- échec d'envoi : l'inscription reste enregistrée (200 `inscrit`), journal
+  `alertes.inscription_confirmee.echec_envoi` sans donnée personnelle, pas de
+  renvoi automatique ; l'inscrit garde le recours de l'article 9 (`p3`) ;
+- réutilise le jeton de désinscription existant (chiffré, sans expiration), le
+  lien `#desinscrire-alerte=` vers la page de la langue (`OCCASION_ALERTES_URL_BASE`
+  prioritaire), la route et l'écran de désinscription existants ;
+- textes FR, EN, DE-CH (`lib/occasion/alertes/courriel.ts`,
+  `composerInscriptionConfirmee`), alignés sur l'écran « Inscription confirmée »
+  de la page : aucune offre, aucun prix, aucune garantie.
+
+**Textes à valider (D42)**, objet puis corps :
+- FR : « Inscription confirmée : nouvelles offres Orbitvu d'occasion » ; « Votre
+  inscription est confirmée : vous recevrez par e-mail les nouvelles offres de
+  studios Orbitvu d'occasion ([famille]) lorsqu'elles seront disponibles. Cette
+  liste est indépendante de la newsletter. Pour vous désinscrire à tout moment,
+  utilisez ce lien : [lien] » ; bouton « Me désinscrire ».
+- EN : “Subscription confirmed: new pre-owned Orbitvu offers”; “Your subscription
+  is confirmed: you will receive emails about new offers on pre-owned Orbitvu
+  studios ([family]) when they become available. This list is separate from the
+  newsletter. To unsubscribe at any time, use this link: [link]”; “Unsubscribe”.
+- DE-CH : „Anmeldung bestätigt: neue Orbitvu-Occasionsangebote“ ; „Ihre Anmeldung
+  ist bestätigt: Sie erhalten per E-Mail neue Angebote für Orbitvu-Studios als
+  Occasion ([Familie]), wenn sie verfügbar sind. Diese Liste ist vom Newsletter
+  unabhängig. Über diesen Link können Sie sich jederzeit abmelden: [Link]“ ;
+  « Abmelden ».
+
+Article 9, `p3` (« le lien présent dans chaque message ») : cohérent sans
+modification, chaque message reçu après l'inscription portant désormais ce lien.
+Coût : un e-mail transactionnel par inscrit. Tests :
+`alertes-gestionnaires.test.ts` (bloc « E-mail « Inscription confirmée » »),
+`alertes-registre.test.ts`, `occasion-langues.test.ts`.

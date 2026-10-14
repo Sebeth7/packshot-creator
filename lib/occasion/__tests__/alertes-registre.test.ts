@@ -203,4 +203,18 @@ describe('Envoi de l’e-mail de confirmation', () => {
     g.panne('emails.send', { sansIdentifiant: true });
     await expect(envoiConfirmationResend(g.client, 'a@b.test').envoyer(p)).rejects.toThrow(/sans_identifiant/);
   });
+
+  it('« Inscription confirmée » : au seul inscrit, lien de désinscription, identifiant Resend exigé ; aucune écriture de contact', async () => {
+    const q = { email: 'claire@atelier.fr', famille: '', lienDesinscription: 'https://exemple.test/x#desinscrire-alerte=abc' };
+    const f = fauxClientAlertes();
+    expect(await envoiConfirmationResend(f.client, 'contact@exemple.test').inscriptionConfirmee(q)).toEqual({ id: 'msg_1' });
+    const m = f.appels[0].args as { to: string[]; from: string; text: string };
+    expect(m.to).toEqual(['claire@atelier.fr']);
+    expect(m.from).toBe('PackshotCreator <contact@exemple.test>');
+    expect(m.text).toContain(q.lienDesinscription);
+    expect(f.appels.map((a) => a.methode)).toEqual(['emails.send']);
+    const g = fauxClientAlertes();
+    g.panne('emails.send', { sansIdentifiant: true });
+    await expect(envoiConfirmationResend(g.client, 'a@b.test').inscriptionConfirmee(q)).rejects.toThrow(/sans_identifiant/);
+  });
 });

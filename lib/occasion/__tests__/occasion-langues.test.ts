@@ -17,7 +17,7 @@ import { LANGUES_OCCASION, cheminOccasion, urlConfidentialite } from '@/lib/occa
 import { HORIZONS, LIBELLES_HORIZONS, requeteRechercheSchema } from '@/lib/occasion/schema';
 import { composerAccuseOccasion } from '@/lib/occasion/courriel';
 import { lignesFicheOccasion } from '@/lib/occasion/fiche';
-import { composerConfirmationAlerte, lienConfirmation } from '@/lib/occasion/alertes/courriel';
+import { composerConfirmationAlerte, composerInscriptionConfirmee, lienConfirmation, lienDesinscription } from '@/lib/occasion/alertes/courriel';
 import { requeteAlerteSchema } from '@/lib/occasion/alertes/schema';
 import { ARTICLES_MAILLAGE_OCCASION, LIEN_OCCASION, libelleLienOccasion, maillageBlogOccasion } from '@/lib/occasion/navigation';
 import { canoniqueOccasion, cheminsSitemapOccasion, hreflangOccasion, pageOccasionIndexable } from '@/lib/occasion/seo';
@@ -198,6 +198,31 @@ describe('E-mails au visiteur dans sa langue ; notification interne en français
     const de = composerConfirmationAlerte({ lien: lienConfirmation('https://e.test', 'abc', 'de-ch'), famille: '', expireLe: fin, langue: 'de-ch' });
     expect(de.texte).toContain('Jede künftige E-Mail mit neuen Angeboten enthält einen Abmeldelink.');
     expect(de.texte).not.toContain('Jede Nachricht enthält einen Abmeldelink');
+  });
+
+  it('« Inscription confirmée » : langue de la page, lien personnel de désinscription, aucune offre, aucun prix, aucun lien de confirmation', () => {
+    const attendus = {
+      fr: { objet: "Inscription confirmée : nouvelles offres Orbitvu d'occasion", famille: 'toutes les familles', libelle: 'Me désinscrire' },
+      en: { objet: 'Subscription confirmed: new pre-owned Orbitvu offers', famille: 'Specialised studios (fashion, furniture, bike)', libelle: 'Unsubscribe' },
+      'de-ch': { objet: 'Anmeldung bestätigt: neue Orbitvu-Occasionsangebote', famille: 'alle Familien', libelle: 'Abmelden' },
+    } as const;
+    for (const langue of ['fr', 'en', 'de-ch'] as const) {
+      const lien = lienDesinscription('https://e.test', 'xyz', langue);
+      const c = composerInscriptionConfirmee({ lienDesinscription: lien, famille: langue === 'en' ? FAMILLES[3] : '', langue });
+      expect(c.objet, langue).toBe(attendus[langue].objet);
+      expect(c.texte, langue).toContain(`https://e.test/${langue}/studios-photo-automatises/opportunites#desinscrire-alerte=xyz`);
+      expect(c.texte, langue).toContain(attendus[langue].famille);
+      expect(c.html, langue).toContain(`<a href="${lien}">${attendus[langue].libelle}</a>`);
+      expect(c.texte, langue).not.toContain('#confirmer-alerte=');
+      expect(c.texte, langue).not.toMatch(/€|CHF|prix|price|Preis|garanti|guarantee/i);
+    }
+  });
+
+  it('« Inscription confirmée » : HTML échappé (famille et lien)', () => {
+    const c = composerInscriptionConfirmee({ lienDesinscription: 'https://e.test/"><script>', famille: '<b>x</b>' });
+    expect(c.html).not.toContain('<script>');
+    expect(c.html).not.toContain('<b>x</b>');
+    expect(c.html).toContain('&lt;b&gt;x&lt;/b&gt;');
   });
 
   it('accusé de la recherche : langue de la page, politique FR ou EN, aucune promesse', () => {

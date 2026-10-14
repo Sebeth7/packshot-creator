@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #129 — Arbitrages groupés pour la clôture ; e-mail « Inscription confirmée » avec lien personnel de désinscription · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (« Arbitrages groupés pour la clôture » de Laurent, 14/10 ; item 2 : GO_CODE ciblé, option E-MAIL) | **PR** : #129 (brouillon) | **Commit** : ce commit
+
+**Quoi** — Après le clic qui crée l'inscription au double opt-in, un unique e-mail « Inscription confirmée » part, en FR, EN ou DE-CH, avec le lien personnel `#desinscrire-alerte=` vers la page de la langue. Arbitrages du 14/10 consignés (`RELEASE-129-OCCASION.md`, section 0 bis).
+
+**Pourquoi** — Un inscrit n'avait aucun lien de désinscription avant le premier bulletin, sans fréquence fixe. Décision de Laurent : option E-MAIL. Effet de bord : la route publique de désinscription devient vérifiable en bout en bout pendant le test réel.
+
+**Fichiers** — `lib/occasion/alertes/courriel.ts` (`composerInscriptionConfirmee`, textes des trois langues), `lib/occasion/alertes/resend.ts` (`EnvoiConfirmation.inscriptionConfirmee`), `lib/occasion/alertes/gestionnaires.ts` (envoi sur `inscrit` seulement), `lib/occasion/__tests__/alertes-gestionnaires.test.ts`, `alertes-registre.test.ts`, `occasion-langues.test.ts` ; `docs/seo-geo/RELEASE-129-OCCASION.md` (sections 0 bis, 7, 10), `docs/seo-geo/ETAT.md` (ligne de #129).
+
+**Effet attendu** — Aucun en production : verrous fermés, routes en 503. En test réel, deux e-mails par adresse de test au lieu d'un (budget de la fenêtre : 8 e-mails sur un plafond de 11).
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur ; `npx vitest run` : 45 fichiers, 842 tests, tous verts ; ESLint sur les six fichiers touchés : 0 erreur, 0 avertissement ; `npx next build` (variables factices) : vert. Tests ajoutés : e-mail de double opt-in toujours sans lien de désinscription ; un seul e-mail « Inscription confirmée », après l'écriture du contact ; aucun e-mail sur `deja_inscrit` ni `desinscrit` ; double clic simultané → un seul e-mail ; échec d'envoi → 200 `inscrit`, journal sans donnée personnelle, pas de renvoi ; jeton du lien = jeton de désinscription de la bonne adresse, et la route le traite (topic `opt_out`, segment retiré, statut global inchangé), puis non-réinscription ; `OCCASION_ALERTES_URL_BASE` prioritaire ; objets, liens et libellés FR, EN, DE-CH ; HTML échappé.
+**Supposé** — [Inférence] Le comportement de Resend réel est celui de la doublure pour `emails.send` ; à établir pendant le test réel. Article 9, `p3` (« le lien présent dans chaque message ») tenu pour cohérent sans modification.
+**Non regardé** — Envoi réel (GO_ENVOI_TEST conditionné à la phase 0 Chrome) ; délivrabilité ; deux clics simultanés sur deux instances serverless distinctes (anti-doublon en mémoire de l'instance, frein local documenté).
+
+**Suite** — Textes de l'e-mail à valider (D42) ; phase 0 Chrome ; fenêtre de test ; variables Production ; **HOLD de la fusion et de la publication** tant que la conservation (actifs, désinscrits, point de départ, purge) et la validation éditoriale ne sont pas établies.
+
+---
+
 ## 2026-10-14 · #129 — SEO option B (D59) : landing indexable à la publication, sitemap conditionnel, maillage depuis deux articles de blog · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (décision SEO définitive de Laurent du 14/10 : GO_SEO_OPTION_B, GO_CORRECTIFS_SEO_BRANCHE_129, GO_PUSH_PREVIEW = YES) | **PR** : #129 (brouillon) | **Commit** : ce commit

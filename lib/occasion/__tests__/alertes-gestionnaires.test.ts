@@ -11,7 +11,7 @@ import {
   etatCollecte,
 } from '@/lib/occasion/activation';
 import { DELAI_RENVOI_MS, creerGestionnairesAlertes, type DependancesAlertes } from '@/lib/occasion/alertes/gestionnaires';
-import { creerJeton, DUREE_CONFIRMATION_MS, lireJetonConfirmation } from '@/lib/occasion/alertes/jeton';
+import { creerJeton, DUREE_CONFIRMATION_MS, lireJetonConfirmation, lireJetonDesinscription } from '@/lib/occasion/alertes/jeton';
 import { envoiConfirmationResend, registreAlertesResend, PROPRIETES } from '@/lib/occasion/alertes/resend';
 import {
   SERVICES_ALERTES_DESACTIVES,
@@ -59,13 +59,25 @@ function monter(autres: Partial<DependancesAlertes> & { horloge?: { t: Date } } 
   return { f, g, journal, horloge, services };
 }
 
-/** Jeton extrait du lien de l'e-mail de confirmation envoyé par la doublure. */
-function jetonEnvoye(f: ReturnType<typeof fauxClientAlertes>, rang = 0): string {
-  const envois = f.appels.filter((a) => a.methode === 'emails.send');
-  const texte = (envois[rang].args as { text: string }).text;
-  const m = /#confirmer-alerte=([A-Za-z0-9_-]+)/.exec(texte);
+type Envoi = { to: string[]; subject: string; text: string; html: string };
+
+/** E-mails envoyés par la doublure, de l'un ou l'autre type. */
+function envois(f: ReturnType<typeof fauxClientAlertes>, ancre: 'confirmer-alerte' | 'desinscrire-alerte'): Envoi[] {
+  return f.appels
+    .filter((a) => a.methode === 'emails.send')
+    .map((a) => a.args as Envoi)
+    .filter((e) => e.text.includes(`#${ancre}=`));
+}
+
+function extraireJeton(texte: string, ancre: 'confirmer-alerte' | 'desinscrire-alerte'): string {
+  const m = new RegExp(`#${ancre}=([A-Za-z0-9_-]+)`).exec(texte);
   if (!m) throw new Error('lien absent');
   return m[1];
+}
+
+/** Jeton extrait du lien de l'e-mail de confirmation (double opt-in) de rang donné. */
+function jetonEnvoye(f: ReturnType<typeof fauxClientAlertes>, rang = 0): string {
+  return extraireJeton(envois(f, 'confirmer-alerte')[rang].text, 'confirmer-alerte');
 }
 
 describe('Verrous : fermés par défaut, indépendants de la recherche', () => {
@@ -346,6 +358,112 @@ describe('Confirmation (étape 2) puis désinscription', () => {
   });
 });
 
+describe('E-mail « Inscription confirmée » avec lien personnel de désinscription (14/10/2026)', () => {
+  async function inscrire(m: ReturnType<typeof monter>, extra: Record<string, unknown> = {}) {
+    await m.g.inscription(requete('/api/occasion/alertes', { ...corps, ...extra }));
+    return jetonEnvoye(m.f);
+  }
+  const confirmer = (m: ReturnType<typeof monter>, jeton: string) => m.g.confirmation(requete('/api/occasion/alertes/confirmation', { jeton }));
+
+  it('l’e-mail de confirmation (double opt-in) ne porte toujours aucun lien de désinscription', async () => {
+    const m = monter();
+    await inscrire(m);
+    const [e] = m.f.appels.map((a) => a.args as Envoi);
+    expect(e.text).not.toContain('#desinscrire-alerte=');
+    expect(e.html).not.toContain('#desinscrire-alerte=');
+  });
+
+  it('inscription créée : un seul e-mail, au seul inscrit, après l’écriture du contact ; son lien désinscrit réellement', async () => {
+    const m = monter();
+    const jeton = await inscrire(m);
+    expect(await (await confirmer(m, jeton)).json()).toEqual({ ok: true, etat: 'inscrit' });
+    const methodes = m.f.appels.map((a) => a.methode);
+    expect(methodes).toEqual(['emails.send', 'contacts.get', 'contacts.create', 'emails.send']);
+    const [e] = envois(m.f, 'desinscrire-alerte');
+    expect(e.to).toEqual(['claire@atelier.fr']);
+    expect(e.subject).toBe("Inscription confirmée : nouvelles offres Orbitvu d'occasion");
+    expect(e.text).toContain('https://apercu.exemple.test/fr/studios-photo-automatises/opportunites#desinscrire-alerte=');
+    expect(e.text).not.toContain('#confirmer-alerte=');
+    const jd = extraireJeton(e.text, 'desinscrire-alerte');
+    expect(e.html).toContain(`#desinscrire-alerte=${jd}`);
+    expect(lireJetonDesinscription(jd, SECRET)).toEqual({ ok: true, donnees: { type: 'desinscription', email: 'claire@atelier.fr' } });
+
+    const res = await m.g.desinscription(requete('/api/occasion/alertes/desinscription', { jeton: jd }));
+    expect(await res.json()).toEqual({ ok: true, etat: 'desinscrit' });
+    const c = m.f.contacts.get('claire@atelier.fr');
+    expect(c?.topics.get(TOPIC)).toBe('opt_out');
+    expect(c?.segments.has(SEGMENT)).toBe(false);
+    expect(c?.unsubscribed).toBe(false);
+    // Non-réinscription : le lien de confirmation initial ne réabonne pas, et rien n'est envoyé.
+    expect(await (await confirmer(m, jeton)).json()).toEqual({ ok: true, etat: 'desinscrit' });
+    expect(envois(m.f, 'desinscrire-alerte')).toHaveLength(1);
+  });
+
+  it('confirmation répétée (« deja_inscrit ») ou adresse désinscrite (« desinscrit ») : aucun nouvel e-mail', async () => {
+    const m = monter();
+    const jeton = await inscrire(m);
+    await confirmer(m, jeton);
+    expect(await (await confirmer(m, jeton)).json()).toEqual({ ok: true, etat: 'deja_inscrit' });
+    expect(envois(m.f, 'desinscrire-alerte')).toHaveLength(1);
+
+    const d = monter();
+    d.f.contacts.set('claire@atelier.fr', {
+      id: 'ct_x',
+      unsubscribed: true,
+      properties: {},
+      segments: new Set(),
+      topics: new Map(),
+    });
+    const j2 = await inscrire(d);
+    expect(await (await confirmer(d, j2)).json()).toEqual({ ok: true, etat: 'desinscrit' });
+    expect(envois(d.f, 'desinscrire-alerte')).toHaveLength(0);
+  });
+
+  it('double clic simultané sur « Confirmer » : un seul e-mail « Inscription confirmée »', async () => {
+    const m = monter();
+    const jeton = await inscrire(m);
+    await Promise.all([confirmer(m, jeton), confirmer(m, jeton)]);
+    expect(envois(m.f, 'desinscrire-alerte')).toHaveLength(1);
+  });
+
+  it('échec de cet envoi : l’inscription reste enregistrée (200 « inscrit »), journal sans donnée personnelle, aucun renvoi au clic suivant', async () => {
+    const m = monter();
+    const jeton = await inscrire(m);
+    m.f.panne('emails.send');
+    const res = await confirmer(m, jeton);
+    expect(await res.json()).toEqual({ ok: true, etat: 'inscrit' });
+    expect(m.f.contacts.get('claire@atelier.fr')?.topics.get(TOPIC)).toBe('opt_in');
+    expect(m.journal).toHaveBeenCalledWith('alertes.inscription_confirmee.echec_envoi');
+    expect(JSON.stringify(m.journal.mock.calls)).not.toMatch(/claire|atelier/i);
+    m.f.retablir('emails.send');
+    expect(await (await confirmer(m, jeton)).json()).toEqual({ ok: true, etat: 'deja_inscrit' });
+    expect(m.f.appels.filter((a) => a.methode === 'emails.send')).toHaveLength(2);
+  });
+
+  it('OCCASION_ALERTES_URL_BASE prioritaire pour le lien de désinscription', async () => {
+    const f = fauxClientAlertes();
+    const services = servicesAlertes({ ...ENV, OCCASION_ALERTES_URL_BASE: 'https://www.exemple.test' }, { verrous: OUVERTES, maintenant: T0, client: () => f.client });
+    const m = monter({ services });
+    await m.g.inscription(requete('/api/occasion/alertes', corps));
+    const jeton = extraireJeton(envois(f, 'confirmer-alerte')[0].text, 'confirmer-alerte');
+    await m.g.confirmation(requete('/api/occasion/alertes/confirmation', { jeton }));
+    expect(envois(f, 'desinscrire-alerte')[0].text).toContain('https://www.exemple.test/fr/studios-photo-automatises/opportunites#desinscrire-alerte=');
+  });
+
+  it.each([
+    ['en', 'Subscription confirmed: new pre-owned Orbitvu offers', '/en/', 'Unsubscribe'],
+    ['de-ch', 'Anmeldung bestätigt: neue Orbitvu-Occasionsangebote', '/de-ch/', 'Abmelden'],
+  ] as const)('%s : objet, texte et lien dans la langue de la page', async (langue, objet, chemin, libelle) => {
+    const m = monter();
+    const jeton = await inscrire(m, { langue, versionConsentement: OPTIN[langue].version });
+    expect(await (await confirmer(m, jeton)).json()).toEqual({ ok: true, etat: 'inscrit' });
+    const [e] = envois(m.f, 'desinscrire-alerte');
+    expect(e.subject).toBe(objet);
+    expect(e.text).toContain(`https://apercu.exemple.test${chemin}studios-photo-automatises/opportunites#desinscrire-alerte=`);
+    expect(e.html).toContain(`>${libelle}</a>`);
+  });
+});
+
 describe('Parcours en anglais et en allemand (Suisse)', () => {
   it('EN : e-mail en anglais vers /en/…, jeton et source de la langue, contact créé avec la source anglaise', async () => {
     const m = monter();
@@ -379,7 +497,8 @@ describe('Adaptateurs injectés : aucune dépendance cachée', () => {
     const envoi = envoiConfirmationResend(f.client, 'a@b.test');
     const registre = registreAlertesResend(f.client, { segmentId: SEGMENT, topicId: TOPIC });
     await envoi.envoyer({ email: 'x@y.fr', famille: '', lien: 'https://e.test/#confirmer-alerte=a', expireLe: 0 });
+    await envoi.inscriptionConfirmee({ email: 'x@y.fr', famille: '', lienDesinscription: 'https://e.test/#desinscrire-alerte=a' });
     await registre.desinscrire('x@y.fr', T0);
-    expect(f.appels.map((a) => a.methode)).toEqual(['emails.send', 'contacts.get']);
+    expect(f.appels.map((a) => a.methode)).toEqual(['emails.send', 'emails.send', 'contacts.get']);
   });
 });
