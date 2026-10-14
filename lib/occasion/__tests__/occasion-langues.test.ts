@@ -19,7 +19,8 @@ import { composerAccuseOccasion } from '@/lib/occasion/courriel';
 import { lignesFicheOccasion } from '@/lib/occasion/fiche';
 import { composerConfirmationAlerte, lienConfirmation } from '@/lib/occasion/alertes/courriel';
 import { requeteAlerteSchema } from '@/lib/occasion/alertes/schema';
-import { LIEN_OCCASION, libelleLienOccasion } from '@/lib/occasion/navigation';
+import { ARTICLES_MAILLAGE_OCCASION, LIEN_OCCASION, libelleLienOccasion, maillageBlogOccasion } from '@/lib/occasion/navigation';
+import { canoniqueOccasion, cheminsSitemapOccasion, hreflangOccasion, pageOccasionIndexable } from '@/lib/occasion/seo';
 import { isDeChCovered, localeSwitchHref, navPinLocale } from '@/i18n/deChCoverage';
 import { routing } from '@/i18n/routing';
 
@@ -259,6 +260,30 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
     expect(libelleLienOccasion('de-ch')).toBe('Occasionen');
   });
 
+  describe('maillage depuis les articles de blog sur l’achat d’occasion (14/10/2026)', () => {
+    it('deux articles seulement, FR et EN, chacun vers la page de sa langue, sans garantie ni disponibilité annoncée', () => {
+      expect(ARTICLES_MAILLAGE_OCCASION).toEqual(['fr/acheter-studio-photo-packshot-occasion', 'en/second-hand-packshot-photo-studio']);
+      for (const cle of ARTICLES_MAILLAGE_OCCASION) {
+        const [langue, slug] = cle.split('/');
+        expect(readFileSync(join(process.cwd(), `content/blog/${langue}/${slug}.json`), 'utf8')).toContain(`"slug": "${slug}"`);
+        const texte = maillageBlogOccasion(slug, langue);
+        expect(texte, cle).not.toBeNull();
+        expect(Object.values(texte ?? {}).join(' '), cle).not.toMatch(/garanti|warrant|reconditionn|refurbish|disponible maintenant|in stock|en stock|€|CHF/i);
+      }
+      // Pas d'encadré ailleurs, ni dans l'autre langue.
+      expect(maillageBlogOccasion('acheter-studio-photo-packshot-occasion', 'en')).toBeNull();
+      expect(maillageBlogOccasion('second-hand-packshot-photo-studio', 'fr')).toBeNull();
+      expect(maillageBlogOccasion('ia-photo-produit-guide-2026', 'fr')).toBeNull();
+    });
+
+    it('encadré rendu seulement si la page est servie (aucun lien vers un 404 en production avant publication)', () => {
+      const composant = readFileSync(join(process.cwd(), 'components/landings/occasion/EncadreOccasionBlog.tsx'), 'utf8');
+      expect(composant).toContain('if (!texte || !liensOccasionServis()) return null;');
+      expect(composant).toContain('href={LIEN_OCCASION.href}');
+      expect(readFileSync(join(process.cwd(), 'app/[lang]/blog/[slug]/page.tsx'), 'utf8')).toContain('<EncadreOccasionBlog slug={slug} lang={lang} />');
+    });
+  });
+
   describe('emplacements du lien (décision de Laurent du 14/10/2026)', () => {
     // Code seul : les commentaires décrivent les emplacements en toutes lettres.
     const code = (f: string) =>
@@ -314,21 +339,80 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
     expect(navPinLocale('de-ch', '/confidentialite')).toBe('fr');
   });
 
-  it('les deux pages déclarent les trois locales et gardent noindex, sans alternates ni canonique', () => {
-    for (const f of ['app/[lang]/studios-photo-automatises/opportunites/page.tsx', 'app/[lang]/studios-photo-automatises/opportunites/exemples-fictifs/page.tsx']) {
-      // Code seul : les commentaires citent canonique et hreflang pour dire qu'ils sont absents.
-      const source = readFileSync(join(process.cwd(), f), 'utf8')
-        .split('\n')
-        .filter((l) => !/^\s*(\*|\/\/|\/\*\*)/.test(l))
-        .join('\n');
-      expect(source).toContain('LANGUES_OCCASION.map((lang) => ({ lang }))');
-      expect(source).toContain('robots: { index: false, follow: false }');
-      expect(source).not.toMatch(/alternates|canonical|hreflang|application\/ld\+json/);
+  const P_FR = cheminOccasion('fr');
+  // Code seul : les commentaires citent canonique et hreflang en toutes lettres.
+  const codeSeul = (f: string) =>
+    readFileSync(join(process.cwd(), f), 'utf8')
+      .split('\n')
+      .filter((l) => !/^\s*(\*|\/\/|\/\*\*)/.test(l))
+      .join('\n');
+
+  it('option B (14/10) : la page réelle déclare canonique, hreflang et robots par lib/occasion/seo.ts, sans Product ni Offer', () => {
+    const source = codeSeul('app/[lang]/studios-photo-automatises/opportunites/page.tsx');
+    expect(source).toContain('LANGUES_OCCASION.map((lang) => ({ lang }))');
+    expect(source).toContain('const indexable = pageOccasionIndexable();');
+    expect(source).toContain('robots: { index: indexable, follow: indexable }');
+    expect(source).toContain('canonical: canoniqueOccasion(lang)');
+    expect(source).toContain('languages: hreflangOccasion()');
+    // Page non servie (production avant publication) : 404 sans titre, noindex.
+    expect(source).toContain('return { robots: { index: false, follow: false } }');
+    expect(source).not.toMatch(/application\/ld\+json|SchemaOrg|'Product'|'Offer'/);
+  });
+
+  it('titre et description exacts à stock vide : disponibilité au conditionnel, sans machine annoncée ni prix', () => {
+    const attendu = { fr: /quand ils sont disponibles/, en: /when available/, 'de-ch': /sobald verfügbar/ } as const;
+    for (const langue of LANGUES_OCCASION) {
+      const { META } = contenuOccasion(langue);
+      expect(META.description, langue).toMatch(attendu[langue]);
+      expect(META.description, langue).not.toMatch(/découvrez nos|discover our|Entdecken Sie unsere|€|CHF|prix|price|Preis/i);
+      expect(META.title.endsWith(' | PackshotCreator'), langue).toBe(true);
+      expect(META.description.length, langue).toBeLessThanOrEqual(170);
     }
   });
 
-  it('la landing n’entre pas dans le sitemap', () => {
-    expect(readFileSync(join(process.cwd(), 'app/sitemap.ts'), 'utf8')).not.toContain('opportunites');
+  it('la vue des exemples fictifs reste noindex, sans alternates ni canonique', () => {
+    const source = codeSeul('app/[lang]/studios-photo-automatises/opportunites/exemples-fictifs/page.tsx');
+    expect(source).toContain('LANGUES_OCCASION.map((lang) => ({ lang }))');
+    expect(source).toContain('robots: { index: false, follow: false }');
+    expect(source).not.toMatch(/alternates|canonical|hreflang|application\/ld\+json/);
+  });
+
+  it('canonique propre à chaque langue, sur www', () => {
+    expect(LANGUES_OCCASION.map(canoniqueOccasion)).toEqual([
+      'https://www.packshot-creator.com/fr/studios-photo-automatises/opportunites',
+      'https://www.packshot-creator.com/en/studios-photo-automatises/opportunites',
+      'https://www.packshot-creator.com/de-ch/studios-photo-automatises/opportunites',
+    ]);
+  });
+
+  it('hreflang réciproques, conventions du dépôt (fr, fr-CH, en, de-CH, x-default vers /fr)', () => {
+    expect(hreflangOccasion()).toEqual({
+      fr: P_FR,
+      'fr-CH': P_FR,
+      en: '/en/studios-photo-automatises/opportunites',
+      'de-CH': '/de-ch/studios-photo-automatises/opportunites',
+      'x-default': P_FR,
+    });
+  });
+
+  it('index, follow seulement sur la production publiée ; Preview et local restent noindex', () => {
+    expect(pageOccasionIndexable({ VERCEL_ENV: 'production' }, true)).toBe(true);
+    expect(pageOccasionIndexable({ VERCEL_ENV: 'production' }, false)).toBe(false);
+    expect(pageOccasionIndexable({ VERCEL_ENV: 'preview' }, true)).toBe(false);
+    expect(pageOccasionIndexable({}, true)).toBe(false);
+    // État actuel du code : publication fermée, donc nulle part indexable.
+    expect(pageOccasionIndexable({ VERCEL_ENV: 'production' })).toBe(false);
+  });
+
+  it('sitemap : les trois URL seulement une fois publiée, jamais les exemples fictifs', () => {
+    expect(cheminsSitemapOccasion(false)).toEqual([]);
+    expect(cheminsSitemapOccasion(true)).toEqual(LANGUES_OCCASION.map(cheminOccasion));
+    // État actuel du code : publication fermée, aucune entrée.
+    expect(cheminsSitemapOccasion()).toEqual([]);
+    const sitemap = codeSeul('app/sitemap.ts');
+    expect(sitemap).toContain('cheminsSitemapOccasion()');
+    expect(sitemap).not.toContain('opportunites');
+    expect(sitemap).not.toContain('exemples-fictifs');
   });
 });
 

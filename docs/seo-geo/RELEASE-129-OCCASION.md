@@ -2,7 +2,8 @@
 
 État au 12/10/2026, complété le 13/10 et le 14/10 (Claude de Laurent). PR brouillon, DO NOT MERGE.
 GO_CODE = YES ; 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS,
-GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129, GO_NAVIGATION_129 = YES. Restent à NO ou en attente :
+GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129, GO_NAVIGATION_129, GO_SEO_OPTION_B,
+GO_CORRECTIFS_SEO_BRANCHE_129 = YES (décision D59). Restent à NO ou en attente :
 GO_ENVOI_TEST (destinataires et autorisation ciblée), GO_TEST_REEL_ALERTES,
 GO_NETTOYAGE_DEPLOIEMENTS, écriture Vercel Production, GO_MERGE, GO_PUBLICATION,
 GO_ENVOI_REEL (bulletin).
@@ -24,6 +25,11 @@ publication »), enregistrés tels quels :
 4. La page peut proposer la recherche d'un équipement et l'inscription aux
    futures disponibilités **dès lors que les parcours auront été éprouvés et
    autorisés** (section 7).
+5. **SEO, option B** (décision définitive, même jour) : page publiée en
+   `index, follow` dès sa mise en ligne, même à stock vide (section 2).
+
+Ces décisions, avec le rectificatif de navigation du même jour, sont inscrites
+en **D59** (`docs/seo-geo/DECISIONS.md`).
 
 Ne valent pas validation : les claims commerciaux, les droits photographiques et
 les textes encore non validés (section 8). Aucune machine, aucun prix, aucune
@@ -44,7 +50,7 @@ le verrou de publication (`exemplesFictifsServis()`, testé dans
 |---|---|---|---|
 | Landing FR, EN, DE-CH | `/{fr,en,de-ch}/studios-photo-automatises/opportunites`, même chemin, textes par langue (`components/landings/occasion/contenu-*.ts`) | `occasion-langues.test.ts` ; QA trilingue locale | Relecture de la copy par Sébastien ; relecture native EN et DE-CH recommandée |
 | Menus et pied de page | Décision de Laurent du 14/10 (remplace le 10/10) : menu déroulant Solutions, **en dernier, après la rubrique Guides**, hors de son sous-menu, lien secondaire séparé et discret (ordinateur et mobile), jamais sous « Studios Photo Automatisés » ni dans la barre principale ; pied de page, **colonne Solutions après « Questions clés »**, une seule occurrence, retiré de la colonne des studios ; « Offres d'occasion », « Pre-owned offers », « Occasionen » ; vers la page de la même langue ; absent en production tant que la page n'est pas publiée | `occasion-langues.test.ts` (emplacements) ; QA locale du 14/10, trois langues, 1280 et 390 px | Rien |
-| Métadonnées | Titre et description par langue, Open Graph par locale ; `noindex, nofollow` ; ni canonique, ni hreflang | Test des pages | Choix A ou B (section 2) |
+| Métadonnées | Option B (14/10) : titre et description par langue, exacts à stock vide (disponibilité au conditionnel) ; Open Graph par locale ; canonique par langue sur www ; hreflang `fr`, `fr-CH`, `en`, `de-CH`, `x-default` ; `index, follow` sur la production publiée seulement, `noindex, nofollow` en Preview et en local (`lib/occasion/seo.ts`) | `occasion-langues.test.ts` ; builds du 14/10 (Preview : balises relues ; production verrous fermés : 404) | Validation des titres et descriptions modifiés (D42) |
 | Routes | 3 pages + 3 vues `…/exemples-fictifs` (jamais en production) ; `/api/occasion` et `/api/occasion/alertes{,/confirmation,/desinscription}` en 503 sans lecture de la demande | Build `VERCEL_ENV=production` : 6 × 404, 4 × 503 | Rien |
 | Recherche (notification commerciale) | Notification interne `[Occasion]` vers `OCCASION_NOTIFICATION_EMAIL`, puis accusé dans la langue de la page ; aucun CRM | `recherche-*.test.ts` ; test réel Preview du 11/10 (A soumis ; B et quatre e-mails non établis) | Reliquat du test réel (section 7) ; variable en Production (`sebastien.jourdan@sysnext.com`, décision du 14/10) |
 | Liste d'alerte | Double opt-in, segment et topic dédiés, jamais de réinscription d'un désinscrit ; promesse « nouvelles offres », consentement `occasion-alertes-v3-2026-10-12` (trois langues) ; e-mail de confirmation DE-CH corrigé le 14/10 (le lien de désinscription est promis pour les futurs e-mails d'offres) | `alertes-*.test.ts`, `occasion-langues.test.ts` | Ressources Resend et variables Preview faites (13/10) ; test réel sur GO (section 7) |
@@ -52,18 +58,44 @@ le verrou de publication (`exemplesFictifsServis()`, testé dans
 | Politique de confidentialité | Article 9 (FR, EN ; DE-CH servi en FR), finalité « nouvelles disponibilités », preuve du consentement, désinscription, Resend | `occasion-langues.test.ts` | **Devient publique dès la fusion.** Durée de conservation des inscrits non écrite : décision et texte préparé en section 9 |
 | Fichiers de langue | `messages/{fr,en,de-ch}.json` : bloc `privacy` seulement | Intégrité JSON (CI) | Rien |
 | Registre de stock | Vide ; guide `data/occasion/AJOUT-MACHINE.md` ; `FRAICHEUR_MAX_JOURS = 30` **provisoire** | `occasion.test.ts` (garde-fous de saisie) | Publication à stock vide autorisée (14/10). Avant toute première machine : photos de l'unité, garantie écrite, accord Orbitvu |
-| SEO | Aucun effet en production : 404, aucun lien, ni sitemap, ni hreflang, ni `Product`/`Offer` | Tests des pages et du sitemap | Proposition retenue le 14/10 : A (`noindex` tant que le stock est vide) |
+| SEO | Option B (D59). Avant publication, aucun effet en production : 404, aucun lien, aucune entrée de sitemap. À la publication : `index, follow`, trois entrées de sitemap (`cheminsSitemapOccasion`), encadré de maillage sous deux articles de blog (FR `acheter-studio-photo-packshot-occasion`, EN `second-hand-packshot-photo-studio`) ; jamais `Product`/`Offer` sans machine réelle ; exemples fictifs en 404 et hors sitemap | `occasion-langues.test.ts` ; build `VERCEL_ENV=production` du 14/10 (6 × 404, sitemap et articles sans lien) | Rien avant publication |
 | Verrous (`lib/occasion/activation.ts`) | `PUBLICATION_AUTORISEE`, `COLLECTE_REELLE_AUTORISEE`, `ALERTES_REELLES_AUTORISEES`, `BULLETIN_ENVOI_AUTORISE` = `false` ; fenêtres de test `null` | `occasion.test.ts`, `bulletin.test.ts` | Ouverture par commit, sur GO |
 
-## 2. Indexation : deux options (décision de Laurent)
+## 2. Indexation : option B, décision définitive de Laurent du 14/10 (D59)
 
-**Proposition retenue le 14/10 : A**, page publiée en `noindex` tant que le stock
-est vide (état actuel du code, rien à changer). B reste disponible sur arbitrage
-contraire de Laurent.
+**Décidé et implémenté le 14/10** : page publiée en `index, follow` dès sa mise
+en ligne, y compris sans machine disponible. Remplace la recommandation A.
 
-**A — publication en `noindex` (recommandée).** Rien à changer. La page sans stock
-affiche « aucune machine » : contenu mince pour l'indexation. Le `noindex` se lève
-plus tard par un seul commit.
+Implémentation (`lib/occasion/seo.ts`, sans nouveau verrou) :
+- `pageOccasionIndexable()` : `index, follow` seulement si `VERCEL_ENV` vaut
+  `production` **et** `PUBLICATION_AUTORISEE` est vrai ; `noindex, nofollow` en
+  Preview, en local et en production avant publication (où la page est en 404).
+  Les Previews restent par ailleurs protégées (Vercel Authentication).
+- `canoniqueOccasion(langue)` : `https://www.packshot-creator.com/<langue>/studios-photo-automatises/opportunites`.
+- `hreflangOccasion()` : `buildLanguages` (`fr`, `fr-CH`, `en`, `de-CH`, `x-default` vers `/fr`), identique pour les trois versions.
+- `cheminsSitemapOccasion()` : les trois chemins seulement si `PUBLICATION_AUTORISEE` ; `app/sitemap.ts` les ajoute (priorité 0,7, hebdomadaire).
+- Exemples fictifs : inchangés (`noindex`, sans canonique, 404 en production, hors sitemap).
+- Aucun balisage `Product` ni `Offer`.
+- `public/robots.txt` relu : aucun blocage des moteurs ni des robots de citation
+  sur ces chemins (seuls les robots d'entraînement sont bloqués partout, D1).
+- Titres et descriptions des trois langues alignés sur un stock vide et sur les
+  intentions (studio photo packshot / Orbitvu d'occasion, recherche sur demande,
+  alertes) : « … quand ils sont disponibles » au lieu de « découvrez nos
+  équipements ». À valider (D42).
+- **Maillage blog** : encadré sous l'article FR `acheter-studio-photo-packshot-occasion`
+  et l'article EN `second-hand-packshot-photo-studio`
+  (`components/landings/occasion/EncadreOccasionBlog.tsx`, textes dans
+  `lib/occasion/navigation.ts`), rendu aux mêmes conditions que le menu : visible
+  en Preview, absent de la production jusqu'à la publication, puis visible sans
+  autre commit. Le texte des articles et leurs mises en garde sur le matériel
+  ancien ne sont pas modifiés ; aucune garantie, remise en état ni disponibilité
+  annoncée.
+- État publié (`index, follow`, trois URL au sitemap) vérifié par tests unitaires
+  seulement : aucun build avec `PUBLICATION_AUTORISEE = true` n'a été fait.
+
+Pour mémoire, l'option écartée et la description d'origine de B :
+
+**A — publication en `noindex`.** Écartée le 14/10.
 
 **B — publication indexable.** Trois changements, dans un commit dédié :
 1. `app/[lang]/studios-photo-automatises/opportunites/page.tsx`, `generateMetadata` :
@@ -264,7 +296,7 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
 1. **Préalables** : tests réels de la section 7 en PASS, ou reliquat explicitement
    reporté par Laurent ; décision de conservation écrite à l'article 9
    (section 9) ; textes validés (D42, étape 5) ou exception explicite de Laurent ;
-   proposition SEO A.
+   SEO option B en place dans le code (D59, section 2).
 2. **Configuration Production** (sur GO d'écriture Vercel Production, dashboard,
    jamais la CLI) : `OCCASION_NOTIFICATION_EMAIL` = `sebastien.jourdan@sysnext.com` ;
    `OCCASION_ALERTES_SEGMENT_ID` et `OCCASION_ALERTES_TOPIC_ID` = identifiants
@@ -283,14 +315,22 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
 5. **GO_PUBLICATION** : PR dédiée, un seul fichier (`lib/occasion/activation.ts`) :
    `PUBLICATION_AUTORISEE`, puis `COLLECTE_REELLE_AUTORISEE` et
    `ALERTES_REELLES_AUTORISEES` pour les seuls parcours éprouvés. Fusion = production
-   en environ 3 minutes.
+   en environ 3 minutes. Le même commit ouvre, sans autre changement : la page, les
+   liens du menu et du pied de page, l'encadré des deux articles de blog,
+   `index, follow` et les trois entrées de sitemap (option B).
 6. **Contrôles après publication** : `sysnext.vercel.app`, puis `www` dans Chrome :
-   pages 200 dans les trois langues, `noindex` présent (option A), état « Aucune
-   machine affichée en ce moment », liens du menu et du pied de page, routes
-   `GET` → `{"disponible":true}`, une inscription réelle autorisée. Un build Vercel
-   « Ready » n'est pas une publication vérifiée.
+   pages 200 dans les trois langues ; `<meta name="robots">` `index, follow` ;
+   canonique de chaque langue sur www ; hreflang `fr`, `fr-CH`, `en`, `de-CH`,
+   `x-default` ; trois URL dans `https://www.packshot-creator.com/sitemap.xml` ;
+   sur `www`, aucun en-tête `X-Robots-Tag: noindex` (D36 : le Worker retire celui
+   de l'origine) ; aucun `Product` ni `Offer` ; état « Aucune machine affichée en
+   ce moment » ; liens du menu, du pied de page et des deux articles de blog ;
+   exemples fictifs en 404 ; routes `GET` → `{"disponible":true}` ; une inscription
+   réelle autorisée. Puis inspection d'URL dans Google Search Console (Laurent).
+   Un build Vercel « Ready » n'est pas une publication vérifiée.
 7. **Retour arrière** : `git revert` de la PR de publication (verrous refermés :
-   page en 404, liens retirés, routes en 503), production en environ 3 minutes ;
+   page en 404, liens et encadrés retirés, sitemap sans la page, routes en 503),
+   production en environ 3 minutes ;
    si le défaut vient du code fusionné, `git revert -m 1` du commit de fusion de
    #129. Les contacts déjà inscrits restent chez Resend.
 

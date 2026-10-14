@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #129 — SEO option B (D59) : landing indexable à la publication, sitemap conditionnel, maillage depuis deux articles de blog · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (décision SEO définitive de Laurent du 14/10 : GO_SEO_OPTION_B, GO_CORRECTIFS_SEO_BRANCHE_129, GO_PUSH_PREVIEW = YES) | **PR** : #129 (brouillon) | **Commit** : ce commit
+
+**Quoi** —
+- `lib/occasion/seo.ts` : canonique par langue sur www, hreflang réciproques par `buildLanguages` (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), `index, follow` seulement sur la production publiée (`pageOccasionIndexable`), chemins de sitemap seulement une fois publiée (`cheminsSitemapOccasion`). Page réelle branchée dessus ; `app/sitemap.ts` ajoute les trois URL à la publication. Exemples fictifs inchangés (`noindex`, 404 en production, hors sitemap). Aucun `Product` ni `Offer`.
+- Titres et descriptions FR, EN, DE-CH exacts à stock vide (« quand ils sont disponibles », au lieu de « découvrez nos équipements ») et alignés sur les intentions (studio photo packshot, Orbitvu d'occasion, recherche, alertes).
+- Maillage : encadré sous l'article FR `acheter-studio-photo-packshot-occasion` et l'article EN `second-hand-packshot-photo-studio`, vers la landing de la même langue, aux mêmes conditions que le lien du menu ; texte des articles et mises en garde inchangés.
+- D59 inscrite dans `DECISIONS.md` (option B, navigation, stock vide, destinataire, RGPD selon l'appréciation de Laurent).
+
+**Pourquoi** — Décision SEO définitive de Laurent du 14/10 : publication indexable dès la mise en ligne, même sans stock ; aucun lien public vers un 404.
+
+**Fichiers** — `lib/occasion/seo.ts` (nouveau), `app/[lang]/studios-photo-automatises/opportunites/page.tsx`, `app/sitemap.ts`, `components/landings/occasion/contenu-{fr,en,de-ch}.ts` (META), `components/landings/occasion/EncadreOccasionBlog.tsx` (nouveau), `app/[lang]/blog/[slug]/page.tsx` (une ligne), `lib/occasion/navigation.ts`, `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Aucun en production avant publication. À la publication (commit des verrous) : page indexable, trois URL au sitemap, encadrés de blog visibles.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` 45 fichiers, 831 tests verts (7 nouveaux). Build `VERCEL_ENV=production` (verrous fermés) servi en local : pages et exemples fictifs en 404 dans les trois langues, sitemap sans la landing, articles FR et EN sans encadré ni lien, accueil sans lien. Build hors production servi en local : `noindex, nofollow`, canonique de la langue sur www, cinq `<link rel="alternate">` identiques dans les trois langues, nouveaux titres, aucun `Product`/`Offer` ; exemples fictifs `noindex` sans canonique ni alternate ; sitemap sans la landing ; encadré présent sous les deux articles, lien vers `/fr/…` et `/en/…`. `public/robots.txt` relu : aucun blocage des moteurs ni des robots de citation.
+
+**Supposé** — État publié (`index, follow`, trois URL au sitemap) : vérifié par tests unitaires seulement, aucun build avec `PUBLICATION_AUTORISEE = true`. [Non vérifié] Les Previews Vercel portent aussi leur propre protection (Vercel Authentication), indépendante de la balise `robots`.
+
+**Non regardé** — Avertissement ESLint `HeadingData` inutilisé dans `app/[lang]/blog/[slug]/page.tsx` : antérieur, non corrigé. Validation des titres, descriptions et de l'encadré (D42). Numéro D59 à confirmer à la fusion si une autre PR fusionne un D59 avant.
+
+**Suite** — Inchangée : préalables en lecture seule, GO des essais réels, décisions de Sébastien, GO d'écriture Vercel Production, GO_MERGE puis GO_PUBLICATION ; après publication, contrôle de `www` et inspection Search Console.
+
+---
+
 ## 2026-10-14 · #129 — rectificatif de navigation : « Offres d'occasion » en fin de menu Solutions et dans la colonne Solutions du pied de page · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (GO_NAVIGATION_129 de Laurent, 14/10 ; remplace la seule décision de navigation du 10/10) | **PR** : #129 (brouillon) | **Commit** : ce commit

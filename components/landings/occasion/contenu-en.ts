@@ -12,9 +12,9 @@ import { FR, type ContenuOccasion } from './contenu-fr';
  */
 export const EN: ContenuOccasion = {
   META: {
-    title: 'Pre-owned Orbitvu studios | PackshotCreator',
+    title: 'Pre-owned Orbitvu photo studios | PackshotCreator',
     description:
-      'Showroom, demo or trade-in equipment: discover our pre-owned Orbitvu equipment and the key information you need to choose with confidence.',
+      'Pre-owned Orbitvu packshot photo studios (showroom, demo, trade-in) when available, equipment search on request and alerts on new offers.',
   },
 
   HERO: {

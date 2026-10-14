@@ -14,6 +14,7 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '
 import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
 import { RecommendedStudio } from '@/components/maillage/MaillageSections';
+import EncadreOccasionBlog from '@/components/landings/occasion/EncadreOccasionBlog';
 import YouTubeConsent from '@/components/blog/YouTubeConsent';
 import {
   processHtmlContent,
@@ -287,6 +288,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* Offres d'occasion : deux articles seulement, absent tant que la page n'est pas publiée (#129) */}
+      <EncadreOccasionBlog slug={slug} lang={lang} />
 
       {/* Studio recommandé (tunnel conversion — P1.B) */}
       <RecommendedStudio contentSlug={slug} lang={lang} />

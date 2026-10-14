@@ -6,7 +6,8 @@ import { contenuOccasion } from '@/components/landings/occasion/contenu';
 import { MACHINES_OCCASION } from '@/data/occasion/machines';
 import { PUBLICATION_AUTORISEE, pageOccasionServie } from '@/lib/occasion/activation';
 import { alertesAffichees, servicesAlertes } from '@/lib/occasion/alertes/services';
-import { LANGUES_OCCASION, cheminOccasion, estLangueOccasion } from '@/lib/occasion/langues';
+import { LANGUES_OCCASION, estLangueOccasion } from '@/lib/occasion/langues';
+import { canoniqueOccasion, hreflangOccasion, pageOccasionIndexable } from '@/lib/occasion/seo';
 import { collecteAffichee, servicesOccasion } from '@/lib/occasion/services';
 import { machinesDisponibles } from '@/lib/occasion/stock';
 
@@ -15,15 +16,16 @@ import { machinesDisponibles } from '@/lib/occasion/stock';
  * 11/10/2026), au même chemin dans les trois locales, comme le hub
  * `/studios-photo-automatises`.
  *
- * - `noindex, nofollow`, sans canonique, sans hreflang ni entrée de sitemap,
- *   sans balisage `Offer` / `Product` : indexation à décider avec la publication
- *   (recommandation A/B dans la PR #129). Aucune alternate n'est émise.
+ * - Indexation, option B (décision de Laurent du 14/10/2026, lib/occasion/seo.ts) :
+ *   `index, follow` sur la production publiée, avec ou sans machine ;
+ *   `noindex, nofollow` partout ailleurs. Canonique par langue et hreflang
+ *   réciproques ; entrées de sitemap seulement une fois publiée (app/sitemap.ts).
+ *   Aucun balisage `Offer` / `Product`.
  * - Prérendue en 404 sur la production Vercel tant que `PUBLICATION_AUTORISEE`
  *   est faux (lib/occasion/activation.ts).
  * - État calculé au build depuis le registre réel (`data/occasion/machines.ts`,
  *   vide) : un changement de stock passe par un commit et un déploiement.
  */
-const BASE = 'https://www.packshot-creator.com';
 const LOCALES_OG = { fr: 'fr_FR', en: 'en_GB', 'de-ch': 'de_CH' } as const;
 
 export function generateStaticParams() {
@@ -35,14 +37,19 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   // Page non servie (production sans GO, ou langue inconnue) : la réponse 404 ne porte ni titre ni description.
   if (!estLangueOccasion(lang) || !pageOccasionServie()) return { robots: { index: false, follow: false } };
   const { META } = contenuOccasion(lang);
+  const indexable = pageOccasionIndexable();
   return {
     title: META.title,
     description: META.description,
-    robots: { index: false, follow: false },
+    robots: { index: indexable, follow: indexable },
+    alternates: {
+      canonical: canoniqueOccasion(lang),
+      languages: hreflangOccasion(),
+    },
     openGraph: {
       title: META.title,
       description: META.description,
-      url: `${BASE}${cheminOccasion(lang)}`,
+      url: canoniqueOccasion(lang),
       siteName: 'PackshotCreator',
       locale: LOCALES_OG[lang],
       type: 'website',

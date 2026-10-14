@@ -17,9 +17,9 @@ import { FR, type ContenuOccasion } from './contenu-fr';
  */
 export const DE_CH: ContenuOccasion = {
   META: {
-    title: 'Orbitvu-Studios als Occasion | PackshotCreator',
+    title: 'Orbitvu-Fotostudios als Occasion | PackshotCreator',
     description:
-      'Showroom-, Demo- oder Eintauschgeräte: Entdecken Sie unsere Orbitvu-Occasionen und alle wichtigen Informationen für einen sicheren Entscheid.',
+      'Orbitvu-Packshot-Fotostudios als Occasion (Showroom, Demo, Eintausch), sobald verfügbar: Suche auf Anfrage und Benachrichtigung bei neuen Angeboten.',
   },
 
   HERO: {

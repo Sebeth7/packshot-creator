@@ -26,9 +26,11 @@ const nb = (texte: string) => texte.replace(/ ([?!:;])/g, '\u00a0$1');
 
 export const FR = {
   META: {
-    title: "Studios Orbitvu d'occasion | PackshotCreator",
+    // Option B (14/10/2026) : page indexée même à stock vide, d'où une
+    // description qui n'annonce aucune machine présente.
+    title: "Studios photo Orbitvu d'occasion | PackshotCreator",
     description: nb(
-      "Matériels de showroom, de démonstration ou de reprise : découvrez nos équipements Orbitvu d'occasion et les informations essentielles pour choisir en confiance.",
+      "Studios photo packshot Orbitvu d'occasion (showroom, démonstration, reprise) quand ils sont disponibles, recherche sur demande et alertes sur les nouvelles offres.",
     ),
   },
 

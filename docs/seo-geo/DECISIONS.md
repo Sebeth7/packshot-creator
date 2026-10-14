@@ -25,6 +25,32 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D59 · 2026-10-14 · Landing « Offres d'occasion » (#129) : publication indexable (option B), navigation discrète, publication à stock vide
+
+**Décidé par** : Laurent (14/10/2026 : « GO Laurent — finalisation active avant publication », « Rectificatif de la décision de navigation », « Décision SEO définitive — option B »)
+**Statut** : en vigueur ; proposée sur la branche de #129, à renuméroter si un autre numéro est fusionné avant (règle appliquée à D53 et D54)
+
+**La décision** —
+1. **Indexation, option B** : la landing `/{fr,en,de-ch}/studios-photo-automatises/opportunites` est publiée en `index, follow` dès sa mise en ligne, avec ou sans machine disponible. Canonique propre à chaque langue sur `https://www.packshot-creator.com`, hreflang réciproques par `buildLanguages` (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), trois entrées de sitemap seulement une fois la page servie en production. Remplace la recommandation A (`noindex` tant que le stock est vide).
+2. **Navigation** : lien « Offres d'occasion » en dernier dans le menu déroulant Solutions, après Guides et hors de son sous-menu, séparé et discret (desktop et mobile) ; dans le pied de page, colonne Solutions après « Questions clés », une seule occurrence. Remplace l'emplacement du 10/10 (sous Studios et dans la colonne des studios).
+3. **Publication à stock vide** autorisée sur le principe ; la recherche d'un équipement et l'inscription aux futures disponibilités peuvent être proposées une fois les parcours éprouvés et autorisés.
+4. **Destinataire Production des recherches** : `sebastien.jourdan@sysnext.com`, par la variable `OCCASION_NOTIFICATION_EMAIL`.
+5. **RGPD** : dispositif de collecte et d'alertes compatible selon l'appréciation métier de Laurent ; ce n'est pas un audit juridique indépendant.
+
+**Le contexte** — Rendre les offres d'occasion accessibles et trouvables (recherche d'un studio packshot ou Orbitvu d'occasion, choix entre neuf et occasion, demande de recherche, alertes) sans détourner les prospects des studios neufs. Mise en œuvre : `lib/occasion/seo.ts`, `app/sitemap.ts`, `components/layout/{Header,Footer}.tsx`, `docs/seo-geo/RELEASE-129-OCCASION.md`.
+
+**Ce qu'elle interdit** —
+- Indexer une Preview, ou la production avant publication : `index, follow` seulement sur la production publiée (`pageOccasionIndexable`).
+- Un lien public vers la landing (menu, pied de page, articles de blog) tant qu'elle répond 404 en production.
+- La vue `…/exemples-fictifs` en production ou dans le sitemap.
+- Un balisage `Product` ou `Offer` sans machine réellement disponible.
+- Un remplissage SEO, ou l'annonce d'une machine, d'un prix, d'une disponibilité, d'une garantie ou d'une condition commerciale non réels.
+- Mettre en avant les occasions sur les pages des machines neuves, ou ajouter une entrée à la barre de navigation principale.
+
+Ne valent pas validation : les claims commerciaux, les droits photographiques et les textes encore soumis à la validation de Sébastien (D42, étape 5).
+
+---
+
 ## D58 · 2026-10-12 · Pilotage G5 : R1, exception de périmètre pour le seul P0 de #131 ; R3, propagation des corrections factuelles XL Pro v2 pendant M5, sur le principe
 
 **Décidé par** : Laurent — mission « G5 — passe finale décisive » du 12/10/2026 (« R1 = OPTION B POUR #131 UNIQUEMENT » ; « R3 = OPTION A, SUR LE PRINCIPE »)
