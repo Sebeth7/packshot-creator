@@ -34,7 +34,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
-## 2026-10-14 · #119 — reprise : 8 titles FR, doublons EN et candidat e-commerce retirés, `main` `6717c4f` puis `dd67d3f` intégrés · Claude de Laurent
+## 2026-10-14 · #119 — reprise : 8 titles FR, doublons EN et candidat e-commerce retirés, `main` `6717c4f` puis `fef5109` intégrés · Claude de Laurent
 
 **Chantier** : Ubersuggest résiduel, PR-B (GO de Laurent du 14/10 : code, commit, push, QA ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_PAID = NO`) | **PR** : #119 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
 
@@ -65,17 +65,43 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 **Effet attendu** — [Inférence] Titles moins tronqués dans les résultats de recherche, donc possible gain de clarté ; Google peut réécrire le title affiché ; signaux « title too long / too short » à retirer au prochain audit sur ces pages. Aucun gain de position annoncé. Cela repose sur des schémas observés.
 
 **Vérifié** —
-- `main` `6717c4f`, puis `dd67d3f` (#139, #140, #144, D59), intégrés ; seuls 8 fichiers du site diffèrent de `main` (7 JSON, `solutions.ts`), seule la valeur du title change dans chacun ; les 2 JSON EN et le JSON e-commerce sont identiques à `main` ;
+- `main` `6717c4f`, puis `fef5109` (#139, #140, #142, #144, D59), intégrés ; seuls 8 fichiers du site diffèrent de `main` (7 JSON, `solutions.ts`), seule la valeur du title change dans chacun ; les 2 JSON EN et le JSON e-commerce sont identiques à `main` ;
 - `npx tsc --noEmit` vert ; `verifier-json` : 200 JSON valides ; Vitest 655/655 (36 fichiers) ; `npx next build` vert (variables factices de la CI) ; CSS compilée identique à `main` (empreinte `f1014956bf63`) ;
-- HTML prérendu, `main` `dd67d3f` contre branche, identifiant de build neutralisé, scripts retirés : 380 pages communes, 371 identiques, 9 différentes, toutes visées (7 articles, `solutions/documentation-qualite-produit` en FR et en EN) ; pour chacune, `<body>` hors `<head>`, H1 et JSON-LD identiques ;
+- HTML prérendu, `main` `fef5109` contre branche, identifiant de build neutralisé, scripts retirés : 380 pages communes, 371 identiques, 9 différentes, toutes visées (7 articles, `solutions/documentation-qualite-produit` en FR et en EN) ; pour chacune, `<body>` hors `<head>`, H1 et JSON-LD identiques ;
 - métadonnées rendues (Chromium) : `<title>`, `og:title` et `twitter:title` changent (`twitter:title` des articles suit désormais le `metaTitle` sur `main` ; les 2 solutions n'ont pas de `twitter:title` modifié) ; `description`, `og:description`, canonical, robots et hreflang identiques ;
 - images OG : l'URL `og:image` ne change que sur la page 2D et les 2 pages solutions (images générées depuis le title) ; `/api/og` répond 200 `image/png` pour les 2 nouveaux titles, rendu lisible sur 2 lignes ;
-- Chromium, `next start`, 10 pages (les 9 modifiées et l'article e-commerce, inchangé) × 1440, 820 et 390 px, `main` `6717c4f` contre branche (les 8 fichiers de site n'ont pas changé depuis ; la comparaison HTML ci-dessus a été refaite sur `dd67d3f`) : hauteurs de document identiques (un écart ponctuel sur une page au premier passage, absent aux deux rejeux), 0 erreur de page.
+- Chromium, `next start`, 10 pages (les 9 modifiées et l'article e-commerce, inchangé) × 1440, 820 et 390 px, `main` `6717c4f` contre branche (les 8 fichiers de site n'ont pas changé depuis ; la comparaison HTML ci-dessus a été refaite sur `fef5109`) : hauteurs de document identiques (un écart ponctuel sur une page au premier passage, absent aux deux rejeux), 0 erreur de page.
 
 **Supposé** — [Inférence] `www` servira le même HTML que `sysnext.vercel.app`. Cela repose sur des schémas observés.
 **Non regardé** — `e2e/seo.spec.ts` : non exécuté, le Chromium installé par la version de Playwright du dépôt est absent de l'environnement ; remplacé par le contrôle Chromium ci-dessus et par les tests Vitest de `lib/seo`. Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). GSC : aucune lecture.
 
 **Suite** — Validation D13/D42 des 8 titles FR par Sébastien (liste minimale dans le rapport de la session du 14/10), puis GO de fusion distinct de Laurent. Le `metaTitle` e-commerce reste en HOLD (choix de #140, gel F5 jusqu'au 23/11) : décision de Laurent à la fin du gel. Après fusion : `smoke.mjs`, puis Chrome sur `www`.
+
+---
+
+## 2026-10-14 · Menu « Solutions → Guides » : 5 entrées, slug par locale (A/B 3 langues + hub) · Claude de Laurent
+
+**Chantier** : GO EXÉCUTION FINALE A/B (14/10/2026) — menu Guides, PR dédiée au Header global | **PR** : #142 | **Base** : `main` `fef5109` (resync post-#144 : de-ch A/B publiés) | **Branche** : `claude/menu-guides-conversations`
+
+**Quoi** — `components/layout/Header.tsx` : sous-menu « Solutions → Guides » porté à 5 entrées, après les 2 existantes (« Identifier votre besoin », « Questions clés ») :
+1. « Choisir son studio photo » → article A ;
+2. « Organiser son studio photo » → article B ;
+3. « Méthodes & bonnes pratiques » → hub `/conversations-sebastien-jourdan` (libellé **neutre** : « Entretiens avec Sébastien Jourdan » n'apparaît pas dans le menu).
+`messages/{fr,en,de-ch}.json` : 6 clés (nav) localisées naturellement. Liens typés (desktop + mobile via `solutionSections`).
+
+**Pourquoi** — Rendre la série de méthode accessible depuis la navigation globale, sans exposer l'identité éditoriale du hub dans le menu.
+
+**Slug par locale** — Les slugs d'article ne sont PAS localisés par next-intl (fichiers séparés `content/blog/<locale>/<slug>.json`, slugs distincts dans `alternates.json`). Le Header passe donc le slug de la locale courante (`serieSlug`) : `fr` = `est-il-utile-…` / `e-commerce-comment-…`, `en` = `5-questions-before-investing-…` / `e-commerce-set-up-internal-packshots`, `de-ch` = `lohnt-sich-ein-internes-produktfotostudio` / `e-commerce-fotostudio-organisieren`. A et B affichés dans **les 3 langues** (les 6 versions sont publiées depuis #144) ; `NavLink` rend l'URL native (en de-ch, les slugs de-ch sont couverts via `alternates.json`). Le hub est affiché dans les 3 langues (ses destinations existent, épinglage `NavLink` sinon).
+
+**Fichiers** — `components/layout/Header.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — Header global (desktop + mobile). Non listé dans la carte à rayon large (`garde-consequences`), mais touche toute la navigation. Ajout de 3 items au sous-menu Guides (5 au total) : contrôle UX (débordement, ouverture clavier, mobile) et résolution des 6 liens A/B par locale. Retour arrière : `git revert`.
+
+**Vérifié** — `messages` JSON valides (3 langues, parité des clés) ; `npx tsc --noEmit` vert ; `npx next build` vert. QA build prod local (D59 §3, Playwright + examen des captures) : sous-menu « Solutions → Guides » rendu en cascade (desktop 1440) et en accordéon (mobile 390) dans les 3 locales ; 5 entrées présentes ; libellés A/B/hub localisés ; les 6 liens A/B portent le slug de leur locale (`/fr/blog/est-il-utile-…` & `/e-commerce-comment-…`, `/en/blog/5-questions-before-investing-…` & `/e-commerce-set-up-internal-packshots`, `/de-ch/blog/lohnt-sich-ein-internes-produktfotostudio` & `/e-commerce-fotostudio-organisieren`) et résolvent **HTTP 200** ; 0 erreur console ; overflow du flyout desktop = 0.
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé / hors périmètre** — Un overflow horizontal ~53px au chargement mobile (390) provient du bandeau de logos `animate-marquee` (élément préexistant, intentionnellement plus large que le viewport) : présent avant toute interaction avec le menu, non introduit par cette PR. Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4, puis contrôle production (sysnext → www).
 
 ---
 
