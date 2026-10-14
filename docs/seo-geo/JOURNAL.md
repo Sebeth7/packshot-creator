@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · Menu « Solutions → Guides » : 3 entrées (studios A/B + hub méthodes) · Claude de Laurent
+
+**Chantier** : GO FINAL D'ACCÉLÉRATION A/B (14/10/2026) — enrichissement du menu Guides, PR dédiée au Header global, brouillon | **PR** : menu dédié, brouillon | **Base** : `main` `6717c4f` | **Branche** : `claude/menu-guides-conversations`
+
+**Quoi** — `components/layout/Header.tsx` : 3 entrées ajoutées sous « Solutions → Guides », après les 2 existantes (« Identifier votre besoin », « Questions clés ») :
+1. « Choisir son studio photo » → article A (`/fr/blog/est-il-utile-dinternaliser-…`) ;
+2. « Organiser son studio photo » → article B (`/fr/blog/e-commerce-comment-mettre-en-place-…`) ;
+3. « Méthodes & bonnes pratiques » → hub `/conversations-sebastien-jourdan` (libellé **neutre** : « Entretiens avec Sébastien Jourdan » n'apparaît pas dans le menu).
+`messages/{fr,en,de-ch}.json` : 6 clés (nav) localisées naturellement. Liens typés (desktop + mobile via `solutionSections`).
+
+**Pourquoi** — Rendre la série de méthode accessible depuis la navigation globale, sans exposer l'identité éditoriale du hub dans le menu.
+
+**Affichage par langue** — A et B ne sont affichés **que** pour `fr` et `en` (langues où l'URL de l'article existe) ; **omis en de-ch** (version de-ch non créée — aucune URL inventée). Le hub est affiché dans les 3 langues (ses 3 destinations existent).
+
+**Fichiers** — `components/layout/Header.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — Header global (desktop + mobile). Non listé dans la carte à rayon large (`garde-consequences`), mais touche toute la navigation. Ajout de 3 items au sous-menu Guides (5 au total) : contrôle UX requis (débordement, ouverture clavier, mobile) — **NON VÉRIFIÉ** sur Preview réelle (SSO). Retour arrière : `git revert`.
+
+**Vérifié** — `messages` JSON valides (3 langues, parité des clés) ; `npx tsc --noEmit` vert ; `npx next build` vert ; pathnames `/blog/[slug]` et `/conversations-sebastien-jourdan` déclarés dans `i18n/routing.ts`.
+**Supposé** — Rendu et UX du sous-menu (desktop/tablette/mobile, clavier) à contrôler sur Preview réelle. Warning eslint `Calculator` non utilisé = **préexistant** (hors périmètre).
+**Non regardé** — Publication : conditionnée à la mise en ligne réelle des articles A/B (mission étape 9).
+
+**Suite** — PR en brouillon. Intégration seulement lorsque les destinations A/B sont réellement publiées (dépend de la fusion de #139/#140, elle-même soumise à D15 : contrôle Preview humain + délai).
+
+---
+
 ## 2026-10-14 · #134 : Light + Byte AG, affirmation de cessation d'activité CONSERVÉE (décision définitive de Laurent) ; `main` `1ebda83` intégré · Claude de Laurent
 
 **Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR

@@ -7,7 +7,7 @@ import { NavLink as Link } from '@/components/layout/NavLink';
 import { type LinkHref, localeSwitchHref, type AppLocale } from '@/i18n/deChCoverage';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 
@@ -441,6 +441,34 @@ export default function Header() {
           labelKey: 'guidesQuestions',
           descKey: 'guidesQuestionsDesc',
           icon: <HelpCircle className="h-4 w-4" />,
+        },
+        // Série « Produire ses images produit » (articles A et B). Affichés seulement
+        // dans les langues où l'article existe réellement : fr et en. La version de-ch
+        // n'est pas créée → entrées A/B omises en de-ch (jamais d'URL inventée).
+        ...(((locale === 'fr' || locale === 'en')
+          ? [
+              {
+                href: { pathname: '/blog/[slug]', params: { slug: 'est-il-utile-dinternaliser-sa-production-de-photos-packshot' } },
+                labelKey: 'guidesChoisir',
+                descKey: 'guidesChoisirDesc',
+                icon: <Camera className="h-4 w-4" />,
+              },
+              {
+                href: { pathname: '/blog/[slug]', params: { slug: 'e-commerce-comment-mettre-en-place-votre-studio-photo' } },
+                labelKey: 'guidesOrganiser',
+                descKey: 'guidesOrganiserDesc',
+                icon: <ClipboardCheck className="h-4 w-4" />,
+              },
+            ]
+          : []) as DropdownItem[]),
+        // Hub « Conversations avec Sébastien Jourdan » — libellé NEUTRE « Méthodes &
+        // bonnes pratiques » (ne pas afficher « Entretiens… » dans le menu). Les trois
+        // destinations linguistiques du hub existent déjà.
+        {
+          href: '/conversations-sebastien-jourdan',
+          labelKey: 'guidesMethodes',
+          descKey: 'guidesMethodesDesc',
+          icon: <BookOpen className="h-4 w-4" />,
         },
       ],
     },
