@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · Corrections issues des audits A/B/C/D : fondateur (B1), « exclusif » D6 (B4), i18n « min de lecture » (D3) · Claude de Laurent
+
+**Chantier** : Consolidation audits A/B/C/D (reprise de la passe du 12-13/10) | **PR** : brouillon dédié (branche `claude/zen-maxwell-i59q3o`) | **Commit** : voir PR
+
+**Quoi** —
+- **B1 — attribution du fondateur** (fait métier Laurent du 14/10 : fondateur de PackshotCreator = Laurent Wainberg) : nom rétabli dans `title`, `h1`, `metaTitle`, `description` des deux articles d'interview, FR et EN (8 champs). « PackshotCreator, fondateur de PackshotCreator » → « Laurent Wainberg, fondateur de PackshotCreator ». Rôle de la marque et de Sébastien Jourdan (dirigeant actuel) non modifiés.
+- **B4 — D6** (distributeur officiel, jamais exclusif) : `focus-sur-lhyperfocus.json` FR, « distribue exclusivement les solutions Orbitvu » → « distribue officiellement les solutions Orbitvu ». Seule revendication de distribution Orbitvu portant « exclusivement ». Le « distributeur exclusif d'Ortery » (EMEA, historique, autre périmètre commercial) n'est PAS touché (hors périmètre D6). Les textes « propriété exclusive de SYSNEXT » non touchés (D6).
+- **D3 — anomalie i18n** : label « N min de lecture » codé en dur FR sur 6 pages blog statiques, servi tel quel en EN. Motif bilingue déjà en vigueur (`budget-studio-photo-automatise`) appliqué : `{lang === 'fr' ? 'N min de lecture' : 'N min read'}`. Aucun contenu éditorial traduit.
+
+**Pourquoi** — Fait métier Laurent du 14/10 (A3) ; D6 (20/08) ; A2 (anomalie i18n D3). Mission « TERMINER LES CORRECTIONS RESTANTES » du 14/10 : GO_CODE pour les seuls résidus A/B/C/D vérifiés et autorisés ; GO_MERGE = NO.
+
+**Fichiers** — `content/blog/fr/decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator.json`, `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json`, `content/blog/fr/focus-sur-lhyperfocus.json`, `app/[lang]/blog/{ia-photo-produit-guide-2026,blendai-vs-flair-ai-quelle-ia-pour-vos-campagnes-produits-en-2026,orbitvu-vs-concurrents,blendai-vs-photoroom-quel-outil-ia-pour-vos-visuels-produits-en-2026,guide-achat-studio-2026,comment-calculer-le-roi-d-un-studio-photo-automatise-en-2026-guide-complet}/page.tsx`.
+
+**Effet attendu** — Métadonnées d'interview nommant correctement le fondateur ; revendication de distribution conforme à D6 ; label de temps de lecture dans la bonne langue en EN. [Inférence] effet SEO/GEO marginal ; aucune mesure attachée.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. `npx vitest run` : 633/633. `node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx next build` : compilé, 390/390 pages générées, exit 0. Base : `main` `6717c4f`.
+**Supposé** — Le sujet de l'interview est bien Laurent Wainberg (slug, titre d'origine, fait métier concordants).
+**Non regardé** — `www` dans Chrome (R4) ; QA Preview Vercel (non déployée au titre de cette entrée) ; équivalence sémantique chiffre-à-chiffre des prix FR/EN de l'article ROI (hors périmètre).
+
+**Suite** —
+- **Laissé en l'état, signalé** : corps de l'interview (ligne 20) « PackshotCreator, fondateur de la société Sysnext » — corriger le nom y asserterait un rôle de fondateur de **Sysnext** que le fait métier du 14/10 refuse de déduire ; **NON ÉTABLI**, confirmation de Laurent requise (le fait métier ne confirme que « fondateur de PackshotCreator »).
+- **HOLD AUTORISATION (propriété Sébastien, `CLAUDE.md`)** : C006 (2 boutons inertes du calculateur ROI) ; D1 (cas d'usage FR du calculateur ROI / sélecteur de machines). A1 interdit d'étendre D58 à C006.
+- **HOLD GOUVERNANCE (F1)** : 3 pages `/en` en français (B3, D9/D17/D38) ; 31 liens de-ch → FR ; maillage `/packshot-amazon` et `vin-spiritueux` ; complétion `llms.txt` (aussi R8).
+- **DÉJÀ TRAITÉ PAR AUTRE PR** : valeurs `alt` `__wf_reserved_` (B2) traitées par #113 — ne pas doubler ; recompter le résidu après fusion.
+- **HOLD (R8 + gels)** : `organizationSchema().description` figée FR (rendu sur accueil/F5/Mode gelés ; dépend de D33).
+- GO_MERGE = NO. PR brouillon.
+
 ## 2026-10-14 · #134 : Light + Byte AG, affirmation de cessation d'activité CONSERVÉE (décision définitive de Laurent) ; `main` `1ebda83` intégré · Claude de Laurent
 
 **Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
