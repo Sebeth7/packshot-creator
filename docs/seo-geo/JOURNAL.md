@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #117 — dépassement de délai intermittent des tests : interblocage de Chromium 141 déclenché par la boucle `window.scrollTo` ; spec passé à la molette ; `main` `fef5109` intégré · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `b96cc32` (fusion de `main` `fef5109`) ; correction du test dans le commit de cette entrée
+
+**Quoi** — Défaut du test ; aucun défaut du produit reproduit : la boucle de `window.scrollTo` de `openArticle` (`e2e/consentement-medias.spec.ts`) déclenchait par intermittence un interblocage interne à Chromium 141 ; le spec défile désormais à la molette (`page.mouse.wheel`, pas de 600, au plus 120 pas, arrêt en bas de page). `main` `fef5109` (#144, #142) fusionné sans rebase : seul `JOURNAL.md` en conflit (1 bloc, union, ordre UTC) ; traductions, `Header.tsx`, `content/**` et `messages/*.json` repris de `main` tels quels.
+
+**Pourquoi** — GO d'audit ciblé de Laurent (14/10) : établir si le dépassement est un défaut du test ou du produit, ne rien modifier sans reproduction. Le 14/10 au matin : 137/138, cause non établie.
+
+**Fichiers** — `e2e/consentement-medias.spec.ts` (fonction `openArticle` seulement), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. Spec plus lent : défilement médian d'environ 3 s en desktop et 6 s en Pixel 5, contre moins d'une seconde.
+
+**Vérifié** — Build local, variables factices, DNS hors `localhost` bloqué, réponses des services simulées par `page.route` (aucun service tiers contacté) :
+- Méthode : sonde locale hors dépôt ; après 10 s de boucle, état des processus Chromium (CPU et état noyau par fil), pile native du fil principal des moteurs de rendu (gdb), tentative de pause JS (CDP), puis 60 s d'attente supplémentaires.
+- Reproduit : 17 blocages sur 1 605 ouvertures d'article avec la boucle `window.scrollTo` (Chromium 141.0.7390.37 complet : 9 sur 1 275 ; `headless_shell` 141 : 8 sur 330), sur les 3 articles (Vimeo, Sketchfab, saasphoto.com), en desktop comme en mobile, pas seulement sur l'article photogrammétrie.
+- Chaque blocage : navigation normale (`load` en moins de 0,5 s), puis fil principal du moteur de rendu immobile (0 % CPU), en attente sans délai dans `cc::LayerTreeHost::WaitForProtectedSequenceCompletion()`, atteint par `blink::PaintArtifactCompositor::DirectlySetScrollOffset` ou par `cc::LayerTreeHost::AnimateLayers` ; fil Compositor inactif ; aucune requête CDP traitée, aucune pause JS possible ; toujours bloqué 60 s plus tard. Hors blocage, la boucle dure au plus 2 s, sans valeur intermédiaire.
+- Contre-épreuves, même build, mêmes pages, à charge égale, en parallèle : molette, 0 blocage sur 330 ouvertures ; spec corrigé 320/320 (Desktop Chrome et Pixel 5, `headless_shell` 141, 8 répétitions), contre 318/320 pour le spec d'origine (2 dépassements dans `page.evaluate`).
+- Tête fusionnée avec `fef5109` et spec corrigé : `npx tsc --noEmit` vert ; Vitest 669/669 ; `npx next build` vert, 392 pages ; `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5, 2 répétitions : 156/156 ; suite élargie (mêmes specs et QA ad hoc des 6 articles passée à la molette), 2 répétitions : 276/276 (138 × 2 ; 137/138 le matin avec la boucle `window.scrollTo`).
+- Diff contre `main` : les 12 fichiers de #117 seulement.
+
+**Supposé** — Chromium 145 (`chromium-headless-shell` de Playwright 1.58, celui de la CI) : non testé, révision absente du conteneur. La CI ne joue que Desktop Chrome, avec 2 nouvelles tentatives : un blocage y serait rejoué sans être compté en échec. Chrome réel, avec écran : non testé.
+
+**Non regardé** — Preview (protégée par SSO) et lecteurs tiers réels ; Android réel ; lecteur d'écran ; réponse 402 de saasphoto.com. Google Maps, `orbitvu.co` et révocation de la mesure d'audience : hors #117, non résolus.
+
+**Suite** — Validation éditoriale des textes de la fenêtre d'information (FR, EN, de-CH) ; QA Chrome authentifiée de la Preview ; GO de fusion distinct.
+
+---
+
 ## 2026-10-14 · Menu « Solutions → Guides » : 5 entrées, slug par locale (A/B 3 langues + hub) · Claude de Laurent
 
 **Chantier** : GO EXÉCUTION FINALE A/B (14/10/2026) — menu Guides, PR dédiée au Header global | **PR** : #142 | **Base** : `main` `dd67d3f` (resync post-#144 : de-ch A/B publiés) | **Branche** : `claude/menu-guides-conversations`

@@ -60,10 +60,17 @@ async function openArticle(page: Page, path: string) {
   await page.waitForLoadState('load');
   // Hydratation : l'activateur pose role="button" sur les façades.
   await expect(page.locator('a.pkc-embed__facade').first()).toHaveAttribute('role', 'button');
-  // Défilement jusqu'en bas : une iframe en chargement différé serait demandée ici.
-  await page.evaluate(async () => {
-    for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 30)); }
-  });
+  // Défilement jusqu'en bas, à la molette comme un internaute : une iframe en
+  // chargement différé serait demandée ici. Pas de boucle de window.scrollTo :
+  // relevé du 14/10/2026 en local (Chromium 141), elle figeait parfois le moteur
+  // de rendu (interblocage interne au navigateur, test en dépassement de délai).
+  const { width, height } = page.viewportSize() ?? { width: 800, height: 600 };
+  await page.mouse.move(width / 2, height / 2);
+  for (let i = 0; i < 120; i++) {
+    if (await page.evaluate(() => scrollY + innerHeight >= document.body.scrollHeight - 5)) break;
+    await page.mouse.wheel(0, 600);
+    await page.waitForTimeout(30);
+  }
   await page.waitForTimeout(500);
 }
 
