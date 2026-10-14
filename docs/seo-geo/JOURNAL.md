@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #129 — finalisation avant publication : e-mail de confirmation DE-CH corrigé, configuration réelle consignée, protocole de test mis à jour, `main` `1ebda83` intégré · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO de Laurent du 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS, GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129 = YES) | **PR** : #129 (brouillon) | **Commits** : correctif DE-CH, gouvernance, fusion de `main`
+
+**Quoi** —
+- E-mail de confirmation des alertes, DE-CH : « Jede Nachricht enthält einen Abmeldelink. » devient « Jede künftige E-Mail mit neuen Angeboten enthält einen Abmeldelink. » ; le message de confirmation ne contient pas ce lien. Consentement V3 inchangé ; un test fige la règle dans les trois langues.
+- Gouvernance : configuration Resend et Vercel réellement faite (13/10) consignée dans ETAT, le dossier de release et la PR ; décisions de Laurent du 14/10 enregistrées ; protocole de test réel mis à jour (désinscription manuelle dans Resend, route publique NON VÉRIFIÉE EN BOUT EN BOUT) ; article 9 préparé sans durée ; désinscription autonome proposée, non implémentée ; séquence de mise en ligne et retour arrière.
+- `main` `1ebda83` (#136, #137, #138) fusionné dans la branche ; seul conflit : ce JOURNAL, résolu par union.
+
+**Pourquoi** — Mission « GO Laurent — finalisation active avant publication » du 14/10. Le texte DE-CH promettait un lien que le message ne contient pas ; ETAT, le dossier de release et la PR disaient encore les variables d'alerte « absentes ».
+
+**Fichiers** — `lib/occasion/alertes/courriel.ts`, `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,ETAT,BOITE-AUX-LETTRES,JOURNAL}.md` ; fusion : fichiers de #136, #137, #138 venant de `main`.
+
+**Effet attendu** — Aucun en production (verrous fermés, page en 404). Nouvelle Preview de la branche.
+
+**Vérifié** — Têtes relues avant intervention : branche `ef5f054`, `main` `1ebda83` ; `git merge-tree` : un seul conflit (`docs/seo-geo/JOURNAL.md`) ; `i18n/routing.ts` modifié des deux côtés, fusionné sans conflit. État à stock vide relu dans le code : bloc machines et bouton « Voir les machines » seulement avec du stock, étiquette « Aucune machine affichée en ce moment », exemples fictifs dans la seule vue `…/exemples-fictifs` (404 en production). Avant fusion de `main` : `npx tsc --noEmit` vert ; `npx vitest run` 44 fichiers, 816 tests verts (815 + 1 nouveau) ; ESLint sans erreur sur les deux fichiers de code touchés. Après fusion : voir le rapport de la PR (build R1, tests, CI).
+
+**Supposé** — Configuration Resend et Vercel : contrôle de Claude dans Chrome du 13/10, rapporté par Laurent ; cette session n'a accès ni à Resend ni à Vercel. Décisions du 14/10 : transmises par Laurent ; la compatibilité RGPD est son appréciation métier, pas un audit juridique.
+
+**Non regardé** — Envois réels, Production, déploiements Vercel (aucune suppression), contacts Resend. Relecture native de la phrase DE-CH.
+
+**Suite** — Préalables en lecture seule (compte Resend, quotas, adresses de test, déploiements de `75d5914`) ; GO_TEST_REEL_ALERTES et adresses ; décisions de Sébastien (conservation, non-réinscription, textes) ; GO d'écriture Vercel Production ; GO_MERGE puis GO_PUBLICATION distincts.
+
+---
+
 ## 2026-10-13 · #129 — `main` (#135) intégré, conflits de gouvernance résolus ; Q25 préparée pour l'accès Resend de Laurent (aucune écriture) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, reprise Q25 du 13/10 (GO_AUDIT_READ_ONLY, GO_PRÉPARATION_Q25 = YES ; écritures Resend et Vercel en attente de GO) | **PR** : #129 (brouillon) | **Commits** : fusion `56f9382`, puis ce commit
