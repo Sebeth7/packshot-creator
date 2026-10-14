@@ -245,6 +245,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
                 <p>{t('article9.p2')}</p>
                 <p>{t('article9.p3')}</p>
                 <p>{t('article9.p4')}</p>
+                <p>{t('article9.p5')}</p>
               </div>
             </div>
 

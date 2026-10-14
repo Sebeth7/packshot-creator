@@ -167,6 +167,27 @@ describe('Désinscription', () => {
     expect(c?.properties[PROPRIETES.desinscritLe]).toBe('2026-10-12T09:00:00.000Z');
   });
 
+  it('conservation limitée : ne restent que l’état et la date de désinscription ; la non-réinscription tient toujours', async () => {
+    const { f, r } = registre();
+    await r.confirmer(inscription);
+    await r.desinscrire('claire@atelier.fr', T);
+    expect(f.contacts.get('claire@atelier.fr')?.properties).toEqual({
+      [PROPRIETES.etat]: 'desinscrit',
+      [PROPRIETES.desinscritLe]: '2026-10-12T09:00:00.000Z',
+    });
+    expect(await r.confirmer({ ...inscription, confirmeLe: '2026-10-13T10:00:00.000Z' })).toBe('desinscrit');
+    expect(f.contacts.get('claire@atelier.fr')?.topics.get(TOPIC)).toBe('opt_out');
+  });
+
+  it('après la purge (contact supprimé au terme de la conservation) : une nouvelle demande confirmée réinscrit', async () => {
+    const { f, r } = registre();
+    await r.confirmer(inscription);
+    await r.desinscrire('claire@atelier.fr', T);
+    f.contacts.delete('claire@atelier.fr');
+    expect(await r.confirmer({ ...inscription, confirmeLe: '2029-11-01T10:00:00.000Z' })).toBe('inscrit');
+    expect(f.contacts.get('claire@atelier.fr')?.topics.get(TOPIC)).toBe('opt_in');
+  });
+
   it('adresse inconnue : aucune création de contact, aucune écriture', async () => {
     const { f, r } = registre();
     expect(await r.desinscrire('inconnu@exemple.fr', T)).toBe('desinscrit');

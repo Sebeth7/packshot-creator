@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #129 — Q25 close : conservation des alertes (article 9), désinscription limitée, purge trimestrielle ; `main` `bf1165a` intégré · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (« GO de finalisation — confirmation téléphonique de Sébastien », GO_CORRECTIFS_CONFIDENTIALITÉ_129 = YES) | **PR** : #129 (brouillon) | **Commit** : ce commit ; fusion de `main` `bf1165a` (#140) en `ae4727f`
+
+**Quoi** — Validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 : conservation des alertes écrite à l'article 9 (`p5`, FR, EN, copie DE-CH) ; à la désinscription, seules l'adresse, l'état et la date restent (preuve d'inscription et famille effacées) ; purge trimestrielle manuelle documentée, non déclenchée ; Q25 close ; D60 complétée (conservation, non-réinscription, validation éditoriale).
+
+**Pourquoi** — Décision de Sébastien : actifs trois ans depuis la confirmation ; désinscrits trois ans depuis la désinscription, informations limitées au respect de l'opposition ; purge manuelle trimestrielle ; pas de blocage perpétuel. Ce n'est pas un audit juridique indépendant.
+
+**Fichiers** — `messages/{fr,en,de-ch}.json` (`privacy.article9.p5`), `app/[lang]/confidentialite/page.tsx` (une ligne), `lib/occasion/alertes/resend.ts` (`desinscrire`, type de `contacts.update`), `lib/occasion/__tests__/alertes-doublures.ts`, `alertes-registre.test.ts`, `occasion-langues.test.ts` ; `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q25 descendue en « traitées » avec la réponse), `DECISIONS.md` (D60), `RELEASE-129-OCCASION.md` (sections 0 bis, 7, 8, 9), `ETAT.md`.
+
+**Effet attendu** — Aucun en production avant fusion. À la fusion, l'article 9 public porte les durées. Les autres traitements de la politique de confidentialité ne changent pas.
+
+**Vérifié** — Tests ajoutés : après désinscription, ne restent que `etat` et `desinscrit_le`, la non-réinscription tient ; après suppression du contact (purge), une nouvelle confirmation réinscrit ; article 9 : durées présentes dans les trois fichiers, aucune durée chiffrée ni promesse perpétuelle, paragraphe rendu par la page. Commandes : voir le commit.
+**Supposé** — [Inférence] Resend efface une propriété mise à `null` (prévu par les types du SDK 6.9.3, non constaté sur l'API réelle) : à constater au test réel (section 7, étape 8). En cas de refus, la désinscription répondrait 500 après avoir passé le topic en `opt_out` : l'opposition serait respectée, l'écran non.
+**Non regardé** — Les autres articles de la politique de confidentialité ; la page légale DE-CH (servie en FR et EN seulement).
+
+**Suite** — Phase 0 Chrome, fenêtre de test, variables Production, puis fusion et publication conditionnelles.
+
+---
+
 ## 2026-10-14 · #129 — `main` `a014993` (#139) intégré ; décision de #129 renumérotée D60 · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (GO_SYNC_MAIN_BRANCHE_129 du 14/10) | **PR** : #129 (brouillon) | **Commit** : ce commit (fusion)

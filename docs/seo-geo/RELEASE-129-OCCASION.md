@@ -7,8 +7,9 @@ GO_CORRECTIFS_SEO_BRANCHE_129 = YES (décision D60, ex-D59 de la branche). « Ar
 clôture » (14/10, section 0 bis) : GO_CODE ciblé (e-mail « Inscription confirmée »,
 fait) ; GO_TEST_REEL_ALERTES, GO_TEST_REEL_RECHERCHE, GO_ENVOI_TEST,
 GO_NETTOYAGE_DEPLOIEMENTS, GO_VERCEL_PRODUCTION, GO_MERGE_PR129 et GO_PUBLICATION
-= YES **sous conditions** ; conservation et validation éditoriale **EN ATTENTE**
-(HOLD de la fusion et de la publication). GO_ENVOI_REEL (bulletin) = NO.
+= YES **sous conditions** ; conservation et validation éditoriale **obtenues**
+(validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 ;
+GO_CORRECTIFS_CONFIDENTIALITÉ_129 = YES ; section 9). GO_ENVOI_REEL (bulletin) = NO.
 Ce dossier ne déclenche rien : il liste ce qui est prêt, ce qui manque et l'ordre
 de mise en service.
 
@@ -37,7 +38,7 @@ en **D60** (`docs/seo-geo/DECISIONS.md` ; proposée D59 sur la branche, renumér
 
 | # | Objet | Décision | État au 14/10 |
 |---|---|---|---|
-| 1 | Conservation (actifs, désinscrits, point de départ, purge) et validation éditoriale | **EN ATTENTE**, rien n'est inventé. Règle de non-réinscription conservée. Validation éditoriale de Sébastien (D42), sauf exception explicite et ciblée de Laurent. La confirmation RGPD générale de Laurent ne fixe pas ces paramètres | **HOLD** de la fusion et de la publication (section 9) |
+| 1 | Conservation (actifs, désinscrits, point de départ, purge) et validation éditoriale | EN ATTENTE au matin ; **obtenues** l'après-midi : validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 (D60, complément) | **Levé** : article 9 complété, purge documentée (section 9) |
 | 2 | Désinscription autonome | **E-MAIL** : un unique e-mail « Inscription confirmée », lien personnel de désinscription, après confirmation effective du double opt-in | **Implémenté** sur la branche (section 10), textes à valider (D42), aucun envoi réel avant GO_ENVOI_TEST |
 | 3 | Adresses et plafond | 11 e-mails au plus ; T1, T2, T3 (alertes), B (recherche si nécessaire), désignées par Laurent dans Chrome, jamais dans le dépôt ni les rapports ; début seulement après vérification Resend (statut des adresses, quotas, cumul mensuel) | Phase 0 Chrome à exécuter |
 | 4 | GO_TEST_REEL_RECHERCHE | YES conditionnel : reliquat B seulement si la phase 0 confirme qu'il n'est pas établi ; 2 e-mails au plus, dans le plafond | Attend la phase 0 |
@@ -45,8 +46,8 @@ en **D60** (`docs/seo-geo/DECISIONS.md` ; proposée D59 sur la branche, renumér
 | 6 | GO_ENVOI_TEST | YES conditionnel : adresses désignées seulement, plafond 11, marge de quota vérifiée ; aucun client réel, aucune campagne, aucun bulletin | Attend la phase 0 |
 | 7 | GO_NETTOYAGE_DEPLOIEMENTS | YES conditionnel : seuls les déploiements identifiés de `75d5914` et du futur commit d'ouverture, après vérification des identifiants, des verrous refermés et du 503 | Attend la phase 0 et la fermeture |
 | 8 | GO_VERCEL_PRODUCTION | YES conditionnel : les cinq variables de la section 3 seulement, secret Production distinct en Sensitive, aucune valeur affichée | Phase 3 Chrome, exécutable à tout moment |
-| 9 | GO_MERGE_PR129 | YES strictement conditionnel (section 8, étape 1) ; prérequis manquant → HOLD | **HOLD** (item 1) |
-| 10 | GO_PUBLICATION | YES distinct, strictement conditionnel, après fusion vérifiée ; PR dédiée sur une branche dédiée autorisée pour cette seule publication ; `BULLETIN_ENVOI_AUTORISE = false` ; anomalie bloquante → suspension, retour arrière autorisé | **HOLD** (item 1) |
+| 9 | GO_MERGE_PR129 | YES strictement conditionnel (section 8, étape 1) ; prérequis manquant → HOLD | Attend les essais réels et les variables Production |
+| 10 | GO_PUBLICATION | YES distinct, strictement conditionnel, après fusion vérifiée ; PR dédiée sur une branche dédiée autorisée pour cette seule publication ; `BULLETIN_ENVOI_AUTORISE = false` ; anomalie bloquante → suspension, retour arrière autorisé | Attend la fusion vérifiée |
 
 **Budget d'e-mails de la fenêtre (plafond 11)** : alertes T1, T2, T3 = 3 demandes de
 confirmation + 3 « Inscription confirmée » = 6 ; recherche B, si nécessaire = 2 ;
@@ -292,7 +293,8 @@ quota inclus.
    du 14/10, section 10) : pour T1, T2 et T3, ouvrir le lien dans le navigateur
    connecté, cliquer « Me désinscrire » (ou équivalent de la langue) : état
    « désinscription faite ». Resend : topic Occasion en `opt_out`, contact retiré
-   du segment Occasion, propriété `etat` = `desinscrit`, statut global inchangé.
+   du segment Occasion, ne restent que `etat` = `desinscrit` et `desinscrit_le`
+   (les cinq autres propriétés effacées, section 9), statut global inchangé.
    Puis nouveau clic sur le lien de confirmation initial : « Adresse désinscrite »,
    rien n'est réécrit ni envoyé (non-réinscription,
    `lib/occasion/alertes/resend.ts`, `confirmer`). Cette étape démontre la route
@@ -322,7 +324,8 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
 
 1. **Préalables** : tests réels de la section 7 en PASS, ou reliquat explicitement
    reporté par Laurent ; décision de conservation écrite à l'article 9
-   (section 9) ; textes validés (D42, étape 5) ou exception explicite de Laurent ;
+   (section 9, fait le 14/10) ; textes validés (D42, étape 5 : validation
+   téléphonique de Sébastien rapportée par Laurent, le 14/10/2026) ;
    SEO option B en place dans le code (D60, section 2).
 2. **Configuration Production** (sur GO d'écriture Vercel Production, dashboard,
    jamais la CLI) : `OCCASION_NOTIFICATION_EMAIL` = `sebastien.jourdan@sysnext.com` ;
@@ -361,27 +364,62 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
    si le défaut vient du code fusionné, `git revert -m 1` du commit de fusion de
    #129. Les contacts déjà inscrits restent chez Resend.
 
-## 9. Conservation des inscrits : décision nécessaire et texte préparé
+## 9. Conservation des inscrits : décision du 14/10 et purge trimestrielle
 
-L'article 4 (« 3 ans pour les données prospects ») ne vaut pas décision pour les
-alertes (Q25). Décision attendue (Sébastien, Q25 ; aucune durée n'est inventée ici) :
-1. **Durée** de conservation d'un inscrit actif.
-2. **Point de départ** : confirmation de l'inscription, ou dernier envoi reçu,
-   ou dernière interaction.
-3. **Adresse désinscrite** : la règle de non-réinscription suppose de la garder
-   (topic `opt_out` chez Resend). Durée de cette conservation, limitée à cette fin.
-4. **Purge** : qui la fait et à quel rythme, à la main dans Resend (ni cron ni n8n).
+**Décision** (Q25, point 4 ; D60, complément) — validation téléphonique de Sébastien
+rapportée par Laurent, le 14/10/2026. Fait métier, pas un audit juridique :
+1. **Inscrit actif** : trois ans à compter de la confirmation de l'inscription
+   (`occasion_alertes_confirme_le`).
+2. **Adresse désinscrite** : trois ans à compter de la désinscription
+   (`occasion_alertes_desinscrit_le`), avec les seules informations nécessaires au
+   respect de l'opposition.
+3. **Purge** : contrôle manuel trimestriel, sous la responsabilité de Sébastien ;
+   aucun cron, aucun n8n, aucune purge automatique.
+4. **Non-réinscription** : tenue tant que la désinscription est conservée ; aucun
+   blocage perpétuel promis ; après la purge, une nouvelle demande repasse par un
+   nouveau consentement explicite et le double opt-in (le code le fait déjà : un
+   contact absent est traité comme une première inscription ; testé).
 
-Texte à insérer dans l'article 9 (paragraphe `p5`, `messages/{fr,en,de-ch}.json`,
-le bloc DE-CH étant la copie française), crochets à remplacer par la décision :
-- FR : « Les adresses inscrites aux alertes sont conservées [DURÉE] à compter de
-  [POINT DE DÉPART], puis supprimées. Après une désinscription, l'adresse est
-  conservée [DURÉE] pour la seule fin de ne pas vous réinscrire, puis supprimée. »
-- EN : “Email addresses subscribed to alerts are kept for [DURATION] from
-  [STARTING POINT], then deleted. After you unsubscribe, your address is kept for
-  [DURATION] solely to ensure you are not subscribed again, then deleted.”
-À la même occasion : test `occasion-langues.test.ts` (« sans durée de conservation
-inventée ») réécrit pour exiger la durée décidée.
+**Dans le code** — `desinscrire` (`lib/occasion/alertes/resend.ts`) passe le topic
+Occasion en `opt_out`, retire le contact du segment Occasion, puis ne laisse que
+`occasion_alertes_etat` = `desinscrit` et `occasion_alertes_desinscrit_le` :
+`demande_le`, `confirme_le`, `version`, `source` et `famille` sont effacées
+(valeur `null`, prévue par les types du SDK `resend` 6.9.3 ; [Inférence] effacement
+réel par l'API à constater pendant le test réel, section 7, étape 8). La
+non-réinscription repose sur l'état et le topic, qui restent. Consentement v3
+inchangé.
+
+**Article 9, paragraphe `p5`** (`messages/{fr,en,de-ch}.json`, bloc DE-CH en copie
+française ; rendu par `app/[lang]/confidentialite/page.tsx`) — FR : « Conservation des
+alertes : une adresse inscrite est conservée trois ans à compter de la confirmation
+de son inscription, puis supprimée de la liste. Après une désinscription, seules
+votre adresse et la date de votre désinscription sont conservées, trois ans à
+compter de celle-ci et pour la seule fin de respecter votre opposition, puis
+supprimées. Ces suppressions sont faites lors d'un contrôle trimestriel. Une fois
+l'adresse supprimée, une nouvelle inscription suppose une nouvelle demande et un
+nouveau consentement, confirmé par e-mail. » EN : traduction fidèle. Test :
+`occasion-langues.test.ts` exige ces durées et refuse toute promesse perpétuelle.
+
+**Procédure de purge trimestrielle** (manuelle, Resend, Sébastien ou une personne
+qu'il désigne ; à ne pas déclencher avant la première échéance) :
+1. Resend, Contacts, filtre sur le segment Occasion puis sur le topic Occasion :
+   relever, sans les copier hors de Resend, les contacts concernés.
+2. **Actifs échus** (topic `opt_in`, `occasion_alertes_confirme_le` de plus de trois
+   ans) : si le contact ne sert à aucune autre liste (aucun autre segment, aucun
+   autre topic en `opt_in`), le supprimer ; sinon, le retirer du segment Occasion,
+   passer le topic Occasion à `opt_out` et effacer toutes les propriétés
+   `occasion_alertes_*` (sans état ni date, l'adresse redevient inscriptible par
+   double opt-in).
+3. **Désinscrits échus** (`occasion_alertes_etat` = `desinscrit`,
+   `occasion_alertes_desinscrit_le` de plus de trois ans) : même règle (suppression,
+   ou effacement des propriétés `occasion_alertes_*` si le contact sert ailleurs).
+4. **Désinscrits sans date** (sortis du topic par un autre moyen que notre lien, ou
+   propriétés résiduelles) : poser `occasion_alertes_etat` = `desinscrit` et
+   `occasion_alertes_desinscrit_le` = date du contrôle, effacer les autres propriétés
+   `occasion_alertes_*`.
+5. Ne jamais toucher au statut global (`unsubscribed`) ni aux autres segments et
+   topics ; consigner au JOURNAL la date du contrôle et les nombres traités, sans
+   aucune adresse.
 
 ## 10. Désinscription autonome : e-mail « Inscription confirmée » (implémenté le 14/10)
 

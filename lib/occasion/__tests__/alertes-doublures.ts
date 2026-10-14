@@ -81,12 +81,16 @@ export function fauxClientAlertes(options: { segmentsExistants?: string[]; topic
         contacts.set(o.email, c);
         return ok({ id: c.id });
       }),
-      update: vi.fn(async (o) => {
+      update: vi.fn(async (o: Parameters<ClientAlertes['contacts']['update']>[0]) => {
         const panne = enregistrer('contacts.update', o);
         if (panne) return panne;
         const c = contacts.get(o.email);
         if (!c) return introuvable('contact');
-        Object.assign(c.properties, o.properties);
+        // `null` efface la propriété, comme le prévoient les types du SDK.
+        for (const [k, v] of Object.entries(o.properties)) {
+          if (v === null) delete c.properties[k];
+          else c.properties[k] = v;
+        }
         return ok({ id: c.id });
       }),
       segments: {

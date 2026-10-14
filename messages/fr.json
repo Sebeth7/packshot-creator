@@ -2871,7 +2871,8 @@
       "p1": "Une demande de recherche d'un studio d'occasion est transmise à notre équipe commerciale, qui l'étudie ; un e-mail d'accusé de réception vous est envoyé. Elle ne vous inscrit à aucune liste.",
       "p2": "L'inscription aux alertes de disponibilité est facultative et distincte de la newsletter, des demandes commerciales et des demandes de démonstration. Elle repose sur votre consentement, donné en cochant la case prévue puis confirmé par le lien de l'e-mail que nous vous envoyons : sans cette confirmation, rien n'est enregistré. Nous conservons la preuve de ce consentement (date de la demande, date de confirmation, version du texte accepté, page d'origine).",
       "p3": "Vous pouvez vous désinscrire à tout moment depuis le lien présent dans chaque message, ou en écrivant à info@sysnext.com ; la désinscription ne modifie pas vos autres préférences, et votre adresse n'est pas réinscrite automatiquement.",
-      "p4": "Les e-mails de ces deux parcours et la liste des inscrits sont gérés par notre prestataire Resend, sous-traitant, dans les conditions de transfert décrites à l'article 8."
+      "p4": "Les e-mails de ces deux parcours et la liste des inscrits sont gérés par notre prestataire Resend, sous-traitant, dans les conditions de transfert décrites à l'article 8.",
+      "p5": "Conservation des alertes : une adresse inscrite est conservée trois ans à compter de la confirmation de son inscription, puis supprimée de la liste. Après une désinscription, seules votre adresse et la date de votre désinscription sont conservées, trois ans à compter de celle-ci et pour la seule fin de respecter votre opposition, puis supprimées. Ces suppressions sont faites lors d'un contrôle trimestriel. Une fois l'adresse supprimée, une nouvelle inscription suppose une nouvelle demande et un nouveau consentement, confirmé par e-mail."
     },
     "cta": {
       "heading": "Questions sur vos données ?",

@@ -22,7 +22,12 @@ import type { InscriptionAlerte } from './schema';
  * - un contact déjà passé par cette liste puis sorti du topic (désinscription
  *   par notre lien OU par la page de préférences de Resend) n'est pas
  *   réinscrit : réponse « desinscrit » ;
- * - rien n'est écrit avant la confirmation (double opt-in).
+ * - rien n'est écrit avant la confirmation (double opt-in) ;
+ * - à la désinscription, seules l'adresse, l'état et la date de désinscription
+ *   sont conservés : la preuve d'inscription et la famille sont effacées
+ *   (décision de conservation de Sébastien, rapportée par Laurent le 14/10/2026 ;
+ *   durées et purge trimestrielle manuelle : `docs/seo-geo/RELEASE-129-OCCASION.md`,
+ *   section 9).
  *
  * Prérequis chez Resend, À CRÉER PAR UNE PERSONNE (aucune création par le code) :
  * le segment, le topic et les propriétés de contact de `PROPRIETES` (type texte).
@@ -56,7 +61,8 @@ export interface ClientAlertes {
       topics: { id: string; subscription: Abonnement }[];
       properties: Record<string, string>;
     }): Resultat<{ id: string }>;
-    update(o: { email: string; properties: Record<string, string> }): Resultat<{ id: string }>;
+    /** Une valeur `null` efface la propriété (types du SDK). */
+    update(o: { email: string; properties: Record<string, string | null> }): Resultat<{ id: string }>;
     segments: {
       list(o: { email: string; limit: number }): Resultat<{ data: { id: string }[]; has_more: boolean }>;
       add(o: { email: string; segmentId: string }): Resultat<{ id: string }>;
@@ -225,11 +231,21 @@ export function registreAlertesResend(client: ClientAlertes, cfg: { segmentId: s
       if (await dansSegment(email)) {
         exiger('contacts.segments.remove', await client.contacts.segments.remove({ email, segmentId: cfg.segmentId }));
       }
+      // Ne restent que l'état et la date, nécessaires au respect de l'opposition
+      // (non-réinscription) et au calcul de la durée de conservation.
       exiger(
         'contacts.update',
         await client.contacts.update({
           email,
-          properties: { [PROPRIETES.etat]: 'desinscrit', [PROPRIETES.desinscritLe]: maintenant.toISOString() },
+          properties: {
+            [PROPRIETES.etat]: 'desinscrit',
+            [PROPRIETES.desinscritLe]: maintenant.toISOString(),
+            [PROPRIETES.demandeLe]: null,
+            [PROPRIETES.confirmeLe]: null,
+            [PROPRIETES.version]: null,
+            [PROPRIETES.source]: null,
+            [PROPRIETES.famille]: null,
+          },
         }),
       );
       return 'desinscrit';

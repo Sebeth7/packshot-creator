@@ -47,7 +47,12 @@ Append-only. Plus récent en haut.
 - Un remplissage SEO, ou l'annonce d'une machine, d'un prix, d'une disponibilité, d'une garantie ou d'une condition commerciale non réels.
 - Mettre en avant les occasions sur les pages des machines neuves, ou ajouter une entrée à la barre de navigation principale.
 
-Ne valent pas validation : les claims commerciaux, les droits photographiques et les textes encore soumis à la validation de Sébastien (D42, étape 5).
+Ne valaient pas validation au 14/10 au matin : les claims commerciaux, les droits photographiques et les textes encore soumis à la validation de Sébastien (D42, étape 5) ; voir le complément ci-dessous.
+
+**Complément du 14/10/2026 — validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026** (« GO de finalisation — confirmation téléphonique de Sébastien » ; fait métier transmis par Laurent, pas un audit juridique indépendant) :
+6. **Conservation des alertes** : inscrits actifs, trois ans à compter de la confirmation ; adresses désinscrites, trois ans à compter de la désinscription, avec les seules informations nécessaires au respect de l'opposition (adresse, état, date de désinscription) ; purge par contrôle manuel trimestriel sous la responsabilité de Sébastien ; aucun cron, aucun n8n, aucune purge automatique.
+7. **Non-réinscription** : maintenue pendant la conservation de la désinscription ; aucun blocage perpétuel n'est promis ; après la purge, une nouvelle demande passe par un nouveau consentement explicite et le double opt-in.
+8. **Validation éditoriale (D42, étape 5)** des contenus soumis pour #129 : landing FR, EN, DE-CH ; titres et descriptions SEO ; recherche et accusés ; inscription et double opt-in ; e-mail « Inscription confirmée » ; encadrés des deux articles de blog ; présentation France/Suisse ; mentions existantes sur la licence Orbitvu Station ; photographie du showroom et son usage. La validation ne couvre aucune affirmation ajoutée ensuite : ni précision contractuelle, ni garantie, ni cessibilité de licence non écrite.
 
 ---
 

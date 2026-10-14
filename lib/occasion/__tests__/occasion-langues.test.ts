@@ -442,16 +442,30 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
 });
 
 describe('Politique de confidentialité : finalité « offres d’occasion » dans les trois fichiers de messages', () => {
-  it('collecte, finalité et article 9 présents, sans durée de conservation inventée', () => {
-    for (const l of ['fr', 'en', 'de-ch']) {
+  it('collecte, finalité et article 9 présents ; durées décidées (Q25, 14/10/2026), aucune autre durée', () => {
+    const attendus = {
+      fr: { actifs: 'trois ans à compter de la confirmation de son inscription', desinscrits: 'trois ans à compter de celle-ci', purge: 'contrôle trimestriel' },
+      en: { actifs: 'three years from the confirmation of the subscription', desinscrits: 'three years from that date', purge: 'quarterly review' },
+      'de-ch': { actifs: 'trois ans à compter de la confirmation de son inscription', desinscrits: 'trois ans à compter de celle-ci', purge: 'contrôle trimestriel' },
+    } as const;
+    for (const l of ['fr', 'en', 'de-ch'] as const) {
       const m = JSON.parse(readFileSync(join(process.cwd(), `messages/${l}.json`), 'utf8')).privacy;
       expect(m.article2.occasionSearch.title, l).toBeTruthy();
       expect(m.article2.occasionAlerts.description, l).toMatch(/e-?mail/i);
       expect(m.article3.purpose7, l).toBeTruthy();
-      const art9 = [m.article9.p1, m.article9.p2, m.article9.p3, m.article9.p4].join(' ');
+      const art9 = [m.article9.p1, m.article9.p2, m.article9.p3, m.article9.p4, m.article9.p5].join(' ');
       expect(art9, l).toMatch(/Resend/);
       expect(art9, l).toMatch(/newsletter/i);
+      expect(m.article9.p5, l).toContain(attendus[l].actifs);
+      expect(m.article9.p5, l).toContain(attendus[l].desinscrits);
+      expect(m.article9.p5, l).toContain(attendus[l].purge);
+      // Aucune durée chiffrée ni blocage perpétuel promis.
       expect(art9, l).not.toMatch(/\d+\s*(ans|mois|years|months|Jahre|Monate)/);
+      expect(art9, l).not.toMatch(/jamais réinscrit|never be subscribed|définitivement|permanently/i);
     }
+  });
+
+  it('article 9, paragraphe 5, rendu par la page de confidentialité', () => {
+    expect(readFileSync(join(process.cwd(), 'app/[lang]/confidentialite/page.tsx'), 'utf8')).toContain("t('article9.p5')");
   });
 });
