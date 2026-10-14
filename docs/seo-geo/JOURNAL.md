@@ -54,7 +54,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique) et les 3 fichiers de test (identiques et auto-adaptatifs) sont communs aux deux PR. Étant identiques, ils ne créent **aucun conflit** à la fusion du second, et contrôlent automatiquement A et B une fois les deux publiés (compteur `dateModified` 4 → 5 tout seul). Ordre de fusion sûr : #139 (A) d'abord, #140 (B) ensuite ; au merge de #140, `git merge main` apporte le CSS et les tests déjà présents sans conflit, et le JOURNAL par union.
 
-**Suite** — PR-B en brouillon pour arbitrage. Pas de fusion ni de publication (GO_MERGE_PR140 = NO, GO_PUBLICATION = NO).
+**Suite** — Publication autorisée le 14/10 (GO_MERGE_PR140 = YES, exception D15 consignée en **D59**). `dateModified` = 2026-10-14 = date réelle de publication. Fusion après resynchronisation sur `main` (post-#139) et QA visuelle effective.
+
+---
+
+## 2026-10-14 · PR-A brouillon — réécriture « Internaliser ses photos produit » (extraction de #130) · Claude de Laurent
+
+**Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article A depuis #130, PR brouillon, sans fusion ni publication ; réconciliée sur `main` après #134 | **PR** : PR-A dédiée, brouillon | **Base** : `main` `6717c4f` (merge de `main`, conflit `JOURNAL` résolu par union — entrée #134 préservée) | **Branche** : `claude/reecriture-a-internaliser`
+
+**Quoi** — `content/blog/fr/est-il-utile-dinternaliser-sa-production-de-photos-packshot.json` : réécriture éditoriale de #130 (7 questions, réponse courte visible avant tout bloc dépliable, `faqs: []`, auteur PackshotCreator, aucune narration à la première personne), **rebasée sur le maillage déjà publié** : le lien `/fr/conversations-sebastien-jourdan#entretien-01` (ancre « le regard de Sébastien Jourdan sur la décision d'internaliser », introduit par #138) est ré-injecté dans le nouveau contenu (Q5, décision interne/prestataire). `app/globals.css` : bloc append-only `.prose .psc-*` (partagé avec l'article B — voir dépendance ci-dessous). Tests **auto-adaptatifs et identiques dans les deux PR** : `serie-produire-images.test.ts` et `e2e/serie-produire-images.spec.ts` décrivent A ET B et ne contrôlent un article que s'il est en forme réécrite (présence de `psc-q`) ; `json-ld-techniques.test.ts` compte dynamiquement les fichiers portant `dateModified` (3 sans la série, 4 avec un article, 5 avec les deux).
+
+**Pourquoi** — #130 est antérieure à #138 ; reprise brute, elle écraserait le maillage en production. L'extraction prend la réécriture de #130 et préserve l'acquis de #138. L'ancienne page était un argumentaire Orbitvu avec FAQ promotionnelles et chiffres non sourcés.
+
+**Fichiers** — article A JSON, `app/globals.css`, les 3 fichiers de test, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — [Inférence] Page plus complète, structurée en questions/réponses, orientée décision B2B. Aucune promesse de position ni de CTR. `dateModified` = 2026-10-14 (date de finition ; à réaligner sur la date de publication réelle au merge, sans antidatage). Cela repose sur des schémas observés.
+
+**Vérifié** — `verifier-json` : 198 JSON valides ; `npx tsc --noEmit` vert ; `npx vitest run` : 644 tests verts ; `eslint --max-warnings=0` des fichiers modifiés vert ; `npx next build` vert ; images de A (hero `67e161c8…`, inline Q3 `67e162818…`) déjà en usage établi sur la page (présentes sur `main`) ; liens internes résolus sur `main` (dont guides sous `content/guides/fr/`).
+**Supposé** — Le rendu visuel sur Preview (SSO) reste à contrôler. La prose institutionnelle (D42) et le `metaTitle` de A restent des arbitrages Sébastien/Laurent.
+**Non regardé** — Versions EN/de-ch de A (jumeaux non équivalents, traduction gelée C5/D17). L'article B (PR distincte).
+
+**Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique), `serie-produire-images.test.ts`, `e2e/serie-produire-images.spec.ts` et `json-ld-techniques.test.ts` sont **identiques** dans les deux PR. Étant identiques et auto-adaptatifs, ils ne créent **aucun conflit** à la fusion du second et contrôlent automatiquement A et B une fois les deux publiés — aucune réconciliation manuelle de test. Ordre de fusion sûr : #139 (A) d'abord, #140 (B) ensuite ; au merge de #140, `git merge main` apporte le CSS déjà présent (identique, pas de conflit), le JOURNAL par union, et le compteur `dateModified` passe de 4 à 5 tout seul.
+
+**Suite** — Publication autorisée le 14/10 (GO_MERGE_PR139 = YES, exception D15 consignée en **D59** : délai de 5 jours ouvrés levé, `metaTitle` A confirmé, QA Preview substituable par build prod local vu le SSO). `dateModified` = 2026-10-14 = date réelle de publication. Événement D52 (lien A → `/fr/packshot-e-commerce`) consigné à la fusion. Fusion après QA visuelle effective.
 
 ---
 
