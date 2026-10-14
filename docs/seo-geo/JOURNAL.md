@@ -52,7 +52,7 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique), `serie-produire-images.test.ts`, `e2e/serie-produire-images.spec.ts` et `json-ld-techniques.test.ts` sont **identiques** dans les deux PR. Étant identiques et auto-adaptatifs, ils ne créent **aucun conflit** à la fusion du second et contrôlent automatiquement A et B une fois les deux publiés — aucune réconciliation manuelle de test. Ordre de fusion sûr : #139 (A) d'abord, #140 (B) ensuite ; au merge de #140, `git merge main` apporte le CSS déjà présent (identique, pas de conflit), le JOURNAL par union, et le compteur `dateModified` passe de 4 à 5 tout seul.
 
-**Suite** — PR-A en brouillon pour arbitrage. Pas de fusion ni de publication (GO_MERGE_PR139 = NO, GO_PUBLICATION = NO). Événement D52 (lien A → `/fr/packshot-e-commerce`) à consigner au moment d'un éventuel merge.
+**Suite** — Publication autorisée le 14/10 (GO_MERGE_PR139 = YES, exception D15 consignée en **D59** : délai de 5 jours ouvrés levé, `metaTitle` A confirmé, QA Preview substituable par build prod local vu le SSO). `dateModified` = 2026-10-14 = date réelle de publication. Événement D52 (lien A → `/fr/packshot-e-commerce`) consigné à la fusion. Fusion après QA visuelle effective.
 
 ---
 
