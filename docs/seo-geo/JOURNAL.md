@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #119 — arbitrage éditorial ponctuel de Laurent : 2 titles ajustés (ShotFlow, bijoux), 6 conservés · Claude de Laurent
+
+**Chantier** : Ubersuggest résiduel, PR-B (GO de Laurent du 14/10 midi : code, commit et push sur la branche de #119 seule ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, pas de passage en Ready) | **PR** : #119 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** — Sur les 8 titles FR de l'entrée précédente, 6 sont conservés sans modification (2D, flou, chaussures, IA, taux de conversion, documentation qualité produit) et 2 `metaTitle` sont remplacés, à la demande de Laurent :
+
+| Page | Avant (`main`) | Entrée précédente | Après |
+|---|---|---|---|
+| `/fr/blog/comment-shotflow-permet-optimiser-production-contenu` | 102 « Comment ShotFlow Révolutionne la Production Visuelle : Automatisation et Optimisation à Grande Échelle » | 47 « ShotFlow : Révolution de la Production Visuelle » | 51 « ShotFlow : automatisation de la production visuelle » |
+| `/fr/blog/joailliers-nos-conseils-pour-reussir-vos-visuels-produits` | 95 « Comment Photographier des Bijoux: Techniques Professionnelles pour Joailliers \| PackshotCreator » | 57 « Photographier des Bijoux : Techniques Pro pour Joailliers » | 53 « Photographier des bijoux : techniques pour joailliers » |
+
+Les deux nouvelles formulations ne sont plus des copies du H1 : elles recomposent des mots déjà présents sur la page (« automatisation » : 4 occurrences dans le corps et dans la description ; « techniques » et « joailliers » : dans le `title`, le H1 et le corps ; « production visuelle » : H1). Aucun chiffre, superlatif ni promesse ajouté. Le terme « Révolution », qui figurait dans le title de l'entrée précédente, disparaît.
+
+**Gouvernance — exception D13/D42 identifiée** — Décision de Laurent du 14/10, après une revue SEO/éditoriale des 8 titles réalisée par lui dans ChatGPT (6 acceptés, 2 ajustés). [Non vérifié] Cette revue n'est pas versée au dépôt et son contenu n'a pas été relu ici. **Laurent assume la responsabilité de cet arbitrage éditorial ponctuel pour #119.** Aucune validation n'est attribuée à Sébastien : D13 (copywriting FR) et D42 (circuit, étape 5) ne sont pas satisfaites par Sébastien, elles sont écartées pour ces 8 titles par décision de Laurent. L'exception ne vaut que pour les 8 `metaTitle`/`titre` de #119 : ni pour une autre PR, ni pour les 8 REVIEW_CONTENT du lot C, ni pour le `metaTitle` de l'article e-commerce (HOLD #140 / gel F5), ni pour la question générale « un `<title>` relève-t-il de D13 ? », qui reste ouverte. Entrée `DECISIONS.md` : non créée ici, le numéro D60 étant pris par #129 (brouillon) ; à inscrire sur GO distinct de Laurent.
+
+**Fichiers** — `content/blog/fr/comment-shotflow-permet-optimiser-production-contenu.json` et `content/blog/fr/joailliers-nos-conseils-pour-reussir-vos-visuels-produits.json` (champ `metaTitle` seul) ; `docs/seo-geo/ETAT.md` et `JOURNAL.md`.
+
+**Vérifié** —
+- tête de départ `581d9d9`, `main` `fef5109` inchangé, aucune collision : les 2 JSON ne sont touchés par aucune autre PR ouverte ; le diff contre `main` reste limité aux 8 fichiers de site de #119 (7 JSON FR, `data/solutions.ts`), seul `metaTitle` ou `titre` changeant ;
+- `npx tsc --noEmit` vert ; `verifier-json` : 200 JSON valides ; Vitest 655/655 ; `npx next build` vert ; CSS compilée identique à `main` (`f1014956bf63`) ;
+- HTML prérendu, `main` `fef5109` contre branche : 380 pages communes, 371 identiques, 9 différentes, les 9 déjà visées ; pour chacune, `<body>` hors `<head>`, H1 et JSON-LD identiques ; `description`, `og:description`, canonical, robots et hreflang inchangés ; les 2 pages ajustées ne changent que `<title>`, `og:title` et `twitter:title` (aucune URL `og:image` modifiée sur ces 2 articles, qui ont une image).
+
+**Supposé** — [Inférence] Les titles seront servis tels quels par `www` ; Google peut les réécrire. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) : QA humaine toujours manquante ; `sysnext.vercel.app` et `www` (R4) ; GSC.
+
+**Suite** — GO_MERGE distinct de Laurent ; passage en Ready : demande de revue automatique `CODEOWNERS` non autorisée pour #119 à ce jour ; QA humaine de la Preview ; entrée `DECISIONS.md` de l'exception.
+
+---
+
 ## 2026-10-14 · #119 — reprise : 8 titles FR, doublons EN et candidat e-commerce retirés, `main` `6717c4f` puis `fef5109` intégrés · Claude de Laurent
 
 **Chantier** : Ubersuggest résiduel, PR-B (GO de Laurent du 14/10 : code, commit, push, QA ; `GO_MERGE = NO`, `GO_PUBLICATION = NO`, `GO_PAID = NO`) | **PR** : #119 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
