@@ -95,7 +95,7 @@ const TEXTES: Record<
     bouton: 'Anmeldung bestätigen',
     expiration: (d) => `Dieser Link ist bis ${d} gültig. Ohne Bestätigung wird keine Anmeldung gespeichert.`,
     independance: 'Diese Liste ist vom Newsletter unabhängig: Sie werden für keine weiteren Mitteilungen angemeldet.',
-    desinscription: 'Jede Nachricht enthält einen Abmeldelink.',
+    desinscription: 'Jede künftige E-Mail mit neuen Angeboten enthält einen Abmeldelink.',
     ignorer: 'Falls Sie diese Anfrage nicht gestellt haben, können Sie diese Nachricht ignorieren.',
     signature: 'PackshotCreator',
   },

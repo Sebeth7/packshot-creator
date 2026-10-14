@@ -188,6 +188,17 @@ describe('E-mails au visiteur dans sa langue ; notification interne en français
     for (const c of [en, de]) expect(c.texte).not.toMatch(/€|CHF|price|Preis/i);
   });
 
+  it("confirmation des alertes : sans lien de désinscription, elle ne promet ce lien que pour les futurs e-mails d'offres", () => {
+    for (const langue of ['fr', 'en', 'de-ch'] as const) {
+      const c = composerConfirmationAlerte({ lien: lienConfirmation('https://e.test', 'abc', langue), famille: '', expireLe: fin, langue });
+      expect(c.texte, langue).not.toContain('#desinscrire-alerte=');
+      expect(c.html, langue).not.toContain('#desinscrire-alerte=');
+    }
+    const de = composerConfirmationAlerte({ lien: lienConfirmation('https://e.test', 'abc', 'de-ch'), famille: '', expireLe: fin, langue: 'de-ch' });
+    expect(de.texte).toContain('Jede künftige E-Mail mit neuen Angeboten enthält einen Abmeldelink.');
+    expect(de.texte).not.toContain('Jede Nachricht enthält einen Abmeldelink');
+  });
+
   it('accusé de la recherche : langue de la page, politique FR ou EN, aucune promesse', () => {
     const en = composerAccuseOccasion({ firstName: '<i>Ann</i>', langue: 'en' });
     expect(en.objet).toBe('Your search for a pre-owned Orbitvu studio');
