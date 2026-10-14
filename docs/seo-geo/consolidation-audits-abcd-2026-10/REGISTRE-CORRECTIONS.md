@@ -14,6 +14,7 @@ réconciliation (12-13/10) reste la source : `PSC_CONSOLIDATION_AUDITS_A_B_C_D_L
 | B1 | Fondateur = **Laurent Wainberg** rétabli dans `title`/`h1`/`metaTitle`/`description` des 2 interviews (FR+EN, 8 champs) | Fait métier Laurent 14/10 (A3) | `content/blog/fr/decryptages-interviewe-laurent-wainberg-…json`, `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json` |
 | B4 | « distribue **exclusivement** » → « distribue **officiellement** » les solutions Orbitvu | D6 (20/08 : officiel, jamais exclusif) | `content/blog/fr/focus-sur-lhyperfocus.json` |
 | D3 | Label « N min de lecture » localisé EN (`lang === 'fr' ? … : '… min read'`), 6 pages | A2 (anomalie i18n) ; motif déjà en vigueur (`budget-studio-photo-automatise`) | `app/[lang]/blog/{ia-photo-produit-guide-2026,blendai-vs-flair-…,orbitvu-vs-concurrents,blendai-vs-photoroom-…,guide-achat-studio-2026,comment-calculer-le-roi-…}/page.tsx` |
+| FAQ interviews | Attribution incorrecte « fondateur de la société Sysnext » **retirée** (non transférée) dans la réponse FAQ, FR+EN. FR → « PackshotCreator a introduit dès 2003 en Europe le premier système… » ; EN → « PackshotCreator introduced the first automated product photography system in Europe in 2003. » | Décision éditoriale Laurent du 14/10 | `content/blog/fr/decryptages-…packshotcreator.json`, `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json` |
 
 **Tests** (R1) : `tsc --noEmit` 0 ; `vitest run` 633/633 ; `verifier-json` 198 valides ; `next build` 390/390, exit 0.
 
@@ -41,7 +42,8 @@ réconciliation (12-13/10) reste la source : `PSC_CONSOLIDATION_AUDITS_A_B_C_D_L
 
 ## 5. NON ÉTABLI PAR LA SOURCE
 
-- **Corps de l'interview (ligne 20)** : « PackshotCreator, fondateur de la société **Sysnext** ». Le fait métier du 14/10 ne confirme que « fondateur de PackshotCreator » et interdit de déduire que Laurent a fondé Sysnext. Le nom n'a **pas** été corrigé à cet endroit pour ne pas asserter un rôle non prouvé. **Décision recherchée** : Laurent confirme-t-il « Laurent Wainberg, fondateur de Sysnext », ou l'apposition doit-elle devenir « fondateur de PackshotCreator » ? Réf. : fait métier 14/10, § « Ne pas déduire sans preuve que Laurent a fondé toutes les entités ».
+- **Corps de l'interview (ligne 20)** : ~~« PackshotCreator, fondateur de la société Sysnext »~~ — **RÉSOLU le 14/10** : attribution retirée (FR+EN), validée par Laurent (voir § 1). Laurent n'est pas affirmé fondateur juridique de Sysnext.
+- **Claim « premier système de photographie automatisée en Europe (2003) »** : conservé tel quel dans la phrase corrigée, **non revérifié** par une source dans cette mission. Pas de renforcement. Atténuation éventuelle (« l'un des premiers ») = décision éditoriale distincte, ouverte.
 - **CSV primaires A/C/D, registres V4.3 (582) et G5 (208)** : non montés dans la session. Comptage ligne-à-ligne non réalisable ; état documentaire conservé (`00-ÉTAT-SOURCES` de la passe du 12/10). N'empêche pas les corrections ci-dessus, fondées sur des preuves code suffisantes.
 
 ## 6. Recommandation de fusion ultérieure

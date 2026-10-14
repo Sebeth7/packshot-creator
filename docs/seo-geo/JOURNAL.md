@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · PR #141 : correction FAQ interviews (attribution « fondateur de Sysnext » retirée) + resynchronisation de `main` · Claude de Laurent
+
+**Chantier** : Consolidation audits A/B/C/D (finition #141) | **PR** : #141, branche `claude/zen-maxwell-i59q3o` | **Commit** : voir PR
+
+**Quoi** —
+- **Correction éditoriale validée par Laurent (14/10)** dans la réponse FAQ des deux interviews : l'attribution incorrecte « PackshotCreator, fondateur de la société Sysnext » est **retirée**, sans la transférer à quiconque.
+  - FR : « C’est PackshotCreator, fondateur de la société Sysnext, qui a introduit dès 2003 en Europe le premier système de photographie automatisée pour les produits. » → « PackshotCreator a introduit dès 2003 en Europe le premier système de photographie automatisée pour les produits. »
+  - EN : « It was PackshotCreator, founder of the company Sysnext, who introduced the first automated product photography system in Europe in 2003. » → « PackshotCreator introduced the first automated product photography system in Europe in 2003. »
+- **Resynchronisation** : `main` `a0149934` (fusion de #139, article A « Internaliser ses photos produit ») intégré dans la branche ; conflit sur `JOURNAL.md` seul, **résolu par union** (3 entrées du 14/10 conservées : cette consolidation, la PR-A de #139, #134). #139, #140 et toute autre PR non modifiées.
+
+**Pourquoi** — Décision éditoriale de Laurent du 14/10 : « PackshotCreator, fondateur de la société Sysnext » est incohérent. Correction minimale (2 phrases). **Ne pas** affirmer que Laurent Wainberg est le fondateur juridique de Sysnext : fait non établi.
+
+**Fichiers** — `content/blog/fr/decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator.json`, `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/consolidation-audits-abcd-2026-10/`.
+
+**Effet attendu** — FAQ des interviews cohérente (plus d'attribution erronée). Aucun effet SEO notable.
+
+**Vérifié** — (voir entrée de contrôle au push) `tsc`, `vitest`, `verifier-json`, `next build` relancés après resync et corrections.
+**Supposé** — Le sujet reste PackshotCreator (marque), conformément à la formulation validée par Laurent.
+**Non regardé** — `www` dans Chrome (R4) ; QA Preview Vercel (nouvelle HEAD).
+
+**Suite** —
+- **Non revérifié, conservé tel quel** : le claim historique « premier système de photographie automatisée en Europe (2003) » / « first automated product photography system in Europe in 2003 » n'a **pas** été revérifié par une source dans cette mission ; conservé sans renforcement, atténuation possible (« l'un des premiers ») = décision éditoriale distincte.
+- GO_MERGE = NO. Les autres résidus A/B/C/D restent au registre avec leurs HOLD.
+
 ## 2026-10-14 · Corrections issues des audits A/B/C/D : fondateur (B1), « exclusif » D6 (B4), i18n « min de lecture » (D3) · Claude de Laurent
 
 **Chantier** : Consolidation audits A/B/C/D (reprise de la passe du 12-13/10) | **PR** : brouillon dédié (branche `claude/zen-maxwell-i59q3o`) | **Commit** : voir PR
