@@ -7,7 +7,7 @@ import { NavLink as Link } from '@/components/layout/NavLink';
 import { type LinkHref, localeSwitchHref, type AppLocale } from '@/i18n/deChCoverage';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 import { LIEN_OCCASION, libelleLienOccasion } from '@/lib/occasion/navigation';
@@ -394,6 +394,27 @@ export default function Header({ lienOccasion = false }: { lienOccasion?: boolea
   const slug = pathname.endsWith('[slug]') ? realPath.split('/').filter(Boolean).pop() : undefined;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Slugs par locale des articles A et B (série « Produire ses images produit »).
+  // Les slugs d'article ne sont PAS localisés par next-intl : chaque langue a son
+  // propre fichier content/blog/<locale>/<slug>.json et son slug dans
+  // content/blog/alternates.json. On passe donc le slug de la locale courante ;
+  // NavLink rend l'URL native (en de-ch, le slug de-ch est couvert via alternates).
+  const serieSlug: Record<string, { a: string; b: string }> = {
+    fr: {
+      a: 'est-il-utile-dinternaliser-sa-production-de-photos-packshot',
+      b: 'e-commerce-comment-mettre-en-place-votre-studio-photo',
+    },
+    en: {
+      a: '5-questions-before-investing-in-an-in-house-photo-studio',
+      b: 'e-commerce-set-up-internal-packshots',
+    },
+    'de-ch': {
+      a: 'lohnt-sich-ein-internes-produktfotostudio',
+      b: 'e-commerce-fotostudio-organisieren',
+    },
+  };
+  const serie = serieSlug[locale] ?? serieSlug.fr;
+
   const solutionSections: DropdownSection[] = [
     {
       items: [
@@ -489,6 +510,30 @@ export default function Header({ lienOccasion = false }: { lienOccasion?: boolea
           labelKey: 'guidesQuestions',
           descKey: 'guidesQuestionsDesc',
           icon: <HelpCircle className="h-4 w-4" />,
+        },
+        // Série « Produire ses images produit » (articles A et B). Les trois versions
+        // (fr, en, de-ch) sont publiées : entrées affichées dans toute locale, chacune
+        // avec le slug de sa langue (cf serieSlug). Jamais d'URL inventée.
+        {
+          href: { pathname: '/blog/[slug]', params: { slug: serie.a } },
+          labelKey: 'guidesChoisir',
+          descKey: 'guidesChoisirDesc',
+          icon: <Camera className="h-4 w-4" />,
+        },
+        {
+          href: { pathname: '/blog/[slug]', params: { slug: serie.b } },
+          labelKey: 'guidesOrganiser',
+          descKey: 'guidesOrganiserDesc',
+          icon: <ClipboardCheck className="h-4 w-4" />,
+        },
+        // Hub « Conversations avec Sébastien Jourdan » — libellé NEUTRE « Méthodes &
+        // bonnes pratiques » (ne pas afficher « Entretiens… » dans le menu). Les trois
+        // destinations linguistiques du hub existent déjà.
+        {
+          href: '/conversations-sebastien-jourdan',
+          labelKey: 'guidesMethodes',
+          descKey: 'guidesMethodesDesc',
+          icon: <BookOpen className="h-4 w-4" />,
         },
       ],
     },

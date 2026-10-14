@@ -170,6 +170,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · Menu « Solutions → Guides » : 5 entrées, slug par locale (A/B 3 langues + hub) · Claude de Laurent
+
+**Chantier** : GO EXÉCUTION FINALE A/B (14/10/2026) — menu Guides, PR dédiée au Header global | **PR** : #142 | **Base** : `main` `dd67d3f` (resync post-#144 : de-ch A/B publiés) | **Branche** : `claude/menu-guides-conversations`
+
+**Quoi** — `components/layout/Header.tsx` : sous-menu « Solutions → Guides » porté à 5 entrées, après les 2 existantes (« Identifier votre besoin », « Questions clés ») :
+1. « Choisir son studio photo » → article A ;
+2. « Organiser son studio photo » → article B ;
+3. « Méthodes & bonnes pratiques » → hub `/conversations-sebastien-jourdan` (libellé **neutre** : « Entretiens avec Sébastien Jourdan » n'apparaît pas dans le menu).
+`messages/{fr,en,de-ch}.json` : 6 clés (nav) localisées naturellement. Liens typés (desktop + mobile via `solutionSections`).
+
+**Pourquoi** — Rendre la série de méthode accessible depuis la navigation globale, sans exposer l'identité éditoriale du hub dans le menu.
+
+**Slug par locale** — Les slugs d'article ne sont PAS localisés par next-intl (fichiers séparés `content/blog/<locale>/<slug>.json`, slugs distincts dans `alternates.json`). Le Header passe donc le slug de la locale courante (`serieSlug`) : `fr` = `est-il-utile-…` / `e-commerce-comment-…`, `en` = `5-questions-before-investing-…` / `e-commerce-set-up-internal-packshots`, `de-ch` = `lohnt-sich-ein-internes-produktfotostudio` / `e-commerce-fotostudio-organisieren`. A et B affichés dans **les 3 langues** (les 6 versions sont publiées depuis #144) ; `NavLink` rend l'URL native (en de-ch, les slugs de-ch sont couverts via `alternates.json`). Le hub est affiché dans les 3 langues (ses destinations existent, épinglage `NavLink` sinon).
+
+**Fichiers** — `components/layout/Header.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — Header global (desktop + mobile). Non listé dans la carte à rayon large (`garde-consequences`), mais touche toute la navigation. Ajout de 3 items au sous-menu Guides (5 au total) : contrôle UX (débordement, ouverture clavier, mobile) et résolution des 6 liens A/B par locale. Retour arrière : `git revert`.
+
+**Vérifié** — `messages` JSON valides (3 langues, parité des clés) ; `npx tsc --noEmit` vert ; `npx next build` vert. QA build prod local (D59 §3, Playwright + examen des captures) : sous-menu « Solutions → Guides » rendu en cascade (desktop 1440) et en accordéon (mobile 390) dans les 3 locales ; 5 entrées présentes ; libellés A/B/hub localisés ; les 6 liens A/B portent le slug de leur locale (`/fr/blog/est-il-utile-…` & `/e-commerce-comment-…`, `/en/blog/5-questions-before-investing-…` & `/e-commerce-set-up-internal-packshots`, `/de-ch/blog/lohnt-sich-ein-internes-produktfotostudio` & `/e-commerce-fotostudio-organisieren`) et résolvent **HTTP 200** ; 0 erreur console ; overflow du flyout desktop = 0.
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé / hors périmètre** — Un overflow horizontal ~53px au chargement mobile (390) provient du bandeau de logos `animate-marquee` (élément préexistant, intentionnellement plus large que le viewport) : présent avant toute interaction avec le menu, non introduit par cette PR. Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4, puis contrôle production (sysnext → www).
+
+---
+
 ## 2026-10-14 · Traductions EN + localisations de-ch des articles A et B · Claude de Laurent
 
 **Chantier** : GO EXÉCUTION FINALE A/B — traductions, sous exception **D59** (EN + de-ch autorisés et publiables depuis le FR stabilisé ; de-ch : exception D16/C5/D17 pour ces 2 seules créations) | **PR** : traductions dédiée | **Base** : `main` `bf1165a` | **Branche** : `claude/traductions-a-b`
