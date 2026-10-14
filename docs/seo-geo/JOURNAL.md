@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · S16 : décision Laurent — conserver le FR + traduction EN des 3 articles (fidèle, claims conservés) · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) | **PR** : #146, branche `claude/traductions-en-dech-s16` (distincte de #141) | **Commit** : voir PR
+
+**Quoi** — **Décision finale de Laurent du 14/10 : conserver tout le contenu FR existant.** Les 15 neutralisations de l'entrée précédente sont **annulées** (FR restauré à l'identique de `main`, diff FR vs `main` = 0 ; commit `97f4464`). Puis **traduction EN fidèle** du corps HTML + `title`/`h1` des 3 articles encore en français sous `/en`, **affirmations commerciales conservées sans atténuation ni renforcement** (« leader mondial » → « world leader », « plus de 20 000 utilisateurs dans 35 pays » → « more than 20,000 users in 35 countries », « garantissent le flux le plus rapide » → « guarantee the fastest workflow », « best-sellers », « Since 2001 »). `description` des 3 était **déjà en anglais** (R7) : laissée inchangée. `metaTitle` reste null.
+
+**Pourquoi** — « DÉCISION FINALE LAURENT — S16, TERMINER LES 3 TRADUCTIONS EN » (14/10) : conservation du contenu (pas une validation factuelle des claims, qui restent « source non établie ») ; terminer le travail technique de traduction sans attendre Sébastien. GO_CODE/COMMIT/PUSH/PR_DRAFT ; **GO_MERGE = NO**.
+
+**Fichiers** — `content/blog/en/photographie-2d-de-produits.json`, `content/blog/en/photographie-de-produits-a-360-degres-en-interne.json`, `content/blog/en/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre.json` (+ `docs/seo-geo/traductions-s16/`, `JOURNAL.md`). FR et autres articles non modifiés.
+
+**Effet attendu** — Les 3 pages `/en` passent du français à l'anglais. Aucun effet SEO immédiat : elles restent en `noindex, follow` (D9, `GO_LEVEE_NOINDEX = NO`).
+
+**Vérifié** — Diff FR vs `main` = 0 (3 fichiers). 3 JSON valides. Parité des balises HTML (hors texte `alt` traduit) **identique** à `main` pour les 3 (275/312/287). `href`/`src` strictement identiques (24/28/25). Français résiduel = 0. `noindex` conservé (3 slugs dans `NOINDEX_EN_BLOG_SLUGS`). `tsc` 0 ; `vitest` 663/663 ; `verifier-json` 200 ; `next build` 392/392, exit 0.
+**Supposé** — Traductions produites par 3 sous-agents, recoupées par contrôles structurels automatiques ; relecture humaine fine non faite.
+**Non regardé** — QA Preview `www` (SSO). Claims « 70 brevets », « 20 000 utilisateurs / 35 pays », « Since 2001 » : **conservés, non revérifiés** (source non établie), à ne pas présenter comme faits.
+
+**Suite** — Obstacles restants à la **seule publication** (hors de cette PR) : validation D42 de Sébastien (non sollicitée, indisponible), levée du `noindex` (D9), GO_MERGE distinct. Ne pas étendre D59.
+
 ## 2026-10-14 · S16 : assainissement FR de 3 articles (claims neutralisés) — EN ATTENTE DE VALIDATION D42 · Claude de Laurent
 
 **Chantier** : S16 (traductions EN) | **PR** : brouillon dédié, branche `claude/traductions-en-dech-s16` (distincte de #141) | **Commit** : voir PR
