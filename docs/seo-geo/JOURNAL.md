@@ -84,6 +84,79 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 - **DÉJÀ TRAITÉ PAR AUTRE PR** : valeurs `alt` `__wf_reserved_` (B2) traitées par #113 — ne pas doubler ; recompter le résidu après fusion.
 - **HOLD (R8 + gels)** : `organizationSchema().description` figée FR (rendu sur accueil/F5/Mode gelés ; dépend de D33).
 - GO_MERGE = NO. PR brouillon.
+## 2026-10-14 · Menu « Solutions → Guides » : 5 entrées, slug par locale (A/B 3 langues + hub) · Claude de Laurent
+
+**Chantier** : GO EXÉCUTION FINALE A/B (14/10/2026) — menu Guides, PR dédiée au Header global | **PR** : #142 | **Base** : `main` `dd67d3f` (resync post-#144 : de-ch A/B publiés) | **Branche** : `claude/menu-guides-conversations`
+
+**Quoi** — `components/layout/Header.tsx` : sous-menu « Solutions → Guides » porté à 5 entrées, après les 2 existantes (« Identifier votre besoin », « Questions clés ») :
+1. « Choisir son studio photo » → article A ;
+2. « Organiser son studio photo » → article B ;
+3. « Méthodes & bonnes pratiques » → hub `/conversations-sebastien-jourdan` (libellé **neutre** : « Entretiens avec Sébastien Jourdan » n'apparaît pas dans le menu).
+`messages/{fr,en,de-ch}.json` : 6 clés (nav) localisées naturellement. Liens typés (desktop + mobile via `solutionSections`).
+
+**Pourquoi** — Rendre la série de méthode accessible depuis la navigation globale, sans exposer l'identité éditoriale du hub dans le menu.
+
+**Slug par locale** — Les slugs d'article ne sont PAS localisés par next-intl (fichiers séparés `content/blog/<locale>/<slug>.json`, slugs distincts dans `alternates.json`). Le Header passe donc le slug de la locale courante (`serieSlug`) : `fr` = `est-il-utile-…` / `e-commerce-comment-…`, `en` = `5-questions-before-investing-…` / `e-commerce-set-up-internal-packshots`, `de-ch` = `lohnt-sich-ein-internes-produktfotostudio` / `e-commerce-fotostudio-organisieren`. A et B affichés dans **les 3 langues** (les 6 versions sont publiées depuis #144) ; `NavLink` rend l'URL native (en de-ch, les slugs de-ch sont couverts via `alternates.json`). Le hub est affiché dans les 3 langues (ses destinations existent, épinglage `NavLink` sinon).
+
+**Fichiers** — `components/layout/Header.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Rayon d'action** — Header global (desktop + mobile). Non listé dans la carte à rayon large (`garde-consequences`), mais touche toute la navigation. Ajout de 3 items au sous-menu Guides (5 au total) : contrôle UX (débordement, ouverture clavier, mobile) et résolution des 6 liens A/B par locale. Retour arrière : `git revert`.
+
+**Vérifié** — `messages` JSON valides (3 langues, parité des clés) ; `npx tsc --noEmit` vert ; `npx next build` vert. QA build prod local (D59 §3, Playwright + examen des captures) : sous-menu « Solutions → Guides » rendu en cascade (desktop 1440) et en accordéon (mobile 390) dans les 3 locales ; 5 entrées présentes ; libellés A/B/hub localisés ; les 6 liens A/B portent le slug de leur locale (`/fr/blog/est-il-utile-…` & `/e-commerce-comment-…`, `/en/blog/5-questions-before-investing-…` & `/e-commerce-set-up-internal-packshots`, `/de-ch/blog/lohnt-sich-ein-internes-produktfotostudio` & `/e-commerce-fotostudio-organisieren`) et résolvent **HTTP 200** ; 0 erreur console ; overflow du flyout desktop = 0.
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé / hors périmètre** — Un overflow horizontal ~53px au chargement mobile (390) provient du bandeau de logos `animate-marquee` (élément préexistant, intentionnellement plus large que le viewport) : présent avant toute interaction avec le menu, non introduit par cette PR. Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4, puis contrôle production (sysnext → www).
+
+---
+
+## 2026-10-14 · Traductions EN + localisations de-ch des articles A et B · Claude de Laurent
+
+**Chantier** : GO EXÉCUTION FINALE A/B — traductions, sous exception **D59** (EN + de-ch autorisés et publiables depuis le FR stabilisé ; de-ch : exception D16/C5/D17 pour ces 2 seules créations) | **PR** : traductions dédiée | **Base** : `main` `bf1165a` | **Branche** : `claude/traductions-a-b`
+
+**Quoi** —
+- **EN** : mise à jour des deux jumeaux existants depuis le FR stabilisé — `content/blog/en/5-questions-before-investing-in-an-in-house-photo-studio.json` (A, 7 questions) et `content/blog/en/e-commerce-set-up-internal-packshots.json` (B, 8 questions). URL EN conservées. `faqs: []`, auteur PackshotCreator, metaTitle/description B préservés (Orbitvu & PackshotCreator), metaTitle A traduit. Liens remappés vers l'anglais ; ancres `#…` recalculées sur les titres EN (slugify).
+- **de-ch** (créations) : `content/blog/de-ch/lohnt-sich-ein-internes-produktfotostudio.json` (A, 7 q) et `content/blog/de-ch/e-commerce-fotostudio-organisieren.json` (B, 8 q). Allemand suisse, **0 « ß »**. Adaptation juridique suisse : aucune obligation FR/UE transférée automatiquement ; le cadre AI Act est explicitement qualifié « in der EU ». Aucun claim renforcé. Liens remappés vers de-ch (articles liés, hub, roi-rechner) ; replis `/fr/` pour les cibles sans de-ch (guides, F5).
+- `content/blog/alternates.json` : ajout des slugs `de-ch` pour A et B (hreflang réciproque fr/en/de-CH).
+
+**Pourquoi** — Rendre A et B disponibles en 3 langues, conformément au GO d'accélération. Traduction depuis les FR validés (D42 étape 7).
+
+**Fichiers** — 2 JSON EN, 2 JSON de-ch (nouveaux), `content/blog/alternates.json`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — 6 versions (FR/EN/de-ch × A/B) indexables. Aucune promesse de position. NOINDEX_EN hors périmètre A/B inchangé. Gels de landings inchangés.
+
+**Vérifié** — `verifier-json` : 200 JSON valides ; `tsc` vert ; `vitest` 655 verts ; `next build` vert ; de-ch : 0 « ß ». QA build prod local (D59 §3) des 6 pages : HTTP 200, questions 7/8, indexables (noindex=0), canonical auto-référents par locale, **hreflang réciproque complet** (fr/fr-CH/en/de-CH/x-default), Article JSON-LD sans FAQPage, overflow 0 (desktop+mobile), 0 erreur console, dépliables clavier OK, maillage #entretien-01/02 présent, **tous liens internes de-ch 200**, 6 URL au sitemap. Captures desktop examinées (de-ch-A, en-B rendus conformes).
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé** — Contrôle `www` (Cloudflare) après fusion.
+
+**Suite** — Fusion après CI 4/4. Puis menu Guides (#142) avec entrées A/B de-ch désormais valides, et contrôle production.
+
+---
+
+## 2026-10-14 · PR-B brouillon — réécriture « Studio photo e-commerce » (extraction de #130) · Claude de Laurent
+
+**Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article B depuis #130, PR brouillon, sans fusion ni publication ; réconciliée sur `main` après #134 | **PR** : PR-B dédiée, brouillon | **Base** : `main` `6717c4f` (merge de `main`, conflit `JOURNAL` résolu par union — entrée #134 préservée) | **Branche** : `claude/reecriture-b-studio-ecommerce`
+
+**Quoi** — `content/blog/fr/e-commerce-comment-mettre-en-place-votre-studio-photo.json` : réécriture éditoriale de #130 (8 questions, réponse courte visible avant tout bloc dépliable, `faqs: []`, auteur PackshotCreator), **rebasée sur le maillage déjà publié** : le lien `/fr/conversations-sebastien-jourdan#entretien-02` (ancre « organiser le studio, vu par Sébastien Jourdan », introduit par #138) est ré-injecté dans la nouvelle Q1 (responsabilités / organisation). `metaTitle` et `description` **inchangés** (cartes de F5 gelée jusqu'au 23/11 identiques). `app/globals.css` : même bloc append-only `.prose .psc-*` que PR-A. Tests **auto-adaptatifs et identiques à PR-A** : `serie-produire-images.test.ts` et `e2e` décrivent A ET B et ne contrôlent un article que s'il est réécrit (présence de `psc-q`) ; `json-ld-techniques.test.ts` compte dynamiquement les fichiers portant `dateModified` (3/4/5).
+
+**Droits images** — Hero : retour au **visuel historique** `67dbae80….avif` (usage établi) au lieu du dérivé `cover.avif` (HOLD, non embarqué) — aucun fichier nouveau, aucun élargissement de droits, pas de modification du gabarit partagé. Les deux photos inline de #130 (poste Orbitvu `packshot-operator.avif`, bagues `bijoux-profil….avif`), toutes deux **HOLD** (droits non établis / contredits), sont **retirées** ; l'article s'appuie sur ses schémas éditoriaux. Réintégration possible par Sébastien après confirmation des droits.
+
+**Pourquoi** — #130 est antérieure à #138 ; reprise brute, elle écraserait le maillage. L'ancienne page était un argumentaire Orbitvu avec FAQ promotionnelles. La réécriture en fait une page d'organisation de studio sourcée.
+
+**Fichiers** — article B JSON, `app/globals.css`, les 3 fichiers de test, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — [Inférence] Page plus complète, orientée mise en œuvre. Aucune promesse de position ni de CTR. `dateModified` = 2026-10-14 (à réaligner sur la publication réelle au merge, sans antidatage). Baseline interne (14/10, source `gsc-crawl-seo`, dernier jour 10/10, **pas un relevé GSC en direct**) : 1 264 impressions, 2 clics, position pondérée ≈ 17,2 ; visible sur « studio photo e commerce », « studio e-commerce », « studio photo ecommerce ». Cela repose sur des schémas observés.
+
+**Vérifié** — `verifier-json` ; `npx tsc --noEmit` ; `npx vitest run` ; `eslint --max-warnings=0` des fichiers modifiés ; `npx next build` (résultats consignés à l'exécution) ; `cover.avif` et les 2 photos HOLD absentes du JSON ; `metaTitle`/`description` identiques à `main` ; hero historique présent dans `public/`.
+**Supposé** — Rendu visuel sur Preview (SSO) à contrôler. Prose institutionnelle (D42) : arbitrage Sébastien.
+**Non regardé** — Versions EN/de-ch de B (jumeaux non équivalents, traduction gelée C5/D17). L'article A (PR distincte).
+
+**Dépendance partagée A/B** — `app/globals.css` (bloc `psc-` identique) et les 3 fichiers de test (identiques et auto-adaptatifs) sont communs aux deux PR. Étant identiques, ils ne créent **aucun conflit** à la fusion du second, et contrôlent automatiquement A et B une fois les deux publiés (compteur `dateModified` 4 → 5 tout seul). Ordre de fusion sûr : #139 (A) d'abord, #140 (B) ensuite ; au merge de #140, `git merge main` apporte le CSS et les tests déjà présents sans conflit, et le JOURNAL par union.
+
+**Suite** — Publication autorisée le 14/10 (GO_MERGE_PR140 = YES, exception D15 consignée en **D59**). `dateModified` = 2026-10-14 = date réelle de publication. Fusion après resynchronisation sur `main` (post-#139) et QA visuelle effective.
+
+---
+
 ## 2026-10-14 · PR-A brouillon — réécriture « Internaliser ses photos produit » (extraction de #130) · Claude de Laurent
 
 **Chantier** : GO PRÉPARATION DES RÉÉCRITURES A/B (14/10/2026) — extraction propre de l'article A depuis #130, PR brouillon, sans fusion ni publication ; réconciliée sur `main` après #134 | **PR** : PR-A dédiée, brouillon | **Base** : `main` `6717c4f` (merge de `main`, conflit `JOURNAL` résolu par union — entrée #134 préservée) | **Branche** : `claude/reecriture-a-internaliser`
