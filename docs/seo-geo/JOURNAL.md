@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · #117 — `main` `6717c4f` (#134, #136, #137, #138) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `2d8cb36` (fusion de `main` `6717c4f`)
+
+**Quoi** — `main` `6717c4f` fusionné dans #117 dans un worktree isolé, sans rebase (GO de finalisation technique de Laurent du 14/10). Seul `JOURNAL.md` était en conflit (2 blocs) : union, entrées placées par heure UTC. `ETAT.md` fusionné automatiquement, ligne #117 actualisée. Le code de consentement de #117 est inchangé : 9 fichiers identiques à `2c0261f`, retouches de `app/[lang]/blog/[slug]/page.tsx` identiques à l'original.
+
+**Pourquoi** — #136, #137, #138 et #134 fusionnées les 13 et 14/10 : #117 de nouveau en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices, Chromium du conteneur, résolution DNS hors `localhost` bloquée, réponses des services simulées par `page.route` (aucun service tiers contacté) :
+- `npx tsc --noEmit` vert ; Vitest 647/647 (36 fichiers) ; `npx next build` vert, 390 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78 (39 par appareil).
+- Diff contre `main` : les 12 fichiers de #117 seulement ; aucun fichier de politique de confidentialité, contact, Google Maps, `OrbitvuViewer`, analytics, `content/**` ni `messages/*.json`.
+- Rappel, non effacé par ce passage : suite élargie du 14/10 (mêmes specs et QA ad hoc des 6 articles, Desktop Chrome et Pixel 5) à 137/138 ; échec par dépassement de délai dans la boucle de défilement des tests sur l'article photogrammétrie en mobile ; 4 occurrences sur environ 540 exécutions depuis le 13/10 ; essais ciblés sans reproduction (40/40 puis 60/60 sous charge, aucune étape au-delà d'une seconde). Cause non établie.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (protégée par SSO) et lecteurs tiers réels ; Android réel ; lecteur d'écran ; réponse 402 de saasphoto.com. Google Maps, `orbitvu.co` et révocation de la mesure d'audience : hors #117, non résolus.
+
+**Suite** — Validation éditoriale des textes de la fenêtre d'information (FR, EN, de-CH) ; QA Chrome de la Preview ; GO de fusion distinct.
+
+---
+
 ## 2026-10-14 · #134 : Light + Byte AG, affirmation de cessation d'activité CONSERVÉE (décision définitive de Laurent) ; `main` `1ebda83` intégré · Claude de Laurent
 
 **Chantier** : G5 LOT-7 (D9 L1), SB-L1 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
