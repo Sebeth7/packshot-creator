@@ -52,9 +52,9 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Rayon d'action** — Header global (desktop + mobile). Non listé dans la carte à rayon large (`garde-consequences`), mais touche toute la navigation. Ajout de 3 items au sous-menu Guides (5 au total) : contrôle UX (débordement, ouverture clavier, mobile) et résolution des 6 liens A/B par locale. Retour arrière : `git revert`.
 
-**Vérifié** — (consigné à l'exécution) `messages` JSON valides (3 langues, parité des clés) ; `npx tsc --noEmit` vert ; `npx next build` vert ; QA build prod local (D59 §3) du sous-menu desktop/tablette/mobile + clavier, et des 6 liens A/B (fr/en/de-ch) résolvant 200.
+**Vérifié** — `messages` JSON valides (3 langues, parité des clés) ; `npx tsc --noEmit` vert ; `npx next build` vert. QA build prod local (D59 §3, Playwright + examen des captures) : sous-menu « Solutions → Guides » rendu en cascade (desktop 1440) et en accordéon (mobile 390) dans les 3 locales ; 5 entrées présentes ; libellés A/B/hub localisés ; les 6 liens A/B portent le slug de leur locale (`/fr/blog/est-il-utile-…` & `/e-commerce-comment-…`, `/en/blog/5-questions-before-investing-…` & `/e-commerce-set-up-internal-packshots`, `/de-ch/blog/lohnt-sich-ein-internes-produktfotostudio` & `/e-commerce-fotostudio-organisieren`) et résolvent **HTTP 200** ; 0 erreur console ; overflow du flyout desktop = 0.
 **Supposé** — Rien au-delà des contrôles ci-dessus.
-**Non regardé** — Contrôle `www` (Cloudflare) après fusion.
+**Non regardé / hors périmètre** — Un overflow horizontal ~53px au chargement mobile (390) provient du bandeau de logos `animate-marquee` (élément préexistant, intentionnellement plus large que le viewport) : présent avant toute interaction avec le menu, non introduit par cette PR. Contrôle `www` (Cloudflare) après fusion.
 
 **Suite** — Fusion après CI 4/4, puis contrôle production (sysnext → www).
 
