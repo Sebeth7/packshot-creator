@@ -34,6 +34,24 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
+
+**Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
+
+**Quoi** — Anglais corrigé dans 4 articles EN : 237 occurrences dans le corps, 36 dans les FAQ, title, h1, metaTitle et description (L2, L3, L4 ; FAQ seules pour L1). Un seul titre retouché (« still-life », L1), ancre identique.
+
+**Pourquoi** — Audit B, dossiers P1 02, 03, 04, 09 : traductions Webflow illisibles par endroits. GO_CODE L1 à L4, GO_COMMIT et GO_PR/PUSH de Laurent du 15/10.
+
+**Fichiers** — `content/blog/en/packshot-photography-guide-why-make-product-packshots.json`, `content/blog/en/best-image-format-for-the-web.json`, `content/blog/en/how-to-choose-best-lens-for-product-photography.json`, `content/blog/en/tips-photo-framing-composition.json`
+
+**Effet attendu** — Aucun sur les URL, ancres, canonical, hreflang ou robots. Titles SERP de L2 et L3 retouchés (grammaire, mots-clés conservés). À mesurer après publication seulement.
+
+**Vérifié** — `verifier-json` 198 valides ; `verifier-consequences` effet local ; `vitest` 691/691 ; `tsc` ; `next build` (valeurs factices) ; HTML généré des 4 pages : canonical, hreflang, pas de `noindex`, FAQPage, 63 ancres sur 63 identiques à `main`. CI sur `b3df50e` : build et conséquences verts. Balises, liens, images, ALT, chiffres, auteurs, dates et slugs identiques à `main` (script de comparaison).
+**Supposé** — L'ancre d'un titre ne dépend que de son texte (`slugify` de `lib/blog-utils.ts`), donc un changement de casse ou de trait d'union la conserve.
+**Non regardé** — Preview Vercel (SSO, aucun jeton) ; `www` (R4) ; FR et de-ch ; véracité des claims, laissés tels quels et listés en réserves D42 dans la PR.
+
+**Suite** — HOLD : D35 et D52 (L1 pendant la mesure F5, J+28 le 26/10, J+56 le 23/11) ; réserves D42 de L1 à L4 (décision de Sébastien ou exception écrite de Laurent) ; QA Preview sur 3 formats. Aucune fusion avant ces trois points.
+
 ## 2026-10-15 · Interviews 2017 — ÉTAPE W FUSIONNÉE + Worker DÉPLOYÉ en production · Claude de Laurent
 
 **Chantier** : clôture V9 — retrait interviews 2017, étape W | **PR** : #151 (fusionnée) | **Worker** : `packshot-router`, version `d7d06bc1-a0a4-423c-a036-037a3b7266ea`
