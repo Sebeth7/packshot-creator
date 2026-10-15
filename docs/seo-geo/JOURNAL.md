@@ -34,6 +34,25 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-14 · U06 : contraste WCAG du pied de page · Claude de Laurent
+
+**Chantier** : U06 (audit visuel G6) | **PR** : #143 (brouillon) | **Commit** : voir PR
+
+**Quoi** — `components/layout/Footer.tsx` : classes de couleur de texte éclaircies — 42 liens + la tagline passent de `text-future-dusk-400` à `text-future-dusk-300` ; les 2 lignes de la barre inférieure de `text-future-dusk-500` à `text-future-dusk-300`. Les 2 icônes sociales restent inchangées. Aucun token global, libellé, `href`, Hn ni traduction modifié.
+
+**Pourquoi** — Sur fond `future-dusk-900` (`#0F1118`), ratios de contraste mesurés sur les hex réels de `app/globals.css` : `#6E7592` = 4,15:1 et `#4C5578` = 2,58:1 (sous le seuil 4,5:1 des textes normaux) ; `#8F95A8` (`-300`) = 6,31:1. Icônes sociales `#6E7592` sur `#1E2230` = 3,48:1 ≥ 3:1 (seuil non-texte), conservées.
+
+**Fichiers** — `components/layout/Footer.tsx`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Meilleure lisibilité du pied de page, composant partagé (~350 pages). Aucun effet SEO (teinte de texte seule). Aucune publication avant fusion.
+
+**Vérifié** — `npx tsc --noEmit` vert ; lint ESLint de `Footer.tsx` vert ; `npx next build` → compilation et phase TypeScript vertes (build complet bloqué localement par l'absence de `NEXT_PUBLIC_SUPABASE_URL`, cf. R1, étranger au diff) ; ratios recalculés en Python sur les hex de `app/globals.css`.
+
+**Supposé** — Le rendu navigateur correspond aux ratios calculés. Mesure ciblée, pas une certification de conformité WCAG complète.
+
+**Non regardé** — QA visuelle aux largeurs 320/390/768/1440 px sur Preview et états hover/focus (à réaliser sur le Preview de la PR) ; tout ce qui est hors pied de page.
+
+**Suite** — PR #143 maintenue en Draft (`GO_MERGE = NO`, `GO_PUBLICATION = NO`). QA visuelle Preview restante avant toute fusion.
 ## 2026-10-14 · #119 — QA locale substitutive (exception propre) et consignation de l'exception D13/D42 · Claude de Laurent
 
 **Chantier** : Ubersuggest résiduel, PR-B, lot A du désengorgement V9 (GO_QA_LOCALE_119 de Laurent du 14/10 ; GO_MERGE_119 et GO_PUBLICATION_119 conditionnels à la QA PASS) | **PR** : #119 | **Commit** : ce commit
