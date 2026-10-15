@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #129 — `main` `c557348` intégré ; preuves Chrome du 15/10 ; paragraphe `p5` de-ch : constat · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_SYNC_MAIN_BRANCHE_129 du 14/10 ; « V9 — #129 : reprise après preuves Chrome ») | **PR** : #129 (brouillon) | **Commit** : `ffe1f96` (fusion), puis le commit documentaire suivant
+
+**Quoi** — `main` `c557348` (#141, #148, #149, #143) intégré : conflits `ETAT.md` (deux lignes ajoutées au même endroit) et `JOURNAL.md`, résolus par union sans perte. `Footer.tsx` (contraste, #143) fusionné seul : le lien « Offres d'occasion » de la colonne Solutions est intact. D60 reste libre sur `main`.
+
+**Preuves Chrome du 15/10 (restitution de Laurent, non revues par cette session)** — Vercel, projet `sysnext` : déploiement `4c67982` Preview READY ; cinq variables `OCCASION_*` présentes en Preview, absentes en Production ; `75d5914` encore présent, non réactivé (sa fenêtre s'est fermée seule à 17:17 UTC le 11/10) ; `RESEND_API_KEY` : « Needs Attention » lié au type Config, valeur visible aux membres du projet, pas la preuve d'une clé invalide. Resend, 06:55 UTC : 0/100 par jour, 52/3 000 par mois, 0 contact, sept propriétés `occasion_alertes_*` de type string présentes et une huitième (concaténée, non touchée) ; test A du 11/10 : deux e-mails delivered ; test B : aucune preuve. Aucun envoi pendant ce contrôle.
+
+**Constat sur `privacy.article9.p5` de-ch** — Le texte de-ch est la copie française, comme tout le bloc `privacy` de `de-ch.json`. `/de-ch/confidentialite` répond 404 sur `sysnext.vercel.app` (lu le 15/10), n'est pas prérendue au build (fr : oui, en : oui, de-ch : non), n'est pas au sitemap, et les liens de-ch pointent vers `/fr/confidentialite` (`DE_CH_PIN_FR`). Le défaut n'a donc aucun effet visible aujourd'hui. Correction proposée à Laurent, non appliquée : validation D42 du libellé exigée.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md` (aucun code modifié).
+
+**Vérifié** — `tsc` : 0 erreur ; build : vert ; Vitest sur `occasion-langues.test.ts` (placement du lien du pied de page) : voir le commit. Verrous de `lib/occasion/activation.ts` : les six fermés.
+**Supposé** — [Inférence] Le « Needs Attention » de `RESEND_API_KEY` est un avertissement d'affichage : la clé a servi au test de recherche du 11/10 (réponse « Demande reçue », la route renvoie 500 si la notification échoue).
+**Non regardé** — Envois réels (aucune fenêtre ouverte), état actuel du déploiement `75d5914`, protection ou rotation de `RESEND_API_KEY` (décision distincte, partagée avec d'autres formulaires du site).
+
+**Suite** — Validation D42 du libellé de `p5` ; destinataires T1, T2, T3 et B, heure de début et ordre d'ouverture par Laurent ; cinq variables Production sous GO applicable ; fenêtre unique ; fusion et publication conditionnelles.
+
+---
+
 ## 2026-10-14 · #129 — Q25 close : conservation des alertes (article 9), désinscription limitée, purge trimestrielle ; `main` `bf1165a` intégré · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (« GO de finalisation — confirmation téléphonique de Sébastien », GO_CORRECTIFS_CONFIDENTIALITÉ_129 = YES) | **PR** : #129 (brouillon) | **Commit** : ce commit ; fusion de `main` `bf1165a` (#140) en `ae4727f`
