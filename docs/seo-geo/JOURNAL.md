@@ -34,6 +34,43 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · Interviews 2017 — ÉTAPE W FUSIONNÉE + Worker DÉPLOYÉ en production · Claude de Laurent
+
+**Chantier** : clôture V9 — retrait interviews 2017, étape W | **PR** : #151 (fusionnée) | **Worker** : `packshot-router`, version `d7d06bc1-a0a4-423c-a036-037a3b7266ea`
+
+**Statut** — Sur GO de Laurent du 15/10 (GO_MERGE_151 + GO_WORKER_151 conditionnels ; décision SEO : ES/DE/NL conservés en 410). Étape W réalisée. Étape S (#150, retrait du contenu) **reste en attente** de la preuve `www` des 301 (GO_MERGE_150 / GO_PUBLICATION_150 conditionnels).
+
+**R5 — resynchronisation vérifiée AVANT déploiement** — Code réellement déployé récupéré en lecture seule (API Cloudflare `GET workers/scripts/packshot-router`, lecture autorisée par 05-INFRA). Diff normalisé (hors commentaires et boilerplate esbuild) **vide** contre `cloudflare-worker/src/index.js` de `main` pré-#151 : **aucune divergence de règle en production**, aucune règle propre à la prod à préserver. Constat conforme à celui du 17/09.
+
+**Déploiement** — #151 fusionnée dans `main` (`540185b`). Worker déployé **depuis le dépôt** (`npx wrangler deploy`, pas d'édition dashboard — R5), version `d7d06bc1-a0a4-423c-a036-037a3b7266ea`, routes `www`, apex et `*.packshot-creator.com`. Diff normalisé du script redéployé contre `main`/#151 : **vide** (déploiement conforme). 7 clés de redirection → `/a-propos` présentes ; 3 variantes ES/DE/NL toujours en 410.
+
+**Preuve locale (avant déploiement)** — Harnais appelant `worker.fetch` : les 7 anciennes URL renvoient **301** vers `/fr/a-propos` ou `/en/a-propos` (cibles exactes), les cibles `/a-propos` ne redirigent pas (**aucune chaîne ni boucle**), ES/DE/NL **410**, témoins `/` → `/fr` et passthrough `videos./books./trail.` inchangés. `node --check` OK ; 165/165 tests Worker verts.
+
+**www NON VÉRIFIÉ** — Contrôle `www` impossible dans cette session : le WAF/Super Bot Fight Mode s'exécute **avant** le Worker (05-INFRA), un client script reçoit **403** (mesuré sur les 2 URL canoniques), aucun navigateur réel disponible ici. La vérification Chrome des 301 revient à Laurent (URL ci-dessous). **STOP après l'étape Worker** (GO étape 5).
+
+**Suite** — Laurent vérifie en Chrome les 7 redirections (301 direct, cibles `/a-propos`, sans chaîne) et le maintien des 410 ES/DE/NL, puis GO_MERGE_150 pour fusionner le retrait du contenu (#150). Rollback W : `git revert` de #151 + `wrangler deploy` depuis le dépôt.
+
+## 2026-10-15 · Interviews 2017 — ÉTAPE S (DRAFT) : retrait des 2 articles + alternates + liens entrants · Claude de Laurent
+
+**Chantier** : clôture V9 — retrait interviews 2017, étape S (retrait du site) | **PR** : #150 (Draft), branche `claude/zen-maxwell-i59q3o`, base `main` `c557348` | **Commit** : voir PR
+
+**Statut** — **PRÉPARATION / DRAFT, SITE SEUL (aucun changement Worker ici)**. GO_CODE_PREPARATION + GO_PR_DRAFT (15/10). **GO_MERGE = NO, GO_PUBLICATION = NO.** Les redirections Worker sont dans la **PR séparée #151 (étape W)**. **Règle de séquence : S ne se publie qu'après que les 301 de W soient actives et vérifiées sur `www`** (sinon fenêtre 404 sur `/fr/blog/decryptages-…` et `/en/blog/interview-…`).
+
+**Quoi** — contenu seul :
+- **Retrait des 2 articles d'interview 2017** (`git rm`, historique restaurable) : `content/blog/fr/decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator.json` et `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json`. Après fusion : routes retirées de l'app Next et du sitemap (via `getAllArticleSlugs`).
+- **`content/blog/alternates.json`** : paire `67e2ad276291f90c1cf0dc8b` (fr↔en) retirée.
+- **2 liens internes recibles** vers `/a-propos` (les articles cités n'existent plus) : `content/blog/en/series-e-commerce-ebooks-shooting-products.json` (« the About page of PackshotCreator » → `/en/a-propos`) ; `content/blog/fr/lancement-dune-serie-debooks-dediee-au-ecommerce.json` (« la page À propos de PackshotCreator » → `/fr/a-propos`).
+
+**Dépendance de release (R8)** — Les 301 vers `/a-propos` vivent dans la **PR Worker #151 (étape W)**, ressource à rayon large (R5). Ordre impératif : **déployer et vérifier W sur `www` AVANT de fusionner S**. Retour arrière de S : `git revert`.
+
+**Vérifié** — `tsc` 0 ; `verifier-json` 198 (−2) ; `next build` 390/390 (−2 routes), exit 0 — sur l'arbre avec articles retirés. Aucune référence résiduelle aux slugs hors clés de redirection (grep dépôt complet ; les seules occurrences restantes sont les clés de #151).
+**Non regardé** — `www` (R4) ; preview Vercel (SSO).
+
+**Suite** — Draft S en attente du GO groupé final. Déploiement W (#151) + vérification `www`, PUIS fusion S (#150). #146 en HOLD, `noindex` conservé.
+
+**MàJ 15/10 (fusion S)** — GO_MERGE_150 / GO_PUBLICATION_150 donnés par Laurent sur preuve substitutive (concordance code #151 / Worker déployé `d7d06bc1` / 7 tests locaux 301 / contrôle Chrome `www` de Laurent 11:11-11:12 UTC : 7/7 301 directs, 3/3 410). ES/DE/NL conservés en 410. Resynchronisation sur `main` `f7a664e` (fusion #117) ; conflits `JOURNAL` et `ETAT` résolus par **union** (entrée de déploiement Worker préservée). **Rayon d'action** déclaré dans la description de la PR #150 (R8, garde-conséquences : `alternates.json` à rayon large).
+
+
 ## 2026-10-15 · #117 — redirection saasphoto → cloud.ortery.com mentionnée, exception D13/D42 et QA substitutive consignées, `main` `c557348` intégré · Claude de Laurent
 
 **Chantier** : médias externes et consentement | **PR** : #117 | **Commit** : `b76acff` (phrase de transparence), `96b737f` (fusion de `main` `c557348`) ; consignation dans le commit de cette entrée
