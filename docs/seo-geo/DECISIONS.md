@@ -25,6 +25,66 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-15 · Exception ponctuelle D13/D42 pour les textes de consentement de #117, et QA substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — « V9 — Clôture conditionnelle de #117 » et « V9 — GO_CODE_117_TRANSPARENCE + validation D42 ponctuelle », 15/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous ; épuisée par la fusion de #117. Aucun numéro de décision n'est attribué ici : il se prend au moment de la consignation définitive, après vérification de `main`.
+
+**La décision** —
+1. **D13/D42, exception limitée à #117** : Laurent accepte, sous sa responsabilité éditoriale, les textes FR, EN et de-ch de la façade et de la fenêtre d'information de `lib/external-embeds.ts` tels que présents dans la tête `b9589c6`, et les trois phrases ajoutées sur la redirection de saasphoto.com, validées le 15/10 :
+   - FR : « Ce contenu peut être redirigé vers cloud.ortery.com, qui recevra alors également ces informations. »
+   - EN : « This content may be redirected to cloud.ortery.com, which will then also receive this information. »
+   - de-ch : « Dieser Inhalt kann an cloud.ortery.com weitergeleitet werden, das diese Informationen dann ebenfalls erhält. »
+   Ce n'est ni une validation attribuée à Sébastien, ni une validation juridique RGPD, ni une autorisation de nouvelle reformulation commerciale, ni une autorisation de créer une nouvelle catégorie générale de cookies, ni une validation de la disponibilité des médias. L'exception ne vaut que pour ces textes, inchangés, et tant qu'ils ne sont pas contredits par les services effectivement appelés.
+2. **QA substitutive propre à #117** : les preuves de la QA locale et de la campagne Chrome du 14/10 remplacent les contrôles de Preview bloqués par SSO. Réserves : pas de lecteur d'écran réel ; pas d'Android physique ; largeurs mobiles simulées ; lecteur Vimeo sur `www` non caractérisé ; disponibilité des médias tiers hors périmètre. Restent obligatoires : refus sans chargement tiers, accord ponctuel, fermeture, focus, retrait possible.
+
+**Le contexte** — #117 met en façade les 6 iframes Vimeo, Sketchfab et saasphoto.com des articles. Le 15/10, `saasphoto.com` répondait 302 vers `cloud.ortery.com` alors que la fenêtre ne citait que saasphoto.com : la condition de l'exception n'était pas remplie, d'où la phrase de transparence.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR ou à un autre texte.
+- La tenir pour une validation de Sébastien, une conclusion RGPD ou un constat de disponibilité de Vimeo ou d'Ortery.
+- Réutiliser la substitution de QA Preview pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
+## D(numéro à attribuer) · 2026-10-14 · Exception ponctuelle D13/D42 pour les 8 titles FR de #119, et QA locale substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — arbitrage éditorial du 14/10/2026 (midi) et « V9 — Arbitrage lot A » du 14/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous ; épuisée par la fusion de #119. Aucun numéro de décision n'est attribué ici : il se prend au moment de la consignation définitive, après vérification de `main` (D60 est pris par #129).
+
+**La décision** —
+1. **D13/D42, exception ponctuelle limitée à #119** : les 8 `metaTitle` (ou `titre`) FR de la PR sont publiables sans validation de Sébastien. Six titles sont conservés tels que proposés ; deux sont remplacés par Laurent : ShotFlow (« ShotFlow : automatisation de la production visuelle », 51 caractères) et bijoux (« Photographier des bijoux : techniques pour joailliers », 53 caractères). Laurent assume la responsabilité de cet arbitrage ; la revue ChatGPT qui l'a motivé n'est pas versée au dépôt (non vérifiée ici). Aucune validation n'est attribuée à Sébastien.
+2. **QA pré-fusion substitutive, propre à #119** : la Preview Vercel étant bloquée par SSO, la vérification locale du rendu des métadonnées des neuf pages concernées remplace l'étape Preview, pour #119 seule. Elle ne vaut pas QA de production.
+
+**Le contexte** — #119 modifie un champ de titre dans 8 fichiers (7 JSON de `content/blog/fr/`, `data/solutions.ts`) ; neuf pages servies sont touchées (7 articles FR, `/fr/solutions/documentation-qualite-produit` et sa version `/en`, en `noindex`). La question générale « un `<title>` relève-t-il du copywriting réservé à Sébastien ? » reste ouverte (ETAT, ligne #70).
+
+**Limites de la QA locale** — Build de production avec les variables factices de la CI, servi sur `localhost` : ni Cloudflare, ni Worker, ni WAF, ni Vercel. Compare `main` `2ae6e15` et la tête `a37fa9f` sur les seules balises `title`, `og:title`, `twitter:title`, `og:image`, `canonical`, `hreflang`, `description`, `robots`, le corps de page et le JSON-LD. Pas de rendu visuel à trois largeurs, pas de test de l'aperçu social réel, pas de lecture dans Chrome sur `www` (R4).
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, aux 8 `REVIEW_CONTENT` historiques, à l'article e-commerce (`e-commerce-comment-mettre-en-place-votre-studio-photo`, HOLD #140 / gel F5) ou à la question générale « `<title>` et D13 ».
+- Tenir la QA locale pour un contrôle de production, ou pour une validation de Sébastien.
+- Réutiliser la substitution de QA Preview pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
+## D59 · 2026-10-14 · Exceptions ponctuelles pour la publication de la série A/B : D15 (délai), D16/C5/D17 (de-ch) et substitution de QA Preview (SSO)
+
+**Décidé par** : Laurent — « DÉCISION FINALE LAURENT — PUBLICATION ASAP ET CLÔTURE A/B » du 14/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous ; épuisée par la publication de ce périmètre. D15, D16, D42, C5 et D17 restent inchangées pour tout le reste.
+
+**Portée** : réécritures A (`est-il-utile-dinternaliser-…`, PR #139) et B (`e-commerce-comment-mettre-en-place-…`, PR #140), leurs traductions EN et localisations de-ch, et le menu Guides (PR #142). Aucune extension à une autre PR, page, création ou chantier.
+
+**La décision** — Texte de Laurent du 14/10, en substance :
+1. **D15, délai levé** pour #139 et #140 seulement : les 5 jours ouvrés d'attente de validation tacite sont supprimés. `metaTitle` de A confirmé : « Internaliser ses photos produit : 7 questions avant d'investir ». Pas de nouvelle relecture préalable de Sébastien exigée pour les formulations **déjà documentées et vérifiées dans les sources existantes**.
+2. **de-ch A/B** : exception ponctuelle à la priorité **C5/D17** et à l'exigence de validation préalable de Sébastien prévue par **D16** pour les **deux seules** localisations de-ch de A et B, sous la responsabilité éditoriale de Laurent. Publication coordonnée EN + de-ch depuis les versions FR stabilisées.
+3. **Substitution de QA Preview** pour #139, #140 et #142 seulement : si le SSO rend la Preview Vercel inaccessible, le contrôle visuel de D42 (étape 4) peut être réalisé sur un **build de production local** réellement inspecté (pages ouvertes, captures desktop/tablette/mobile examinées, clavier/tactile/éléments dépliables, liens, images, débordements, erreurs console, changements hors articles dont le Header). Dérogation ponctuelle à l'étape Preview de D42.
+
+**Le contexte** — Les trois PR sont préparées et 4/4 vertes (fd922d0, 0c3d983, abd77af sur `main` 6717c4f). Le délai D15 ne pouvait démarrer faute de contrôle Preview (SSO). Laurent, responsable du pilotage SEO/GEO, lève ces attentes sous sa responsabilité pour publier.
+
+**Ce qu'elle n'est pas / ce qu'elle interdit** — Ne vaut **pas** validation personnelle de Sébastien des articles A/B ni confirmation par lui de faits métier. Toute affirmation métier **nouvelle, non sourcée, contradictoire ou engageante** reste bloquée jusqu'à clarification (D42 demeure applicable : véracité, sources, droits, qualité). N'autorise aucun nouveau claim commercial ou juridique sans preuve, aucun renforcement de claim par traduction, aucun transfert automatique d'obligations FR/UE à une entreprise suisse. Ne s'étend à aucune autre PR ni création. Ne lève ni `NOINDEX_EN_*` hors périmètre A/B, ni un gel de landing (F5…). Interdit de déclarer qu'une Preview SSO a été vérifiée si elle ne l'a pas été.
+
+---
+
 ## D58 · 2026-10-12 · Pilotage G5 : R1, exception de périmètre pour le seul P0 de #131 ; R3, propagation des corrections factuelles XL Pro v2 pendant M5, sur le principe
 
 **Décidé par** : Laurent — mission « G5 — passe finale décisive » du 12/10/2026 (« R1 = OPTION B POUR #131 UNIQUEMENT » ; « R3 = OPTION A, SUR LE PRINCIPE »)

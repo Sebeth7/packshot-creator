@@ -158,6 +158,26 @@ export default async function ConversationsPage({ params }: PageProps) {
   const labelPointDeVue = tx(lang, 'Le point de vue de Sébastien Jourdan', 'Sébastien Jourdan’s perspective', 'Die Sicht von Sébastien Jourdan');
   const labelQuestions = (n: number) => tx(lang, `Les ${n} questions de cet entretien`, `The ${n} questions in this conversation`, `Die ${n} Fragen dieses Gesprächs`);
 
+  // « Pour aller plus loin » : navigation éditoriale vers les pages de référence
+  // réellement publiées, destinations localisées par langue (slugs d'articles via
+  // content/blog/alternates.json ; segments localisés via i18n/routing.ts). Rendus
+  // avec classes Tailwind (visibles ; exclus de la règle de liens de contenu).
+  const slugA = lang === 'fr'
+    ? 'est-il-utile-dinternaliser-sa-production-de-photos-packshot'
+    : lang === 'en' ? '5-questions-before-investing-in-an-in-house-photo-studio' : 'lohnt-sich-ein-internes-produktfotostudio';
+  const slugB = lang === 'fr'
+    ? 'e-commerce-comment-mettre-en-place-votre-studio-photo'
+    : lang === 'en' ? 'e-commerce-set-up-internal-packshots' : 'e-commerce-fotostudio-organisieren';
+  const roiHref = lang === 'de-ch' ? '/de-ch/roi-rechner' : `/${lang}/calculateur-roi`;
+  const contactHref = lang === 'de-ch' ? '/de-ch/kontakt' : `/${lang}/contact`;
+  const ressources = [
+    { href: `/${lang}/blog/${slugA}`, titre: tx(lang, 'Comparer les options avant d’internaliser', 'Compare the options before bringing it in-house', 'Die Optionen vor dem Insourcing vergleichen'), desc: tx(lang, '7 questions pour arbitrer entre prestataire, studio interne et modèle mixte.', '7 questions to weigh an agency, an in-house studio or a mixed model.', '7 Fragen, um zwischen Dienstleister, internem Studio und Mischmodell abzuwägen.') },
+    { href: roiHref, titre: tx(lang, 'Calculer le retour sur investissement', 'Calculate the return on investment', 'Den Return on Investment berechnen'), desc: tx(lang, 'Estimer en quelques minutes la rentabilité d’un studio interne.', 'Estimate the profitability of an in-house studio in a few minutes.', 'Die Wirtschaftlichkeit eines internen Studios in wenigen Minuten schätzen.') },
+    { href: `/${lang}/studios-photo-automatises`, titre: tx(lang, 'Choisir un studio photo automatisé', 'Choose an automated photo studio', 'Ein automatisiertes Fotostudio wählen'), desc: tx(lang, 'Les systèmes Orbitvu de prise de vue produit, par usage.', 'Orbitvu product-shooting systems, by use case.', 'Die Orbitvu-Systeme für Produktaufnahmen, nach Einsatz.') },
+    { href: `/${lang}/blog/${slugB}`, titre: tx(lang, 'Organiser la production d’images', 'Organise image production', 'Die Bildproduktion organisieren'), desc: tx(lang, '8 questions pour fiabiliser le circuit, de l’objet au fichier approuvé.', '8 questions to make the workflow reliable, from object to approved file.', '8 Fragen, um den Ablauf vom Objekt bis zur freigegebenen Datei verlässlich zu machen.') },
+    { href: `/${lang}/ia-photo-produit`, titre: tx(lang, 'Situer l’IA dans la photo produit', 'Place AI in product photography', 'KI in der Produktfotografie einordnen'), desc: tx(lang, 'Retouche, génération et limites, à partir de photos réelles.', 'Retouching, generation and limits, starting from real photos.', 'Retusche, Generierung und Grenzen, ausgehend von realen Fotos.') },
+  ];
+
   // JSON-LD sincère : collection éditoriale PackshotCreator À PROPOS de Sébastien
   // Jourdan (sujet/expert), jamais une interview enregistrée. Auteur = PackshotCreator.
   const personSeb = {
@@ -207,7 +227,7 @@ export default async function ConversationsPage({ params }: PageProps) {
   ]);
 
   return (
-    <main className="bg-white">
+    <main className="conversations-hub bg-white">
       <SchemaOrg schema={[organizationSchema(), breadcrumbs, personSeb, collectionArticle, itemList]} />
 
       {/* Barre de sommaire horizontale collante (D44 forme A), desktop ≥ 1024 px. */}
@@ -378,18 +398,38 @@ export default async function ConversationsPage({ params }: PageProps) {
           })}
         </div>
 
-        {/* ----- Pour aller plus loin ----- */}
+        {/* ----- Pour aller plus loin (navigation éditoriale) ----- */}
         <section className="mt-20 rounded-2xl border border-future-dusk-150 bg-future-dusk-50/60 p-6 sm:p-8">
           <p className="flex items-center gap-2 font-heading text-sm font-bold uppercase tracking-wide text-very-peri-700">
             <FileText className="h-4 w-4" aria-hidden="true" />{tx(lang, 'Pour aller plus loin', 'Going further', 'Weiterführend')}
           </p>
-          <p className="mt-3 text-future-dusk-600">
+          <p className="mt-3 max-w-2xl text-future-dusk-600">
             {tx(lang,
-              'Ces conversations renvoient, au fil du texte, vers les guides, dossiers et pages de référence de PackshotCreator — rentabilité d’un studio, organisation de la production, secteurs, IA et photographie produit.',
-              'Throughout, these conversations link to PackshotCreator’s reference guides, dossiers and pages — studio profitability, production organisation, industries, AI and product photography.',
-              'Diese Gespräche verweisen fortlaufend auf die Referenzguides, Dossiers und Seiten von PackshotCreator — Wirtschaftlichkeit eines Studios, Produktionsorganisation, Branchen, KI und Produktfotografie.',
+              'Choisir l’étape utile selon votre besoin : décider, calculer, vous équiper, organiser la production ou situer l’IA.',
+              'Pick the next step that fits your need: decide, calculate, equip, organise production or place AI.',
+              'Den passenden nächsten Schritt wählen: entscheiden, rechnen, ausrüsten, die Produktion organisieren oder die KI einordnen.',
             )}
           </p>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {ressources.map((r) => (
+              <li key={r.href}>
+                <a href={r.href} className="group flex h-full items-start gap-3 rounded-xl border border-future-dusk-150 bg-white p-4 transition-colors hover:border-very-peri-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-500">
+                  <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-very-peri-500 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  <span className="min-w-0">
+                    <span className="block font-heading text-sm font-semibold leading-snug text-future-dusk-900 group-hover:text-very-peri-700">{r.titre}</span>
+                    <span className="mt-1 block text-xs leading-relaxed text-future-dusk-500">{r.desc}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-future-dusk-150 pt-5">
+            <span className="text-sm text-future-dusk-600">{tx(lang, 'Un projet de studio photo produit ?', 'A product photo studio project?', 'Ein Projekt für ein Produktfotostudio?')}</span>
+            <a href={contactHref} className="inline-flex items-center gap-1.5 rounded-lg bg-very-peri-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-very-peri-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-500 focus-visible:ring-offset-2">
+              {tx(lang, 'Demander une démo', 'Request a demo', 'Demo anfragen')}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </section>
       </div>
     </main>
