@@ -49,6 +49,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Effet attendu** — Après fusion : `/fr/blog/focus-sur-lhyperfocus` affiche « distribue officiellement » (D6) ; les 6 pages blog affichent « N min read » en EN. Aucun autre changement.
 
 **Vérifié** — Diff #141 vs `main` : 6 pages blog + `focus-sur-lhyperfocus` + docs, **aucune interview**. B4 et D3 présents (contrôlés sur le HEAD). CI du nouveau HEAD : à relever au push.
+
+**Correction au resync du 15/10** — Resynchronisation sur `main` `7f763a9` (fusion #148, hub Conversations) : conflit `JOURNAL` résolu par **union** (entrée #148 conservée, aucune entrée perdue). Défaut corrigé dans la correction B4 : l'espace avant `<strong>Orbitvu</strong>` avait été supprimé (« solutionsOrbitvu ») ; rétabli (« solutions Orbitvu »). `tsc` 0, `verifier-json` 200, `next build` 392/392 exit 0 relancés sur l'arbre fusionné.
 **Non regardé** — `www` (après fusion). QA Chrome « min read » du 14/10 réutilisée (code D3 inchangé).
 
 **Suite** — Fusion sous GO_MERGE_141 conditionnel ; les interviews (B1/FAQ/retrait) passent au Lot C.
