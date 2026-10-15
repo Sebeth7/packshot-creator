@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #129 — libellé de l'article 9 `p5` approuvé par Laurent (D42 : OUI) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (décision de Laurent du 15/10/2026 : « J'approuve les textes p5 FR/EN de l'article 9 et la conservation sur trois ans ») | **PR** : #129 (brouillon) | **Commit** : ce commit (documentation seulement)
+
+**Quoi** — Approbation par Laurent du libellé de `privacy.article9.p5` en FR et en EN et de la conservation sur trois ans, conformément à la section 9 de la release : inscription active, trois ans depuis la confirmation ; désinscription, adresse et date conservées trois ans depuis la désinscription ; purge manuelle trimestrielle sous la responsabilité de Sébastien. Validation métier et éditoriale D42 de `p5` : OUI. Consigne : conserver les textes existants, ne rien réécrire ; aucun développement ni audit RGPD supplémentaire. Ce n'est pas un audit juridique indépendant.
+
+**Pourquoi** — Le libellé exact de `p5` restait le seul texte public non couvert par la validation téléphonique rapportée du 14/10 (D60, complément, point 8). Condition D42 de GO_MERGE_PR129 : levée pour `p5`.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D60, complément, point 9), `RELEASE-129-OCCASION.md` (en-tête, section 0 bis, section 8 étape 1, section 9), `BOITE-AUX-LETTRES.md` (Q25), `ETAT.md`, ce `JOURNAL.md`. Aucun code, aucun texte public modifié.
+
+**Effet attendu** — Aucun sur le site. Aucune fusion, aucune publication, aucun envoi, aucune fenêtre ouverte par cette décision.
+
+**Vérifié** — Les textes FR et EN de `p5` relus dans `messages/fr.json:2881` et `messages/en.json:2878`, identiques à ceux présentés à Laurent. Les six verrous de `lib/occasion/activation.ts` fermés.
+**Supposé** — Rien.
+**Non regardé** — Le bloc de-ch de `de-ch.json` (non servi, `/de-ch/confidentialite` répond 404) : non modifié, conformément à « ne rien réécrire ».
+
+**Suite** — Reste avant la fenêtre : destinataires T1, T2, T3 (et B, N) autorisés, heure de début en UTC et ordre d'ouverture, préconditions Resend et Vercel relevées dans Chrome (quota, clé en « Full access »), sort des contacts de test. Puis tests réels, cinq variables Production, dossier de fusion.
+
+---
+
 ## 2026-10-15 · #129 — `main` `f562e3b` (#117, #150, #151) intégré · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (GO_SYNC_MAIN_BRANCHE_129 du 14/10, reconduit le 15/10) | **PR** : #129 (brouillon) | **Commit** : le commit de fusion qui porte cette entrée

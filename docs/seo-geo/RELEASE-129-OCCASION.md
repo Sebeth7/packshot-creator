@@ -9,6 +9,7 @@ fait) ; GO_TEST_REEL_ALERTES, GO_TEST_REEL_RECHERCHE, GO_ENVOI_TEST,
 GO_NETTOYAGE_DEPLOIEMENTS, GO_VERCEL_PRODUCTION, GO_MERGE_PR129 et GO_PUBLICATION
 = YES **sous conditions** ; conservation et validation éditoriale **obtenues**
 (validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 ;
+libellé de l'article 9 `p5` approuvé par Laurent le 15/10/2026, D42 : OUI ;
 GO_CORRECTIFS_CONFIDENTIALITÉ_129 = YES ; section 9). GO_ENVOI_REEL (bulletin) = NO.
 Ce dossier ne déclenche rien : il liste ce qui est prêt, ce qui manque et l'ordre
 de mise en service.
@@ -38,7 +39,7 @@ en **D60** (`docs/seo-geo/DECISIONS.md` ; proposée D59 sur la branche, renumér
 
 | # | Objet | Décision | État au 14/10 |
 |---|---|---|---|
-| 1 | Conservation (actifs, désinscrits, point de départ, purge) et validation éditoriale | EN ATTENTE au matin ; **obtenues** l'après-midi : validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 (D60, complément) | **Levé** : article 9 complété, purge documentée (section 9) |
+| 1 | Conservation (actifs, désinscrits, point de départ, purge) et validation éditoriale | EN ATTENTE au matin ; **obtenues** l'après-midi : validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 (D60, complément) ; libellé de `p5` approuvé par Laurent le 15/10/2026 (D42 : OUI) | **Levé** : article 9 complété et approuvé, purge documentée (section 9) |
 | 2 | Désinscription autonome | **E-MAIL** : un unique e-mail « Inscription confirmée », lien personnel de désinscription, après confirmation effective du double opt-in | **Implémenté** sur la branche (section 10), textes à valider (D42), aucun envoi réel avant GO_ENVOI_TEST |
 | 3 | Adresses et plafond | 11 e-mails au plus ; T1, T2, T3 (alertes), B (recherche si nécessaire), désignées par Laurent dans Chrome, jamais dans le dépôt ni les rapports ; début seulement après vérification Resend (statut des adresses, quotas, cumul mensuel) | Phase 0 Chrome à exécuter |
 | 4 | GO_TEST_REEL_RECHERCHE | YES conditionnel : reliquat B seulement si la phase 0 confirme qu'il n'est pas établi ; 2 e-mails au plus, dans le plafond | Attend la phase 0 |
@@ -325,7 +326,8 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
 1. **Préalables** : tests réels de la section 7 en PASS, ou reliquat explicitement
    reporté par Laurent ; décision de conservation écrite à l'article 9
    (section 9, fait le 14/10) ; textes validés (D42, étape 5 : validation
-   téléphonique de Sébastien rapportée par Laurent, le 14/10/2026) ;
+   téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 ; libellé de
+   `p5` approuvé par Laurent le 15/10/2026) ;
    SEO option B en place dans le code (D60, section 2).
 2. **Configuration Production** (sur GO d'écriture Vercel Production, dashboard,
    jamais la CLI) : `OCCASION_NOTIFICATION_EMAIL` = `sebastien.jourdan@sysnext.com` ;
@@ -379,6 +381,13 @@ rapportée par Laurent, le 14/10/2026. Fait métier, pas un audit juridique :
    blocage perpétuel promis ; après la purge, une nouvelle demande repasse par un
    nouveau consentement explicite et le double opt-in (le code le fait déjà : un
    contact absent est traité comme une première inscription ; testé).
+
+**Approbation du libellé (D42), Laurent, 15/10/2026** — Le texte de `p5` en FR et en EN
+(section ci-dessous, `messages/fr.json` et `messages/en.json`) et la conservation sur
+trois ans sont approuvés tels quels : validation métier et éditoriale D42 de `p5` : OUI.
+Textes existants conservés, rien à réécrire ; aucun développement ni audit RGPD
+supplémentaire. Le bloc de-ch de `de-ch.json` n'est pas servi (`/de-ch/confidentialite`
+répond 404) et reste inchangé.
 
 **Dans le code** — `desinscrire` (`lib/occasion/alertes/resend.ts`) passe le topic
 Occasion en `opt_out`, retire le contact du segment Occasion, puis ne laisse que

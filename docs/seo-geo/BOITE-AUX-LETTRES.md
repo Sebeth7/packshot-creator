@@ -457,6 +457,8 @@ rien : la réponse d'hier explique le code d'aujourd'hui.
 
 **Appliqué sur #129 (14/10)** : article 9, paragraphe `p5` (FR, EN ; bloc DE-CH en copie française) ; désinscription limitée à l'état et à la date (`lib/occasion/alertes/resend.ts`, `desinscrire`) ; procédure de purge trimestrielle documentée, non déclenchée (`docs/seo-geo/RELEASE-129-OCCASION.md`, section 9) ; complément de D60. Consentement v3 inchangé. Points 1, 2, 5 à 9 : traités les 13 et 14/10 (ajouts ci-dessus).
 
+**Approbation du 15/10/2026 (Laurent)** : libellé de `privacy.article9.p5` en FR et en EN approuvé tel quel (validation métier et éditoriale D42 : OUI), conservation sur trois ans confirmée ; textes existants conservés ; aucun développement ni audit RGPD supplémentaire demandé.
+
 ---
 
 ### Q15 · 2026-09-23 · Fiche Google France — DU Claude de Laurent AU Claude de Sébastien
