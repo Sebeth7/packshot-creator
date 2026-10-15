@@ -34,6 +34,35 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #132 : écran d'échec du formulaire rendu neutre, contact alternatif par locale (décision de Laurent du 15/10) · Claude de Laurent
+
+**Chantier** : G5 (S5, chaîne des leads), L08 | **PR** : #132 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** — `components/forms/ContactForm.tsx` seul. L'état d'échec passe d'un écran rouge plein à une présentation neutre (fond `neutral-50`, icône ambre, titre et texte `future-dusk`, bouton `very-peri`). Message des trois locales arrêté par Laurent : « Nous ne pouvons pas confirmer la réception de votre demande. Vos informations sont conservées dans ce formulaire. Vous pouvez réessayer ou nous contacter directement. » Ajout d'un contact alternatif cliquable, par locale, depuis les coordonnées officielles déjà présentes dans le dépôt : fr et en `+33 (0)1 47 42 66 66`, de-ch `+41 44 580 43 84`, `sales@sysnext.com` pour les trois (points de contact FR et CH du schéma Organization ; affichage repris de la landing catalogue).
+
+**Pourquoi** — Décision de Laurent du 15/10/2026 : il refuse l'écran rouge sans vouloir dégrader l'expérience du prospect. L'écran rouge préexistait sur `main` ; #132 ne le crée pas, elle en étend l'affichage au double échec Pipedrive et Resend, qui annonce aujourd'hui un faux succès. La logique serveur du contrat de succès est conservée telle quelle.
+
+**Fichiers** — `components/forms/ContactForm.tsx`, `lib/__tests__/contact-form-echec.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun effet SEO : composant client, aucun texte indexable modifié. Pour le visiteur, en cas d'échec : message neutre, saisies conservées, réessai, téléphone et courriel cliquables.
+
+**Vérifié** —
+- Aucune classe rouge dans l'état d'échec ; les messages de validation par champ restent en rouge, et l'écran de succès reste vert : les autres états sont inchangés.
+- `trackFormSubmit` reste appelé une seule fois, juste après `setStatus('success')` : aucune conversion comptée sans succès confirmé.
+- Aucun `reset` du formulaire : les informations saisies réapparaissent au retour en « idle ».
+- Aucun numéro ni domaine nouveau : seuls `tel:+33147426666` et `tel:+41445804384` figurent dans le fichier.
+- `npx tsc --noEmit` vert ; `lib/__tests__/contact-form-echec.test.ts` : 9 cas verts.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Comportement silencieux de l'envoi du PDF ROI (`Step3Results`) : inchangé, hors périmètre de cette correction. Rendu réel dans un navigateur : non exécuté (environnement Vitest `node`, sans jsdom).
+
+**Rayon d'action** — `ContactForm` est partagé. Pages servies : `contact`, fiches `studio-photo`, `solutions`, hubs `industrie`, `distributeur-orbitvu-suisse`, `studios-photo-automatises`, les landings du gabarit `PackshotLandingTemplate`, la landing e-commerce (F5, gelée jusqu'au 23/11) et la landing Mode (gelée jusqu'au 26/11), en fr, en et de-ch. Seul l'état d'échec du formulaire change sur ces pages : aucun contenu, aucune autre expérience de F5 ni de Mode n'est touché.
+
+**Suite** — Resynchronisation, QA Preview et fusion de #131 d'abord ; réponse de Sébastien à Q26 ; puis GO_MERGE. Aucun donné à ce stade.
+
+---
+
 ## 2026-10-12 · #131 : un break-even de plus de 10 000 mois n'est plus refusé ; R1 levé par D58 ; `main` `4c53314` intégré · Claude de Laurent
 
 **Chantier** : S5 M14, G5 LOT-1 (L09) | **PR** : #131 (brouillon) | **Commit** : voir PR
