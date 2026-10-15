@@ -229,7 +229,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "On commence par regarder le catalogue et le trajet d'un produit. Avant de choisir un équipement, il faut comprendre comment la référence arrive, ce qui permet de l'identifier, qui prépare l'objet et qui récupère les fichiers. Un studio très bien éclairé peut rester une mauvaise organisation."
+              "html": "On commence par regarder le catalogue et le trajet d'un produit. Avant de <a href=\"/fr/studio-photo/selecteur-machines\">choisir un équipement</a>, il faut comprendre comment la référence arrive, ce qui permet de l'identifier, qui prépare l'objet et qui récupère les fichiers. Un studio très bien éclairé peut rester une mauvaise organisation."
             },
             {
               "t": "p",
@@ -397,7 +397,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "La photo produit doit d'abord répondre à la question : <em>qu'est-ce que je vais recevoir ?</em> On doit pouvoir reconnaître la forme, la couleur, le matériau, les détails et, lorsque c'est important, le contenu du colis. Une image de campagne peut raconter une ambiance ; une photo de référence doit rester vérifiable."
+              "html": "La photo produit doit d'abord répondre à la question : <em>qu'est-ce que je vais recevoir ?</em> On doit pouvoir reconnaître la forme, <a href=\"#entretien-05\">la couleur</a>, le matériau, les détails et, lorsque c'est important, le contenu du colis. Une image de campagne peut raconter une ambiance ; une photo de référence doit rester vérifiable."
             },
             {
               "t": "p",
@@ -464,7 +464,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "On ne contrôle pas le téléphone de tous les acheteurs. On peut en revanche contrôler son propre travail. Réglages cohérents à la prise de vue, écran de référence, comparaison avec le produit réel et validation des teintes sensibles : c'est déjà considérable."
+              "html": "On ne contrôle pas le téléphone de tous les acheteurs. On peut en revanche contrôler son propre travail. Réglages cohérents à la prise de vue, écran de référence, comparaison avec le produit réel et <a href=\"/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit\">validation des teintes sensibles</a> : c'est déjà considérable."
             },
             {
               "t": "p",
@@ -896,7 +896,7 @@
             },
             {
               "t": "p",
-              "html": "Les règles des marketplaces évoluent. Mieux vaut garder les spécifications dans un référentiel maintenu et tester l'acceptation des exports, plutôt que de publier un tableau de dimensions qui sera obsolète la saison prochaine."
+              "html": "<a href=\"/fr/blog/images-ia-metadonnees-marketplaces\">Les règles des marketplaces</a> évoluent. Mieux vaut garder les spécifications dans un référentiel maintenu et tester l'acceptation des exports, plutôt que de publier un tableau de dimensions qui sera obsolète la saison prochaine."
             }
           ]
         },
@@ -1287,7 +1287,7 @@
             },
             {
               "t": "p",
-              "html": "Les spécifications exactes ne doivent pas être recopiées au hasard d'un article : elles changent selon les marketplaces et les catégories. Une équipe doit maintenir sa propre fiche de règles, puis vérifier l'acceptation des fichiers."
+              "html": "Les spécifications exactes ne doivent pas être recopiées au hasard d'un article : elles changent selon <a href=\"/fr/packshot-amazon\">les marketplaces</a> et les catégories. Une équipe doit maintenir sa propre fiche de règles, puis vérifier l'acceptation des fichiers."
             }
           ]
         },
@@ -1516,7 +1516,7 @@
             },
             {
               "t": "p",
-              "html": "La formation doit aussi porter sur les exceptions. Une matière transparente, un logo très fin, un vêtement qui se froisse : chacun devrait savoir quand le profil normal ne suffit plus et à qui demander de l'aide. C'est là qu'on reconnaît une équipe qui a compris son outil."
+              "html": "<a href=\"/fr/academy\">La formation</a> doit aussi porter sur les exceptions. Une matière transparente, un logo très fin, un vêtement qui se froisse : chacun devrait savoir quand le profil normal ne suffit plus et à qui demander de l'aide. C'est là qu'on reconnaît une équipe qui a compris son outil."
             }
           ]
         },
