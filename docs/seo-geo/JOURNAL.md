@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #117 — redirection saasphoto → cloud.ortery.com mentionnée, exception D13/D42 et QA substitutive consignées, `main` `c557348` intégré · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117 | **Commit** : `b76acff` (phrase de transparence), `96b737f` (fusion de `main` `c557348`) ; consignation dans le commit de cette entrée
+
+**Quoi** — Fenêtre d'information de saasphoto.com : une phrase par langue mentionne la redirection vers cloud.ortery.com (FR, EN, de-CH, formulations validées par Laurent le 15/10), ajoutée au paragraphe décrit de la fenêtre, pour saasphoto seulement ; textes existants inchangés. Exception D13/D42 et QA substitutive propres à #117 consignées dans `DECISIONS.md`. `main` `c557348` (#145, #119, #141, #149) fusionné sans rebase : `ETAT.md` (deux lignes ajoutées au même endroit) et `JOURNAL.md` en conflit, union.
+
+**Pourquoi** — Relevé du 15/10 à 06:51 UTC (une requête HEAD, sans cookie) : `saasphoto.com` répond 302 vers `https://cloud.ortery.com/share/05HGU6/…/Drill_360.html` (200). La fenêtre ne citait que saasphoto.com : la condition de l'exception de Laurent (textes non contredits par les services appelés) n'était pas remplie. GO_CODE_117_TRANSPARENCE et D42 ponctuel du 15/10.
+
+**Fichiers** — `lib/external-embeds.ts`, `components/blog/YouTubeConsent.tsx`, `lib/__tests__/external-embeds.test.ts`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Sur les deux articles 360° (FR et EN), la fenêtre de saasphoto.com cite aussi cloud.ortery.com. Aucun autre effet.
+
+**Vérifié** — Tête fusionnée, build local, variables factices, DNS hors `localhost` bloqué, réponses des services simulées (aucun service tiers contacté) :
+- `npx tsc --noEmit` vert ; Vitest 691/691 ; `npx next build` vert, 392 pages.
+- Fenêtre saasphoto, FR et EN, Desktop Chrome et Pixel 5 (Chromium 141) : 0 requête tierce à l'affichage, à l'ouverture de la fenêtre et après refus ; phrase présente en fin de description, texte existant intact en tête ; Échap et « Annuler » rendent le focus à la façade ; « Autoriser » crée une iframe titrée « saasphoto.com », seule requête alors émise. Phrase absente des fenêtres Sketchfab et Vimeo.
+- Diff contre `main` : les 12 fichiers de #117, plus `DECISIONS.md` ; `app/[lang]/blog/[slug]/page.tsx` sans conflit.
+- Tests navigateur antérieurs réutilisés (code de consentement inchangé hors la phrase) : 276/276 le 14/10.
+
+**Supposé** — La redirection relevée le 15/10 peut changer côté saasphoto.com ; la phrase dit « peut être redirigé ».
+
+**Non regardé** — Lecture Vimeo (« vidéo indisponible »), affichage de la démo Ortery, article 6 de la politique de confidentialité (S5-D6) : hors #117, sur consigne de Laurent. Lecteur d'écran réel, Android physique : réserves de la QA substitutive.
+
+**Suite** — CI de la tête finale ; si verte : Ready, fusion, contrôle ciblé sur `sysnext` puis dans Chrome sur `www`.
+
+---
+
 ## 2026-10-15 · Interviews 2017 — ÉTAPE W (DRAFT) : Worker 301 des anciennes URL vers `/a-propos` · Claude de Laurent
 
 **Chantier** : clôture V9 — retrait interviews 2017, étape W (redirections) | **PR** : Draft dédié, branche `claude/interviews-2017-worker-301`, base `main` `c557348` | **Commit** : voir PR
@@ -53,7 +79,9 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Suite** — Draft W en attente du GO groupé final (GO_WORKER + ordre). **S ne se publie pas avant que les 301 de W soient actives et vérifiées sur `www`.**
 
+---
 
+## 2026-10-15 · #141 FUSIONNÉE (`e18b8e3`) + Lot B Industries : compteur « entreprises équipées » 500 → 5000 · Claude de Laurent
 
 **Chantier** : clôture V9 — Lot A (fermeture) + Lot B | **PR** : #141 (fusionnée), micro-PR Lot B (branche `claude/zen-maxwell-i59q3o`) | **Commit** : voir PR
 
@@ -310,6 +338,34 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 
 ---
 
+## 2026-10-14 · #117 — dépassement de délai intermittent des tests : interblocage de Chromium 141 déclenché par la boucle `window.scrollTo` ; spec passé à la molette ; `main` `fef5109` intégré · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `b96cc32` (fusion de `main` `fef5109`) ; correction du test dans le commit de cette entrée
+
+**Quoi** — Défaut du test ; aucun défaut du produit reproduit : la boucle de `window.scrollTo` de `openArticle` (`e2e/consentement-medias.spec.ts`) déclenchait par intermittence un interblocage interne à Chromium 141 ; le spec défile désormais à la molette (`page.mouse.wheel`, pas de 600, au plus 120 pas, arrêt en bas de page). `main` `fef5109` (#144, #142) fusionné sans rebase : seul `JOURNAL.md` en conflit (1 bloc, union, ordre UTC) ; traductions, `Header.tsx`, `content/**` et `messages/*.json` repris de `main` tels quels.
+
+**Pourquoi** — GO d'audit ciblé de Laurent (14/10) : établir si le dépassement est un défaut du test ou du produit, ne rien modifier sans reproduction. Le 14/10 au matin : 137/138, cause non établie.
+
+**Fichiers** — `e2e/consentement-medias.spec.ts` (fonction `openArticle` seulement), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. Spec plus lent : défilement médian d'environ 3 s en desktop et 6 s en Pixel 5, contre moins d'une seconde.
+
+**Vérifié** — Build local, variables factices, DNS hors `localhost` bloqué, réponses des services simulées par `page.route` (aucun service tiers contacté) :
+- Méthode : sonde locale hors dépôt ; après 10 s de boucle, état des processus Chromium (CPU et état noyau par fil), pile native du fil principal des moteurs de rendu (gdb), tentative de pause JS (CDP), puis 60 s d'attente supplémentaires.
+- Reproduit : 17 blocages sur 1 605 ouvertures d'article avec la boucle `window.scrollTo` (Chromium 141.0.7390.37 complet : 9 sur 1 275 ; `headless_shell` 141 : 8 sur 330), sur les 3 articles (Vimeo, Sketchfab, saasphoto.com), en desktop comme en mobile, pas seulement sur l'article photogrammétrie.
+- Chaque blocage : navigation normale (`load` en moins de 0,5 s), puis fil principal du moteur de rendu immobile (0 % CPU), en attente sans délai dans `cc::LayerTreeHost::WaitForProtectedSequenceCompletion()`, atteint par `blink::PaintArtifactCompositor::DirectlySetScrollOffset` ou par `cc::LayerTreeHost::AnimateLayers` ; fil Compositor inactif ; aucune requête CDP traitée, aucune pause JS possible ; toujours bloqué 60 s plus tard. Hors blocage, la boucle dure au plus 2 s, sans valeur intermédiaire.
+- Contre-épreuves, même build, mêmes pages, à charge égale, en parallèle : molette, 0 blocage sur 330 ouvertures ; spec corrigé 320/320 (Desktop Chrome et Pixel 5, `headless_shell` 141, 8 répétitions), contre 318/320 pour le spec d'origine (2 dépassements dans `page.evaluate`).
+- Tête fusionnée avec `fef5109` et spec corrigé : `npx tsc --noEmit` vert ; Vitest 669/669 ; `npx next build` vert, 392 pages ; `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5, 2 répétitions : 156/156 ; suite élargie (mêmes specs et QA ad hoc des 6 articles passée à la molette), 2 répétitions : 276/276 (138 × 2 ; 137/138 le matin avec la boucle `window.scrollTo`).
+- Diff contre `main` : les 12 fichiers de #117 seulement.
+
+**Supposé** — Chromium 145 (`chromium-headless-shell` de Playwright 1.58, celui de la CI) : non testé, révision absente du conteneur. La CI ne joue que Desktop Chrome, avec 2 nouvelles tentatives : un blocage y serait rejoué sans être compté en échec. Chrome réel, avec écran : non testé.
+
+**Non regardé** — Preview (protégée par SSO) et lecteurs tiers réels ; Android réel ; lecteur d'écran ; réponse 402 de saasphoto.com. Google Maps, `orbitvu.co` et révocation de la mesure d'audience : hors #117, non résolus.
+
+**Suite** — Validation éditoriale des textes de la fenêtre d'information (FR, EN, de-CH) ; QA Chrome authentifiée de la Preview ; GO de fusion distinct.
+
+---
+
 ## 2026-10-14 · Menu « Solutions → Guides » : 5 entrées, slug par locale (A/B 3 langues + hub) · Claude de Laurent
 
 **Chantier** : GO EXÉCUTION FINALE A/B (14/10/2026) — menu Guides, PR dédiée au Header global | **PR** : #142 | **Base** : `main` `fef5109` (resync post-#144 : de-ch A/B publiés) | **Branche** : `claude/menu-guides-conversations`
@@ -356,6 +412,33 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 **Non regardé** — Contrôle `www` (Cloudflare) après fusion.
 
 **Suite** — Fusion après CI 4/4. Puis menu Guides (#142) avec entrées A/B de-ch désormais valides, et contrôle production.
+
+---
+
+## 2026-10-14 · #117 — `main` `6717c4f`, `a014993` puis `bf1165a` (#134, #136 à #140) intégrés, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `2d8cb36` (fusion de `main` `6717c4f`), `e525c16` (fusion de `main` `a014993`), `685a0cd` (fusion de `main` `bf1165a`)
+
+**Quoi** — `main` `6717c4f`, puis `a014993` (#139, fusionnée pendant les contrôles) et `bf1165a` (#140, fusionnée après le premier push : un article hors périmètre et le JOURNAL), fusionnés dans #117 dans un worktree isolé, sans rebase (GO de finalisation technique de Laurent du 14/10). Seul `JOURNAL.md` était en conflit (2 blocs, puis 1, puis 1) : union, entrées placées par heure UTC. #139 n'ajoute que des styles `.prose .psc-*` : aucun effet sur les façades, la fenêtre d'information ni le bandeau. D59 (exceptions de la série A/B, dont la substitution de QA Preview) ne vise pas #117. `ETAT.md` fusionné automatiquement, ligne #117 actualisée. Le code de consentement de #117 est inchangé : 9 fichiers identiques à `2c0261f`, retouches de `app/[lang]/blog/[slug]/page.tsx` identiques à l'original.
+
+**Pourquoi** — #136, #137, #138, #134, #139 puis #140 fusionnées les 13 et 14/10 : #117 de nouveau en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices, Chromium du conteneur, résolution DNS hors `localhost` bloquée, réponses des services simulées par `page.route` (aucun service tiers contacté) :
+- Après `6717c4f` : `npx tsc --noEmit` vert ; Vitest 647/647 ; `npx next build` vert, 390 pages ; `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78.
+- Après `a014993` : `npx tsc --noEmit` vert ; Vitest 658 réussis, 11 ignorés (`it.skip` conditionnel de `serie-produire-images.test.ts`, #139) ; `npx next build` vert, 390 pages ; mêmes 3 specs : 78/78 (39 par appareil).
+- Après `bf1165a` : `npx tsc --noEmit` vert ; Vitest 669/669 ; `npx next build` vert, 390 pages ; mêmes 3 specs : 78/78 (39 par appareil).
+- Diff contre `main` : les 12 fichiers de #117 seulement ; aucun fichier de politique de confidentialité, contact, Google Maps, `OrbitvuViewer`, analytics, `content/**` ni `messages/*.json`.
+- Rappel, non effacé par ce passage : suite élargie du 14/10 (mêmes specs et QA ad hoc des 6 articles, Desktop Chrome et Pixel 5) à 137/138 ; échec par dépassement de délai dans la boucle de défilement des tests sur l'article photogrammétrie en mobile ; 4 occurrences sur environ 540 exécutions depuis le 13/10 ; essais ciblés sans reproduction (40/40 puis 60/60 sous charge, aucune étape au-delà d'une seconde). Cause non établie.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (protégée par SSO) et lecteurs tiers réels ; Android réel ; lecteur d'écran ; réponse 402 de saasphoto.com. Google Maps, `orbitvu.co` et révocation de la mesure d'audience : hors #117, non résolus.
+
+**Suite** — Validation éditoriale des textes de la fenêtre d'information (FR, EN, de-CH) ; QA Chrome de la Preview ; GO de fusion distinct.
 
 ---
 
@@ -579,6 +662,31 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 
 ---
 
+## 2026-10-13 · #117 — `main` `2759239` (#114, #127, #135) intégré, sans changement de code ; QA locale desktop et mobile 390 · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `e619b34` (fusion de `main` `2759239`)
+
+**Quoi** — `main` `2759239` fusionné dans #117 dans un worktree isolé, sans rebase (GO ciblé de Laurent du 13/10). Conflits dans `JOURNAL.md` (union, entrées placées par date) et `ETAT.md` (ligne #117 actualisée, ligne #135 de `main` conservée). `app/[lang]/blog/[slug]/page.tsx` fusionné sans conflit : métadonnées sociales de #114 conservées, les 2 retouches de #117 identiques à `2c0261f`. Les 9 autres fichiers de code et de test de #117 inchangés.
+
+**Pourquoi** — #114, #127 et #135 fusionnées les 12 et 13/10 : #117 de nouveau en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices, Chromium du conteneur, résolution DNS hors `localhost` bloquée (aucun service tiers contacté ; réponses des services simulées par `page.route`) :
+- `npx tsc --noEmit` vert ; Vitest 641/641 ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` et une QA locale non versionnée des 6 articles FR et EN (façade, aucune iframe ni requête tierce sans choix, après refus et après « Tout accepter » ; fenêtre d'information au clic ; Échap et retour du focus ; Entrée puis accord : iframe titrée, non mémorisée au rechargement), en desktop et en mobile 390 × 844 : 137/138 sur chacun des 2 passages complets.
+- Échec unique, différent à chaque passage, toujours le même symptôme : délai de 30 s dépassé dans la boucle de défilement des tests (`page.evaluate`), sur l'article photogrammétrie en mobile 390, sous 3 workers. Rejoué : 3/3 isolé, 59/60 puis 60/60 sous charge ciblée ; mesure directe de la boucle : 18/18, médiane 1,07 s, maximum 1,23 s.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Lecteurs tiers réels (Vimeo, Sketchfab, saasphoto.com) : simulés, non contactés ; réponse 402 de saasphoto.com à vérifier en navigateur réel. Cause des dépassements de délai intermittents de la boucle de défilement : non établie. Google Maps, `orbitvu.co` et révocation de la mesure d'audience : décisions hors #117, non résolues par #117.
+
+**Suite** — QA Chrome réelle de la Preview, validation humaine des textes, GO de fusion distinct.
+
+---
+
 ## 2026-10-13 · #134 : visuel U03 dans le HERO horlogerie en FR, EN et de-ch ; droits confirmés par Laurent (fait métier) ; `main` `2759239` intégré · Claude de Laurent
 
 **Chantier** : G5 LOT-7 (D9 L1), visuel U03 | **PR** : #134 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
@@ -735,6 +843,32 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 
 ---
 
+## 2026-10-10 · #117 — `main` `0f960b5` (#126, #128) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `9646028` (fusion de `main` `0f960b5`)
+
+**Quoi** — Seconde resynchronisation du 10/10 (même GO_CODE de Laurent, renvoyé) : `main` `0f960b5` fusionné dans #117, sans rebase. Conflits dans `JOURNAL.md` (union, entrée #117 de 09:47 UTC placée par heure) et `ETAT.md` (ligne #117 actualisée ; ligne #122 retirée comme sur `main`, PR fusionnée). Les 10 fichiers de code et de test de #117 restent identiques à `2c0261f`.
+
+**Pourquoi** — `main` a avancé après la première resynchronisation (#128 puis #126, vers 10:33 UTC) : #117 de nouveau en conflit documentaire.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices :
+- `npx tsc --noEmit` vert ; Vitest 641/641 (35 fichiers) ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78.
+- `popin-engagement` (règles de #128) en Desktop Chrome : 39/39 avec le bandeau de #117.
+- HTML prérendu des 6 articles : 0 iframe Vimeo, Sketchfab ou saasphoto.com, façades présentes.
+
+**Supposé** — Les autres non-régressions du premier passage du 10/10 (705 réussis, 45 échecs identiques à `main` `0bd8d60`) restent valables : `main` n'a changé depuis que les règles de la pop-in, leurs tests et la documentation.
+
+**Non regardé** — Preview et Chrome réel ; réponse 402 de saasphoto.com (à vérifier en navigateur réel, non corrigée ici).
+
+**Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
+
+---
+
 ## 2026-10-10 · #128 fusionnée (`f3ca6f9`) : pop-in active sur la landing Mode en production ; contrôle passif de `sysnext.vercel.app` · Claude de Laurent
 
 **Chantier** : pop-in d'engagement, D56 | **PR** : #128 (fusionnée), documentation : #126 (brouillon) | **Commit** : fusion `f3ca6f9`
@@ -776,6 +910,33 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 **Non regardé** — `www` (R4) ; GA4 ; effet de la pop-in sur la mesure GSC de la landing (sans objet attendu : aucun contenu prérendu modifié).
 
 **Suite** — Fusion ; contrôle de `sysnext.vercel.app` ; contrôle de `www` dans Chrome sur `/fr/packshot-mode` (apparition après 60 s, 70 % et sortie haute ; hub `mode-textile` sans pop-in).
+
+---
+
+## 2026-10-10 · #117 — `main` `0bd8d60` (#122) intégré, sans changement de code ; contrôles relancés · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `14be5ee` (fusion de `main` `0bd8d60`)
+
+**Quoi** — `main` `0bd8d60` fusionné dans #117, sans rebase (GO_CODE de Laurent du 10/10, limité à la resynchronisation et aux contrôles). Conflits dans `JOURNAL.md` (union, entrée #117 du 08/10 en tête des entrées du 08/10) et `ETAT.md` (ligne #117 actualisée, lignes de `main` conservées, puces F4 de #117 gardées). Les 10 fichiers de code et de test de #117 sont identiques à `2c0261f`.
+
+**Pourquoi** — #117 avait 135 commits de retard sur `main` `0bd8d60` (base `06b18e2`) et un conflit documentaire avec `main`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site. #117 de nouveau fusionnable ; GO_MERGE et GO_PUBLICATION non donnés.
+
+**Vérifié** — Build local de la tête fusionnée, variables factices :
+- `npx tsc --noEmit` vert ; Vitest 640/640 (35 fichiers) ; `npx next build` vert, 387 pages.
+- `consentement-medias`, `cookie-banner`, `youtube-consent` en Desktop Chrome et Pixel 5 : 78/78. Un premier passage sans `NEXT_PUBLIC_GA_MEASUREMENT_ID` au build donnait 76/78 (test « GA4 après acceptation ») ; vert avec un identifiant factice.
+- HTML prérendu des 6 articles : 0 iframe Vimeo, Sketchfab ou saasphoto.com, façades présentes.
+- Non-régressions (`popin-engagement`, `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `external-links`, `mobile-overflow`, `seo`) en Desktop Chrome et Pixel 5 : 705 réussis, 45 échecs, **liste identique sur un build de `main` `0bd8d60`** (contre-épreuve) : `seo` 20 (titles et descriptions), `mobile-overflow` 2 (`/fr`), `popin-engagement` 23 en Pixel 5 seulement (spec desktop). `popin-engagement` en Desktop Chrome : aucun échec avec le bandeau de #117.
+- Aucun fichier `content/**` ni `messages/*.json` dans le diff de #117 contre `main` : les changements de #112, #113 et #121 ne sont pas touchés.
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview et Chrome réel (Android, lecteur d'écran) ; réponse 402 de saasphoto.com, à vérifier en navigateur réel, non corrigée ici ; ajout du spec `popin-engagement` aux parcours de la CI (hors périmètre de cette resynchronisation).
+
+**Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
 
 ---
 
@@ -1609,6 +1770,46 @@ Règles du parcours sans CRM :
 **Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
 
 **Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
+## 2026-10-08 · Médias externes et consentement — Vimeo, Sketchfab, saasphoto.com en façade ; bandeau cookies (Pixel 5, focus) · Claude de Laurent
+
+**Chantier** : médias externes, consentement et UX (mission de Laurent du 08/10, GO_CODE sur ce seul périmètre technique ; GO_MERGE = NO ; GO_PUBLICATION = NO) ; backlog F4 « Consentement » et « Bandeau cookies en Pixel 5 » | **PR** : #117, brouillon, « DO NOT MERGE », branche `ccr-9f625584-mumrjt` | **Base** : `main` `06b18e2` (fusion de #106)
+
+**Quoi** — Les 6 iframes Vimeo, Sketchfab et saasphoto.com des articles passent, au rendu, en façade locale : aucune requête vers ces services avant un accord explicite, donné dans une fenêtre d'information, pour ce contenu seulement et sans rien mémoriser. Bandeau cookies recalé sur la zone visible de l'écran (défaut Pixel 5), nommé (repère `region`), focus géré à l'ouverture demandée et rendu à la fermeture.
+
+**Pourquoi** — Mesure du 08/10 (Chromium du conteneur, build local de `main` `06b18e2`, requêtes tierces interceptées et non transmises) :
+- Inventaire des 323 URL du sitemap, avant tout choix : 69 pages émettent au moins une requête hors du site servi. `orbitvu.co` 58 (20 fiches `studio-photo` FR et EN, 10 fiches `fotostudio` de-ch, 28 articles) ; `www.google.com` 3 (carte Google Maps des 3 pages contact) ; `videos.packshot-creator.com` 3 (vidéo de l'accueil, sous-domaine du site) ; `sketchfab.com` 2 ; `player.vimeo.com` 2 ; `saasphoto.com` 1 (et `/en/blog/photographie-de-produits-a-360-degres-en-interne`, hors sitemap, 200). Mesure d'audience : `www.googletagmanager.com` jamais demandé sans acceptation. YouTube : 0 requête.
+- Vimeo, Sketchfab, saasphoto.com et Google Maps : requête émise avant tout choix, après « Tout refuser », après « Tout accepter », après révocation dans la page (iframe toujours présente) et après rechargement. La catégorie « Vidéos YouTube » ne couvre aucun de ces services.
+- `e2e/cookie-banner.spec.ts` en Pixel 5 : 3 échecs reproduits (« Personnaliser » : clic intercepté par « Tout accepter » ou « Tout refuser »). Cause : `/fr` déborde de 49 px en largeur à 393 px (section « Vos défis » de l'accueil, `FloatingDashboard`) ; la fenêtre de mise en page passe à 442 × 818 px pour 393 × 727 px visibles, et le bandeau `fixed bottom-0` s'ancre 91 px sous le bas de l'écran. Le même débordement fait échouer `e2e/mobile-overflow.spec.ts` sur `/fr` (2 échecs, identiques sur `main`).
+- Clavier : après « Enregistrer mes choix », le focus tombait sur `body` ; depuis la fenêtre YouTube, « gérer mes préférences » ouvrait le bandeau en laissant le focus sur la façade : 93 tabulations pour l'atteindre.
+
+**Fichiers** — `lib/external-embeds.ts` (nouveau), `lib/blog-utils.ts`, `lib/youtube.ts` (8 utilitaires exportés, sans autre changement), `components/blog/YouTubeConsent.tsx`, `components/cookies/CookieBanner.tsx`, `app/[lang]/blog/[slug]/page.tsx` (libellés passés au rendu, condition de montage), `lib/__tests__/external-embeds.test.ts` (nouveau), `lib/__tests__/blog-utils.test.ts` (1 test adapté), `e2e/consentement-medias.spec.ts` (nouveau, ajouté aux parcours de `.github/workflows/pr-checks.yml`, Chromium), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`. Aucun fichier de `content/**`, `messages/*.json`, `app/[lang]/contact/page.tsx`, `components/analytics/**`, `app/globals.css`, Worker ni redirection.
+
+**Effet attendu** — À la mise en production, sur 6 articles (FR et EN) : façade 16:9 à la place de l'iframe (Sketchfab et saasphoto.com n'ont plus l'iframe de 300 × 150) ; aucune requête vers ces services sans clic sur « Autoriser et afficher le contenu ». Bandeau cookies : tous les boutons dans la zone visible, y compris sur `/fr` en mobile. Aucun effet SEO attendu : `<head>` et JSON-LD inchangés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 497/497 (24 fichiers) ; `npx next build` vert, 386 pages générées comme sur `main` (variables factices de la CI, `NEXT_PUBLIC_GA_MEASUREMENT_ID` factice pour mesurer la mesure d'audience). eslint : aucune erreur nouvelle (préexistantes : `set-state-in-effect` de `CookieBanner.tsx` l. 71 sur `main`, 2 `no-explicit-any` de `blog-utils.ts`).
+- HTML prérendu, build de la branche contre build de `main`, identifiant de build neutralisé : 374 pages ; `<head>` (hors scripts et feuilles) et JSON-LD identiques sur 374/374 ; corps identique sauf 6 pages, les 6 articles visés (1 iframe → 0, 1 façade).
+- `e2e/consentement-medias.spec.ts`, Desktop Chrome et Pixel 5 : 40/40 sur la branche ; contre-épreuve sur le build de `main` : 40/40 en échec.
+- `e2e/cookie-banner.spec.ts` et `e2e/youtube-consent.spec.ts` : 38/38 sur la branche (Desktop Chrome et Pixel 5), contre 35/38 sur `main` (les 3 échecs « Personnaliser » en Pixel 5).
+- `machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `external-links`, `mobile-overflow` : 200 réussis, 2 échecs, les 2 de `mobile-overflow` sur `/fr`, identiques sur `main`.
+- Mesure réseau sur la branche, mêmes scénarios : Vimeo, Sketchfab, saasphoto.com à 0 requête avant choix, après refus, après « Tout accepter », après rechargement et après navigation interne ; iframe créée et requête émise seulement après « Autoriser et afficher le contenu » ; iframe retirée et façade remise quand un choix sans contenus externes est enregistré. Google Maps et `orbitvu.co` : inchangés (différés, voir Suite).
+- Balayage des 323 URL du sitemap sur la branche, avant tout choix : `sketchfab.com`, `player.vimeo.com`, `saasphoto.com` sur 0 page (5 avant) ; 64 pages avec une requête hors du site (69 avant), Google Maps 3, accueil 3, `orbitvu.co` 58. Le balayage rapide comptait 55 pages `orbitvu.co` : 3 fiches (`/en/studio-photo/alphastudio-compact-v2`, `/de-ch/fotostudio/alphastudio-compact-v2`, `/de-ch/fotostudio/bike-studio`), au HTML identique entre les deux builds, demandent `orbitvu.co` sur les deux builds au défilement lent (visionneuse chargée à l'approche du viewport).
+- Console : 0 erreur ni exception (hors requêtes tierces annulées) sur 9 pages (les 6 articles, un article YouTube, `/fr`, `/fr/contact`), Desktop et Pixel 5, sur `main` comme sur la branche.
+- `git merge-tree` contre les têtes de #104, #105, #107 à #115 : aucun conflit sur les fichiers du site.
+
+**Supposé** — [Inférence] Le recalage du bandeau repose sur `visualViewport`, mesuré dans l'émulation Pixel 5 de Chromium ; le comportement d'un Chrome Android réel sur la page qui déborde n'est pas observé. Cela repose sur des schémas observés. [Non vérifié] Aucun service tiers n'a été contacté : ce que les services font après chargement (cookies, autres domaines) n'est pas mesuré.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Safari, Firefox et appareils réels ; lecteurs d'écran. Contenu réel de saasphoto.com (302 puis 402 depuis le conteneur au 29/09). Qualification juridique des requêtes : hors champ, aucune conclusion de conformité.
+
+**Suite** —
+- Google Maps des 3 pages contact : **différée**, #109 modifie la même iframe (`app/[lang]/contact/page.tsx`, l. 153 à 160). Après le sort de #109 : façade du même modèle ; décision sur la catégorie de consentement (voir ci-dessous).
+- `orbitvu.co` (58 pages) : scripts des articles (32 dans 28 fichiers de `content/blog/**`, exécutés au chargement direct ; aucune requête après la navigation interne mesurée vers un article, visionneuse alors probablement absente [Inférence]) et visionneuse 360° des fiches (`OrbitvuViewer.tsx`, au défilement). **Décision** : consentement exigé ou non pour la visionneuse du fabricant ; en cas de façade, effet commercial sur les fiches à arbitrer.
+- Mesure d'audience à la révocation (constat du 08/10, cookies `_ga` et `_ga_<ID>` posés à la main) : après décochage de « Cookies analytiques », `window.gtag` reste défini, le script `gtag/js` reste dans la page, aucun drapeau `ga-disable-<ID>`, cookies `_ga*` conservés. Envoi effectif de données après révocation : non vérifié (gtag.js non chargé dans le test). `components/analytics/**` est à rayon large (mesure de Laurent) : non modifié.
+- Décisions de consentement : catégorie durable pour les autres services (libellé « Vidéos YouTube » du bandeau, article 6 de la politique de confidentialité, aucune modification sans validation) ; croix « Fermer » du bandeau rouvert, qui vaut « Tout refuser » ; textes de la fenêtre d'information (FR, EN, de-CH) à relire, gardés dans `lib/external-embeds.ts` faute de pouvoir toucher `messages/*.json`.
+- Débordement de 49 px de l'accueil en mobile : cause racine du défaut Pixel 5, non corrigé (accueil gelé jusqu'au 28/10, D44 et M5).
+- Inactifs : `introMedia` des guides (10 iframes `cdn.embedly.com`, 6 scripts `orbitvu.co`, champ non rendu par le gabarit) ; `components/media/VideoFacade.tsx` et `components/video/YouTubeFacade.tsx`, importés par aucun fichier (ils chargeraient `img.youtube.com` ou `i.ytimg.com` à l'affichage).
 
 ---
 
