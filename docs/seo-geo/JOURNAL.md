@@ -34,6 +34,25 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #141 : scission (Option A) — réduite à B4/D6 + D3 ; B1/FAQ des interviews retirés du périmètre ; resync `main` `3f4b92d` · Claude de Laurent
+
+**Chantier** : clôture V9 — Lot A | **PR** : #141, branche `claude/zen-maxwell-i59q3o` | **Commit** : voir PR
+
+**Quoi** — Sur GO de Laurent du 15/10 (GO_CODE_SCISSION_141), le périmètre de #141 est **réduit aux corrections indépendantes** : les 2 fichiers d'interview (`content/blog/fr/decryptages-…packshotcreator.json`, `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json`) sont **restaurés à l'identique de `main`** — les éditions B1 (nom du fondateur) et la correction FAQ « fondateur de Sysnext » sont **retirées du diff de #141**. Ces pages relèvent du **retrait Lot C** (interviews 2017). Le retrait public des articles n'est **pas** fait ici. Resynchronisation sur `main` `3f4b92d` (conflit `JOURNAL` résolu par union, aucune entrée perdue).
+
+**Reste dans #141** : B4/D6 (`focus-sur-lhyperfocus.json`, « distribue officiellement ») + D3 (6 libellés « min de lecture » EN) + docs de consolidation.
+
+**Pourquoi** — Éviter de fusionner des modifications devenues sans objet (pages vouées au retrait) uniquement parce que leurs tests passent (mission V9, Lot 1, Option A).
+
+**Fichiers** — restauration des 2 JSON interview ; `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après fusion : `/fr/blog/focus-sur-lhyperfocus` affiche « distribue officiellement » (D6) ; les 6 pages blog affichent « N min read » en EN. Aucun autre changement.
+
+**Vérifié** — Diff #141 vs `main` : 6 pages blog + `focus-sur-lhyperfocus` + docs, **aucune interview**. B4 et D3 présents (contrôlés sur le HEAD). CI du nouveau HEAD : à relever au push.
+**Non regardé** — `www` (après fusion). QA Chrome « min read » du 14/10 réutilisée (code D3 inchangé).
+
+**Suite** — Fusion sous GO_MERGE_141 conditionnel ; les interviews (B1/FAQ/retrait) passent au Lot C.
+
 ## 2026-10-14 · PR #141 : correction FAQ interviews (attribution « fondateur de Sysnext » retirée) + resynchronisation de `main` · Claude de Laurent
 
 **Chantier** : Consolidation audits A/B/C/D (finition #141) | **PR** : #141, branche `claude/zen-maxwell-i59q3o` | **Commit** : voir PR
