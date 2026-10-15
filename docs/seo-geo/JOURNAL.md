@@ -60,6 +60,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · Interviews 2017 — ÉTAPE W (DRAFT) : Worker 301 des anciennes URL vers `/a-propos` · Claude de Laurent
+
+**Chantier** : clôture V9 — retrait interviews 2017, étape W (redirections) | **PR** : Draft dédié, branche `claude/interviews-2017-worker-301`, base `main` `c557348` | **Commit** : voir PR
+
+**Statut** — **PRÉPARATION / DRAFT, Worker SEUL**. GO_CODE_PREPARATION + GO_PR_DRAFT (15/10). **GO_MERGE = NO, GO_WORKER (déploiement) = NO.** Séquence de release en deux étapes : **W (ce Draft, redirections) à déployer et vérifier sur `www` AVANT** l'étape S (retrait des articles, PR séparée). Aucune édition au dashboard Cloudflare (R5).
+
+**Quoi** — `cloudflare-worker/src/index.js` seul. Redirections 301 des anciennes URL d'interview vers `/a-propos`, via `LEGACY_REDIRECTS` (évalué l.1617, avant le repli `/blog/` l.1811), sans chaîne ni boucle :
+- NOUVEAU : `/fr/blog/decryptages-…` → `/fr/a-propos` ; `/en/blog/interview-laurent-wainberg-founder-packshotcreator` → `/en/a-propos` ; `/blog/decryptages-…` → `/fr/a-propos` ; `/blog/interview-…` → `/en/a-propos` (slug EN retiré de `BLOG_EN_REDIRECTS`).
+- RECIBLÉ (pointaient vers les articles voués au retrait) : `/decryptages-…` (sans langue) → `/fr/a-propos` ; `/en/blog/decryptages-…` → `/en/a-propos` ; `/fr/blog/interview-…` → `/fr/a-propos`.
+
+**Décision explicite requise — variantes 410** — Les variantes **ES/DE/NL** (`/blog/entrevista-…fundador-…`, `/blog/interview-…-grunder-…`, `/blog/interview-…-oprichter-…`) restent en **410 Gone** (`GONE_PATHS`), **non modifiées**. Leur éventuel passage 410 → 301 vers `/a-propos` n'est PAS fait ici : il doit être une décision de publication explicite de Laurent (ne pas changer leur statut en silence). Recommandation : conserver 410 (langues jamais servies ; 410 = signal SEO correct pour une URL définitivement retirée).
+
+**Rayon d'action (R8/R5)** — Worker = ressource à rayon large. Le dépôt est la source (R5) mais la prod a pu diverger : **resynchroniser le Worker déployé avec le dépôt avant déploiement**. Déploiement = opération séparée (dashboard/déploiement depuis le dépôt), hors de cette PR. Rollback : `git revert` + redéploiement depuis le dépôt.
+
+**Vérifié** — Ordre des redirections relu (`LEGACY_REDIRECTS` avant repli `/blog/`) ; aucune clé ajoutée n'est dans `GONE_PATHS` ; cibles `/fr/a-propos` et `/en/a-propos` existantes ; aucune chaîne ni boucle (les cibles ne sont elles-mêmes clés d'aucune redirection). `npx tsc`/`next build` sans objet pour le Worker ; CI du HEAD à relever.
+**Non regardé** — Comportement réel du Worker (déploiement non autorisé) ; `www` (R4).
+
+**Suite** — Draft W en attente du GO groupé final (GO_WORKER + ordre). **S ne se publie pas avant que les 301 de W soient actives et vérifiées sur `www`.**
+
+---
+
 ## 2026-10-15 · #141 FUSIONNÉE (`e18b8e3`) + Lot B Industries : compteur « entreprises équipées » 500 → 5000 · Claude de Laurent
 
 **Chantier** : clôture V9 — Lot A (fermeture) + Lot B | **PR** : #141 (fusionnée), micro-PR Lot B (branche `claude/zen-maxwell-i59q3o`) | **Commit** : voir PR
