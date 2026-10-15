@@ -1,0 +1,1577 @@
+{
+  "transparence": "<p>Diese Gespräche wurden von der Redaktion von PackshotCreator aus dem Werdegang von Sébastien Jourdan, seinen Publikationen und seinen öffentlichen Positionen zusammengestellt. Es sind keine aufgezeichneten Interviews und keine wörtlichen Zitate: Fragen und Antworten sind eine redaktionelle Aufbereitung seiner Sicht als Fotograf und Unternehmensleiter. Die datierten Erfahrungen und Positionen werden ihm zugeschrieben; die als solche gekennzeichneten Beispiele sind illustrativ.</p>",
+  "bio": {
+    "titre": "Von der Fotografie zum automatisierten Studio: die Sicht von Sébastien Jourdan",
+    "html": "<p>Sébastien Jourdan verdiente seinen Lebensunterhalt zuerst mit Bildern. Werbung, Mode, Produkte: Jahrelang bestand seine Arbeit darin, das richtige Licht, den richtigen Bildausschnitt und das Detail zu finden, das ein Objekt verständlich macht. Laut seinem veröffentlichten beruflichen Werdegang hat er unter anderem für Marken wie Lancel, McLaren und Orange gearbeitet.</p><p>Dann nahm eine andere Frage immer mehr Raum ein: Wie produziert man diese Qualität nicht mehr für ein einzelnes Bild, sondern für eine ganze Kollektion, mit Fristen, Varianten und Personen, die sich abwechseln müssen? 2018 gründete er Everleet, eine Aufnahmelösung für den E-Commerce. 2024 gründete er BlendAI.Studio, um zu erkunden, was künstliche Intelligenz <strong>aus Fotografien echter Produkte</strong> beitragen kann. Heute leitet er PackshotCreator, das unter anderem die Geräte von Orbitvu vertreibt.</p><p>Diese zehn Gespräche sind um diese dreifache Sicht herum aufgebaut: den Fotografen, der die Mängel eines Bildes sieht, den Unternehmer, der die Zwänge eines Produktionsflusses kennt, und den Geschäftsführer, der Werkzeuge wählen muss, ohne das echte Produkt aus den Augen zu verlieren. Sie verbinden seine öffentlichen Positionen mit klar gekennzeichneten didaktischen Situationen.</p>",
+    "timeline": [
+      {
+        "periode": "2005 – 2018",
+        "label": "Fotograf: Mode, Werbung, Produkte (Lancel, McLaren, Orange)"
+      },
+      {
+        "periode": "2018",
+        "label": "Gründet Everleet, Aufnahmelösung für den E-Commerce"
+      },
+      {
+        "periode": "2024",
+        "label": "Gründet BlendAI.Studio: Visuals aus echten Fotos weiterentwickeln"
+      },
+      {
+        "periode": "2026",
+        "label": "Leitet PackshotCreator (Orbitvu-Geräte)"
+      }
+    ],
+    "portrait": {
+      "src": "/images/revue-entretiens-s3/portrait-sebastien-jourdan.png",
+      "alt": "Porträt von Sébastien Jourdan.",
+      "legende": "Sébastien Jourdan — Fotograf von Ausbildung, Gründer von Everleet und BlendAI.Studio, Geschäftsführer von PackshotCreator.",
+      "width": 800,
+      "height": 800
+    }
+  },
+  "entretiens": [
+    {
+      "num": "01",
+      "slug": "entretien-01",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "1/10",
+      "sujet": "Abwägung zwischen Dienstleister, internem Studio und Mischmodell",
+      "titre": "Bevor Sie ein Fotostudio kaufen, schauen Sie, wie Ihre Produkte den Betrieb durchlaufen",
+      "sous_titre": "Sollte man Produktfotos intern produzieren? Die Sicht eines Fotografen, der zum Entwickler von Lösungen für den E-Commerce geworden ist.",
+      "intro": [
+        "Die erste Antwort ist weder eine Maschinenmarke noch ein Budget, sondern eine Diagnose. Sébastien Jourdan hat Produkte für Marken fotografiert, danach Aufnahmelösungen entwickelt und Unternehmen begleitet, die mehr Bilder produzieren wollen. Er führt die Frage auf das Wesentliche zurück: Welches Problem versucht man eigentlich zu lösen?"
+      ],
+      "ouverture": "<p>In einer Veröffentlichung vom April 2026 schilderte Sébastien Jourdan den Fall eines Unternehmens, das die Kosten seiner Visuals senken wollte: Es hatte mehrere Lösungen verglichen und die günstigste gewählt. Auf einer Tabelle ging die Entscheidung auf. Einige Monate später häuften sich die Nacharbeiten, die Einstellungen änderten sich von einer Aufnahmesession zur nächsten, und die Online-Stellungen gerieten in Verzug.</p><p>Von da aus stellt er die Frage anders: <strong>Was kostet ein Bild, das man wirklich veröffentlichen kann?</strong> Nicht einfach eine gelieferte Datei, sondern ein akzeptiertes Visual, dem richtigen Produkt zugeordnet und zum richtigen Zeitpunkt verfügbar. Um für Ihre eigene Organisation eine Grössenordnung zu bestimmen, hilft der <a href=\"/de-ch/roi-rechner\">Rentabilitätsrechner für das Studio</a>, die Schritte zu beziffern, die Sie tatsächlich bezahlen, und <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">dieser Artikel zum Return on Investment</a> ordnet sie ein. Ob ein älteres Studio, das noch funktioniert, ersetzt werden muss, ist oft eine Frage der <a href=\"/de-ch/blog/altes-packshotcreator-studio-migrieren\">Migration der Ausrüstung</a>, nicht des Preises pro Bild.</p>",
+      "sections": [
+        {
+          "id": "entretien-01-q1",
+          "question": "«Wenn ein Unternehmen sagt: Wir wollen unsere Fotos selbst machen — womit beginnen Sie?»",
+          "figures": [
+            {
+              "name": "01_CHOIX_PRODUCTION",
+              "src": "/images/revue-entretiens-s3/01_CHOIX_PRODUCTION.svg",
+              "alt": "Schema der drei möglichen Organisationsformen: externe, interne und gemischte Produktion.",
+              "caption": "Methodenskizze — redaktionelle Illustration, ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Damit, zu fragen, warum. Geht es um die Zeit zwischen dem Eintreffen eines Artikels und seiner Online-Stellung? Um eine Kollektion, deren Fotos einander nicht ähneln? Um die Kosten? Oder um die Abhängigkeit vom Terminkalender eines Dienstleisters? Das sind vier verschiedene Probleme, und sie verlangen nicht dieselbe Organisation."
+            },
+            {
+              "t": "p",
+              "html": "Der Werdegang von Sébastien Jourdan erhellt diesen Reflex. Als gelernter Fotograf weiss er, dass ein schönes Bild Zeit, Entscheidungen und manchmal mehrere Versuche braucht; mit Everleet und später PackshotCreator hat er sich einer anderen Frage zugewandt: diese Qualität wiederzufinden, wenn es nicht mehr darum geht, <em>ein</em> Foto zu realisieren, sondern alle Bilder eines Katalogs zu produzieren. Der Anlass ist selten die ganze Geschichte."
+            },
+            {
+              "t": "p",
+              "html": "Das richtige erste Treffen findet nicht vor einer Broschüre statt, sondern vor einer Produktliste, Beispielen akzeptierter Bilder, den realen Fristen und den Personen, die den Ablauf steuern."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q2",
+          "question": "«Ist das Auslagern zwangsläufig überholt, wenn ein Katalog wächst?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nein, und das muss man sagen. Für eine Marke, die wenige Artikel lanciert, mit komplexen Produkten und punktuellen Kampagnen, kann ein ausgezeichneter Dienstleister rationaler sein als der Aufbau eines Studios. Er bringt einen Blick, Kompetenzen und eine Produktionskapazität mit, die dauerhaft vorzuhalten teuer wäre."
+            },
+            {
+              "t": "p",
+              "html": "Die Frage ändert sich, wenn der Katalog täglich lebt. In einer Veröffentlichung vom April 2026 formulierte Sébastien Jourdan das Problem als Frage der Kontrolle über den Rhythmus: Wird die visuelle Produktion zu einem kontinuierlichen Fluss, zählt jeder Versand, jedes Warten auf ein Zeitfenster und jedes Hin und Her. Das ist nicht zwingend die Schuld des Dienstleisters; es liegt daran, wie sich das Unternehmen um ihn herum organisiert."
+            },
+            {
+              "t": "p",
+              "html": "Daher ein nützlicher Vergleich: drei Szenarien an denselben Produkten betrachten — alles auslagern, alles intern produzieren oder die wiederkehrenden Ansichten intern erstellen und die Sonderfälle Spezialisten anvertrauen. Man vergleicht die Verlässlichkeit des Ergebnisses, nicht nur eine Rechnung."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q3",
+          "question": "«Man spricht viel vom Preis pro Foto. Ist das ein schlechter Indikator?»",
+          "figures": [
+            {
+              "name": "04_TEMPS_INVISIBLE",
+              "src": "/images/revue-entretiens-s3/04_TEMPS_INVISIBLE.svg",
+              "alt": "Skizze: Wo versteckt sich die Verzögerung? Die Zeit für ein Foto ergibt nicht die Zeit für ein veröffentlichtes Bild.",
+              "caption": "Wo versteckt sich die Verzögerung? — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Er ist unvollständig. Ein Bild, das günstig scheint, kann viel kosten, wenn es drei Personen für die Vorbereitung der Produkte bindet, die Korrekturen vervielfacht, die Suche nach Varianten nötig macht und eine Aufnahmesession wiederholen lässt. Umgekehrt verursacht ein internes Studio auch dann Kosten, wenn niemand fotografiert: Raum, Schulung, Unterhalt und die Zeit des Bedieners verschwinden nicht."
+            },
+            {
+              "t": "p",
+              "html": "Der richtige Massstab sind die <strong>Kosten eines akzeptierten und verwendbaren Bildes</strong>, nicht die einer exportierten Datei. Messen Sie bei zwanzig repräsentativen Produkten die Zeit für fünf Momente: Vorbereitung, Einstellungen, Aufnahme, Kontrolle/Retusche und Export/Freigabe. Rechnen Sie die Nacharbeiten, die externen Kosten und den Anteil der Arbeitszeit von Angestellten dazu. So haben Sie eine Entscheidungsgrundlage, auch wenn sie alles andere als ein universeller Preis ist."
+            },
+            {
+              "t": "p",
+              "html": "Diese Überlegung zu den Vollkosten hat Sébastien Jourdan öffentlich entwickelt: Das Gerät und die Offerte erzählen nicht die ganze Kette. Ein Rechner kann beim Vergleich von Annahmen helfen; er darf keine garantierte Rentabilität ankündigen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q4",
+          "question": "«Gibt es ein Volumen, ab dem Sie sagen: Diesmal muss man intern produzieren?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Magische Schwellen verdienen Misstrauen. Fünfhundert identische Produkte, aus zwei Winkeln fotografiert, und fünfhundert Schmuckstücke mit komplexen Reflexen sind ganz und gar nicht dieselben Arbeitstage. Man muss die <strong>Artikel</strong>, die <strong>Ansichten</strong> und die <strong>finalen Dateien</strong> getrennt zählen. Eine Aufnahme ist kein Produkt, und ein Bild, das beim ersten Versuch gelingt, ist keine Regel."
+            },
+            {
+              "t": "p",
+              "html": "Entscheidend ist vor allem die Regelmässigkeit. Ein Unternehmen mit hundert Neuheiten pro Woche muss in laufenden Abläufen denken. Wer zwei Kollektionen pro Jahr vorbereitet, zieht es womöglich vor, Kapazität zu mieten oder zu reservieren. Die Zahl allein ergibt noch keine Entscheidung."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q5",
+          "question": "«Welche Produkte nehmen Sie in eine Demonstration mit?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nicht die fünf schönsten. Die fünf mühsamsten. Eine glänzende Verpackung, ein schwarzer Artikel, ein transparentes Fläschchen, ein metallisiertes Teil, ein Produkt mit einer schwer lesbaren Etikette: Daran zeigt sich die Realität einer Methode. Sébastien Jourdan hat diesen Test öffentlich empfohlen, um zu entscheiden, ob man ein älteres Studio weiterentwickelt; er gilt auch, wenn man seine erste Ausrüstung prüft."
+            },
+            {
+              "t": "p",
+              "html": "Das Ergebnis beurteilt man in Originalgrösse und danach nach seiner Wiederholbarkeit. Findet man die gleiche Ausleuchtung in drei Monaten wieder? Wer korrigiert einen Reflex? Wie lange dauert es, das Objekt vorzubereiten? Erzielt ein anderer Bediener ein akzeptables Ergebnis? Eine Demonstration, die diese Fragen nicht beantwortet, ist unvollständig."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q6",
+          "question": "«Und wenn die alten Geräte noch funktionieren?»",
+          "figures": [
+            {
+              "name": "05_PRODUITS_A_TESTER",
+              "src": "/images/revue-entretiens-s3/05_PRODUITS_A_TESTER.svg",
+              "alt": "Skizze: Ein nützlicher Test ist keine Parade. Die Objekte wählen, die die Methode wirklich auf die Probe stellen.",
+              "caption": "Ein nützlicher Test ist keine Parade — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Man ersetzt besser nicht um des Ersetzens willen. In einer Veröffentlichung vom Oktober 2026 erklärte Sébastien Jourdan, dass ein älteres Studio weiterhin korrekt produzieren kann, auch wenn die Software und ihr Umfeld fragil werden. Erst wenn die Werkzeuge rund um die Maschine das Arbeiten verhindern, stellt sich die Frage einer Migration tatsächlich."
+            },
+            {
+              "t": "p",
+              "html": "Ein vernünftiger Übergang wird vorbereitet: Man erstellt Profile für die schwierigen Produkte, prüft die Exporte und behält eine Möglichkeit, während des Wechsels zu produzieren. Es geht um die Kontinuität des Katalogs, nicht um Neuheit um der Neuheit willen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-01-q7",
+          "question": "«Welchen Rat geben Sie, bevor man unterschreibt?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Machen Sie eine Woche der Wahrheit. Wählen Sie eine repräsentative Stichprobe aus, notieren Sie den Weg jedes Artikels und vergleichen Sie zwei oder drei mögliche Organisationsformen. Beziehen Sie die Person ein, die die Objekte vorbereitet, die Person, die fotografiert, und die Person, die die finale Datei freigibt. Manche Entscheidungen werden offensichtlich, wenn diese Personen am selben Tisch sitzen."
+            },
+            {
+              "t": "p",
+              "html": "Und geben Sie sich das Recht, den Schluss zu ziehen: <em>Für diese Produktfamilie bleiben wir bei einem Dienstleister</em>. Man baut kein Studio, um eine interne Debatte zu gewinnen. Man baut es, falls nötig, um verlässliche Bilder im Rhythmus des Unternehmens zu produzieren."
+            },
+            {
+              "t": "encadre",
+              "titre": "Was Sie am Montag tun können",
+              "paras": [
+                "Nehmen Sie zehn gängige Produkte und fünf schwierige Fälle. Notieren Sie für jedes die gesamte Zeitspanne zwischen Eingang und freigegebenem Bild, die Anzahl der Ansichten, die Nacharbeiten und die beteiligten Personen. Vergleichen Sie anschliessend die drei Szenarien — intern, extern und gemischt — ohne irgendein Versprechen zur Taktung.",
+                "<strong>Als Nächstes:</strong> <a href=\"/de-ch/blog/e-commerce-fotostudio-organisieren\">Wie man das Studio und seinen Produktionsablauf konkret organisiert</a>."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Intern zu produzieren ist nicht automatisch günstiger, schneller oder besser. Die richtige Wahl hängt vom realen Fluss der Artikel, von den Produktarten, den Freigabeschritten, den verfügbaren Kompetenzen und den Vollkosten des <em>veröffentlichten</em> Bildes ab. Ein Mischmodell ist oft eine Option, die man testen sollte, kein Kompromiss, für den man sich schämen müsste.",
+      "recitPhotos": [
+        {
+          "src": "/images/machines/alphashot-xl-g2/packshot-operator.avif",
+          "alt": "Bediener bei der Vorbereitung einer Produktaufnahme im Studio.",
+          "credit": "Photo PackshotCreator / Orbitvu",
+          "width": 880,
+          "height": 586
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "02",
+      "slug": "entretien-02",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "2/10",
+      "sujet": "Organisation des E-Commerce-Fotostudios vom Eingang bis zur freigegebenen Datei",
+      "titre": "Ein E-Commerce-Fotostudio ist zuallererst ein Produktionsablauf",
+      "sous_titre": "Wer bereitet die Produkte vor? Wer prüft die SKU? Wer entscheidet, dass das Bild gut ist? Und warum diese Fragen ebenso wichtig sind wie die Kamera.",
+      "intro": [
+        "An den Wänden eines Studios sieht man die Beleuchtung und die Hintergründe. Viel weniger sieht man die wartenden Produkte, die unvollständigen Anfragen und die Bildversionen, die sich vermischen. Sébastien Jourdan, gelernter Fotograf und später Unternehmer im Bereich von Bildlösungen, schlägt vor, genau dort anzufangen."
+      ],
+      "ouverture": "<p>In einer Veröffentlichung vom April 2026 berichtete Sébastien Jourdan vom Alltag eines E-Commerce-Teams: Es brauchte rund drei Wochen, um eine Bildserie auszuliefern. Wareneingang, Sortierung, Shooting, Retusche, Freigabe, Online-Stellung: Keiner dieser Arbeitsschritte erschien für sich genommen übertrieben.</p><p>Was aus dem Bericht hervorgeht, ist <strong>die Zeit zwischen den Schritten</strong>. Ein Produkt wartete auf seine Vorbereitung, eine Datei auf ihre Zustimmung, eine Korrektur auf die Verfügbarkeit der richtigen Person. Später strukturierte das Team bei konstantem Personalbestand und gleichbleibendem Volumen den Übergang zum Shooting um und arbeitete stärker in Serien; es produzierte in wenigen Tagen. Das ist kein Ergebnis, das man allen Studios versprechen kann: Es ist der Beleg dafür, dass in diesem konkreten Fall der Engpass nicht zwingend die Kamera war. <a href=\"/fr/guide/visuels-collection-produits-homogenes\">Homogene Visuals über eine ganze Kollektion</a> zu erhalten, ist zuallererst eine Frage dieser Organisation; die <a href=\"#entretien-06\">Identifikation der Artikel</a> und die <a href=\"#entretien-10\">Weitergabe der Profile</a> sind ihre Fortsetzung.</p>",
+      "sections": [
+        {
+          "id": "entretien-02-q1",
+          "question": "«Man vertraut Ihnen einen leeren Raum und einen Katalog an. Was tun Sie als Erstes?»",
+          "figures": [
+            {
+              "name": "02_FLUX_STUDIO",
+              "src": "/images/revue-entretiens-s3/02_FLUX_STUDIO.svg",
+              "alt": "Acht Methodenschritte, vom Wareneingang des Produkts bis zur Veröffentlichung.",
+              "caption": "Methodenskizze — redaktionelle Illustration, ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Man beginnt damit, den Katalog und den Weg eines Produkts anzuschauen. Bevor man <a href=\"/de-ch/fotostudio/maschinen-finder\">eine Ausrüstung wählt</a>, muss man verstehen, wie der Artikel eintrifft, wodurch er sich identifizieren lässt, wer das Objekt vorbereitet und wer die Dateien übernimmt. Ein sehr gut ausgeleuchtetes Studio kann dennoch eine schlechte Organisation bleiben."
+            },
+            {
+              "t": "p",
+              "html": "Als gelernter Fotograf hat er gelernt, auf Details zu achten; mit Everleet hat er sich für Systeme interessiert, die Arbeit wiederholbar machen können. Heute ist die Fotografie Teil eines viel grösseren Ablaufs: E-Commerce, Daten, Freigabe, Ausspielung und manchmal KI. Jedes Glied muss wissen, was es vom vorherigen erwartet."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q2",
+          "question": "«Wie vermeidet man, die falsche Variante zu fotografieren?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Mit einer Kennung, die dem Objekt folgt, nicht mit dem menschlichen Gedächtnis. Ein Artikel und seine Farbe werden beim Wareneingang geprüft; die Verknüpfung muss intakt bleiben, wenn das Produkt vor die Kamera kommt und danach in die Exporte. Erhält der Fotograf eine blaue Flasche, während die Bestelldatei grün ausweist, hält man an und korrigiert die Information. Man entscheidet nicht stillschweigend, dass «das schon so stimmen wird»."
+            },
+            {
+              "t": "p",
+              "html": "Die Benennung muss für Systeme und für Menschen lesbar sein. Eine interne Konvention könnte zum Beispiel so aussehen: `SKU123-BLAU-V01-FRONT.jpg` — SKU, Variante, Ansicht. Das ist weder ein universeller Standard noch eine GS1-Pflicht; es ist ein Beispiel für eine Regel, die man dokumentieren sollte. Am wichtigsten ist, dass sie für die Aufnahme, die Mediathek und die Katalogintegration dieselbe ist."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q3",
+          "question": "«Wer muss das Bild genau freigeben?»",
+          "figures": [
+            {
+              "name": "06_REFERENCE_VARIANTE",
+              "src": "/images/revue-entretiens-s3/06_REFERENCE_VARIANTE.svg",
+              "alt": "Skizze: ein Bild, eine exakte Referenz. Die Verknüpfung mit der SKU und ihrer Variante muss die gesamte Kette überstehen.",
+              "caption": "Ein Bild, eine exakte Referenz — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Besser eine klare Verantwortung als eine Kette von Personen in Kopie. Der Fotograf kann Schärfe und Ausleuchtung freigeben; das Produktteam prüft die Variante, die Details und die Verpackung; das E-Commerce-Team stellt sicher, dass die Datei zum Kanal passt. Eine wichtige Entscheidung sollte sich nicht in einem E-Mail-Verlauf auflösen."
+            },
+            {
+              "t": "p",
+              "html": "Man muss auch festlegen, <em>wann</em> freigegeben wird. Stellt man nach hundert Artikeln fest, dass der Bildausschnitt nicht akzeptiert war, hat man kein Retuscheproblem, sondern ein Verfahrensproblem. Jede neue Produktfamilie beginnt am besten mit einigen freigegebenen Musterdateien, bevor man die Serie startet."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q4",
+          "question": "«Ersetzen gespeicherte Einstellungen das Know-how des Fotografen?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nein. Sie ersparen es, jeden Morgen dieselben Versuche zu wiederholen. Der Bediener behält seinen Blick; er hat lediglich verlässliche Ausgangspunkte. Das ist besonders nützlich, wenn sich mehrere Personen abwechseln oder wenn eine Kollektion sechs Monate später wiederkehrt."
+            },
+            {
+              "t": "p",
+              "html": "Eine einzige Einstellung kann nicht Uhren, schwarze Stoffe und transparente Flaschen abdecken. Besser baut man Profile nach Familien auf, mit einem Beispiel für das erwartete Ergebnis. Bei einem reflektierenden Objekt verändert der Winkel alles; ein Profil muss unter realen Bedingungen kontrolliert bleiben. Das System verringert vermeidbare Abweichungen, es schafft die Fotografie nicht ab."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q5",
+          "question": "«Was automatisieren Sie, und was weigern Sie sich zu automatisieren?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Man automatisiert gern die repetitiven Arbeitsschritte, wenn ihr Ergebnis beobachtbar ist: eine Abfolge von Aufnahmen, Exporte, Dateinamen, nach einem Profil vorbereitete Ableitungen. Aber die Entscheidung, ob ein Logo, ein Material oder eine Farbe das Produkt getreu wiedergibt, vertraut man keiner blinden Automatisierung an."
+            },
+            {
+              "t": "p",
+              "html": "In einer Veröffentlichung über Kataloge, die von einigen Hundert auf mehrere Tausend Artikel anwachsen, betonte Sébastien Jourdan, dass das Problem dann strukturell wird. Die richtige Antwort ist nicht einfach «schneller fotografieren»: Sie besteht darin, die Schritte zu standardisieren und zu wissen, wie sie ineinandergreifen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q6",
+          "question": "«Wie vermeiden Sie endlose Retuschen?»",
+          "figures": [
+            {
+              "name": "07_QUI_FAIT_QUOI",
+              "src": "/images/revue-entretiens-s3/07_QUI_FAIT_QUOI.svg",
+              "alt": "Skizze: vier Rollen, klare Entscheidungen. Eine verlässliche Produktion beruht auf ausdrücklichen Übergaben.",
+              "caption": "Vier Rollen, klare Entscheidungen — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Indem man die Korrektur eines technischen Mangels von einem künstlerischen Änderungswunsch trennt. Sichtbarer Staub? Man behebt ihn. Eine Farbe, die dem Muster nicht mehr gleicht? Man geht auf die Referenz zurück. Ein neuer Inszenierungswunsch nach der Freigabe des Packshots? Das ist keine Retusche: Das ist ein neuer Auftrag."
+            },
+            {
+              "t": "p",
+              "html": "Besser bewahrt man die freigegebene Version und den Grund einer Wiederholung auf. Nach einigen Wochen entdeckt das Team die wahren Gründe für die Wiederholungsaufnahmen. Viele hätten sich beim Briefing, bei der Vorbereitung oder bei der Kontrolle der ersten Charge vermeiden lassen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q7",
+          "question": "«Woran erkennt man, ob das Studio wirklich effizienter ist?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Schauen Sie nicht nur auf die Fotos pro Stunde. Schauen Sie auf die Zeit zwischen dem Eingang des Produkts und den veröffentlichungsfähigen Bildern, auf die Anzahl Artikel, die erneut in die Retusche gehen, auf den Anteil der korrekt der SKU zugeordneten Dateien und auf die Zeit, die mit der Suche nach einer Version verbracht wird. Ein gutes Studio ist ein System, in dem man wiederfindet, was man gemacht hat."
+            },
+            {
+              "t": "p",
+              "html": "Sébastien Jourdan hat den Fall eines Teams mitgeteilt, dessen Ablauf mehrere Wochen dauerte, obwohl jeder einzelne Schritt für sich logisch schien. Der Wert dieses Berichts liegt nicht darin zu behaupten, dass alle dasselbe Ergebnis erzielen werden: Er zeigt, dass sich die verlorene Zeit zwischen die Schritte schiebt."
+            }
+          ]
+        },
+        {
+          "id": "entretien-02-q8",
+          "question": "«Und wenn man das alles auf mehrere Arbeitsplätze ausrollt?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Besser beginnt man klein: eine Produktfamilie, ein Ablauf, eine verantwortliche Person, auf einer Seite festgehaltene Regeln. Man erweitert dann, wenn die Ausnahmen verstanden sind. Die Schulung sollte nicht einer mündlichen Weitergabe von Tricks gleichen, die nur der langjährige Bediener kennt."
+            },
+            {
+              "t": "p",
+              "html": "Wer neu ins Team kommt, muss wissen, wo das Produkt ist, welche Einstellung zu verwenden ist, wie die Datei zu benennen ist und wem man eine Unregelmässigkeit zeigt. Das ist nicht spektakulär. Genau das macht eine Produktion professionell."
+            },
+            {
+              "t": "encadre",
+              "titre": "Das praktische Werkzeug dieses Gesprächs",
+              "paras": [
+                "Zeichnen Sie eine einzige Linie: <strong>Produkt erhalten → SKU bestätigt → Vorbereitung → Aufnahme → Kontrolle → Bearbeitung → Export → Veröffentlichung</strong>. Tragen Sie unter jedem Schritt die verantwortliche Person und den Grund ein, der ihn blockieren kann. Geben zwei Personen nicht dieselbe Antwort, beginnen Sie damit, das zu klären, bevor Sie eine weitere Software kaufen.",
+                "<strong>Vorab zu lesen:</strong> <a href=\"/de-ch/blog/lohnt-sich-ein-internes-produktfotostudio\">Soll man intern produzieren oder bei einem Dienstleister bleiben?</a>."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Ein verlässliches E-Commerce-Studio verbindet den physischen Wareneingang, die Identifikation, die Vorbereitung, die Aufnahme, die Kontrolle, die Bearbeitung und die Ausspielung. Die Qualität muss reproduzierbar sein; jede Datei muss eindeutig einem Artikel und einer Variante entsprechen; Automatisierung ist nur nützlich, wenn der Ablauf bereits funktioniert.",
+      "recitPhotos": [
+        {
+          "src": "/images/blog/e-commerce-comment-mettre-en-place-votre-studio-photo/cover.avif",
+          "alt": "Aufnahmestation in einem E-Commerce-Fotostudio.",
+          "credit": "Photo PackshotCreator",
+          "width": 1600,
+          "height": 900
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "03",
+      "slug": "entretien-03",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "3/10",
+      "sujet": "Bildtreue des Produktbilds und Vertrauen vor dem Kauf",
+      "titre": "Ein schönes Foto, das über das Produkt täuscht, bleibt ein schlechtes Foto",
+      "sous_titre": "Fotograf, Händler und KI betrachten nicht immer dasselbe Bild. Wo setzt man den Regler zwischen Begehrlichkeit und Treue?",
+      "intro": [
+        "Die meisten Diskussionen über das Produktbild beginnen bei der Bildwirkung: hell genug? scharf genug? premium genug? Sébastien Jourdan schlägt eine unbequemere Frage vor: Was ermöglicht dieses Bild dem Kunden zu verstehen — oder falsch zu verstehen — über das, was er kauft?"
+      ],
+      "ouverture": "<p>Nehmen wir eine Tasche aus genarbtem Leder mit einer goldenen Schnalle. In einer retuschierten Version wird das Leder vollkommen glatt, und die Schnalle ändert leicht ihre Gestaltung. Das Bild ist grossartig. Aber es ist nicht mehr ganz die Tasche, die man beim Erhalt des Pakets öffnen wird.</p><p>Dieser Fall ist erfunden, um eine ganz einfache Kontrolle zu erklären: Wenn man das Objekt und das Foto nebeneinander hat, bleiben Form, Material, Farbe und Details dieselben? Zwischen einem spektakulären Hintergrund und einer korrekten Schnalle gewinnt die korrekte Schnalle. Genau hier muss die <a href=\"/de-ch/blog/ki-retusche-produktfoto\">KI-Retusche</a> ein Werkzeug der Treue bleiben und nicht der Verfälschung — ein Thema, das das <a href=\"#entretien-07\">Gespräch über KI und das reale Foto</a> weiterführt.</p>",
+      "sections": [
+        {
+          "id": "entretien-03-q1",
+          "question": "«Was unterscheidet ein Produktfoto von einem Werbebild?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das Produktfoto muss zuerst die Frage beantworten: <em>Was bekomme ich?</em> Man muss Form, <a href=\"#entretien-05\">Farbe</a>, Material, Details und, wenn es wichtig ist, den Inhalt des Pakets erkennen können. Ein Kampagnenbild darf eine Stimmung erzählen; ein Referenzfoto muss überprüfbar bleiben."
+            },
+            {
+              "t": "p",
+              "html": "Als Fotograf für Mode, Objekte und Kampagnen weiss er, dass das nicht dieselben Entscheidungen sind. Man kann Licht und Material aufwerten, ohne ein Finish zu erfinden, eine Kante abzurunden oder ein entscheidendes Merkmal zu verbergen. Die KI vervielfacht heute die Möglichkeiten — und erhöht damit im gleichen Mass die Bedeutung dieses realen Ausgangspunkts."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q2",
+          "question": "«Wird eine Retusche zwangsläufig zur Verfälschung?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nein. Ein Staubkorn vom Hintergrund zu entfernen, das Licht auszugleichen oder ein Objekt sauber freizustellen, bedeutet nicht zwingend, zu verändern, was es ist. Wenn man aber eine Naht wegretuschiert, das Aussehen eines Glases verändert oder die Textur eines Leders umwandelt, hat man eine andere Grenze überschritten."
+            },
+            {
+              "t": "p",
+              "html": "Ein einfacher Test: das Bild neben das Objekt halten. Würde eine vernünftige Person glauben, genau das gezeigte Produkt zu kaufen? Eine Bearbeitung, die das Erkennen des Objekts erleichtert, hat nicht dieselbe Rolle wie eine, die ihm eine Eigenschaft hinzufügt. Diese Beurteilung bleibt kontextabhängig, insbesondere wenn die Darstellung vom Bildschirm des Kunden abhängt."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q3",
+          "question": "«Warum ein Referenzfoto behalten, wenn man zehn Stimmungen generieren kann?»",
+          "figures": [
+            {
+              "name": "08_IMAGE_SOURCE_DERIVEE",
+              "src": "/images/revue-entretiens-s3/08_IMAGE_SOURCE_DERIVEE.svg",
+              "alt": "Skizze: was sich ändern darf, was sich nicht ändern darf. Eine neue Szene darf das Produkt nicht neu erfinden.",
+              "caption": "Was sich ändern darf, was sich nicht ändern darf — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Weil die zehn Stimmungen einen Fixpunkt brauchen. Die Kulisse kann sich ändern, das Produktversprechen sollte sich nicht ändern. Mit BlendAI.Studio geht Sébastien Jourdan von der realen Aufnahme des Produkts aus: Sie verankert die Ableitungen, die Inszenierungen und die für die Kommunikation bestimmten Ansichten."
+            },
+            {
+              "t": "p",
+              "html": "Ein Referenzfoto ist kein Talisman. Man muss es trotzdem kontrollieren: richtige Farbe, richtige Variante, sichtbare Details, aktuelle Etikette. Aber wie will man ohne diese Basis nachweisen, dass eine generierte Szene die Form des Produkts beibehalten hat? Am Ende würde man ein Bild mit einem anderen Bild vergleichen, ohne je zum Objekt zurückzukehren."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q4",
+          "question": "«Bedeutet mehr Bilder mehr Vertrauen?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nicht zwingend. Besser drei relevante Ansichten, die drei reale Zweifel beantworten, als eine Galerie von fünfzehn fast identischen Bildern. Eine Gesamtansicht, ein Materialdetail, eine Ansicht der Öffnung oder eines Mechanismus können mehr beitragen als eine neue Kulisse."
+            },
+            {
+              "t": "p",
+              "html": "Das hängt vom Produkt ab. Ein Paar Schuhe und ein Industrieteil verlangen nicht denselben Nachweis. Entscheidend ist, dass jedes Bild eine reale Frage des Käufers beantwortet; die Anzahl Bilder pro Artikel ist nichts Universelles. Es ist Sache des Verkäufers zu entscheiden, was wirklich gezeigt werden muss."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q5",
+          "question": "«Wie nimmt man die Farbe ernst, wenn jeder auf einem anderen Bildschirm schaut?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das Smartphone jedes Käufers kann man nicht kontrollieren. Dafür kann man die eigene Arbeit kontrollieren. Konsistente Einstellungen bei der Aufnahme, ein Referenzbildschirm, der Vergleich mit dem realen Produkt und <a href=\"/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit\">die Freigabe heikler Farbtöne</a>: Das ist schon beträchtlich."
+            },
+            {
+              "t": "p",
+              "html": "Der Hinweis «Farben nicht verbindlich» darf nicht zur Erlaubnis werden, jede beliebige Nuance zu zeigen. Das anwendbare Recht und die dem Kunden gegebenen Informationen sind getrennte Themen, die sich nicht auf eine Zeile im Kleingedruckten reduzieren lassen. Die rechtliche Tragweite eines solchen Hinweises gehört in die Fachanalyse, nicht in eine im Studio improvisierte Regel."
+            }
+          ]
+        },
+        {
+          "id": "entretien-03-q6",
+          "question": "«Was ist der unauffälligste Fehler in einem Produktbild?»",
+          "figures": [
+            {
+              "name": "09_CONTROLE_FIDELITE",
+              "src": "/images/revue-entretiens-s3/09_CONTROLE_FIDELITE.svg",
+              "alt": "Skizze: die Prüfung mit vier Blicken. Ein verführerisches Bild ist nicht zwingend ein exaktes Bild.",
+              "caption": "Die Prüfung mit vier Blicken — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Manchmal eine falsche Variante. Das Foto kann makellos sein und doch den falschen Griff, den falschen Knopf oder eine Verpackung zeigen, die nicht mehr geliefert wird. Eine rein ästhetische Kontrolle erkennt das nicht: Deshalb ist die Verbindung zwischen Bild und Produktdaten wichtig."
+            },
+            {
+              "t": "p",
+              "html": "Man muss auch an das Danach denken: Eine Kampagnenversion wird zum Hauptbild einer Produktseite, dann zirkuliert sie bei einem Vertriebspartner. Weiss niemand mehr, woher sie stammt, verlängert jede Wiederverwendung einen möglichen Fehler. Die Treue ist eine Eigenschaft des Ablaufs, nicht nur der Retusche."
+            },
+            {
+              "t": "encadre",
+              "titre": "Eine kurze Prüfmethode",
+              "paras": [
+                "Vergleichen Sie vor der Veröffentlichung eines abgeleiteten Bildes fünf Elemente mit der realen Referenz: <strong>Silhouette, unterscheidende Details, Farbe und Material, Text/Logo, Variante oder Konfiguration</strong>. Lässt sich ein Element nicht überprüfen, wartet das Bild. Dieses Raster gilt für die traditionelle Retusche ebenso wie für die KI.",
+                "<em>Dieses Gespräch beschreibt eine professionelle Methode. Die genauen rechtlichen Pflichten zu veränderten Bildern ergeben sich aus den offiziellen Quellen und aus spezialisierten regulatorischen Artikeln.</em>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Ein Verkaufsvisual muss attraktiv sein, ohne die Realität des gezeigten Produkts zu verändern. Wer mit Retusche oder KI arbeitet, muss ein Referenzfoto aufbewahren, die Attribute bestimmen, die sich nicht ändern dürfen, und abgeleitete Bilder anhand eines realen Exemplars freigeben.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "04",
+      "slug": "entretien-04",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "4/10",
+      "sujet": "Aufnahme, Licht und schwierige Produkte",
+      "titre": "Reflexe, Transparenzen, Materialien: was schwierige Produkte das Studio lehren",
+      "sous_titre": "Die Fälle, die sich Standardeinstellungen widersetzen, und der Nutzen, ein System mit wirklich repräsentativen Produkten zu testen.",
+      "intro": [
+        "Man kann hundert schöne Fotos einfacher Produkte machen und sich bereit für einen ganzen Katalog glauben. Dann kommt eine transparente Flasche, eine polierte Uhr oder ein schwarzes Kleidungsstück, und der Zeitplan gerät aus dem Takt. Diese Ausnahmen sind nicht marginal: Sie zwingen dazu, Licht, Handgriffe und Produktionsprofile zu durchdenken."
+      ],
+      "ouverture": "<p>Eine glänzende Uhr und eine transparente Flasche können einen Zeitplan ruinieren, der auf einfachen Produkten beruht. Die Kamera allein ist nicht schuld: Die Oberflächen werfen das Licht zurück, die Kanten verschwinden, die Aufschriften verlangen manchmal eine andere Aufmerksamkeit als der Rest des Objekts.</p><p><strong>Eine polierte Uhr.</strong> Sie verlangt zuerst, zu beobachten, was das Gehäuse <em>spiegelt</em>, nicht nur, welches Licht es empfängt. Eine grosse helle Fläche kann eine Metalllinie zeichnen; ein schwarzer Abschatter kann einer nicht mehr sichtbaren Kante wieder Form geben. Einen Diffusor um wenige Zentimeter zu verschieben, verändert das Ergebnis manchmal stärker als eine lange Retusche. Danach trennt man die Probleme — Zifferblatt, Glas, Zeiger, Gehäusemittelteil —, denn nicht alles hat dieselbe Lösung. Die Anhaltspunkte unterscheiden sich je nach Branche: siehe die <a href=\"/de-ch/branchen/uhren\">Uhrenfotografie</a> und den Leitfaden zum <a href=\"/de-ch/guide/wie-uhr-vor-fotoshooting-positionieren\">Positionieren einer Uhr vor der Aufnahme</a>.</p><p><strong>Eine transparente Flasche.</strong> Das Glas braucht, dass man seine Konturen zeichnet. Je nach Form und Inhalt testet man zuerst ein diffuses Gegenlicht, dann die Wirkung heller oder dunkler Flächen an den Seiten. Das Ziel ist nicht, das Objekt mit Licht zu überfluten, sondern sein Volumen lesbar zu machen, ohne die Etikette verschwinden zu lassen oder die Farbe der Flüssigkeit zu erfinden. Ein Parfum, eine <a href=\"/de-ch/branchen/wein\">Spirituosenflasche</a> und ein medizinisches Gefäss verlangen nicht dasselbe Protokoll; bei der Transparenz entspricht der Ansatz dem der <a href=\"/fr/guide/comment-faire-animation-360-objet-transparent\">transparenten Objekte in 360°</a>.</p><p><strong>Die Tiefe.</strong> Wenn die Vorderseite eines Teils scharf ist, die weiter hinten eingravierte Schrift aber nicht, sollte man die Retusche besser nicht zuerst bitten, Schärfe zu «erzeugen». Beim <a href=\"/fr/guide/comment-faire-focus-stacking-pour-photographier-bague\">Focus Stacking</a> macht man mehrere Aufnahmen auf unterschiedlichen Schärfeebenen und setzt sie anschliessend zusammen; dabei müssen Bewegungen zwischen den Bildern vermieden und die Konturen beim Zusammensetzen geprüft werden. Dieselben Anforderungen gelten für den <a href=\"/de-ch/branchen/schmuck\">Schmuck</a> und, bei den Stoffen, für <a href=\"/de-ch/branchen/mode\">Mode und Textil</a>. Genau darauf zielt der Rat, den Sébastien Jourdan öffentlich formuliert hat: Die beste Demonstration sind nicht fünf fotogene Objekte, sondern die fünf Produkte, die dem Studio das Leben wirklich schwer machen.</p>",
+      "sections": [
+        {
+          "id": "entretien-04-q1",
+          "question": "«Woran erkennen Sie eine zu optimistische Organisation?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Alles entscheidet sich in der Demonstration. Eine einfache matte Schachtel auf weissem Hintergrund sagt fast nichts darüber aus, ob ein Studio einen echten Katalog bewältigen kann. Entscheidend ist zu sehen, was die Tage kompliziert macht: Metall, Glas, ein schwarzes Produkt, kleine Details, sehr glänzende Oberflächen, eine Serie von Varianten."
+            },
+            {
+              "t": "p",
+              "html": "Sébastien Jourdan hat öffentlich empfohlen, vor einer Migration fünf schwierige Produkte zum Test mitzubringen — nicht um die Maschine auf Fehler zu ertappen, sondern um zu wissen, welche Arbeit beim Bediener bleibt. Die Technologie muss an den Materialien beurteilt werden, die das Unternehmen tatsächlich verkauft, nicht an einem Produkt, das dem Licht schmeichelt."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q2",
+          "question": "«Nehmen wir eine Uhr. Warum ist das so kompliziert?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "In der professionellen Fotografie lernt man, Reflexe ebenso zu konstruieren wie das Objekt zu beleuchten. Wichtig ist, lesbare Informationen zu bewahren: Silhouette, Finish, Gravur, kleine Details. Ein Automat kann eine Reihe von Bedingungen abrufen. Man muss trotzdem prüfen, ob diese Bedingungen für <em>diese</em> Uhr und <em>diesen</em> Winkel funktionieren."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q3",
+          "question": "«Und eine transparente Flasche?»",
+          "figures": [
+            {
+              "name": "10_PLAN_LUMIERE",
+              "src": "/images/revue-entretiens-s3/10_PLAN_LUMIERE.svg",
+              "alt": "Skizze: Das Licht wird um das Objekt herum aufgebaut. Prinzipskizze — kein Installationsplan einer Maschine.",
+              "caption": "Das Licht wird um das Objekt herum aufgebaut — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Der transparente Flakon ist das Musterbeispiel eines Produkts, das sich Standardeinstellungen widersetzt: Glas verlangt, dass man seine Konturen zeichnet, statt es mit Licht zu überfluten, und sowohl die Etikette als auch die Farbe der Flüssigkeit müssen lesbar bleiben. Das ist auch ein guter Grund, Demonstrationen zu meiden, die allein an der Aufnahmegeschwindigkeit gemessen werden: Ein heikles Produkt erfordert mehr Vorbereitung, Justierung und Kontrolle als zehn gewöhnliche Objekte, und diese Zeit muss in die Produktionsrechnung einfliessen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q4",
+          "question": "«Muss man das Studio ein für alle Mal einstellen?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nein, aber man muss auch nicht jedes Mal von vorn beginnen. Besser geht man von einem gemeinsamen Kern aus — Höhe, Hintergrund, Bildausschnitt, Reihenfolge der Ansichten und Grundeinstellungen — und dann von Profilen für einzelne Familien. Eine flach liegende Jeans, ein Schmuckstück im Makro und eine grosse Lampe haben nicht denselben Bedarf."
+            },
+            {
+              "t": "p",
+              "html": "Das Profil ist ein Arbeitsgedächtnis, kein Versprechen eines automatischen Ergebnisses. Jedes Profil mit einigen akzeptierten Referenzbildern zu verbinden, hilft der Person, die die Produktion übernimmt: So versteht sie, was die Einstellung erreichen will — und kann sehen, wann sie scheitert."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q5",
+          "question": "«Wie entscheiden Sie bei einem Kleidungsstück zwischen flach, Ghost-Mannequin und getragen?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Alles beginnt mit dem, was der Käufer verstehen muss. Silhouette und Fall einer Jacke können eine getragene Darstellung erfordern; eine flache Ansicht erlaubt es, Nähte, Details oder den Schnitt hervorzuheben. Das Ghost-Mannequin hat seine Logik, um ein Volumen zu zeigen, ohne eine Person zu zeigen, verlangt aber Vorbereitung und manchmal ein sorgfältiges Zusammensetzen der Aufnahmen."
+            },
+            {
+              "t": "p",
+              "html": "Es gibt nicht eine Antwort, die für die ganze Mode gilt. Es gibt Artikelfamilien, Darstellungsstufen und Produktionszwänge. Die KI kann einzelne Schritte unterstützen; sie darf keinen Fall neu erfinden, den das Quellfoto nicht überprüfbar macht."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q6",
+          "question": "«Wann sollte man Focus Stacking in Betracht ziehen?»",
+          "figures": [
+            {
+              "name": "11_QUATRE_MATIERES",
+              "src": "/images/revue-entretiens-s3/11_QUATRE_MATIERES.svg",
+              "alt": "Skizze: vier Materialien, vier Schwierigkeiten. Dasselbe Lichtrezept eignet sich nicht für alles.",
+              "caption": "Vier Materialien, vier Schwierigkeiten — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Ein Beispiel: ein kleines mechanisches Teil, schräg fotografiert. Die Vorderseite kann scharf sein, während eine tiefer liegende Beschriftung es nicht ist. Wichtig ist nicht, systematisch ein Stacking vorzuschlagen, sondern festzulegen, welche Informationen im finalen Bild lesbar sein müssen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q7",
+          "question": "«Was machen Sie mit übergrossen oder einzigartigen Objekten?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Bei einem voluminösen Objekt beginnt alles mit dem Platz und der Sicherheit bei der Handhabung. Muss das Produkt durch eine zu schmale Tür oder bei jeder Ansicht bewegt werden, ist das Protokoll falsch dimensioniert. Bei Einzelstücken, etwa gewissen Secondhand-Objekten, besteht die eigentliche Herausforderung oft darin, die richtigen Bilder dem richtigen Objekt zuzuordnen — ohne zweite Chance, die Serie neu zu machen."
+            },
+            {
+              "t": "p",
+              "html": "In diesen beiden Fällen ist die beste Ausrüstung nicht zwingend die automatischste. Es braucht eine Lösung, die zu den Volumen, den Formen und der Variabilität des Katalogs passt."
+            }
+          ]
+        },
+        {
+          "id": "entretien-04-q8",
+          "question": "«Was ist der beste Test am Ende einer Demonstration?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Wenn möglich am nächsten Tag wiederkommen oder eine andere Person bitten, zwei Aufnahmen mit den dokumentierten Profilen zu reproduzieren. Bleibt das Ergebnis konsistent? Entspricht der Dateiname dem Artikel? Wie viele Retuschen sind nötig? Wurde das Produkt korrekt an seinen Platz zurückgebracht?"
+            },
+            {
+              "t": "p",
+              "html": "Das Ziel ist eine Produktion, die sich wiederholen lässt, nicht nur eine beeindruckende Session."
+            },
+            {
+              "t": "encadre",
+              "titre": "Das Fünf-Produkte-Protokoll",
+              "paras": [
+                "Bereiten Sie ein mattes Objekt, ein reflektierendes Objekt, ein transparentes, einen texturierten Artikel und einen atypischen Fall aus Ihrem eigenen Katalog vor. Für jedes: <strong>erwartete Ansicht → Vorbereitungszeit → Einstellung → Kontrolle der Bildtreue → Export</strong>. Das ist eine nützliche Demonstration, weil sie auch die Grenzen aufzeigt."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Man fotografiert keine Marketingkategorien, man fotografiert Materialien und Formen. Ein nützliches Protokoll enthält gemeinsame Regeln, Varianten pro Familie und eine Möglichkeit, sehr schnell jene Fälle zu erkennen, die eine andere Behandlung brauchen.",
+      "recitPhotos": [
+        {
+          "src": "/images/blog/migrer-ancien-packshotcreator/bijoux-profil-rendu-constant.avif",
+          "alt": "Drei im Profil fotografierte Ringe mit konstanter Wiedergabe.",
+          "credit": "Photo PackshotCreator",
+          "width": 1600,
+          "height": 520
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "05",
+      "slug": "entretien-05",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "5/10",
+      "sujet": "Farbe und visuelle Wiedergabe",
+      "titre": "Die Farbe eines Produkts sollte nicht von der Person abhängen, die die Datei öffnet",
+      "sous_titre": "Von der Studiobeleuchtung bis zum Smartphone des Kunden: was sich beherrschen lässt und was man nicht versprechen darf.",
+      "intro": [
+        "Eine Jacke wirkt im Studio marineblau, am Retuschearbeitsplatz fast schwarz und auf einer Produktseite eindeutig blau. Niemand hat zwingend «geschummelt». Und doch erzählt das Bild nicht mehr dasselbe. Für einen Fotografen ist die Farbtreue eine Disziplin. Für einen Verkäufer wird sie zugleich zu einer Frage des Vertrauens."
+      ],
+      "ouverture": "<p>Eine marineblaue Jacke, an einem Montag fotografiert, erscheint auf einem Bildschirm fast schwarz und auf einem anderen zu blau. Bevor man «die Farbe korrigiert», muss man eine unangenehme Frage beantworten: Von welcher Referenz sprechen wir?</p><p><strong>Ein mögliches Protokoll.</strong> Man beginnt klein, aber mit einer kohärenten Kette: ein Aufnahmelicht, dessen Einstellungen man wiederfindet, eine physische Referenz oder ein Muster, wenn der Farbton heikel ist, ein beherrschter Weissabgleich und danach eine Kontrolle an einem für diesen Zweck vorbereiteten Bildschirm. Das Foto mit einem Produkt zu vergleichen, das unter völlig anderem Licht steht, führt zu einer Diskussion, die sich nicht entscheiden lässt. Der einfachste Test: zwei ähnliche Varianten nehmen, die Session einige Tage später wiederholen und prüfen, dass die Dateien dieselbe Kollektion erzählen — das ist die Logik des Leitfadens zum <a href=\"/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit\">Erzielen produktgetreuer Farben</a> und zur <a href=\"/fr/guide/visuels-collection-produits-homogenes\">Kohärenz einer Kollektion</a>.</p><p><strong>Die Umfärbung.</strong> Sie kann sinnvoll sein, wenn Schnitt und Material identisch sind und man eine echte Farbreferenz jeder Variante kontrolliert. Aber blind eine «rote» Version aus einem einzigen blauen Kleidungsstück zu erstellen, wenn sich das Textil, seine Reflexe oder seine Behandlungen unterscheiden, wäre keine Einsparung, sondern eine Unsicherheit über das verkaufte Produkt. Die Grenzen dieser Übung sind im Leitfaden zum <a href=\"/fr/guide/modifier-couleur-produit-photo\">Ändern der Farbe eines Produkts</a> beschrieben, und die Frage der Treue knüpft an das <a href=\"#entretien-03\">Gespräch über das getreue Bild</a> an.</p>",
+      "sections": [
+        {
+          "id": "entretien-05-q1",
+          "question": "«Warum wirkt eine Farbe auf verschiedenen Bildschirmen unterschiedlich?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Weil eine Fotografie nicht allein reist. Da ist das Licht, in dem das Objekt fotografiert wurde, die auf die Datei angewandte Bearbeitung, das Farbprofil, der Bildschirm des Retuscheurs und am Ende die Einstellungen des Smartphones von jemandem, den Sie nicht kennen. Wenn man von Genauigkeit spricht, muss man sagen, an welcher Stelle man eingreifen kann."
+            },
+            {
+              "t": "p",
+              "html": "Bei der Aufnahme können zwei Lichtquellen das Aussehen eines Stoffs oder Leders völlig verändern. Eine gute Organisation versucht, die Überraschungen <em>bei sich</em> zu verringern, nicht zu garantieren, dass alle Geräte der Welt dieselbe Darstellung liefern."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q2",
+          "question": "«Was richten Sie in einem Studio ein, das gerade anfängt?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Man muss die Beleuchtung und die Einstellungen pro Familie festhalten. Für eine Kollektion, die sechs Monate später wiederkehrt, ist dieses Gedächtnis Gold wert: Die neuen Bilder müssen neben den alten bestehen können, ohne dass eine Reihe des Katalogs aus einem anderen Studio zu stammen scheint."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q3",
+          "question": "«Sind Schwarz und Weiss am schwierigsten?»",
+          "figures": [
+            {
+              "name": "12_CHAINE_COULEUR",
+              "src": "/images/revue-entretiens-s3/12_CHAINE_COULEUR.svg",
+              "alt": "Skizze: Die Farbe durchläuft eine Kette. Die Entscheidungen jeder Stufe bleiben miteinander verbunden.",
+              "caption": "Die Farbe durchläuft eine Kette — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das können sie sein. Ein schwarzes Produkt ist kein Loch ohne Details; man muss seine Textur, die Nähte und die Materialwechsel sehen. Ein weisses Produkt darf nicht in einem weissen Hintergrund verschwinden. Stark gesättigte, metallische oder fluoreszierende Farbtöne bringen weitere Schwierigkeiten mit."
+            },
+            {
+              "t": "p",
+              "html": "Besser schaut man auf die wichtigen Zonen des Produkts, statt eine magische Zahl zu suchen, die vorgäbe, die gesamte Treue zusammenzufassen. Ein je nach Bildschirm leicht abweichendes Textil ist nicht dasselbe Problem wie eine komplett veränderte Verkaufsfarbe."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q4",
+          "question": "«Wie geben Sie ein Bild frei, wenn sich niemand einig ist?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Alles beruht auf einem einzigen Beobachtungsprotokoll. Das reale Produkt muss anwesend sein, unter einem definierten Kontrolllicht. Man bestimmt die für die Freigabe verantwortliche Person und bewahrt die akzeptierte Version auf. Ohne das entscheidet jeder auf seinem Computer, in seinem Büro, und die Diskussion beginnt bei der nächsten Charge von vorn."
+            },
+            {
+              "t": "p",
+              "html": "Es kann nützlich sein, für eine bestimmte Produktion eine technische Toleranz zu dokumentieren, aber sie muss für das Produkt und die Verwendung festgelegt werden. Einen universellen Delta-E-Wert zu veröffentlichen, würde einen falschen Eindruck von Sicherheit erwecken."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q5",
+          "question": "«Kann die Umfärbung ersparen, alle Farbvarianten zu fotografieren?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Der sichere Ansatz besteht darin, von der realen Aufnahme auszugehen und dann eine Ableitung mit dem entsprechenden Muster zu überprüfen. Gibt es kein Muster oder lässt sich das Ergebnis nicht kontrollieren, verschiebt man die Veröffentlichung besser, statt eine auf dem Bildschirm glaubwürdige Variante zu erfinden."
+            }
+          ]
+        },
+        {
+          "id": "entretien-05-q6",
+          "question": "«Und der kleine Satz Farben unverbindlich?»",
+          "figures": [
+            {
+              "name": "13_REPETABILITE_COULEUR",
+              "src": "/images/revue-entretiens-s3/13_REPETABILITE_COULEUR.svg",
+              "alt": "Skizze: dieselbe Familie drei Monate später wieder aufnehmen. Eine Referenz und reproduzierbare Einstellungen aufbewahren.",
+              "caption": "Dieselbe Familie drei Monate später wieder aufnehmen — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das ist nie eine fotografische Lösung. Ein Hinweis verbessert keine Farbkette. Was seine rechtliche Wirkung betrifft, so hängt sie vom Kontext und vom anwendbaren Recht ab; das ist eine Frage für die rechtliche Analyse, keine Regel, die man in einem Satz regeln kann."
+            },
+            {
+              "t": "p",
+              "html": "Die beste Vorbeugung bleibt viel einfacher: die wichtigen Details sorgfältig zeigen und die Fähigkeit bewahren, zu überprüfen, was dargestellt wurde."
+            },
+            {
+              "t": "encadre",
+              "titre": "Fürs Studio mitnehmen",
+              "paras": [
+                "Legen Sie eine kleine Bibliothek von <strong>Referenzprodukten</strong> an: ein texturiertes Schwarz, ein Weiss, eine gesättigte Farbe, eine reflektierende Oberfläche und ein empfindliches Material. Fotografieren Sie sie erneut, wenn Sie Licht, Software oder Exportkette wechseln. Das ist ein konkreter Kontinuitätstest, keine Garantie für Identität auf allen Bildschirmen."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Man kontrolliert nicht alle Bildschirme der Käufer. Man kann eine Produktionskette kontrollieren: wiederholbares Licht, physische Referenz, kohärente Profile, Überprüfung heikler Farbtöne und Archivierung der richtigen Version.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "06",
+      "slug": "entretien-06",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "6/10",
+      "sujet": "Kennungen, Metadaten, Dateien und Verteilung",
+      "titre": "Ein Foto ohne Produktreferenz ist verlorene Information",
+      "sous_titre": "SKU, Versionen, Daten, PIM, DAM: warum Rückverfolgbarkeit ebenso wichtig ist wie Schärfe.",
+      "intro": [
+        "Die Datei ist wunderschön. Es lässt sich dennoch unmöglich sagen, ob es sich um das schwarze oder das blaue Modell handelt, um die neue oder die alte Verpackung. Das ist kein Randfall: Es ist eine ganz gewöhnliche Art, den Nutzen einer gut geführten Fotoproduktion zu verlieren. Für Sébastien Jourdan ist das Produktbild nicht nur ein Bild: Es ist ein Bestandteil des Produktdossiers."
+      ],
+      "ouverture": "<p>Stellen wir uns zwei Flakons derselben Reihe vor, den einen mit 50 ml, den anderen mit 100 ml. Die Fotos sind gelungen, die Etiketten lesbar, die Retuschen abgeschlossen. Dann, beim Einpflegen der Bilder in den Katalog, wird das Foto des grossen Flakons dem kleinen zugeordnet. Der Fotograf hat eine gute Datei geliefert; die Website zeigt das falsche Produkt.</p><p>Dieser Fall ist illustrativ, zeigt aber, warum sich Sébastien Jourdan ebenso sehr für die Kennung wie für das Bild interessiert. Eine Aufnahme sollte nicht zu einer verwaisten Datei werden, deren Referenz man sechs Monate später erraten muss. <a href=\"/de-ch/blog/alphashot-xl-g2-produktfotos-masse-gewicht-daten\">Foto, Messwerte und Produktdaten</a> zusammenzuführen, entspricht diesem Bedarf — das ist jedoch von einer Verallgemeinerung auf alle Maschinen zu unterscheiden. Es ist das datenseitige Pendant zur <a href=\"#entretien-02\">Organisation des Studios</a> und die Voraussetzung dafür, die Visuals anschliessend <a href=\"#entretien-09\">für mehrere Kanäle zu adaptieren</a>.</p>",
+      "sections": [
+        {
+          "id": "entretien-06-q1",
+          "question": "«Sie betonen die Verbindung zwischen Foto und Daten sehr. Warum?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Ein Bild ist nur verwertbar, wenn man genau weiss, wozu es gehört. Sébastien Jourdan hat öffentlich Stationen vorgestellt, die Aufnahme, Abmessungen und Gewicht an ein und demselben Arbeitsplatz vereinen. Der Nutzen liegt nicht allein in der Maschine: Es geht darum, manuelle Übertragungen zu vermeiden, bei denen man eine Information abtippt, dann die nächste."
+            },
+            {
+              "t": "p",
+              "html": "In einem E-Commerce-Team gibt es oft mehrere aufeinanderfolgende Wahrheiten: das eintreffende Produkt, den Artikeldatensatz im Katalog, den Dateinamen, das retuschierte Visual und schliesslich die dem Kunden angezeigte Produktseite. Die gesamte Arbeit besteht darin, diese Wahrheiten miteinander vereinbar zu halten."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q2",
+          "question": "«Genügt ein guter Dateiname?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Er hilft sehr, genügt aber nicht. Ein Name wie `REF-FARBE-ANSICHT-VERSION` kann Fehler sichtbar machen, sofern jedes Element einer Regel entspricht, die alle verstehen. Die SKU ist keine Marketingbeschreibung, und zwei Varianten sollten nicht versehentlich dieselbe Bildkennung teilen."
+            },
+            {
+              "t": "p",
+              "html": "Vor allem muss die Verknüpfung über den Namen hinaus bestehen. Was passiert, wenn eine Datei komprimiert, von einer Plattform umbenannt oder in ein anderes Format exportiert wird? Existiert die Zuordnung nur im lokalen Namen, geht sie verloren. Man braucht einen Referenzdatensatz in dem System, das den Katalog steuert."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q3",
+          "question": "«Welchen Unterschied machen Sie zwischen PIM und DAM?»",
+          "figures": [
+            {
+              "name": "14_IMAGE_ET_DONNEES",
+              "src": "/images/revue-entretiens-s3/14_IMAGE_ET_DONNEES.svg",
+              "alt": "Skizze: eine Referenz, mehrere Informationen. Foto und beschreibende Daten müssen vom selben Produkt sprechen.",
+              "caption": "Eine Referenz, mehrere Informationen — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Es sind zwei Verantwortlichkeiten, die miteinander sprechen müssen. Das PIM organisiert die Produktinformationen: Identität, Attribute, Varianten, kommerzielle Daten. Das DAM organisiert die Assets: Quelldateien, Versionen, Rechte, Formate, Verwendungen. Ein Unternehmen braucht nicht immer zwei grosse Softwaresysteme; es braucht, dass diese Funktionen irgendwo erfüllt werden."
+            },
+            {
+              "t": "p",
+              "html": "Die nützliche Frage lautet also nicht ‹Müssen wir ein DAM kaufen?›, sondern ‹Wo liegt die Master-Datei, wer darf sie ersetzen, wie findet man ihre freigegebene Version wieder und welche Kanäle verwenden sie?›. Wenn niemand antworten kann, liegt das Problem vor der Wahl des Werkzeugs."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q4",
+          "question": "«Welche Metadaten sollten schon bei der Aufnahme erfasst werden?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das Minimum ist oft weniger spektakulär, als man denkt: Referenzkennung, Variante, Ansicht, Datum oder Kampagne, Kontrollstatus, Verknüpfung zur Master-Datei. Für manche Organisationen sind auch das Aufnahmeprofil und die bedienende Person nützlich. Es bringt nichts, zwanzig Felder auszufüllen, die niemand konsultiert."
+            },
+            {
+              "t": "p",
+              "html": "IPTC-Metadaten, GS1-Kennungen und interne Informationen spielen nicht alle dieselbe Rolle. Man nutzt sie besser je nach Zielsystem und nötigem Nachweis, ohne anzunehmen, dass eine Software all diese Informationen automatisch weitergibt: Man muss den tatsächlichen Exportweg testen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q5",
+          "question": "«Was tun Sie, wenn sich ein Produkt oder seine Verpackung ändert?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Zuerst muss man wissen, ob das alte Bild noch gültig ist, wer entscheidet und wie die Kanäle aktualisiert werden. Eine Datei stillschweigend unter identischem Namen zu ersetzen, kann gefährlich sein, wenn ein Marktplatz, ein Händler oder ein Cache die alte Version behält."
+            },
+            {
+              "t": "p",
+              "html": "Man muss die Nachvollziehbarkeit der Änderung bewahren und festlegen, was archiviert wird. Eine universelle Aufbewahrungsdauer gibt es nicht: Sie hängt von Verträgen, Verwendungen sowie rechtlichen oder internen Vorgaben ab, die jedes Unternehmen prüfen muss. Dagegen ist es selten eine gute Strategie, die Quelldatei und die Freigabeentscheidungen zu verlieren."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q6",
+          "question": "«Woran erkennt man, ob sich die Ausspielung auf mehrere Kanäle automatisieren lässt?»",
+          "figures": [
+            {
+              "name": "15_FICHIER_MAITRE",
+              "src": "/images/revue-entretiens-s3/15_FICHIER_MAITRE.svg",
+              "alt": "Skizze: eine Kennung, um Kollisionen zu vermeiden. Den Fluss zwischen Bild und Produktdaten organisieren.",
+              "caption": "Eine Kennung, um Kollisionen zu vermeiden — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Wenn die Master-Datei freigegeben ist und die Ausgaberegeln klar sind. Grösse, Hintergrund, Bildausschnitt, Name, Komprimierung, Kanal: Jedes Ziel kann seine eigenen Vorgaben haben. Man erzeugt dann <em>Derivate</em> aus einem identifizierten Master, statt von Hand korrigierte Dateien von Ordner zu Ordner zu kopieren."
+            },
+            {
+              "t": "p",
+              "html": "<a href=\"/de-ch/blog/ki-produktbilder-metadaten-marktplaetze\">Die Regeln der Marktplätze</a> ändern sich. Besser pflegt man die Spezifikationen in einem gewarteten Referenzverzeichnis und testet die Akzeptanz der Exporte, statt eine Tabelle mit Abmessungen zu veröffentlichen, die nächste Saison veraltet ist."
+            }
+          ]
+        },
+        {
+          "id": "entretien-06-q7",
+          "question": "«Und wenn das Unternehmen die Website oder das PIM wechselt?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Dann entdeckt man die tatsächliche Qualität seiner Mediathek. Sind die Bilder über beliebige Pfade mit den Produkten verknüpft, muss man sie einzeln abgleichen. Werden Kennung, Variante und Version korrekt nachverfolgt, bleibt die Migration Arbeit, aber keine Schatzsuche."
+            },
+            {
+              "t": "p",
+              "html": "Ein Rekonstruktionstest an einer kleinen Stichprobe hilft bei der Entscheidung: Kann man vom Produktdatensatz ausgehen und sofort das Original, seine Derivate und das Freigabedatum wiederfinden? Wenn nicht, ist das wahrscheinlich das Erste, was zu lösen ist."
+            },
+            {
+              "t": "encadre",
+              "titre": "Der Fünf-Dateien-Test",
+              "paras": [
+                "Wählen Sie eine Referenz mit mehreren Farbvarianten, zwei Ansichten, einem Verpackungswechsel und einer retuschierten Datei. Bitten Sie eine Person, die beim Shooting nicht dabei war, den Master, die richtige Farbvariante und die veröffentlichte Version wiederzufinden. <strong>Zögert sie, braucht Ihre Kette noch eine Regel.</strong>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Eine verlässliche Kette muss die Identität der Referenz, die Variante, die Version, die relevanten Aufnahmebedingungen und die vorgesehene Verwendung bewahren. Daten und Fotos am selben Ort zu erfassen, kann gewisse Handgriffe reduzieren, verhindert aber für sich allein keine organisatorischen Fehler.",
+      "recitPhotos": [
+        {
+          "src": "/images/blog/migrer-ancien-packshotcreator/alphashot-xl-g2-mesure-pesee.avif",
+          "alt": "Aufnahme- und Messplatz für ein Produkt im Studio.",
+          "credit": "Photo PackshotCreator / Orbitvu",
+          "width": 900,
+          "height": 1288,
+          "constrain": true
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "07",
+      "slug": "entretien-07",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "7/10",
+      "sujet": "KI, Retusche, Generierung und Produkttreue",
+      "titre": "Die KI hat den Fotografen nicht abgeschafft. Sie hat die richtigen Fragen verschoben.",
+      "sous_titre": "Von der ersten Aufnahme zur generierten Szene: ein Gespräch mit Sébastien Jourdan, Fotograf und danach Unternehmer im Bereich KI-Werkzeuge für Produktbilder.",
+      "intro": [
+        "«Man kann alles generieren» ist ein verführerischer Satz. Er lässt jedoch eine Frage offen: Wie kann man sicher sein, dass das Bild tatsächlich das Produkt zeigt, das das Unternehmen verkauft? Sébastien Jourdan hat zunächst reale Fotografien gemacht, Aufnahmesysteme entwickelt und anschliessend BlendAI.Studio gegründet. Für ihn ergänzen sich diese Welten — unter der Bedingung, ein verführerisches Bild nicht mit einem getreuen Bild zu verwechseln."
+      ],
+      "ouverture": "<p>Sébastien Jourdan hat als Fotograf gearbeitet, bevor er mit Everleet ein Aufnahmesystem für den E-Commerce entwarf. Mit BlendAI.Studio beschäftigt er sich damit, was ein reales Produktbild anschliessend zu schaffen erlaubt: Inszenierungen, Präsentationen, Kampagnenvarianten. Dieser Werdegang hat ihn gelehrt, Aufnahme und KI nicht systematisch gegeneinander auszuspielen. Die Frage ist, was <strong>exakt</strong> bleiben muss.</p><p>Nehmen wir einen sorgfältig fotografierten Schuh. In einer abgeleiteten Szene darf sich die Umgebung ändern. Werden aber Naht, Sohle oder Logo verändert, muss dies bei der Qualitätskontrolle auffallen, nicht erst nach der Veröffentlichung. Das ist ein <strong>illustratives Beispiel</strong>, nicht die Schilderung eines Mangels, den BlendAI.Studio geliefert hätte. Dieses Thema steht im Zentrum der <a href=\"/de-ch/ia-photo-produit\">KI-gestützten Produktfotografie</a>, ob es darum geht, <a href=\"/fr/blog/generer-images-produit-ia\">Bilder zu generieren</a> oder sie zu <a href=\"/de-ch/blog/ki-retusche-produktfoto\">retuschieren</a>; ihr Gegenstück ist die <a href=\"#entretien-08\">Nachvollziehbarkeit der Herkunft</a>.</p>",
+      "sections": [
+        {
+          "id": "entretien-07-q1",
+          "question": "«Warum weiter fotografieren, wenn eine KI ein Bild erzeugen kann?»",
+          "figures": [
+            {
+              "name": "03_PHOTO_REELLE_IA_CONTROLE",
+              "src": "/images/revue-entretiens-s3/03_PHOTO_REELLE_IA_CONTROLE.svg",
+              "alt": "Prinzipschema: das echte Produkt aufnehmen, ein Derivat erzeugen, dessen Treue kontrollieren.",
+              "caption": "Methodenskizze — redaktionelle Illustration, ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Weil ein Produkt keine abstrakte Idee ist. Es hat eine Form, ein Etikett, eine Naht, einen Knopf, eine Farbe, die der Kunde mit dem vergleichen kann, was er erhält. Ausgangspunkt bleibt die Fotografie des echten Produkts. Sébastien Jourdan kennt ihren Wert aus seinen Jahren als Fotograf, und es ist auch die Logik, die er mit BlendAI.Studio verfolgt: neue Verwendungen auf einer realen Grundlage aufzubauen."
+            },
+            {
+              "t": "p",
+              "html": "Ein Stilbild kann eine Stimmung erfinden. Es sollte kein Detail der verkauften Referenz erfinden. Die eigentliche Frage lautet also nicht «Foto oder KI?», sondern «Wo endet die Wiedergabe des Produkts und wo beginnt die kreative Freiheit?»."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q2",
+          "question": "«Welche Vorgänge würden Sie ohne Zögern automatisieren?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Diejenigen, deren Ergebnis sich genau überprüfen lässt. Ein Freistellen, bestimmte Staubkorrekturen, die Vorbereitung von Formaten oder die Serienverarbeitung können in einer dafür geeigneten Organisation Zeit sparen. Doch jede Automatisierung muss ein Ziel und eine verantwortliche Person haben: Sie ist nicht gut, nur weil sie das Etikett KI trägt."
+            },
+            {
+              "t": "p",
+              "html": "Man muss drei Verwendungen trennen. Die Unterstützung bei der Aufnahme hilft, eine bessere Fotografie zu erzeugen. Die Retusche korrigiert ein bestehendes Bild. Die Generierung baut eine neue Darstellung auf. Je weiter man sich von der Aufnahme entfernt, desto genauer muss man wissen, was unverändert bleiben muss."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q3",
+          "question": "«Kann man aus einem einzigen Packshot Lifestyle-Ansichten erzeugen?»",
+          "figures": [
+            {
+              "name": "16_FRONTIERE_TRAITEMENT_IA",
+              "src": "/images/revue-entretiens-s3/16_FRONTIERE_TRAITEMENT_IA.svg",
+              "alt": "Skizze: drei Handgriffe, drei Wachsamkeitsstufen. Ein Bild zu reinigen ist nicht dasselbe, wie ein Merkmal zu erfinden.",
+              "caption": "Drei Handgriffe, drei Wachsamkeitsstufen — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "In diese Richtung kann man arbeiten, ja. Das steht im Zentrum der Vision, die Sébastien Jourdan vertritt: Eine gute fotografische Grundlage kann mehr speisen als nur die Produktseite auf neutralem Hintergrund. Man kann sich verschiedene Umgebungen, Inhalte für Social Media oder Kollektionspräsentationen vorstellen."
+            },
+            {
+              "t": "p",
+              "html": "Aber es gibt eine klare Grenze: Verändert die Szene die scheinbare Grösse, das Material oder die Art, wie sich das Objekt öffnet, ist sie so nicht geeignet. Die Zahl der erhaltenen Szenen ist kein Qualitätskriterium. Besser zwei richtige Bilder als zehn Bilder, die eine menschliche Korrektur erfordern, die sich nicht überprüfen lässt."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q4",
+          "question": "«Warum bereiten kleine Texte, Muster und Logos Probleme?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Weil diese Elemente zugleich sehr präzise und im Quellfoto manchmal winzig sind. Ein Generator kann etwas erzeugen, das wie eine Aufschrift aussieht, ohne die Buchstaben genau wiederzugeben. Er kann auch eine Textur als dekoratives Muster interpretieren und verändern."
+            },
+            {
+              "t": "p",
+              "html": "Das ist einer der Gründe, ein Referenzbild im Zentrum der Kontrolle zu halten. Man muss das Logo, die sichtbaren Codes, die Nähte, die Position eines Knopfs, die Farbe eines Teils und die Merkmale vergleichen, an denen der Kunde die Variante erkennt. Ein auf den ersten Blick überzeugendes Bild kann beim Hineinzoomen scheitern."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q5",
+          "question": "«Und das Kleidungsstück an einer generierten Person?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das ist ein anspruchsvoller Fall. Ein Kleidungsstück ist nicht nur eine auf eine Silhouette gelegte Textur; es hat einen Fall, Volumen, Nähte, einen Schnitt. Verändert das Ergebnis diese Merkmale, stellt das Foto das Produkt nicht mehr korrekt dar. Das virtuelle Model kann ein Kreativwerkzeug sein, aber man muss das Kleidungsstück über die Ästhetik hinaus überprüfen können."
+            },
+            {
+              "t": "p",
+              "html": "Besser unterscheidet man stets das fotografierte Produkt, die abgeleitete Darstellung und den generierten Kontext. Das ist für ein Team viel klarer, als all diese Dateien «KI-Fotos» zu nennen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q6",
+          "question": "«Wie bewertet man einen KI-Anbieter über Demonstrationen hinaus?»",
+          "figures": [
+            {
+              "name": "17_CONTROLE_SORTIE_IA",
+              "src": "/images/revue-entretiens-s3/17_CONTROLE_SORTIE_IA.svg",
+              "alt": "Skizze: die KI schlägt vor; jemand akzeptiert. Kontrollschleife, um eine verlässliche Verbindung zur Realität zu bewahren.",
+              "caption": "Die KI schlägt vor; jemand akzeptiert — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Der gute Test: fünf schwierige Produkte und schriftliche Kriterien. Die Referenz muss lesbar bleiben. Die Varianten dürfen sich nicht vermischen. Das System muss eine menschliche Kontrolle ermöglichen, und das Unternehmen muss verstehen, was mit seinen Dateien und Daten geschieht. Das Thema Vertraulichkeit und Nutzungsrechte verdient eine vertragliche Antwort, keine allgemeine Behauptung in einer Broschüre."
+            },
+            {
+              "t": "p",
+              "html": "Die Ergebnisse müssen zudem von den Personen getestet werden, die den Katalog verwalten, nicht nur von einem Kreativteam. Eine perfekte Szene, die sich nicht der richtigen Referenz zuordnen lässt, ist nicht bereit für den Handel."
+            }
+          ]
+        },
+        {
+          "id": "entretien-07-q7",
+          "question": "«Welchen Platz wird der Fotograf behalten?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Den des Blicks, des Urteils und der Kontrolle. Man wird weiterhin entscheiden müssen, was das Bild zeigen soll, eine Aufnahme aufbauen, die das Material wiedergibt, eine Anomalie erkennen und eine Korrektur abwägen. Manche wiederkehrende Handgriffe werden sich ändern, vielleicht rasch. Aber der Anspruch auf Genauigkeit bleibt."
+            },
+            {
+              "t": "p",
+              "html": "Eine Überzeugung zieht sich durch den Werdegang von Sébastien Jourdan: Das Produktbild lässt sich weder auf eine Kamera noch auf ein KI-Modell reduzieren. Es ist eine Produktion, die um das reale Produkt organisiert ist, mit Werkzeugen, die für einen bestimmten Zweck gewählt werden."
+            },
+            {
+              "t": "encadre",
+              "titre": "Die Übung, bevor man hundert Bilder generiert",
+              "paras": [
+                "Erstellen Sie für ein einziges Produkt eine <strong>Liste unantastbarer Elemente</strong>: Marke und Aufschriften, Form, Farbe, Material, Zubehör, Proportionen. Erzeugen Sie eine abgeleitete Szene und lassen Sie diese von jemandem kontrollieren, der das Produkt vor Augen hat. Das Ergebnis dieses Tests ist nützlicher als die Zahl der durchgeführten Generierungen.",
+                "<em>Die gesetzlichen Transparenzanforderungen an bestimmte KI-Inhalte gehören zu einem eigenen juristischen Dossier; dieses Gespräch behandelt die Produktionsmethode und die Kontrolle.</em>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> KI kann das Freistellen, die Korrektur von Mängeln, bestimmte Verarbeitungsaufgaben und die Schaffung neuer visueller Verwendungen unterstützen. Doch die unterscheidenden Informationen des Produkts — Form, Material, Farbe, Details, Text, Konfiguration — erfordern eine Referenz und eine Kontrolle. Eine plausible Ausgabe ist kein Nachweis der Übereinstimmung mit dem Produkt.",
+      "recitPhotos": [
+        {
+          "src": "/images/machines/alphashot-xl-g2/packshot-macro.avif",
+          "alt": "Makro-Packshot eines realen Produkts, Details sichtbar.",
+          "credit": "Photo PackshotCreator / Orbitvu",
+          "width": 714,
+          "height": 447
+        }
+      ],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "08",
+      "slug": "entretien-08",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "8/10",
+      "sujet": "KI-Transparenz, Herkunft und Governance von Bildern",
+      "titre": "Produktbilder und KI: erklären können, was man getan hat, bevor man nach einem Label sucht",
+      "sous_titre": "Herkunft der Visuals, Kontrolle der Bearbeitungen, die Grenze zwischen fotografischer Praxis und rechtlichen Anforderungen. Ein Methodengespräch — keine Rechtsberatung.",
+      "intro": [
+        "Wenn aus einem Bild ein retuschiertes Foto wird, dann eine generierte Szene und schliesslich eine für eine Plattform angepasste Fassung, kann seine Herkunft verloren gehen. «Ist das ein echtes Foto?» ist keine präzise genug Frage mehr: Man muss wissen, was echt ist, was verändert wurde, von wem und für welche Verwendung."
+      ],
+      "ouverture": "<p>In einer Produktionskette kann ein Bild von der Aufnahme zur Retusche wandern, dann zu einer generierten Szene und zu mehreren Exporten. Weiss am Ende niemand mehr, was verändert wurde, ist das Problem bereits da — noch vor der Frage der regulatorischen Kennzeichnung.</p><p>Nehmen wir einen Ordner namens <code>final_v7</code>: Niemand findet das Originalfoto, die Zwischenversionen oder die Freigabe des letzten Sets wieder. Die Szene ist erfunden, aber aufschlussreich. In einem Workflow lohnt es sich, drei Dinge festzuhalten: die identifizierte <strong>Quelle</strong>, die festgehaltenen <strong>Bearbeitungen</strong> und die <strong>Freigabe</strong>, die mit der richtigen Version verknüpft ist. Erst danach wählt das Team Dateien und Metadaten je nach Kanal.</p><p>Und der AI Act? Die Frage lässt sich nicht auf «jedes KI-Bild muss ein Label tragen» reduzieren: Die Situationen sind nicht gleichwertig. Für Transparenzpflichten je nach Rolle des Unternehmens und Verwendung ist das <a href=\"/de-ch/blog/ai-act-produktbilder\">Dossier zum AI Act und zu Produktbildern</a> der nützlichste Ausgangspunkt. Zirkuliert dasselbe Visual zwischen der <a href=\"/de-ch/blog/ki-bilder-e-commerce-schweiz\">Schweiz</a> und Marktplätzen, bewahrt man die Quelle und die Schritte und prüft anschliessend die Regeln des Zielorts und die <a href=\"/de-ch/blog/ki-produktbilder-metadaten-marktplaetze\">erwarteten Metadaten</a> <strong>getrennt</strong>. Man improvisiert keine rechtliche Antwort aus einem einzigen Foto.</p>",
+      "sections": [
+        {
+          "id": "entretien-08-q1",
+          "question": "«Was ist der erste Reflex, wenn ein Team beginnt, KI einzusetzen?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nicht mit der Frage beginnen, welches Logo aufs Bild kommt. Beginnen Sie damit, den Ablauf zu dokumentieren. Was ist das Ausgangsfoto? Wer hat es erstellt? Was hat das Werkzeug verändert? Hat ein Mensch das Ergebnis gegen das Produkt geprüft? Und wo wird es veröffentlicht?"
+            },
+            {
+              "t": "p",
+              "html": "Die Logik der echten Aufnahme und der kontrollierten Bearbeitungen hat einen betrieblichen Wert an sich, unabhängig vom regulatorischen Vokabular. Verlangt ein Partner morgen den Nachweis der Herkunft eines Bildes, muss das Team eine Antwort finden können."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q2",
+          "question": "«Sind das Entfernen von Staub und eine vollständig erfundene Szene dasselbe?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nein. Sie haben weder dieselbe Rolle noch dasselbe Risiko. Eine technische Korrektur kann helfen, ein fotografiertes Objekt besser zu zeigen. Eine generierte Szene kann neue Elemente einführen, manchmal sogar ein visuell verändertes Produkt. Die rechtliche Einordnung hängt von präzisen Definitionen ab; ein blosses Durchlaufen einer KI löst nicht automatisch jede denkbare Pflicht aus."
+            },
+            {
+              "t": "p",
+              "html": "Die Einordnung des Falls ist Sache von Rechtsfachleuten. Auf Studioseite besteht die gute Praxis darin, ein einfaches Protokoll zu führen: Aufnahme, Retusche, Generierung, Freigabe, Zielort. Ohne diese Grundlage diskutiert man am Ende über eine Pflicht, ohne genau zu wissen, was getan wurde."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q3",
+          "question": "«Was ändert Artikel 50 des AI Act?»",
+          "figures": [
+            {
+              "name": "18_PROVENANCE_IMAGES",
+              "src": "/images/revue-entretiens-s3/18_PROVENANCE_IMAGES.svg",
+              "alt": "Skizze: erzählen können, woher ein Bild stammt. Quelle, Bearbeitungen und Verantwortung für die Freigabe.",
+              "caption": "Erzählen können, woher ein Bild stammt — erklärende Methodenskizze, keine Maschinensimulation und kein Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Es ist ein Transparenzrahmen, der unter anderem Pflichten für Anbieter generativer Systeme von anderen für Betreiber in bestimmten Situationen unterscheidet. Seine Lektüre muss Definitionen, Ausnahmen, territoriale Bedingungen und Durchführungstexte berücksichtigen."
+            },
+            {
+              "t": "p",
+              "html": "Die Abkürzung «jedes mit KI verbesserte Foto muss ein sichtbares Label tragen» ist keine ernsthafte rechtliche Analyse. Das <a href=\"/de-ch/blog/ai-act-produktbilder\">PackshotCreator-Dossier zum AI Act</a> erläutert diese Kategorien und ihre Grenzen. Was ein Team auf seiner Seite tun kann, ist einfacher: dokumentieren, was nötig ist, um die Frage zur gegebenen Zeit korrekt zu beantworten."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q4",
+          "question": "«IPTC, C2PA, Kennzeichnung: wozu nützen sie dem Studio?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das sind Herkunftskonzepte, die unterschiedliche Bedürfnisse adressieren. IPTC-Metadaten können Informationen über Ursprung und Art einer digitalen Quelle ausdrücken. C2PA zielt darauf, bestimmte Herkunfts- und Bearbeitungsangaben zu dokumentieren. Keines davon ersetzt die Prüfung des echten Produkts, noch beweist es für sich allein, dass ein Bild wirklichkeitsgetreu ist."
+            },
+            {
+              "t": "p",
+              "html": "Vor allem gewährleistet nichts, dass jede Software diese Informationen automatisch bewahrt. Man muss die Kette testen: Quelldatei, Verarbeitung, Export, Komprimierung, Veröffentlichung. Ein Metadatum, das vor der Veröffentlichung verschwindet, erfüllt den Zweck nicht mehr, für den es gedacht war."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q5",
+          "question": "«Ein Marktplatz akzeptiert ein Bild heute. Darf man annehmen, dass er es morgen akzeptiert?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nein. Plattformrichtlinien ändern sich, manchmal unabhängig vom Gesetz. Man muss sie im aktuellen Stand lesen, nach Kanal und Bildtyp: Hauptbild, Lifestyle, Model, Werbung. Eine technische Akzeptanz ist weder eine allgemeine Bestätigung der Rechte noch der Wahrhaftigkeit."
+            },
+            {
+              "t": "p",
+              "html": "Besser ist ein dem Visual beigefügtes Verwendungsblatt: wo es eingesetzt wird, unter welchen Einschränkungen und welche Prüfung erfolgt ist. Das ist weit robuster, als sich auf das Gedächtnis einer Projektleitung zu verlassen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q6",
+          "question": "«Wie gehen Sie mit Rechten um, wenn ein Dritter die Bilder liefert oder eine Person erscheint?»",
+          "figures": [
+            {
+              "name": "19_QUESTIONS_TRANSPARENCE",
+              "src": "/images/revue-entretiens-s3/19_QUESTIONS_TRANSPARENCE.svg",
+              "alt": "Skizze: die Fragen vor der Veröffentlichung. Eine Prüflogik, keine allgemeingültige Rechtsregel.",
+              "caption": "Die Fragen vor der Veröffentlichung — erklärende Methodenskizze, keine Maschinensimulation und kein Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das ist eine Prüfung, die von der fotografischen Qualität getrennt ist. Nutzungsrecht an der Quelle, Einwilligungen der gezeigten Personen, Bedingungen des Lieferanten und Umfang der Verbreitung: Man setzt nichts voraus. Und man schreibt einem Generator keine universellen Rechte zu, die nicht durch seine Bedingungen und das anwendbare Recht begründet sind."
+            },
+            {
+              "t": "p",
+              "html": "Fehlen dem Team die Bewilligungen oder die nötigen Informationen, ist die richtige Antwort nicht, das Bild zu produzieren und zu hoffen, dass niemand fragt. Es ist, es bis zur Klärung zurückzustellen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q7",
+          "question": "«Und für Verkäufe in die Schweiz?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Die Schweiz hat ihren eigenen Rahmen. Ein Schweizer Unternehmen kann je nach Rolle, Tätigkeit und den genauen territorialen Bedingungen ebenfalls mit europäischen Regeln konfrontiert sein; doch der Verkauf nach Europa genügt für sich allein nicht, um sämtliche Pflichten aus Artikel 50 abzuleiten. Auch hier gilt es, die rechtlichen Pflichten von der guten Praxis zu trennen: nachweisen können, was das Bild zeigt und wie es produziert wurde."
+            }
+          ]
+        },
+        {
+          "id": "entretien-08-q8",
+          "question": "«Was verlangen Sie von Ihrem Team, bevor Sie eine Veröffentlichung freigeben?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Drei zugängliche Nachweise: das Referenzprodukt oder die Quelle, die Liste der Bearbeitungen und den Namen der Person, die das Ergebnis akzeptiert hat. Dazu die Rechte und die Anforderungen des Kanals. Fehlt einer, entscheiden Sie, wer ihn ergänzt — kaschieren Sie die Unsicherheit nicht."
+            },
+            {
+              "t": "encadre",
+              "titre": "Ein dreizeiliges Herkunftsblatt",
+              "paras": [
+                "<strong>Ursprung:</strong> echtes Foto, Dritter oder Kreation. <strong>Bearbeitungen:</strong> Korrektur, Komposition, Generierung, Varianten. <strong>Freigabe:</strong> verantwortliche Person, geprüfte Referenz, zugelassene Kanäle. Dieses Blatt ist keine rechtliche Zertifizierung; es ermöglicht eine besser informierte Entscheidung.",
+                "<em>Wichtiger Hinweis: Dieses Gespräch behandelt Produktionsmethode und Kontrolle, nicht das Recht. Für die anwendbaren Pflichten ist auf das <a href=\"/de-ch/blog/ai-act-produktbilder\">AI-Act-Dossier</a> zu verweisen, zum Zeitpunkt der Verwendung erneut geprüft, sowie auf die jeweils geltenden Richtlinien jeder Plattform.</em>"
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Ein Unternehmen sollte den Ursprung jedes kommerziellen Visuals rekonstruieren können. Die Pflichten des AI Act, des Konsumentenrechts und der Plattformen lassen sich nicht auf ein universelles «KI-Bild»-Label reduzieren: Ihre Reichweite hängt insbesondere von den Rollen der Beteiligten, der Art der Ausgabe und der Verwendung ab. Die rechtliche Prüfung erfolgt anhand der anwendbaren Texte und der jeweils geltenden Richtlinien jeder Plattform.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    },
+    {
+      "num": "09",
+      "slug": "entretien-09",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "9/10",
+      "sujet": "Handel, Marktplätze, Formate, 360° und Video",
+      "titre": "Wie viele Bilder braucht es wirklich, um ein Produkt zu verkaufen?",
+      "sous_titre": "Ein Referenzfoto, einige Details, ein Video, eine 360°-Drehung: ein Gespräch mit Sébastien Jourdan über den richtigen Einsatz von Formaten statt über deren Anhäufung.",
+      "intro": [
+        "Derselbe Gegenstand kann für eine E-Commerce-Website, einen Marktplatz, einen Fachkatalog, eine Werbung und einen Wiederverkäufer fotografiert werden. Muss man fünfmal von vorn beginnen? Sébastien Jourdan vertritt eine andere Logik: eine verlässliche Aufnahme definieren und dann Lieferformate organisieren, die auf die Kanäle zugeschnitten sind, ohne die Übereinstimmung mit dem realen Produkt zu verlieren."
+      ],
+      "ouverture": "<p>Stellen wir uns die Vorbereitung einer Produktseite für Brillen vor. Eine Frontalansicht liefert die Silhouette; ein Profil zeigt die Bügel; die Dreiviertelansicht lässt das Volumen erkennen; das Scharnierdetail beantwortet eine andere Frage: Wie ist der Gegenstand gebaut? Die fünf untenstehenden Fotografien sind <strong>Beispiele möglicher Ansichten</strong>, kein Pflichtenheft, das allen Herstellern auferlegt würde.</p><p>So geht Sébastien Jourdan an die Auswahl der Bilder eines Katalogs heran: nicht «Wie viele können wir produzieren?», sondern «Welche Frage beantwortet jedes Bild?». Der <a href=\"/fr/guide/comment-photographier-lunettes-e-commerce\">Leitfaden zur Brillenfotografie im E-Commerce</a> beschreibt diese Ansichten im Detail. 360° oder Video werden interessant, wenn die Bewegung das liefert, was die Standbilder nicht genügend erklären — erst dann, und nur dann, steht eine Lösung wie die <a href=\"/de-ch/fotostudio/alphashot-360\">AlphaShot 360</a> zur Diskussion, ohne sie standardmässig zu verkaufen.</p>",
+      "sections": [
+        {
+          "id": "entretien-09-q1",
+          "question": "«Braucht eine Produktseite zehn Bilder?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nicht grundsätzlich. Sie braucht die richtigen Bilder. Bei einem mechanischen Teil muss man vielleicht einen Anschluss und eine visuelle Massangabe zeigen. Bei einem Schuh sind Sohle, Profil, Material und Tragebild wichtig. Bei einem Möbelstück möchte man Volumen und Verarbeitung nachvollziehen können."
+            },
+            {
+              "t": "p",
+              "html": "Alles geht von den Fragen aus, die sich ein Käufer vor dem Klick stellt: Wie sieht das Produkt wirklich aus, wie gross wirkt es, wie funktioniert es, welches Detail sieht man auf der Vorderseite nicht? Erst danach wählt man die nötigen Ansichten. Inhalte ohne Absicht hinzuzufügen, macht die Produktseite nicht klarer."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q2",
+          "question": "«Warum ein sehr nüchternes Hauptbild beibehalten, wenn man Lifestyle machen kann?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Weil beide nicht dieselbe Rolle haben. Ein nüchternes Bild isoliert das Produkt und erleichtert den Vergleich mit einer anderen Referenz. Eine Anwendungsszene liefert Kontext und Begehren. Beides ist nützlich, aber man unterscheidet sie besser, vor allem wenn Plattformen Regeln für das Hauptbild vorgeben."
+            },
+            {
+              "t": "p",
+              "html": "Die genauen Spezifikationen sollten nicht aufs Geratewohl aus einem Artikel übernommen werden: Sie ändern sich je nach <a href=\"/de-ch/packshot-amazon\">Marktplatz</a> und Kategorie. Ein Team sollte sein eigenes Regelblatt pflegen und anschliessend die Akzeptanz der Dateien prüfen."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q3",
+          "question": "«Video, 360°, drei Dimensionen: Wie trifft man eine Wahl?»",
+          "figures": [
+            {
+              "name": "20_CHOISIR_UN_FORMAT",
+              "src": "/images/revue-entretiens-s3/20_CHOISIR_UN_FORMAT.svg",
+              "alt": "Skizze: Das Format beantwortet eine Frage. Das Hauptbild übernimmt nicht die Rolle eines Demonstrationsvideos.",
+              "caption": "Das Format beantwortet eine Frage — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Ausgangspunkt ist die fehlende Information. Muss das Produkt von allen Seiten gesehen werden, kann eine Drehung helfen. Muss man einen Handgriff, eine Öffnung oder einen Mechanismus verstehen, ist ein kurzes Video manchmal nützlicher. Ein 3D-Modell oder ein Augmented-Reality-Erlebnis kann für gewisse Verwendungen sinnvoll sein, ist aber kein Muss."
+            },
+            {
+              "t": "p",
+              "html": "Die Demonstration muss ehrlich bleiben. Bei einer Tasche ist entscheidend, zu sehen, wie sie sich öffnet. Bei einem Dekorationsobjekt können die Seitenansichten zählen. Bei einem Textil können Bewegung und Fall aussagekräftiger sein als eine Objektdrehung. Das Format folgt der Frage, nicht umgekehrt."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q4",
+          "question": "«Kann ein Fotoshooting alle Kanäle speisen?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Das ist eine Richtung, die Sébastien Jourdan verfolgt: die erste Aufnahme besser vorzubereiten, um dieselben Aufnahmen nicht unnötig zu wiederholen. Ein gut durchdachtes Shooting liefert Referenzbilder, Details und, je nach Ausstattung und Produkt, weitere Assets, die später verwendet werden können."
+            },
+            {
+              "t": "p",
+              "html": "Aber nichts garantiert, dass <em>jedes beliebige</em> Produkt und <em>jeder beliebige</em> Kanal ohne zusätzliche Vorbereitung abgedeckt werden. Eine aufwendige Werbeinszenierung verlangt etwas anderes als einen Katalogexport. Eine gute Organisation weiss, was abgeleitet werden kann und was eine neue Produktion verdient."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q5",
+          "question": "«Wie verwendet man Dateien wieder, ohne einen Versionenwald zu schaffen?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Mit einer einfachen Hierarchie: ein freigegebener Master, identifizierte Arbeitsversionen und Derivate pro Kanal. Technische Vorgänge lassen sich automatisieren, wenn sie stabile Regeln haben. Dagegen sollten ein Hauptbild, ein Werbebanner oder ein Video nicht aus Bequemlichkeit denselben Freigabeweg nehmen."
+            },
+            {
+              "t": "p",
+              "html": "Ein Team sollte Folgendes beantworten können: Wenn sich heute eine Farbe oder ein Etikett ändert, welche Dateien müssen ersetzt werden und in welchen Kanälen? Weiss das niemand, liegt das Problem in den Verknüpfungen zwischen den Assets, nicht in der Auflösung des Fotos."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q6",
+          "question": "«Was machen Sie mit Bildern, die von Kunden oder Nutzern geliefert werden?»",
+          "figures": [
+            {
+              "name": "21_DERIVES_MULTICANAUX",
+              "src": "/images/revue-entretiens-s3/21_DERIVES_MULTICANAUX.svg",
+              "alt": "Skizze: ein Master, mehrere Lieferformate. Inkohärente Dateien und verwaiste Versionen begrenzen.",
+              "caption": "Ein Master, mehrere Lieferformate — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Sie können eine reale Verwendung zeigen und die von der Marke kontrollierten Bilder ergänzen. Sie ersetzen aber nicht die Referenzfotos, die für eine verlässliche Produktseite nötig sind. Man muss auch ihre Qualität, die Rechte und die Erlaubnis zur Wiederverwendung klären."
+            },
+            {
+              "t": "p",
+              "html": "Besser hält man daher eine sichtbare Trennung ein: Referenzvisuals, Markeninhalte, Nutzerinhalte. Sie ergänzen sich, wenn man weiss, was jedes davon belegt — und was nicht."
+            }
+          ]
+        },
+        {
+          "id": "entretien-09-q7",
+          "question": "«Wie misst man den Nutzen eines neuen Formats?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Mit einer präzisen Hypothese. Beantwortet das Video eine Frage, die die Fotos nicht erklären? Verringert die 360°-Ansicht die Informationsanfragen in einer bestimmten Kategorie? Man kann die Interaktionen beobachten und, wo möglich, eine Änderung an einer vergleichbaren Produktgruppe testen."
+            },
+            {
+              "t": "p",
+              "html": "Eine spektakuläre Prozentzahl aus einer Verkaufspräsentation ist noch keine Wahrheit. Ein Format muss der Kundschaft dienen, nicht dazu, das Kästchen «Innovation» abzuhaken."
+            },
+            {
+              "t": "encadre",
+              "titre": "Die Multikanal-Roadmap",
+              "paras": [
+                "Schreiben Sie für eine einzige Referenz auf: <strong>Frage des Käufers → nötiges Visual → Master-Datei → Ausspielkanäle → erforderliche Kontrolle</strong>. Liefern zwei Visuals keine unterschiedliche Information, fragen Sie sich, ob beide unverzichtbar sind."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Es gibt keine universelle Bildzahl und kein Format, das für alle Produkte gewinnt. Ziel ist es, die Fragen des Käufers zu beantworten und dann aus kontrollierten Master-Dateien Derivate vorzubereiten, die den Anforderungen jedes Kanals entsprechen.",
+      "recitPhotos": [
+        {
+          "src": "/images/packshot-e-commerce/lunettes-vue-face.avif",
+          "alt": "Brille, Frontalansicht.",
+          "caption": "Front",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-vue-profil.avif",
+          "alt": "Brille, Seitenansicht.",
+          "caption": "Profil",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-vue-trois-quarts.avif",
+          "alt": "Brille, Dreiviertelansicht.",
+          "caption": "Dreiviertel",
+          "credit": "Photo PackshotCreator",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-detail-charniere.avif",
+          "alt": "Brille, Detail des Scharniers.",
+          "caption": "Scharnier",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "src": "/images/packshot-e-commerce/lunettes-face-branches-repliees.avif",
+          "alt": "Brille, Frontalansicht, Bügel eingeklappt.",
+          "caption": "Bügel eingeklappt",
+          "credit": "Photo PackshotCreator",
+          "width": 1200,
+          "height": 1200
+        }
+      ],
+      "recitPhotosSequence": true
+    },
+    {
+      "num": "10",
+      "slug": "entretien-10",
+      "serie": "Gespräche über Produktfotografie",
+      "entretien": "10/10",
+      "sujet": "Steuerung, Kennzahlen, Teamwechsel und Qualitätsanwendungen",
+      "titre": "Der wahre Test eines Studios: funktionieren, wenn der beste Bediener nicht da ist",
+      "sous_titre": "Ein Gespräch mit Sébastien Jourdan über Teams, Kennzahlen und das, was Qualität dauerhaft macht.",
+      "intro": [
+        "Ein gelungenes Produktfoto hängt oft von vielen kleinen Handgriffen ab. Das Risiko entsteht, wenn sich das ganze Unternehmen darauf verlässt, dass eine einzige Person sich daran erinnert. Sébastien Jourdan hat die Fotografie als Beruf kennengelernt, danach die Entwicklung von Lösungen und die Steuerung einer strukturierteren Produktion. Seine Frage als Unternehmensleiter: Wie bewahrt man die Qualität, ohne den ganzen Prozess in den Köpfen weniger Personen zu lassen?"
+      ],
+      "ouverture": "<p>Sébastien Jourdan hat den Fall eines Kunden erzählt, der ihn dringend angerufen hatte. Sein Launch war für den folgenden Montag geplant; Lagerbestand und Kampagne waren bereit, die Bilder nicht. Einige Aufnahmen waren im Verzug, mehrere Dateien waren nicht verwertbar und die Retuschen waren nicht abgeschlossen. Der Launch wurde um zwei Wochen verschoben. Das ist kein kleines Shooting-Problem: Das Visual gehört zum Launch, und fehlt es, wartet die ganze Kette — was die <a href=\"#entretien-02\">Organisation des Studios</a> gerade vermeiden will.</p><p>Stellen wir uns nun ein Studio vor, in dem nur eine einzige Person die richtige Platzierung der Produkte, die Lichtprofile und die Dateinamen kennt. Sie fällt aus. Kann jemand anderes eine Serie übernehmen, ohne zu improvisieren? Lautet die Antwort Nein, hat das Studio eine Schwachstelle. Das ist ein <strong>Übergabetest</strong>, nicht die Schilderung dieses konkreten Kunden. Zu übergeben ist nicht eine Bibliothek ungenutzter Aufnahmen: Es ist ein Blatt pro Familie — Positionierung, Ausgangseinstellung, Ablehnungskriterien, Freigaberolle, Weg zur richtigen Master-Datei. Die Ausrüstung mit einer <a href=\"/de-ch/fotostudio/maschinen-finder\">passenden Auswahlhilfe</a> zu wählen und ihren <a href=\"/fr/blog/quel-retour-sur-investissement-avec-un-studio-photo-en-interne\">Return on Investment</a> zu messen, gehört zur selben Disziplin.</p>",
+      "sections": [
+        {
+          "id": "entretien-10-q1",
+          "question": "«Welche Kennzahlen betrachten Sie wirklich?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Die erste Kennzahl ist die Zeit zwischen einem verfügbaren Produkt und einer für die Veröffentlichung freigegebenen Datei: die, die der Vertrieb spürt. Es folgen die Zahl der tatsächlich abgeschlossenen Referenzen, die Zahl der Nacharbeiten und die Etappen, an denen die Produkte warten."
+            },
+            {
+              "t": "p",
+              "html": "Aufnahmen pro Stunde können nützlich sein, um einen Vorgang zu verstehen, beschreiben aber nicht das Ergebnis der ganzen Kette. Ein Tag mit tausend Auslösungen und fünfzig bei der Freigabe blockierten Referenzen ist nicht zwingend ein guter Tag. Besser wenige Zahlen, aber Zahlen, auf die man einwirken kann."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q2",
+          "question": "«Wie verhindern Sie, dass die Nachverfolgung zu einer Tabellenfabrik wird?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Ausgangspunkt ist nicht die Wahl eines Dashboards, sondern dass jedem Bildauftrag ein verständlicher Status zugewiesen wird: eingegangen, bereit, fotografiert, in Kontrolle, zu wiederholen, akzeptiert, geliefert. Jeder Status muss einem überprüfbaren Ereignis und einer verantwortlichen Person entsprechen."
+            },
+            {
+              "t": "p",
+              "html": "Gute Sichtbarkeit ist kein Bildschirm, der zwanzig Grafiken zeigt. Es ist die Möglichkeit, eine einfache Frage sofort zu beantworten: <em>Wo steht diese Referenz, und was blockiert sie?</em> Kann das Team das nicht sagen, wird auch das beste Dashboard das Problem nicht beheben."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q3",
+          "question": "«Kann eine neue Maschine ein Organisationsproblem lösen?»",
+          "figures": [
+            {
+              "name": "22_GOULOTS_PRODUCTION",
+              "src": "/images/revue-entretiens-s3/22_GOULOTS_PRODUCTION.svg",
+              "alt": "Skizze: den Fluss messen statt die Auslösungen. Was zwischen zwei Teams wartet, verzögert die Veröffentlichung.",
+              "caption": "Den Fluss messen statt die Auslösungen — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Manchmal beseitigt sie einen echten Engpass: zu viele Handgriffe, langwierig zu wiederholende Einstellungen, repetitive Vorgänge. Treffen die Produkte aber ohne Kennung ein, sind die Freigaben widersprüchlich oder ändert sich das Briefing täglich, kann die Ausrüstung nicht anstelle des Teams entscheiden."
+            },
+            {
+              "t": "p",
+              "html": "Sébastien Jourdan hat es öffentlich geschrieben: Beim Übergang von einigen hundert auf mehrere tausend Referenzen wird die Frage zu der des Systems. Die Unterscheidung bleibt bestehen: Die Geschwindigkeit eines Schritts zu erhöhen, ist nicht gleichbedeutend damit, den gesamten Fluss zu verbessern."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q4",
+          "question": "«Wie gibt man die Handgriffe weiter, die die Qualität ausmachen?»",
+          "figures": [
+            {
+              "name": "23_FICHE_TRANSMISSION",
+              "src": "/images/revue-entretiens-s3/23_FICHE_TRANSMISSION.svg",
+              "alt": "Skizze: den Bediener wechseln, ohne das Ergebnis zu ändern. Ein einfaches Blatt am Arbeitsplatz ist besser als ein vergessenes Verfahren.",
+              "caption": "Den Bediener wechseln, ohne das Ergebnis zu ändern — erläuternde Methodenskizze, ohne Maschinensimulation und ohne Leistungsnachweis."
+            }
+          ],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Mit visuellen Referenzen und kurzen Regeln. Für jede Familie: ein akzeptables Foto, eine Liste von Ansichten, ein Aufnahmeprofil, eine Art, die Datei zu benennen, eine Kontrollschwelle und eine verantwortliche Person. Dreissigseitige Verfahren, die niemand öffnet, zählen weniger als ein Blatt, das am Arbeitsplatz tatsächlich benutzt wird."
+            },
+            {
+              "t": "p",
+              "html": "<a href=\"/fr/academy\">Die Schulung</a> muss auch die Ausnahmen behandeln. Ein transparentes Material, ein sehr feines Logo, ein Kleidungsstück, das knittert: Jeder sollte wissen, wann das normale Profil nicht mehr genügt und wen man um Hilfe bittet. Daran erkennt man ein Team, das sein Werkzeug verstanden hat."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q5",
+          "question": "«Wehren sich die Leute immer gegen Standardisierung?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Nicht unbedingt. Sie wehren sich oft gegen Regeln, die ihnen nicht helfen. Erspart ihnen ein Profil, dieselben Einstellungen immer wieder vorzunehmen, und verringert die Kontrolle späte Nacharbeiten, wird der Nutzen offensichtlich. Man muss sie in die Tests einbeziehen und ihre Einwände dokumentieren, statt einen Prozess einzuführen, der allein in Sitzungen entworfen wurde."
+            },
+            {
+              "t": "p",
+              "html": "Die richtige Balance besteht darin, den Blick des Fotografen zu bewahren und die Abläufe zugleich reproduzierbar zu machen. Standardisieren heisst nicht, von jedem zu verlangen, nicht mehr nachzudenken. Es heisst, zu vermeiden, dass man seine Aufmerksamkeit an das verschwendet, was sich einprägen lässt."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q7",
+          "question": "«Kann ein Foto nach dem Verkauf nützlich sein?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Natürlich, je nach Verwendung. Ein Referenzbild kann helfen, eine Konfiguration zu dokumentieren, den Zustand eines Teils zu vergleichen oder einen Eingriff zu erklären. Man muss aber das Ziel, das erforderliche Beweisniveau und die Aufbewahrungsregeln festlegen. Eine kommerzielle Fotografie wird nicht automatisch zu einem Nachweis der Qualitätskontrolle im industriellen Sinn."
+            }
+          ]
+        },
+        {
+          "id": "entretien-10-q8",
+          "question": "«Welchen Rat würden Sie jemandem mitgeben, der morgen früh das Studio übernehmen muss?»",
+          "figures": [],
+          "contenu": [
+            {
+              "t": "p",
+              "html": "Lassen Sie sich ein schwieriges Produkt zeigen, seine Enddatei und die Spur dessen, was gemacht wurde. Findet man das richtige Objekt, die richtigen Einstellungen, die richtige Version und die Person, die sie freigegeben hat, ist die Produktion schon deutlich solider als in einem Studio, das nur dann ein schönes Foto machen kann, wenn alle da sind."
+            },
+            {
+              "t": "p",
+              "html": "Gute Lösungen machen Teams autonom, statt sie daran zu hindern zu verstehen, was geschieht."
+            },
+            {
+              "t": "encadre",
+              "titre": "Die Produktionsrunde in zwanzig Minuten",
+              "paras": [
+                "Nehmen Sie fünf veröffentlichte und fünf blockierte Referenzen. Halten Sie für jede fest: <strong>Status, verantwortliche Person, nächste Aktion, letzte Freigabe, Gesamtdauer</strong>. Suchen Sie die wiederkehrende Ursache, statt jeden Vorfall einzeln zu diskutieren. Oft finden Sie einen konkreten Fortschritt, bevor Sie ein neues Werkzeug brauchen."
+              ]
+            }
+          ]
+        }
+      ],
+      "aRetenir": "<strong>Zum Mitnehmen.</strong> Die Robustheit einer Produktion zeigt sich an der Gesamtdauer, den Nacharbeiten, den Variantenfehlern, der Verfügbarkeit der Referenzen und der Fähigkeit eines Teams, ein Ergebnis zu reproduzieren. KI kann Aufgaben verändern; sie ersetzt nicht die Zuweisung von Verantwortlichkeiten.",
+      "recitPhotos": [],
+      "recitPhotosSequence": false
+    }
+  ]
+}

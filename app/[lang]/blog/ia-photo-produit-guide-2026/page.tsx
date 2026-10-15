@@ -132,7 +132,7 @@ export default async function IaPhotoProduitGuide2026Page({ params }: { params: 
           </span>
           <span className="flex items-center gap-1.5">
             <Clock className="h-3.5 w-3.5" />
-            13 min de lecture
+            {lang === 'fr' ? '13 min de lecture' : '13 min read'}
           </span>
           <span className="flex items-center gap-1.5">
             <Calendar className="h-3.5 w-3.5" />

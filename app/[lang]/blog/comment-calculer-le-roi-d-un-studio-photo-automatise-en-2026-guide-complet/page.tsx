@@ -130,7 +130,7 @@ export default async function CalculerRoiStudioPage({ params }: { params: Promis
           </span>
           <span className="flex items-center gap-1.5">
             <Clock className="h-3.5 w-3.5" />
-            10 min de lecture
+            {lang === 'fr' ? '10 min de lecture' : '10 min read'}
           </span>
           <span className="flex items-center gap-1.5">
             <User className="h-3.5 w-3.5" />
