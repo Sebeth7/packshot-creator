@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #130 — archive des 15 fichiers à conserver avant fermeture sans fusion · Claude de Laurent
+
+**Chantier** : désengorgement V9, lot A (`GO_ARCHIVE_130` et `GO_CLOSE_130_BRANCH_KEEP` conditionnel de Laurent, 14/10 17:04:29 UTC) | **PR** : #130 | **Commit** : ce commit
+
+**Quoi** — Archive des 4 fichiers uniques de #130 (espace de revue des entretiens S3) et de ses 11 fichiers divergents de `main`, tirés du commit `95426fa`, avec un manifeste (chemin, SHA de blob sur #130 et sur `main`, taille, classement). Aucun fichier de site modifié.
+
+**Pourquoi** — #130 ne peut pas fusionner (conflits sur 6 fichiers de contenu et de code, contenu repris par #136 à #145). Avant sa fermeture, ses apports encore absents de `main` doivent exister ailleurs que sur sa seule branche. Le push d'un tag d'archive a été refusé (HTTP 403).
+
+**Fichiers** — `docs/seo-geo/archives/pr-130-2026-10-15/MANIFEST.md`, `docs/seo-geo/archives/pr-130-2026-10-15/pr-130-95426fa-15-fichiers.tar.gz`, `docs/seo-geo/JOURNAL.md`
+
+**Effet attendu** — Aucun sur le site. La branche `claude/vibrant-wright-q18tsp` est conservée.
+
+**Vérifié** — SHA-256 de l'archive, extraction, `git hash-object` des 15 fichiers : 15 sur 15 conformes au manifeste. 8 entrées du JOURNAL de #130 (11 au 13/10) sont absentes de `main` : elles sont dans l'archive (`docs/seo-geo/JOURNAL.md`).
+**Supposé** — Qu'une branche de travail de cette session est un support durable : elle l'est tant qu'elle n'est pas supprimée.
+**Non regardé** — Comparaison de sens des 11 divergents avec `main` : aucun n'est déclaré redondant.
+
+**Suite** — Fermeture de #130 sans fusion, branche conservée. Une copie hors de ce dépôt reste possible sur décision de Laurent.
+
+---
+
 ## 2026-10-14 · Maillage A/B/hub : liens EN/de-ch localisés + couverture de-ch du hub · Claude de Laurent
 
 **Chantier** : GO AUDIT SEO/MAILLAGE A-B-HUB (14/10/2026) — audit ciblé des 9 URL (A, B, hub × fr/en/de-ch), corrections de liens | **PR** : #<n> | **Base** : `main` `fef5109` | **Branche** : `claude/seo-maillage-a-b-hub`
