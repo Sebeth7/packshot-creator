@@ -34,7 +34,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
-## 2026-10-15 · #141 : scission (Option A) — réduite à B4/D6 + D3 ; B1/FAQ des interviews retirés du périmètre ; resync `main` `3f4b92d` · Claude de Laurent
+## 2026-10-15 · #141 FUSIONNÉE (`e18b8e3`) + Lot B Industries : compteur « entreprises équipées » 500 → 5000 · Claude de Laurent
+
+**Chantier** : clôture V9 — Lot A (fermeture) + Lot B | **PR** : #141 (fusionnée), micro-PR Lot B (branche `claude/zen-maxwell-i59q3o`) | **Commit** : voir PR
+
+**Quoi** —
+- **Lot A — #141 fusionnée** sur GO_MERGE_141 conditionnel (15/10) : HEAD `639525e`, CI 4/4 verte, diff strictement B4/D6 + D3 + docs (aucune interview). Merge commit `main` `e18b8e3`. Resync final sur `main` `7f763a9` (fusion #148, hub Conversations) par union `JOURNAL`. Correction d'un défaut B4 : espace rétabli dans « distribue officiellement les solutions Orbitvu ».
+- **Lot B — Industries** : `app/[lang]/industrie/page.tsx`, bandeau de chiffres, compteur **« entreprises équipées » `end: 500` → `end: 5000`** (suffixe `+` inchangé). Fait métier Sébastien retenu le 08/10 (« 5_000_PLUS »). Changement **isolé** : les autres `500` de la page (seuils ROI l.137/202/224/246, classe Tailwind `very-peri-500`, dimensions) ne sont **pas** touchés.
+
+**Pourquoi** — GO groupé de clôture V9 (Laurent, 15/10) : GO_CODE_INDUSTRIES_5000 + GO_PR_PUSH ; GO_MERGE + GO_PUBLICATION conditionnels.
+
+**Fichiers** — `app/[lang]/industrie/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Rayon d'action** — Effet local à la page `/[lang]/industrie` (un seul compteur animé). Aucun fichier à rayon large. Retour arrière : `git revert`.
+
+**Effet attendu** — Le bandeau Industries affiche « 5000+ entreprises équipées » (FR/EN/de-ch, libellé localisé inchangé). Aucun autre chiffre modifié.
+
+**Vérifié** — (au push) `tsc` 0 ; `verifier-json` 200 ; `next build` relancés. CI du HEAD : à relever.
+**Non regardé** — `www` dans Chrome (R4) ; contrôle `sysnext` après fusion.
+
+**Suite** — Fusion Lot B sous GO_MERGE conditionnel (CI verte, diff isolé). Lot C (retrait interviews 2017 + 301) : préparation Draft, sans fusion ni déploiement Worker. #146 en HOLD.
+
+
 
 **Chantier** : clôture V9 — Lot A | **PR** : #141, branche `claude/zen-maxwell-i59q3o` | **Commit** : voir PR
 
