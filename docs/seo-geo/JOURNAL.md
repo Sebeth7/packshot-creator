@@ -74,7 +74,7 @@ des demandes identiques en mémoire d'instance (double clic, nouvel essai), et l
 notification interne du parcours PDF.
 
 **Vérifié** — `npx tsc --noEmit` : 0 erreur. `npx vitest run` : 43 fichiers,
-772 tests verts (dont 75 sur le périmètre : 32 Contact, 34 ROI PDF, 9 UX).
+772 tests verts (dont 75 sur le périmètre : 28 Contact, 38 ROI PDF, 9 UX).
 `node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx next build`
 (R1) : code de sortie 0. `npx eslint --max-warnings=0` sur les 6 fichiers :
 propre. Aucun appel réseau dans les doublures : les deux routes n'appellent plus
