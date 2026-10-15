@@ -52,6 +52,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Suite** — HOLD : D35 et D52 (L1 pendant la mesure F5, J+28 le 26/10, J+56 le 23/11) ; réserves D42 de L1 à L4 (décision de Sébastien ou exception écrite de Laurent) ; QA Preview sur 3 formats. Aucune fusion avant ces trois points.
 
+**MàJ 15/10 (option B de Laurent)** — L1 retiré du diff de #152 : `content/blog/en/packshot-photography-guide-why-make-product-packshots.json` restauré à sa version de `main` (blob `2ce664e`), D35 et la mesure F5 respectés. Les corrections L1 sont conservées dans l'historique de la branche : commit `b3df50e`, blob `3679186` ; elles reviendront par une PR distincte après F5 (J+56 le 23/11) ou sur décision explicite de Laurent. L2, L3, L4 inchangés. Instruction D42 de Laurent consignée dans `DECISIONS.md` (linguistique seule, claims préexistants ni ajoutés ni renforcés, maintien ≠ validation factuelle). Fusion toujours soumise à : CI verte, QA Preview humaine sur 3 formats, réponse de Sébastien sur les réserves D42 de L2 à L4.
+
 ## 2026-10-15 · Interviews 2017 — ÉTAPE W FUSIONNÉE + Worker DÉPLOYÉ en production · Claude de Laurent
 
 **Chantier** : clôture V9 — retrait interviews 2017, étape W | **PR** : #151 (fusionnée) | **Worker** : `packshot-router`, version `d7d06bc1-a0a4-423c-a036-037a3b7266ea`
