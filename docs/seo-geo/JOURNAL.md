@@ -68,6 +68,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Suite** — Draft S en attente du GO groupé final. Déploiement W (#151) + vérification `www`, PUIS fusion S (#150). #146 en HOLD, `noindex` conservé.
 
+**MàJ 15/10 (fusion S)** — GO_MERGE_150 / GO_PUBLICATION_150 donnés par Laurent sur preuve substitutive (concordance code #151 / Worker déployé `d7d06bc1` / 7 tests locaux 301 / contrôle Chrome `www` de Laurent 11:11-11:12 UTC : 7/7 301 directs, 3/3 410). ES/DE/NL conservés en 410. Resynchronisation sur `main` `f7a664e` (fusion #117) ; conflits `JOURNAL` et `ETAT` résolus par **union** (entrée de déploiement Worker préservée). **Rayon d'action** déclaré dans la description de la PR #150 (R8, garde-conséquences : `alternates.json` à rayon large).
+
 
 ## 2026-10-15 · #117 — redirection saasphoto → cloud.ortery.com mentionnée, exception D13/D42 et QA substitutive consignées, `main` `c557348` intégré · Claude de Laurent
 
