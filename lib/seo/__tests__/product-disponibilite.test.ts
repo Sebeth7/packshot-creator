@@ -4,7 +4,7 @@
  * `PreOrder`). Aucune `Offer` pour une fiche hors de l'offre officielle actuelle.
  */
 import { describe, it, expect } from 'vitest';
-import { productSchema } from '@/components/seo/SchemaOrg';
+import { productSchema, serviceSchema } from '@/components/seo/SchemaOrg';
 import { MACHINES } from '@/components/calculators/ROICalculator/lib/machines';
 import { IDS_HORS_OFFRE_OFFICIELLE, estDansOffreOfficielle } from '@/data/produits/offre-officielle';
 
@@ -48,5 +48,45 @@ describe('offre officielle actuelle', () => {
     expect(estDansOffreOfficielle('alphadesk')).toBe(true);
     expect(estDansOffreOfficielle('alphashot-xl-g2')).toBe(true);
     expect(estDansOffreOfficielle('alphashot-xl-v2')).toBe(false);
+  });
+});
+
+/**
+ * Même règle pour l'offre agrégée d'un service : le `InStock` codé en dur est
+ * retiré (décision de Laurent du 15/10/2026). Seul appelant avec
+ * `aggregateOffer` : `studios-photo-automatises`, dans les trois locales.
+ */
+describe('serviceSchema : offre agrégée sans disponibilité déclarée', () => {
+  const service = {
+    name: 'Studios photo automatisés',
+    description: 'x',
+    url: 'https://www.packshot-creator.com/fr/studios-photo-automatises',
+    aggregateOffer: {
+      lowPrice: 12000,
+      highPrice: 150000,
+      priceCurrency: 'EUR' as const,
+      offerCount: 9,
+    },
+  };
+
+  it('aucune availability, et aucun autre état de disponibilité', () => {
+    const s = serviceSchema(service) as { offers: Record<string, unknown> };
+    expect(s.offers).not.toHaveProperty('availability');
+    expect(JSON.stringify(s)).not.toMatch(/InStock|OutOfStock|PreOrder/);
+  });
+
+  it('prix, devise, nombre d’offres et vendeur conservés', () => {
+    const s = serviceSchema(service) as { offers: Record<string, unknown> };
+    expect(s.offers['@type']).toBe('AggregateOffer');
+    expect(s.offers.lowPrice).toBe(12000);
+    expect(s.offers.highPrice).toBe(150000);
+    expect(s.offers.priceCurrency).toBe('EUR');
+    expect(s.offers.offerCount).toBe(9);
+    expect(s.offers).toHaveProperty('seller');
+  });
+
+  it('un service sans aggregateOffer ne porte aucune offre', () => {
+    const sans = serviceSchema({ name: 'x', description: 'x', url: 'https://x.test/' });
+    expect(sans).not.toHaveProperty('offers');
   });
 });

@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #133 : disponibilité retirée de l'offre agrégée du service (L05, décision de Laurent du 15/10) · Claude de Laurent
+
+**Chantier** : G5 LOT-6 (L05), D45 | **PR** : #133 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** — `components/seo/SchemaOrg.tsx` seul : la ligne `availability: 'https://schema.org/InStock'` est retirée du bloc `AggregateOffer` de `serviceSchema`. Aucun autre état de disponibilité n'est introduit. Prix, devise, nombre d'offres, vendeur et toutes les autres propriétés et fonctions sont conservés.
+
+**Pourquoi** — L05 : aucune disponibilité déclarée sans preuve de stock. Le retrait du `InStock` codé en dur avait été appliqué à `productSchema` ; ce `InStock` subsistait sur l'offre agrégée du service, défaut préexistant sur `main`, relevé le 15/10 et tranché le même jour par Laurent.
+
+**Fichiers** — `components/seo/SchemaOrg.tsx`, `lib/seo/__tests__/product-disponibilite.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Trois pages prérendues changent, en JSON-LD seulement : `/fr`, `/en` et `/de-ch` de `studios-photo-automatises`, seuls appelants de `serviceSchema` avec `aggregateOffer`. Les hubs `industrie`, qui appellent `serviceSchema` sans offre agrégée, sont inchangés. [Inférence] Google peut signaler « availability manquant » en avertissement, sans perte d'éligibilité attendue, comme pour les fiches produit. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert.
+- `lib/seo/__tests__/product-disponibilite.test.ts` : 8 cas verts, dont 3 ajoutés sur l'offre agrégée du service (aucune `availability`, aucune mention de `InStock`, `OutOfStock` ni `PreOrder` ; prix, devise, nombre d'offres et vendeur conservés ; un service sans `aggregateOffer` ne porte aucune offre).
+- `npx next build` vert (387 pages).
+- HTML prérendu comparé à la tête `e118a82` : 372 pages sur 375 identiques ; les 3 pages attendues diffèrent, par le seul bloc JSON-LD. HTML visible identique sur les trois. `schema.org/InStock` : 2 occurrences par page avant, 0 après. Bloc relu : `AggregateOffer` conserve `lowPrice` 12 000, `highPrice` 150 000, `priceCurrency` EUR, `offerCount` 16 et `seller`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — #108 et la refonte Studios : non touchées. Test des résultats enrichis de Google : après fusion seulement.
+
+**Rayon d'action** — `serviceSchema` est appelé par `studios-photo-automatises` (avec offre agrégée) et par les hubs `industrie` (sans offre). Seul le premier cas change. Les autres fonctions du fichier, `productSchema` compris, ne sont pas modifiées.
+
+**Suite** — Réponse de Sébastien à Q26 (Q20 / D45, D42), puis GO_MERGE. Aucun donné à ce stade.
+
+---
+
 ## 2026-10-12 · #133 : R3 adopté sur le principe (D58) ; `main` `4c53314` intégré ; aucune modification de code · Claude de Laurent
 
 **Chantier** : G5 LOT-2 + LOT-6 (L02, L05) | **PR** : #133 (brouillon) | **Commit** : voir PR

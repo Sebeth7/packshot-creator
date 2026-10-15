@@ -442,7 +442,9 @@ export function serviceSchema(service: {
             highPrice: service.aggregateOffer.highPrice,
             priceCurrency: service.aggregateOffer.priceCurrency,
             offerCount: service.aggregateOffer.offerCount,
-            availability: 'https://schema.org/InStock',
+            // L05 : aucune disponibilité déclarée sans preuve de stock. Le
+            // `InStock` codé en dur est retiré (décision de Laurent du
+            // 15/10/2026) ; il n'est remplacé par aucun autre état.
             seller: { '@id': ORG_ID },
           },
         }
