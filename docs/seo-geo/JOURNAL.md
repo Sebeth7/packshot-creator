@@ -34,6 +34,22 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · Interviews 2017 — ÉTAPE W FUSIONNÉE + Worker DÉPLOYÉ en production · Claude de Laurent
+
+**Chantier** : clôture V9 — retrait interviews 2017, étape W | **PR** : #151 (fusionnée) | **Worker** : `packshot-router`, version `d7d06bc1-a0a4-423c-a036-037a3b7266ea`
+
+**Statut** — Sur GO de Laurent du 15/10 (GO_MERGE_151 + GO_WORKER_151 conditionnels ; décision SEO : ES/DE/NL conservés en 410). Étape W réalisée. Étape S (#150, retrait du contenu) **reste en attente** de la preuve `www` des 301 (GO_MERGE_150 / GO_PUBLICATION_150 conditionnels).
+
+**R5 — resynchronisation vérifiée AVANT déploiement** — Code réellement déployé récupéré en lecture seule (API Cloudflare `GET workers/scripts/packshot-router`, lecture autorisée par 05-INFRA). Diff normalisé (hors commentaires et boilerplate esbuild) **vide** contre `cloudflare-worker/src/index.js` de `main` pré-#151 : **aucune divergence de règle en production**, aucune règle propre à la prod à préserver. Constat conforme à celui du 17/09.
+
+**Déploiement** — #151 fusionnée dans `main` (`540185b`). Worker déployé **depuis le dépôt** (`npx wrangler deploy`, pas d'édition dashboard — R5), version `d7d06bc1-a0a4-423c-a036-037a3b7266ea`, routes `www`, apex et `*.packshot-creator.com`. Diff normalisé du script redéployé contre `main`/#151 : **vide** (déploiement conforme). 7 clés de redirection → `/a-propos` présentes ; 3 variantes ES/DE/NL toujours en 410.
+
+**Preuve locale (avant déploiement)** — Harnais appelant `worker.fetch` : les 7 anciennes URL renvoient **301** vers `/fr/a-propos` ou `/en/a-propos` (cibles exactes), les cibles `/a-propos` ne redirigent pas (**aucune chaîne ni boucle**), ES/DE/NL **410**, témoins `/` → `/fr` et passthrough `videos./books./trail.` inchangés. `node --check` OK ; 165/165 tests Worker verts.
+
+**www NON VÉRIFIÉ** — Contrôle `www` impossible dans cette session : le WAF/Super Bot Fight Mode s'exécute **avant** le Worker (05-INFRA), un client script reçoit **403** (mesuré sur les 2 URL canoniques), aucun navigateur réel disponible ici. La vérification Chrome des 301 revient à Laurent (URL ci-dessous). **STOP après l'étape Worker** (GO étape 5).
+
+**Suite** — Laurent vérifie en Chrome les 7 redirections (301 direct, cibles `/a-propos`, sans chaîne) et le maintien des 410 ES/DE/NL, puis GO_MERGE_150 pour fusionner le retrait du contenu (#150). Rollback W : `git revert` de #151 + `wrangler deploy` depuis le dépôt.
+
 ## 2026-10-15 · Interviews 2017 — ÉTAPE S (DRAFT) : retrait des 2 articles + alternates + liens entrants · Claude de Laurent
 
 **Chantier** : clôture V9 — retrait interviews 2017, étape S (retrait du site) | **PR** : #150 (Draft), branche `claude/zen-maxwell-i59q3o`, base `main` `c557348` | **Commit** : voir PR
