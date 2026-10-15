@@ -33,6 +33,8 @@ interface ProviderDef {
   src: RegExp;
   /** Attribut allowfullscreen de l'intégration d'origine, conservé. */
   allowFullscreen: boolean;
+  /** Hôte vers lequel `host` redirige, cité aussi dans la fenêtre d'information. */
+  redirectHost?: string;
 }
 
 const QUERY = '(?:\\?[A-Za-z0-9=&_.%-]*)?';
@@ -55,6 +57,8 @@ export const EXTERNAL_EMBED_PROVIDERS: Record<ExternalEmbedProvider, ProviderDef
     host: 'saasphoto.com',
     src: /^https:\/\/saasphoto\.com\/share\/[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_.-]+)*\.html$/,
     allowFullscreen: false,
+    // 302 de saasphoto.com vers cloud.ortery.com constaté le 15/10/2026.
+    redirectHost: 'cloud.ortery.com',
   },
 };
 
@@ -92,6 +96,7 @@ export interface ExternalEmbedDialogLabels {
   close: string;
   openExternal: (provider: string) => string;
   scope: string;
+  redirect: (host: string) => string;
 }
 
 /**
@@ -116,6 +121,7 @@ export const EXTERNAL_EMBED_TEXTS: Record<'fr' | 'en' | 'de-ch', { facade: Exter
       close: 'Fermer',
       openExternal: (p) => `Ouvrir le contenu sur ${p} (nouvel onglet)`,
       scope: "Cet accord vaut pour ce contenu uniquement, sur cette page. Il n'est pas mémorisé.",
+      redirect: (h) => `Ce contenu peut être redirigé vers ${h}, qui recevra alors également ces informations.`,
     },
   },
   en: {
@@ -134,6 +140,7 @@ export const EXTERNAL_EMBED_TEXTS: Record<'fr' | 'en' | 'de-ch', { facade: Exter
       close: 'Close',
       openExternal: (p) => `Open the content on ${p} (new tab)`,
       scope: 'This permission applies to this content only, on this page. It is not stored.',
+      redirect: (h) => `This content may be redirected to ${h}, which will then also receive this information.`,
     },
   },
   'de-ch': {
@@ -152,6 +159,7 @@ export const EXTERNAL_EMBED_TEXTS: Record<'fr' | 'en' | 'de-ch', { facade: Exter
       close: 'Schliessen',
       openExternal: (p) => `Inhalt auf ${p} öffnen (neuer Tab)`,
       scope: 'Diese Zustimmung gilt nur für diesen Inhalt auf dieser Seite. Sie wird nicht gespeichert.',
+      redirect: (h) => `Dieser Inhalt kann an ${h} weitergeleitet werden, das diese Informationen dann ebenfalls erhält.`,
     },
   },
 };

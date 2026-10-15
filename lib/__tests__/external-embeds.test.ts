@@ -113,10 +113,11 @@ describe('textes de la façade et de la fenêtre d\'information', () => {
       const all = [
         facade.play('P', 'T'), facade.playUntitled('P'), facade.notice('P'),
         dialog.title('P'), dialog.item('T'), dialog.body('P', 'h.example'), dialog.accept,
-        dialog.cancel, dialog.close, dialog.openExternal('P'), dialog.scope,
+        dialog.cancel, dialog.close, dialog.openExternal('P'), dialog.scope, dialog.redirect('r.example'),
       ];
       for (const s of all) expect(s.trim().length, locale).toBeGreaterThan(0);
       expect(dialog.body('P', 'h.example'), locale).toContain('h.example');
+      expect(dialog.redirect('r.example'), locale).toContain('r.example');
       if (locale === 'de-ch') expect(all.join(' ')).not.toContain('ß');
     }
   });

@@ -198,7 +198,9 @@ export default function YouTubeConsent() {
             </p>
           )}
           <p id="pkc-yt-dialog-desc" className="text-sm text-future-dusk-600 leading-relaxed mb-5">
-            {provider ? embedTexts.body(provider.name, provider.host) : t('dialogBody')}
+            {provider
+              ? `${embedTexts.body(provider.name, provider.host)}${provider.redirectHost ? ` ${embedTexts.redirect(provider.redirectHost)}` : ''}`
+              : t('dialogBody')}
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 mb-5">
             <button
