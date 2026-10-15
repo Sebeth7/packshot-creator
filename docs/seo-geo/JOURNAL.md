@@ -34,28 +34,23 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
-## 2026-10-15 · Lot C (PRÉPARATION, DRAFT) — retrait des 2 interviews 2017 + 301 vers `/a-propos` · Claude de Laurent
+## 2026-10-15 · Interviews 2017 — ÉTAPE S (DRAFT) : retrait des 2 articles + alternates + liens entrants · Claude de Laurent
 
-**Chantier** : clôture V9 — Lot C (préparation seule) | **PR** : Draft dédié (branche `claude/zen-maxwell-i59q3o`, base `main` `c557348`) | **Commit** : voir PR
+**Chantier** : clôture V9 — retrait interviews 2017, étape S (retrait du site) | **PR** : #150 (Draft), branche `claude/zen-maxwell-i59q3o`, base `main` `c557348` | **Commit** : voir PR
 
-**Statut** — **PRÉPARATION UNIQUEMENT**. GO_CODE_PREPARATION + GO_PR_DRAFT reçus (15/10). GO_MERGE = NO, GO_WORKER_DEPLOY = NO, GO_PUBLICATION = NO. Aucune fusion, aucun déploiement Worker tant que le GO groupé final de Laurent n'est pas donné.
+**Statut** — **PRÉPARATION / DRAFT, SITE SEUL (aucun changement Worker ici)**. GO_CODE_PREPARATION + GO_PR_DRAFT (15/10). **GO_MERGE = NO, GO_PUBLICATION = NO.** Les redirections Worker sont dans la **PR séparée #151 (étape W)**. **Règle de séquence : S ne se publie qu'après que les 301 de W soient actives et vérifiées sur `www`** (sinon fenêtre 404 sur `/fr/blog/decryptages-…` et `/en/blog/interview-…`).
 
-**Quoi** —
-- **Retrait des 2 articles d'interview 2017** (`git rm`, historique conservé) : `content/blog/fr/decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator.json` et `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json`. Après fusion : routes `/fr/blog/decryptages-…` et `/en/blog/interview-…` retirées de l'app Next (donc du sitemap via `getAllArticleSlugs`) et de `alternates.json` (paire `67e2ad276291f90c1cf0dc8b`).
-- **301 vers `/a-propos`** via `cloudflare-worker/src/index.js` (`LEGACY_REDIRECTS`, évalué avant le repli `/blog/`), sans chaîne ni boucle :
-  - `/fr/blog/decryptages-…` → `/fr/a-propos` (NOUVEAU) ; `/en/blog/interview-laurent-wainberg-founder-packshotcreator` → `/en/a-propos` (NOUVEAU) ;
-  - `/blog/decryptages-…` → `/fr/a-propos` (NOUVEAU) ; `/blog/interview-…` → `/en/a-propos` (NOUVEAU, remplace le service par `BLOG_EN_REDIRECTS`, slug retiré du Set) ;
-  - RECIBLAGE des 3 entrées existantes qui pointaient vers les articles désormais retirés : `/decryptages-…` (sans langue) → `/fr/a-propos` (était `/fr/blog/decryptages-…`) ; `/en/blog/decryptages-…` → `/en/a-propos` (était `/en/blog/interview-…`) ; `/fr/blog/interview-…` → `/fr/a-propos` (était `/fr/blog/decryptages-…`).
+**Quoi** — contenu seul :
+- **Retrait des 2 articles d'interview 2017** (`git rm`, historique restaurable) : `content/blog/fr/decryptages-interviewe-laurent-wainberg-fondateur-et-dirigeant-de-packshotcreator.json` et `content/blog/en/interview-laurent-wainberg-founder-packshotcreator.json`. Après fusion : routes retirées de l'app Next et du sitemap (via `getAllArticleSlugs`).
+- **`content/blog/alternates.json`** : paire `67e2ad276291f90c1cf0dc8b` (fr↔en) retirée.
 - **2 liens internes recibles** vers `/a-propos` (les articles cités n'existent plus) : `content/blog/en/series-e-commerce-ebooks-shooting-products.json` (« the About page of PackshotCreator » → `/en/a-propos`) ; `content/blog/fr/lancement-dune-serie-debooks-dediee-au-ecommerce.json` (« la page À propos de PackshotCreator » → `/fr/a-propos`).
 
-**Hors périmètre, signalé** — Les variantes ES/DE/NL de l'interview (`/blog/entrevista-…fundador-…`, `/blog/interview-…-grunder-…`, `/blog/interview-…-oprichter-…`) restent en **410 Gone** (`GONE_PATHS`) : langues non servies, déjà retirées ; non modifiées (hors périmètre du retrait FR/EN).
+**Dépendance de release (R8)** — Les 301 vers `/a-propos` vivent dans la **PR Worker #151 (étape W)**, ressource à rayon large (R5). Ordre impératif : **déployer et vérifier W sur `www` AVANT de fusionner S**. Retour arrière de S : `git revert`.
 
-**Rayon d'action (R8)** — Le Worker est une ressource à **rayon large** (R5). Deux couplages à respecter au déploiement : (1) le code (retrait des articles) et le déploiement Worker doivent être coordonnés — **déployer le Worker avant (ou en même temps que) la fusion du code** pour éviter une fenêtre 404 sur `/fr/blog/decryptages-…` et `/en/blog/interview-…` ; (2) **R5 : resynchroniser le Worker déployé avec le dépôt avant déploiement** (la prod a pu diverger). Retour arrière : `git revert` + redéploiement du Worker depuis le dépôt.
+**Vérifié** — `tsc` 0 ; `verifier-json` 198 (−2) ; `next build` 390/390 (−2 routes), exit 0 — sur l'arbre avec articles retirés. Aucune référence résiduelle aux slugs hors clés de redirection (grep dépôt complet ; les seules occurrences restantes sont les clés de #151).
+**Non regardé** — `www` (R4) ; preview Vercel (SSO).
 
-**Vérifié** — (au push) `tsc`, `verifier-json`, `next build` relancés sur l'arbre avec articles retirés ; aucune référence résiduelle aux slugs hors clés de redirection Worker (grep dépôt complet). Ordre des redirections relu : `LEGACY_REDIRECTS` (l.1617) évalué avant le repli `/blog/` (l.1811) ; aucune des clés ajoutées n'est dans `GONE_PATHS`. Cibles `/fr/a-propos` et `/en/a-propos` existantes (generateStaticParams fr/en/de-ch).
-**Non regardé** — `www` (R4) ; preview Vercel (SSO) ; comportement réel du Worker non testé (déploiement non autorisé).
-
-**Suite** — Draft en attente du GO groupé final de Laurent : ordre de fusion/déploiement, resync Worker (R5), contrôle prod, fenêtre de retrait, rollback. #146 en HOLD, `noindex` conservé.
+**Suite** — Draft S en attente du GO groupé final. Déploiement W (#151) + vérification `www`, PUIS fusion S (#150). #146 en HOLD, `noindex` conservé.
 
 
 
