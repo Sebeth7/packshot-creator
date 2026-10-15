@@ -229,7 +229,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "Man beginnt damit, den Katalog und den Weg eines Produkts anzuschauen. Bevor man eine Ausrüstung wählt, muss man verstehen, wie der Artikel eintrifft, wodurch er sich identifizieren lässt, wer das Objekt vorbereitet und wer die Dateien übernimmt. Ein sehr gut ausgeleuchtetes Studio kann dennoch eine schlechte Organisation bleiben."
+              "html": "Man beginnt damit, den Katalog und den Weg eines Produkts anzuschauen. Bevor man <a href=\"/de-ch/fotostudio/maschinen-finder\">eine Ausrüstung wählt</a>, muss man verstehen, wie der Artikel eintrifft, wodurch er sich identifizieren lässt, wer das Objekt vorbereitet und wer die Dateien übernimmt. Ein sehr gut ausgeleuchtetes Studio kann dennoch eine schlechte Organisation bleiben."
             },
             {
               "t": "p",
@@ -397,7 +397,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "Das Produktfoto muss zuerst die Frage beantworten: <em>Was bekomme ich?</em> Man muss Form, Farbe, Material, Details und, wenn es wichtig ist, den Inhalt des Pakets erkennen können. Ein Kampagnenbild darf eine Stimmung erzählen; ein Referenzfoto muss überprüfbar bleiben."
+              "html": "Das Produktfoto muss zuerst die Frage beantworten: <em>Was bekomme ich?</em> Man muss Form, <a href=\"#entretien-05\">Farbe</a>, Material, Details und, wenn es wichtig ist, den Inhalt des Pakets erkennen können. Ein Kampagnenbild darf eine Stimmung erzählen; ein Referenzfoto muss überprüfbar bleiben."
             },
             {
               "t": "p",
@@ -464,7 +464,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "Das Smartphone jedes Käufers kann man nicht kontrollieren. Dafür kann man die eigene Arbeit kontrollieren. Konsistente Einstellungen bei der Aufnahme, ein Referenzbildschirm, der Vergleich mit dem realen Produkt und die Freigabe heikler Farbtöne: Das ist schon beträchtlich."
+              "html": "Das Smartphone jedes Käufers kann man nicht kontrollieren. Dafür kann man die eigene Arbeit kontrollieren. Konsistente Einstellungen bei der Aufnahme, ein Referenzbildschirm, der Vergleich mit dem realen Produkt und <a href=\"/fr/guide/comment-obtenir-couleurs-fideles-photographie-produit\">die Freigabe heikler Farbtöne</a>: Das ist schon beträchtlich."
             },
             {
               "t": "p",
@@ -896,7 +896,7 @@
             },
             {
               "t": "p",
-              "html": "Die Regeln der Marktplätze ändern sich. Besser pflegt man die Spezifikationen in einem gewarteten Referenzverzeichnis und testet die Akzeptanz der Exporte, statt eine Tabelle mit Abmessungen zu veröffentlichen, die nächste Saison veraltet ist."
+              "html": "<a href=\"/de-ch/blog/ki-produktbilder-metadaten-marktplaetze\">Die Regeln der Marktplätze</a> ändern sich. Besser pflegt man die Spezifikationen in einem gewarteten Referenzverzeichnis und testet die Akzeptanz der Exporte, statt eine Tabelle mit Abmessungen zu veröffentlichen, die nächste Saison veraltet ist."
             }
           ]
         },
@@ -1287,7 +1287,7 @@
             },
             {
               "t": "p",
-              "html": "Die genauen Spezifikationen sollten nicht aufs Geratewohl aus einem Artikel übernommen werden: Sie ändern sich je nach Marktplatz und Kategorie. Ein Team sollte sein eigenes Regelblatt pflegen und anschliessend die Akzeptanz der Dateien prüfen."
+              "html": "Die genauen Spezifikationen sollten nicht aufs Geratewohl aus einem Artikel übernommen werden: Sie ändern sich je nach <a href=\"/de-ch/packshot-amazon\">Marktplatz</a> und Kategorie. Ein Team sollte sein eigenes Regelblatt pflegen und anschliessend die Akzeptanz der Dateien prüfen."
             }
           ]
         },
@@ -1516,7 +1516,7 @@
             },
             {
               "t": "p",
-              "html": "Die Schulung muss auch die Ausnahmen behandeln. Ein transparentes Material, ein sehr feines Logo, ein Kleidungsstück, das knittert: Jeder sollte wissen, wann das normale Profil nicht mehr genügt und wen man um Hilfe bittet. Daran erkennt man ein Team, das sein Werkzeug verstanden hat."
+              "html": "<a href=\"/fr/academy\">Die Schulung</a> muss auch die Ausnahmen behandeln. Ein transparentes Material, ein sehr feines Logo, ein Kleidungsstück, das knittert: Jeder sollte wissen, wann das normale Profil nicht mehr genügt und wen man um Hilfe bittet. Daran erkennt man ein Team, das sein Werkzeug verstanden hat."
             }
           ]
         },
