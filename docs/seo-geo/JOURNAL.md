@@ -34,6 +34,73 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · Leads sans CRM : Contact et ROI PDF sur le modèle Catalogue #82 · Claude de Laurent
+
+**Chantier** : G5 — rationalisation des leads | **PR** : #131 | **Commit** : voir la tête de la branche `claude/nice-carson-qc299m`
+
+**Quoi** — `/api/contact` et `/api/roi-pdf` ne parlent plus à Pipedrive. La
+notification interne Resend devient la trace commerciale, et le parcours « envoi
+du PDF ROI » en reçoit une, qu'il n'avait pas (option 1 de Laurent, 15/10).
+
+**Pourquoi** — Les demandes sont traitées à la main depuis les notifications
+e-mail. L'affaire Pipedrive était la seule trace du parcours PDF : sans
+remplacement, ce lead devenait silencieux. #132 était bloquée parce que son
+garde-fou dépendait justement de cette affaire.
+
+**Fichiers** — `app/api/contact/route.ts`, `app/api/roi-pdf/route.ts`,
+`components/forms/ContactForm.tsx`, `lib/__tests__/api-contact-route.test.ts`,
+`lib/__tests__/api-roi-pdf-route.test.ts`, `lib/__tests__/contact-form-echec.test.ts`
+
+**Effet attendu** — Chaque demande des deux formulaires produit une notification
+à `sebastien.jourdan@` et `stephane.gormand@`, ou un échec visible côté visiteur.
+Effet immédiat à la fusion ; aucune page, aucun contenu, aucun JSON-LD touché.
+
+**Contrat retenu, par parcours** —
+
+| Parcours | Trace exigée | 200 | 500 | 503 |
+|---|---|---|---|---|
+| Contact | notification interne | notification acceptée ; confirmation au prospect ensuite | notification refusée (pas de confirmation envoyée) | envoi non configuré |
+| ROI — envoi du PDF | analyse au prospect **ou** notification interne | au moins une acceptée ; `emailSent` et `leadRecorded` disent laquelle | les deux refusées | envoi non configuré |
+| ROI — être recontacté | notification interne | notification acceptée | notification refusée | envoi non configuré |
+
+**Repris de #132, sans ses garde-fous liés au CRM** — écran d'échec neutre de
+`ContactForm` (plus d'écran rouge, décision de Laurent du 15/10), saisies
+conservées, réessai, contact alternatif par locale, mesure GA4 sur succès réel
+seulement, et ses 9 cas de test. Les règles de #132 qui s'appuyaient sur
+`dealId` ne sont pas reprises : elles n'ont plus d'objet.
+
+**Ajouté par rapport à #132** — 503 de configuration (modèle #82), déduplication
+des demandes identiques en mémoire d'instance (double clic, nouvel essai), et la
+notification interne du parcours PDF.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. `npx vitest run` : 43 fichiers,
+772 tests verts (dont 75 sur le périmètre : 32 Contact, 34 ROI PDF, 9 UX).
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx next build`
+(R1) : code de sortie 0. `npx eslint --max-warnings=0` sur les 6 fichiers :
+propre. Aucun appel réseau dans les doublures : les deux routes n'appellent plus
+`fetch`, ce qu'un test vérifie. `lib/pipedrive.ts` n'est plus importé que par
+`app/api/roi-lead/route.ts` ; `/api/roi-lead` et `/api/submit-survey` sont
+inchangés au diff. Les trois appelants ne lisent que `res.ok` : aucun ne lisait
+`emailId`, `personId`, `dealId` ni `pipedrive`.
+
+**Supposé** — Que `RESEND_API_KEY`, `RESEND_FROM_EMAIL` et
+`GOOGLE_GEMINI_API_KEY` sont présentes en production : non vérifiable depuis le
+dépôt (GO_CONFIGURATION non accordé). L'enrichissement de la notification, qui
+dépendait du jeton Pipedrive, est désormais commandé par un interrupteur de code
+(`ENRICHISSEMENT_NOTIFICATION`), à `true` : tant que les deux clés sont présentes
+ensemble, le profil d'appel ne change pas.
+
+**Non regardé** — Envoi réel (GO_TEST_REEL non accordé) ; Preview Vercel bloquée
+par SSO ; faux 429 derrière le Worker (option A conservée, inchangée) ;
+`/api/roi-lead` et `/api/submit-survey` ; variables Vercel ; #133.
+
+**Suite** — QA Preview courte à préparer (S1, S2, S3) ; GO_MERGE de #131 ;
+fermeture sans fusion de #132 après intégration vérifiée dans `main`. De Q26, ne
+reste pertinent que l'arbitrage de #133 : celui de #132 est tranché par la
+décision du 15/10.
+
+---
+
 ## 2026-10-15 · Interviews 2017 — ÉTAPE W FUSIONNÉE + Worker DÉPLOYÉ en production · Claude de Laurent
 
 **Chantier** : clôture V9 — retrait interviews 2017, étape W | **PR** : #151 (fusionnée) | **Worker** : `packshot-router`, version `d7d06bc1-a0a4-423c-a036-037a3b7266ea`
