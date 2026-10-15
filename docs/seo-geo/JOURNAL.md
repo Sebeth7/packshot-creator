@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · #117 — redirection saasphoto → cloud.ortery.com mentionnée, exception D13/D42 et QA substitutive consignées, `main` `c557348` intégré · Claude de Laurent
+
+**Chantier** : médias externes et consentement | **PR** : #117 | **Commit** : `b76acff` (phrase de transparence), `96b737f` (fusion de `main` `c557348`) ; consignation dans le commit de cette entrée
+
+**Quoi** — Fenêtre d'information de saasphoto.com : une phrase par langue mentionne la redirection vers cloud.ortery.com (FR, EN, de-CH, formulations validées par Laurent le 15/10), ajoutée au paragraphe décrit de la fenêtre, pour saasphoto seulement ; textes existants inchangés. Exception D13/D42 et QA substitutive propres à #117 consignées dans `DECISIONS.md`. `main` `c557348` (#145, #119, #141, #149) fusionné sans rebase : `ETAT.md` (deux lignes ajoutées au même endroit) et `JOURNAL.md` en conflit, union.
+
+**Pourquoi** — Relevé du 15/10 à 06:51 UTC (une requête HEAD, sans cookie) : `saasphoto.com` répond 302 vers `https://cloud.ortery.com/share/05HGU6/…/Drill_360.html` (200). La fenêtre ne citait que saasphoto.com : la condition de l'exception de Laurent (textes non contredits par les services appelés) n'était pas remplie. GO_CODE_117_TRANSPARENCE et D42 ponctuel du 15/10.
+
+**Fichiers** — `lib/external-embeds.ts`, `components/blog/YouTubeConsent.tsx`, `lib/__tests__/external-embeds.test.ts`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Sur les deux articles 360° (FR et EN), la fenêtre de saasphoto.com cite aussi cloud.ortery.com. Aucun autre effet.
+
+**Vérifié** — Tête fusionnée, build local, variables factices, DNS hors `localhost` bloqué, réponses des services simulées (aucun service tiers contacté) :
+- `npx tsc --noEmit` vert ; Vitest 691/691 ; `npx next build` vert, 392 pages.
+- Fenêtre saasphoto, FR et EN, Desktop Chrome et Pixel 5 (Chromium 141) : 0 requête tierce à l'affichage, à l'ouverture de la fenêtre et après refus ; phrase présente en fin de description, texte existant intact en tête ; Échap et « Annuler » rendent le focus à la façade ; « Autoriser » crée une iframe titrée « saasphoto.com », seule requête alors émise. Phrase absente des fenêtres Sketchfab et Vimeo.
+- Diff contre `main` : les 12 fichiers de #117, plus `DECISIONS.md` ; `app/[lang]/blog/[slug]/page.tsx` sans conflit.
+- Tests navigateur antérieurs réutilisés (code de consentement inchangé hors la phrase) : 276/276 le 14/10.
+
+**Supposé** — La redirection relevée le 15/10 peut changer côté saasphoto.com ; la phrase dit « peut être redirigé ».
+
+**Non regardé** — Lecture Vimeo (« vidéo indisponible »), affichage de la démo Ortery, article 6 de la politique de confidentialité (S5-D6) : hors #117, sur consigne de Laurent. Lecteur d'écran réel, Android physique : réserves de la QA substitutive.
+
+**Suite** — CI de la tête finale ; si verte : Ready, fusion, contrôle ciblé sur `sysnext` puis dans Chrome sur `www`.
+
+---
+
 ## 2026-10-15 · #141 FUSIONNÉE (`e18b8e3`) + Lot B Industries : compteur « entreprises équipées » 500 → 5000 · Claude de Laurent
 
 **Chantier** : clôture V9 — Lot A (fermeture) + Lot B | **PR** : #141 (fusionnée), micro-PR Lot B (branche `claude/zen-maxwell-i59q3o`) | **Commit** : voir PR

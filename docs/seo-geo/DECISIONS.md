@@ -25,6 +25,28 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-15 · Exception ponctuelle D13/D42 pour les textes de consentement de #117, et QA substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — « V9 — Clôture conditionnelle de #117 » et « V9 — GO_CODE_117_TRANSPARENCE + validation D42 ponctuelle », 15/10/2026
+**Statut** : en vigueur pour le seul périmètre ci-dessous ; épuisée par la fusion de #117. Aucun numéro de décision n'est attribué ici : il se prend au moment de la consignation définitive, après vérification de `main`.
+
+**La décision** —
+1. **D13/D42, exception limitée à #117** : Laurent accepte, sous sa responsabilité éditoriale, les textes FR, EN et de-ch de la façade et de la fenêtre d'information de `lib/external-embeds.ts` tels que présents dans la tête `b9589c6`, et les trois phrases ajoutées sur la redirection de saasphoto.com, validées le 15/10 :
+   - FR : « Ce contenu peut être redirigé vers cloud.ortery.com, qui recevra alors également ces informations. »
+   - EN : « This content may be redirected to cloud.ortery.com, which will then also receive this information. »
+   - de-ch : « Dieser Inhalt kann an cloud.ortery.com weitergeleitet werden, das diese Informationen dann ebenfalls erhält. »
+   Ce n'est ni une validation attribuée à Sébastien, ni une validation juridique RGPD, ni une autorisation de nouvelle reformulation commerciale, ni une autorisation de créer une nouvelle catégorie générale de cookies, ni une validation de la disponibilité des médias. L'exception ne vaut que pour ces textes, inchangés, et tant qu'ils ne sont pas contredits par les services effectivement appelés.
+2. **QA substitutive propre à #117** : les preuves de la QA locale et de la campagne Chrome du 14/10 remplacent les contrôles de Preview bloqués par SSO. Réserves : pas de lecteur d'écran réel ; pas d'Android physique ; largeurs mobiles simulées ; lecteur Vimeo sur `www` non caractérisé ; disponibilité des médias tiers hors périmètre. Restent obligatoires : refus sans chargement tiers, accord ponctuel, fermeture, focus, retrait possible.
+
+**Le contexte** — #117 met en façade les 6 iframes Vimeo, Sketchfab et saasphoto.com des articles. Le 15/10, `saasphoto.com` répondait 302 vers `cloud.ortery.com` alors que la fenêtre ne citait que saasphoto.com : la condition de l'exception n'était pas remplie, d'où la phrase de transparence.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR ou à un autre texte.
+- La tenir pour une validation de Sébastien, une conclusion RGPD ou un constat de disponibilité de Vimeo ou d'Ortery.
+- Réutiliser la substitution de QA Preview pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-14 · Exception ponctuelle D13/D42 pour les 8 titles FR de #119, et QA locale substitutive à la Preview (SSO)
 
 **Décidé par** : Laurent — arbitrage éditorial du 14/10/2026 (midi) et « V9 — Arbitrage lot A » du 14/10/2026
