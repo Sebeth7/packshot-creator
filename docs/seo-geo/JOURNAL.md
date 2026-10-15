@@ -34,6 +34,33 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-15 · Hub Conversations : visibilité des liens, renforcement contextuel, bloc « Pour aller plus loin » · Claude de Laurent
+
+**Chantier** : V9 — conversion du hub Conversations en passerelle éditoriale (GO ciblé de Laurent, 15/10/2026 : A+B+C, périmètre B = 02/03/06/09/10, CTA inclus) | **PR** : #<n> (Draft) | **Base** : `main` `3f4b92d` | **Branche** : `claude/hub-conversations-maillage-v9`
+
+**Quoi** —
+- **A (visibilité)** : les liens insérés dans le corps du hub (dangerouslySetInnerHTML) prenaient la couleur du texte, sans soulignement ni focus — le plugin Typography n'étant pas chargé en Tailwind v4, les variantes `prose-a:*` ne produisent rien. Correctif **limité au hub** : classe racine `conversations-hub` sur `<main>` + bloc `@layer components` ciblant `:where(.conversations-hub a:not([class]))` (couleur `--very-peri-6`, soulignement, survol, focus visible). Les liens de navigation (classes Tailwind) ne sont pas touchés ; blog et guides inchangés ; plugin **non activé**.
+- **B (maillage contextuel)** : 6 liens ajoutés dans les conversations les moins reliées, 1 point d'insertion naturel chacun, dans les 3 langues — 02 → sélecteur de machines ; 03 → conversation couleur (#entretien-05) + guide « couleurs fidèles » ; 06 → dossier métadonnées/marketplaces ; 09 → packshot Amazon ; 10 → academy. 03 et 06 passent de 1 à ≥ 2 liens.
+- **C (bloc final)** : « Pour aller plus loin » rendu **cliquable** — 5 cartes éditoriales localisées (comparer A, calculer le ROI, choisir un studio, organiser la production B, situer l'IA) + un seul CTA discret « Demander une démo » → `/contact` (`/kontakt` de-ch). Rendu en `page.tsx` avec classes Tailwind (visibles).
+
+**Pourquoi** — Le hub recevait déjà du maillage entrant (#138/#145) mais ses liens sortants étaient invisibles et certaines conversations peu reliées ; l'encadré final n'avait aucun lien. Objectif : une passerelle d'orientation claire vers les pages de référence, sans publicité ni refonte.
+
+**Localisations** — Destinations localisées vérifiées au sitemap (slugs d'articles via alternates, segments via routing). Replis `/fr` documentés : guide « couleurs fidèles » (pas de de-ch) en de-ch ; academy (FR-only) en en/de-ch. Aucun slug inventé.
+
+**Fichiers** — `app/[lang]/conversations-sebastien-jourdan/page.tsx`, `app/globals.css`, `content/conversations-sebastien-jourdan/{fr,en,de-ch}.json`, `lib/__tests__/hub-conversations-maillage.test.ts`.
+
+**Rayon d'action** — Aucun fichier à rayon large (`globals.css`, `page.tsx` et les JSON du hub ont un effet local à cette page). La règle CSS est strictement préfixée `.conversations-hub` : pas d'effet sur les autres gabarits. Retour arrière : `git revert`.
+
+**Vérifié** — `verifier-json` (200 OK) ; `tsc` vert ; `vitest` **677** (dont 14 nouveaux cas V9) ; `next build` vert. QA build prod local (Playwright + captures, 3 langues) : liens de contenu en `very-peri` + soulignement + focus (distincts du texte `future-dusk`) ; bloc = 5 cartes + CTA localisé ; **0 lien cassé** (29 liens internes/locale en 200) ; 0 erreur console ; overflow mobile 390 = 0.
+**Supposé** — Rien au-delà des contrôles ci-dessus.
+**Non regardé** — Backlinks externes (hors périmètre). Contrôle `www` après fusion.
+
+**Préservé** — 10 entretiens, ancres `#entretien-01…10` et ancres de questions, titres/questions, illustrations/crédits, transparence, voix éditoriale, canonical, hreflang, JSON-LD, sommaire collant D44, parité FR/EN/de-ch. Aucune URL créée ; A/B, Studios, Industries inchangés ; choix #137/#145 préservés.
+
+**Suite** — PR **Draft**. Pas de fusion sans GO_MERGE, pas de mise en production sans GO_PUBLICATION.
+
+---
+
 ## 2026-10-14 · U06 : contraste WCAG du pied de page · Claude de Laurent
 
 **Chantier** : U06 (audit visuel G6) | **PR** : #143 (brouillon) | **Commit** : voir PR

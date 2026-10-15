@@ -229,7 +229,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "You start by looking at the catalog and at the path a product takes. Before choosing equipment, you need to understand how the item arrives, what allows it to be identified, who prepares the object and who collects the files. A very well-lit studio can still be badly organized."
+              "html": "You start by looking at the catalog and at the path a product takes. Before <a href=\"/en/studio-photo/selecteur-machines\">choosing equipment</a>, you need to understand how the item arrives, what allows it to be identified, who prepares the object and who collects the files. A very well-lit studio can still be badly organized."
             },
             {
               "t": "p",
@@ -397,7 +397,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "A product photo must first answer the question: <em>what am I going to receive?</em> You should be able to recognize the shape, the color, the material, the details and, where it matters, the contents of the package. A campaign image can tell a mood story; a reference photo must remain verifiable."
+              "html": "A product photo must first answer the question: <em>what am I going to receive?</em> You should be able to recognize the shape, <a href=\"#entretien-05\">the color</a>, the material, the details and, where it matters, the contents of the package. A campaign image can tell a mood story; a reference photo must remain verifiable."
             },
             {
               "t": "p",
@@ -464,7 +464,7 @@
           "contenu": [
             {
               "t": "p",
-              "html": "You don’t control every buyer’s phone. You can, however, control your own work. Consistent settings at capture, a reference screen, comparison with the real product and validation of sensitive shades: that is already a lot."
+              "html": "You don’t control every buyer’s phone. You can, however, control your own work. Consistent settings at capture, a reference screen, comparison with the real product and <a href=\"/en/guide/how-to-get-accurate-colors-in-product-photography\">validation of sensitive shades</a>: that is already a lot."
             },
             {
               "t": "p",
@@ -896,7 +896,7 @@
             },
             {
               "t": "p",
-              "html": "Marketplace rules change. It is better to keep the specifications in a maintained reference and to test whether the exports are accepted, rather than publish a table of dimensions that will be out of date next season."
+              "html": "<a href=\"/en/blog/ai-product-images-metadata-marketplaces\">Marketplace rules</a> change. It is better to keep the specifications in a maintained reference and to test whether the exports are accepted, rather than publish a table of dimensions that will be out of date next season."
             }
           ]
         },
@@ -1287,7 +1287,7 @@
             },
             {
               "t": "p",
-              "html": "Exact specifications should not be copied at random from an article: they change according to marketplaces and categories. A team has to maintain its own rules sheet, then check that files are accepted."
+              "html": "Exact specifications should not be copied at random from an article: they change according to <a href=\"/en/packshot-amazon\">marketplaces</a> and categories. A team has to maintain its own rules sheet, then check that files are accepted."
             }
           ]
         },
@@ -1516,7 +1516,7 @@
             },
             {
               "t": "p",
-              "html": "Training must also cover exceptions. A transparent material, a very fine logo, a garment that creases: everyone should know when the standard profile is no longer enough and whom to ask for help. That is how you recognise a team that has understood its tool."
+              "html": "<a href=\"/fr/academy\">Training</a> must also cover exceptions. A transparent material, a very fine logo, a garment that creases: everyone should know when the standard profile is no longer enough and whom to ask for help. That is how you recognise a team that has understood its tool."
             }
           ]
         },

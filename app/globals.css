@@ -826,6 +826,29 @@
   }
 }
 
+/* Liens du texte du hub « Conversations avec Sébastien Jourdan »
+   (app/[lang]/conversations-sebastien-jourdan, classe .conversations-hub sur
+   <main>). Même cause que les articles et les guides : sans le plugin typography,
+   les variantes prose-a:* ne produisent rien et les liens insérés dans les
+   dangerouslySetInnerHTML (intro, point de vue, sections, encadrés, à retenir,
+   transparence) prenaient la couleur du texte, sans soulignement ni focus.
+   On ne cible QUE les liens de contenu, reconnaissables à l'absence d'attribut
+   class : les liens de navigation (sommaire, vignettes, bloc « Pour aller plus
+   loin ») portent des classes Tailwind et gardent leur propre style. */
+@layer components {
+  :where(.conversations-hub a:not([class])) {
+    color: var(--very-peri-6);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+  }
+  :where(.conversations-hub a:not([class])):hover { color: var(--very-peri-7); }
+  :where(.conversations-hub a:not([class])):focus-visible {
+    outline: 2px solid var(--very-peri-6);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
 /* Anciens blocs vidéo Webflow sans légende (aujourd'hui les 2 figures Vimeo ;
    les figures YouTube sont remplacées par la façade de lib/youtube.ts) :
    <figure style="padding-bottom:N%"><div><iframe></iframe></div></figure>.
