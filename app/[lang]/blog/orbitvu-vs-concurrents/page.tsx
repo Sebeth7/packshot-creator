@@ -122,7 +122,7 @@ export default async function OrbitvuVsConcurrentsPage({ params }: { params: Pro
           </span>
           <span className="flex items-center gap-1.5">
             <Clock className="h-3.5 w-3.5" />
-            12 min de lecture
+            {lang === 'fr' ? '12 min de lecture' : '12 min read'}
           </span>
           <span className="flex items-center gap-1.5">
             <Calendar className="h-3.5 w-3.5" />
