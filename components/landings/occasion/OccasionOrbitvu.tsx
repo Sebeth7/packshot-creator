@@ -25,6 +25,7 @@ import type { LangueOccasion } from '@/lib/occasion/langues';
 import { Annotation } from './Annotation';
 import { BandeauApercu } from './BandeauApercu';
 import { BoutonMachine } from './BoutonMachine';
+import { alertesProposees } from '@/lib/occasion/alertes/affichage';
 import { FormulaireAlertes } from './FormulaireAlertes';
 import { FormulaireRecherche } from './FormulaireRecherche';
 import { contenuOccasion, type CollecteAffichee } from './contenu';
@@ -74,6 +75,8 @@ export default function OccasionOrbitvu({
 }) {
   const stock = machines.length > 0;
   const { HERO, MACHINES, RECHERCHE, FICHE, GARANTIE, ALERTES, ORIGINES } = contenuOccasion(langue);
+  // Étape A (16/10/2026) : liste d'alerte fermée = ni section ni lien en vue publique.
+  const alertesVisibles = alertesProposees(alertes, apercuInterne);
 
   return (
     <div id="occasion" data-annot="on" data-etat={stock ? 'stock' : 'vide'} className="group/occasion">
@@ -249,14 +252,16 @@ export default function OccasionOrbitvu({
                 {RECHERCHE.point}
               </li>
             </ul>
-            <div className="mt-[26px] rounded-[14px] border border-very-peri-100 bg-very-peri-50 px-[18px] py-4 text-[14.5px] text-future-dusk-700">
-              {RECHERCHE.alternative}
-              <br />
-              <a href="#alertes" data-test="alt-alerte" className="mt-1.5 inline-flex items-center gap-1.5 font-semibold text-very-peri-600 no-underline">
-                <Bell aria-hidden="true" className="h-[17px] w-[17px]" strokeWidth={TRAIT} />
-                {RECHERCHE.lienAlerte}
-              </a>
-            </div>
+            {alertesVisibles && (
+              <div className="mt-[26px] rounded-[14px] border border-very-peri-100 bg-very-peri-50 px-[18px] py-4 text-[14.5px] text-future-dusk-700">
+                {RECHERCHE.alternative}
+                <br />
+                <a href="#alertes" data-test="alt-alerte" className="mt-1.5 inline-flex items-center gap-1.5 font-semibold text-very-peri-600 no-underline">
+                  <Bell aria-hidden="true" className="h-[17px] w-[17px]" strokeWidth={TRAIT} />
+                  {RECHERCHE.lienAlerte}
+                </a>
+              </div>
+            )}
           </div>
           <FormulaireRecherche
             apercuInterne={apercuInterne}
@@ -332,38 +337,40 @@ export default function OccasionOrbitvu({
         </div>
       </section>
 
-      {/* ━━ LISTE D'ALERTE (parcours B, secondaire, double opt-in, fermée par défaut) ━━ */}
-      <section
-        id="alertes"
-        aria-labelledby="alertes-titre"
-        className="scroll-mt-20 bg-future-dusk-0 py-[52px] md:py-[76px]"
-      >
-        <div className={enveloppe}>
-          <div className="relative grid grid-cols-1 gap-y-5 overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#2b2c6e_0%,#4a4ba3_55%,#6667AB_100%)] px-4 py-6 text-[#e9e9fb] shadow-[0_40px_70px_-40px_rgba(43,44,110,.8)] md:grid-cols-2 md:grid-rows-[auto_1fr] md:gap-x-11 md:gap-y-0 md:rounded-[22px] md:p-11">
-            <div aria-hidden="true" className="pointer-events-none absolute -right-[120px] -top-[120px] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(205,205,253,.22),transparent_70%)]" />
-            <div className="relative z-[1] md:col-start-1 md:row-start-1">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#CDCDFD]">
-                <Bell aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={TRAIT} />
-                {ALERTES.surtitre}
-              </p>
-              <h2 id="alertes-titre" className={`${titre2} mt-3 text-white`}>{ALERTES.titre}</h2>
-              <p className="text-[16.5px] text-[#d9daf5]">{ALERTES.texte}</p>
+      {/* ━━ LISTE D'ALERTE (parcours B, secondaire, double opt-in, fermée par défaut ; masquée en vue publique tant qu'elle est fermée) ━━ */}
+      {alertesVisibles && (
+        <section
+          id="alertes"
+          aria-labelledby="alertes-titre"
+          className="scroll-mt-20 bg-future-dusk-0 py-[52px] md:py-[76px]"
+        >
+          <div className={enveloppe}>
+            <div className="relative grid grid-cols-1 gap-y-5 overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#2b2c6e_0%,#4a4ba3_55%,#6667AB_100%)] px-4 py-6 text-[#e9e9fb] shadow-[0_40px_70px_-40px_rgba(43,44,110,.8)] md:grid-cols-2 md:grid-rows-[auto_1fr] md:gap-x-11 md:gap-y-0 md:rounded-[22px] md:p-11">
+              <div aria-hidden="true" className="pointer-events-none absolute -right-[120px] -top-[120px] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(205,205,253,.22),transparent_70%)]" />
+              <div className="relative z-[1] md:col-start-1 md:row-start-1">
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#CDCDFD]">
+                  <Bell aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={TRAIT} />
+                  {ALERTES.surtitre}
+                </p>
+                <h2 id="alertes-titre" className={`${titre2} mt-3 text-white`}>{ALERTES.titre}</h2>
+                <p className="text-[16.5px] text-[#d9daf5]">{ALERTES.texte}</p>
+              </div>
+              <FormulaireAlertes apercuInterne={apercuInterne} alertes={alertes} langue={langue} />
+              <ul className="relative z-[1] grid content-start gap-2.5 md:col-start-1 md:row-start-2 md:mt-5">
+                {ALERTES.points.map((p, i) => {
+                  const Icone = [SlidersHorizontal, Bell, Mail, ShieldCheck][i] ?? Bell;
+                  return (
+                    <li key={p} className="flex items-start gap-2.5 text-[15px] text-[#eceeff]">
+                      <Icone aria-hidden="true" className="mt-px h-5 w-5 flex-[0_0_20px] text-[#CDCDFD]" strokeWidth={TRAIT} />
+                      {p}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <FormulaireAlertes apercuInterne={apercuInterne} alertes={alertes} langue={langue} />
-            <ul className="relative z-[1] grid content-start gap-2.5 md:col-start-1 md:row-start-2 md:mt-5">
-              {ALERTES.points.map((p, i) => {
-                const Icone = [SlidersHorizontal, Bell, Mail, ShieldCheck][i] ?? Bell;
-                return (
-                  <li key={p} className="flex items-start gap-2.5 text-[15px] text-[#eceeff]">
-                    <Icone aria-hidden="true" className="mt-px h-5 w-5 flex-[0_0_20px] text-[#CDCDFD]" strokeWidth={TRAIT} />
-                    {p}
-                  </li>
-                );
-              })}
-            </ul>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }
