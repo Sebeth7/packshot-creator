@@ -10,6 +10,8 @@ import { HeroSection, HeroVideoPanel } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, LIBELLES_BARRE } from '@/data/navigation/pages-longues';
 
 /**
  * Landing Studios photo automatisés, version FR (Wave 2, 08/10/2026).
@@ -22,8 +24,16 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSche
  * Fil : produit réel → capture → modèle de prise de vue → IA qui assiste → images et données → diffusion.
  * Sources des faits : registre L2 du 08/10 (orbitvu.com, référentiel D45, D32, page contact, calculateur).
  *
- * Interdits tenus : aucun nombre de systèmes, aucune cadence, aucun ROI chiffré, aucun prix, aucun
- * délai, aucune gratuité, aucun BlendAI, aucun logo client, aucun avis, aucun `id="calculateur-roi"` (D47).
+ * Interdits tenus : aucun nombre de systèmes, aucune cadence par machine, aucun prix, aucune gratuité,
+ * aucun BlendAI, aucun logo client, aucun avis, aucun `id="calculateur-roi"` (D47). Reprise du 16/10 :
+ * capacité d'environ 500 photos par jour formulée comme conditionnelle (arbitrage P3), faits publiés par
+ * #109 repris (délai indicatif d'environ 12 jours sans garantie, formation facturée séparément, showroom
+ * « près de Lyon » selon D1, ROI de 6 à 12 mois sans garantie).
+ *
+ * Navigation : chaîne S1 = sommaire statique de la page ; barre D44 (forme A, `SommaireCollant`) à partir
+ * de 1 024 px quand le registre l'active (`landing-gamme`, FR), libellés = titres de section (`TITRES`).
+ * La chaîne précède directement la première section : la barre apparaît quand cette section atteint la
+ * barre (règle de repli de R-UX-LONG § 3.1), sans `ancreSommaire`, et disparaît avant la démonstration.
  *
  * Médias : tous réels, aucun visuel généré. Droits de réutilisation non formalisés
  * (`ORBITVU_REUSE_PERMISSION = TO_CONFIRM`) : un bandeau le signale sur les Previews Vercel
@@ -151,18 +161,32 @@ const FAQ: readonly QuestionFaq[] = [
   },
   {
     q: 'Que comprend le coût d’un projet ?',
-    r: 'Le budget comprend la machine, la livraison et l’installation facturées en supplément, la formation proposée séparément si elle vous est utile, l’appareil photo compatible nécessaire et l’abonnement logiciel correspondant aux fonctions retenues. Le détail dépend du projet.',
+    r: 'Le budget comprend la machine, la livraison et l’installation facturées en supplément, la formation facturée séparément si elle vous est utile, l’appareil photo compatible nécessaire et l’abonnement logiciel correspondant aux fonctions retenues. Le délai de livraison est actuellement d’environ 12 jours, à titre indicatif et sans garantie. Le détail dépend du projet.',
   },
   {
     q: 'Peut-on voir un studio avant de décider ?',
-    r: 'Oui. Une découverte est possible à distance et une visite du showroom peut être organisée sur rendez-vous. Vous pouvez présenter vos propres produits afin de discuter de leurs contraintes et des solutions adaptées, sans présumer du résultat de la prise de vue.',
+    r: 'Oui. Une découverte est possible à distance et une visite de notre showroom, près de Lyon, peut être organisée sur rendez-vous. Vous pouvez présenter vos propres produits afin de discuter de leurs contraintes et des solutions adaptées, sans présumer du résultat de la prise de vue.',
   },
   {
     q: 'Comment estimer la rentabilité d’un studio ?',
-    r: 'Avec le calculateur ROI : il part de votre production actuelle et calcule les économies, le temps libéré et le retour sur investissement avec vos chiffres.',
+    r: 'Avec le calculateur ROI : il part de votre production actuelle et calcule les économies, le temps libéré et le retour sur investissement avec vos chiffres. En usage courant, le retour sur investissement se situe généralement entre 6 et 12 mois selon le volume, sans garantie.',
     lien: { texte: 'le calculateur ROI', href: '/calculateur-roi' },
   },
 ];
+
+/** Titres des sections (H2), source unique des titres et des libellés de la barre D44. */
+const TITRES = {
+  'a-quoi-sert': 'À quoi sert un studio photo automatisé ?',
+  capture: 'Ce que fait la machine, ce que fait l’opérateur',
+  collection: 'Photographier toute une collection avec les mêmes réglages',
+  ia: 'Ce que l’IA d’Orbitvu Station prend en charge',
+  images: 'Ce que vous obtenez à la sortie du studio',
+  diffusion: 'Envoyer les images là où elles servent',
+  studios: 'Choisir le studio adapté à vos produits',
+  prerequis: 'Avant de vous équiper',
+  projet: 'Ce que comprend un projet',
+  faq: 'Questions fréquentes',
+} as const;
 
 const CONTENEUR = 'max-w-7xl mx-auto px-4 sm:px-6';
 const SECTION = 'py-16 lg:py-24 scroll-mt-20';
@@ -286,9 +310,18 @@ function SchemaCollection() {
 
 export default function LandingStudios({ lang }: { lang: 'fr' }) {
   const url = `https://www.packshot-creator.com/${lang}/studios-photo-automatises`;
+  const barre = barreActive('landing-gamme', lang, 'studios-photo-automatises');
 
   return (
     <>
+      {barre && (
+        <SommaireCollant
+          titre={LIBELLES_BARRE[lang].titre}
+          libelle={LIBELLES_BARRE[lang].libelle}
+          entrees={Object.entries(TITRES).map(([id, libelle]) => ({ id, libelle }))}
+          ancreFin="demonstration"
+        />
+      )}
       {/* 1. Hero : film réel de la gamme ; CTA principal vers la démonstration. */}
       <HeroSection
         layout="split"
@@ -320,7 +353,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       <section id="a-quoi-sert" className={`${SECTION} bg-white`}>
         <div className={`${CONTENEUR} grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center`}>
           <div>
-            <h2 className={H2}>À quoi sert un studio photo automatisé ?</h2>
+            <h2 className={H2}>{TITRES['a-quoi-sert']}</h2>
             <p className={`${PARAGRAPHE} mb-4`}>
               Il permet à votre équipe de photographier vos produits en interne avec une méthode de capture reproductible.
               Lorsqu’une nouvelle référence arrive, vous repartez d’un modèle de prise de vue existant et ajustez ce qui doit
@@ -328,7 +361,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             </p>
             <p className={`${PARAGRAPHE} mb-6`}>
               PackshotCreator n’est pas une agence photo. Distributeur officiel Orbitvu, nous vous conseillons sur le choix de
-              l’équipement. La livraison et l’installation sont facturées en supplément ; la formation est proposée séparément.
+              l’équipement. La livraison et l’installation sont facturées en supplément ; la formation est facturée séparément.
               C’est votre équipe qui réalise les prises de vue.
             </p>
             <aside className="rounded-xl bg-future-dusk-0 border border-neutral-100 p-5">
@@ -350,7 +383,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 4. La machine et l'opérateur. */}
       <section id="capture" className={`${SECTION} bg-future-dusk-0`}>
         <div className={CONTENEUR}>
-          <h2 className={H2}>Ce que fait la machine, ce que fait l’opérateur</h2>
+          <h2 className={H2}>{TITRES.capture}</h2>
           <div className="grid gap-5 md:grid-cols-2 mb-8">
             <div className="rounded-2xl bg-white border border-neutral-200 p-6">
               <h3 className="font-heading font-semibold text-heading-dark mb-3">Le studio et Orbitvu Station</h3>
@@ -383,7 +416,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 5. Une collection reproductible (S2). */}
       <section id="collection" className={`${SECTION} bg-white`}>
         <div className={CONTENEUR}>
-          <h2 className={H2}>Photographier toute une collection avec les mêmes réglages</h2>
+          <h2 className={H2}>{TITRES.collection}</h2>
           <div className="max-w-3xl space-y-4">
             <p className={PARAGRAPHE}>
               Pour une famille de produits, l’opérateur prépare une première prise de vue et l’enregistre comme modèle. Les
@@ -403,7 +436,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       <section id="ia" className={`${SECTION} bg-future-dusk-0`}>
         <div className={`${CONTENEUR} grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start`}>
           <div className="lg:order-2">
-            <h2 className={H2}>Ce que l’IA d’Orbitvu Station prend en charge</h2>
+            <h2 className={H2}>{TITRES.ia}</h2>
             <p className={`${PARAGRAPHE} mb-6`}>
               Les fonctions d’IA d’Orbitvu Station assistent la prise de vue ou le traitement d’images de produits réels. Leur
               disponibilité dépend des équipements et d’un abonnement Orbitvu Station ; l’opérateur vérifie le résultat.
@@ -438,10 +471,11 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 7. Ce que vous obtenez. */}
       <section id="images" className={`${SECTION} bg-white`}>
         <div className={CONTENEUR}>
-          <h2 className={H2}>Ce que vous obtenez à la sortie du studio</h2>
+          <h2 className={H2}>{TITRES.images}</h2>
           <p className={`${PARAGRAPHE} max-w-3xl`}>
             Selon l’équipement et les réglages, un studio Orbitvu peut produire des photos fixes, des séquences, des vidéos ou des
-            vues à 360°. Les mesures physiques sont réservées aux configurations qui les prennent en charge ; la lecture
+            vues à 360°. Selon le système utilisé, les produits photographiés et l’organisation de la production, il est possible
+            de réaliser de l’ordre de 500 photos par jour. Les mesures physiques sont réservées aux configurations qui les prennent en charge ; la lecture
             d’informations sur l’emballage par AI OCR est une fonction distincte, soumise à vérification.
           </p>
           <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -468,7 +502,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 8. La diffusion. */}
       <section id="diffusion" className={`${SECTION} bg-future-dusk-0`}>
         <div className={CONTENEUR}>
-          <h2 className={H2}>Envoyer les images là où elles servent</h2>
+          <h2 className={H2}>{TITRES.diffusion}</h2>
           <p className={`${PARAGRAPHE} max-w-3xl`}>
             Orbitvu Station enregistre les fichiers sur votre poste ou dans le cloud, et peut les envoyer vers vos destinations
             e-commerce, web ou ERP. Orbitvu cite des connexions avec Shopify, Magento, Shopware et WooCommerce, et avec les
@@ -480,7 +514,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 9. Choisir le studio : sélecteur existant, inchangé. */}
       <section id="studios" className={`${SECTION} bg-future-dusk-900 text-white`}>
         <div className={CONTENEUR}>
-          <h2 className="text-3xl lg:text-4xl font-heading font-bold leading-tight mb-5 text-balance">Choisir le studio adapté à vos produits</h2>
+          <h2 className="text-3xl lg:text-4xl font-heading font-bold leading-tight mb-5 text-balance">{TITRES.studios}</h2>
           <div className="grid gap-8 lg:grid-cols-2 mb-10">
             <div>
               <p className="text-lg text-future-dusk-200 mb-3">Quatre questions orientent le choix :</p>
@@ -511,7 +545,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 10. Prérequis. */}
       <section id="prerequis" className={`${SECTION} bg-white`}>
         <div className={CONTENEUR}>
-          <h2 className={H2}>Avant de vous équiper</h2>
+          <h2 className={H2}>{TITRES.prerequis}</h2>
           <ul className="grid gap-4 md:grid-cols-2 max-w-5xl">
             {PREREQUIS.map((p) => (
               <li key={p.titre} className="rounded-xl border border-neutral-200 p-5 text-neutral-medium leading-relaxed">
@@ -530,11 +564,13 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 11. Coût complet, ROI, démonstration. */}
       <section id="projet" className={`${SECTION} bg-future-dusk-0`}>
         <div className={CONTENEUR}>
-          <h2 className={H2}>Ce que comprend un projet</h2>
+          <h2 className={H2}>{TITRES.projet}</h2>
           <p className={`${PARAGRAPHE} max-w-3xl mb-3`}>
             Le budget d’un projet dépend du studio choisi, de la livraison et de l’installation facturées en supplément, ainsi que
-            des options et de la formation, proposée séparément. Vérifiez également l’appareil photo compatible nécessaire et
-            l’abonnement Orbitvu Station correspondant aux fonctions souhaitées.
+            des options et de la formation, facturée séparément : Essential Training (4 h, à distance) ou Master Training (7 h,
+            en présentiel). Vérifiez également l’appareil photo compatible nécessaire et l’abonnement Orbitvu Station
+            correspondant aux fonctions souhaitées. Le délai de livraison est actuellement d’environ 12 jours, à titre indicatif
+            et sans garantie ; la durée d’installation dépend du système et de la configuration.
           </p>
           <p className="mb-10">
             <Link href="/academy" className={LIEN}>
@@ -558,7 +594,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             <div className="rounded-2xl bg-white border border-neutral-200 p-6 lg:p-8 flex flex-col">
               <h3 className="text-xl font-heading font-bold text-heading-dark mb-2">Voir un studio avant de décider</h3>
               <p className="text-neutral-medium leading-relaxed mb-6 flex-1">
-                Une première présentation peut être organisée à distance. Une visite du showroom est possible sur rendez-vous,
+                Une première présentation peut être organisée à distance. Une visite de notre showroom, près de Lyon, est possible sur rendez-vous,
                 avec vos propres produits pour discuter des contraintes de prise de vue.
               </p>
               <Button asChild size="lg" className="self-start bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl px-6 h-12 font-semibold">
@@ -572,7 +608,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 12. FAQ (= FAQPage). */}
       <section id="faq" className={`${SECTION} bg-white`}>
         <div className={`${CONTENEUR} max-w-4xl`}>
-          <h2 className={H2}>Questions fréquentes</h2>
+          <h2 className={H2}>{TITRES.faq}</h2>
           <div className="space-y-3">
             {FAQ.map((item) => (
               <details key={item.q} className="group rounded-2xl border border-neutral-200 bg-white open:shadow-md open:border-very-peri-200">
@@ -614,7 +650,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
           serviceSchema({
             name: 'Studios photo automatisés Orbitvu',
             description:
-              'Studios photo automatisés Orbitvu distribués et installés par PackshotCreator en France et en Suisse : capture pilotée par Orbitvu Station, fonctions d’IA selon l’équipement et l’abonnement, formation proposée séparément.',
+              'Studios photo automatisés Orbitvu distribués et installés par PackshotCreator en France et en Suisse : capture pilotée par Orbitvu Station, fonctions d’IA selon l’équipement et l’abonnement, formation facturée séparément.',
             serviceType: 'Studio photo automatisé',
             url,
             category: 'Équipement studio photo',

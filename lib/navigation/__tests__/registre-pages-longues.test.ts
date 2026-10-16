@@ -34,8 +34,10 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     }
   });
 
-  it('pilote Studios gelé jusqu’au J0 coordonné', () => {
-    for (const l of LANGUES) expect(barreActive('landing-gamme', l, 'studios-photo-automatises')).toBe(false);
+  it('Studios : barre sur la landing FR de #108 seulement (accord de Laurent du 16/10), gabarit transitoire EN et de-ch sans barre', () => {
+    expect(barreActive('landing-gamme', 'fr', 'studios-photo-automatises')).toBe(true);
+    expect(barreActive('landing-gamme', 'en', 'studios-photo-automatises')).toBe(false);
+    expect(barreActive('landing-gamme', 'de-ch', 'studios-photo-automatises')).toBe(false);
   });
 
   it('contenus des PR ouvertes gelés (#27, #64)', () => {

@@ -90,16 +90,23 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     famille: 'landing-gamme',
     gabarit: 'app/[lang]/studios-photo-automatises/page.tsx',
     forme: 'barre',
-    statut: 'HOLD',
-    portee: [],
+    statut: 'ADAPT',
+    portee: [{ slug: 'studios-photo-automatises', langue: 'fr' }],
     exceptions: [
       {
         slug: 'studios-photo-automatises',
-        motif: 'Pilote Studios coordonné avec Landings & Hubs et le Maillage V2 ; J0 commun proposé le 29/10/2026 (scénario P2). Arbitrage de Laurent du 03/10 : barre retirée de #85',
-        jusqua: 'chantier commercial Studios, sous validation spécifique',
+        langue: 'en',
+        motif: 'Gabarit transitoire EN : la nouvelle landing FR n’est pas traduite (arbitrage P2 de Laurent du 16/10/2026) ; sections sans identifiant',
+        jusqua: 'traduction de la landing FR validée (D42, étape 7)',
+      },
+      {
+        slug: 'studios-photo-automatises',
+        langue: 'de-ch',
+        motif: 'Gabarit transitoire de-ch : la nouvelle landing FR n’est pas traduite (arbitrage P2 de Laurent du 16/10/2026) ; sections sans identifiant',
+        jusqua: 'traduction de la landing FR validée (D42, étape 7)',
       },
     ],
-    note: 'Éligible (cinq sections à titre dont la FAQ ; 11 941 à 13 248 px) mais gabarit non branché. Ancre #calculateur-roi : lot AR-01 autonome, sans lien avec la barre.',
+    note: 'Landing FR de #108, rendue par _components/LandingStudios.tsx (accord de principe de Laurent du 16/10/2026, GO_ARBITRAGE_D44_STUDIOS) : neuf sections à titre et la FAQ, libellés = titres de section ; chaîne de production (S1) = sommaire statique de la page, juste avant la première section : la barre apparaît quand cette section atteint la barre (repli de R-UX-LONG § 3.1) et disparaît avant la demande de démonstration (ancreFin). Mesures dans la description de #108. Ancre #calculateur-roi : lot AR-01 autonome, sans lien avec la barre.',
   },
   {
     famille: 'solution',

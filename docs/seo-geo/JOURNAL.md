@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Studios #108 — reprise : `main` intégré, EN et de-ch sur #109, capacité de 500 photos par jour au conditionnel, barre D44 sur la landing FR · Claude de Laurent
+
+**Chantier** : Studios Wave 2, reprise décidée par Laurent le 16/10 (GO_REPRISE_108, GO_CODE_108, GO_PR_PUSH_108 ; GO_MERGE_108 et GO_PUBLICATION_108 = NON ; version allégée C de l'étude comparative du 16/10) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `a467bc7`, `main` `c92740c` intégré par commit de fusion
+
+**Quoi** —
+- Fusion de `main` (343 commits) dans #108. Conflits sur `messages/fr.json`, `en.json`, `de-ch.json`, `JOURNAL.md` et `ETAT.md`, résolus à partir de la version de `main` : aucun apport de #109 écrasé. Les modifications de #108 sur les messages sont réappliquées par chemin JSON, avec la sérialisation d'origine.
+- FR (P2) : texte de la landing #108 conservé ; meta description de #108 retenue. Faits publiés par #109 repris dans la landing : formation facturée séparément (Essential Training 4 h, Master Training 7 h), délai de livraison d'environ 12 jours à titre indicatif et sans garantie, showroom « près de Lyon » (D1), ROI de 6 à 12 mois en usage courant sans garantie (FAQ 7).
+- FR (P3) : phrase de référence de Laurent, « Selon le système utilisé, les produits photographiés et l'organisation de la production, il est possible de réaliser de l'ordre de 500 photos par jour », dans « Ce que vous obtenez à la sortie du studio ».
+- EN et de-ch (P2, P3) : textes de `main` après #109 conservés. Seuls les claims résiduels sont corrigés : « 500+ » de la meta et du hero remplacé par la capacité conditionnelle ; « 20 » systèmes retiré (meta, titre d'orientation, sous-titre du sélecteur) ; filtre « production volume » remplacé par les filtres réels ; « In seconds » retiré du titre EN ; « 3D » retiré de la FAQ q2 et des badges ; FAQ q3 sans les noms « Alphashot Pro XL » ni « la plupart ». Clés non rendues porteuses de claims supprimées (`socialProof`, `threePillars`, `photoTypes`, `finalCta.guide`, `trust`, `roiCalculator`). La statistique de ROI de #109 (« 6 à 12 mois, sans garantie ») est de nouveau rendue dans le bloc ROI.
+- D44 : barre `SommaireCollant` sur la landing FR (registre `landing-gamme` : ADAPT, portée FR), 10 entrées issues des titres de section (`TITRES`), masquée avant la demande de démonstration ; EN et de-ch sans barre (gabarit transitoire, exceptions motivées). R-UX-LONG : lignes de statut Studios actualisées, règle inchangée.
+
+**Pourquoi** — Décisions de Laurent du 16/10 (P2, P3, accord de principe D44, médias sans nouvel asset). #108 avait 343 commits de retard et 5 conflits sur `main` `c92740c` ; #64 est fermée depuis le 12/10 (L11, D57).
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx`, `app/[lang]/studios-photo-automatises/page.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `lib/__tests__/studios-claims.test.ts`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. À la publication (décision distincte ; jamais pendant M5, qui se termine le 28/10) : landing FR refondue, EN et de-ch alignées sur #109 sans claim non qualifié. La mesure `STUDIOS_INTERNAL_LINKING_EVENT` (#112) est en cours sur la page FR ; la publication sera un événement concomitant à dater.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 198 JSON valides ; Vitest : 1 065 tests sur 1 065 (58 fichiers), dont `studios-claims.test.ts` et `registre-pages-longues.test.ts` ; `npx next build` vert (variables factices), 384 pages prérendues.
+- HTML prérendu, branche contre `main` `c92740c` (identifiant de build et nom du CSS neutralisés, scripts exécutables retirés) : 384 pages, **381 identiques** ; différentes : les 3 pages Studios. Pages protégées identiques hors payload : `/fr`, F5, Mode FR et EN, calculateur FR et EN, IA, hubs bijoux et vin. Payload des messages : −11,7 Ko par page FR, −5,4 Ko EN, −5,9 Ko de-ch. CSS : 8 règles ajoutées, aucune retirée.
+- Mesures D44 (build local, 1 440 × 900) : FR 14 816 px (C1 ≥ 7 200), 9 sections à titre hors FAQ et formulaire (C2 ≥ 4) ; barre de 10 entrées, masquée en haut et sur la démonstration, visible en lecture, absente à 768 et 390 px. EN 11 148 px et de-ch 11 432 px, sections sans `id` : pas de barre.
+- Playwright sur `next start` du build final (Chromium du conteneur ; requêtes `/api/` simulées par les specs, aucun formulaire soumis) : 13 specs (`navigation-pages-longues`, `machine-selector`, `sommaire-blog`, `roi-calculator`, `cta-destinations`, `seo`, `mobile-overflow`, `language-switch`, `internal-links`, `responsive`, `external-links`, `anchors`, `popin-engagement`), 497 tests : **474 passés, 23 échecs**, tous rejoués sur le build de `main` `c92740c` avec le même résultat (historiques, dont le témoin différé `anchors`, D47, non forcé). Barre D44 de Studios FR : passe à 1 024 et 1 440 px (apparition, section active sur les 10 entrées, ancres au clavier, disparition) après le retrait de `ancreSommaire` : la chaîne S1 précède directement la première section, la barre restait masquée sur la première entrée (premier passage en échec, corrigé).
+- Captures avant (`main` `c92740c`) et après, FR, EN et de-ch, à 1 440, 1 024, 768 et 390 px, plus 1 920 et 360 en FR : aucun débordement horizontal, aucune requête `/api/`, aucune erreur JavaScript ; film du hero lu à partir de 768 px, affiche fixe en dessous.
+
+**Supposé** — [Inférence] Les droits de réutilisation des médias Orbitvu sur cette landing ne sont pas établis par les sources du dépôt : D55 confirme les droits de l'image du film pour la seule pop-in (#122). Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (authentification) et `www` (R4) ; traduction EN et de-ch de la nouvelle landing (non autorisée) ; cadences et noms « v2 » du sélecteur (D45, Q20) ; `hero-studios-wide.avif` du hero EN et de-ch (gabarit transitoire conservé) ; `Organization` global.
+
+**Suite** — CI, puis contrôle de la Preview par Laurent (FR, EN, de-ch ; desktop, tablette, mobile). Information groupée de Sébastien selon D15, préparée dans la description de la PR, non envoyée : le délai ne court qu'après la CI verte et la Preview contrôlée. GO_MERGE_108 et GO_PUBLICATION_108 : décisions distinctes.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit

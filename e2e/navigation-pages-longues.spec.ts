@@ -24,13 +24,15 @@ const EQUIPEES = [
   '/fr/ia-photo-produit',
   '/de-ch/ia-photo-produit',
   '/fr/solutions/documentation-technique-visuelle',
+  '/fr/studios-photo-automatises',
 ];
 
 /** Pages gelées (expérience SEO ou PR ouverte) ou exclues par la règle : aucune barre ajoutée. */
 const GELEES = [
   '/fr/packshot-e-commerce',
   '/fr/industrie/mode-textile',
-  '/fr/studios-photo-automatises',
+  '/en/studios-photo-automatises',
+  '/de-ch/studios-photo-automatises',
   '/fr/guide/comment-faire-photos-multi-angles-chaussures',
   '/fr/blog/budget-studio-photo-automatise',
   '/fr/blog/prestataire-packshot-vs-studio-interne',

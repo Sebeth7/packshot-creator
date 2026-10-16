@@ -585,19 +585,19 @@
   "studiosHardware": {
     "meta": {
       "title": "Automatisiertes Fotostudio für E-Commerce — PackshotCreator",
-      "description": "Automatisiertes Fotostudio für Ihre E-Commerce-Packshots. 20 Orbitvu-Systeme, 500+ Fotos/Tag. 5000+ ausgerüstete Unternehmen. Offizieller Distributor Schweiz und Frankreich: Demo nach Vereinbarung.",
+      "description": "Automatisiertes Fotostudio für Ihre E-Commerce-Packshots. 5000+ ausgerüstete Unternehmen. Offizieller Distributor Schweiz und Frankreich: Demo nach Vereinbarung.",
       "keywords": "automatisiertes Fotostudio, Orbitvu Schweiz, Produktfotosystem, automatische Produktfotografie, ROI Fotostudio, automatisierter Packshot"
     },
     "hero": {
       "badge": "Offizieller Orbitvu-Distributor — Frankreich & Schweiz",
       "title": "Automatisiertes Fotostudio: Produzieren Sie Ihre Packshots intern.",
-      "subtitle": "Die Orbitvu-Systeme automatisieren Aufnahme, Freistellen und Retusche. Ihre Teams produzieren 500+ Fotos/Tag, ohne externen Fotografen. Der ROI liegt je nach Volumen meist zwischen 6 und 12 Monaten, ohne Garantie.",
+      "subtitle": "Die Orbitvu-Systeme automatisieren Aufnahme, Freistellen und Retusche, ohne externen Fotografen. Je nach eingesetztem System, den fotografierten Produkten und der Organisation der Produktion sind rund 500 Fotos pro Tag möglich. Der ROI liegt je nach Volumen meist zwischen 6 und 12 Monaten, ohne Garantie.",
       "ctaPrimary": "Systeme ansehen",
       "ctaSecondary": "Demo anfordern"
     },
     "products": {
       "heading": "Finden Sie das passende System für Ihre Produktion",
-      "subtitle": "<bold>20 Orbitvu-Systeme</bold> — vom Packshot-Fotostudio bis zum E-Commerce-Fotostudio, vom Schmuckstück bis zum Möbel. Filtern Sie nach <bold>Produktgrösse</bold>, Inhaltstyp oder Produktionsvolumen, um Ihre Lösung mit wenigen Klicks zu identifizieren.",
+      "subtitle": "<bold>Orbitvu-Systeme</bold> — vom Packshot-Fotostudio bis zum E-Commerce-Fotostudio, vom Schmuckstück bis zum Möbel. Filtern Sie nach <bold>Produktgrösse</bold>, Automatisierungsgrad, Branche oder Funktion, um Ihre Lösung mit wenigen Klicks zu identifizieren.",
       "ctaText": "Mehr erfahren",
       "viewAll": "Alle Systeme ansehen"
     },
@@ -627,11 +627,11 @@
       },
       "q2": {
         "question": "Wie wähle ich das richtige System für meine Produkte?",
-        "answer": "Das hängt von der Grösse Ihrer Produkte und der gewünschten Art von Produktbild ab (Packshot, 360°, 3D, Video, Flat-Lay). Unser Selektor oben führt Sie mit wenigen Klicks ans Ziel. Für eine massgeschneiderte Empfehlung führen wir eine Demonstration mit Ihren eigenen Produkten durch."
+        "answer": "Das hängt von der Grösse Ihrer Produkte und der gewünschten Art von Produktbild ab (Packshot, 360°, Video, Flat-Lay). Unser Selektor oben führt Sie mit wenigen Klicks ans Ziel. Für eine massgeschneiderte Empfehlung führen wir eine Demonstration mit Ihren eigenen Produkten durch."
       },
       "q3": {
         "question": "Kann man mit allen Systemen 360°-Fotografie machen?",
-        "answer": "Die meisten unserer Systeme verfügen über einen motorisierten Drehteller für 360°-Ansichten. Der Alphashot Pro G2 ist der Spezialist für kleine Objekte, aber auch die Baureihen Alphashot Pro XL und Alphastudios bieten diese Funktion."
+        "answer": "Das hängt vom Modell ab. Orbitvu Station erstellt Standbilder, 360°-Ansichten und Videos; die Maschinenseiten, darunter die des Alphashot 360, geben an, was jedes Modell kann."
       },
       "q4": {
         "question": "Ist die Kamera inbegriffen?",
@@ -671,7 +671,7 @@
     },
     "orientation": {
       "label": "UNSERE SYSTEME",
-      "heading": "20 Orbitvu-Systeme, vom Schmuckstück bis zum Möbel",
+      "heading": "Orbitvu-Systeme, vom Schmuckstück bis zum Möbel",
       "description": "Identifizieren Sie das <bold>passende System</bold> für Ihre Produkte, Ihr Volumen und Ihre Ziele. Vergleichen Sie die Eigenschaften, filtern Sie nach Einsatz und finden Sie Ihre Lösung mit <bold>wenigen Klicks</bold>.",
       "cta": "Katalog erkunden"
     },

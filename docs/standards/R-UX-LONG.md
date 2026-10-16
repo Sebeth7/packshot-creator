@@ -17,7 +17,7 @@ Trois comportements, jamais cumulés sur une page :
 
 | Forme | Quoi | Composant | Où aujourd'hui |
 |---|---|---|---|
-| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, quatre articles dédiés (`studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026`, FR et EN) ; 93 pages au 06/10 (#85) ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : HOLD, barre relevant du chantier commercial sous validation spécifique (arbitrage de Laurent du 03/10) |
+| **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, quatre articles dédiés (`studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026`, FR et EN) ; 93 pages au 06/10 (#85) ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : barre sur la nouvelle landing FR de #108 à sa fusion (accord de principe de Laurent du 16/10, sous les critères du § 2), gabarit transitoire EN et de-ch sans barre ; HOLD sur `main` jusque-là (arbitrage de Laurent du 03/10) |
 | **B** | Sommaire latéral collant, utilisable sur toute la hauteur de l'écran | `components/blog/TableOfContents.tsx` | Articles du blog (gabarit commun) et quatre pages dédiées |
 | **C** | Sommaire statique dans la page, ou pas de navigation persistante | — | F5 (choix délibéré), pages courtes, pages de liste, outils, pages légales |
 
@@ -87,7 +87,7 @@ Sommaire de page éventuel, liens « Retour au sommaire » si la page en a. Aucu
 |---|---|
 | Page sous expérience SEO (F5 jusqu'au 23/11/2026 ; Mode et hub mode-textile jusqu'au 26/11/2026 ; accueil et M5 jusqu'au 28/10/2026) | HOLD : aucune modification de la page, navigation comprise |
 | Page touchée par une PR éditoriale ouverte | HOLD jusqu'à la clôture de la PR (registre au 07/10 : #27, #64). Exception temporaire, jamais permanente : à la clôture, contrôle sur `main` et retrait de l'exception si la page reste éligible. Exemple appliqué : les 3 exceptions de #91 retirées le 06/10 (`4b8c12a`), après la fusion de #91 (`3b427d7`) |
-| Page d'un pilote commercial coordonné (Studios : Landings & Hubs, Maillage V2) | HOLD jusqu'à la validation spécifique du chantier commercial |
+| Page d'un pilote commercial coordonné (Studios : Landings & Hubs, Maillage V2) | HOLD jusqu'à la validation spécifique du chantier commercial. Studios : validation de principe de Laurent du 16/10/2026 pour la landing FR de #108 (critères du § 2 consignés dans sa description) |
 | Pages légales, de liste, d'outil, formulaires | EXCLUDE |
 | `industrie-defense` | EXCLUDE (D10) |
 | Libellés qui exigeraient un texte nouveau | EXCLUDE ou circuit éditorial D42 (copywriting de Sébastien) |

@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import {
   Camera, Sparkles, GraduationCap, ArrowRight, ChevronDown,
-  RotateCcw, Shirt, Layout, Users, Truck, Headphones, Calculator,
+  RotateCcw, Layout, Users, Truck, Headphones, Calculator,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
@@ -52,8 +52,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function StudiosPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  // FR : landing Wave 2 (08/10/2026), texte dans le composant. EN et de-ch : gabarit historique,
-  // corrections d'intégrité seulement (registre L2 § 5), en attendant la traduction depuis la FR validée.
+  // FR : landing Wave 2 (08/10/2026, reprise du 16/10), texte dans le composant. EN et de-ch :
+  // gabarit historique, textes de main après #109 et claims résiduels corrigés (arbitrage P2 de
+  // Laurent du 16/10), en attendant la traduction depuis la FR validée.
   if (lang === 'fr') return <LandingStudios lang="fr" />;
 
   const t = await getTranslations({ locale: lang, namespace: 'studiosHardware' });
@@ -163,7 +164,6 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
                 {[
                   { icon: <Camera className="h-4 w-4" />, label: 'Packshot' },
                   { icon: <RotateCcw className="h-4 w-4" />, label: '360°' },
-                  { icon: <Shirt className="h-4 w-4" />, label: '3D' },
                   { icon: <Layout className="h-4 w-4" />, label: 'Flat-lay' },
                 ].map((type) => (
                   <span key={type.label} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-sm font-medium text-future-dusk-200 border border-white/5">
@@ -262,6 +262,9 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
                   {t('roiTeaser.cta')} <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
+              <p className="mt-6 text-sm font-semibold text-very-peri-600">
+                {t('roiTeaser.stat')}
+              </p>
             </div>
           </ScrollReveal>
         </div>
@@ -381,7 +384,8 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           serviceType: tx(lang, 'Studio photo automatisé', 'Automated photo studio', 'Automatisiertes Fotostudio'),
           url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
           category: tx(lang, 'Équipement studio photo', 'Photo studio equipment', 'Fotostudio-Ausrüstung'),
-          // Offre agrégée retirée : la FAQ n'affiche plus de prix (registre L2 § 5, 08/10/2026).
+          // Pas d'offre agrégée : son nombre d'offres (16) n'est pas établi. La fourchette de prix
+          // reste affichée dans la FAQ EN et de-ch (texte de #109), sans données structurées d'offre.
         }),
         faqSchema(studioFaqs),
       ]} />

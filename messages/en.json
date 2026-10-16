@@ -646,19 +646,19 @@
   "studiosHardware": {
     "meta": {
       "title": "Orbitvu Automated Photo Studios | PackshotCreator — Distributor France & Switzerland",
-      "description": "Orbitvu automated photo systems. 500+ photos/day. Official distributor France & Switzerland. 20 systems from jewelry to furniture. Demo by appointment.",
+      "description": "Orbitvu automated photo systems, from jewelry to furniture. Official distributor France & Switzerland. Demo by appointment.",
       "keywords": "automated photo studio, orbitvu france, product photo system, automatic product photography, photo studio roi, automated packshot"
     },
     "hero": {
       "badge": "Official Orbitvu Distributor — France & Switzerland",
-      "title": "Produce your product photos in-house. In seconds.",
-      "subtitle": "Orbitvu systems automate capture, clipping and retouching. Your teams produce 500+ photos/day, without an external photographer. Return on investment usually between 6 and 12 months depending on volume, with no guarantee.",
+      "title": "Produce your product photos in-house.",
+      "subtitle": "Orbitvu systems automate capture, clipping and retouching, without an external photographer. Depending on the system used, the products photographed and how production is organized, it is possible to produce around 500 photos per day. Return on investment usually between 6 and 12 months depending on volume, with no guarantee.",
       "ctaPrimary": "View systems",
       "ctaSecondary": "Request a demo"
     },
     "products": {
       "heading": "Find the right system for your production",
-      "subtitle": "<bold>20 Orbitvu systems</bold>, from jewelry to furniture. Filter by <bold>product size</bold>, content type or production volume to identify your solution in a few clicks.",
+      "subtitle": "<bold>Orbitvu systems</bold>, from jewelry to furniture. Filter by <bold>product size</bold>, automation level, industry or feature to identify your solution in a few clicks.",
       "ctaText": "Learn more",
       "viewAll": "View all systems"
     },
@@ -688,11 +688,11 @@
       },
       "q2": {
         "question": "How do I choose the right system for my products?",
-        "answer": "It depends on your product size and the type of visual you need (packshot, 360°, 3D, video, flat-lay). Our selector above guides you in a few clicks. For a tailored recommendation, we provide a demo with your own products."
+        "answer": "It depends on your product size and the type of visual you need (packshot, 360°, video, flat-lay). Our selector above guides you in a few clicks. For a tailored recommendation, we provide a demo with your own products."
       },
       "q3": {
         "question": "Can all systems do 360° photography?",
-        "answer": "Most of our systems include a motorized turntable for 360° views. The Alphashot Pro G2 specializes in small objects, but the Alphashot Pro XL and Alphastudio ranges also offer this feature."
+        "answer": "It depends on the model. Orbitvu Station produces still photos, 360° views and video; the machine pages, including the Alphashot 360 page, specify what each model can do."
       },
       "q4": {
         "question": "Is the camera included?",
@@ -732,7 +732,7 @@
     },
     "orientation": {
       "label": "OUR SYSTEMS",
-      "heading": "20 Orbitvu systems, from jewelry to furniture",
+      "heading": "Orbitvu systems, from jewelry to furniture",
       "description": "Identify the <bold>right system</bold> for your products, volume and goals. Compare specifications, filter by use case and find your solution in <bold>just a few clicks</bold>.",
       "cta": "Explore the catalog"
     },
