@@ -34,6 +34,66 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Mentions CRM mises au réel, et durcissement de `lib/pipedrive.ts` repris de #132 · Claude de Laurent
+
+**Chantier** : G5 — clôture | **PR** : #131 | **Commit** : voir la tête de `claude/nice-carson-qc299m`
+
+**Quoi** — Les commentaires et les lignes de gouvernance qui donnaient encore
+Pipedrive pour destinataire de Contact et du PDF ROI sont corrigés. Le seul
+apport de #132 non repris la veille — le durcissement de `lib/pipedrive.ts` — est
+intégré, avec son test.
+
+**Pourquoi** — Après la décision du 15/10, sept commentaires et six lignes de
+gouvernance décrivaient un circuit qui n'existe plus. `lib/pipedrive.ts` reste en
+service pour `/api/roi-lead` : son durcissement n'avait plus de porteur une fois
+#132 écartée de la fusion.
+
+**Fichiers** — `components/calculators/ROICalculator/steps/Step3Results.tsx`,
+`components/forms/index.ts`, `components/forms/ContactForm.tsx`,
+`lib/echapper-html.ts`, `lib/lead-enrichment.ts`, `e2e/roi-calculator.spec.ts`,
+`e2e/contact-form.spec.ts`, `lib/pipedrive.ts`,
+`lib/__tests__/pipedrive-robustesse.test.ts` (nouveau),
+`docs/seo-geo/01-RAYON-ACTION.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`
+
+**Ce que le durcissement change** (`lib/pipedrive.ts`, au bénéfice de
+`/api/roi-lead`, seul appelant restant) —
+- une réponse HTTP non `ok` ne compte plus comme une création réussie : avant,
+  `res.json()` sur un 4xx renvoyait un corps sans `data.id` et la fonction
+  retournait `null` sans dire pourquoi ;
+- l'échec de la note n'emporte plus l'affaire : son identifiant est rendu, la
+  note manquante est journalisée.
+Aucun appel Pipedrive n'est réintroduit dans `/api/contact` ni `/api/roi-pdf`.
+
+**Gouvernance** — `01-RAYON-ACTION.md` : « un lead qui n'arrive pas dans
+Pipedrive est un lead mort » ne vaut plus que pour `/api/roi-lead` et
+`/api/submit-survey`. `BOITE-AUX-LETTRES.md` : Q26 porte en tête la mise à jour
+du 16/10 — **volet #132 obsolète, volet #133 vivant** — ; la dette des points
+d'accès v1 ne concerne plus les deux routes sans CRM ; les questions touchant la
+politique de confidentialité (S5-D6, P4) sont précisées sans être tranchées.
+Aucun texte public n'est modifié. Rien n'est effacé : les états antérieurs sont
+conservés et datés.
+
+**Effet attendu** — Aucun effet visible : commentaires, documentation, et un
+durcissement d'erreur sur une route inchangée par ailleurs.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. Vitest ciblé : 11 cas nouveaux sur
+`lib/pipedrive.ts`, plus les 75 du périmètre leads, verts. `verifier-json` : 198
+JSON valides. `npx next build` (R1) : code de sortie 0. Suite générale non
+relancée : déjà verte sur `765a12a`, code inchangé hors `lib/pipedrive.ts`.
+
+**Supposé** — Rien de nouveau.
+
+**Non regardé** — GA4 et témoins M5 (intacts) ; calculs ROI (intacts) ; secrets ;
+`components/.../lib/types.ts` et `calculations.ts`, dont le terme « Informatif
+(CRM) » reste défendable et que #133 modifie ; `formatEnrichmentNote`, sans
+appelant depuis le 15/10, annotée et conservée.
+
+**Suite** — Campagne QA groupée #131 à exécuter sur GO_TEST_RÉEL ; fermeture sans
+fusion de #132 à proposer après l'intégration de #131 dans `main` ; #133 attend
+les validations Q20/D45 et D42 de Sébastien.
+
+---
+
 ## 2026-10-15 · Leads sans CRM : Contact et ROI PDF sur le modèle Catalogue #82 · Claude de Laurent
 
 **Chantier** : G5 — rationalisation des leads | **PR** : #131 | **Commit** : voir la tête de la branche `claude/nice-carson-qc299m`

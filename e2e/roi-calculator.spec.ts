@@ -10,7 +10,7 @@ import { test, expect, type Page } from '@playwright/test';
  *   (`ROICalculatorWizard`), conservé jusqu'à l'extension multilingue du conseiller.
  *
  * Aucun appel réel. Toute requête du navigateur vers `/api/` est simulée :
- * `/api/roi-pdf` (Resend + Pipedrive, lead réel), `/api/roi-lead` (lead),
+ * `/api/roi-pdf` (Resend seul depuis le 15/10/2026, lead réel ; aucun CRM), `/api/roi-lead` (lead),
  * `/api/roi-chat` (API d'IA facturée). Le formulaire e-mail n'est jamais soumis.
  */
 

@@ -141,7 +141,7 @@ interface ContactFormProps {
   hideRequestType?: boolean;
   /** Pré-sélectionner le secteur */
   defaultSector?: string;
-  /** Contexte machine (affiché dans la note Pipedrive) */
+  /** Contexte machine (affiché dans la notification interne) */
   machineContext?: string;
 }
 

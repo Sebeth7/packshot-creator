@@ -282,7 +282,12 @@ export async function enrichLead(contactData: {
 }
 
 /**
- * Formate les données enrichies en texte pour une note Pipedrive
+ * Formate les données enrichies en texte pour une note Pipedrive.
+ *
+ * SANS APPELANT depuis le 15/10/2026 : `/api/contact` ne crée plus de note et
+ * joint l'enrichissement à la notification interne par `formatEnrichmentHtml`.
+ * Conservée telle quelle pour les routes encore reliées au CRM ; à supprimer
+ * sur décision, pas en passant.
  */
 export function formatEnrichmentNote(enriched: EnrichedLead): string {
   const lines: string[] = ['', '━━━ AUTO-ENRICHMENT ━━━', ''];

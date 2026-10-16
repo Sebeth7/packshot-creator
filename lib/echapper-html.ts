@@ -1,6 +1,10 @@
 /**
- * Échappement HTML des valeurs insérées dans un e-mail ou une note Pipedrive
- * (le contenu d'une note Pipedrive est du HTML).
+ * Échappement HTML des valeurs insérées dans un e-mail.
+ *
+ * Depuis le 15/10/2026, ses appelants n'écrivent plus de note Pipedrive :
+ * `/api/contact` et `/api/roi-pdf` n'envoient que des e-mails. Les notes des
+ * routes encore reliées au CRM (`/api/roi-lead`, `/api/submit-survey`) ont leur
+ * propre échappement.
  *
  * Toute valeur venue d'un visiteur, d'un service tiers (INSEE, site web,
  * modèle d'IA) ou d'un paramètre d'URL passe par cette fonction avant d'être
