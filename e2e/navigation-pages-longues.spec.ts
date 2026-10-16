@@ -78,6 +78,9 @@ async function etat(page: Page) {
       if (n.closest('header') || n.closest('footer')) return false;
       const cs = getComputedStyle(n);
       if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return false;
+      // Masqué par un ancêtre (ex. colonne guide dans un `aside` `hidden` sous 1 280 px) :
+      // le `display` propre reste « block », mais l'élément n'est pas rendu.
+      if ((n as HTMLElement).getClientRects().length === 0) return false;
       for (let e: Element | null = n; e && e !== document.body; e = e.parentElement) {
         const p = getComputedStyle(e).position;
         if (p === 'sticky' || p === 'fixed') return true;
@@ -167,7 +170,8 @@ async function controlerSync(page: Page, url: string) {
   const sync = await page.evaluate(() => {
     const reperes = [...document.querySelectorAll<HTMLElement>('nav[data-d44]')].filter((n) => {
       const cs = getComputedStyle(n);
-      return cs.display !== 'none' && cs.visibility !== 'hidden' && cs.opacity !== '0';
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return false;
+      return n.getClientRects().length > 0; // non masqué par un ancêtre
     });
     const ancres = reperes.map((n) => [...n.querySelectorAll('a')].map((a) => a.getAttribute('href')!.slice(1)));
     const actifs = reperes.map((n) => n.querySelector('[aria-current="location"]')?.getAttribute('href') ?? null);
