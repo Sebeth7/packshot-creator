@@ -94,6 +94,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Article 9 de la politique de confidentialité : précision « alertes pas encore ouvertes » · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, micro-correctif de confidentialité (décision de Laurent du 16/10/2026 ; GO_CODE, GO_PR/PUSH) | **PR** : micro-PR dédiée | **Commit** : ce commit
+
+**Quoi** — Phrase validée par Laurent ajoutée au début de `privacy.article9.p2` : FR « Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. », EN « Sign-ups for availability alerts are not yet open. » ; `messages/de-ch.json` garde sa copie française et reçoit la phrase française. Test ajouté dans `occasion-langues.test.ts`. D60 (complément, point 12), RELEASE section 0 ter et ETAT mis à jour.
+
+**Pourquoi** — L'article 9 est public depuis la fusion de #129 et décrit la liste d'alerte alors qu'elle n'est pas ouverte (étape A). Sans refaire l'article ni rouvrir le chantier juridique.
+
+**Fichiers** — `messages/{fr,en,de-ch}.json` (une ligne chacun), `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,DECISIONS,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — La page `/fr/confidentialite` et `/en/confidentialite` affiche la phrase en tête du deuxième paragraphe de l'article 9. Aucun effet sur le SEO des pages Occasion, la navigation, les formulaires ni les verrous des alertes. À supprimer à l'activation de l'étape B.
+
+**Vérifié** — Comparaison clé par clé avec `main` : seul `privacy.article9.p2` diffère, des trois fichiers, et uniquement par la phrase ajoutée au début. Contrôles de la PR et rendu après déploiement : voir son corps.
+**Supposé** — Texte des deux phrases validé par Laurent (message du 16/10).
+**Non regardé** — Le reste de la politique de confidentialité ; `/de-ch/confidentialite` (page légale servie en FR et EN seulement).
+
+**Suite** — Contrôle de `sysnext.vercel.app`, puis de `www` dans Chrome ; suppression de la phrase à l'étape B.
+
+---
+
 ## 2026-10-16 · Publication de la landing occasion Orbitvu, étape A (FR, EN, de-ch, stock vide, recherche) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (GO_CODE / GO_PR-PUSH_PUBLICATION_129_A du 16/10/2026) | **PR** : PR de publication dédiée, après la fusion de #129 | **Commit** : ce commit

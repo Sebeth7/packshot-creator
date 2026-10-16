@@ -121,6 +121,14 @@ l'état fermé, et `occasion.test.ts` exige la collecte ouverte dès la publicat
 de publication porte donc `lib/occasion/activation.ts` et trois fichiers de tests
 (étape A), ou quatre (étape B, alertes comprises).
 
+Précision de confidentialité (16/10) : le premier paragraphe de l'article 9 sur les alertes
+(`privacy.article9.p2`, FR, EN, et de-ch en copie française) commence par une phrase
+validée par Laurent : FR « Les inscriptions aux alertes de disponibilité ne sont pas encore
+ouvertes. », EN « Sign-ups for availability alerts are not yet open. ». Rien d'autre n'est
+modifié dans l'article 9. **À supprimer à l'activation de l'étape B** (liste de contrôle de
+l'étape B : retirer cette phrase de `p2` dans `messages/{fr,en,de-ch}.json` et adapter le
+test d'`occasion-langues.test.ts` qui la fige).
+
 ## 1. Contrôle par surface
 
 | Surface | État dans la branche | Preuve | Reste à faire |
