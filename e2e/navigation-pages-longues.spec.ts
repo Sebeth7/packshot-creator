@@ -213,6 +213,34 @@ async function sommaire(page: Page) {
   );
 }
 
+/**
+ * Arrivée d'un défilement lancé depuis le sommaire : page immobile, titre posé sous la barre et
+ * section active dans les deux sommaires. L'entrée devient active avant la fin du défilement doux
+ * (mesuré le 16/10 en remontant de la FAQ vers #capture : actif à 608 ms, titre encore à −793 px,
+ * posé à 225 px ensuite) : mesurer dès qu'elle est active échouait sur le runner de la CI.
+ */
+async function arrivee(page: Page, id: string) {
+  let y = -1;
+  await expect
+    .poll(async () => { const avant = y; y = await page.evaluate(() => window.scrollY); return y === avant; }, {
+      message: `page immobile après le choix de #${id}`,
+      intervals: [300],
+      timeout: 10_000,
+    })
+    .toBe(true);
+  await expect
+    .poll(
+      async () => {
+        const s = await sommaire(page);
+        const haut = await page.evaluate((c) => document.getElementById(c)!.querySelector('h2')!.getBoundingClientRect().top, id);
+        const pose = haut >= s.basBarre - 1 && haut < 900 && s.actif === id && s.actifBarre === id;
+        return pose ? 'posé' : `titre à ${haut} px (barre : ${s.basBarre}), sommaire : ${s.actif}, barre : ${s.actifBarre}`;
+      },
+      { message: `#${id} posé sous la barre et actif dans les deux sommaires`, timeout: 5000 },
+    )
+    .toBe('posé');
+}
+
 test.describe('Navigation V9 — Studios FR, 1 440 px', () => {
   test.use({ viewport: { width: 1440, height: 900 } });
   const url = '/fr/studios-photo-automatises';
@@ -241,11 +269,7 @@ test.describe('Navigation V9 — Studios FR, 1 440 px', () => {
     await defilerVers(page, cibles[0]);
     for (const id of [cibles[4], cibles[cibles.length - 1], cibles[1]]) {
       await page.locator(`${SOMMAIRE} [data-toc-id="${id}"]`).click();
-      await expect.poll(async () => (await sommaire(page)).actif, { message: `actif après clic sur #${id}`, timeout: 4000 }).toBe(id);
-      const { basBarre } = await sommaire(page);
-      const haut = await page.evaluate((c) => document.getElementById(c)!.querySelector('h2')!.getBoundingClientRect().top, id);
-      expect(haut, `titre de #${id} sous la barre`).toBeGreaterThanOrEqual(basBarre - 1);
-      expect(haut, `titre de #${id} dans l’écran`).toBeLessThan(900);
+      await arrivee(page, id);
     }
 
     // Clavier : Tab depuis l'entrée précédente, puis Entrée.
@@ -255,8 +279,7 @@ test.describe('Navigation V9 — Studios FR, 1 440 px', () => {
     await expect(bouton).toBeFocused();
     expect(await bouton.evaluate((b) => b.matches(':focus-visible') && getComputedStyle(b).boxShadow !== 'none'), 'focus visible').toBe(true);
     await page.keyboard.press('Enter');
-    await expect.poll(async () => (await sommaire(page)).actif, { timeout: 4000 }).toBe(cibles[6]);
-    expect((await sommaire(page)).actifBarre).toBe(cibles[6]);
+    await arrivee(page, cibles[6]);
   });
 
   test('fin de zone : le sommaire ne recouvre ni la demande de démonstration ni le formulaire', async ({ page }) => {
