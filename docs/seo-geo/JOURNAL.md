@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Hub bijoux C1 — retrait des fichiers V1 non rendus ; engagement « démonstration » isolé (#104) · Claude de Laurent
+
+**Chantier** : arbitrage final de préparation de #104 C1, décisions de Laurent du 16/10 (`GO_CODE_NETTOYAGE_104`, `GO_PR_PUSH_NETTOYAGE_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104` = NON) | **PR** : #104, brouillon | **Base** : `main` `c92740c` ; tête avant nettoyage `a5bb695`
+
+**Quoi** — Retirés du diff final, parce qu'ils ne sont plus rendus ni référencés : `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx` ; la fonction `sectorResourceLinks` de `components/maillage/MaillageSections.tsx` (fichier redevenu identique à `main`) ; les 6 AVIF de `public/images/secteurs/bijoux/` (`superfocus-mise-au-point-{avant,arriere}`, `v104-1-macro-joaillerie`, `v104-360-rotation`, `v104-hero-studio-monitor-bijou`, `v104-retouche-export`). Diff final contre `main` : `data/secteurs.ts` (entrée `bijoux-joaillerie`), `JOURNAL.md`, `ETAT.md`. Hero `hero-secteur-bijoux` et H1 « Packshot bijoux : équipez votre studio interne » conservés tels quels (décisions de Laurent). Aucun texte, visuel ni gabarit modifié.
+
+**Conservation, vérifiée avant retrait** —
+- Dépendances : aucune référence à `HubBijoux`, `sectorResourceLinks` ni aux 6 AVIF hors de `HubBijoux.tsx` (code, données, contenus, tests, e2e, configuration) ; seules des mentions historiques dans `JOURNAL.md` et `ETAT.md`.
+- Historique : blobs identiques dans `1a9a607` (dernière V1 rendue) et `a5bb695` ; ces deux commits sont des ancêtres de la branche et de `refs/pull/104/head` (GitHub). `HubBijoux.tsx` : `1a9a607` (version rendue) et `a5bb695` (même fichier, note C1).
+- Sources : les 2 recadrages Superfocus proviennent de captures des guides présentes sur `main` (`public/images/guides/67d991805e0a0980101b8a95`, `…8a9b`, `67d99180406090f303cb444c`, `67d991831d2c1c71ab213bca`) ; les 4 `v104-*` sont des conversions AVIF d'illustrations des packs de Laurent du 08/10 (PNG non commités) : seule copie commitée = l'historique ci-dessus ; `HubBijoux.tsx` : idem.
+- Copie hors git : archive `PSC_104_V1_FICHIERS_RETIRES_2026-10-16.zip` (fichiers à `a5bb695` et `1a9a607`, diff de `sectorResourceLinks`, `SHA256SUMS.txt`, manifeste), remise à Laurent.
+
+**Engagement métier isolé, à confirmer explicitement par Sébastien** — La proposition de démonstration avec les pièces du prospect figure dans trois champs de l'entrée, inchangés : meta description (« … Studios Orbitvu adaptés, démonstration avec vos bijoux. »), titre de l'appel final (« Testez un studio Orbitvu avec vos bijoux »), texte de l'appel final (« Démonstration avec vos propres pièces, choix du système adapté et accompagnement par PackshotCreator, distributeur officiel Orbitvu. »). Préexistant sur les 17 hubs (gabarit, hors #104) : « Voyez nos systèmes en action sur vos propres produits. » Statut : à confirmer par Sébastien, question préparée dans la PR, **non envoyée** ; la période D15 n'est pas lancée (conditions non remplies : QA Chrome de Laurent à faire).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx` (supprimé), `components/maillage/MaillageSections.tsx`, `public/images/secteurs/bijoux/*.avif` (6, supprimés), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `eslint` sur `data/secteurs.ts` et `MaillageSections.tsx` : 0 problème ; `verifier-json` 198 ; Vitest 1047/1047 ; `npx next build` vert. HTML prérendu : **384/384 identiques** à un second build de `a5bb695` (identifiants de build et chemins `/_next/static` neutralisés). Contre le premier build de `a5bb695`, `fr` et `en` `studios-photo-automatises` différaient par l'ordre du flux RSC seulement (HTML hors `<script>` identique) ; deux builds de `a5bb695` diffèrent de la même façon : ordre non déterministe, sans lien avec ce commit. CSS global : 23 règles retirées, 0 ajoutée ; les 23 classes (utilisées par `HubBijoux.tsx` seulement) n'apparaissent dans aucune des 384 pages. Les preuves de QA de `a5bb695` (rendu local, liens, FAQ, métadonnées) restent valables.
+
+**Supposé** — Conservation durable de `refs/pull/104/head` par GitHub après fusion ou suppression de la branche (comportement documenté de GitHub, non vérifiable ici au-delà de l'état actuel).
+
+**Non regardé** — Preview (SSO) et `www` (R4). Aucune nouvelle QA générale (HTML inchangé).
+
+**Suite** — CI et Preview de la nouvelle tête ; QA Chrome de Laurent sur le périmètre court ; puis information de Sébastien (D42 étape 5, D15) avec la confirmation de l'engagement ; GO de fusion distinct.
+
+---
+
 ## 2026-10-16 · Hub bijoux — reprise de #104 en version allégée C1 : gabarit commun, données de f9a6d13 · Claude de Laurent
 
 **Chantier** : mission V9 de Laurent du 16/10, « GO REPRISE #104 BIJOUX, VERSION ALLÉGÉE C1 » (`GO_REPRISE_104`, `GO_CODE_104`, `GO_PR_PUSH_104` = OUI ; `GO_MERGE` et `GO_PUBLICATION` = NON) ; décision de Laurent, non inscrite dans `DECISIONS.md` | **PR** : #104, brouillon | **Base** : `main` `c92740c`, intégré dans la branche par commit de fusion (`7c35eb9`) ; tête avant reprise `1a9a607`
