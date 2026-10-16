@@ -17,7 +17,7 @@ Préparation : rapport A–F et livrables L2–L6 du 08/10/2026 (hors dépôt, t
 | Title (65 caractères) | Packshot bouteille de vin et spiritueux : studio photo automatisé |
 | Meta description (152 caractères) | Photographiez vos bouteilles de vin et de spiritueux en interne : lumière réglée pour le verre et l’étiquette, rendu cohérent d’une référence à l’autre. |
 | Surtitre | Vin et spiritueux |
-| H1 | Packshot bouteille : photographier vins et spiritueux avec précision et cohérence |
+| H1 | Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes (depuis le 16/10, section 5.7 ; avant : « Packshot bouteille : photographier vins et spiritueux avec précision et cohérence ») |
 | CTA principal | Demander une démonstration (→ `#demonstration`) |
 | CTA secondaire | Voir les deux studios (→ `#studios`) |
 
@@ -215,4 +215,26 @@ Décision de Laurent du 16/10/2026 (« V9 — CORRECTIF ÉDITORIAL PR #107 ») :
 Provenance interne inchangée : les huit visuels ont été générés par IA (outil natif ChatGPT, manifeste du 08/10/2026) ; réserves de la section 3 et droits de la section 5.3 maintenus. La légende générale du manifeste (« Illustration générée par IA… ») est remplacée sur la page par décision de Laurent ; le manifeste lui-même n’est pas modifié.
 
 Réserve, non bloquante : selon l’article du site sur l’AI Act (`content/blog/en/ai-act-product-images.json`, et sa version FR), une mention visible n’est due par l’entreprise que si l’image est un hypertrucage, c’est-à-dire qu’elle ressemble à des objets existants et peut passer pour authentique (article 50, paragraphe 4). [Inférence] Les bouteilles et étiquettes sont fictives et légendées comme telles ; la qualification reste une décision de Laurent, pas un avis juridique. Cela repose sur des schémas observés.
+
+### 5.7 Finition éditoriale du 16/10/2026
+
+Décision de Laurent du 16/10/2026 (« PSC V9 — FINITION ÉDITORIALE VIN #107 ») : landing plus directe, introduction moins technique, répétitions allégées, sans perte d'information métier ni de structure. Fichiers : entrée `vin-spiritueux` de `data/secteurs.ts` et constantes affichées de `HubVin.tsx`.
+
+- Title inchangé (« Packshot bouteille de vin et spiritueux : studio photo automatisé ») ; meta description inchangée.
+- H1 : « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes ». Le terme « packshot » reste dans le title et une fois dans l'introduction (« vos packshots repartent d'une base cohérente »).
+- Introduction : trois réponses dans l'ordre (difficultés d'une bouteille ; ce que fait un studio Orbitvu ; accompagnement de PackshotCreator, formation proposée séparément).
+
+Redondances allégées et emplacement de l'information conservée :
+
+| Passage modifié | Retiré ou raccourci | Information toujours présente |
+|---|---|---|
+| Matières, « Verre clair et liquide » | Rôle du contre-jour | Section éclairage, légende du schéma D1 (repère 2), FAQ 1 |
+| Matières, « Verre sombre » et « Étiquette » | Formulations raccourcies | Faits inchangés (reflet du plateau, épaule et bords ; étiquette plus sombre ; finitions) |
+| Éclairage, bloc réponse | Rôle détaillé de chaque source | Résumé dans le bloc ; détail dans la légende du schéma D1 (repères 2 à 6) et la FAQ 1 |
+| Éclairage, nuance et points | Phrases raccourcies | Réglage bouteille par bouteille ; 170 panneaux LED ; support en accessoire ; supports transparents retirés ; antireflet et cache noir ; enregistrement en modèle |
+| Gamme | Phrases raccourcies ; « base réutilisable, pas un réglage universel » rendu explicite | Contenu d'un modèle ; ajustement à chaque bouteille ; un modèle par type ou format ; correction en série |
+| Parcours, « Détourer » | Mécanisme de chaque méthode | IQ Mask et AI Masking nommés ; « seconde exposition » et supports transparents dans la FAQ 4 |
+| Parcours, introduction et « Retoucher » | Phrases raccourcies | Photo réelle au départ ; opérateur ; reflets forts et retouche manuelle selon Orbitvu |
+
+Inchangés : huit visuels et leurs légendes ; schéma D1 ; deux studios et leurs caractéristiques ; six FAQ ; sept étapes et la note sur les fonctions IA ; démonstration en visioconférence et showroom sur rendez-vous ; H2, H3, `id`, ancres, `alt`, liens, canonical, hreflang, `noindex` de la version EN. Aucun engagement commercial ni chiffre ajouté.
 

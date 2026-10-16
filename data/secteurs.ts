@@ -1262,17 +1262,17 @@ export const secteurs: Secteur[] = [
     description:
       'Photographiez vos bouteilles de vin et de spiritueux en interne : lumière réglée pour le verre et l’étiquette, rendu cohérent d’une référence à l’autre.',
     hero: {
-      titre: 'Packshot bouteille : photographier vins et spiritueux avec précision et cohérence',
+      titre: 'Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes',
       sousTitre: 'Vin et spiritueux',
       description:
-        'Une bouteille réunit ce qui complique une prise de vue : un verre qui reflète son environnement, un liquide dont la couleur change avec la lumière, une étiquette qui doit rester lisible. Dans un studio photo automatisé Orbitvu, la lumière, le cadrage et le traitement s’enregistrent dans des modèles : chaque nouvelle référence repart d’une base de capture cohérente, ajustée selon la bouteille.\n\nPackshotCreator, distributeur officiel d’Orbitvu en France et en Suisse, vous conseille sur le choix du studio et l’installe. La formation de vos équipes est proposée séparément.',
+        'Verre qui reflète, liquide qui change de teinte, étiquette à garder lisible : une bouteille cumule les difficultés de prise de vue. Un studio photo automatisé Orbitvu enregistre lumière, cadrage et traitement dans des modèles : vos packshots repartent d’une base cohérente, ajustée à chaque bouteille.\n\nPackshotCreator, distributeur officiel d’Orbitvu en France et en Suisse, vous conseille sur le choix du studio et l’installe. La formation de vos équipes est proposée séparément.',
     },
     problematiques: {
       titre: 'Verre, liquide, étiquette : ce qu’une bouteille impose à la prise de vue',
       items: [
-        'Verre clair et liquide : le contre-jour fait apparaître la transparence et la couleur du liquide. Le verre renvoie aussi les sources de lumière et son environnement ; une poussière ou une trace de doigt se voit sur une photo en haute définition.',
-        'Verre sombre : sur une bouteille de vin rouge, un plateau clair se reflète dans le bas du verre. Les reflets dessinent l’épaule et les bords de la bouteille.',
-        'Étiquette : éclairée par l’arrière seulement, elle ressort plus sombre que le verre qui l’entoure. Papier texturé, dorure, gaufrage : chaque finition prend la lumière différemment.',
+        'Verre clair et liquide : le verre renvoie les sources de lumière et son environnement. En haute définition, une poussière ou une trace de doigt se voit.',
+        'Verre sombre : sur un vin rouge, un plateau clair se reflète dans le bas du verre. Ce sont les reflets qui dessinent l’épaule et les bords.',
+        'Étiquette : éclairée seulement par l’arrière, elle ressort plus sombre que le verre. Papier texturé, dorure, gaufrage : chaque finition prend la lumière à sa façon.',
         'Capsule et col : capsule métallique, muselet ou bouchon renvoient la lumière sous d’autres angles que le corps de la bouteille.',
       ],
     },

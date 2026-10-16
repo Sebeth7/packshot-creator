@@ -101,13 +101,13 @@ const VUES_VISUEL: Visuel = {
 const LUMIERE = {
   titre: 'Comment éclairer une bouteille sans perdre l’étiquette',
   reponse:
-    'Pour photographier une bouteille de vin, on privilégie une lumière diffuse : une lumière directe de face crée des reflets francs sur le verre. Le contre-jour fait apparaître la transparence et la couleur du liquide ; des lumières latérales soulignent la forme ; une lumière dirigée vers l’étiquette compense l’assombrissement dû au contre-jour. Sur une bouteille sombre, un support surélevé évite le reflet du plateau, et des surfaces sombres sur les côtés soulignent les bords.',
+    'Pour photographier une bouteille de vin, on privilégie une lumière diffuse : de face, une lumière directe crée des reflets francs sur le verre. Chaque source a son rôle, détaillé dans le schéma : le contre-jour révèle le liquide, les lumières latérales la forme, une lumière dirigée l’étiquette, des surfaces sombres les bords. Sur une bouteille sombre, un support surélevé évite le reflet du plateau.',
   nuance:
-    'L’équilibre entre ces sources se règle bouteille par bouteille : les formes complexes, comme certains flacons de spiritueux, demandent davantage de lumière d’appoint.',
+    'L’équilibre entre ces sources se règle bouteille par bouteille. Les formes complexes, comme certains flacons de spiritueux, demandent plus de lumière d’appoint.',
   studio: 'Dans un studio Orbitvu, ces réglages se retrouvent d’une séance à l’autre :',
   points: [
-    'la lumière se pilote depuis le logiciel Orbitvu Station ; sur l’Alphashot XL G2, chacun des 170 panneaux LED se règle en direction et en intensité ;',
-    'un support bouteille, proposé en accessoire, surélève le produit ; Orbitvu Station détecte et retire de l’image les supports transparents ;',
+    'la lumière se pilote depuis Orbitvu Station ; sur l’Alphashot XL G2, chacun des 170 panneaux LED se règle en direction et en intensité ;',
+    'un support bouteille, en accessoire, surélève le produit ; Orbitvu Station détecte et retire de l’image les supports transparents ;',
     'des accessoires antireflets et un cache noir limitent les reflets de l’environnement ;',
     'le réglage retenu s’enregistre dans un modèle, avec ceux de l’appareil photo et du traitement.',
   ],
@@ -120,8 +120,8 @@ const LUMIERE = {
 const GAMME = {
   titre: 'Une gamme cohérente, sous tous les angles',
   paragraphes: [
-    'Bordelaise, bourguignonne, flûte, flacon de spiritueux : d’une référence à l’autre, la hauteur, le diamètre, la teinte du verre et les finitions changent. Le rendu de la gamme, lui, doit rester homogène.',
-    'Un modèle Orbitvu Station mémorise le nombre d’images, la lumière, les angles, la position de l’appareil, l’ouverture, la vitesse et le détourage. Il donne une base de capture cohérente, que l’on ajuste selon la forme, les dimensions, le verre et les finitions de chaque bouteille. Station conserve un modèle par type de produit : un par format, si votre gamme l’exige. Une correction peut ensuite s’appliquer à toute une série d’images.',
+    'Bordelaise, bourguignonne, flûte, flacon de spiritueux : hauteur, diamètre, teinte du verre et finitions changent d’une référence à l’autre. Le rendu de la gamme, lui, doit rester homogène.',
+    'Un modèle Orbitvu Station mémorise le nombre d’images, la lumière, les angles, la position de l’appareil, l’ouverture, la vitesse et le détourage. C’est une base réutilisable, pas un réglage universel : on l’ajuste à la forme, aux dimensions, au verre et aux finitions de chaque bouteille. Station conserve un modèle par type de produit, un par format si votre gamme l’exige. Une correction peut ensuite s’appliquer à toute une série d’images.',
   ],
   legende: `${LEGENDE_VISUEL} Il figure une présentation homogène, pas le résultat d’un réglage de studio.`,
   vuesTitre: 'Les vues dont vos fiches ont besoin',
@@ -144,13 +144,13 @@ const GAMME = {
 const WORKFLOW = {
   titre: 'De la bouteille aux fichiers publiés',
   intro:
-    'La photographie réelle de la bouteille reste le point de départ. L’opérateur intervient à chaque étape où un choix ou un contrôle est nécessaire.',
+    'Tout part d’une photographie réelle de la bouteille. L’opérateur intervient dès qu’un choix ou un contrôle est nécessaire.',
   etapes: [
     { titre: 'Préparer', texte: 'Dépoussiérer la bouteille et la manipuler avec des gants en coton : le verre garde chaque trace.', operateur: true },
     { titre: 'Placer', texte: 'Poser la bouteille au centre du plateau tournant, sur son support si nécessaire.', operateur: true },
     { titre: 'Capturer', texte: 'Lancer le modèle : photos, rotation à 360°, vidéo. Le logiciel pilote la lumière, l’appareil et le plateau.', operateur: false },
-    { titre: 'Détourer', texte: 'Orbitvu Station retire le fond pendant la prise de vue, par une seconde exposition (IQ Mask) ou par l’IA (AI Masking), y compris en mode transparent. L’opérateur contrôle le résultat à l’écran.', operateur: true },
-    { titre: 'Retoucher', texte: 'AI Retoucher peut atténuer des reflets indésirables, nettoyer des imperfections et ajuster les couleurs, en partant de la photo réelle. Orbitvu précise que des reflets forts sur le verre peuvent demander une retouche manuelle : l’opérateur valide le résultat.', operateur: true },
+    { titre: 'Détourer', texte: 'Orbitvu Station retire le fond pendant la prise de vue (IQ Mask ou AI Masking), y compris en mode transparent. L’opérateur contrôle le résultat à l’écran.', operateur: true },
+    { titre: 'Retoucher', texte: 'AI Retoucher peut atténuer des reflets indésirables, nettoyer des imperfections et ajuster les couleurs, à partir de la photo réelle. Selon Orbitvu, des reflets forts sur le verre peuvent demander une retouche manuelle. L’opérateur valide le résultat.', operateur: true },
     { titre: 'Vérifier les données d’étiquette (option)', texte: 'AI OCR lit le texte imprimé sur plusieurs vues d’une même bouteille et le range dans des champs. L’opérateur vérifie les données avant de les enregistrer.', operateur: true },
     { titre: 'Publier', texte: 'Exporter les formats voulus, ou publier vers Shopify, Shopware, Magento, PrestaShop ou WooCommerce.', operateur: false },
   ],
@@ -289,7 +289,7 @@ export default function HubVin({ secteur, lang, slug, breadcrumbs, autresSecteur
               {typo(secteur.problematiques.titre)}
             </h2>
             <p className="text-lg text-neutral-medium leading-relaxed">
-              {typo('Sur une bouteille, chaque matière réagit à sa façon. Le réglage doit les traiter ensemble, sans en sacrifier une.')}
+              {typo('Chaque matière réagit à sa façon. Le réglage doit les traiter toutes, sans en sacrifier une.')}
             </p>
           </div>
           {/* Sous 640 px : liste verticale, vignette à gauche du texte (les quatre contraintes restent

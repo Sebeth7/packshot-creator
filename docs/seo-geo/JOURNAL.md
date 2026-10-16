@@ -34,6 +34,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Hub vin-spiritueux (#107) — finition éditoriale : nouveau H1, introduction resserrée, répétitions allégées · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« PSC V9 — FINITION ÉDITORIALE VIN #107 » : `GO_CODE_CORRECTIF_EDITO_107`, `GO_PR_PUSH_CORRECTIF_EDITO_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`
+
+**Quoi** — H1 « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes » ; introduction en trois temps (difficultés, studio Orbitvu, accompagnement) ; phrases raccourcies et doublons allégés dans les matières, l'éclairage, la gamme et le parcours. Title, meta description, H2, H3, FAQ, visuels, légendes, liens et données structurées inchangés. Détail et table des redondances : section 5.7 de `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Pourquoi** — Landing plus convaincante et plus courte à lire, introduction moins technique, sans perte de richesse SEO ni métier.
+
+**Fichiers** — `data/secteurs.ts` (entrée `vin-spiritueux` seule), `app/[lang]/industrie/[slug]/_components/HubVin.tsx` (constantes de texte affichées), `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Rien avant fusion. Après : H1 sans « packshot » ; le terme reste dans le `<title>` et une fois dans l'introduction. [Inférence] Effet sur la position de « packshot bouteille » non estimable sans mesure. Cela repose sur des schémas observés.
+
+**Vérifié** — `npx tsc --noEmit` vert ; build vert ; HTML prérendu contre `main` `c92740c` : 382/384 identiques. Contre le HEAD précédent (`80bf178`), fr et en : title, description, canonical, robots, hreflang, H2, H3, `id`, liens, `alt`, nombre d'images, légendes, types JSON-LD et FAQ JSON-LD identiques ; seul le H1 change parmi ces éléments. Chaque information retirée d'un passage reste présente ailleurs sur la page (table de la section 5.7).
+
+**Supposé** — Rien au-delà de l'inférence ci-dessus.
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; relecture de Sébastien (attendue).
+
+**Suite** — Relecture de Laurent sur la Preview ; validation de Sébastien requise avant fusion ; GO de fusion et de publication distincts.
+
+---
+
 ## 2026-10-16 · Hub vin-spiritueux (#107) — correctif éditorial : légendes publiques sans mention « Illustration générée par IA » · Claude de Laurent
 
 **Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« V9 — CORRECTIF ÉDITORIAL PR #107 » : `GO_CODE_CORRECTIF_107`, `GO_PR_PUSH_CORRECTIF_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`
