@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
+
+**Quoi** — Événement ultérieur, ajouté sans modifier l'entrée suivante (« #155 fusionnée … contrôle `www` FR/EN en attente de Chrome »), qui reste exacte à sa date : Laurent confirme explicitement, le 16/10/2026 (heure non communiquée), que les textes FR et EN de l'article 9 qu'il a transmis dans sa conversation proviennent des pages `www` de production `https://www.packshot-creator.com/fr/confidentialite` et `https://www.packshot-creator.com/en/confidentialite`. Résultat : `WWW_155_FR` = **PASS** et `WWW_155_EN` = **PASS**, au titre d'un contrôle humain du contenu.
+
+**Pourquoi** — Le « non vérifié » de l'entrée précédente tenait à R4 : seul le Chrome de Laurent atteint `www` (challenge Cloudflare opposé aux navigateurs sans interface lancés depuis le conteneur).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` seulement.
+
+**Effet attendu** — Aucun sur le site. L'article 9 est vérifié sur l'origine `sysnext` et sur `www`, en FR et en EN.
+
+**Vérifié** — Compte rendu de Laurent (pages `www`, contrôle humain du contenu) : les cinq paragraphes de l'article 9 sont présents dans chaque langue ; les phrases approuvées ouvrent le paragraphe 2 (FR : « Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. » ; EN : « Sign-ups for availability alerts are not yet open. ») ; les textes existants sont conservés.
+**Supposé** — Rien.
+**Non regardé** — **Ce n'est pas l'exécution du script de contrôle automatisé** dans la console de Chrome : aucune ligne `RÉSULTAT` n'existe et aucune n'est revendiquée. L'heure du contrôle n'a pas été communiquée. Les textes que Laurent dit avoir transmis ne figurent pas dans les messages reçus par cette session : le PASS est repris de sa confirmation, non revérifié par l'agent (R4). `/de-ch/confidentialite` (404 attendu) n'a été contrôlé que sur l'origine `sysnext` ; les balises canonical, hreflang et robots de ces deux pages n'ont pas été contrôlées sur `www`.
+
+**Suite** — Dernière PR documentaire de cette série : #157 est fusionnée avec cette entrée ; aucune PR documentaire supplémentaire n'est prévue.
+
+---
+
 ## 2026-10-16 · Landing occasion : #155 fusionnée (article 9), origine `sysnext` vérifiée, contrôle `www` FR/EN en attente de Chrome · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, micro-correctif de l'article 9 de la politique de confidentialité (« GO D'EXÉCUTION GROUPÉ — #155 + #157 », 16/10/2026 ; GO_CODE_RESYNC_155, GO_COMMIT/PUSH_155, GO_MERGE_155 et GO_PUBLICATION_155 conditionnels) | **PR** : #155, consignée ici par #157 | **Commit** : fusion `2d250cd856c17f31bb8cc4673a75b4ed7e8e58db` (parents `b18d8c2` et `faf994a`)
