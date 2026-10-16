@@ -278,11 +278,12 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
     }
   });
 
-  it('lien du menu et du pied de page : libellé par langue, même cible', () => {
+  it('lien du pied de page : libellé par langue (16/10/2026), même cible, jamais « reconditionné » ni « refurbished »', () => {
     expect(LIEN_OCCASION.href).toBe(P);
-    expect(libelleLienOccasion('fr')).toBe("Offres d'occasion");
-    expect(libelleLienOccasion('en')).toBe('Pre-owned offers');
-    expect(libelleLienOccasion('de-ch')).toBe('Occasionen');
+    expect(libelleLienOccasion('fr')).toBe("Matériel d'occasion");
+    expect(libelleLienOccasion('en')).toBe('Pre-owned equipment');
+    expect(libelleLienOccasion('de-ch')).toBe('Occasionsgeräte');
+    for (const l of ['fr', 'en', 'de-ch']) expect(libelleLienOccasion(l), l).not.toMatch(/reconditionn|refurbish|aufbereit|erneuert|offres|offers|angebot/i);
   });
 
   describe('maillage depuis les articles de blog sur l’achat d’occasion (14/10/2026)', () => {
@@ -311,7 +312,7 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
     });
   });
 
-  describe('emplacements du lien (décision de Laurent du 14/10/2026)', () => {
+  describe('emplacements du lien (décision définitive de Laurent du 16/10/2026, qui remplace celle du 14/10)', () => {
     // Code seul : les commentaires décrivent les emplacements en toutes lettres.
     const code = (f: string) =>
       readFileSync(join(process.cwd(), f), 'utf8')
@@ -320,33 +321,26 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
         .join('\n');
     const occurrences = (s: string, motif: string) => s.split(motif).length - 1;
 
-    it('menu Solutions : en dernier, après Guides et hors de son sous-menu, séparé et discret (desktop et mobile)', () => {
+    it('menu haut : aucun lien vers la landing d\u2019occasion, ni en sous-menu, desktop et mobile', () => {
       const header = code('components/layout/Header.tsx');
-      expect(occurrences(header, 'LIEN_OCCASION.href')).toBe(1);
+      expect(header).not.toContain('LIEN_OCCASION');
+      expect(header).not.toContain('libelleLienOccasion');
+      expect(header).not.toContain('lienOccasion');
+      expect(header).not.toContain('/studios-photo-automatises/opportunites');
+      expect(header).not.toMatch(/occasion|opportunites/i);
+      // Les trois offres principales restent en tête du menu Solutions, inchangées.
       const debut = header.indexOf('const solutionSections');
       const secteurs = header.indexOf("titleKey: 'bySector'");
-      const guides = header.indexOf("titleKey: 'guides'");
-      const secondaire = header.indexOf('secondaire: true');
-      const lien = header.indexOf('LIEN_OCCASION.href');
-      const fin = header.indexOf('];', lien);
       expect(debut).toBeGreaterThan(-1);
-      // Trois offres principales en tête, sans le lien d'occasion.
       expect([...header.slice(debut, secteurs).matchAll(/href: '([^']+)'/g)].map((m) => m[1])).toEqual([
         '/studios-photo-automatises',
         '/ia-photo-produit',
         '/calculateur-roi',
       ]);
-      // Rubriques conservées dans l'ordre, puis le lien, dernière entrée du menu.
-      expect(header.indexOf("titleKey: 'industrialDoc'")).toBeGreaterThan(secteurs);
-      expect(guides).toBeGreaterThan(header.indexOf("titleKey: 'industrialDoc'"));
-      expect(secondaire).toBeGreaterThan(guides);
-      expect(lien).toBeGreaterThan(secondaire);
-      expect(header.slice(lien, fin)).not.toMatch(/titleKey|href:/);
-      // Desktop : sections secondaires rendues après les flyouts ; mobile : sans icône.
-      expect(header).toContain('const mainSections = sections.filter((s) => !s.titleKey && !s.secondaire);');
-      expect(header).toContain('const secondarySections = sections.filter((s) => s.secondaire);');
-      expect(header.indexOf('secondarySections.map')).toBeGreaterThan(header.indexOf('flyoutSections.map'));
-      expect(header).toContain('section.secondaire ?');
+      // Le layout ne transmet le lien qu'au pied de page.
+      const layout = code('app/[lang]/layout.tsx');
+      expect(layout).toContain('<Header />');
+      expect(layout).toContain('<Footer lienOccasion={lienOccasion} />');
     });
 
     it('pied de page : une seule occurrence, colonne Solutions après « Questions clés », absente de la colonne des studios', () => {

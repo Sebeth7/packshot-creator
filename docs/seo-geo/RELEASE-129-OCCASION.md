@@ -126,7 +126,8 @@ de publication porte donc `lib/occasion/activation.ts` et trois fichiers de test
 | Surface | État dans la branche | Preuve | Reste à faire |
 |---|---|---|---|
 | Landing FR, EN, DE-CH | `/{fr,en,de-ch}/studios-photo-automatises/opportunites`, même chemin, textes par langue (`components/landings/occasion/contenu-*.ts`) | `occasion-langues.test.ts` ; QA trilingue locale | Relecture de la copy par Sébastien ; relecture native EN et DE-CH recommandée |
-| Menus et pied de page | Décision de Laurent du 14/10 (remplace le 10/10) : menu déroulant Solutions, **en dernier, après la rubrique Guides**, hors de son sous-menu, lien secondaire séparé et discret (ordinateur et mobile), jamais sous « Studios Photo Automatisés » ni dans la barre principale ; pied de page, **colonne Solutions après « Questions clés »**, une seule occurrence, retiré de la colonne des studios ; « Offres d'occasion », « Pre-owned offers », « Occasionen » ; vers la page de la même langue ; absent en production tant que la page n'est pas publiée | `occasion-langues.test.ts` (emplacements) ; QA locale du 14/10, trois langues, 1280 et 390 px | Rien |
+| Menus et pied de page | Décision définitive de Laurent du 16/10 (remplace celles du 10/10 et du 14/10) : **aucun lien dans le menu haut** (ni menu Solutions, ni sous-menu, desktop et mobile) ; pied de page seulement, **colonne Solutions après « Questions clés »**, une seule occurrence, absent de la colonne des studios ; « Matériel d'occasion », « Pre-owned equipment », « Occasionsgeräte » ; vers la page de la même langue ; absent en production tant que la page n'est pas publiée ; aucun autre bouton ni élément promotionnel | `occasion-langues.test.ts` (emplacements, mis à jour le 16/10) | Rien |
+| Trois modèles présentés (sans stock) | Décision de Laurent du 16/10 (D60 point 14) : à stock vide, section « Trois modèles Orbitvu, présentés avec leur contexte d'usage » entre le hero et la recherche : Alphadesk (showroom), Alphashot Micro v2 (démonstrations clients), Alphastudio XXL v2 (retour de salon) ; **aucun prix, remise, promotion, déstockage ni reconditionnement** ; aucune valeur fictive des exemples (état, inspection, licence, garantie, OCC-0x) ; **badges = cadres d'usage** (showroom, démonstration, salon), ligne « Contexte » et non « Origine » (D42, 16/10) ; visuels du modèle, pas d'une unité ; aucune disponibilité affirmée ; aucun `Offer` ; bouton « Demander des informations » vers le formulaire existant ; section absente dès qu'une machine réelle s'affiche | `modeles.test.ts` (32 tests) | Rien |
 | Métadonnées | Option B (14/10) : titre et description par langue, exacts à stock vide (disponibilité au conditionnel) ; Open Graph par locale ; canonique par langue sur www ; hreflang `fr`, `fr-CH`, `en`, `de-CH`, `x-default` ; `index, follow` sur la production publiée seulement, `noindex, nofollow` en Preview et en local (`lib/occasion/seo.ts`) | `occasion-langues.test.ts` ; builds du 14/10 (Preview : balises relues ; production verrous fermés : 404) | Validation des titres et descriptions modifiés (D42) |
 | Routes | 3 pages + 3 vues `…/exemples-fictifs` (jamais en production) ; `/api/occasion` et `/api/occasion/alertes{,/confirmation,/desinscription}` en 503 sans lecture de la demande | Build `VERCEL_ENV=production` : 6 × 404, 4 × 503 | Rien |
 | Recherche (notification commerciale) | Notification interne `[Occasion]` vers `OCCASION_NOTIFICATION_EMAIL`, puis accusé dans la langue de la page ; aucun CRM | `recherche-*.test.ts` ; test réel Preview du 11/10 (A soumis ; B et quatre e-mails non établis) | Reliquat du test réel (section 7) ; variable en Production (`sebastien.jourdan@sysnext.com`, décision du 14/10) |
@@ -162,7 +163,7 @@ Implémentation (`lib/occasion/seo.ts`, sans nouveau verrou) :
 - **Maillage blog** : encadré sous l'article FR `acheter-studio-photo-packshot-occasion`
   et l'article EN `second-hand-packshot-photo-studio`
   (`components/landings/occasion/EncadreOccasionBlog.tsx`, textes dans
-  `lib/occasion/navigation.ts`), rendu aux mêmes conditions que le menu : visible
+  `lib/occasion/navigation.ts`), rendu aux mêmes conditions que le lien du pied de page : visible
   en Preview, absent de la production jusqu'à la publication, puis visible sans
   autre commit. Le texte des articles et leurs mises en garde sur le matériel
   ancien ne sont pas modifiés ; aucune garantie, remise en état ni disponibilité
@@ -394,7 +395,7 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
 3. **Synchronisation** avec le `main` courant, CI verte sur la tête définitive.
 4. **GO_MERGE_PR129** : fusion, verrous fermés. Contrôle de
    `https://sysnext.vercel.app` (Chrome ou script) : pages occasion en 404 dans les
-   trois langues, aucun lien « Offres d'occasion », `/api/occasion` et
+   trois langues, aucun lien vers la landing (libellé du pied de page « Matériel d'occasion » compris), `/api/occasion` et
    `/api/occasion/alertes` → `{"disponible":false}` ; article 9 visible sur
    `/fr/confidentialite` et `/en/confidentialite`. Puis `www` dans Chrome (R4).
 5. **GO_PUBLICATION** : PR dédiée : `lib/occasion/activation.ts` et les fichiers de
@@ -402,7 +403,7 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
    `PUBLICATION_AUTORISEE` et `COLLECTE_REELLE_AUTORISEE`, puis
    `ALERTES_REELLES_AUTORISEES` pour les seuls parcours éprouvés. Fusion = production
    en environ 3 minutes. Le même commit ouvre, sans autre changement : la page, les
-   liens du menu et du pied de page, l'encadré des deux articles de blog,
+   lien du pied de page, l'encadré des deux articles de blog,
    `index, follow` et les trois entrées de sitemap (option B).
 6. **Contrôles après publication** : `sysnext.vercel.app`, puis `www` dans Chrome :
    pages 200 dans les trois langues ; `<meta name="robots">` `index, follow` ;
@@ -410,7 +411,7 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
    `x-default` ; trois URL dans `https://www.packshot-creator.com/sitemap.xml` ;
    sur `www`, aucun en-tête `X-Robots-Tag: noindex` (D36 : le Worker retire celui
    de l'origine) ; aucun `Product` ni `Offer` ; état « Aucune machine affichée en
-   ce moment » ; liens du menu, du pied de page et des deux articles de blog ;
+   ce moment » ; lien du pied de page et encadrés des deux articles de blog (aucun lien dans le menu haut) ;
    exemples fictifs en 404 ; routes `GET` → `{"disponible":true}` ; une inscription
    réelle autorisée. Puis inspection d'URL dans Google Search Console (Laurent).
    Un build Vercel « Ready » n'est pas une publication vérifiée.

@@ -114,6 +114,18 @@ export const EN: ContenuOccasion = {
     invalide: 'Invalid value.',
   },
 
+  MODELES: {
+    surtitre: 'Orbitvu references',
+    titre: 'Three Orbitvu models, presented with their context of use',
+    texte:
+      'Each model is shown in a context of use. Specifications are those of the model; the visuals illustrate the model, not a specific unit. Availability of a unit is confirmed on request.',
+    libelles: { contexte: 'Context', usage: 'Use', objet: 'Maximum object size', charge: 'Maximum object weight' },
+    badges: { showroom: 'Showroom display', demonstration: 'Demonstration', salon: 'Trade show presentation' },
+    bouton: 'Request information',
+    besoin: 'Information about the {nom} model.',
+    credit: 'Illustrative photo',
+  },
+
   FICHE: {
     surtitre: 'Choose with confidence',
     titre: 'What you will know about each machine',

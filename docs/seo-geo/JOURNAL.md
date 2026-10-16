@@ -34,6 +34,66 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Landing occasion : correctif V9 des trois modèles (mobile de-ch, préfixe du message, badges D42) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, correction finale de la PR de navigation et de modèles (« V9 — CORRECTION FINALE ET PUSH », 16/10/2026 ; GO_CODE_CORRECTIF_156, GO_PR/PUSH_CORRECTIF_156) | **PR** : PR de navigation (même branche) | **Commit** : ce commit
+
+**Quoi** — (1) Cartes de modèles en de-ch à 390 px : colonne de texte bornée (`minmax(0,1fr)`, `min-w-0`), retour à la ligne, lignes intitulé / valeur empilées en de-ch jusqu'à `lg` ; en FR et EN, mise en page inchangée à partir de 380 px, empilée en dessous plutôt que tronquée. (2) Formulaire : au clic sur plusieurs modèles, la famille et le préfixe automatique du message suivent le dernier modèle ; seul le préfixe inséré par la page est remplacé, tout texte du visiteur est conservé (`lib/occasion/prefixe-modele.ts`) ; aucun changement de schéma, d'API ni d'envoi. (3) Arbitrages D42 : pied de page « Occasionsgeräte » conservé ; badges des cartes = cadres d'usage (FR « Présentation showroom », « Démonstration », « Présentation salon » ; EN « Showroom display », « Demonstration », « Trade show presentation » ; de-ch « Showroom-Präsentation », « Vorführung », « Messepräsentation ») ; « Messerückläufer » retiré ; ligne « Origine » renommée « Contexte » (« Context », « Kontext ») et chapô reformulé en « contexte d'usage », pour ne certifier ni l'origine ni l'existence d'une unité ; aucune garantie attribuée aux trois illustrations, section générale sur la garantie conservée ; caractéristiques D45 et trois modèles inchangés.
+
+**Pourquoi** — QA Chrome de Laurent du 16/10/2026 : cartes Alphadesk et Alphashot Micro v2 tronquées en de-ch à 390 px ; préfixe du message non mis à jour au second clic ; arbitrages D42 sur les libellés.
+
+**Fichiers** — `components/landings/occasion/{ModelesOccasion.tsx,FormulaireRecherche.tsx,contenu-fr.ts,contenu-en.ts,contenu-de-ch.ts}`, `data/occasion/modeles.ts`, `lib/occasion/prefixe-modele.ts`, `lib/occasion/__tests__/modeles.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Tous les mots et le bouton « Informationen anfragen » visibles en de-ch sur mobile ; message cohérent avec le dernier modèle choisi ; aucun libellé d'origine d'unité sur les trois cartes. Aucun effet sur les routes, le SEO, les verrous, les e-mails, l'API ni #155.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run lib/occasion` : 12 fichiers, 254 tests verts (32 dans `modeles.test.ts`, dont les assertions du correctif) ; ESLint sans avertissement. Chromium local (serveur de développement), mesure du débordement des cartes avant correction (de-ch 390 px : Alphadesk 5 px, Alphashot Micro v2 48 px) puis après : 0 débordement en FR, EN et de-ch à 414, 390, 380, 375, 360, 320, 768, 1024 et 1280 px ; clics successifs sur les trois modèles dans les trois langues : préfixe et famille du dernier modèle, texte personnel conservé, texte rédigé par le visiteur jamais écrasé, aucun envoi réseau.
+**Supposé** — Les nouveaux libellés (badges, « Contexte », chapô) sont des formulations de l'agent suivant les arbitrages de Laurent ; « Showroom-Präsentation » et « Vorführung » complètent « Messepräsentation » choisi par Laurent.
+**Non regardé** — `npx next build` complet et `vitest` complet non relancés (acquis avant ce correctif, CI de la PR) ; rendu sur la Preview (SSO) : QA de Laurent.
+
+**Suite** — Nouvelle QA Chrome ciblée de Laurent sur la Preview du nouveau HEAD ; GO_MERGE et GO_PUBLICATION = NON.
+
+---
+
+## 2026-10-16 · Landing occasion : présentation de trois modèles Orbitvu, sans prix, sans stock · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, présentation de modèles (« DÉCISION LAURENT — AVANCER IMMÉDIATEMENT », 16/10/2026 ; GO_CODE limité, GO_PR/PUSH sur la PR de navigation) | **PR** : PR de navigation (même branche, aucune PR concurrente) | **Commit** : ce commit
+
+**Quoi** — Section « Trois modèles Orbitvu, présentés avec leur contexte d'usage » entre le hero et la recherche, affichée seulement quand aucune machine réelle n'est affichée : Alphadesk (showroom PackshotCreator, exposition et démonstrations), Alphashot Micro v2 (démonstrations clients, bijoux et horlogerie), Alphastudio XXL v2 (retour de salon professionnel). Carte élégante de la maquette V4.1 : visuel du modèle, origine, usage, objet et charge maximaux, bouton discret « Demander des informations » (famille présélectionnée et début de texte modifiable dans le formulaire existant). FR, EN, de-ch. Données dans `data/occasion/modeles.ts`, séparées du registre réel `machines.ts` (vide, inchangé). Menu haut sans lien et lien unique « Matériel d'occasion » en pied de page : inchangés.
+
+**Pourquoi** — Décision de Laurent du 16/10/2026 : ces trois cartes correspondent à sa présentation métier ; modèles et contextes validés par lui ; objectif d'une présentation premium, sans aucun prix, sans « bonnes affaires », promotion, remise, déstockage ni reconditionnement.
+
+**Fichiers** — `data/occasion/modeles.ts`, `components/landings/occasion/{ModelesOccasion.tsx,OccasionOrbitvu.tsx,BoutonMachine.tsx,FormulaireRecherche.tsx,contenu.ts,contenu-fr.ts,contenu-en.ts,contenu-de-ch.ts}`, `lib/occasion/__tests__/modeles.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Trois cartes visibles sur la landing dans les trois langues, sans prix. Aucun effet sur les routes, le canonique, hreflang, le sitemap, les verrous, les e-mails, l'API, le CRM ni #155.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` : 50 fichiers, 934 tests verts (dont 21 nouveaux : modèles et contextes, caractéristiques confrontées au référentiel D45, visuels présents, absence de prix, promotion, référence OCC-0x, état, licence, garantie et `Offer` dans le texte visible et le code, ordre des sections, formulaire et recherche présents, alertes masquées, disparition de la section quand une machine réelle s'affiche) ; ESLint sans avertissement.
+**Supposé** — Les textes EN et de-ch des contextes reprennent ceux validés pour les exemples de la maquette (« Display and demonstrations », « Ausstellung und Vorführungen », etc.) ; « Références Orbitvu », le titre, le chapô et le libellé « Demander des informations » sont des formulations de l'agent, à valider (D42). Noms affichés : ceux de la liste de Laurent (« Alphadesk », « Alphashot Micro v2 », « Alphastudio XXL v2 »), qui diffèrent de `nomPsc` du référentiel D45 (« Alphadesk v2 », « Alphashot Micro Pro v2 », « Alphastudio XXL Pro v2 »).
+**Non regardé** — Disponibilité réelle de chaque unité, état, historique, licence, garantie et photo de l'unité : non établis, non affichés. Droits des trois visuels de modèles : ceux déjà utilisés sur le site (droits du visuel XXL confirmés au JOURNAL ; les deux autres non rouverts ici). Rendu sur la Preview : à contrôler par Laurent (QA ciblée).
+
+**Suite** — Fusion et publication : nouveau GO de Laurent (GO_MERGE et GO_PUBLICATION = NON à cette tête), après QA de la Preview et validation du libellé de-ch « Occasionsgeräte » et des nouveaux textes. Le registre réel reste à alimenter par fiches d'inventaire (modèle exact et unité, statut confirmé, photo authentique, état, vérifications, garantie) ; dès qu'une machine réelle s'affiche, la présentation de modèles disparaît.
+
+---
+
+## 2026-10-16 · Landing occasion : lien du menu haut supprimé, lien du pied de page renommé ; trois machines non établies · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, correctif de navigation (« URGENT — menu et trois machines », 16/10/2026 ; GO_CODE_NAVIGATION_OCCASION) | **PR** : PR dédiée (navigation) | **Commit** : ce commit
+
+**Quoi** — Le lien vers la landing est retiré intégralement du menu haut (menu Solutions, desktop et mobile), sans déplacement dans un sous-menu. Le lien du pied de page (colonne Solutions, après « Questions clés ») est conservé et renommé : FR « Matériel d'occasion », EN « Pre-owned equipment », de-ch « Occasionsgeräte ». D60 (point 2 et complément, point 13), RELEASE et ETAT mis à jour : aucune règle de menu haut ne subsiste. URL, canonique, hreflang, sitemap, encadrés de blog et contenu de la page inchangés.
+
+**Pourquoi** — Décision définitive de Laurent le 16/10/2026 : le menu était beaucoup trop visible. La découvrabilité tient au pied de page, au sitemap et aux deux encadrés éditoriaux.
+
+**Fichiers** — `components/layout/Header.tsx`, `app/[lang]/layout.tsx`, `lib/occasion/navigation.ts`, commentaires de `Footer.tsx`, `OccasionOrbitvu.tsx` et `lib/occasion/activation.ts`, `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`. Rendu générique `secondaire` du Header laissé en place, sans usage.
+
+**Effet attendu** — Le menu Solutions ne montre plus le lien (desktop et mobile) ; le pied de page l'affiche avec le nouveau libellé. Aucun effet sur les routes, le sitemap ni les verrous.
+
+**Vérifié** — `npx tsc --noEmit` vert ; tests du dossier `lib/occasion` : 11 fichiers, 222 tests verts (dont l'absence de lien dans le Header et les trois libellés) ; ESLint sans nouvel avertissement. Libellé de-ch « Occasionsgeräte » : choix de l'agent, à valider (D42).
+**Supposé** — Rien.
+**Non regardé** — **Trois machines** : fiches réelles NON ÉTABLIES dans les sources consultées. Registre `data/occasion/machines.ts` vide ; les trois exemples OCC-01 à OCC-03 (Alphadesk, Alphashot Micro v2, Alphastudio XXL v2) sont explicitement fictifs ; la session historique « OCCASION | MAQUETTE V4.1 | HISTORIQUE » des 9 au 11/10 parle de « machines fictives » et classe parmi les éléments non établis « machines réellement disponibles, avec les photos de chaque unité commercialisée » ; le JOURNAL du 10 au 11/10 pose le même HOLD. Aucune machine n'a été ajoutée au registre.
+
+**Suite** — Pour les trois fiches : une fiche d'inventaire par unité (modèle exact et unité, statut commercial confirmé à ce jour, origine, photo authentique de l'unité avec droits, état, vérifications, garantie), puis intégration dans `data/occasion/machines.ts` sans prix.
+
+---
+
 ## 2026-10-16 · Publication de la landing occasion Orbitvu, étape A (FR, EN, de-ch, stock vide, recherche) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (GO_CODE / GO_PR-PUSH_PUBLICATION_129_A du 16/10/2026) | **PR** : PR de publication dédiée, après la fusion de #129 | **Commit** : ce commit
