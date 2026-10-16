@@ -292,6 +292,10 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **Suite** — HOLD avant fusion : décision groupée sur les réserves D42 (noms de produit non harmonisés, claims, chiffres, témoignages), QA Preview humaine, GO_MERGE. L1 (D35/F5) et #146 hors périmètre.
 
+**MàJ 16/10 (décision et correctifs)** — PR #160. Décision groupée de Laurent (« V9 — DÉCISION GROUPÉE PR #160 ») : option A, exception D13/D42 limitée à la finition linguistique des 6 articles EN de #160 ; ni validation des claims préexistants, ni nouvelle promesse, ni renforcement ; réserves D42 conservées comme sujets éditoriaux distincts. Traductions validées : 08 « cut », 10 « background removal », 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`).
+**QA_CHROME_160 = PASS_WITH_RESERVES** (Laurent, Chrome, 6 articles, sans régression bloquante). Seul défaut corrigé : FAQ 2 de 06, « the smallest details36. » → « the smallest details. » (appel de note parasite, déjà présent sur `main`). Les autres anomalies relevées sont préexistantes, hors périmètre, conservées en réserve. Les cinq autres articles n'ont pas changé depuis la QA : QA réutilisée.
+**Vérifié** — 06 : FAQ visible et JSON-LD FAQPage identiques sur le build local ; CI et Preview : voir la PR. **Non regardé** — `www` (R4). GO_MERGE_160 et GO_PUBLICATION_160 : NON à ce stade.
+
 ## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
 
 **Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
