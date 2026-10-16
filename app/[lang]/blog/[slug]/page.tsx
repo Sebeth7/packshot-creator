@@ -16,6 +16,8 @@ import { FadeInView } from '@/components/animations';
 import { RecommendedStudio } from '@/components/maillage/MaillageSections';
 import EncadreOccasionBlog from '@/components/landings/occasion/EncadreOccasionBlog';
 import YouTubeConsent from '@/components/blog/YouTubeConsent';
+import DoubleNavigationBlog from '@/components/navigation/DoubleNavigationBlog';
+import { formeSecondeActive, LIBELLES_BARRE } from '@/data/navigation/pages-longues';
 import {
   processHtmlContent,
   calculateReadingTime,
@@ -151,6 +153,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const imageUrl = article.image || null;
   const readingTime = article.readingTime ?? calculateReadingTime(processed.wordCount);
   const headings = processed.headings;
+  // Double navigation D44 (Phase A) : barre horizontale ajoutée au sommaire latéral, sur
+  // un article pilote. Mêmes ancres que le sommaire (titres h2/h3 de l'article).
+  const barreHaute = formeSecondeActive('blog-commun', lang as Lang, slug) === 'barre';
+  const entreesBarre = headings.map((h) => ({ id: h.id, libelle: h.text }));
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -236,31 +242,38 @@ export default async function BlogArticlePage({ params }: PageProps) {
       <FadeInView delay={0.2}>
         <section className="py-12 lg:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="lg:flex lg:justify-center lg:gap-12">
-              <div className="min-w-0 flex-1 max-w-prose mx-auto lg:mx-0">
-                {headings.length > 0 && (
-                  <div className="lg:hidden mb-8">
-                    <TableOfContents headings={headings} title={t('toc')} collapsible />
+            <DoubleNavigationBlog
+              actif={barreHaute}
+              titre={LIBELLES_BARRE[lang as Lang].titre}
+              libelle={LIBELLES_BARRE[lang as Lang].libelle}
+              entrees={entreesBarre}
+            >
+              <div className="lg:flex lg:justify-center lg:gap-12">
+                <div className="min-w-0 flex-1 max-w-prose mx-auto lg:mx-0">
+                  {headings.length > 0 && (
+                    <div className="lg:hidden mb-8">
+                      <TableOfContents headings={headings} title={t('toc')} collapsible />
+                    </div>
+                  )}
+                  <article className={articleProseClasses}>
+                    <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
+                  </article>
+                  <div className="mt-12 pt-8 border-t border-neutral-100">
+                    <Link href="/blog" className="inline-flex items-center gap-2 text-very-peri-600 hover:text-very-peri-700 font-medium transition-colors">
+                      <ArrowLeft className="h-4 w-4" />
+                      {t('backToBlog')}
+                    </Link>
                   </div>
-                )}
-                <article className={articleProseClasses}>
-                  <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
-                </article>
-                <div className="mt-12 pt-8 border-t border-neutral-100">
-                  <Link href="/blog" className="inline-flex items-center gap-2 text-very-peri-600 hover:text-very-peri-700 font-medium transition-colors">
-                    <ArrowLeft className="h-4 w-4" />
-                    {t('backToBlog')}
-                  </Link>
                 </div>
+                {headings.length > 0 && (
+                  <aside className="hidden lg:block w-64 shrink-0">
+                    <div className="sticky top-24">
+                      <TableOfContents headings={headings} title={t('toc')} rapporteActif={barreHaute} />
+                    </div>
+                  </aside>
+                )}
               </div>
-              {headings.length > 0 && (
-                <aside className="hidden lg:block w-64 shrink-0">
-                  <div className="sticky top-24">
-                    <TableOfContents headings={headings} title={t('toc')} />
-                  </div>
-                </aside>
-              )}
-            </div>
+            </DoubleNavigationBlog>
           </div>
         </section>
       </FadeInView>

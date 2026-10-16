@@ -11,7 +11,8 @@ import { RecommendedStudio, GuideRelated } from '@/components/maillage/MaillageS
 import { ArticleCTA } from '@/components/blog';
 import { tx } from '@/lib/locale-text';
 import SommaireCollant from '@/components/navigation/SommaireCollant';
-import { barreActive, LIBELLES_BARRE } from '@/data/navigation/pages-longues';
+import DoubleNavigationStructuree from '@/components/navigation/DoubleNavigationStructuree';
+import { barreActive, formeSecondeActive, LIBELLES_BARRE, LIBELLES_LATERAL } from '@/data/navigation/pages-longues';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -74,6 +75,8 @@ export default async function GuidePage({ params }: PageProps) {
 
   // Barre de sommaire collante (D44) : étapes, puis FAQ. Les id ne sont posés que si elle est active.
   const barre = barreActive('guide', lang as Lang, slug);
+  // Double navigation D44 (Phase A) : sommaire latéral en plus de la barre, sur un pilote.
+  const doubleNav = formeSecondeActive('guide', lang as Lang, slug) === 'laterale';
   const titreFaq = tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen');
   const entreesSommaire = barre
     ? [
@@ -125,11 +128,20 @@ export default async function GuidePage({ params }: PageProps) {
       <SchemaOrg schema={[howToSchema, breadcrumbs, ...(faqSchema ? [faqSchema] : [])]} />
 
       {barre && entreesSommaire.length > 0 && (
-        <SommaireCollant
-          titre={LIBELLES_BARRE[lang as Lang].titre}
-          libelle={LIBELLES_BARRE[lang as Lang].libelle}
-          entrees={entreesSommaire}
-        />
+        doubleNav ? (
+          <DoubleNavigationStructuree
+            titre={LIBELLES_BARRE[lang as Lang].titre}
+            libelle={LIBELLES_BARRE[lang as Lang].libelle}
+            libelleLateral={LIBELLES_LATERAL[lang as Lang]}
+            entrees={entreesSommaire}
+          />
+        ) : (
+          <SommaireCollant
+            titre={LIBELLES_BARRE[lang as Lang].titre}
+            libelle={LIBELLES_BARRE[lang as Lang].libelle}
+            entrees={entreesSommaire}
+          />
+        )
       )}
 
       {/* Hero */}

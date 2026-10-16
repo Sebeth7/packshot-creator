@@ -3,7 +3,13 @@ import { test, expect, type Page } from '@playwright/test';
 /**
  * Navigation des pages longues (règle D44) : barre de sommaire horizontale collante
  * (components/navigation/SommaireCollant.tsx) sur les familles équipées, rien sous
- * 1 024 px, jamais deux navigations collantes, pages gelées non équipées.
+ * 1 024 px, pages gelées non équipées.
+ *
+ * Double navigation (décision du 15/10/2026) : sur les pages pilotes (Phase A), la barre
+ * cohabite avec un sommaire vertical à droite (components/navigation/SommaireLateral.tsx,
+ * rendu ≥ 1 280 px). Les deux sont synchronisés : mêmes ancres, même section active (un
+ * seul scroll-spy). Le test ci-dessous vérifie donc UNE navigation collante sur les pages
+ * à barre seule, et DEUX synchronisées sur les pilotes à partir de 1 280 px.
  * Registre : data/navigation/pages-longues.ts.
  */
 
@@ -38,7 +44,16 @@ const GELEES = [
   '/fr',
 ];
 
-const BARRE = 'nav.fixed[aria-label]';
+/** Pages en double navigation (Phase A) : barre + sommaire latéral synchronisés ≥ 1 280 px. */
+const DOUBLE_NAV = new Set([
+  '/fr/guide/comment-faire-focus-stacking-pour-photographier-bague',
+  '/en/guide/how-to-do-focus-stacking-for-ring-photography',
+  '/fr/studio-photo/alphashot-pro-g2',
+  '/en/studio-photo/alphashot-pro-g2',
+  '/de-ch/fotostudio/alphashot-pro-g2',
+]);
+
+const BARRE = 'nav[data-d44="barre"]';
 
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
@@ -108,7 +123,9 @@ test.describe('Barre de sommaire, desktop', () => {
             const e = await etat(page);
             expect(Math.abs(e.haut! - e.entete), 'collée sous l’en-tête').toBeLessThanOrEqual(1);
             expect(e.liste!, 'liste dans le cadre').toBeLessThanOrEqual(e.cadre! + 1);
-            expect(e.collantes, 'une seule navigation collante').toBe(1);
+            // Barre seule → 1 ; pilote double navigation ≥ 1 280 px → 2 (barre + sommaire latéral).
+            const attendu = DOUBLE_NAV.has(url) && largeur >= 1280 ? 2 : 1;
+            expect(e.collantes, 'navigations collantes attendues').toBe(attendu);
           }
 
           // Clavier : focus sur la troisième entrée, Entrée → titre visible sous la barre.
@@ -126,6 +143,34 @@ test.describe('Barre de sommaire, desktop', () => {
           await expect.poll(async () => (await etat(page)).visible, { message: 'masquée en fin de page', timeout: 3000 }).toBe(false);
         });
       }
+    });
+  }
+});
+
+test.describe('Double navigation (pilotes) — barre et sommaire latéral synchronisés', () => {
+  test.use({ viewport: { width: 1440, height: 900 } });
+  for (const url of DOUBLE_NAV) {
+    test(`deux repères synchronisés, mêmes ancres, même section active — ${url}`, async ({ page }) => {
+      await page.goto(url, { waitUntil: 'networkidle' });
+      const cibles = (await etat(page)).cibles!;
+      // Au milieu de la page : les deux repères sont visibles.
+      await defilerVers(page, cibles[Math.floor(cibles.length / 2)]);
+      await page.waitForTimeout(300);
+      const sync = await page.evaluate(() => {
+        const reperes = [...document.querySelectorAll<HTMLElement>('nav[data-d44]')].filter((n) => {
+          const cs = getComputedStyle(n);
+          return cs.display !== 'none' && cs.visibility !== 'hidden' && cs.opacity !== '0';
+        });
+        const ancres = reperes.map((n) => [...n.querySelectorAll('a')].map((a) => a.getAttribute('href')!.slice(1)));
+        const actifs = reperes.map((n) => n.querySelector('[aria-current="location"]')?.getAttribute('href') ?? null);
+        return { nombre: reperes.length, ancres, actifs };
+      });
+      expect(sync.nombre, 'barre + sommaire latéral').toBe(2);
+      // Mêmes ancres dans le même ordre.
+      expect(sync.ancres[1]).toEqual(sync.ancres[0]);
+      // Une seule section active, identique dans les deux repères.
+      expect(sync.actifs[0], 'section active de la barre').not.toBeNull();
+      expect(sync.actifs[1], 'section active du sommaire latéral').toBe(sync.actifs[0]);
     });
   }
 });

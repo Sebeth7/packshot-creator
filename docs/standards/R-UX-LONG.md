@@ -13,15 +13,22 @@
 
 Toute page longue reçoit une navigation adaptée à sa structure et à son gabarit, **dès lors qu'elle améliore réellement l'accès aux sections**. La règle s'applique par famille de gabarits, pas URL par URL : elle n'impose pas un menu collant sur chaque page.
 
-Trois comportements, jamais cumulés sur une page :
+Trois comportements :
 
 | Forme | Quoi | Composant | Où aujourd'hui |
 |---|---|---|---|
 | **A** | Sommaire horizontal collant sous l'en-tête, desktop | `components/navigation/SommaireCollant.tsx` | Guides, fiches machines, IA photo produit, solutions, quatre articles dédiés (`studio-ia-vs-ia-generative` et `comparatif-orbitvu-ortery-styleshoots-2026`, FR et EN) ; 93 pages au 06/10 (#85) ; Mode (composant d'origine jusqu'au 26/11). Studios (gamme) : HOLD, barre relevant du chantier commercial sous validation spécifique (arbitrage de Laurent du 03/10) |
-| **B** | Sommaire latéral collant, utilisable sur toute la hauteur de l'écran | `components/blog/TableOfContents.tsx` | Articles du blog (gabarit commun) et quatre pages dédiées |
+| **B** | Sommaire latéral collant, utilisable sur toute la hauteur de l'écran | `components/blog/TableOfContents.tsx` (blog) ; `components/navigation/SommaireLateral.tsx` (pages structurées) | Articles du blog (gabarit commun) et quatre pages dédiées ; sommaire vertical droit des pages structurées en double navigation |
 | **C** | Sommaire statique dans la page, ou pas de navigation persistante | — | F5 (choix délibéré), pages courtes, pages de liste, outils, pages légales |
 
-**Une page ne cumule jamais deux navigations collantes.** Aucune barre A sur une page qui porte une colonne B.
+### Double navigation (décision de Laurent du 15/10/2026)
+
+La règle antérieure (« une page ne cumule jamais deux navigations collantes ») est **abandonnée**. Une page longue éligible porte désormais **les deux navigations à la fois** : la barre horizontale A en haut **et** le sommaire vertical B à droite, **synchronisés** — mêmes ancres, même section active, aucun lien mort.
+
+- **Un seul scroll-spy par page.** La détection de section active est calculée une seule fois (`components/navigation/useSectionActive.ts`) et partagée par les deux repères via le contexte `NavigationPageLongue`. Les pages structurées (guide, fiche) utilisent ce scroll-spy mutualisé ; le blog réutilise la détection durcie de `TableOfContents` (incidents des 03 et 06/10) et la barre n'en est que le reflet. Dans les deux cas, les deux repères ne peuvent plus diverger (cause d'un écart de surbrillance quand deux scroll-spys indépendants cohabitent).
+- **Déploiement progressif.** Le registre `data/navigation/pages-longues.ts` porte, par famille, `secondeForme` (la navigation ajoutée) et `piloteSecondeForme` (pages où elle est active). Phase A : un pilote par famille structurante. Phase B : généralisation par famille (`piloteSecondeForme: 'toutes'`), par PR distinctes, après contrôle pixel des pilotes.
+- **Pilotes Phase A** : guide `comment-faire-focus-stacking-pour-photographier-bague` (FR/EN) ; fiche `alphashot-pro-g2` (toutes langues) ; article blog `images-ia-metadonnees-marketplaces` (FR/EN). Les navigations existantes des autres pages restent inchangées jusqu'à leur bascule contrôlée.
+- **Responsive.** Barre A : ≥ 1 024 px. Sommaire latéral B des pages structurées : ≥ 1 280 px (gouttière droite). Sous ces largeurs, le sommaire replié du gabarit (mobile) prend le relais. Le raffinement mobile du double affichage est le premier point à valider après le contrôle pixel des pilotes.
 
 ---
 
@@ -64,6 +71,8 @@ Classement : **ADOPT** (intégration directe) ; **ADAPT** (gabarit à adapter : 
 
 **Réserve constatée le 07/10/2026 (QA `www` après la fusion de #85)** — La surbrillance de la section active est parfois décalée par rapport à la section lue. Diagnostic P2 **proposé**, non arbitré ; aucune correction autorisée à ce jour. Le comportement attendu ci-dessus (« Section active ») est inchangé : la réserve décrit un écart possible de la mise en œuvre, pas une modification de la règle.
 
+[Non vérifié] La double navigation (15/10) n'est pas présentée comme un correctif de P2 : P2 a été relevée sur une page à barre seule, où il n'y a qu'un scroll-spy. Ce que l'architecture mutualisée garantit, c'est que la barre et le sommaire latéral d'une **même** page ne divergent pas entre eux (ils lisent le même calcul). L'écart P2 entre surbrillance et lecture perçue reste à arbitrer séparément. Cela repose sur la lecture du code, pas sur un contrôle pixel.
+
 ### 3.2 Forme B — sommaire latéral du blog
 
 | Point | Règle |
@@ -102,7 +111,7 @@ Le registre `data/navigation/pages-longues.ts` porte chaque exception avec son m
 1. Mesurer C1 et C2 sur un build local (1 440 × 900).
 2. Si la page appartient à une famille déjà active (guide, fiche, solution…), rien à faire : la barre s'applique.
 3. Nouveau gabarit : ajouter la famille au registre (forme, statut, portée, note chiffrée), poser les `id` conditionnés à `barreActive()`, construire `entrees` depuis les titres existants, rendre `SommaireCollant`.
-4. Ne jamais copier le composant ; ne jamais ajouter une seconde navigation collante.
+4. Ne jamais copier un composant de navigation. Double navigation : passer par les composants mutualisés (`FournisseurSectionActive` / `DoubleNavigationStructuree` côté pages structurées, `DoubleNavigationBlog` côté blog) ; jamais un second scroll-spy. L'activation par page passe par `secondeForme` / `piloteSecondeForme` du registre.
 5. Tests obligatoires (§ 6), dans la même PR.
 6. Mode bascule sur le composant mutualisé après le 26/11/2026, avec contrôle de parité visuelle et décision de Laurent (le libellé actif change d'emplacement).
 
@@ -112,8 +121,8 @@ Le registre `data/navigation/pages-longues.ts` porte chaque exception avec son m
 
 | Test | Fichier | Exigence |
 |---|---|---|
-| Registre | `lib/navigation/__tests__/registre-pages-longues.test.ts` | Pages gelées jamais équipées ; familles B et C jamais équipées ; exceptions motivées |
-| Barre | `e2e/navigation-pages-longues.spec.ts` | Masquée en haut ; visible et section active correcte sur chaque section ; collée sous l'en-tête ; liste dans le cadre ; Entrée au clavier → titre visible sous la barre ; masquée en fin de page ; une seule navigation collante ; rien sous 1 024 px ; pages gelées sans barre |
+| Registre | `lib/navigation/__tests__/registre-pages-longues.test.ts` | Pages gelées jamais équipées ; `barreActive` réservé aux familles à barre ; exceptions motivées ; double navigation (`formeSecondeActive`, `navigationPageLongue`) réservée aux pilotes, jamais sur une page gelée |
+| Barre | `e2e/navigation-pages-longues.spec.ts` | Masquée en haut ; visible et section active correcte sur chaque section ; collée sous l'en-tête ; liste dans le cadre ; Entrée au clavier → titre visible sous la barre ; masquée en fin de page ; une navigation collante sur page à barre seule, **deux synchronisées** (mêmes ancres, même section active) sur un pilote ≥ 1 280 px ; rien sous 1 024 px ; pages gelées sans barre |
 | Blog | `e2e/sommaire-blog.spec.ts` | Titre visé visible après toucher et Entrée à 390 px ; liste latérale dans la fenêtre et dernière entrée atteignable à 1 440 × 900 ; une entrée active ; pied de page non recouvert |
 | Ancres | `e2e/anchors.spec.ts` | 0 ancre sans cible |
 | QA manuelle avant publication | Preview, puis Chrome sur `www` (R4) | 360, 390, 768, 1 024, 1 280, 1 440, 1 920 px ; FR, EN, de-ch ; desktop, tablette, mobile (D42, arbitrage 4) ; hauteur de page et largeur des tableaux et illustrations inchangées ; CLS sans régression |

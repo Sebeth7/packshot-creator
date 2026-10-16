@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · D44 double navigation : architecture mutualisée + pilotes (Phase A) · Claude de Laurent
+
+**Chantier** : D44 / G6 UX (décision Laurent du 15/10 : double navigation des pages longues) | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
+
+**Quoi** — Architecture mutualisée pour afficher, sur une page longue, la barre horizontale ET le sommaire vertical droit, synchronisés par un **scroll-spy unique**. Nouveaux composants : `useSectionActive` (le scroll-spy, logique de la barre liftée), `NavigationPageLongue` (contexte + deux fournisseurs), `SommaireLateral` (sommaire vertical droit des pages structurées, ≥ 1 280 px), `DoubleNavigationStructuree` et `DoubleNavigationBlog`. `SommaireCollant` devient contrôlable (rétrocompatible : rendu hors fournisseur = comportement d'origine). `TableOfContents` rapporte sa section active à la barre sur le blog (son scroll-spy durci reste l'unique de la page). Registre étendu (`secondeForme`, `piloteSecondeForme`, `formeSecondeActive`, `navigationPageLongue`). Pilotes strictement limités par slug.
+
+**Pourquoi** — Décision de Laurent du 15/10 : la règle « jamais deux navigations collantes » est levée. Objectif : deux repères, mêmes ancres, même section active, sans deux scroll-spys contradictoires (cause d'écarts de surbrillance quand deux calculs cohabitent).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireCollant.tsx`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `DoubleNavigationBlog.tsx`, `components/blog/TableOfContents.tsx`, `data/navigation/pages-longues.ts`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/DECISIONS.md`.
+
+**Effet attendu** — Sur trois pages pilotes seulement (guide `comment-faire-focus-stacking-pour-photographier-bague` FR/EN, fiche `alphashot-pro-g2` toutes langues, article `images-ia-metadonnees-marketplaces` FR/EN) : barre + sommaire droit synchronisés ≥ 1 280 px. Toutes les autres pages rendent exactement comme avant. Aucun effet SEO (aucun texte, lien, ancre, Hn, métadonnée touché ; `id` déjà posés par la barre).
+
+**Vérifié** — `npx tsc --noEmit` vert ; Vitest 1052/1052 (dont 14 du registre, nouveaux cas double nav) ; ESLint des fichiers modifiés : 0 erreur (warnings préexistants `main` seulement). Rétrocompatibilité : `SommaireCollant` hors fournisseur inchangé ; `barreActive` et les familles existantes inchangés (lecture du code + tests). `next build` : compilation + TypeScript à valider en CI (R1 : échec local sur `Missing env var`).
+**Supposé** — [Non vérifié] Rendu pixel et synchronisation réelle des deux repères aux six largeurs (390/768/1024/1280/1440/1920) : non contrôlés, QA bloquée par le SSO Vercel (302 → `sso-api`). Cela repose sur la lecture du code, pas sur un contrôle navigateur.
+**Non regardé** — Généralisation par famille (Phase B, PR distinctes) ; raffinement mobile du double affichage ; écart P2 de surbrillance (page à barre seule, hors de ce lot) ; e2e Playwright non lançable en local (build bloqué), exécuté en CI.
+
+**Suite** — PR Draft D44. `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Contrôle pixel des pilotes requis avant Phase B.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
