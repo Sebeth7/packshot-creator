@@ -5,6 +5,7 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import { Button } from '@/components/ui/button';
 import { SectorResources } from '@/components/maillage/MaillageSections';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
+import { getPathname } from '@/i18n/routing';
 import type { Secteur } from '@/data/secteurs';
 import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
 import SchemaEclairageBouteille from './SchemaEclairageBouteille';
@@ -233,6 +234,11 @@ export default function HubVin({ secteur, lang, slug, breadcrumbs, autresSecteur
   const [intro, ...introSuite] = paragraphes(secteur.hero.description);
   const matieres = secteur.problematiques.items.map(scinder);
   const faq = (secteur.faq ?? []).map((q) => ({ question: typo(q.question), answer: typo(q.answer) }));
+  // Service.url : chemin canonique servi, issu du routage (comme la balise canonical de la page).
+  const urlCanonique = `https://www.packshot-creator.com${getPathname({
+    locale: lang as 'fr' | 'en' | 'de-ch',
+    href: { pathname: '/industrie/[slug]', params: { slug } },
+  })}`;
 
   return (
     <>
@@ -581,7 +587,7 @@ export default function HubVin({ secteur, lang, slug, breadcrumbs, autresSecteur
             name: secteur.titre,
             description: secteur.description,
             serviceType: lang === 'en' ? 'Automated product photography' : 'Photographie produit automatisée',
-            url: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
+            url: urlCanonique,
             category: secteur.titre.split(':')[0].trim(),
           }),
           ...(faq.length > 0 ? [faqSchema(faq)] : []),
