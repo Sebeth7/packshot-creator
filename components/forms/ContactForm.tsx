@@ -11,6 +11,19 @@ import { trackFormSubmit } from '@/lib/analytics';
 import { getAttribution } from '@/lib/attribution';
 import type { ContactLocale } from '@/lib/contact-schema';
 
+/**
+ * Contact alternatif de l'écran d'échec (G5, #132, correction du 15/10/2026).
+ * Coordonnées officielles existantes, reprises sans en inventer :
+ * - FR et EN : point de contact `areaServed: 'FR'` du schéma Organization ;
+ * - de-ch : point de contact `areaServed: 'CH'` (marché suisse).
+ * Affichage identique à `components/landings/catalogue-all-in-one/contenu.ts`.
+ */
+const CONTACT_SECOURS: Record<ContactLocale, { telAffiche: string; telHref: string; email: string }> = {
+  fr: { telAffiche: '+33 (0)1 47 42 66 66', telHref: 'tel:+33147426666', email: 'sales@sysnext.com' },
+  en: { telAffiche: '+33 (0)1 47 42 66 66', telHref: 'tel:+33147426666', email: 'sales@sysnext.com' },
+  'de-ch': { telAffiche: '+41 44 580 43 84', telHref: 'tel:+41445804384', email: 'sales@sysnext.com' },
+};
+
 // ── Config ────────────────────────────────────────────────────
 
 const REQUEST_TYPES = {
@@ -128,7 +141,7 @@ interface ContactFormProps {
   hideRequestType?: boolean;
   /** Pré-sélectionner le secteur */
   defaultSector?: string;
-  /** Contexte machine (affiché dans la note Pipedrive) */
+  /** Contexte machine (affiché dans la notification interne) */
   machineContext?: string;
 }
 
@@ -177,9 +190,10 @@ export function ContactForm({
         submitting: 'Envoi en cours...',
         successTitle: 'Demande envoyée !',
         successMessage: 'Notre équipe vous recontactera sous 24 heures ouvrées.',
-        errorTitle: 'Une erreur est survenue',
-        errorMessage: 'Veuillez réessayer ou nous contacter directement par email.',
+        errorTitle: 'Nous ne pouvons pas confirmer la réception de votre demande',
+        errorMessage: 'Vos informations sont conservées dans ce formulaire. Vous pouvez réessayer ou nous contacter directement.',
         retry: 'Réessayer',
+        contactAltLabel: 'Nous contacter directement :',
         rgpdLabel: 'J\'accepte la politique de confidentialité et le traitement de mes données personnelles.',
         newsletterLabel: 'Souhaitez-vous recevoir notre newsletter ?',
         newsletterYes: 'Oui',
@@ -201,9 +215,10 @@ export function ContactForm({
         submitting: 'Sending...',
         successTitle: 'Request sent!',
         successMessage: 'Our team will get back to you within 24 business hours.',
-        errorTitle: 'An error occurred',
-        errorMessage: 'Please try again or contact us directly by email.',
+        errorTitle: 'We cannot confirm that your request was received',
+        errorMessage: 'Your information is kept in this form. You can try again or contact us directly.',
         retry: 'Try again',
+        contactAltLabel: 'Contact us directly:',
         rgpdLabel: 'I accept the privacy policy and the processing of my personal data.',
         newsletterLabel: 'Would you like to receive our newsletter?',
         newsletterYes: 'Yes',
@@ -225,9 +240,10 @@ export function ContactForm({
         submitting: 'Wird gesendet...',
         successTitle: 'Anfrage gesendet!',
         successMessage: 'Unser Team meldet sich innerhalb von 24 Geschäftsstunden bei Ihnen.',
-        errorTitle: 'Ein Fehler ist aufgetreten',
-        errorMessage: 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.',
+        errorTitle: 'Wir können den Eingang Ihrer Anfrage nicht bestätigen',
+        errorMessage: 'Ihre Angaben bleiben in diesem Formular erhalten. Sie können es erneut versuchen oder uns direkt kontaktieren.',
         retry: 'Erneut versuchen',
+        contactAltLabel: 'Kontaktieren Sie uns direkt:',
         rgpdLabel: 'Ich akzeptiere die Datenschutzrichtlinie und die Verarbeitung meiner personenbezogenen Daten.',
         newsletterLabel: 'Möchten Sie unseren Newsletter erhalten?',
         newsletterYes: 'Ja',
@@ -271,15 +287,30 @@ export function ContactForm({
   }
 
   // ── Error state ───────────────────────────────────────────
+  // Présentation neutre (décision de Laurent du 15/10/2026) : aucun écran rouge,
+  // aucun faux succès. `trackFormSubmit` n'est appelé que sur succès : un échec
+  // ne compte donc aucune conversion. Le retour à « idle » réaffiche le
+  // formulaire avec les informations déjà saisies (aucun `reset`).
   if (status === 'error') {
+    const secours = CONTACT_SECOURS[locale] ?? CONTACT_SECOURS.en;
     return (
-      <div className={`bg-red-50 border border-red-200 rounded-2xl p-8 text-center ${className}`}>
-        <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-        <h3 className="text-xl font-heading font-bold text-red-800 mb-2">{t.errorTitle}</h3>
-        <p className="text-red-600 mb-4">{t.errorMessage}</p>
-        <Button type="button" onClick={() => setStatus('idle')} className="bg-red-600 hover:bg-red-700 text-white rounded-xl">
+      <div className={`bg-neutral-50 border border-neutral-200 rounded-2xl p-8 text-center ${className}`}>
+        <AlertCircle className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+        <h3 className="text-xl font-heading font-bold text-future-dusk-900 mb-2">{t.errorTitle}</h3>
+        <p className="text-future-dusk-600 mb-6">{t.errorMessage}</p>
+        <Button type="button" onClick={() => setStatus('idle')} className="bg-very-peri-600 hover:bg-very-peri-700 text-white rounded-xl">
           {t.retry}
         </Button>
+        <p className="mt-6 text-sm text-future-dusk-600">
+          {t.contactAltLabel}{' '}
+          <a href={secours.telHref} className="font-medium text-very-peri-700 underline hover:no-underline">
+            {secours.telAffiche}
+          </a>
+          {' · '}
+          <a href={`mailto:${secours.email}`} className="font-medium text-very-peri-700 underline hover:no-underline">
+            {secours.email}
+          </a>
+        </p>
       </div>
     );
   }

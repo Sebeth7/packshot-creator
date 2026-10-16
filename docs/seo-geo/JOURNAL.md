@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Landing occasion : #155 fusionnée (article 9), origine `sysnext` vérifiée, contrôle `www` FR/EN en attente de Chrome · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, micro-correctif de l'article 9 de la politique de confidentialité (« GO D'EXÉCUTION GROUPÉ — #155 + #157 », 16/10/2026 ; GO_CODE_RESYNC_155, GO_COMMIT/PUSH_155, GO_MERGE_155 et GO_PUBLICATION_155 conditionnels) | **PR** : #155, consignée ici par #157 | **Commit** : fusion `2d250cd856c17f31bb8cc4673a75b4ed7e8e58db` (parents `b18d8c2` et `faf994a`)
+
+**Quoi** — #155 resynchronisée avec `main` `b18d8c2` (fusions de #156, #131 et #153) par un commit de fusion, conflits `DECISIONS`, `ETAT` et `JOURNAL` résolus par union (`faf994a`), puis fusionnée dans `main` le 16/10/2026 à 14:22:13 UTC. `privacy.article9.p2` commence désormais, en FR et en EN, par la phrase approuvée par Laurent (« Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. » ; « Sign-ups for availability alerts are not yet open. ») ; la copie de-ch du fichier de messages porte la phrase française et n'est pas servie (`/de-ch/confidentialite` renvoie 404). Aucun autre paragraphe, aucun mécanisme d'alerte, aucun verrou, aucun formulaire modifié. La phrase est à supprimer à l'activation de l'étape B (D60, complément, point 12).
+
+**Pourquoi** — L'article 9, public depuis la fusion de #129, décrivait la liste d'alerte alors qu'elle n'est pas ouverte (étape A de la publication en deux étapes).
+
+**Fichiers** — `messages/{fr,en,de-ch}.json` (une clé chacun), `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{DECISIONS,ETAT,JOURNAL,RELEASE-129-OCCASION}.md` : 8 fichiers, +48/−5 contre `main`.
+
+**Effet attendu** — Le texte de `/fr/confidentialite` et `/en/confidentialite` change ; rien d'autre.
+
+**Vérifié** — Avant la fusion : HEAD `faf994a`, CI 4/4 verte, Preview Vercel Ready, diff de huit fichiers, seule la clé `privacy.article9.p2` modifiée en FR, EN et de-ch, 255 tests ciblés verts. QA Preview FR et EN : **PASS visuel** sur les captures PDF Chrome de la Preview fournies par Laurent le 16/10/2026 (phrase en tête du paragraphe 2, cinq paragraphes, aucune anomalie de mise en page, aucun formulaire d'alerte visible) ; **le script de contrôle automatisé n'a pas été exécuté** et aucun de ses résultats n'est revendiqué. Après la fusion, sur `https://sysnext.vercel.app` (R4 : l'origine, hors Cloudflare) : phrase servie à 14:23:52 UTC (absente aux sondages de 14:22:20, 14:22:50 et 14:23:21) ; `node scripts/seo/smoke.mjs` : 17 pages et 3 ressources, tout vert ; contrôle de l'article 9 en lecture seule : 15 PASS, 0 FAIL (FR et EN : cinq paragraphes, paragraphe 2 commençant par la phrase approuvée suivie de l'ancien texte, paragraphes 1, 3, 4 et 5 inchangés, aucun formulaire d'alerte ; `/de-ch/confidentialite` = 404) ; contrôle de non-régression de la landing Occasion : 38 PASS, 0 FAIL sur trois exécutions consécutives après une première exécution, lancée pendant la bascule du déploiement, qui avait signalé 1 FAIL dont l'intitulé n'a pas été conservé et qui ne s'est pas reproduit [Inférence : transitoire]. Aucun formulaire réel soumis, aucun e-mail, aucune notification Resend, alertes non activées.
+**Supposé** — Que le déploiement Production servi par l'alias `sysnext.vercel.app` est celui du commit de fusion `2d250cd` (dernier commit de `main`, contenu de #155 servi après la fusion) ; l'état « Ready » et le SHA déployé n'ont pas été lus sur le tableau de bord Vercel.
+**Non regardé** — **`www.packshot-creator.com` FR et EN : NON VÉRIFIÉ à la date de cette entrée** (R4 : seul le Chrome de Laurent atteint `www`) ; le contrôle de Laurent dans Chrome est en attente et son résultat s'ajoute à cette entrée avant la fusion de #157.
+
+**Suite** — Résultats `www` de `/fr/confidentialite` et `/en/confidentialite` à consigner ici ; puis fusion de #157, dernière PR documentaire de cette série.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` de #156 dans Chrome, PASS (rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #156 | **PR** : #157 | **Commit** : ce commit
@@ -134,6 +154,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Article 9 de la politique de confidentialité : précision « alertes pas encore ouvertes » · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, micro-correctif de confidentialité (décision de Laurent du 16/10/2026 ; GO_CODE, GO_PR/PUSH) | **PR** : micro-PR dédiée | **Commit** : ce commit
+
+**Quoi** — Phrase validée par Laurent ajoutée au début de `privacy.article9.p2` : FR « Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. », EN « Sign-ups for availability alerts are not yet open. » ; `messages/de-ch.json` garde sa copie française et reçoit la phrase française. Test ajouté dans `occasion-langues.test.ts`. D60 (complément, point 12), RELEASE section 0 ter et ETAT mis à jour.
+
+**Pourquoi** — L'article 9 est public depuis la fusion de #129 et décrit la liste d'alerte alors qu'elle n'est pas ouverte (étape A). Sans refaire l'article ni rouvrir le chantier juridique.
+
+**Fichiers** — `messages/{fr,en,de-ch}.json` (une ligne chacun), `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,DECISIONS,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — La page `/fr/confidentialite` et `/en/confidentialite` affiche la phrase en tête du deuxième paragraphe de l'article 9. Aucun effet sur le SEO des pages Occasion, la navigation, les formulaires ni les verrous des alertes. À supprimer à l'activation de l'étape B.
+
+**Vérifié** — Comparaison clé par clé avec `main` : seul `privacy.article9.p2` diffère, des trois fichiers, et uniquement par la phrase ajoutée au début. Contrôles de la PR et rendu après déploiement : voir son corps.
+**Supposé** — Texte des deux phrases validé par Laurent (message du 16/10).
+**Non regardé** — Le reste de la politique de confidentialité ; `/de-ch/confidentialite` (page légale servie en FR et EN seulement).
+
+**Suite** — Contrôle de `sysnext.vercel.app`, puis de `www` dans Chrome ; suppression de la phrase à l'étape B.
+
+---
+
 ## 2026-10-16 · Publication de la landing occasion Orbitvu, étape A (FR, EN, de-ch, stock vide, recherche) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (GO_CODE / GO_PR-PUSH_PUBLICATION_129_A du 16/10/2026) | **PR** : PR de publication dédiée, après la fusion de #129 | **Commit** : ce commit
@@ -191,6 +231,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Les descriptions SEO FR/EN/de-ch et l'encadré des deux articles de blog mentionnent encore « alertes sur les nouvelles offres » : textes validés (D42), non modifiés ; à arbitrer avant GO_PUBLICATION.
 
 **Suite** — Test réel B (recherche seule, fenêtre bornée), fermeture prouvée, variable Production `OCCASION_NOTIFICATION_EMAIL`, resync, GO_MERGE_129_A conditionnel, PR de publication distincte.
+
+---
+
+## 2026-10-16 · Sprint ROI FR — échec de génération du PDF du conseiller (`jsPDF.scale`), PR Draft · Claude de Laurent
+
+**Chantier** : sprint ROI FR (V9), décision de Laurent du 16/10 : GO_CODE_ROI_FR_PDF et GO_PR/PUSH_ROI_FR_PDF ; GO_TEST_REEL, GO_MERGE, GO_PUBLICATION : NON | **PR** : Draft, branche `claude/vibrant-maxwell-y90y3b` | **Base** : `main` `b8ae3b2`
+
+**Quoi** — Le rendu PDF hors écran du conseiller est monté dans un portail sur `document.body`, donc mis en page quelle que soit la visibilité du volet qui le monte. `PDFGenerator` attend le graphique dimensionné et refuse toute section non rendue, toute capture vide ou en échec (plus de NaN, plus de PDF amputé en silence). Un échec local du PDF après un lead accepté a son propre message et un nouvel essai sans second envoi.
+
+**Pourquoi** — QA Chrome du 16/10 : après un 200 simulé de `/api/roi-lead`, « Invalid argument passed to jsPDF.scale ». Mécanisme établi par instrumentation (Playwright, Chromium local, `/api/*` simulés) : `DossierPanel` est monté deux fois (volet desktop `hidden lg:block`, tiroir mobile) ; sous 1 024 px, l'instance du volet reste montée en `display: none`, ses 6 sections mesurent 0 × 0, html2canvas rend un canvas de 0 × 0 et la hauteur (0 × 190) / 0 vaut NaN. Erreur reproduite à l'identique à 390 et 900 px par un clic programmatique sur le bouton de cette instance. Clics visibles (desktop 1 280 px, tiroir mobile 390 px) : PDF généré, sur `main` comme après correctif. Avertissements Recharts `width(-1)` : émis aussi par les instances visibles avant mesure, sans effet.
+
+**Fichiers** — `components/roiChat/public/DossierPanel.tsx`, `components/roiChat/public/PdfReport.tsx`, `components/calculators/ROICalculator/results/PDFGenerator.tsx`, `components/calculators/ROICalculator/lib/pdfCapture.ts` (nouveau), `lib/__tests__/roi-pdf-capture.test.ts` (nouveau), `e2e/roi-pdf.spec.ts` (nouveau). Aucune route `/api/*`, ni `lib/pipedrive.ts`, ni enrichissement, ni GA4, ni fichier de #131.
+
+**Effet attendu** — Aucun effet SEO. PDF généré depuis l'une ou l'autre instance ; un échec local n'est plus affiché comme un échec d'envoi.
+
+**Vérifié** — `npx tsc --noEmit` vert ; Vitest 700/700 (dont 9 nouveaux) ; `verifier-json` 198 ; `npx next build` vert (390 pages, valeurs factices) ; `e2e/roi-pdf.spec.ts` 7/7 sur serveur de développement et sur `next start` ; contre-épreuves : portail retiré → 2 échecs, message fusionné → 1 échec (code remis à l'identique, `cmp`) ; ligne de base sur `main` : instance masquée en échec, autres cas verts ; `e2e/roi-calculator.spec.ts` sur `next start` : 29/30, l'échec (« salary cost ») non reproduit sur 15 répétitions, fichier non touché.
+**Supposé** — Que la QA du 16/10 a déclenché l'instance masquée (fenêtre sous 1 024 px ou clic programmatique) ; [Non vérifié].
+**Non regardé** — Preview, `www` (R4), Safari, Firefox, appareils réels ; ESLint : 4 erreurs `no-explicit-any` préexistantes dans `PDFGenerator.tsx` (`GState`), non introduites.
+
+**Suite** — QA Preview avec appels simulés (scénario dans la PR), puis GO_MERGE et GO_PUBLICATION distincts. `e2e/roi-pdf.spec.ts` hors `ATTENDUS` de `pr-checks.yml` (fichier hors périmètre). Copy FR des deux nouveaux messages à valider par Sébastien (D13, D42). 16/10 : QA Preview des cinq scénarios PASS sur `fe3b875` (rapport de Laurent, appels simulés) ; `main` `86fe43d` intégré par fusion, `JOURNAL.md` et `ETAT.md` réunis par union, aucun fichier de site en commun.
 
 ---
 
@@ -413,6 +473,178 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Tests réels #131 sur la Preview : S1, S2, S3 PASS technique ; réception interne NON vérifiée · Claude de Laurent
+
+**Chantier** : G5 — clôture | **PR** : #131 | **Tête testée** : `ec4aa9c`
+
+**Quoi** — Campagne unique de test réel exécutée par Laurent dans Chrome sur la
+Preview de `ec4aa9c`, le 16/10. Résultats rapportés ici tels qu'ils ont été
+constatés, sans extrapolation.
+
+| # | Parcours | Résultat | Réponse |
+|---|---|---|---|
+| S1 | Contact FR (`/api/contact`) | **PASS** | HTTP 200 ; notification interne et confirmation prospect acceptées |
+| S2 | Wizard ROI EN, envoi du PDF (`/api/roi-pdf`) | **PASS** | HTTP 200, `emailSent: true`, `leadRecorded: true`, PDF généré |
+| S3 | Rappel ROI EN (`/api/roi-pdf`) | **PASS** | HTTP 200, `emailSent: false`, `leadRecorded: true`, notification interne seule |
+
+Cinq envois acceptés par Resend, huit livraisons `delivered` confirmées au
+journal Resend, deux messages prospect effectivement reçus dans Gmail.
+Préflight Resend et Gemini : PASS. Zéro frais, aucun appel au conseiller IA.
+
+**Réserve, à ne pas requalifier** — Les trois notifications internes sont
+`delivered` au journal Resend. **Leur réception dans les boîtes de Sébastien et
+de Stéphane n'a pas été constatée.** `delivered` est une acceptation par le
+serveur destinataire, non une réception observée : les deux ne se confondent
+pas. Le verdict de la campagne est donc **PASS technique, réception interne non
+vérifiée**, et non PASS complet.
+
+**Hors périmètre de cette campagne, établi le 16/10** — Le ROI **français**
+(`/fr/calculateur-roi`) sert `RoiPublicChat` et soumet à `/api/roi-lead`, qui
+reste relié à Pipedrive : **#131 ne retire pas le CRM de cette route**. Son
+anomalie `Invalid argument passed to jsPDF.scale` porte sur du code que #131 ne
+modifie pas (`PDFGenerator.tsx`, `PdfReport.tsx`, `DossierPanel.tsx`) : chantier
+distinct. Un test du ROI français ne vaut donc pas test de `/api/roi-pdf`.
+
+**Vérifié** — Les trois réponses HTTP et les identifiants Resend figurent au
+rapport Chrome de Laurent. Aucun message n'a été renvoyé.
+
+**Supposé** — Rien.
+
+**Non regardé** — Réception interne (réserve ci-dessus) ; Worker Cloudflare, que
+la Preview ne traverse pas ; comportement réel de la limite par IP, observable
+en production seulement ; libellés de-ch.
+
+**Suite** — GO_MERGE de #131 conditionné à la confirmation de la réception
+interne ou à un arbitrage écrit de Laurent acceptant cette preuve manquante.
+
+---
+
+## 2026-10-16 · Mentions CRM mises au réel, et durcissement de `lib/pipedrive.ts` repris de #132 · Claude de Laurent
+
+**Chantier** : G5 — clôture | **PR** : #131 | **Commit** : voir la tête de `claude/nice-carson-qc299m`
+
+**Quoi** — Les commentaires et les lignes de gouvernance qui donnaient encore
+Pipedrive pour destinataire de Contact et du PDF ROI sont corrigés. Le seul
+apport de #132 non repris la veille — le durcissement de `lib/pipedrive.ts` — est
+intégré, avec son test.
+
+**Pourquoi** — Après la décision du 15/10, sept commentaires et six lignes de
+gouvernance décrivaient un circuit qui n'existe plus. `lib/pipedrive.ts` reste en
+service pour `/api/roi-lead` : son durcissement n'avait plus de porteur une fois
+#132 écartée de la fusion.
+
+**Fichiers** — `components/calculators/ROICalculator/steps/Step3Results.tsx`,
+`components/forms/index.ts`, `components/forms/ContactForm.tsx`,
+`lib/echapper-html.ts`, `lib/lead-enrichment.ts`, `e2e/roi-calculator.spec.ts`,
+`e2e/contact-form.spec.ts`, `lib/pipedrive.ts`,
+`lib/__tests__/pipedrive-robustesse.test.ts` (nouveau),
+`docs/seo-geo/01-RAYON-ACTION.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`
+
+**Ce que le durcissement change** (`lib/pipedrive.ts`, au bénéfice de
+`/api/roi-lead`, seul appelant restant) —
+- une réponse HTTP non `ok` ne compte plus comme une création réussie : avant,
+  `res.json()` sur un 4xx renvoyait un corps sans `data.id` et la fonction
+  retournait `null` sans dire pourquoi ;
+- l'échec de la note n'emporte plus l'affaire : son identifiant est rendu, la
+  note manquante est journalisée.
+Aucun appel Pipedrive n'est réintroduit dans `/api/contact` ni `/api/roi-pdf`.
+
+**Gouvernance** — `01-RAYON-ACTION.md` : « un lead qui n'arrive pas dans
+Pipedrive est un lead mort » ne vaut plus que pour `/api/roi-lead` et
+`/api/submit-survey`. `BOITE-AUX-LETTRES.md` : Q26 porte en tête la mise à jour
+du 16/10 — **volet #132 obsolète, volet #133 vivant** — ; la dette des points
+d'accès v1 ne concerne plus les deux routes sans CRM ; les questions touchant la
+politique de confidentialité (S5-D6, P4) sont précisées sans être tranchées.
+Aucun texte public n'est modifié. Rien n'est effacé : les états antérieurs sont
+conservés et datés.
+
+**Effet attendu** — Aucun effet visible : commentaires, documentation, et un
+durcissement d'erreur sur une route inchangée par ailleurs.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. Vitest ciblé : 11 cas nouveaux sur
+`lib/pipedrive.ts`, plus les 75 du périmètre leads, verts. `verifier-json` : 198
+JSON valides. `npx next build` (R1) : code de sortie 0. Suite générale non
+relancée : déjà verte sur `765a12a`, code inchangé hors `lib/pipedrive.ts`.
+
+**Supposé** — Rien de nouveau.
+
+**Non regardé** — GA4 et témoins M5 (intacts) ; calculs ROI (intacts) ; secrets ;
+`components/.../lib/types.ts` et `calculations.ts`, dont le terme « Informatif
+(CRM) » reste défendable et que #133 modifie ; `formatEnrichmentNote`, sans
+appelant depuis le 15/10, annotée et conservée.
+
+**Suite** — Campagne QA groupée #131 à exécuter sur GO_TEST_RÉEL ; fermeture sans
+fusion de #132 à proposer après l'intégration de #131 dans `main` ; #133 attend
+les validations Q20/D45 et D42 de Sébastien.
+
+---
+
+## 2026-10-15 · Leads sans CRM : Contact et ROI PDF sur le modèle Catalogue #82 · Claude de Laurent
+
+**Chantier** : G5 — rationalisation des leads | **PR** : #131 | **Commit** : voir la tête de la branche `claude/nice-carson-qc299m`
+
+**Quoi** — `/api/contact` et `/api/roi-pdf` ne parlent plus à Pipedrive. La
+notification interne Resend devient la trace commerciale, et le parcours « envoi
+du PDF ROI » en reçoit une, qu'il n'avait pas (option 1 de Laurent, 15/10).
+
+**Pourquoi** — Les demandes sont traitées à la main depuis les notifications
+e-mail. L'affaire Pipedrive était la seule trace du parcours PDF : sans
+remplacement, ce lead devenait silencieux. #132 était bloquée parce que son
+garde-fou dépendait justement de cette affaire.
+
+**Fichiers** — `app/api/contact/route.ts`, `app/api/roi-pdf/route.ts`,
+`components/forms/ContactForm.tsx`, `lib/__tests__/api-contact-route.test.ts`,
+`lib/__tests__/api-roi-pdf-route.test.ts`, `lib/__tests__/contact-form-echec.test.ts`
+
+**Effet attendu** — Chaque demande des deux formulaires produit une notification
+à `sebastien.jourdan@` et `stephane.gormand@`, ou un échec visible côté visiteur.
+Effet immédiat à la fusion ; aucune page, aucun contenu, aucun JSON-LD touché.
+
+**Contrat retenu, par parcours** —
+
+| Parcours | Trace exigée | 200 | 500 | 503 |
+|---|---|---|---|---|
+| Contact | notification interne | notification acceptée ; confirmation au prospect ensuite | notification refusée (pas de confirmation envoyée) | envoi non configuré |
+| ROI — envoi du PDF | analyse au prospect **ou** notification interne | au moins une acceptée ; `emailSent` et `leadRecorded` disent laquelle | les deux refusées | envoi non configuré |
+| ROI — être recontacté | notification interne | notification acceptée | notification refusée | envoi non configuré |
+
+**Repris de #132, sans ses garde-fous liés au CRM** — écran d'échec neutre de
+`ContactForm` (plus d'écran rouge, décision de Laurent du 15/10), saisies
+conservées, réessai, contact alternatif par locale, mesure GA4 sur succès réel
+seulement, et ses 9 cas de test. Les règles de #132 qui s'appuyaient sur
+`dealId` ne sont pas reprises : elles n'ont plus d'objet.
+
+**Ajouté par rapport à #132** — 503 de configuration (modèle #82), déduplication
+des demandes identiques en mémoire d'instance (double clic, nouvel essai), et la
+notification interne du parcours PDF.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. `npx vitest run` : 43 fichiers,
+772 tests verts (dont 75 sur le périmètre : 28 Contact, 38 ROI PDF, 9 UX).
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx next build`
+(R1) : code de sortie 0. `npx eslint --max-warnings=0` sur les 6 fichiers :
+propre. Aucun appel réseau dans les doublures : les deux routes n'appellent plus
+`fetch`, ce qu'un test vérifie. `lib/pipedrive.ts` n'est plus importé que par
+`app/api/roi-lead/route.ts` ; `/api/roi-lead` et `/api/submit-survey` sont
+inchangés au diff. Les trois appelants ne lisent que `res.ok` : aucun ne lisait
+`emailId`, `personId`, `dealId` ni `pipedrive`.
+
+**Supposé** — Que `RESEND_API_KEY`, `RESEND_FROM_EMAIL` et
+`GOOGLE_GEMINI_API_KEY` sont présentes en production : non vérifiable depuis le
+dépôt (GO_CONFIGURATION non accordé). L'enrichissement de la notification, qui
+dépendait du jeton Pipedrive, est désormais commandé par un interrupteur de code
+(`ENRICHISSEMENT_NOTIFICATION`), à `true` : tant que les deux clés sont présentes
+ensemble, le profil d'appel ne change pas.
+
+**Non regardé** — Envoi réel (GO_TEST_REEL non accordé) ; Preview Vercel bloquée
+par SSO ; faux 429 derrière le Worker (option A conservée, inchangée) ;
+`/api/roi-lead` et `/api/submit-survey` ; variables Vercel ; #133.
+
+**Suite** — QA Preview courte à préparer (S1, S2, S3) ; GO_MERGE de #131 ;
+fermeture sans fusion de #132 après intégration vérifiée dans `main`. De Q26, ne
+reste pertinent que l'arbitrage de #133 : celui de #132 est tranché par la
+décision du 15/10.
+
+---
 
 ## 2026-10-15 · Interviews 2017 — ÉTAPE W FUSIONNÉE + Worker DÉPLOYÉ en production · Claude de Laurent
 
@@ -1228,6 +1460,28 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 
 ---
 
+## 2026-10-12 · #131 : un break-even de plus de 10 000 mois n'est plus refusé ; R1 levé par D58 ; `main` `4c53314` intégré · Claude de Laurent
+
+**Chantier** : S5 M14, G5 LOT-1 (L09) | **PR** : #131 (brouillon) | **Commit** : voir PR
+
+**Quoi** — `lib/roi-pdf-schema.ts` : plafond de `breakEvenMois` retiré (nombre positif ou nul, ou `null`). Test de non-régression sur un calcul réel (48 132 mois). Commentaires de la clé IP précisés dans les deux routes. `main` `4c53314` (fusion de #135) intégré par union de `JOURNAL.md` et `ETAT.md`.
+
+**Pourquoi** — Audit ciblé du 12/10 (mission « G5 — passe finale décisive », GO_CODE_CIBLE de Laurent). Sur 20 000 entrées valides du formulaire ROI tirées au hasard, 50 (0,25 %) donnaient un break-even supérieur à 10 000 mois : 400, et lead perdu sans signal, l'envoi de `Step3Results` étant silencieux. R1 : exception de Laurent pour #131 seule (D58).
+
+**Fichiers** — `lib/roi-pdf-schema.ts`, `app/api/contact/route.ts` et `app/api/roi-pdf/route.ts` (commentaires), `lib/__tests__/api-roi-pdf-route.test.ts`.
+
+**Effet attendu** — Aucun pour un visiteur, sinon qu'un calcul légitime à très long break-even n'est plus refusé.
+
+**Vérifié** — Contre-épreuve : le nouveau test échoue avec le plafond d'origine. Échantillon : 50 échecs sur 20 000 avant, 0 après. tsc, Vitest, `next build` verts en local avant le push. Vercel réécrit `x-forwarded-for` avec l'adresse qui se connecte à lui (documentation Vercel, « Request headers ») ; le Worker relaie `/api/*` vers `sysnext.vercel.app`.
+
+**Supposé** — Le nombre de visiteurs par adresse de sortie Cloudflare, donc le risque réel de faux 429 (10 par heure, par adresse et par instance), n'est pas établi.
+
+**Non regardé** — Envoi réel (GO_TEST_REEL non donné) ; Preview (SSO).
+
+**Suite** — Protocole QA Preview (dossier G5 du 12/10, 03), puis GO_MERGE de Laurent ; après fusion, journaux Vercel `limite.ip` à J+1 et J+7.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
@@ -1490,6 +1744,28 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 **Non regardé** — Preview et Chrome réel ; réponse 402 de saasphoto.com (à vérifier en navigateur réel, non corrigée ici).
 
 **Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
+
+---
+
+## 2026-10-12 · Sécurité des routes d'envoi /api/contact et /api/roi-pdf (P0, L09), contrat de succès inchangé — brouillon · Claude de Laurent
+
+**Chantier** : S5 M14, G5 LOT-1 (L09) | **PR** : brouillon, branche `claude/nice-carson-qc299m` | **Commit** : voir PR
+
+**Quoi** — `/api/roi-pdf` : corps validé au runtime, machine en liste fermée et nom tiré du catalogue, échappement, champ piège, limites (10/h par clé IP, 3/h par destinataire). `/api/contact` : bornes, caractères de contrôle refusés, échappement, champ piège, mêmes limites. Codes de statut, ordre des envois et corps des réponses inchangés.
+
+**Pourquoi** — Des valeurs envoyées par le navigateur entraient sans validation ni échappement dans des e-mails expédiés par le site (S5 M14, G5-S5-N1). Arbitrage L09 ratifié par Laurent le 11/10 ; GO_CODE et GO_PR_DRAFT de Laurent du 12/10.
+
+**Fichiers** — `app/api/contact/route.ts`, `app/api/roi-pdf/route.ts`, `lib/contact-schema.ts`, `lib/roi-pdf-schema.ts` (nouveau), `lib/echapper-html.ts` (nouveau), `lib/lead-enrichment.ts` (`formatEnrichmentHtml`), 4 fichiers de test.
+
+**Effet attendu** — Aucun effet visible pour un visiteur légitime dans les bornes. Refus 400 ou 429 journalisés pour les envois hors bornes, piégés ou répétés (message de plus de 5 000 caractères, tabulation dans un champ d'une ligne, 4e envoi vers la même adresse dans l'heure, 11e de la même clé IP par instance).
+
+**Vérifié** — En local sur `main` `0f960b5` + ce patch seul : tsc vert ; Vitest 670/670, dont 43 nouveaux cas (doublures Resend, Pipedrive, enrichissement ; aucun réseau) ; contre-épreuve : 26 des 38 cas échouent sur `main`, et les 12 qui passent sont les parcours légitimes, la sémantique d'origine et des règles déjà présentes ; `next build` vert ; HTML prérendu identique sur 375 pages. Aucune collision textuelle nouvelle avec les 12 PR ouvertes (relevé du 12/10, 05:10 UTC). CI GitHub et Preview : à compléter.
+
+**Supposé** — Compteurs en mémoire par instance : un frein, pas une limite distribuée. La clé IP suppose que le premier `x-forwarded-for` est l'adresse du visiteur (S5 M18, non établi).
+
+**Non regardé** — Envoi réel (GO_TEST_REEL non donné) ; champ piège côté client (`ContactForm` gelé jusqu'au 23/11 : LOT-1b conditionnel) ; contrat de succès (PR suivante) ; `/api/roi-lead` et `/api/catalogue`, non modifiées.
+
+**Suite** — Fusion soumise à R1 (périmètre de Sébastien) et à un envoi réel depuis la Preview. Puis la PR du contrat de succès (L08).
 
 ---
 
