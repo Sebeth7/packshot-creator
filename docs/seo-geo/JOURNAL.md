@@ -34,6 +34,40 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Hub bijoux C1 — démonstration avec les bijoux du prospect validée par Laurent ; QA Chrome consignée (#104) · Claude de Laurent
+
+**Chantier** : validation métier et consignation, mission V9 de Laurent du 16/10 (`GO_CODE_CONSIGNATION_104`, `GO_PR_PUSH_CONSIGNATION_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104`, `GO_ENVOI_SEBASTIEN` = NON) | **PR** : #104, brouillon | **Tête de référence** : `8e00893`
+
+**Quoi** — Documentation seule ; aucun texte du site, média, composant, lien ni fichier retiré de la V1 modifié.
+
+**Décision métier** — Laurent, 16/10/2026 : « OK pour démonstration avec les bijoux du prospect. » Qualification : **FAIT MÉTIER VALIDÉ PAR LAURENT** ; ce n'est pas une validation de Sébastien. Les trois formulations de `data/secteurs.ts` sont conservées sans modification, ainsi que leurs reprises dans les métadonnées et les données structurées :
+- titre de l'appel final (H2) : « Testez un studio Orbitvu avec vos bijoux » ;
+- texte de l'appel final : « Démonstration avec vos propres pièces, choix du système adapté et accompagnement par PackshotCreator, distributeur officiel Orbitvu. » ;
+- meta description : « … Studios Orbitvu adaptés, démonstration avec vos bijoux. » (reprise dans `og:description`, `twitter:description` et `Service.description`).
+Aucune garantie, aucun délai, aucune gratuité, aucun lieu ni aucune modalité de démonstration ajoutés.
+
+**QA Chrome (rapport de Laurent du 16/10)** — `QA_CHROME_104 = PASS_WITH_RESERVES` ; `REGRESSIONS_BLOQUANTES_104 = 0` ; `READY_FOR_VALIDATION_METIER_104 = OUI`. Contrôles : FR à 1 440 et 390 px, structure et rendu conformes ; EN, contenu français préexistant, `noindex, follow` conservé ; de-ch, témoin conforme à la production ; métadonnées, canonical, hreflang et `FAQPage` contrôlés ; aucun débordement horizontal ni média cassé ; aucun formulaire soumis. **Limite** : le rapport ne prouve pas directement le SHA de la Preview contrôlée (Preview de `8e00893` : déploiement `7126543049`) ; les autres contrôles restent valables. Réserve des trois formulations de démonstration : **levée** par la décision de Laurent. Réserve EN : documentée, hors périmètre ; aucune traduction, `noindex` D9 conservé.
+
+**DECISIONS.md** — Non modifié. Un fait métier de Laurent se consigne au JOURNAL et dans la PR (usage du dépôt) ; aucune dérogation à D15 ou D42 n'a été décidée (les dérogations antérieures, D51, D54, D55, ont chacune une entrée formelle).
+
+**D15 / D42, état au 16/10** —
+- Validation de l'affirmation commerciale : Laurent, oui.
+- Sébastien : aucune information ni validation reçue ou envoyée pour #104 C1 ; rien ne lui est attribué.
+- D15 : la PR réécrit une page existante, sans prix affiché ni URL supprimée ; mais D15 maintient en validation explicite de Sébastien « tout engagement vis-à-vis d'un tiers ». [Inférence] La démonstration proposée aux prospects peut relever de cette catégorie. Si c'est le cas, une validation explicite de Sébastien, ou une dérogation formelle de Laurent comparable à D55, reste requise avant fusion ; l'arbitrage rédactionnel de Laurent n'est pas rouvert.
+- Délai D15 : **non démarré**. Les conditions pratiquées (D54, contexte de #123) sont l'information de Sébastien, une CI verte et une QA Chrome de Laurent ; l'information de Sébastien n'est pas faite (`GO_ENVOI_SEBASTIEN = NON`).
+- D42 étape 5 (validation de Sébastien selon la gouvernance applicable) : ouverte.
+- Fusion : non autorisée.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — Tête distante et `refs/pull/104/head` = `8e00893` avant écriture ; diff du commit limité aux deux fichiers ci-dessus ; HTML du site non affecté (aucun fichier du site dans le diff).
+
+**Non regardé** — Preview (SSO) et `www` (R4) ; aucune QA nouvelle (rapport de Laurent repris tel quel).
+
+**Suite** — Décision de Laurent sur la qualification « engagement vis-à-vis d'un tiers » (validation explicite de Sébastien ou dérogation formelle) ; puis information de Sébastien sur GO distinct ; délai D15 ; GO de fusion distinct.
+
+---
+
 ## 2026-10-16 · Hub bijoux C1 — retrait des fichiers V1 non rendus ; engagement « démonstration » isolé (#104) · Claude de Laurent
 
 **Chantier** : arbitrage final de préparation de #104 C1, décisions de Laurent du 16/10 (`GO_CODE_NETTOYAGE_104`, `GO_PR_PUSH_NETTOYAGE_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104` = NON) | **PR** : #104, brouillon | **Base** : `main` `c92740c` ; tête avant nettoyage `a5bb695`
