@@ -6,7 +6,8 @@
  * Deux états, calculés côté serveur depuis la source de stock (jamais depuis
  * l'adresse ni un fragment) :
  * - avec machines : hero, machines, recherche, fiche, garantie, liste d'alerte ;
- * - sans machine : hero, recherche juste après, fiche, garantie, liste d'alerte.
+ * - sans machine : hero, présentation de trois modèles (sans stock, sans prix ;
+ *   `ModelesOccasion`), recherche, fiche, garantie, liste d'alerte.
  * Deux parcours séparés (mission S0 du 11/10/2026) : recherche d'un studio
  * d'occasion (A, prioritaire, `POST /api/occasion`, fermée tant que la collecte
  * n'est pas autorisée) et liste d'alerte (B, secondaire, non activée).
@@ -28,6 +29,7 @@ import { BoutonMachine } from './BoutonMachine';
 import { alertesProposees } from '@/lib/occasion/alertes/affichage';
 import { FormulaireAlertes } from './FormulaireAlertes';
 import { FormulaireRecherche } from './FormulaireRecherche';
+import { ModelesOccasion } from './ModelesOccasion';
 import { contenuOccasion, type CollecteAffichee } from './contenu';
 import { boutonPrincipal, boutonSecondaire, chapo, enveloppe, section, surtitre, titre2 } from './styles';
 
@@ -233,8 +235,11 @@ export default function OccasionOrbitvu({
         </section>
       )}
 
+      {/* ━━ TROIS MODÈLES (état sans stock : présentation de modèles, jamais un stock) ━━ */}
+      {!stock && <ModelesOccasion langue={langue} />}
+
       {/* ━━ RECHERCHE D'OCCASION (parcours A, avec ou sans machine affichée) ━━ */}
-      <section id="recherche" aria-labelledby="recherche-titre" className={`${section} scroll-mt-20 ${stock ? '' : 'bg-future-dusk-0'}`}>
+      <section id="recherche" aria-labelledby="recherche-titre" className={`${section} scroll-mt-20`}>
         <div className={`${enveloppe} grid grid-cols-1 items-start gap-6 md:grid-cols-[.9fr_1.1fr] md:gap-14`}>
           <div>
             {!stock && (

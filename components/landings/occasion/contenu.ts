@@ -20,7 +20,7 @@ export function contenuOccasion(langue: LangueOccasion): ContenuOccasion {
 }
 
 /** Textes français, par section (compatibilité des imports existants). */
-export const { META, HERO, MACHINES, ALERTES, FICHE, GARANTIE, RECHERCHE, APERCU } = FR;
+export const { META, HERO, MACHINES, MODELES, ALERTES, FICHE, GARANTIE, RECHERCHE, APERCU } = FR;
 
 /** Espace insécable avant la ponctuation haute française (textes internes ci-dessous). */
 const nb = (texte: string) => texte.replace(/ ([?!:;])/g, '\u00a0$1');

@@ -16,3 +16,29 @@ export function BoutonMachine({ reference, children, className }: { reference: s
     </button>
   );
 }
+
+/** Événement de demande d'informations sur un MODÈLE (présentation sans stock). */
+export const EVENEMENT_MODELE = 'occasion:modele';
+
+export interface DemandeModele {
+  famille: string;
+  besoin: string;
+}
+
+/**
+ * Bouton discret d'une carte de modèle : présélectionne la famille et propose un
+ * début de texte dans le formulaire de demande (modifiable). Aucune route ni donnée
+ * supplémentaire : le formulaire de recherche est inchangé.
+ */
+export function BoutonModele({ famille, besoin, children, className }: { famille: string; besoin: string; children: React.ReactNode; className: string }) {
+  return (
+    <button
+      type="button"
+      data-modele={famille}
+      className={className}
+      onClick={() => window.dispatchEvent(new CustomEvent<DemandeModele>(EVENEMENT_MODELE, { detail: { famille, besoin } }))}
+    >
+      {children}
+    </button>
+  );
+}

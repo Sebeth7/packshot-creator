@@ -18,7 +18,7 @@ import {
   type SaisieRecherche,
 } from '@/lib/occasion/schema';
 import { Annotation, AvisSimulation } from './Annotation';
-import { EVENEMENT_MACHINE } from './BoutonMachine';
+import { EVENEMENT_MACHINE, EVENEMENT_MODELE, type DemandeModele } from './BoutonMachine';
 import { avisTestReel, contenuOccasion, type CollecteAffichee, type ContenuOccasion } from './contenu';
 import { mesurerReponseOccasion } from './mesure';
 import { useCollecteCourante } from './useCollecteCourante';
@@ -102,6 +102,7 @@ export function FormulaireRecherche({
     handleSubmit,
     setError,
     setValue,
+    getValues,
     setFocus,
     clearErrors,
     formState: { errors },
@@ -129,6 +130,23 @@ export function FormulaireRecherche({
     window.addEventListener(EVENEMENT_MACHINE, choisir);
     return () => window.removeEventListener(EVENEMENT_MACHINE, choisir);
   }, [machines, setValue, setFocus, clearErrors]);
+
+  // Clic sur « Demander des informations » d'une carte de modèle : famille présélectionnée
+  // et début de texte proposé (seulement si le champ est vide, modifiable).
+  useEffect(() => {
+    const choisirModele = (ev: Event) => {
+      const { famille, besoin } = (ev as CustomEvent<DemandeModele>).detail;
+      if (!(FAMILLES as readonly string[]).includes(famille)) return;
+      setEtat({ type: 'saisie' });
+      setValue('famille', famille as (typeof FAMILLES)[number]);
+      if (!getValues('besoin').trim()) setValue('besoin', besoin);
+      clearErrors(['famille', 'besoin']);
+      document.getElementById('recherche')?.scrollIntoView({ behavior: 'smooth' });
+      window.setTimeout(() => setFocus('besoin'), 400);
+    };
+    window.addEventListener(EVENEMENT_MODELE, choisirModele);
+    return () => window.removeEventListener(EVENEMENT_MODELE, choisirModele);
+  }, [setValue, getValues, setFocus, clearErrors]);
 
   useEffect(() => {
     if (etat.type === 'recue') titreFin.current?.focus();
