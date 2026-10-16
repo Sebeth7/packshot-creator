@@ -80,6 +80,45 @@ Ne valaient pas validation au 14/10 au matin : les claims commerciaux, les droit
 
 ---
 
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #152 (L2, L3, L4 EN, correction linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉBLOCAGE ÉDITORIAL #152 », 16/10/2026, sur la tête `ef469da`
+**Statut** : en vigueur pour le seul périmètre de #152 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée strictement à #152 : les corrections linguistiques EN de `best-image-format-for-the-web`, `how-to-choose-best-lens-for-product-photography` et `tips-photo-framing-composition` avancent sans nouvelle validation de Sébastien, car elles ne créent ni n'aggravent aucun claim, chiffre ou garantie. Aucune validation n'est attribuée à Sébastien.
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas factuellement les affirmations préexistantes. Réserves maintenues : Station 24.2.0 et SUN Cloud, fréquence des mises à jour (« several updates per year »), caractéristiques optiques (IA des objectifs, 0,05 s, APS-C, 1:2, ouvertures), chiffres (« 90 % »), garanties (« guarantee ») et superlatifs (« exceptional »).
+
+**Le contexte** — #152 (Audit B, `ec2b4c6`), option B du 15/10 (L1 retiré, D35/F5). L'entrée du 15/10 conditionnait la fusion à la levée explicite des réserves D42 ; Laurent a décidé le 15/10 de ne pas solliciter Sébastien et rend ici l'exception écrite.
+
+**Ce qu'elle interdit** —
+- L'étendre à #146, aux contenus FR ou de-ch, ou à une autre PR.
+- Réintroduire L1 (D35/F5, jusqu'au 23/11).
+- Modifier une règle d'indexation D9.
+- Présenter les affirmations maintenues comme validées.
+- Tenir l'exception pour une QA : la QA Preview humaine sur 3 pages et 4 formats reste requise avant fusion.
+
+---
+
+## D(numéro à attribuer) · 2026-10-15 · #152 : option B (L1 retiré, D35/F5) et instruction D42 limitée à la correction linguistique de L2 à L4
+
+**Décidé par** : Laurent — « V9 — PR #152 — DÉCISION DE CLÔTURE », 15/10/2026
+**Statut** : en vigueur pour le seul périmètre de #152 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **Option B** : L1 (`packshot-photography-guide-why-make-product-packshots`, EN) sort du diff de #152 et reste à sa version de `main` ; D35 et la mesure F5 sont maintenus. Les corrections L1 sont conservées (commit `b3df50e`, blob `3679186`) pour une PR distincte après F5 ou sur décision explicite de Laurent.
+2. **Instruction D42 limitée** : #152 corrige la langue de L2, L3 et L4 sans ajouter ni renforcer d'affirmation. Les affirmations préexistantes y sont **maintenues sans être validées** : leur maintien ne vaut pas validation factuelle.
+3. **Conditions de fusion inchangées** : GO_MERGE et GO_PUBLICATION restent conditionnels — CI verte sur la tête finale, QA Preview humaine réellement effectuée (desktop, tablette, mobile ; SSO = BLOCKED), levée explicite des réserves D42 applicables, demandée à Sébastien en une seule demande avec la QA.
+
+**Le contexte** — #152 (Audit B, `ec2b4c6`) : finition linguistique de quatre articles EN ; L1 est protégé par D35 pendant F5 (J+28 le 26/10, J+56 le 23/11) ; ses réserves D42 et celles de L2 à L4 portent sur des affirmations déjà en ligne, listées dans la PR.
+
+**Ce qu'elle interdit** —
+- Présenter le maintien d'une affirmation de L2 à L4 comme une validation factuelle, ou l'attribuer à Sébastien sans sa réponse.
+- Réintroduire L1 dans #152, ou le modifier pendant F5, sans décision explicite de Laurent.
+- L'étendre à une autre PR, aux versions FR ou de-ch, ou substituer une QA locale à la QA Preview.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-14 · Exception ponctuelle D13/D42 pour les 8 titles FR de #119, et QA locale substitutive à la Preview (SSO)
 
 **Décidé par** : Laurent — arbitrage éditorial du 14/10/2026 (midi) et « V9 — Arbitrage lot A » du 14/10/2026

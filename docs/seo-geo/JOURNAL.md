@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · #129 — test réel B de la recherche (PASS rapporté par Laurent), fermeture, `main` `b8ae3b2` intégré · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, étape A (GO_TEST_REEL_RECHERCHE_B, GO_OUVERTURE_FERMETURE_RECHERCHE, GO_FERMETURE_129, GO_RESYNC_129 du 16/10/2026) | **PR** : #129 (brouillon) | **Commit** : le commit de fusion qui porte cette entrée
+
+**Quoi** — Fenêtre de test de la recherche seule : ouverture `83eb6e2` (push à 07:25:26 UTC, `COLLECTE_REELLE_AUTORISEE` et `FENETRE_TEST_JUSQUA` jusqu'à 08:41 UTC ; alertes, publication et bulletin fermés), une demande soumise par Laurent vers 07:36 UTC, fermeture `399a44b` (push à 07:41:29 UTC, `fermer.py`, arbre identique à celui de `45de0c8`, `git diff eabc360 -- lib/occasion/activation.ts` vide). `main` `b8ae3b2` (#152) intégré : conflits `ETAT.md` et `JOURNAL.md` résolus par union, aucune ligne perdue.
+
+**Pourquoi** — Le reliquat B de la recherche (tous les champs facultatifs) n'était pas prouvé ; la décision de publication en deux étapes (D60, complément, point 10) exige ce test avant la fusion de l'étape A.
+
+**Fichiers** — `lib/occasion/activation.ts` (ouverture puis fermeture, retour à l'état antérieur) ; fusion de `main` : trois articles de blog EN (#152), `DECISIONS.md`, `ETAT.md`, `JOURNAL.md`.
+
+**Effet attendu** — Aucun en production (publication fermée). La Preview de la branche est refermée.
+
+**Vérifié** — Par cette session : build local vert avant chaque push ; déploiements Vercel de `83eb6e2` et de `399a44b` terminés (statut GitHub) ; six verrous fermés dans `399a44b`. Rapporté par Laurent (Chrome, non revérifié ici) : GET recherche `disponible:true` et alertes `disponible:false` pendant la fenêtre ; écran « Demande reçue » ; deux envois acceptés et `Delivered` (notification à `sebastien.jourdan@sysnext.com`, identifiant `01a143a3-fdc0-755e-8546-1613f03bc134` ; accusé à l'adresse de test B, identifiant `01a143a3-fe12-72c5-abce-ffff413d82ce`) ; accusé reçu dans Gmail, **classé en indésirables** ; aucun renvoi.
+**Supposé** — Que la demande a été servie par le déploiement d'ouverture : [Inférence] seul ce déploiement répondait `disponible:true`, mais l'alias de branche n'a pas été relié au SHA depuis Chrome.
+**Non regardé** — Réception de la notification dans la boîte de Sébastien : NON VÉRIFIÉE. Réponses HTTP de l'alias après fermeture (GET `false`, POST 503) : l'alias est protégé par SSO, non observables depuis cette session ; à constater dans Chrome. Déploiement d'ouverture : non supprimé (GO_NETTOYAGE_DEPLOIEMENTS = NON), il se referme seul à 08:41 UTC (verrou temporel).
+
+**Suite** — Variable Production `OCCASION_NOTIFICATION_EMAIL` (GO_VERCEL_PRODUCTION_A), CI de la nouvelle tête, QA ciblée, GO_MERGE_129_A conditionnel, puis PR de publication distincte (patch A) ; arbitrage sur le classement en indésirables de l'accusé et sur la mention « alertes » des descriptions SEO et de l'encadré des articles de blog.
+
+---
+
 ## 2026-10-16 · #129 — publication en deux étapes (décision de Laurent) et liste d'alerte masquée en vue publique · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (« GO accélération publication », 16/10/2026 ; GO_CODE_129_OPTION_A) | **PR** : #129 (brouillon) | **Commit** : ce commit (documentation) et le commit de code qui le précède
@@ -51,6 +71,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Les descriptions SEO FR/EN/de-ch et l'encadré des deux articles de blog mentionnent encore « alertes sur les nouvelles offres » : textes validés (D42), non modifiés ; à arbitrer avant GO_PUBLICATION.
 
 **Suite** — Test réel B (recherche seule, fenêtre bornée), fermeture prouvée, variable Production `OCCASION_NOTIFICATION_EMAIL`, resync, GO_MERGE_129_A conditionnel, PR de publication distincte.
+
+---
+
+## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
+
+**Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
+
+**Quoi** — Anglais corrigé dans 4 articles EN : 237 occurrences dans le corps, 36 dans les FAQ, title, h1, metaTitle et description (L2, L3, L4 ; FAQ seules pour L1). Un seul titre retouché (« still-life », L1), ancre identique.
+
+**Pourquoi** — Audit B, dossiers P1 02, 03, 04, 09 : traductions Webflow illisibles par endroits. GO_CODE L1 à L4, GO_COMMIT et GO_PR/PUSH de Laurent du 15/10.
+
+**Fichiers** — `content/blog/en/packshot-photography-guide-why-make-product-packshots.json`, `content/blog/en/best-image-format-for-the-web.json`, `content/blog/en/how-to-choose-best-lens-for-product-photography.json`, `content/blog/en/tips-photo-framing-composition.json`
+
+**Effet attendu** — Aucun sur les URL, ancres, canonical, hreflang ou robots. Titles SERP de L2 et L3 retouchés (grammaire, mots-clés conservés). À mesurer après publication seulement.
+
+**Vérifié** — `verifier-json` 198 valides ; `verifier-consequences` effet local ; `vitest` 691/691 ; `tsc` ; `next build` (valeurs factices) ; HTML généré des 4 pages : canonical, hreflang, pas de `noindex`, FAQPage, 63 ancres sur 63 identiques à `main`. CI sur `b3df50e` : build et conséquences verts. Balises, liens, images, ALT, chiffres, auteurs, dates et slugs identiques à `main` (script de comparaison).
+**Supposé** — L'ancre d'un titre ne dépend que de son texte (`slugify` de `lib/blog-utils.ts`), donc un changement de casse ou de trait d'union la conserve.
+**Non regardé** — Preview Vercel (SSO, aucun jeton) ; `www` (R4) ; FR et de-ch ; véracité des claims, laissés tels quels et listés en réserves D42 dans la PR.
+
+**Suite** — HOLD : D35 et D52 (L1 pendant la mesure F5, J+28 le 26/10, J+56 le 23/11) ; réserves D42 de L1 à L4 (décision de Sébastien ou exception écrite de Laurent) ; QA Preview sur 3 formats. Aucune fusion avant ces trois points.
+
+**MàJ 15/10 (option B de Laurent)** — L1 retiré du diff de #152 : `content/blog/en/packshot-photography-guide-why-make-product-packshots.json` restauré à sa version de `main` (blob `2ce664e`), D35 et la mesure F5 respectés. Les corrections L1 sont conservées dans l'historique de la branche : commit `b3df50e`, blob `3679186` ; elles reviendront par une PR distincte après F5 (J+56 le 23/11) ou sur décision explicite de Laurent. L2, L3, L4 inchangés. Instruction D42 de Laurent consignée dans `DECISIONS.md` (linguistique seule, claims préexistants ni ajoutés ni renforcés, maintien ≠ validation factuelle). Fusion toujours soumise à : CI verte, QA Preview humaine sur 3 formats, réponse de Sébastien sur les réserves D42 de L2 à L4.
+
+**MàJ 16/10 (exception D13/D42 de Laurent)** — La demande à Sébastien prévue le 15/10 est **retirée** (décision de Laurent du 15/10 : ne pas le solliciter ; mention retirée du descriptif de #152). Laurent accorde le 16/10 une exception ponctuelle D13/D42 limitée à #152, consignée dans `DECISIONS.md` : corrections linguistiques L2 à L4 sans nouvelle validation de Sébastien ; affirmations préexistantes **non validées**, réserves maintenues (Station 24.2.0, SUN Cloud, fréquence des mises à jour, caractéristiques optiques, chiffres, garanties, superlatifs). Ni #146, ni FR/de-ch, ni L1 (D35/F5), ni D9. CI 4/4 sur `ef469da`.
+**Reste avant fusion** — QA Preview humaine (3 pages, 4 formats, campagne QA de Laurent), puis GO_MERGE_152 et GO_PUBLICATION_152 ; contrôle `sysnext` puis Chrome sur `www`. Aucun travail documentaire supplémentaire prévu avant la fusion, hors consignation du résultat QA et de la fusion.
 
 ---
 
@@ -248,7 +293,6 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
----
 
 ## 2026-10-15 · Interviews 2017 — ÉTAPE W FUSIONNÉE + Worker DÉPLOYÉ en production · Claude de Laurent
 
