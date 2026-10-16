@@ -61,6 +61,45 @@ Ne valaient pas validation au 14/10 au matin : les claims commerciaux, les droit
 
 ---
 
+## D(numéro à attribuer) · 2026-10-15 · Traitement des leads sans CRM pour Contact et ROI PDF (option 1)
+
+**Décidé par** : Laurent — « V9 — MISSION G5, rationalisation définitive des leads » puis « V9 — GO d'exécution #131 / #132 », 15/10/2026
+**Statut** : en vigueur. Aucun numéro de décision n'est attribué ici : il se prend au moment de la consignation définitive, après vérification de `main`.
+
+**La décision** —
+1. **Aucun appel Pipedrive depuis `/api/contact` ni `/api/roi-pdf`.** Les demandes
+   sont traitées à la main par Sébastien depuis les notifications Resend, sur le
+   modèle de la landing Catalogue (#82, fusionnée le 10/10/2026 ; décision de
+   Sébastien du 09/10 : aucun CRM, Resend et notification interne).
+2. **Option 1 pour le parcours « envoi du PDF ROI »** : ce parcours reçoit une
+   notification interne, qu'il n'avait pas. Sa seule trace était l'affaire
+   Pipedrive ; sans ce remplacement, le lead devenait silencieux.
+3. **Contrat de succès par parcours**, et non règle unique : la trace requise est
+   la notification interne pour Contact et pour « être recontacté » ; pour l'envoi
+   du PDF, l'e-mail d'analyse au prospect ou la notification interne. Trois issues :
+   503 si l'envoi n'est pas configuré, 500 si aucune trace n'est acceptée par
+   Resend, 200 dès qu'une trace existe. L'échec partiel du parcours PDF est déclaré
+   dans la réponse (`emailSent`, `leadRecorded`), jamais masqué.
+4. **Aucune suppression de Pipedrive hors de ces deux routes** : `lib/pipedrive.ts`,
+   `/api/roi-lead`, `/api/submit-survey` et les variables Vercel sont inchangés.
+5. **Aucun CRM de remplacement, aucune séquence marketing.**
+
+**Le contexte** — #131 (P0 sécurité) et #132 (contrat de succès) étaient bloquées :
+la règle de #132 reposait sur l'affaire Pipedrive comme trace de secours, et #132
+était empilée sur une tête de #131 antérieure, en conflit, donc sans CI. Le
+traitement commercial réel est manuel depuis les notifications e-mail. Poursuivre
+un projet CRM n'avait pas d'objet ; le précédent validé existait déjà (#82).
+
+**Ce qu'elle interdit** —
+- Supprimer `lib/pipedrive.ts`, toucher `/api/roi-lead` ou `/api/submit-survey`, ou
+  retirer une variable Vercel Pipedrive au titre de cette décision.
+- Renvoyer `success` quand aucune trace n'a été acceptée, ou présenter un échec
+  partiel du parcours PDF comme un succès complet.
+- Tenir « accepté par Resend » pour une remise en boîte de réception ou une lecture.
+- Reconstruire un CRM, ou créer une séquence marketing, sans décision nouvelle.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-15 · Exception ponctuelle D13/D42 pour les textes de consentement de #117, et QA substitutive à la Preview (SSO)
 
 **Décidé par** : Laurent — « V9 — Clôture conditionnelle de #117 » et « V9 — GO_CODE_117_TRANSPARENCE + validation D42 ponctuelle », 15/10/2026
