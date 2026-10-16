@@ -291,27 +291,25 @@ export default function HubVin({ secteur, lang, slug, breadcrumbs, autresSecteur
               {typo('Sur une bouteille, chaque matière réagit à sa façon. Le réglage doit les traiter ensemble, sans en sacrifier une.')}
             </p>
           </div>
-          {/* Sous 640 px : défilement horizontal (cartes à 80 % de la largeur, la suivante reste visible) ;
-              au-delà : grille de 2 puis 4 colonnes. */}
-          <ul
-            tabIndex={0}
-            aria-label="Quatre contraintes de prise de vue"
-            className="mt-12 -mx-4 px-4 pb-4 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 sm:pb-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-6 sm:gap-y-10 sm:overflow-visible focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-orbitvu"
-          >
+          {/* Sous 640 px : liste verticale, vignette à gauche du texte (les quatre contraintes restent
+              visibles sans défilement horizontal) ; au-delà : grille de 2 puis 4 colonnes, image au-dessus. */}
+          <ul aria-label="Quatre contraintes de prise de vue" className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-6 sm:gap-y-10">
             {matieres.map((m, i) => (
-              <li key={m.terme || i} className="w-[80%] shrink-0 snap-start sm:w-auto">
+              <li key={m.terme || i} className="grid grid-cols-[7rem_1fr] gap-x-4 items-start sm:block">
                 {MATIERES[i] && (
                   <Image
                     src={MATIERES[i].src}
                     alt={MATIERES[i].alt}
                     width={MATIERES[i].width}
                     height={MATIERES[i].height}
-                    sizes="(min-width: 1280px) 290px, (min-width: 1024px) 23vw, (min-width: 640px) calc(50vw - 36px), 80vw"
-                    className="w-full h-auto rounded-lg"
+                    sizes="(min-width: 1280px) 290px, (min-width: 1024px) 23vw, (min-width: 640px) calc(50vw - 36px), 112px"
+                    className="w-28 h-28 sm:w-full sm:h-auto rounded-lg"
                   />
                 )}
-                <h3 className="mt-5 text-lg font-semibold text-heading-dark">{m.terme}</h3>
-                <p className="mt-2 text-neutral-medium leading-relaxed">{typo(m.texte)}</p>
+                <div>
+                  <h3 className="text-lg font-semibold text-heading-dark sm:mt-5">{m.terme}</h3>
+                  <p className="mt-2 text-neutral-medium leading-relaxed">{typo(m.texte)}</p>
+                </div>
               </li>
             ))}
           </ul>
@@ -357,11 +355,13 @@ export default function HubVin({ secteur, lang, slug, breadcrumbs, autresSecteur
               </p>
             ))}
           </div>
+          {/* Illustration de gamme limitée à 56 rem : elle accompagne le texte sans devenir l'image
+              dominante de la page (elle ne montre pas un résultat de studio). */}
           <Figure
             visuel={GAMME_VISUEL}
             legende={GAMME.legende}
-            sizes="(min-width: 1280px) 1232px, calc(100vw - 32px)"
-            className="mt-10"
+            sizes="(min-width: 960px) 896px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+            className="mt-10 max-w-4xl"
           />
           <div className="mt-16 lg:mt-20 grid lg:grid-cols-12 gap-x-16 gap-y-10 items-center">
             <div className="lg:col-span-5">
