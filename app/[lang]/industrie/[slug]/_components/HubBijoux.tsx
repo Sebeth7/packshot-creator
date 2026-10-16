@@ -12,6 +12,11 @@ import type { DEFAULT_SECTORS } from '@/components/shared/SectorGrid';
  * Hub /fr/industrie/bijoux-joaillerie (PR #104) : page narrative dédiée, rendue à la
  * place du gabarit commun des hubs pour ce seul secteur (fr et en ; de-ch inchangé).
  *
+ * NON RENDU depuis la reprise C1 du 16/10/2026 (décision de Laurent) : le hub bijoux
+ * utilise le gabarit commun et l'entrée `bijoux-joaillerie` de `data/secteurs.ts` est
+ * revenue au format de ce gabarit. Composant et visuels conservés, finition visuelle
+ * (Phase B) abandonnée et non terminée ; le réactiver suppose de réécrire cette entrée.
+ *
  * Cadre de fond (arbitrage du 08/10/2026, non affiché comme tel) : capture (lumière, macro,
  * profondeur, 360°), workflow (modèles, reprise d'une collection), IA seulement quand elle
  * sert (AI Masking, AI Retoucher), export vers les usages de l’entreprise (e-commerce, catalogues, documentation, besoins internes). Ordre des sections inchangé.

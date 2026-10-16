@@ -23,7 +23,6 @@ import { HeroSection, HeroImage } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { SectorResources } from '@/components/maillage/MaillageSections';
 import { buildLanguages } from '@/lib/hreflang';
-import HubBijoux from './_components/HubBijoux';
 
 /** Maps sector data slugs to hero image filename bases in /public/images/hero/ */
 const SECTOR_HERO_IMAGE_MAP: Record<string, string> = {
@@ -228,12 +227,6 @@ export default async function SecteurPage({ params }: PageProps) {
       : lang === 'de-ch' && dataSlug !== 'mode-textile'
         ? sectorText(s, 'de-ch').name
         : s.name;
-
-  // Hub bijoux (PR #104) : page narrative dédiée, fr et en (EN servi en FR, noindex).
-  // de-ch (/de-ch/branchen/schmuck) garde le gabarit commun.
-  if (dataSlug === 'bijoux-joaillerie' && lang !== 'de-ch') {
-    return <HubBijoux secteur={secteur} lang={lang} slug={slug} breadcrumbs={breadcrumbs} autresSecteurs={otherSectors} />;
-  }
 
   /* Featured solution (first) + remaining solutions */
   const [featuredSolution, ...otherSolutions] = secteur.solutions.items;

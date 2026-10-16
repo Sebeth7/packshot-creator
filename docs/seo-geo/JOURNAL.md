@@ -34,6 +34,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Hub bijoux — reprise de #104 en version allégée C1 : gabarit commun, données de f9a6d13 · Claude de Laurent
+
+**Chantier** : mission V9 de Laurent du 16/10, « GO REPRISE #104 BIJOUX, VERSION ALLÉGÉE C1 » (`GO_REPRISE_104`, `GO_CODE_104`, `GO_PR_PUSH_104` = OUI ; `GO_MERGE` et `GO_PUBLICATION` = NON) ; décision de Laurent, non inscrite dans `DECISIONS.md` | **PR** : #104, brouillon | **Base** : `main` `c92740c`, intégré dans la branche par commit de fusion (`7c35eb9`) ; tête avant reprise `1a9a607`
+
+**Quoi** — `/fr/industrie/bijoux-joaillerie` (et `/en/…`, `noindex`, données FR, D9) revient au gabarit commun des hubs, avec l'entrée `bijoux-joaillerie` de `data/secteurs.ts` reprise de f9a6d13 (B3, 07/10) :
+- `app/[lang]/industrie/[slug]/page.tsx` : import et retour anticipé de `HubBijoux` retirés ; fichier identique à `main`. Gabarit commun non modifié (U04 relève de la session G6, #158).
+- `data/secteurs.ts` : entrée `bijoux-joaillerie` de f9a6d13 (title, meta, H1, hero, défis, deux cartes de solutions, trois cas d'usage, CTA, FAQ de 5 questions), sans `casClients` ni carte BlendAI. Une phrase corrigée par rapport à f9a6d13 : « Les outils IA d'Orbitvu Station interviennent après la prise de vue » → « travaillent sur la photo du bijou réel » (AI Masking agit pendant la capture). Reste du fichier identique à `main`.
+- `HubBijoux.tsx`, `sectorResourceLinks` et les 6 AVIF de `public/images/secteurs/bijoux/` : conservés sur la branche, non rendus (note d'en-tête ajoutée au composant). Visuel trois pièces non réintroduit ; aucune illustration produite.
+- Phase B (finition visuelle du 11/10) : abandonnée pour cette reprise, non terminée.
+
+**Pourquoi** — Décision de Laurent du 16/10 : rouvrir #104 seule, sous la forme la plus légère, sur les données éditoriales déjà préparées et contrôlées (QA humaine PASS du 07/10 sur `2538b51`).
+
+**Claims de l'entrée** — Fresh-check orbitvu.com du 16/10 (`/software/ai`, `/software/orbitvu-station`, `curl`, lecture gratuite) : « AI Toolkit available via Orbitvu Station », « On-model coming soon », AI Photo Assistant sur Alphashot Pro G2 et XL G2, AI Masking « right in the capture process », AI Retoucher (reflets, imperfections, couleurs). Référentiel D45 de `main` : Pro G2 35 × 35 × 40 cm (`axes: 'non-precises'`), 10 kg, `conforme` ; Micro Pro v2 18 cm, 1 kg. Assistant Superfocus qui suggère les paramètres : guide FR focus stacking bague, étape 3. Réservation des outils IA aux abonnés : note 26.2 (lue le 08/10, non relue). « Distributeur officiel Orbitvu » : formulation déjà publiée sur `main` (12 fichiers).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — [Inférence] Hub aligné sur le lexique « packshot bijoux », sans BlendAI ni claims chiffrés non sourcés ; effet de classement non prévisible (baseline 1 clic / 18 impressions en 90 jours, V2 `03` L10). Cela repose sur des schémas observés. Aucune publication avant un GO distinct.
+
+**Vérifié** —
+- Fresh-check : `main` `c92740c` ; tête distante de #104 `1a9a607`. PR ouvertes : #158 (U04, gabarit des hubs), #146, #133, #108, #107, #105, #104. #158 et #107 touchent `page.tsx`, #107 aussi `data/secteurs.ts` (entrée vin) ; #105, #107, #108 non modifiées.
+- `npx tsc --noEmit` vert ; `npx eslint` sur `data/secteurs.ts`, `HubBijoux.tsx`, `MaillageSections.tsx` : 0 problème ; `verifier-json` : 198 JSON valides ; Vitest 1047/1047 (57 fichiers) ; `npx next build` vert (variables factices).
+- HTML prérendu de `main` `c92740c` (arbre séparé) contre la branche, identifiant de build et chemins `/_next/static` neutralisés : 384 pages, **382 identiques, 2 différentes** (`fr` et `en` `industrie/bijoux-joaillerie`). `/de-ch/branchen/schmuck` et les 16 autres hubs FR, EN et de-ch identiques.
+- Hub FR et EN contre `main` : robots (`en` : `noindex, follow`), canonical, hreflang (fr, fr-CH, de-CH, x-default ; pas d'`en`, D9) et types JSON-LD (Organization, BreadcrumbList, Service, FAQPage) identiques ; `Service.url` identique ; `FAQPage` 5 questions = FAQ visible ; 16 liens de la zone principale, mêmes `href` qu'à `main`, 16/16 en 200 par langue ; 0 « BlendAI », « −90 % », « 20-50 », « lifestyle », « polarisé », « Cartier », « Tiffany » dans le texte visible (`main` : 3, 1, 1, 4, 2, 1, 1).
+- Rendu local (`next start`, Chromium) FR et EN à 1 440, 1 024, 768 et 390 px, branche et `main` : 1 H1, 0 débordement, 0 erreur console, 0 réponse 4xx, 3 images chargées avec alt. Bas du CTA du hero : 675, 723, 938 px (premier écran), 1 009 px à 390 (hors premier écran, comme `main`). Hauteur à 1 440 : 9 552 px (`main` : 8 017).
+- Playwright, specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `consentement-medias`) : 101/101. `seo` et `language-switch` filtrés sur les hubs : 48 réussis, 4 échecs identiques sur `main` (pages identiques).
+- `verifier-consequences` : voir la PR.
+
+**Supposé** — Provenance et génération du visuel du hero `hero-secteur-bijoux` : classé « généré par IA » par l'inventaire de #104 du 08/10, non revérifié.
+
+**Non regardé** — Preview Vercel (Vercel Authentication) et `www` (R4) ; Firefox, Safari, appareils réels. Prose EN et de-ch : aucune traduction (GO non donné ; EN `noindex` sert les données FR). Aucun appel payant.
+
+**Réserves (hors périmètre, non corrigées)** —
+- Hero conservé provisoirement : `hero-secteur-bijoux` montre une bague solitaire, un bracelet rivière et, au centre, une montre à cadran bleu portant un texte de marque illisible ; sujet dominant horloger, pièces en bas du cadre ; alt = H1 (gabarit). Adéquation à la joaillerie à juger par Laurent.
+- Gabarit commun : réserves « Visuel solution » vides des deux cartes (U04, #158) ; « Demander un devis gratuit » et « Découvrir nos formations » dans le hero ; « 30 minutes avec un expert » dans l'appel final ; bouton « Comparer tous les modèles » ; JSON-LD `Organization` avec « IA BlendAI ».
+- Catalogue des machines (`machines.ts`) : carte Micro Pro v2 « Jusqu'à 18x15x16 cm » (D45 : 15 × 16 non vérifiables) ; Pro G2 étiquetée « Petit ».
+
+**Suite** — CI et Preview de la nouvelle tête ; QA humaine de la Preview par Laurent ; information de Sébastien (D42 étape 5, D15 : réécriture d'une page existante ; engagement « Démonstration avec vos propres pièces ») ; décision sur les fichiers V1 non rendus avant fusion ; GO de fusion distinct.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
