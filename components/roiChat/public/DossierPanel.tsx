@@ -8,6 +8,7 @@
  */
 
 import { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   CheckCircle2,
   Circle,
@@ -58,7 +59,34 @@ function LeadCapture({
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [optIn, setOptIn] = useState(false);
-  const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
+  // `pdf-error` / `pdf-retry` : la demande a été acceptée par le serveur, seul
+  // le PDF local a échoué — jamais présenté comme un échec d'envoi.
+  const [state, setState] = useState<
+    'idle' | 'sending' | 'done' | 'error' | 'pdf-error' | 'pdf-retry'
+  >('idle');
+
+  /** PDF côté client (parité wizard — jamais en pièce jointe). Lève en cas d'échec. */
+  async function downloadPdf() {
+    const { generatePDF } = await import(
+      '@/components/calculators/ROICalculator/results/PDFGenerator'
+    );
+    const adapted =
+      results.differentiel || results.coutRevient
+        ? ({
+            machine: { nom: results.machine.machineNom ?? 'Analyse ROI' },
+          } as CalculationResults)
+        : adaptEngineResults(rehydratePublicResults(results));
+    if (!pdfRef.current || !adapted) throw new Error('Rendu PDF indisponible');
+    const blob = await generatePDF(pdfRef, adapted, 'fr', email.trim());
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `ROI-${(results.machine.machineNom ?? 'analyse').replace(/\s+/g, '-')}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
 
   async function submit() {
     if (state === 'sending') return;
@@ -83,32 +111,31 @@ function LeadCapture({
         }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-      // PDF côté client (parité wizard — jamais en pièce jointe)
-      const { generatePDF } = await import(
-        '@/components/calculators/ROICalculator/results/PDFGenerator'
-      );
-      const adapted =
-        results.differentiel || results.coutRevient
-          ? ({
-              machine: { nom: results.machine.machineNom ?? 'Analyse ROI' },
-            } as CalculationResults)
-          : adaptEngineResults(rehydratePublicResults(results));
-      if (pdfRef.current && adapted) {
-        const blob = await generatePDF(pdfRef, adapted, 'fr', email.trim());
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `ROI-${(results.machine.machineNom ?? 'analyse').replace(/\s+/g, '-')}.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-      }
-      setState('done');
     } catch (err) {
       console.error('[roi-preview] lead:', err);
       setState('error');
+      return;
+    }
+
+    try {
+      await downloadPdf();
+      setState('done');
+    } catch (err) {
+      console.error('[roi-preview] pdf:', err);
+      setState('pdf-error');
+    }
+  }
+
+  /** Nouvel essai du PDF seul : la demande, déjà acceptée, n'est pas renvoyée. */
+  async function retryPdf() {
+    if (state === 'pdf-retry') return;
+    setState('pdf-retry');
+    try {
+      await downloadPdf();
+      setState('done');
+    } catch (err) {
+      console.error('[roi-preview] pdf:', err);
+      setState('pdf-error');
     }
   }
 
@@ -119,6 +146,32 @@ function LeadCapture({
         <p className="text-sm text-emerald-700 font-medium">
           Votre analyse a été téléchargée et envoyée par email.
         </p>
+      </div>
+    );
+  }
+
+  if (state === 'pdf-error' || state === 'pdf-retry') {
+    return (
+      <div className="bg-amber-50 rounded-xl p-4 text-center space-y-2" role="status">
+        <Check className="w-5 h-5 text-amber-600 mx-auto" />
+        <p className="text-sm text-amber-800 font-medium">Votre demande a bien été reçue.</p>
+        <p className="text-xs text-amber-700">
+          Le PDF n&apos;a pas pu être généré sur cet appareil.
+        </p>
+        <button
+          type="button"
+          onClick={retryPdf}
+          disabled={state === 'pdf-retry'}
+          className="w-full flex items-center justify-center gap-2 rounded-lg border border-amber-300 bg-white text-amber-800 text-sm font-medium py-2 disabled:opacity-50 transition-colors"
+        >
+          {state === 'pdf-retry' ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" /> Préparation…
+            </>
+          ) : (
+            'Réessayer le téléchargement'
+          )}
+        </button>
       </div>
     );
   }
@@ -334,14 +387,22 @@ export default function DossierPanel({
 
           {/* Rendu dédié à l'export PDF — pleine largeur A4, hors écran.
               Monté en permanence pour que les graphiques soient prêts au
-              moment de la capture. */}
-          <div
-            ref={pdfRef}
-            aria-hidden="true"
-            className="fixed top-0 -left-[2000px] w-[794px] pointer-events-none"
-          >
-            <PdfReport studies={studies} dossier={dossier} />
-          </div>
+              moment de la capture, dans un portail sur document.body : ce
+              panneau existe en deux instances (volet desktop, tiroir mobile)
+              et celle dont le volet est en display: none ne serait pas mise en
+              page (sections 0 × 0, échec jsPDF du 16/10/2026). */}
+          {typeof document !== 'undefined' &&
+            createPortal(
+              <div
+                ref={pdfRef}
+                data-pdf-rendu
+                aria-hidden="true"
+                className="fixed top-0 -left-[2000px] w-[794px] pointer-events-none"
+              >
+                <PdfReport studies={studies} dossier={dossier} />
+              </div>,
+              document.body
+            )}
         </div>
       )}
 
