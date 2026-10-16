@@ -207,7 +207,7 @@ export const solutions: Solution[] = [
   // ═══════════════════════════════════════════════════════════
   {
     slug: 'documentation-qualite-produit',
-    titre: 'Documentation Photo Qualité Produit : Traçabilité & Conformité | PackshotCreator',
+    titre: 'Documentation Photo Qualité Produit : Traçabilité & Conformité',
     description:
       'Studios photo automatisés pour la documentation qualité produit : traçabilité visuelle, rapports de conformité, prototypage R&D. Répétabilité certifiable.',
     hero: {

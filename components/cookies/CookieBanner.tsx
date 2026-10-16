@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Settings, X } from 'lucide-react';
 
@@ -55,6 +55,30 @@ function dispatchConsentUpdate(consent: ConsentCategories) {
   window.dispatchEvent(new CustomEvent('cookie-consent-update', { detail: consent }));
 }
 
+/**
+ * Recale le bandeau sur la zone visible de l'écran (visual viewport).
+ *
+ * Sur mobile, une page plus large que l'écran agrandit la fenêtre de mise en
+ * page au-delà de la zone visible : relevé du 08/10/2026 sur /fr en Pixel 5,
+ * 442 × 818 px de mise en page pour 393 × 727 px visibles. Un bandeau
+ * `fixed bottom-0` s'ancre alors 91 px sous le bas de l'écran : le bouton
+ * « Personnaliser » sortait de la zone visible et son clic tombait sur
+ * « Tout accepter » ou « Tout refuser » (e2e/cookie-banner.spec.ts, Pixel 5).
+ * L'écart est mesuré sur la position réelle du bandeau, barres de défilement
+ * exclues : sans écart (cas courant, et le desktop), aucun style n'est posé.
+ * Zoom volontaire de l'internaute (échelle > 1) : comportement natif conservé.
+ */
+function fitToVisualViewport(el: HTMLElement) {
+  const vv = window.visualViewport;
+  el.style.bottom = el.style.left = el.style.right = '';
+  if (!vv || vv.scale > 1.01) return;
+  const r = el.getBoundingClientRect();
+  const px = (n: number) => (n >= 1 ? `${Math.round(n)}px` : '');
+  el.style.bottom = px(r.bottom - (vv.offsetTop + vv.height));
+  el.style.left = px(vv.offsetLeft - r.left);
+  el.style.right = px(r.right - (vv.offsetLeft + vv.width));
+}
+
 export default function CookieBanner() {
   const t = useTranslations('cookies');
   const [visible, setVisible] = useState(false);
@@ -64,6 +88,12 @@ export default function CookieBanner() {
     analytics: false,
     externalMedia: false,
   });
+  const panelRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  // Ouverture demandée (lien du pied de page, fenêtre d'une vidéo) : le focus
+  // entre dans le bandeau, puis revient à l'élément d'origine à la fermeture.
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+  const [openRequest, setOpenRequest] = useState(0);
 
   useEffect(() => {
     const existing = getConsent();
@@ -81,6 +111,11 @@ export default function CookieBanner() {
     setVisible(false);
     setShowDetails(false);
     dispatchConsentUpdate(final);
+    // Après le retrait éventuel des lecteurs (cookie-consent-update) : la façade
+    // remise en place est de nouveau dans le document.
+    const target = returnFocusRef.current;
+    returnFocusRef.current = null;
+    if (target) requestAnimationFrame(() => { if (target.isConnected) target.focus(); });
   }, []);
 
   const acceptAll = useCallback(() => {
@@ -97,24 +132,60 @@ export default function CookieBanner() {
 
   /** Called from footer link to reopen banner */
   useEffect(() => {
-    const handler = () => {
+    const handler = (e: Event) => {
+      const requested = (e as CustomEvent<{ returnFocus?: HTMLElement | null } | null>).detail?.returnFocus;
+      const active = document.activeElement;
+      const outside = active instanceof HTMLElement && active !== document.body && !panelRef.current?.contains(active);
+      returnFocusRef.current = requested ?? (outside ? active : null);
       const existing = getConsent();
       if (existing) setConsent(existing);
       setShowDetails(true);
       setVisible(true);
+      setOpenRequest((n) => n + 1);
     };
     window.addEventListener('open-cookie-banner', handler);
     return () => window.removeEventListener('open-cookie-banner', handler);
   }, []);
 
+  useEffect(() => {
+    if (openRequest > 0) cardRef.current?.focus();
+  }, [openRequest]);
+
+  useEffect(() => {
+    const el = panelRef.current;
+    const vv = window.visualViewport;
+    if (!visible || !el || !vv) return;
+    let frame = 0;
+    const fit = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => fitToVisualViewport(el));
+    };
+    fitToVisualViewport(el);
+    vv.addEventListener('resize', fit);
+    vv.addEventListener('scroll', fit);
+    window.addEventListener('resize', fit);
+    return () => {
+      cancelAnimationFrame(frame);
+      vv.removeEventListener('resize', fit);
+      vv.removeEventListener('scroll', fit);
+      window.removeEventListener('resize', fit);
+    };
+  }, [visible]);
+
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 p-4 sm:p-6">
-      <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-neutral-200 p-6">
+    <div ref={panelRef} className="fixed bottom-0 inset-x-0 z-50 p-4 sm:p-6">
+      <div
+        ref={cardRef}
+        role="region"
+        aria-labelledby="cookie-banner-title"
+        tabIndex={-1}
+        className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-neutral-200 p-6"
+      >
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-4">
-          <h2 className="text-lg font-heading font-bold text-future-dusk-900">
+          <h2 id="cookie-banner-title" className="text-lg font-heading font-bold text-future-dusk-900">
             {t('title')}
           </h2>
           <button

@@ -9,6 +9,7 @@ import {
   transformYouTubeEmbeds,
   type YouTubeFacadeLabels,
 } from './youtube';
+import { transformExternalEmbeds, type ExternalEmbedFacadeLabels } from './external-embeds';
 
 export interface HeadingData {
   id: string;
@@ -262,6 +263,8 @@ export function addRelToBlankTargets(html: string): string {
  * - Remplacer les shortcodes `[embed]` YouTube (transformEmbedShortcodes) et les
  *   iframes YouTube par une façade locale (lib/youtube.ts) :
  *   aucun appel à YouTube avant l'accord de l'internaute
+ * - Remplacer les iframes Vimeo, Sketchfab et saasphoto.com par une façade
+ *   locale (lib/external-embeds.ts) : aucun appel avant l'accord explicite
  * - Envoi de l'origin en Referer aux embeds YouTube (addYouTubeReferrerPolicy)
  * - Retrait des paragraphes vides hérités de Webflow (removeEmptyParagraphs)
  * - Liens target="_blank" (addRelToBlankTargets) : internes rouverts dans le
@@ -269,12 +272,15 @@ export function addRelToBlankTargets(html: string): string {
  */
 export function processHtmlContent(
   html: string,
-  options: { youtubeLabels?: YouTubeFacadeLabels } = {},
+  options: { youtubeLabels?: YouTubeFacadeLabels; embedLabels?: ExternalEmbedFacadeLabels } = {},
 ): {
   processedHtml: string;
   headings: HeadingData[];
   wordCount: number;
+  /** Façades YouTube (iframes et shortcodes). */
   videoCount: number;
+  /** Façades des autres contenus externes (Vimeo, Sketchfab, saasphoto.com). */
+  embedCount: number;
 } {
   const headings: HeadingData[] = [];
   const usedIds = new Set<string>();
@@ -315,10 +321,11 @@ export function processHtmlContent(
 
   const shortcodes = transformEmbedShortcodes(withLazyImages, options.youtubeLabels);
   const videos = transformYouTubeEmbeds(shortcodes.html, options.youtubeLabels);
+  const embeds = transformExternalEmbeds(videos.html, options.embedLabels);
   // Après la façade, aucune iframe YouTube ne subsiste : addYouTubeReferrerPolicy
   // (#46) ne modifie rien aujourd'hui. Elle reste en garde pour toute iframe
   // YouTube qui échapperait à la façade (erreur 153 sans Referer).
-  const withYouTubeReferrer = addYouTubeReferrerPolicy(videos.html);
+  const withYouTubeReferrer = addYouTubeReferrerPolicy(embeds.html);
   const withoutEmptyParagraphs = removeEmptyParagraphs(withYouTubeReferrer);
   const withSafeBlankTargets = addRelToBlankTargets(withoutEmptyParagraphs);
 
@@ -330,6 +337,7 @@ export function processHtmlContent(
     headings,
     wordCount,
     videoCount: shortcodes.count + videos.count,
+    embedCount: embeds.count,
   };
 }
 
