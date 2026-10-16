@@ -4,7 +4,7 @@ Référence stable des règles structurelles qui s'appliquent à toutes les page
 
 | Standard | Décision | Objet | Contrôle automatique |
 |---|---|---|---|
-| [R-UX-LONG](R-UX-LONG.md) | D44 | Navigation des pages longues : barre horizontale collante, sommaire latéral du blog ou navigation statique, selon la famille de gabarits | `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `e2e/sommaire-blog.spec.ts` |
+| [R-UX-LONG](R-UX-LONG.md) | D44, navigation V9 (16/10/2026) | Navigation des pages longues : barre horizontale collante, sommaire latéral du blog ou navigation statique, selon la famille de gabarits ; barre et sommaire vertical cumulables (§ 2 bis, Studios FR ; [inventaire](NAVIGATION-V9-INVENTAIRE.md)) | `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `e2e/sommaire-blog.spec.ts` |
 | [R-PRODUCT-DIM](R-PRODUCT-DIM.md) | D45 | Caractéristiques dimensionnelles des produits : définitions, source, version, cohérence entre catalogues, fiches, landings et traductions | `lib/produits/__tests__/coherence-dimensions.test.ts` |
 
 Statut au 03/10/2026 : principes approuvés par Laurent ; inscription et mise en œuvre en PR brouillon (#83 à #87) ; application effective à la fusion de chacune. Une règle n'est opposable sur `main` qu'une fois sa PR fusionnée.

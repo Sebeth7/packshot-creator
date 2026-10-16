@@ -23,8 +23,15 @@
  *   `scroll-margin-top` égal à en-tête + barre + 16 px, recalculé au redimensionnement ;
  *   les pages n'ont qu'à porter les `id`.
  * Masquée, la barre n'est pas focalisable (`invisible`).
+ * - `onActif` (facultatif) : reçoit la section active à chaque changement, à toutes les
+ *   largeurs ; il synchronise un second sommaire de la page (`NavigationSections`,
+ *   navigation V9 du 16/10/2026). Sans lui, comportement inchangé.
+ * - `tolerance` (facultatif, 0 par défaut) : marge d'arrivée en px. Une section posée par
+ *   un clic finit à une position fractionnaire (mesuré le 16/10 sur Studios : 129,375 px
+ *   pour un seuil de 129 px) et restait non active. Activée par `NavigationSections`
+ *   seulement ; 0 conserve le comportement des autres pages équipées.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export type EntreeSommaire = { id: string; libelle: string };
 
@@ -38,6 +45,8 @@ export default function SommaireCollant({
   entrees,
   ancreSommaire,
   ancreFin,
+  onActif,
+  tolerance = 0,
 }: {
   /** Mot affiché à gauche de la barre (« Sommaire », « Contents », « Inhalt »). */
   titre: string;
@@ -46,11 +55,19 @@ export default function SommaireCollant({
   entrees: EntreeSommaire[];
   ancreSommaire?: string;
   ancreFin?: string;
+  /** Section active (ou `null` avant la première), transmise à un second sommaire. */
+  onActif?: (id: string | null) => void;
+  tolerance?: number;
 }) {
   const [visible, setVisible] = useState(false);
   const [actif, setActif] = useState<string | null>(null);
   const [haut, setHaut] = useState(64);
   const cle = entrees.map((e) => e.id).join('|');
+  // Dernier rappel reçu, lu par l'écouteur de défilement sans le réinscrire.
+  const rappel = useRef(onActif);
+  useEffect(() => {
+    rappel.current = onActif;
+  });
 
   useEffect(() => {
     if (entrees.length === 0) return;
@@ -88,11 +105,12 @@ export default function SommaireCollant({
       let courant: string | null = null;
       for (const e of entrees) {
         const el = document.getElementById(e.id);
-        if (el && el.getBoundingClientRect().top <= bas + MARGE) courant = e.id;
+        if (el && el.getBoundingClientRect().top <= bas + MARGE + tolerance) courant = e.id;
       }
       setHaut(h);
       setVisible(debutPasse && avantFin);
       setActif(courant);
+      rappel.current?.(courant);
     };
 
     const planifier = () => {
@@ -115,7 +133,7 @@ export default function SommaireCollant({
     };
     // `cle` résume `entrees` : la barre ne se réinscrit pas si le parent recrée le tableau.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cle, ancreSommaire, ancreFin]);
+  }, [cle, ancreSommaire, ancreFin, tolerance]);
 
   if (entrees.length === 0) return null;
 

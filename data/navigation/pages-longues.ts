@@ -7,10 +7,17 @@
  * - `statique`  : sommaire dans la page, sans élément collant ajouté ;
  * - `aucune`    : pas de navigation persistante (page courte, page de liste, outil).
  *
- * Une page ne cumule jamais deux navigations collantes. Les gabarits lisent
- * `barreActive()` : une nouvelle page d'une famille active (guide, fiche…) reçoit la
- * barre sans autre modification ; une page gelée ne la reçoit pas avant sa date de sortie.
- * Toute exception porte son motif et sa condition de sortie.
+ * Les gabarits lisent `barreActive()` : une nouvelle page d'une famille active (guide,
+ * fiche…) reçoit la barre sans autre modification ; une page gelée ne la reçoit pas avant
+ * sa date de sortie. Toute exception porte son motif et sa condition de sortie.
+ *
+ * Navigation V9 (décision de Laurent du 16/10/2026, R-UX-LONG § 2 bis) : elle remplace
+ * l'interdiction de cumuler deux navigations collantes. Sur une page longue organisée en
+ * sections, la barre et un sommaire vertical à droite coexistent sur desktop
+ * (components/navigation/NavigationSections.tsx). Le sommaire vertical n'est activé que
+ * page par page (`lateral`, lu par `sommaireLateralActif()`) : Studios FR seulement ; le
+ * déploiement aux autres pages équipées attend une validation distincte
+ * (docs/standards/NAVIGATION-V9-INVENTAIRE.md).
  *
  * Inventaire et mesures : audit du 03/10/2026 (309 URL, livrables 01 et 02).
  */
@@ -35,6 +42,8 @@ export interface RegleFamille {
   statut: Statut;
   /** Barre activée : pour toute la famille (`'toutes'`) ou pour une liste de pages. */
   portee: 'toutes' | { slug: string; langue?: Langue }[];
+  /** Navigation V9 : pages qui reçoivent aussi le sommaire vertical à droite. Absent = aucune. */
+  lateral?: { slug: string; langue?: Langue }[];
   exceptions: Exception[];
   note: string;
 }
@@ -92,6 +101,7 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     forme: 'barre',
     statut: 'ADAPT',
     portee: [{ slug: 'studios-photo-automatises', langue: 'fr' }],
+    lateral: [{ slug: 'studios-photo-automatises', langue: 'fr' }],
     exceptions: [
       {
         slug: 'studios-photo-automatises',
@@ -106,7 +116,7 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
         jusqua: 'traduction de la landing FR validée (D42, étape 7)',
       },
     ],
-    note: 'Landing FR de #108, rendue par _components/LandingStudios.tsx (accord de principe de Laurent du 16/10/2026, GO_ARBITRAGE_D44_STUDIOS) : neuf sections à titre et la FAQ, libellés = titres de section ; chaîne de production (S1) = sommaire statique de la page, juste avant la première section : la barre apparaît quand cette section atteint la barre (repli de R-UX-LONG § 3.1) et disparaît avant la demande de démonstration (ancreFin). Mesures dans la description de #108. Ancre #calculateur-roi : lot AR-01 autonome, sans lien avec la barre.',
+    note: 'Landing FR de #108, rendue par _components/LandingStudios.tsx (accord de principe de Laurent du 16/10/2026, GO_ARBITRAGE_D44_STUDIOS) : neuf sections à titre et la FAQ, libellés = titres de section ; chaîne de production (S1) = sommaire statique de la page, juste avant la première section : la barre apparaît quand cette section atteint la barre (repli de R-UX-LONG § 3.1) et disparaît avant la demande de démonstration (ancreFin). Navigation V9 (décision de Laurent du 16/10/2026) : sommaire vertical à droite en plus de la barre à partir de 1 280 px, sommaire repliable dans le flux en dessous, mêmes ancres, section active partagée (NavigationSections). Mesures dans la description de #108. Ancre #calculateur-roi : lot AR-01 autonome, sans lien avec la barre.',
   },
   {
     famille: 'solution',
@@ -202,9 +212,24 @@ export function barreActive(famille: string, langue: Langue, slug: string): bool
   return r.portee.some((p) => p.slug === slug && (!p.langue || p.langue === langue));
 }
 
+/** La page reçoit-elle aussi le sommaire vertical à droite (navigation V9) ? */
+export function sommaireLateralActif(famille: string, langue: Langue, slug: string): boolean {
+  const r = regle(famille);
+  if (!r?.lateral || r.statut === 'HOLD' || r.statut === 'EXCLUDE') return false;
+  if (r.exceptions.some((e) => e.slug === slug && (!e.langue || e.langue === langue))) return false;
+  return r.lateral.some((p) => p.slug === slug && (!p.langue || p.langue === langue));
+}
+
 /** Libellés de la barre, identiques à ceux validés sur Mode (`packshotMode.sommaire`). */
 export const LIBELLES_BARRE: Record<Langue, { titre: string; libelle: string }> = {
   fr: { titre: 'Sommaire', libelle: 'Accès rapide aux sections' },
   en: { titre: 'Contents', libelle: 'Quick access to sections' },
   'de-ch': { titre: 'Inhalt', libelle: 'Schnellzugriff auf die Abschnitte' },
+};
+
+/** Libellés du sommaire vertical : titre visible et nom du repère, distinct de celui de la barre. */
+export const LIBELLES_SOMMAIRE: Record<Langue, { titre: string; libelle: string }> = {
+  fr: { titre: 'Sommaire', libelle: 'Sommaire de la page' },
+  en: { titre: 'Contents', libelle: 'Page contents' },
+  'de-ch': { titre: 'Inhalt', libelle: 'Inhalt der Seite' },
 };

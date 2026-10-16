@@ -34,6 +34,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Studios #108 — navigation V9 : barre horizontale et sommaire vertical à droite sur la landing FR, D44 amendée, inventaire des autres pages · Claude de Laurent
+
+**Chantier** : Studios Wave 2, « ADDENDUM PRIORITAIRE — DÉCISION LAURENT — NAVIGATION V9 » (16/10/2026), joint au GO de reprise de #108 (GO_CODE_108 maintenu ; GO_MERGE_108 et GO_PUBLICATION_108 = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `a43f567`
+
+**Quoi** — Événement ultérieur, ajouté sans modifier l'entrée suivante (reprise du 16/10), qui reste exacte à sa date.
+- Nouveau composant mutualisé `components/navigation/NavigationSections.tsx` : barre `SommaireCollant` et sommaire vertical `TableOfContents` sur les mêmes entrées (titres de section de `TITRES`, 10 ancres communes, aucun `id` ajouté) ; section active calculée une fois par la barre et affichée par les deux (`aria-current="location"`).
+  - 1 280 px et plus : colonne de droite de 16 rem, collante à 132 px sous la barre, limitée à la zone des sections (de « À quoi sert » à la FAQ) ; les conteneurs de la zone réservent sa largeur (`xl:pr-80`).
+  - 1 024 à 1 279 px : barre seule en élément collant ; le sommaire vertical devient repliable, dans le flux, en tête de zone.
+  - Sous 1 024 px : sommaire repliable seulement, aucune barre fixe.
+  - La chaîne S1 reste un schéma statique, jamais une troisième navigation collante.
+- Composants partagés, props facultatives seulement : `SommaireCollant` (`onActif`, `tolerance`), `TableOfContents` (`actif`, `libelle`, `classeListe`). Sans elles, rendu et comportement inchangés (blog, 111 pages à barre).
+- Défaut relevé : une section posée par un clic finit à 129,375 px pour un seuil de 129 px et la barre garde la section précédente. Tolérance de 1 px activée par `NavigationSections` seulement ; correction générale proposée, non appliquée (réserve du 07/10 de R-UX-LONG § 3.1).
+- Registre : champ `lateral` et fonction `sommaireLateralActif()`, Studios FR seulement ; libellés `LIBELLES_SOMMAIRE`.
+- Gouvernance : R-UX-LONG § 2 bis (règle V9 ; interdiction de cumul remplacée par la décision de Laurent, barrée et datée) ; entrée « Navigation V9 » de `DECISIONS.md` (numéro à attribuer) et statut de D44 amendé ; `01-RAYON-ACTION.md`, `02-PROCEDURE.md`, `ETAT.md`, `docs/standards/README.md` alignés ; inventaire `docs/standards/NAVIGATION-V9-INVENTAIRE.md`.
+- CI de `a43f567` rouge : test de barre de Studios FR au-delà du délai de 30 s par test du runner (1 024 px en échec après 2 reprises, 1 440 px instable). Budget porté à 90 s pour la spec, comme `sommaire-blog.spec.ts`.
+
+**Pourquoi** — Décision de Laurent du 16/10 : sur les pages organisées en sections, un sommaire vertical à droite et, sur les pages longues, une barre horizontale, cumulables sur desktop ; l'ancienne interdiction de D44 ne s'applique plus comme blocage.
+
+**Fichiers** — `components/navigation/NavigationSections.tsx` (nouveau), `components/navigation/SommaireCollant.tsx`, `components/blog/TableOfContents.tsx`, `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`, `docs/standards/NAVIGATION-V9-INVENTAIRE.md` (nouveau), `docs/standards/README.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/01-RAYON-ACTION.md`, `docs/seo-geo/02-PROCEDURE.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun avant fusion. À la publication (décision distincte, jamais pendant M5) : Studios FR porte les deux navigations ; à 1 280 px et plus, le contenu des sections passe de 1 232 à 936 px de large. Aucune autre page ne change.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 1 068 tests sur 1 068 (58 fichiers), dont `registre-pages-longues.test.ts` (sommaire vertical sur Studios FR seulement, aucune autre famille, noms de repère distincts) ; `verifier-json` : 198 JSON valides ; ESLint ciblé sans erreur ; `npx next build` vert (variables factices), 384 pages prérendues.
+- HTML prérendu (identifiant de build et noms des fichiers statiques neutralisés, scripts retirés) : contre la tête `a43f567`, **383 pages identiques sur 384**, seule `/fr/studios-photo-automatises` diffère (blog, 111 pages à barre, Mode, F5, accueil identiques) ; contre `main` `c92740c`, 381 identiques, les 3 pages Studios différentes.
+- Playwright sur `next start` du build (Chromium du conteneur) : `navigation-pages-longues` et `sommaire-blog`, 78 tests sur 78. Navigation V9 de Studios FR : à 1 440 px, mêmes ancres que la barre, ancres uniques, section active identique dans les deux sommaires sur les 10 sections, colonne sous la barre, aucun contenu recouvert, clic et clavier (tabulation, focus visible, Entrée) qui posent le titre sous la barre, colonne arrêtée avant la démonstration ; à 1 024 px, colonne absente, repliable présent, une seule navigation collante ; à 768 et 390 px, repliable fonctionnel, titre sous l'en-tête, aucune barre fixe, aucun débordement. Premier passage en échec (section active non mise à jour après un clic, 129,375 px pour 129 px), corrigé par la tolérance de 1 px.
+- Mesures (build local) : colonne de 256 px collée à 132 px (bas de la barre : 113 px) ; bord droit à 1 336 px à 1 440, 1 256 px à 1 280, 1 576 px à 1 920 (aligné sur l'en-tête) ; aucune requête `/api/`, aucun débordement horizontal à 1 920, 1 440, 1 280, 1 024, 768 et 390 px.
+
+**Supposé** — [Inférence] « Accès rapide aux grandes étapes » est lu comme la barre numérotée existante, sur les mêmes 10 entrées que le sommaire vertical : une barre réduite à un sous-ensemble obligerait à calculer la section active deux fois. Cela repose sur des schémas observés. À confirmer par Laurent.
+**Non regardé** — Preview Vercel (authentification) et `www` (R4) ; lecteurs d'écran réels (seuls les rôles, noms et `aria-current` sont contrôlés) ; Safari et Firefox ; déploiement V9 sur les autres pages (non autorisé).
+
+**Suite** — CI de la nouvelle tête ; contrôle de la Preview par Laurent (FR, EN, de-ch ; 1 920, 1 440, 1 280, 1 024, 768, 390 px) ; validation distincte de l'inventaire V9 et de la correction générale de la section active ; information de Sébastien selon D15, préparée dans la PR, non envoyée.
+
+---
+
 ## 2026-10-16 · Studios #108 — reprise : `main` intégré, EN et de-ch sur #109, capacité de 500 photos par jour au conditionnel, barre D44 sur la landing FR · Claude de Laurent
 
 **Chantier** : Studios Wave 2, reprise décidée par Laurent le 16/10 (GO_REPRISE_108, GO_CODE_108, GO_PR_PUSH_108 ; GO_MERGE_108 et GO_PUBLICATION_108 = NON ; version allégée C de l'étude comparative du 16/10) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `a467bc7`, `main` `c92740c` intégré par commit de fusion

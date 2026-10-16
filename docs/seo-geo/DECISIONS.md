@@ -25,6 +25,30 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-16 · Navigation V9 : barre horizontale et sommaire vertical à droite coexistent sur les pages longues organisées en sections ; D44 amendée
+
+**Décidé par** : Laurent — « ADDENDUM PRIORITAIRE — DÉCISION LAURENT — NAVIGATION V9 », 16/10/2026, joint au GO de reprise de #108
+**Statut** : en vigueur sur le principe ; appliquée à la seule landing Studios FR de #108 (à sa fusion, `GO_MERGE_108 = NON` au 16/10). Aucun numéro attribué ici (même règle que les entrées voisines). Règle écrite : `docs/standards/R-UX-LONG.md` § 2 bis.
+
+**La décision** —
+1. Sur une page de contenu organisée en sections, un sommaire vertical à droite donne un accès direct aux sections principales.
+2. Sur une page longue, une barre horizontale apparaît sous le menu principal au défilement.
+3. Les deux peuvent coexister sur desktop. **L'interdiction de cumul de D44 et de R-UX-LONG (« Une page ne cumule jamais deux navigations collantes ») est remplacée** et ne s'applique plus comme blocage.
+4. Studios #108 : sommaire droit complet, barre d'accès rapide, synchronisés sur la section active, ancres communes, aucun `id` dupliqué, aucun titre masqué au clic ; la chaîne de production reste pédagogique, jamais une troisième navigation collante.
+5. Responsive : écran large, les deux ; écran intermédiaire, adaptation sans chevauchement ni perte de largeur ; mobile, sommaire accessible et repliable, jamais deux barres fixes.
+6. Composants existants réutilisés (`SommaireCollant`, `TableOfContents`), aucune duplication par landing.
+
+**Le contexte** — D44 (03/10) avait écarté la variante latérale sur Mode (contenu ramené de 1 232 à 928 px à 1 440 px) et interdit le cumul. Mise en œuvre sur #108 : `components/navigation/NavigationSections.tsx`, champ `lateral` du registre. Sur Studios, la colonne ramène le contenu à 936 px à partir de 1 280 px ; de 1 024 à 1 279 px, le sommaire vertical devient repliable dans le flux.
+
+**Ce qu'elle interdit** —
+- Étendre automatiquement le sommaire vertical aux autres pages équipées de la barre (111 au build du 16/10, 93 au recompte du 06/10) : inventaire `docs/standards/NAVIGATION-V9-INVENTAIRE.md`, déploiement sur validation distincte.
+- Une troisième navigation collante ; deux barres fixes sur mobile.
+- Une navigation qui recouvre l'en-tête, un CTA, un formulaire ou un titre.
+- Une copie des composants par page.
+- Modifier une page gelée (F5, Mode, mode-textile, accueil) avant sa date de sortie.
+
+---
+
 ## D60 · 2026-10-14 · Landing « Offres d'occasion » (#129) : publication indexable (option B), navigation discrète, publication à stock vide
 
 **Décidé par** : Laurent (14/10/2026 : « GO Laurent — finalisation active avant publication », « Rectificatif de la décision de navigation », « Décision SEO définitive — option B »)
@@ -537,7 +561,7 @@ Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisio
 ## D44 · 2026-10-03 · R-UX-LONG : navigation des pages longues, une règle par famille de gabarits
 
 **Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
-**Statut** : principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le sommaire du blog (forme B) avec #84 ; la barre mutualisée et le registre (forme A) avec #85 ; leur contrôle en CI avec #86. Référence stable : `docs/standards/R-UX-LONG.md` ; registre `data/navigation/pages-longues.ts`
+**Statut** : **amendée le 16/10/2026** par la décision « Navigation V9 » (entrée en tête de fichier) : l'interdiction de cumuler deux navigations collantes est remplacée ; le reste de D44 demeure. Principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le sommaire du blog (forme B) avec #84 ; la barre mutualisée et le registre (forme A) avec #85 ; leur contrôle en CI avec #86. Référence stable : `docs/standards/R-UX-LONG.md` ; registre `data/navigation/pages-longues.ts`
 
 **La décision** — Toute page longue reçoit une navigation adaptée à sa structure et à son gabarit, dès lors qu'elle améliore réellement l'accès aux sections ; la règle s'applique aux pages existantes et futures, FR, EN et de-ch, par famille de gabarits. Trois comportements : (A) sommaire horizontal collant sous l'en-tête, desktop (≥ 1 024 px), composant mutualisé `components/navigation/SommaireCollant.tsx` ; (B) sommaire latéral existant du blog, corrigé et utilisable sur toute la hauteur de l'écran ; (C) sommaire statique ou aucune navigation persistante quand un élément collant dégraderait l'expérience. Une page ne cumule jamais deux navigations collantes. Éligibilité : longueur rendue (≥ 7 200 px à 1 440 px, indicatif), au moins quatre sections de contenu hors FAQ (indicatif), bénéfice écrit, libellés sans texte nouveau, absence de conflit. Les pages sous expérience SEO ou touchées par une PR éditoriale ouverte sont en HOLD jusqu'à leur date de sortie.
 

@@ -9,6 +9,15 @@ interface TableOfContentsProps {
   title?: string;
   collapsible?: boolean;
   className?: string;
+  /**
+   * Entrée active fournie par la page (mode contrôlé) : le sommaire ne la calcule plus
+   * lui-même. Sert à le synchroniser avec la barre horizontale (`NavigationSections`).
+   */
+  actif?: string | null;
+  /** Nom accessible du repère latéral, quand la page porte une autre navigation. */
+  libelle?: string;
+  /** Hauteur maximale de la liste latérale, si la colonne n'est pas collée à `top-24`. */
+  classeListe?: string;
 }
 
 /**
@@ -29,14 +38,21 @@ interface TableOfContentsProps {
  *   défilement en cours.
  * - Les `id` des titres ne sont pas calculés ici (`processHtmlContent`) : ancres
  *   historiques inchangées. L'adresse de la page n'est pas modifiée au clic.
+ * - Navigation V9 (16/10/2026) : `actif`, `libelle` et `classeListe` sont facultatifs ;
+ *   sans eux, le rendu et le comportement du blog sont inchangés.
  */
 export function TableOfContents({
   headings,
   title = 'Sommaire',
   collapsible = false,
   className = '',
+  actif,
+  libelle,
+  classeListe = 'max-h-[calc(100vh-10rem)]',
 }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>('');
+  const [activeIdInterne, setActiveId] = useState<string>('');
+  const controle = actif !== undefined;
+  const activeId = controle ? (actif ?? '') : activeIdInterne;
   const [isOpen, setIsOpen] = useState(false);
   const [cible, setCible] = useState<string | null>(null);
   const racineRef = useRef<HTMLElement>(null);
@@ -121,7 +137,7 @@ export function TableOfContents({
    * active fausse après un clic sur la première entrée, absente après la dernière.
    */
   useEffect(() => {
-    if (headings.length === 0) return;
+    if (controle || headings.length === 0) return;
     const titres = headings
       .map(({ id }) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -161,7 +177,7 @@ export function TableOfContents({
       window.removeEventListener('resize', redimensionner);
       cancelAnimationFrame(image);
     };
-  }, [headings]);
+  }, [headings, controle]);
 
   // Défilement différé : il part une fois le panneau replié et la page remise en page.
   useEffect(() => {
@@ -250,7 +266,7 @@ export function TableOfContents({
   }
 
   return (
-    <nav ref={racineRef} className={className}>
+    <nav ref={racineRef} className={className} aria-label={libelle}>
       <h2 className="text-sm font-bold text-future-dusk-900 mb-4 uppercase tracking-wide flex items-center gap-2">
         <List className="h-4 w-4" />
         {title}
@@ -258,7 +274,7 @@ export function TableOfContents({
       {/* 10rem : décalage de la colonne collante (top-24), titre du sommaire et marge basse. */}
       <div
         ref={listeRef}
-        className="relative border-l-2 border-neutral-200 pl-4 pr-2 max-h-[calc(100vh-10rem)] overflow-y-auto overscroll-contain"
+        className={`relative border-l-2 border-neutral-200 pl-4 pr-2 ${classeListe} overflow-y-auto overscroll-contain`}
       >
         {list}
       </div>

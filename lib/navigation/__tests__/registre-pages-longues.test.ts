@@ -2,10 +2,21 @@
  * Registre de la navigation des pages longues (règle D44) : les pages gelées par une
  * expérience SEO ou une PR ouverte ne reçoivent jamais la barre ; aucune famille à
  * sommaire latéral ne la reçoit ; chaque exception est motivée et datée.
+ *
+ * Navigation V9 (décision de Laurent du 16/10/2026) : la barre et le sommaire vertical à
+ * droite peuvent coexister ; le sommaire vertical n'est activé que sur Studios FR, les
+ * autres pages équipées attendent une validation distincte.
  */
 
 import { describe, it, expect } from 'vitest';
-import { NAVIGATION_PAGES_LONGUES, barreActive, type Langue } from '@/data/navigation/pages-longues';
+import {
+  NAVIGATION_PAGES_LONGUES,
+  barreActive,
+  sommaireLateralActif,
+  LIBELLES_BARRE,
+  LIBELLES_SOMMAIRE,
+  type Langue,
+} from '@/data/navigation/pages-longues';
 
 const LANGUES: Langue[] = ['fr', 'en', 'de-ch'];
 
@@ -38,6 +49,29 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     expect(barreActive('landing-gamme', 'fr', 'studios-photo-automatises')).toBe(true);
     expect(barreActive('landing-gamme', 'en', 'studios-photo-automatises')).toBe(false);
     expect(barreActive('landing-gamme', 'de-ch', 'studios-photo-automatises')).toBe(false);
+  });
+
+  it('navigation V9 : sommaire vertical à droite sur la landing Studios FR de #108 seulement', () => {
+    expect(sommaireLateralActif('landing-gamme', 'fr', 'studios-photo-automatises')).toBe(true);
+    expect(sommaireLateralActif('landing-gamme', 'en', 'studios-photo-automatises')).toBe(false);
+    expect(sommaireLateralActif('landing-gamme', 'de-ch', 'studios-photo-automatises')).toBe(false);
+  });
+
+  it('navigation V9 : aucune autre famille ne reçoit le sommaire vertical (déploiement à valider séparément)', () => {
+    const avecLateral = NAVIGATION_PAGES_LONGUES.filter((r) => r.lateral && r.lateral.length > 0).map((r) => r.famille);
+    expect(avecLateral).toEqual(['landing-gamme']);
+    for (const r of NAVIGATION_PAGES_LONGUES.filter((x) => x.famille !== 'landing-gamme')) {
+      for (const l of LANGUES) expect(sommaireLateralActif(r.famille, l, 'nimporte-quelle-page'), r.famille).toBe(false);
+    }
+    for (const l of LANGUES) {
+      expect(sommaireLateralActif('guide', l, 'comment-faire-focus-stacking-pour-photographier-bague')).toBe(false);
+      expect(sommaireLateralActif('fiche-machine', l, 'alphashot-pro-g2')).toBe(false);
+      expect(sommaireLateralActif('landing-ia', l, 'ia-photo-produit')).toBe(false);
+    }
+  });
+
+  it('navigation V9 : le sommaire vertical a un nom de repère distinct de celui de la barre', () => {
+    for (const l of LANGUES) expect(LIBELLES_SOMMAIRE[l].libelle).not.toBe(LIBELLES_BARRE[l].libelle);
   });
 
   it('contenus des PR ouvertes gelés (#27, #64)', () => {
@@ -79,7 +113,8 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     expect(barreActive('guide', 'en', 'comment-faire-photos-multi-angles-chaussures')).toBe(true);
   });
 
-  it('une famille inconnue ne reçoit pas la barre', () => {
+  it('une famille inconnue ne reçoit ni la barre ni le sommaire vertical', () => {
     expect(barreActive('famille-inexistante', 'fr', 'x')).toBe(false);
+    expect(sommaireLateralActif('famille-inexistante', 'fr', 'x')).toBe(false);
   });
 });
