@@ -47,6 +47,26 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #152 (L2, L3, L4 EN, correction linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉBLOCAGE ÉDITORIAL #152 », 16/10/2026, sur la tête `ef469da`
+**Statut** : en vigueur pour le seul périmètre de #152 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée strictement à #152 : les corrections linguistiques EN de `best-image-format-for-the-web`, `how-to-choose-best-lens-for-product-photography` et `tips-photo-framing-composition` avancent sans nouvelle validation de Sébastien, car elles ne créent ni n'aggravent aucun claim, chiffre ou garantie. Aucune validation n'est attribuée à Sébastien.
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas factuellement les affirmations préexistantes. Réserves maintenues : Station 24.2.0 et SUN Cloud, fréquence des mises à jour (« several updates per year »), caractéristiques optiques (IA des objectifs, 0,05 s, APS-C, 1:2, ouvertures), chiffres (« 90 % »), garanties (« guarantee ») et superlatifs (« exceptional »).
+
+**Le contexte** — #152 (Audit B, `ec2b4c6`), option B du 15/10 (L1 retiré, D35/F5). L'entrée du 15/10 conditionnait la fusion à la levée explicite des réserves D42 ; Laurent a décidé le 15/10 de ne pas solliciter Sébastien et rend ici l'exception écrite.
+
+**Ce qu'elle interdit** —
+- L'étendre à #146, aux contenus FR ou de-ch, ou à une autre PR.
+- Réintroduire L1 (D35/F5, jusqu'au 23/11).
+- Modifier une règle d'indexation D9.
+- Présenter les affirmations maintenues comme validées.
+- Tenir l'exception pour une QA : la QA Preview humaine sur 3 pages et 4 formats reste requise avant fusion.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-15 · #152 : option B (L1 retiré, D35/F5) et instruction D42 limitée à la correction linguistique de L2 à L4
 
 **Décidé par** : Laurent — « V9 — PR #152 — DÉCISION DE CLÔTURE », 15/10/2026
