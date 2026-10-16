@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Landing occasion : correctif V9 des trois modèles (mobile de-ch, préfixe du message, badges D42) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, correction finale de la PR de navigation et de modèles (« V9 — CORRECTION FINALE ET PUSH », 16/10/2026 ; GO_CODE_CORRECTIF_156, GO_PR/PUSH_CORRECTIF_156) | **PR** : PR de navigation (même branche) | **Commit** : ce commit
+
+**Quoi** — (1) Cartes de modèles en de-ch à 390 px : colonne de texte bornée (`minmax(0,1fr)`, `min-w-0`), retour à la ligne, lignes intitulé / valeur empilées en de-ch jusqu'à `lg` ; en FR et EN, mise en page inchangée à partir de 380 px, empilée en dessous plutôt que tronquée. (2) Formulaire : au clic sur plusieurs modèles, la famille et le préfixe automatique du message suivent le dernier modèle ; seul le préfixe inséré par la page est remplacé, tout texte du visiteur est conservé (`lib/occasion/prefixe-modele.ts`) ; aucun changement de schéma, d'API ni d'envoi. (3) Arbitrages D42 : pied de page « Occasionsgeräte » conservé ; badges des cartes = cadres d'usage (FR « Présentation showroom », « Démonstration », « Présentation salon » ; EN « Showroom display », « Demonstration », « Trade show presentation » ; de-ch « Showroom-Präsentation », « Vorführung », « Messepräsentation ») ; « Messerückläufer » retiré ; ligne « Origine » renommée « Contexte » (« Context », « Kontext ») et chapô reformulé en « contexte d'usage », pour ne certifier ni l'origine ni l'existence d'une unité ; aucune garantie attribuée aux trois illustrations, section générale sur la garantie conservée ; caractéristiques D45 et trois modèles inchangés.
+
+**Pourquoi** — QA Chrome de Laurent du 16/10/2026 : cartes Alphadesk et Alphashot Micro v2 tronquées en de-ch à 390 px ; préfixe du message non mis à jour au second clic ; arbitrages D42 sur les libellés.
+
+**Fichiers** — `components/landings/occasion/{ModelesOccasion.tsx,FormulaireRecherche.tsx,contenu-fr.ts,contenu-en.ts,contenu-de-ch.ts}`, `data/occasion/modeles.ts`, `lib/occasion/prefixe-modele.ts`, `lib/occasion/__tests__/modeles.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Tous les mots et le bouton « Informationen anfragen » visibles en de-ch sur mobile ; message cohérent avec le dernier modèle choisi ; aucun libellé d'origine d'unité sur les trois cartes. Aucun effet sur les routes, le SEO, les verrous, les e-mails, l'API ni #155.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run lib/occasion` : 12 fichiers, 254 tests verts (32 dans `modeles.test.ts`, dont les assertions du correctif) ; ESLint sans avertissement. Chromium local (serveur de développement), mesure du débordement des cartes avant correction (de-ch 390 px : Alphadesk 5 px, Alphashot Micro v2 48 px) puis après : 0 débordement en FR, EN et de-ch à 414, 390, 380, 375, 360, 320, 768, 1024 et 1280 px ; clics successifs sur les trois modèles dans les trois langues : préfixe et famille du dernier modèle, texte personnel conservé, texte rédigé par le visiteur jamais écrasé, aucun envoi réseau.
+**Supposé** — Les nouveaux libellés (badges, « Contexte », chapô) sont des formulations de l'agent suivant les arbitrages de Laurent ; « Showroom-Präsentation » et « Vorführung » complètent « Messepräsentation » choisi par Laurent.
+**Non regardé** — `npx next build` complet et `vitest` complet non relancés (acquis avant ce correctif, CI de la PR) ; rendu sur la Preview (SSO) : QA de Laurent.
+
+**Suite** — Nouvelle QA Chrome ciblée de Laurent sur la Preview du nouveau HEAD ; GO_MERGE et GO_PUBLICATION = NON.
+
+---
+
 ## 2026-10-16 · Landing occasion : présentation de trois modèles Orbitvu, sans prix, sans stock · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, présentation de modèles (« DÉCISION LAURENT — AVANCER IMMÉDIATEMENT », 16/10/2026 ; GO_CODE limité, GO_PR/PUSH sur la PR de navigation) | **PR** : PR de navigation (même branche, aucune PR concurrente) | **Commit** : ce commit
