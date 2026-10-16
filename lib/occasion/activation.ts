@@ -14,7 +14,7 @@
  * Faux : 404 en production et aucun lien affiché ; page et liens servis en local
  * et sur les Preview seulement.
  */
-export const PUBLICATION_AUTORISEE = false;
+export const PUBLICATION_AUTORISEE = true;
 
 /**
  * Collecte réelle de la demande de recherche (`POST /api/occasion`, mission S0
@@ -23,7 +23,7 @@ export const PUBLICATION_AUTORISEE = false;
  * `RESEND_FROM_EMAIL` et `OCCASION_NOTIFICATION_EMAIL` existaient. La liste
  * d'alerte n'a pas de route : elle n'est pas activée, quel que soit ce verrou.
  */
-export const COLLECTE_REELLE_AUTORISEE = false;
+export const COLLECTE_REELLE_AUTORISEE = true;
 
 /**
  * Fin d'une fenêtre de test réel sur Preview (ISO 8601 UTC), ou `null`.
