@@ -19,7 +19,7 @@ export const DE_CH: ContenuOccasion = {
   META: {
     title: 'Orbitvu-Fotostudios als Occasion | PackshotCreator',
     description:
-      'Orbitvu-Packshot-Fotostudios als Occasion (Showroom, Demo, Eintausch), sobald verfügbar: Suche auf Anfrage und Benachrichtigung bei neuen Angeboten.',
+      'Orbitvu-Packshot-Fotostudios als Occasion (Showroom, Demo, Eintausch), sobald verfügbar: Suche auf Anfrage.',
   },
 
   HERO: {

@@ -14,7 +14,7 @@ export const EN: ContenuOccasion = {
   META: {
     title: 'Pre-owned Orbitvu photo studios | PackshotCreator',
     description:
-      'Pre-owned Orbitvu packshot photo studios (showroom, demo, trade-in) when available, equipment search on request and alerts on new offers.',
+      'Pre-owned Orbitvu packshot photo studios (showroom, demo, trade-in) when available, equipment search on request.',
   },
 
   HERO: {

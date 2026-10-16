@@ -50,12 +50,12 @@ const MAILLAGE_BLOG: Record<string, TexteMaillageBlog> = {
   'fr/acheter-studio-photo-packshot-occasion': {
     surtitre: "Matériel d'occasion",
     lien: "Studios Orbitvu d'occasion chez PackshotCreator",
-    precision: "Offres d'occasion lorsqu'elles sont disponibles, recherche d'un équipement sur demande et alertes sur les nouvelles offres.",
+    precision: "Offres d'occasion lorsqu'elles sont disponibles et recherche d'un équipement sur demande.",
   },
   'en/second-hand-packshot-photo-studio': {
     surtitre: 'Pre-owned equipment',
     lien: 'Pre-owned Orbitvu studios from PackshotCreator',
-    precision: 'Pre-owned offers when available, equipment search on request and alerts on new offers.',
+    precision: 'Pre-owned offers when available and equipment search on request.',
   },
 };
 

@@ -30,7 +30,7 @@ export const FR = {
     // description qui n'annonce aucune machine présente.
     title: "Studios photo Orbitvu d'occasion | PackshotCreator",
     description: nb(
-      "Studios photo packshot Orbitvu d'occasion (showroom, démonstration, reprise) quand ils sont disponibles, recherche sur demande et alertes sur les nouvelles offres.",
+      "Studios photo packshot Orbitvu d'occasion (showroom, démonstration, reprise) quand ils sont disponibles, recherche sur demande.",
     ),
   },
 

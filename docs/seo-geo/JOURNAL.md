@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Publication de la landing occasion Orbitvu, étape A (FR, EN, de-ch, stock vide, recherche) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_CODE / GO_PR-PUSH_PUBLICATION_129_A du 16/10/2026) | **PR** : PR de publication dédiée, après la fusion de #129 | **Commit** : ce commit
+
+**Quoi** — `PUBLICATION_AUTORISEE` et `COLLECTE_REELLE_AUTORISEE` à `true` (`lib/occasion/activation.ts`) et mise à jour des trois fichiers de tests qui figeaient l'état fermé (`occasion.test.ts`, `recherche-services.test.ts`, `occasion-langues.test.ts`). Décision éditoriale de Laurent : les promesses d'alertes sont retirées des trois descriptions SEO (`contenu-fr.ts`, `contenu-en.ts`, `contenu-de-ch.ts`) et de l'encadré des deux articles de blog (`lib/occasion/navigation.ts`) ; rien d'autre. `ALERTES_REELLES_AUTORISEES`, `BULLETIN_ENVOI_AUTORISE` et les fenêtres de test restent fermés ; la section d'alerte reste masquée en vue publique.
+
+**Pourquoi** — Étape A de la publication en deux étapes (D60, complément, points 10 et 11) : test réel B de la recherche PASS, #129 fusionnée verrous fermés, variable Production `OCCASION_NOTIFICATION_EMAIL` posée par Laurent. Ne pas publier de promesse d'une fonction non disponible.
+
+**Fichiers** — `lib/occasion/activation.ts`, `lib/occasion/navigation.ts`, `components/landings/occasion/contenu-{fr,en,de-ch}.ts`, `lib/occasion/__tests__/{occasion,recherche-services,occasion-langues}.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,DECISIONS,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Après le déploiement (environ 3 minutes) : trois pages en 200, `index, follow`, canonique par langue sur www, hreflang `fr`, `fr-CH`, `en`, `de-CH`, `x-default`, trois URL au sitemap, liens du menu, du pied de page et des deux articles de blog ; recherche disponible, alertes indisponibles et masquées, stock vide. Indexation par Google : délai non mesurable à l'avance ; inspection d'URL dans Search Console par Laurent.
+
+**Vérifié** — Voir le corps de la PR : tsc, tests, build, QA locale en mode production avant le push. Contrôles après déploiement sur `sysnext.vercel.app` : à reporter ici dans une entrée de suite.
+**Supposé** — Variable Production `OCCASION_NOTIFICATION_EMAIL` posée, type Config, Production seulement (constat de Laurent, non revérifié par Claude Code). Réception de la notification dans la boîte de Sébastien : NON VÉRIFIÉE ; accusé classé en indésirables chez Gmail au test B.
+**Non regardé** — `www` (R4 : Chrome de Laurent seulement). L'article 9 de la politique de confidentialité, public depuis la fusion de #129, décrit la liste d'alerte alors qu'elle n'est pas ouverte : inchangé, décision antérieure de Laurent.
+
+**Suite** — Contrôle de `sysnext.vercel.app` puis de `www` dans Chrome ; étape B (alertes, tests T1 à T3, cinq variables) sur GO distinct, avec rétablissement des mentions d'alertes après validation D42.
+
+---
+
 ## 2026-10-16 · #129 — test réel B de la recherche (PASS rapporté par Laurent), fermeture, `main` `b8ae3b2` intégré · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, étape A (GO_TEST_REEL_RECHERCHE_B, GO_OUVERTURE_FERMETURE_RECHERCHE, GO_FERMETURE_129, GO_RESYNC_129 du 16/10/2026) | **PR** : #129 (brouillon) | **Commit** : le commit de fusion qui porte cette entrée

@@ -40,8 +40,8 @@ const demande: DemandeRecherche = {
 };
 
 describe('servicesOccasion — fermés sans GO ni configuration', () => {
-  it('verrou du code : COLLECTE_REELLE_AUTORISEE est faux, même avec tous les secrets', () => {
-    expect(COLLECTE_REELLE_AUTORISEE).toBe(false);
+  it('verrou du code : COLLECTE_REELLE_AUTORISEE est vrai, mais hors production et sans fenêtre de test les services restent fermés, même avec tous les secrets', () => {
+    expect(COLLECTE_REELLE_AUTORISEE).toBe(true);
     expect(servicesOccasion(ENV_COMPLET).mode).toBe('desactive');
   });
 

@@ -19,11 +19,11 @@ import { avisTestReel, texteBandeau } from '@/components/landings/occasion/conte
 
 const MAINTENANT = new Date('2026-10-10T12:00:00Z');
 
-describe('Verrous de publication (GO_PUBLICATION = NO, GO_FORMULAIRES_REELS = NO, 10/10/2026)', () => {
-  it('page et liens fermés en production, ouverts en Preview et en local', () => {
-    expect(PUBLICATION_AUTORISEE).toBe(false);
-    expect(pageOccasionServie({ VERCEL_ENV: 'production' })).toBe(false);
-    expect(liensOccasionServis({ VERCEL_ENV: 'production' })).toBe(false);
+describe('Verrous de publication (GO_PUBLICATION, publication à stock vide, option B, D60)', () => {
+  it('page et liens servis en production publiée, ouverts en Preview et en local', () => {
+    expect(PUBLICATION_AUTORISEE).toBe(true);
+    expect(pageOccasionServie({ VERCEL_ENV: 'production' })).toBe(true);
+    expect(liensOccasionServis({ VERCEL_ENV: 'production' })).toBe(true);
     expect(pageOccasionServie({ VERCEL_ENV: 'preview' })).toBe(true);
     expect(liensOccasionServis({ VERCEL_ENV: 'preview' })).toBe(true);
     expect(pageOccasionServie({})).toBe(true);
@@ -34,8 +34,8 @@ describe('Verrous de publication (GO_PUBLICATION = NO, GO_FORMULAIRES_REELS = NO
     expect(exemplesFictifsServis({ VERCEL_ENV: 'preview' })).toBe(true);
   });
 
-  it('aucune collecte réelle', () => {
-    expect(COLLECTE_REELLE_AUTORISEE).toBe(false);
+  it('collecte réelle ouverte avec la publication (recherche éprouvée, test réel du 11/10)', () => {
+    expect(COLLECTE_REELLE_AUTORISEE).toBe(true);
   });
 
   it('pas de publication avec des formulaires simulés', () => {
@@ -47,11 +47,11 @@ describe('Fenêtre de test réel (protocole de #82, 11/10/2026)', () => {
   const T0 = new Date('2026-10-11T12:00:00Z');
   const fenetre = (fenetreJusqua: string | null, publication = false) => ({ collecte: true, publication, fenetreJusqua });
 
-  it('verrous du code : collecte fermée et aucune fenêtre ouverte', () => {
+  it('verrous du code : aucune fenêtre ouverte ; en production, la publication ouvre la collecte', () => {
     expect(FENETRE_TEST_JUSQUA).toBeNull();
     expect(etatCollecte({}, T0)).toEqual({ ouverte: false, jusqua: null });
     expect(etatCollecte({ VERCEL_ENV: 'preview' }, T0)).toEqual({ ouverte: false, jusqua: null });
-    expect(etatCollecte({ VERCEL_ENV: 'production' }, T0)).toEqual({ ouverte: false, jusqua: null });
+    expect(etatCollecte({ VERCEL_ENV: 'production' }, T0)).toEqual({ ouverte: true, jusqua: null });
   });
 
   it('collecte autorisée sans fenêtre, ou fenêtre illisible : fermée hors production', () => {

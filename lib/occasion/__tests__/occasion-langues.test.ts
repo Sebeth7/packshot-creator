@@ -294,6 +294,8 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
         const texte = maillageBlogOccasion(slug, langue);
         expect(texte, cle).not.toBeNull();
         expect(Object.values(texte ?? {}).join(' '), cle).not.toMatch(/garanti|warrant|reconditionn|refurbish|disponible maintenant|in stock|en stock|€|CHF/i);
+        // Étape A (16/10) : aucune promesse d'alerte tant que la liste est fermée ; à rétablir avec l'étape B.
+        expect(Object.values(texte ?? {}).join(' '), cle).not.toMatch(/alert|benachrichtig/i);
       }
       // Pas d'encadré ailleurs, ni dans l'autre langue.
       expect(maillageBlogOccasion('acheter-studio-photo-packshot-occasion', 'en')).toBeNull();
@@ -392,6 +394,8 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
       expect(META.description, langue).not.toMatch(/découvrez nos|discover our|Entdecken Sie unsere|€|CHF|prix|price|Preis/i);
       expect(META.title.endsWith(' | PackshotCreator'), langue).toBe(true);
       expect(META.description.length, langue).toBeLessThanOrEqual(170);
+      // Étape A (16/10) : aucune promesse d'alerte tant que la liste est fermée ; à rétablir avec l'étape B.
+      expect(META.description, langue).not.toMatch(/alert|benachrichtig/i);
     }
   });
 
@@ -425,15 +429,15 @@ describe('Routes, sélecteur de langue et liens de navigation', () => {
     expect(pageOccasionIndexable({ VERCEL_ENV: 'production' }, false)).toBe(false);
     expect(pageOccasionIndexable({ VERCEL_ENV: 'preview' }, true)).toBe(false);
     expect(pageOccasionIndexable({}, true)).toBe(false);
-    // État actuel du code : publication fermée, donc nulle part indexable.
-    expect(pageOccasionIndexable({ VERCEL_ENV: 'production' })).toBe(false);
+    // État actuel du code : publication ouverte, donc indexable en production seulement.
+    expect(pageOccasionIndexable({ VERCEL_ENV: 'production' })).toBe(true);
   });
 
   it('sitemap : les trois URL seulement une fois publiée, jamais les exemples fictifs', () => {
     expect(cheminsSitemapOccasion(false)).toEqual([]);
     expect(cheminsSitemapOccasion(true)).toEqual(LANGUES_OCCASION.map(cheminOccasion));
-    // État actuel du code : publication fermée, aucune entrée.
-    expect(cheminsSitemapOccasion()).toEqual([]);
+    // État actuel du code : publication ouverte, trois entrées.
+    expect(cheminsSitemapOccasion()).toEqual(LANGUES_OCCASION.map(cheminOccasion));
     const sitemap = codeSeul('app/sitemap.ts');
     expect(sitemap).toContain('cheminsSitemapOccasion()');
     expect(sitemap).not.toContain('opportunites');

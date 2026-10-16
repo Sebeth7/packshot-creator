@@ -109,9 +109,10 @@ Affichage : en vue publique, la section « liste d'alerte » et le lien qui y m�
 n'apparaissent que si la liste est ouverte (`lib/occasion/alertes/affichage.ts`) ;
 l'aperçu interne la montre toujours. Le mécanisme des alertes, ses textes, son
 consentement et ses verrous ne changent pas : ouvrir les alertes (étape B) fait
-réapparaître la section. Restent à arbitrer avant GO_PUBLICATION : les descriptions
-SEO et l'encadré des deux articles de blog mentionnent encore « alertes sur les
-nouvelles offres » (textes validés, D42, non modifiés).
+réapparaître la section. Décision éditoriale de Laurent (16/10) : les promesses
+d'alertes non disponibles sont retirées des descriptions SEO (FR, EN, de-ch) et de
+l'encadré des deux articles de blog, rien d'autre (titres, Hn, URL, canonique,
+hreflang, liens de l'encadré inchangés) ; à rétablir avec l'étape B.
 
 Rectification (R7) : l'étape 5 de la section 8 indiquait « un seul fichier ». C'est
 inexact (vérifié le 16/10 sur copie) : ouvrir `PUBLICATION_AUTORISEE` et
