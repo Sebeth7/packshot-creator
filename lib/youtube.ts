@@ -86,7 +86,7 @@ export function youtubeWatchUrl(id: string, start: number | null): string {
   return `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` : ''}`;
 }
 
-function decodeEntities(s: string): string {
+export function decodeEntities(s: string): string {
   return s
     .replace(/&#(\d+);/g, (_, d: string) => String.fromCodePoint(Number(d)))
     .replace(/&#x([0-9a-f]+);/gi, (_, h: string) => String.fromCodePoint(parseInt(h, 16)))
@@ -98,7 +98,7 @@ function decodeEntities(s: string): string {
     .replace(/&amp;/g, '&');
 }
 
-function escapeHtml(s: string): string {
+export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -107,12 +107,12 @@ function escapeHtml(s: string): string {
     .replace(/'/g, '&#39;');
 }
 
-function getAttr(attrs: string, name: string): string | null {
+export function getAttr(attrs: string, name: string): string | null {
   const m = attrs.match(new RegExp(`(?:^|\\s)${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, 'i'));
   return m ? (m[1] ?? m[2] ?? '') : null;
 }
 
-const PLAY_ICON =
+export const PLAY_ICON =
   '<svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="31" fill="currentColor"/><path d="M26 20v24l19-12z" fill="#fff"/></svg>';
 
 export interface FacadeInput {
@@ -144,16 +144,17 @@ export function renderFacade({ id, start, title, captionHtml, align }: FacadeInp
   return parts.join('');
 }
 
-function captionText(captionHtml: string | null): string {
+export function captionText(captionHtml: string | null): string {
   if (!captionHtml) return '';
   return decodeEntities(captionHtml.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
 }
 
 // Attributs : une valeur entre guillemets peut contenir « > ».
+// Expressions partagées avec les autres intégrations (lib/external-embeds.ts).
 const ATTRS = `((?:[^>"']|"[^"]*"|'[^']*')*)`;
-const FIGURE_RE = new RegExp(`<figure\\b${ATTRS}>((?:(?!<\\/figure>)[\\s\\S])*?)<\\/figure>`, 'gi');
-const IFRAME_RE = new RegExp(`<iframe\\b${ATTRS}>(?:[\\s\\S]*?<\\/iframe>)?`, 'gi');
-const FIGCAPTION_RE = /<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/i;
+export const FIGURE_RE = new RegExp(`<figure\\b${ATTRS}>((?:(?!<\\/figure>)[\\s\\S])*?)<\\/figure>`, 'gi');
+export const IFRAME_RE = new RegExp(`<iframe\\b${ATTRS}>(?:[\\s\\S]*?<\\/iframe>)?`, 'gi');
+export const FIGCAPTION_RE = /<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/i;
 
 function youtubeSrc(iframeAttrs: string): string | null {
   const src = getAttr(iframeAttrs, 'src');

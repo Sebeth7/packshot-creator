@@ -5,7 +5,40 @@ import html2canvas from 'html2canvas-pro';
 import jsPDF from 'jspdf';
 import type { CalculationResults } from '../lib/types';
 import { PDF_COLORS } from '../lib/chartColors';
+import { PdfGenerationError, etatSection, hauteurImageMm } from '../lib/pdfCapture';
 import { tx } from '@/lib/locale-text';
+
+/** Délai maximal d'attente d'un graphique avant capture. */
+const DELAI_GRAPHIQUES_MS = 5000;
+
+/**
+ * Attend que chaque graphique attendu (`data-pdf-chart`, hors zones exclues)
+ * contienne son SVG Recharts dimensionné. Un graphique absent ou encore à
+ * 0 × 0 (import dynamique en cours, ResponsiveContainer non mesuré, conteneur
+ * masqué) lève une erreur : le PDF n'est pas produit sans lui.
+ */
+async function attendreGraphiques(content: HTMLElement): Promise<void> {
+  const graphiques = Array.from(content.querySelectorAll<HTMLElement>('[data-pdf-chart]')).filter(
+    (el) => !el.closest('[data-pdf-exclude]')
+  );
+  if (graphiques.length === 0) return;
+
+  const estPret = (el: HTMLElement) => {
+    const svg = el.querySelector('.recharts-wrapper > svg.recharts-surface');
+    if (!svg) return false;
+    const { width, height } = svg.getBoundingClientRect();
+    return width > 0 && height > 0;
+  };
+
+  const debut = Date.now();
+  while (!graphiques.every(estPret)) {
+    if (Date.now() - debut > DELAI_GRAPHIQUES_MS) {
+      throw new PdfGenerationError('graphique-non-pret', 'Graphique non rendu au moment de la capture');
+    }
+    // setTimeout plutôt que requestAnimationFrame, suspendu dans un onglet en arrière-plan
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+}
 
 /**
  * Génère un PDF à partir du contenu HTML des résultats
@@ -113,6 +146,8 @@ export async function generatePDF(
     return generatePDFLegacy(contentRef, results, locale);
   }
 
+  await attendreGraphiques(content);
+
   // Masquer temporairement les éléments exclus
   const excludedElements = content.querySelectorAll('[data-pdf-exclude]');
   const originalDisplay: string[] = [];
@@ -122,32 +157,40 @@ export async function generatePDF(
     htmlEl.style.display = 'none';
   });
 
-  // Capturer chaque section séparément
+  // Capturer chaque section séparément. Une section non rendue ou une capture
+  // en échec interrompt la génération : pas de PDF amputé en silence.
   const sectionCanvases: { canvas: HTMLCanvasElement; height: number }[] = [];
 
-  for (const section of sectionElements) {
-    try {
-      const canvas = await html2canvas(section, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-      });
+  try {
+    for (const section of sectionElements) {
+      const { width, height } = section.getBoundingClientRect();
+      const etat = etatSection(width, height);
+      if (etat === 'non-rendue') {
+        throw new PdfGenerationError('section-non-rendue', 'Section du PDF non mise en page (conteneur masqué)');
+      }
+      if (etat === 'vide') continue;
 
-      const imgWidth = pdfWidth - 20;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let canvas: HTMLCanvasElement;
+      try {
+        canvas = await html2canvas(section, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: '#ffffff',
+        });
+      } catch (error) {
+        throw new PdfGenerationError('capture-impossible', 'Capture d’une section du PDF impossible', { cause: error });
+      }
 
-      sectionCanvases.push({ canvas, height: imgHeight });
-    } catch (error) {
-      console.error('Error capturing section:', error);
+      sectionCanvases.push({ canvas, height: hauteurImageMm(canvas.width, canvas.height, pdfWidth - 20) });
     }
+  } finally {
+    // Restaurer les éléments exclus
+    excludedElements.forEach((el, i) => {
+      const htmlEl = el as HTMLElement;
+      htmlEl.style.display = originalDisplay[i];
+    });
   }
-
-  // Restaurer les éléments exclus
-  excludedElements.forEach((el, i) => {
-    const htmlEl = el as HTMLElement;
-    htmlEl.style.display = originalDisplay[i];
-  });
 
   // Calculer le nombre total de pages pour les numéros
   let currentY = HEADER_HEIGHT + 5; // Position après header + marge
@@ -321,7 +364,7 @@ async function generatePDFLegacy(
 
   // Contenu capturé
   const imgWidth = pdfWidth - 20;
-  const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  const imgHeight = hauteurImageMm(canvas.width, canvas.height, imgWidth);
 
   let yOffset = LEGACY_HEADER_HEIGHT + 5;
   let remainingHeight = imgHeight;
