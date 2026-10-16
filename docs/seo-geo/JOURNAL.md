@@ -34,6 +34,38 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Hub bijoux C1 — finition éditoriale ciblée : « packshot » allégé, titres et FAQ (#104) · Claude de Laurent
+
+**Chantier** : finition éditoriale demandée par Laurent (`GO_CODE_CORRECTIF_EDITO_104`, `GO_PR_PUSH_CORRECTIF_EDITO_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104` = NON) | **PR** : #104, brouillon | **Tête avant correctif** : `e8d1dba`
+
+**Quoi** — Une passe, `data/secteurs.ts`, entrée `bijoux-joaillerie` seule (9 chaînes) :
+
+| Élément | Avant | Après |
+|---|---|---|
+| H2 des défis | Défis du packshot bijoux | Les défis de la photographie de bijoux |
+| H2 des solutions | Nos solutions pour le packshot bijoux | Les solutions Orbitvu pour la joaillerie |
+| FAQ 1 | Comment restituer la brillance des pierres et des métaux en packshot ? | Comment maîtriser les reflets sur les pierres et les métaux polis ? |
+| FAQ 4 | Les packshots de bijoux conviennent-ils à la vente en ligne ? | Les photos de bijoux conviennent-elles à la vente en ligne ? |
+| Description du hero | … : packshots, focus stacking et vues 360°, produits en série dans vos locaux. | … : le détail des pierres et des sertissages, des prises de vue homogènes d'une collection à l'autre et des vues 360°, dans vos locaux. |
+
+Répétitions retirées, sans perte d'information technique : réponse FAQ 1 (« les métaux polis de reflets contrôlés » → « le métal poli d'une lumière maîtrisée », la question portant désormais sur les reflets) ; réponse FAQ 3 (« disponibles », « disponibilité », « disponible » → une occurrence ; On-model toujours annoncé sans date et non présenté comme disponible) ; cas d'usage 1 (valeur « Un rendu homogène, saison après saison ») ; cas d'usage 2 (« exportée vers la boutique », la valeur parlant déjà des fiches produit) ; cas d'usage 3 (la phrase « Montrer une bague sous tous les angles » répétait mot pour mot un défi : « La bague tourne sur le plateau de l'Alphashot Micro Pro v2 ; avec le Superfocus, l'animation reste nette sur toute la rotation, prête pour la fiche produit. »).
+
+Inchangés : title, meta description, H1 « Packshot bijoux : équipez votre studio interne » (et donc l'ALT du hero, égal au H1), sous-titre du hero, caractéristiques Orbitvu, réserves sur les fonctions IA, cartes de solutions, cinq questions de FAQ (deux reformulées), trois cas d'usage, appel final et proposition de démonstration avec les bijoux du prospect. Aucune image, URL, canonical, hreflang, robots ni `noindex` D9 modifié ; aucune traduction EN.
+
+**Gabarit commun, non modifié ici** — Le CTA du hero « Demander un devis gratuit » (`app/[lang]/industrie/[slug]/page.tsx`, 17 hubs) est moins cohérent que l'appel final de démonstration. Correction à porter par un propriétaire unique du gabarit lors de la réconciliation des branches qui touchent ce fichier (#158, #107) ; #104 ne modifie pas `page.tsx`, pour ne pas créer de modification concurrente.
+
+**Fichiers** — `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — Voir la PR (tests strictement nécessaires : `tsc`, `eslint` ciblé, `verifier-json`, Vitest, `next build`, HTML prérendu, `FAQPage` = FAQ visible, CTA du hero).
+
+**Supposé** — Aucune nouvelle capacité : détail des pierres et sertissages (macro, Superfocus), prises de vue homogènes (réglages enregistrés) et vues 360° sont déjà documentés dans l'entrée.
+
+**Non regardé** — Preview (SSO) et `www` (R4).
+
+**Suite** — Validation du contenu métier par Sébastien (mail de Laurent déjà envoyé ; aucun message de cette session) ; GO de fusion distinct.
+
+---
+
 ## 2026-10-16 · Hub bijoux C1 — démonstration avec les bijoux du prospect validée par Laurent ; QA Chrome consignée (#104) · Claude de Laurent
 
 **Chantier** : validation métier et consignation, mission V9 de Laurent du 16/10 (`GO_CODE_CONSIGNATION_104`, `GO_PR_PUSH_CONSIGNATION_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104`, `GO_ENVOI_SEBASTIEN` = NON) | **PR** : #104, brouillon | **Tête de référence** : `8e00893`
