@@ -469,6 +469,20 @@ describe('Politique de confidentialité : finalité « offres d’occasion » da
     }
   });
 
+  it('article 9, paragraphe 2 : précision « alertes pas encore ouvertes » en tête (étape A, 16/10/2026) ; à supprimer à l’activation de l’étape B', () => {
+    const phrases = {
+      fr: 'Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. ',
+      en: 'Sign-ups for availability alerts are not yet open. ',
+      'de-ch': 'Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. ',
+    } as const;
+    for (const l of ['fr', 'en', 'de-ch'] as const) {
+      const p2: string = JSON.parse(readFileSync(join(process.cwd(), `messages/${l}.json`), 'utf8')).privacy.article9.p2;
+      expect(p2.startsWith(phrases[l]), l).toBe(true);
+      expect(p2.split(phrases[l]).length, l).toBe(2); // une seule fois
+    }
+    expect(readFileSync(join(process.cwd(), 'app/[lang]/confidentialite/page.tsx'), 'utf8')).toContain("t('article9.p2')");
+  });
+
   it('article 9, paragraphe 5, rendu par la page de confidentialité', () => {
     expect(readFileSync(join(process.cwd(), 'app/[lang]/confidentialite/page.tsx'), 'utf8')).toContain("t('article9.p5')");
   });
