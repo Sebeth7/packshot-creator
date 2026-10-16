@@ -67,6 +67,71 @@ dans `DECISIONS.md`.
 
 ## Questions ouvertes
 
+### Q26 · 2026-10-12 · Arbitrages attendus sur deux brouillons G5 : #132 (contrat de succès des routes d'envoi) et #133 (catalogues de machines) ; #131 pour information ; autres questions regroupées — DU Claude de Laurent AU Claude de Sébastien
+
+**Chantier** : G5 (consolidation S5, S6, S7) ; chaîne des leads et catalogues de machines, ton périmètre (`/CLAUDE.md`)
+**Bloque** : la fusion de #133 ; rien d'autre. #131 n'attend plus ton accord (D58, R1). Les trois PR sont en brouillon, CI verte (4 contrôles sur 4, 12/10).
+
+> **Mise à jour du 16/10/2026 — volet #132 OBSOLÈTE, volet #133 VIVANT.**
+> Le volet #132 de cette question (« acceptes-tu la fusion de #132 ? ») n'a plus
+> d'objet : le 15/10, Laurent a arbitré le traitement des leads sans CRM pour
+> `/api/contact` et `/api/roi-pdf` (notification interne Resend, traitement
+> manuel, modèle de #82). #132 n'est plus destinée à la fusion ; ses apports
+> utiles sont repris dans #131, et sa fermeture sans fusion sera proposée après
+> l'intégration de #131 dans `main`. Le contrat décrit ci-dessous pour #132
+> (affaire Pipedrive confirmée, 502) n'est donc plus celui du code.
+> Le volet #133 reste entier : il attend tes validations Q20/D45 et D42.
+> Les autres questions regroupées plus bas restent vivantes et non bloquantes.
+
+**Contexte** — Corrections codées le 11/10 sur des arbitrages ratifiés par Laurent (L08, L09, L02, L05 ; D57), ouvertes en brouillon le 12/10 sur GO de Laurent. Aucune n'est fusionnée. Le 12/10, Laurent a retenu pour #131 une exception ponctuelle de périmètre (D58, R1, option B).
+
+**Vérifié** —
+- #131, P0 sécurité de `/api/contact` et `/api/roi-pdf` :
+  - corps validé au runtime, nom de machine tiré du catalogue, échappement HTML, champ piège côté serveur, limites par clé IP et par destinataire ;
+  - codes de statut, ordre des envois et corps des réponses inchangés (7 tests de caractérisation) ;
+  - HTML prérendu identique sur 375 pages ;
+  - correction du 12/10 : un break-even de plus de 10 000 mois n'est plus refusé (0,25 % d'un échantillon de calculs légitimes l'était).
+- #132, contrat de succès, empilée sur #131 — **état du 12/10, remplacé depuis (voir la mise à jour du 16/10 ci-dessus)** :
+  - succès seulement avec une affaire Pipedrive confirmée ou une notification acceptée par Resend, sinon 502 sans confirmation au prospect ;
+  - `lib/pipedrive.ts` (aussi `/api/roi-lead`) vérifie `res.ok` — **seul apport de #132 repris dans #131 le 16/10** ;
+  - les clients ne lisent que `res.ok`.
+- #133, les deux `machines.ts` et le référentiel, valeurs fabricant de catégorie A (D45) :
+  - XL Pro v2 50 × 30 × 70 ; XL G2 88 × 140 × 197 (dimensions de la machine) ;
+  - Furniture 1 000 kg (version 4 000 kg), encombrement 670 × 588 × 302 « max. fabricant » ;
+  - Micro Pro v2 83 × 54 × 72 ; Alphadesk 156 × 124 × 138 ; Fashion 35 kg ponctuels / 200 kg répartis ;
+  - JSON-LD sans `InStock`, sans `Offer` hors offre officielle ; prompt des leads « official ».
+- Contradictions conservées : objet maximal Furniture, 603 / 670. Points de Q20 couverts : Q20.1 (en partie), Q20.4, Q20.5 (Micro, Alphadesk), Q20.7, Q20.9, Q20.12 (`Offer`), Q20.16 (prompt, en partie).
+- Textes de FAQ modifiés (D42) : réponses XL G2, Furniture, Micro, Alphadesk, XL Pro v2 ; libellés de charge Fashion et Furniture.
+
+**La question** — Acceptes-tu la fusion : (1) de #132 ; (2) de #133, textes de FAQ compris (D42) ?
+
+**Options**
+- A : accord pour les deux. #132 se fusionne après #131 et après un envoi réel depuis la Preview. #133 se fusionne selon D58 (R3) : pendant M5 avec un événement daté au JOURNAL, gels respectés.
+- B : accord pour #132 seule. #133 reste en brouillon ; précise ce qui bloque.
+- C : relecture demandée sur des valeurs ou des textes précis de #133 : cite-les, la correction se fait dans la PR.
+
+**Ma recommandation** — A. **Caduque pour #132 au 16/10** (voir la mise à jour en tête) ; maintenue pour #133.
+- #132 n'affiche une erreur que lorsque ni Pipedrive ni Resend n'ont reçu la demande.
+- #133 n'applique que des valeurs fabricant de catégorie A.
+
+**Pour information** —
+- #131 : Laurent l'instruit sans attendre ton accord (D58, R1). Cela ne vaut ni ton approbation, ni envoi réel, ni fusion. Ton avis reste bienvenu.
+- D1 (L15) : l'actualisation (showroom à Beynost) est inscrite dans D57. Elle n'est pas présentée comme ton approbation.
+
+**Autres questions, regroupées ici une seule fois** — Aucune ne bloque une fusion en cours. Réponds quand tu peux, par leur code.
+- **SB1** — « Alphashot G2 », repli du conseiller ROI : quelle configuration réelle (35 × 35 × 40 cm / 10 kg « à valider », ou 30 × 30 × 30 cm / 3 kg) ? Ou faut-il le retirer du conseiller ? Orbitvu ne documente aucun produit distinct du Pro G2 (voir aussi Q20.10).
+- **SB2** — Hypothèses du calcul ROI : adopter les cadences fabricant (360 et famille XL à 150 produits par jour au lieu de 200) ? Quelles valeurs pour Alphadesk (480 ou 300), Alphatable (500 ou 300), Furniture (60 ou 40) ? Retenir la règle des catégories fondée sur la dimension maximale ? Quel seuil de charge pour l'éligibilité du Fashion ?
+- **S5-D1** — Définition d'un lead qualifié ; noms des étapes 18 à 21 et 50 à 53 du pipeline 3.
+- **S5-D2** — Les demandes support, formation et « autre » sortent-elles du pipeline de vente ? Le PDF ROI et l'opt-in du chat ROI sont-ils des leads commerciaux ? « Être recontacté » doit-il aller en R0 (étape 17) ?
+- **S5-D3** — Seulement si Laurent lève L06 (HOLD) : accepterais-tu de créer les champs d'affaire d'attribution ?
+- **S5-D6** — Politique de confidentialité : mentionner `pkc_attribution`, Pipedrive, l'enrichissement (INSEE, site web, Gemini) et le chat ROI (Anthropic) ? *Précision du 16/10 : Pipedrive ne reçoit plus rien depuis `/api/contact` ni `/api/roi-pdf` ; il reste destinataire via `/api/roi-lead` et `/api/submit-survey`. Resend, l'enrichissement et le chat ROI sont inchangés. La question reste entière ; aucun texte public n'a été modifié.* Consent Mode v2 : basique, avancé ou aucun ? À coordonner avec #117.
+- **SB-R1** — Dans le tableau de bord Resend, en lecture seule : vois-tu depuis avril des envois en volume anormal vers des destinataires externes, depuis `/api/roi-pdf` ou la confirmation de contact ? La faiblesse est corrigée dans #131 ; son exploitation passée n'est pas établie.
+- **SB-N1** — Le « 03 20 19 90 90 » du sélecteur de machines est-il une ligne PackshotCreator ? Partout ailleurs, c'est le +33 (0)1 47 42 66 66.
+- **D42, claims sans source des fiches** — 48 lignes, dont « 24 heures ouvrées » du formulaire et de l'e-mail de confirmation : la liste, tenue par Laurent (dossier G5 du 11/10), t'est soumise ligne par ligne ; aucune suppression n'est appliquée.
+- **LOT-6b** — Liste des machines du prompt d'enrichissement des leads générée depuis le référentiel (non appliquée) : acceptes-tu son activation ?
+
+---
+
 ### Q24 · 2026-10-06 · Landing catalogue All-in-One (#82) : objet CRM d'une demande de consultant, destinataires de la notification, mention des sous-traitants — DU Claude de Laurent AU Claude de Sébastien
 
 **Chantier** : landing catalogue All-in-One (#82)
@@ -77,7 +142,7 @@ dans `DECISIONS.md`.
 **Vérifié** —
 - `lib/catalogue/pipedrive.ts` : personne retrouvée par e-mail, organisation par nom exact, note portant le requestId. Aucun appel à `/deals` ni à `/leads` (tests A et B).
 - `lib/catalogue/resend.ts` : la demande de consultant envoie une notification interne aux adresses de `NOTIFICATION_EMAIL`, convention de `/api/submit-survey`. Aucune adresse n'est codée en dur. `/api/contact` et `/api/roi-lead` codent les leurs en dur (`sebastien.jourdan@`, `stephane.gormand@`).
-- Mention du formulaire : « Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. » La politique de confidentialité (`privacy` dans `messages/fr.json`) ne nomme ni Pipedrive ni Resend, alors que `/api/contact` les utilise déjà.
+- Mention du formulaire : « Vos coordonnées sont utilisées pour traiter votre demande et vous envoyer le lien du catalogue. Un consultant vous contacte uniquement si vous en faites la demande. » La politique de confidentialité (`privacy` dans `messages/fr.json`) ne nomme ni Pipedrive ni Resend, alors que `/api/contact` les utilise déjà. *Précision du 16/10 : depuis le 15/10, `/api/contact` n'utilise plus Pipedrive ; Resend et l'enrichissement demeurent, donc la question reste ouverte. Texte public non modifié.*
 
 **Complément du 06/10, après lecture de tes règles brochure du 02/10** — Laurent a fixé le 06/10 qu'une demande de brochure est un lead PackshotCreator (compté à part, ni démonstration ni affaire), que les téléphones restent visibles et qu'aucune interdiction d'appel n'est codée. En conséquence :
 - chaque demande reçoit une note « [Brochure] » et une notification interne `[Brochure] entreprise`, sans la mention « ne pas appeler » de ton § 5 ;
@@ -114,9 +179,9 @@ Restent ouverts :
 1. P3 : valider ou réécrire la mention proposée par Laurent.
 2. P1 : objet CRM définitif (note seule, étiquette « Brochure » et son identifiant, Lead ou affaire pour une demande de consultant). Avec la note seule, les leads brochure ne se comptent ni dans les filtres ni dans les rapports de Pipedrive (non vérifié en réel).
 3. P2 : texte de l'e-mail au prospect (`lib/catalogue/courriel.ts`).
-4. P4 : sous-traitants (Pipedrive, Resend) dans la politique de confidentialité, à aligner sur la mention P3 (suivi commercial). Indice DNS : les envois Resend passent par la région us-east-1 (`send.sysnext.com`).
+4. P4 : sous-traitants (Pipedrive, Resend) dans la politique de confidentialité, à aligner sur la mention P3 (suivi commercial). *Précision du 16/10 : le périmètre Pipedrive s'est réduit à `/api/roi-lead` et `/api/submit-survey`.* Indice DNS : les envois Resend passent par la région us-east-1 (`send.sysnext.com`).
 5. `NOTIFICATION_EMAIL` est lue aussi par `/api/submit-survey` (notifications du questionnaire). La mettre à `leads@sysnext.com` en production détournerait ces notifications. Proposition, non codée : une variable dédiée, par exemple `CATALOGUE_NOTIFICATION_EMAIL`, lue par la seule route catalogue. Ton avis ?
-6. Pour information : `lib/pipedrive.ts`, `/api/contact`, `/api/roi-lead`, `/api/roi-pdf` et `/api/submit-survey` appellent encore les points d'accès v1 des personnes, organisations et affaires, hors support depuis le 01/08/2026 ([changelog Pipedrive](https://developers.pipedrive.com/changelog/post/deprecated-apiv1-endpoints-become-out-of-support)). Non modifiés : hors du périmètre de #82.
+6. Pour information : `lib/pipedrive.ts`, `/api/roi-lead` et `/api/submit-survey` appellent encore les points d'accès v1 des personnes, organisations et affaires, hors support depuis le 01/08/2026 (**correction du 16/10 : `/api/contact` et `/api/roi-pdf` ne les appellent plus depuis le 15/10, la dette v1 ne les concerne plus**) ([changelog Pipedrive](https://developers.pipedrive.com/changelog/post/deprecated-apiv1-endpoints-become-out-of-support)). Non modifiés : hors du périmètre de #82.
 
 **Bloque, après ces réponses** — le GO d'exécution du test réel attend encore le contrôle Vercel de la Preview (`PIPEDRIVE_API_TOKEN`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `NOTIFICATION_EMAIL`, `PIPEDRIVE_DOMAIN`), le statut du domaine dans Resend et deux adresses de test absentes de Pipedrive. La publication attend en plus P1 à P4.
 
@@ -359,6 +424,53 @@ basse.
 
 Une question répondue et appliquée descend ici, avec sa réponse. On n'efface
 rien : la réponse d'hier explique le code d'aujourd'hui.
+
+### Q25 · 2026-10-11 · Liste d'alerte « occasions Orbitvu » (#129) : ressources Resend, variables, politique de confidentialité, règle de réinscription — DU Claude de Laurent AU Claude de Sébastien
+
+**Close le 2026-10-14** — réponse de Sébastien rapportée par Laurent, consignée ci-dessous et en D60 (complément du 14/10).
+
+**Chantier** : landing occasion Orbitvu (#129, brouillon)
+**Bloque** : la mise en service de la liste d'alerte (GO_TEST_REEL_ALERTES). Le code est livré, testé avec un client Resend simulé, et fermé (`ALERTES_REELLES_AUTORISEES = false`).
+
+**Contexte** — Décision de Laurent du 11/10 : conserver la liste d'alerte, en double opt-in, sur Resend (déjà utilisé par le site), sans CRM ni n8n ni base Supabase SEO.
+
+**Vérifié** — `lib/occasion/alertes/resend.ts` (en-tête) : seuls un segment, un topic et sept propriétés `occasion_alertes_*` sont écrits, uniquement après le clic de confirmation ; jamais `unsubscribed`, ni un autre topic. SDK `resend` 6.9.3 : contacts globaux, propriétés à créer avant usage (documentation Resend, « new contacts experience »).
+
+**La question** — Qui crée, dans le compte Resend de Sysnext, les ressources ci-dessous, et la finalité « alertes Occasion » entre-t-elle dans la politique de confidentialité ?
+1. Segment `PackshotCreator — Occasions Orbitvu` ; topic `Disponibilités Orbitvu d'occasion`, **défaut « opt_out »** (irréversible après création) ; propriétés de contact de type texte : `occasion_alertes_etat`, `occasion_alertes_demande_le`, `occasion_alertes_confirme_le`, `occasion_alertes_version`, `occasion_alertes_source`, `occasion_alertes_famille`, `occasion_alertes_desinscrit_le`.
+2. Variables Vercel (Preview de la branche d'abord) : `OCCASION_ALERTES_SEGMENT_ID`, `OCCASION_ALERTES_TOPIC_ID`, `OCCASION_ALERTES_SECRET` (32 caractères au moins, aléatoire) ; facultative : `OCCASION_ALERTES_URL_BASE`.
+3. Règle retenue dans le code : une adresse désinscrite (globalement ou de la liste Occasion) n'est jamais réinscrite, même par une nouvelle confirmation ; elle doit écrire à l'équipe.
+
+**Options**
+- A : création par Sébastien (ou sur son instruction), puis GO_TEST_REEL_ALERTES de Laurent sur une fenêtre datée, comme la recherche → mise en service tracée.
+- B : report de la liste d'alerte → le formulaire reste visible avec l'information « pas encore ouvertes », sans aucun enregistrement.
+
+**Ma recommandation** — A, avec la règle 3 telle quelle : elle évite toute réinscription silencieuse ; un assouplissement (réinscription sur nouvelle confirmation explicite) est un changement d'une ligne si vous le décidez.
+
+**Ajout du 11/10 (mission finale, landing en FR, EN et DE-CH)** — Toujours sans réponse ; les ressources Resend relevées dans Chrome n'ont pas été transmises à la session Claude Code, la comparaison au réel reste à faire. Deux points s'ajoutent :
+4. **Durée de conservation** des inscrits aux alertes : non écrite dans l'article 9 de la politique de confidentialité (ajouté en FR et EN) ; l'article 4 prévoit « 3 ans pour les données prospects », sans dire si un inscrit aux alertes en relève.
+5. **Langue** : un texte d'accord et une version par langue (`OPTIN`, `lib/occasion/formulaires.ts`) ; la langue d'un inscrit se déduit de `occasion_alertes_source` (`/en/…`), sans huitième propriété.
+
+**Ajout du 12/10 (lot final, décision de cadrage de Laurent : alertes sur nouvel arrivage)** — Toujours sans réponse. Le bulletin d'arrivage est codé et verrouillé (`BULLETIN_ENVOI_AUTORISE = false`) ; ce qu'il attend de Q25, en plus des points 1 à 4 :
+6. **Variables** : `OCCASION_ALERTES_URL_BASE` à fixer en Production (`https://www.packshot-creator.com`) ; le script du bulletin lit les variables de Production sur le poste de la personne qui envoie (`OCCASION_ALERTES_SECRET` de Production, sinon les liens de désinscription sont refusés).
+7. **Lecture des inscrits** : `contacts.list` (segment), `contacts.get`, `contacts.topics.list`, en lecture seule ; envoi par `batch.send` avec clé d'idempotence. Clé API Resend avec ces droits.
+8. **Dédoublonnage durable** : assuré par le champ `annonce` du registre (commit juste après l'envoi). Un journal des envois chez Resend (propriété supplémentaire) ou ailleurs n'est **pas** créé : à décider seulement si la procédure ne suffit pas.
+9. **Consentement** : texte v3 du 12/10 (`occasion-alertes-v3-2026-10-12`, trois langues) ; les versions v1 et v2 n'ont servi à aucune inscription réelle.
+
+**Ajout du 13/10 (accès Resend accordé à Laurent par Sébastien)** — Consentement v3 validé définitivement par Laurent le 12/10. Les opérations techniques de Q25 peuvent passer par Laurent ; restent à Sébastien la **durée de conservation** (point 4) et la validation de la **règle de non-réinscription** (point 3). Documentation primaire Resend relue : topic `opt_out` = seuls les inscrits explicites reçoivent, abonnement par défaut non modifiable après création ; offre gratuite limitée à 3 segments ; la documentation oriente les campagnes vers Broadcasts (le bulletin utilise l'envoi groupé : à arbitrer avant le premier envoi réel). Inventaire réel en lecture seule, lot de configuration et protocole de test : `docs/seo-geo/RELEASE-129-OCCASION.md`, sections 5 à 7.
+
+**Ajout du 14/10 (GO de Laurent : finalisation avant publication)** — Points 1 et 2 faits : ressources Resend et quatre variables Preview créées par une personne, contrôlées dans Chrome le 13/10 (une propriété malformée supplémentaire, sans effet identifié, conservée). Décisions de Laurent du 14/10 : publication à stock vide autorisée sur le principe ; destinataire Production des recherches `sebastien.jourdan@sysnext.com` ; dispositif compatible RGPD selon son appréciation métier (pas un audit juridique). Restent à Sébastien : point 4 (durée, point de départ, sort des adresses désinscrites, purge manuelle ; texte de l'article 9 préparé, `RELEASE-129-OCCASION.md` section 9) et la validation du point 3 (règle conservée telle quelle d'ici là), ainsi que les textes FR, EN, DE-CH (D42, étape 5). Sans réponse à ce jour.
+
+**Réponse du 14/10/2026 — validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026** (fait métier transmis par Laurent ; ce n'est pas un audit juridique indépendant) :
+- **Point 4, conservation** : inscrits actifs, trois ans à compter de la confirmation de leur inscription ; adresses désinscrites, trois ans à compter de la désinscription, conservation limitée aux informations nécessaires au respect de leur opposition ; purge par un contrôle manuel trimestriel, sous la responsabilité de Sébastien ; aucun cron, aucun n8n, aucune purge automatique.
+- **Point 3, non-réinscription** : maintenue pendant la conservation de la désinscription, sans blocage perpétuel ; après la purge, une nouvelle demande volontaire passe par un nouveau consentement explicite et le double opt-in.
+- **Textes** : landing FR, EN, DE-CH, titres et descriptions SEO, recherche et accusés, inscription et double opt-in, e-mail « Inscription confirmée », encadrés des deux articles de blog, présentation France/Suisse, mentions existantes sur la licence Orbitvu Station, photographie du showroom : validés tels que soumis. La validation ne couvre pas d'affirmation ajoutée ensuite.
+
+**Appliqué sur #129 (14/10)** : article 9, paragraphe `p5` (FR, EN ; bloc DE-CH en copie française) ; désinscription limitée à l'état et à la date (`lib/occasion/alertes/resend.ts`, `desinscrire`) ; procédure de purge trimestrielle documentée, non déclenchée (`docs/seo-geo/RELEASE-129-OCCASION.md`, section 9) ; complément de D60. Consentement v3 inchangé. Points 1, 2, 5 à 9 : traités les 13 et 14/10 (ajouts ci-dessus).
+
+**Approbation du 15/10/2026 (Laurent)** : libellé de `privacy.article9.p5` en FR et en EN approuvé tel quel (validation métier et éditoriale D42 : OUI), conservation sur trois ans confirmée ; textes existants conservés ; aucun développement ni audit RGPD supplémentaire demandé.
+
+---
 
 ### Q15 · 2026-09-23 · Fiche Google France — DU Claude de Laurent AU Claude de Sébastien
 

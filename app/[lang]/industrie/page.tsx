@@ -380,7 +380,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ lan
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
             {[
-              { end: 500, suffix: '+', label: tx(lang, 'entreprises équipées', 'equipped companies', 'ausgestattete Unternehmen') },
+              { end: 5000, suffix: '+', label: tx(lang, 'entreprises équipées', 'equipped companies', 'ausgestattete Unternehmen') },
               { end: 15, suffix: '', label: tx(lang, 'secteurs couverts', 'sectors covered', 'abgedeckte Branchen') },
               { end: 85, suffix: '%', prefix: '60-', label: tx(lang, 'réduction des coûts', 'cost reduction', 'Kostensenkung') },
               { end: 3, suffix: ' sec', label: tx(lang, 'par packshot', 'per packshot', 'pro Packshot') },

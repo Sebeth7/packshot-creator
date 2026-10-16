@@ -92,7 +92,7 @@ le voit, et sous quel délai. **C'est l'outil de travail de ce document.**
 |---|---|---|
 | `app/api/**`, `components/forms/**` | La capture des leads | **Un lead perdu ne laisse aucune trace.** Pas d'erreur, pas d'alerte, pas de test automatique. Se vérifie en envoyant un vrai formulaire depuis le Preview |
 | `lib/analytics.ts`, `components/analytics/**` | **Les rapports de Laurent lui-même** | Il perd sa propre mesure, et s'en aperçoit des semaines plus tard. GA4 DebugView |
-| `lib/pipedrive.ts`, `lib/supabase.ts` | CRM et base | Un lead qui n'arrive pas dans Pipedrive est un lead mort |
+| `lib/pipedrive.ts`, `lib/supabase.ts` | CRM et base | Un lead qui n'arrive pas dans Pipedrive est un lead mort — **vrai pour `/api/roi-lead` et `/api/submit-survey` seulement depuis le 15/10/2026** : `/api/contact` et `/api/roi-pdf` n'appellent plus aucun CRM, leur trace est la notification interne Resend (décision de Laurent du 15/10, portée par #131) |
 | Calculateur ROI : `lib/roiChat/**`, `lib/roiEngine/**`, `app/calculateur-roi`, `roi-pro`, `roi-preview` | Coût API Anthropic **par requête**, et un tunnel de conversion | Une boucle de prompt fait dériver le coût sans erreur visible. `ROI_CHAT_MONTHLY_TOKEN_ALERT` est le garde-fou |
 
 ### Données produit et navigation des pages longues (D44, D45)

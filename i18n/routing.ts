@@ -42,6 +42,7 @@ export const routing = defineRouting({
     '/': '/',
     '/studios-photo-automatises': '/studios-photo-automatises',
     '/ia-photo-produit': '/ia-photo-produit',
+    '/conversations-sebastien-jourdan': '/conversations-sebastien-jourdan',
     '/calculateur-roi': { fr: '/calculateur-roi', en: '/calculateur-roi', 'de-ch': '/roi-rechner' },
     '/calculateur': '/calculateur',
     '/contact': { fr: '/contact', en: '/contact', 'de-ch': '/kontakt' },
@@ -79,6 +80,11 @@ export const routing = defineRouting({
     // Landing catalogue Orbitvu All-in-One : FR seule, commune à la France et à la
     // Suisse romande (kit du 02/10/2026) ; aucune version /en ni /de-ch.
     '/catalogue-orbitvu-all-in-one': '/catalogue-orbitvu-all-in-one',
+    // Landing « Offres d'occasion » Orbitvu : FR, EN et DE-CH au même chemin (comme le
+    // hub /studios-photo-automatises), non publiée (lib/occasion/activation.ts). La vue
+    // de contrôle des exemples fictifs n'est jamais servie en production.
+    '/studios-photo-automatises/opportunites': '/studios-photo-automatises/opportunites',
+    '/studios-photo-automatises/opportunites/exemples-fictifs': '/studios-photo-automatises/opportunites/exemples-fictifs',
 
     // Segments localisés en de-ch (Suisse alémanique)
     '/industrie': { fr: '/industrie', en: '/industrie', 'de-ch': '/branchen' },
