@@ -34,6 +34,126 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Landing occasion : correctif V9 des trois modèles (mobile de-ch, préfixe du message, badges D42) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, correction finale de la PR de navigation et de modèles (« V9 — CORRECTION FINALE ET PUSH », 16/10/2026 ; GO_CODE_CORRECTIF_156, GO_PR/PUSH_CORRECTIF_156) | **PR** : PR de navigation (même branche) | **Commit** : ce commit
+
+**Quoi** — (1) Cartes de modèles en de-ch à 390 px : colonne de texte bornée (`minmax(0,1fr)`, `min-w-0`), retour à la ligne, lignes intitulé / valeur empilées en de-ch jusqu'à `lg` ; en FR et EN, mise en page inchangée à partir de 380 px, empilée en dessous plutôt que tronquée. (2) Formulaire : au clic sur plusieurs modèles, la famille et le préfixe automatique du message suivent le dernier modèle ; seul le préfixe inséré par la page est remplacé, tout texte du visiteur est conservé (`lib/occasion/prefixe-modele.ts`) ; aucun changement de schéma, d'API ni d'envoi. (3) Arbitrages D42 : pied de page « Occasionsgeräte » conservé ; badges des cartes = cadres d'usage (FR « Présentation showroom », « Démonstration », « Présentation salon » ; EN « Showroom display », « Demonstration », « Trade show presentation » ; de-ch « Showroom-Präsentation », « Vorführung », « Messepräsentation ») ; « Messerückläufer » retiré ; ligne « Origine » renommée « Contexte » (« Context », « Kontext ») et chapô reformulé en « contexte d'usage », pour ne certifier ni l'origine ni l'existence d'une unité ; aucune garantie attribuée aux trois illustrations, section générale sur la garantie conservée ; caractéristiques D45 et trois modèles inchangés.
+
+**Pourquoi** — QA Chrome de Laurent du 16/10/2026 : cartes Alphadesk et Alphashot Micro v2 tronquées en de-ch à 390 px ; préfixe du message non mis à jour au second clic ; arbitrages D42 sur les libellés.
+
+**Fichiers** — `components/landings/occasion/{ModelesOccasion.tsx,FormulaireRecherche.tsx,contenu-fr.ts,contenu-en.ts,contenu-de-ch.ts}`, `data/occasion/modeles.ts`, `lib/occasion/prefixe-modele.ts`, `lib/occasion/__tests__/modeles.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Tous les mots et le bouton « Informationen anfragen » visibles en de-ch sur mobile ; message cohérent avec le dernier modèle choisi ; aucun libellé d'origine d'unité sur les trois cartes. Aucun effet sur les routes, le SEO, les verrous, les e-mails, l'API ni #155.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run lib/occasion` : 12 fichiers, 254 tests verts (32 dans `modeles.test.ts`, dont les assertions du correctif) ; ESLint sans avertissement. Chromium local (serveur de développement), mesure du débordement des cartes avant correction (de-ch 390 px : Alphadesk 5 px, Alphashot Micro v2 48 px) puis après : 0 débordement en FR, EN et de-ch à 414, 390, 380, 375, 360, 320, 768, 1024 et 1280 px ; clics successifs sur les trois modèles dans les trois langues : préfixe et famille du dernier modèle, texte personnel conservé, texte rédigé par le visiteur jamais écrasé, aucun envoi réseau.
+**Supposé** — Les nouveaux libellés (badges, « Contexte », chapô) sont des formulations de l'agent suivant les arbitrages de Laurent ; « Showroom-Präsentation » et « Vorführung » complètent « Messepräsentation » choisi par Laurent.
+**Non regardé** — `npx next build` complet et `vitest` complet non relancés (acquis avant ce correctif, CI de la PR) ; rendu sur la Preview (SSO) : QA de Laurent.
+
+**Suite** — Nouvelle QA Chrome ciblée de Laurent sur la Preview du nouveau HEAD ; GO_MERGE et GO_PUBLICATION = NON.
+
+---
+
+## 2026-10-16 · Landing occasion : présentation de trois modèles Orbitvu, sans prix, sans stock · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, présentation de modèles (« DÉCISION LAURENT — AVANCER IMMÉDIATEMENT », 16/10/2026 ; GO_CODE limité, GO_PR/PUSH sur la PR de navigation) | **PR** : PR de navigation (même branche, aucune PR concurrente) | **Commit** : ce commit
+
+**Quoi** — Section « Trois modèles Orbitvu, présentés avec leur contexte d'usage » entre le hero et la recherche, affichée seulement quand aucune machine réelle n'est affichée : Alphadesk (showroom PackshotCreator, exposition et démonstrations), Alphashot Micro v2 (démonstrations clients, bijoux et horlogerie), Alphastudio XXL v2 (retour de salon professionnel). Carte élégante de la maquette V4.1 : visuel du modèle, origine, usage, objet et charge maximaux, bouton discret « Demander des informations » (famille présélectionnée et début de texte modifiable dans le formulaire existant). FR, EN, de-ch. Données dans `data/occasion/modeles.ts`, séparées du registre réel `machines.ts` (vide, inchangé). Menu haut sans lien et lien unique « Matériel d'occasion » en pied de page : inchangés.
+
+**Pourquoi** — Décision de Laurent du 16/10/2026 : ces trois cartes correspondent à sa présentation métier ; modèles et contextes validés par lui ; objectif d'une présentation premium, sans aucun prix, sans « bonnes affaires », promotion, remise, déstockage ni reconditionnement.
+
+**Fichiers** — `data/occasion/modeles.ts`, `components/landings/occasion/{ModelesOccasion.tsx,OccasionOrbitvu.tsx,BoutonMachine.tsx,FormulaireRecherche.tsx,contenu.ts,contenu-fr.ts,contenu-en.ts,contenu-de-ch.ts}`, `lib/occasion/__tests__/modeles.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Trois cartes visibles sur la landing dans les trois langues, sans prix. Aucun effet sur les routes, le canonique, hreflang, le sitemap, les verrous, les e-mails, l'API, le CRM ni #155.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` : 50 fichiers, 934 tests verts (dont 21 nouveaux : modèles et contextes, caractéristiques confrontées au référentiel D45, visuels présents, absence de prix, promotion, référence OCC-0x, état, licence, garantie et `Offer` dans le texte visible et le code, ordre des sections, formulaire et recherche présents, alertes masquées, disparition de la section quand une machine réelle s'affiche) ; ESLint sans avertissement.
+**Supposé** — Les textes EN et de-ch des contextes reprennent ceux validés pour les exemples de la maquette (« Display and demonstrations », « Ausstellung und Vorführungen », etc.) ; « Références Orbitvu », le titre, le chapô et le libellé « Demander des informations » sont des formulations de l'agent, à valider (D42). Noms affichés : ceux de la liste de Laurent (« Alphadesk », « Alphashot Micro v2 », « Alphastudio XXL v2 »), qui diffèrent de `nomPsc` du référentiel D45 (« Alphadesk v2 », « Alphashot Micro Pro v2 », « Alphastudio XXL Pro v2 »).
+**Non regardé** — Disponibilité réelle de chaque unité, état, historique, licence, garantie et photo de l'unité : non établis, non affichés. Droits des trois visuels de modèles : ceux déjà utilisés sur le site (droits du visuel XXL confirmés au JOURNAL ; les deux autres non rouverts ici). Rendu sur la Preview : à contrôler par Laurent (QA ciblée).
+
+**Suite** — Fusion et publication : nouveau GO de Laurent (GO_MERGE et GO_PUBLICATION = NON à cette tête), après QA de la Preview et validation du libellé de-ch « Occasionsgeräte » et des nouveaux textes. Le registre réel reste à alimenter par fiches d'inventaire (modèle exact et unité, statut confirmé, photo authentique, état, vérifications, garantie) ; dès qu'une machine réelle s'affiche, la présentation de modèles disparaît.
+
+---
+
+## 2026-10-16 · Landing occasion : lien du menu haut supprimé, lien du pied de page renommé ; trois machines non établies · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, correctif de navigation (« URGENT — menu et trois machines », 16/10/2026 ; GO_CODE_NAVIGATION_OCCASION) | **PR** : PR dédiée (navigation) | **Commit** : ce commit
+
+**Quoi** — Le lien vers la landing est retiré intégralement du menu haut (menu Solutions, desktop et mobile), sans déplacement dans un sous-menu. Le lien du pied de page (colonne Solutions, après « Questions clés ») est conservé et renommé : FR « Matériel d'occasion », EN « Pre-owned equipment », de-ch « Occasionsgeräte ». D60 (point 2 et complément, point 13), RELEASE et ETAT mis à jour : aucune règle de menu haut ne subsiste. URL, canonique, hreflang, sitemap, encadrés de blog et contenu de la page inchangés.
+
+**Pourquoi** — Décision définitive de Laurent le 16/10/2026 : le menu était beaucoup trop visible. La découvrabilité tient au pied de page, au sitemap et aux deux encadrés éditoriaux.
+
+**Fichiers** — `components/layout/Header.tsx`, `app/[lang]/layout.tsx`, `lib/occasion/navigation.ts`, commentaires de `Footer.tsx`, `OccasionOrbitvu.tsx` et `lib/occasion/activation.ts`, `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`. Rendu générique `secondaire` du Header laissé en place, sans usage.
+
+**Effet attendu** — Le menu Solutions ne montre plus le lien (desktop et mobile) ; le pied de page l'affiche avec le nouveau libellé. Aucun effet sur les routes, le sitemap ni les verrous.
+
+**Vérifié** — `npx tsc --noEmit` vert ; tests du dossier `lib/occasion` : 11 fichiers, 222 tests verts (dont l'absence de lien dans le Header et les trois libellés) ; ESLint sans nouvel avertissement. Libellé de-ch « Occasionsgeräte » : choix de l'agent, à valider (D42).
+**Supposé** — Rien.
+**Non regardé** — **Trois machines** : fiches réelles NON ÉTABLIES dans les sources consultées. Registre `data/occasion/machines.ts` vide ; les trois exemples OCC-01 à OCC-03 (Alphadesk, Alphashot Micro v2, Alphastudio XXL v2) sont explicitement fictifs ; la session historique « OCCASION | MAQUETTE V4.1 | HISTORIQUE » des 9 au 11/10 parle de « machines fictives » et classe parmi les éléments non établis « machines réellement disponibles, avec les photos de chaque unité commercialisée » ; le JOURNAL du 10 au 11/10 pose le même HOLD. Aucune machine n'a été ajoutée au registre.
+
+**Suite** — Pour les trois fiches : une fiche d'inventaire par unité (modèle exact et unité, statut commercial confirmé à ce jour, origine, photo authentique de l'unité avec droits, état, vérifications, garantie), puis intégration dans `data/occasion/machines.ts` sans prix.
+
+---
+
+## 2026-10-16 · Publication de la landing occasion Orbitvu, étape A (FR, EN, de-ch, stock vide, recherche) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_CODE / GO_PR-PUSH_PUBLICATION_129_A du 16/10/2026) | **PR** : PR de publication dédiée, après la fusion de #129 | **Commit** : ce commit
+
+**Quoi** — `PUBLICATION_AUTORISEE` et `COLLECTE_REELLE_AUTORISEE` à `true` (`lib/occasion/activation.ts`) et mise à jour des trois fichiers de tests qui figeaient l'état fermé (`occasion.test.ts`, `recherche-services.test.ts`, `occasion-langues.test.ts`). Décision éditoriale de Laurent : les promesses d'alertes sont retirées des trois descriptions SEO (`contenu-fr.ts`, `contenu-en.ts`, `contenu-de-ch.ts`) et de l'encadré des deux articles de blog (`lib/occasion/navigation.ts`) ; rien d'autre. `ALERTES_REELLES_AUTORISEES`, `BULLETIN_ENVOI_AUTORISE` et les fenêtres de test restent fermés ; la section d'alerte reste masquée en vue publique.
+
+**Pourquoi** — Étape A de la publication en deux étapes (D60, complément, points 10 et 11) : test réel B de la recherche PASS, #129 fusionnée verrous fermés, variable Production `OCCASION_NOTIFICATION_EMAIL` posée par Laurent. Ne pas publier de promesse d'une fonction non disponible.
+
+**Fichiers** — `lib/occasion/activation.ts`, `lib/occasion/navigation.ts`, `components/landings/occasion/contenu-{fr,en,de-ch}.ts`, `lib/occasion/__tests__/{occasion,recherche-services,occasion-langues}.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,DECISIONS,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Après le déploiement (environ 3 minutes) : trois pages en 200, `index, follow`, canonique par langue sur www, hreflang `fr`, `fr-CH`, `en`, `de-CH`, `x-default`, trois URL au sitemap, liens du menu, du pied de page et des deux articles de blog ; recherche disponible, alertes indisponibles et masquées, stock vide. Indexation par Google : délai non mesurable à l'avance ; inspection d'URL dans Search Console par Laurent.
+
+**Vérifié** — Voir le corps de la PR : tsc, tests, build, QA locale en mode production avant le push. Contrôles après déploiement sur `sysnext.vercel.app` : à reporter ici dans une entrée de suite.
+**Supposé** — Variable Production `OCCASION_NOTIFICATION_EMAIL` posée, type Config, Production seulement (constat de Laurent, non revérifié par Claude Code). Réception de la notification dans la boîte de Sébastien : NON VÉRIFIÉE ; accusé classé en indésirables chez Gmail au test B.
+**Non regardé** — `www` (R4 : Chrome de Laurent seulement). L'article 9 de la politique de confidentialité, public depuis la fusion de #129, décrit la liste d'alerte alors qu'elle n'est pas ouverte : inchangé, décision antérieure de Laurent.
+
+**Suite** — Contrôle de `sysnext.vercel.app` puis de `www` dans Chrome ; étape B (alertes, tests T1 à T3, cinq variables) sur GO distinct, avec rétablissement des mentions d'alertes après validation D42.
+
+---
+
+## 2026-10-16 · #129 — test réel B de la recherche (PASS rapporté par Laurent), fermeture, `main` `b8ae3b2` intégré · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, étape A (GO_TEST_REEL_RECHERCHE_B, GO_OUVERTURE_FERMETURE_RECHERCHE, GO_FERMETURE_129, GO_RESYNC_129 du 16/10/2026) | **PR** : #129 (brouillon) | **Commit** : le commit de fusion qui porte cette entrée
+
+**Quoi** — Fenêtre de test de la recherche seule : ouverture `83eb6e2` (push à 07:25:26 UTC, `COLLECTE_REELLE_AUTORISEE` et `FENETRE_TEST_JUSQUA` jusqu'à 08:41 UTC ; alertes, publication et bulletin fermés), une demande soumise par Laurent vers 07:36 UTC, fermeture `399a44b` (push à 07:41:29 UTC, `fermer.py`, arbre identique à celui de `45de0c8`, `git diff eabc360 -- lib/occasion/activation.ts` vide). `main` `b8ae3b2` (#152) intégré : conflits `ETAT.md` et `JOURNAL.md` résolus par union, aucune ligne perdue.
+
+**Pourquoi** — Le reliquat B de la recherche (tous les champs facultatifs) n'était pas prouvé ; la décision de publication en deux étapes (D60, complément, point 10) exige ce test avant la fusion de l'étape A.
+
+**Fichiers** — `lib/occasion/activation.ts` (ouverture puis fermeture, retour à l'état antérieur) ; fusion de `main` : trois articles de blog EN (#152), `DECISIONS.md`, `ETAT.md`, `JOURNAL.md`.
+
+**Effet attendu** — Aucun en production (publication fermée). La Preview de la branche est refermée.
+
+**Vérifié** — Par cette session : build local vert avant chaque push ; déploiements Vercel de `83eb6e2` et de `399a44b` terminés (statut GitHub) ; six verrous fermés dans `399a44b`. Rapporté par Laurent (Chrome, non revérifié ici) : GET recherche `disponible:true` et alertes `disponible:false` pendant la fenêtre ; écran « Demande reçue » ; deux envois acceptés et `Delivered` (notification à `sebastien.jourdan@sysnext.com`, identifiant `01a143a3-fdc0-755e-8546-1613f03bc134` ; accusé à l'adresse de test B, identifiant `01a143a3-fe12-72c5-abce-ffff413d82ce`) ; accusé reçu dans Gmail, **classé en indésirables** ; aucun renvoi.
+**Supposé** — Que la demande a été servie par le déploiement d'ouverture : [Inférence] seul ce déploiement répondait `disponible:true`, mais l'alias de branche n'a pas été relié au SHA depuis Chrome.
+**Non regardé** — Réception de la notification dans la boîte de Sébastien : NON VÉRIFIÉE. Réponses HTTP de l'alias après fermeture (GET `false`, POST 503) : l'alias est protégé par SSO, non observables depuis cette session ; à constater dans Chrome. Déploiement d'ouverture : non supprimé (GO_NETTOYAGE_DEPLOIEMENTS = NON), il se referme seul à 08:41 UTC (verrou temporel).
+
+**Suite** — Variable Production `OCCASION_NOTIFICATION_EMAIL` (GO_VERCEL_PRODUCTION_A), CI de la nouvelle tête, QA ciblée, GO_MERGE_129_A conditionnel, puis PR de publication distincte (patch A) ; arbitrage sur le classement en indésirables de l'accusé et sur la mention « alertes » des descriptions SEO et de l'encadré des articles de blog.
+
+---
+
+## 2026-10-16 · #129 — publication en deux étapes (décision de Laurent) et liste d'alerte masquée en vue publique · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (« GO accélération publication », 16/10/2026 ; GO_CODE_129_OPTION_A) | **PR** : #129 (brouillon) | **Commit** : ce commit (documentation) et le commit de code qui le précède
+
+**Quoi** — Décision de Laurent : étape A (landing FR/EN/de-ch à stock vide, recherche opérationnelle, notification à `sebastien.jourdan@sysnext.com`), étape B ultérieure (liste d'alertes et double opt-in, aucun test T1 à T3 maintenant). Code : en vue publique, la section « liste d'alerte » et le lien qui y mène ne s'affichent que si la liste est ouverte ; l'aperçu interne les garde. Documentation : section 0 ter de la release, D60 (complément, point 10), rectification de l'étape 5 de la section 8 (« un seul fichier » était inexact).
+
+**Pourquoi** — Ne pas proposer au visiteur un formulaire d'inscription dont l'envoi aboutit à un 503 ; publier plus vite la recherche, déjà éprouvée (test A du 11/10), en laissant les alertes à une étape distincte.
+
+**Fichiers** — `lib/occasion/alertes/affichage.ts` (nouveau), `components/landings/occasion/OccasionOrbitvu.tsx`, `lib/occasion/__tests__/alertes-affichage.test.ts` (nouveau) ; `docs/seo-geo/RELEASE-129-OCCASION.md`, `DECISIONS.md`, `ETAT.md`, ce `JOURNAL.md`. `lib/occasion/activation.ts` inchangé : six verrous fermés.
+
+**Effet attendu** — Aucun en production (page en 404, publication fermée). En Preview et en local : inchangé (aperçu interne). À la publication : pas de section d'alerte ni de lien « Liste d'alerte de disponibilité ». Ouvrir les alertes (étape B) les fait réapparaître sans autre changement.
+
+**Vérifié** — Dépendances de la recherche lues dans `lib/occasion/services.ts` : clé Resend, expéditeur et `OCCASION_NOTIFICATION_EMAIL` seulement ; les quatre autres variables `OCCASION_*` ne servent qu'aux alertes. Test de rendu en FR, EN et de-ch (section présente en aperçu interne ou si ouverte, absente en vue publique fermée). `npx tsc --noEmit` vert ; `npx vitest run` : 49 fichiers, 913 tests verts ; ESLint sans erreur sur les fichiers touchés ; `npx next build` vert (variables factices, R1) sur la tête de code.
+**Supposé** — Rapport Chrome Phase 0 du 16/10 rapporté par Laurent (non revérifié par Claude Code).
+**Non regardé** — Les descriptions SEO FR/EN/de-ch et l'encadré des deux articles de blog mentionnent encore « alertes sur les nouvelles offres » : textes validés (D42), non modifiés ; à arbitrer avant GO_PUBLICATION.
+
+**Suite** — Test réel B (recherche seule, fenêtre bornée), fermeture prouvée, variable Production `OCCASION_NOTIFICATION_EMAIL`, resync, GO_MERGE_129_A conditionnel, PR de publication distincte.
+
+---
+
 ## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
 
 **Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
@@ -56,6 +176,200 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **MàJ 16/10 (exception D13/D42 de Laurent)** — La demande à Sébastien prévue le 15/10 est **retirée** (décision de Laurent du 15/10 : ne pas le solliciter ; mention retirée du descriptif de #152). Laurent accorde le 16/10 une exception ponctuelle D13/D42 limitée à #152, consignée dans `DECISIONS.md` : corrections linguistiques L2 à L4 sans nouvelle validation de Sébastien ; affirmations préexistantes **non validées**, réserves maintenues (Station 24.2.0, SUN Cloud, fréquence des mises à jour, caractéristiques optiques, chiffres, garanties, superlatifs). Ni #146, ni FR/de-ch, ni L1 (D35/F5), ni D9. CI 4/4 sur `ef469da`.
 **Reste avant fusion** — QA Preview humaine (3 pages, 4 formats, campagne QA de Laurent), puis GO_MERGE_152 et GO_PUBLICATION_152 ; contrôle `sysnext` puis Chrome sur `www`. Aucun travail documentaire supplémentaire prévu avant la fusion, hors consignation du résultat QA et de la fusion.
+
+---
+
+## 2026-10-15 · #129 — libellé de l'article 9 `p5` approuvé par Laurent (D42 : OUI) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (décision de Laurent du 15/10/2026 : « J'approuve les textes p5 FR/EN de l'article 9 et la conservation sur trois ans ») | **PR** : #129 (brouillon) | **Commit** : ce commit (documentation seulement)
+
+**Quoi** — Approbation par Laurent du libellé de `privacy.article9.p5` en FR et en EN et de la conservation sur trois ans, conformément à la section 9 de la release : inscription active, trois ans depuis la confirmation ; désinscription, adresse et date conservées trois ans depuis la désinscription ; purge manuelle trimestrielle sous la responsabilité de Sébastien. Validation métier et éditoriale D42 de `p5` : OUI. Consigne : conserver les textes existants, ne rien réécrire ; aucun développement ni audit RGPD supplémentaire. Ce n'est pas un audit juridique indépendant.
+
+**Pourquoi** — Le libellé exact de `p5` restait le seul texte public non couvert par la validation téléphonique rapportée du 14/10 (D60, complément, point 8). Condition D42 de GO_MERGE_PR129 : levée pour `p5`.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D60, complément, point 9), `RELEASE-129-OCCASION.md` (en-tête, section 0 bis, section 8 étape 1, section 9), `BOITE-AUX-LETTRES.md` (Q25), `ETAT.md`, ce `JOURNAL.md`. Aucun code, aucun texte public modifié.
+
+**Effet attendu** — Aucun sur le site. Aucune fusion, aucune publication, aucun envoi, aucune fenêtre ouverte par cette décision.
+
+**Vérifié** — Les textes FR et EN de `p5` relus dans `messages/fr.json:2881` et `messages/en.json:2878`, identiques à ceux présentés à Laurent. Les six verrous de `lib/occasion/activation.ts` fermés.
+**Supposé** — Rien.
+**Non regardé** — Le bloc de-ch de `de-ch.json` (non servi, `/de-ch/confidentialite` répond 404) : non modifié, conformément à « ne rien réécrire ».
+
+**Suite** — Reste avant la fenêtre : destinataires T1, T2, T3 (et B, N) autorisés, heure de début en UTC et ordre d'ouverture, préconditions Resend et Vercel relevées dans Chrome (quota, clé en « Full access »), sort des contacts de test. Puis tests réels, cinq variables Production, dossier de fusion.
+
+---
+
+## 2026-10-15 · #129 — `main` `f562e3b` (#117, #150, #151) intégré · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_SYNC_MAIN_BRANCHE_129 du 14/10, reconduit le 15/10) | **PR** : #129 (brouillon) | **Commit** : le commit de fusion qui porte cette entrée
+
+**Quoi** — `main` `f562e3b` intégré : conflits `DECISIONS.md` (une zone), `ETAT.md` (une zone) et `JOURNAL.md` (trois zones), résolus par union. Aucune ligne perdue côté #129. Trois lignes de puces d'ETAT, présentes dans la base commune et non modifiées par #129, sont réécrites par #117 : la version de `main` prévaut. `app/[lang]/blog/[slug]/page.tsx` (gabarit partagé, modifié par #117) fusionné seul : `<EncadreOccasionBlog>` est conservé. Les entrées de `main` sont « D(numéro à attribuer) » : D60 reste libre.
+
+**Pourquoi** — GitHub signalait la PR en conflit après les fusions de #117, #150 et #151.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `ETAT.md`, `JOURNAL.md` ; code de `main` repris tel quel (#117 : `lib/external-embeds.ts`, `lib/youtube.ts`, `lib/blog-utils.ts`, `components/cookies/CookieBanner.tsx`, `components/blog/YouTubeConsent.tsx`, `cloudflare-worker/src/index.js`, `.github/workflows/pr-checks.yml`).
+
+**Vérifié** — `tsc` : 0 erreur ; build : vert ; Vitest ciblé (`occasion-langues`, `blog-utils`, `external-embeds`) ; les six verrous de `lib/occasion/activation.ts` fermés.
+**Supposé** — La CI de la PR couvre le reste (pas de batterie générale relancée, consigne de Laurent).
+**Non regardé** — Le bandeau cookies et les médias externes de #117 sur la page occasion ; aucun envoi réel ; aucune fenêtre de test ouverte.
+
+**Suite** — Inchangée : validation D42 du libellé de `p5`, destinataires T1, T2, T3 et B, heure de début, ordre d'ouverture ; puis fenêtre unique, variables Production, fusion et publication conditionnelles.
+
+---
+
+## 2026-10-15 · #129 — `main` `c557348` intégré ; preuves Chrome du 15/10 ; paragraphe `p5` de-ch : constat · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_SYNC_MAIN_BRANCHE_129 du 14/10 ; « V9 — #129 : reprise après preuves Chrome ») | **PR** : #129 (brouillon) | **Commit** : `ffe1f96` (fusion), puis le commit documentaire suivant
+
+**Quoi** — `main` `c557348` (#141, #148, #149, #143) intégré : conflits `ETAT.md` (deux lignes ajoutées au même endroit) et `JOURNAL.md`, résolus par union sans perte. `Footer.tsx` (contraste, #143) fusionné seul : le lien « Offres d'occasion » de la colonne Solutions est intact. D60 reste libre sur `main`.
+
+**Preuves Chrome du 15/10 (restitution de Laurent, non revues par cette session)** — Vercel, projet `sysnext` : déploiement `4c67982` Preview READY ; cinq variables `OCCASION_*` présentes en Preview, absentes en Production ; `75d5914` encore présent, non réactivé (sa fenêtre s'est fermée seule à 17:17 UTC le 11/10) ; `RESEND_API_KEY` : « Needs Attention » lié au type Config, valeur visible aux membres du projet, pas la preuve d'une clé invalide. Resend, 06:55 UTC : 0/100 par jour, 52/3 000 par mois, 0 contact, sept propriétés `occasion_alertes_*` de type string présentes et une huitième (concaténée, non touchée) ; test A du 11/10 : deux e-mails delivered ; test B : aucune preuve. Aucun envoi pendant ce contrôle.
+
+**Constat sur `privacy.article9.p5` de-ch** — Le texte de-ch est la copie française, comme tout le bloc `privacy` de `de-ch.json`. `/de-ch/confidentialite` répond 404 sur `sysnext.vercel.app` (lu le 15/10), n'est pas prérendue au build (fr : oui, en : oui, de-ch : non), n'est pas au sitemap, et les liens de-ch pointent vers `/fr/confidentialite` (`DE_CH_PIN_FR`). Le défaut n'a donc aucun effet visible aujourd'hui. Correction proposée à Laurent, non appliquée : validation D42 du libellé exigée.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md` (aucun code modifié).
+
+**Vérifié** — `tsc` : 0 erreur ; build : vert ; Vitest sur `occasion-langues.test.ts` (placement du lien du pied de page) : voir le commit. Verrous de `lib/occasion/activation.ts` : les six fermés.
+**Supposé** — [Inférence] Le « Needs Attention » de `RESEND_API_KEY` est un avertissement d'affichage : la clé a servi au test de recherche du 11/10 (réponse « Demande reçue », la route renvoie 500 si la notification échoue).
+**Non regardé** — Envois réels (aucune fenêtre ouverte), état actuel du déploiement `75d5914`, protection ou rotation de `RESEND_API_KEY` (décision distincte, partagée avec d'autres formulaires du site).
+
+**Suite** — Validation D42 du libellé de `p5` ; destinataires T1, T2, T3 et B, heure de début et ordre d'ouverture par Laurent ; cinq variables Production sous GO applicable ; fenêtre unique ; fusion et publication conditionnelles.
+
+---
+
+## 2026-10-14 · #129 — Q25 close : conservation des alertes (article 9), désinscription limitée, purge trimestrielle ; `main` `bf1165a` intégré · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (« GO de finalisation — confirmation téléphonique de Sébastien », GO_CORRECTIFS_CONFIDENTIALITÉ_129 = YES) | **PR** : #129 (brouillon) | **Commit** : ce commit ; fusion de `main` `bf1165a` (#140) en `ae4727f`
+
+**Quoi** — Validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 : conservation des alertes écrite à l'article 9 (`p5`, FR, EN, copie DE-CH) ; à la désinscription, seules l'adresse, l'état et la date restent (preuve d'inscription et famille effacées) ; purge trimestrielle manuelle documentée, non déclenchée ; Q25 close ; D60 complétée (conservation, non-réinscription, validation éditoriale).
+
+**Pourquoi** — Décision de Sébastien : actifs trois ans depuis la confirmation ; désinscrits trois ans depuis la désinscription, informations limitées au respect de l'opposition ; purge manuelle trimestrielle ; pas de blocage perpétuel. Ce n'est pas un audit juridique indépendant.
+
+**Fichiers** — `messages/{fr,en,de-ch}.json` (`privacy.article9.p5`), `app/[lang]/confidentialite/page.tsx` (une ligne), `lib/occasion/alertes/resend.ts` (`desinscrire`, type de `contacts.update`), `lib/occasion/__tests__/alertes-doublures.ts`, `alertes-registre.test.ts`, `occasion-langues.test.ts` ; `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q25 descendue en « traitées » avec la réponse), `DECISIONS.md` (D60), `RELEASE-129-OCCASION.md` (sections 0 bis, 7, 8, 9), `ETAT.md`.
+
+**Effet attendu** — Aucun en production avant fusion. À la fusion, l'article 9 public porte les durées. Les autres traitements de la politique de confidentialité ne changent pas.
+
+**Vérifié** — Tests ajoutés : après désinscription, ne restent que `etat` et `desinscrit_le`, la non-réinscription tient ; après suppression du contact (purge), une nouvelle confirmation réinscrit ; article 9 : durées présentes dans les trois fichiers, aucune durée chiffrée ni promesse perpétuelle, paragraphe rendu par la page. Commandes : voir le commit.
+**Supposé** — [Inférence] Resend efface une propriété mise à `null` (prévu par les types du SDK 6.9.3, non constaté sur l'API réelle) : à constater au test réel (section 7, étape 8). En cas de refus, la désinscription répondrait 500 après avoir passé le topic en `opt_out` : l'opposition serait respectée, l'écran non.
+**Non regardé** — Les autres articles de la politique de confidentialité ; la page légale DE-CH (servie en FR et EN seulement).
+
+**Suite** — Phase 0 Chrome, fenêtre de test, variables Production, puis fusion et publication conditionnelles.
+
+---
+
+## 2026-10-14 · #129 — `main` `a014993` (#139) intégré ; décision de #129 renumérotée D60 · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_SYNC_MAIN_BRANCHE_129 du 14/10) | **PR** : #129 (brouillon) | **Commit** : ce commit (fusion)
+
+**Quoi** — `main` `a014993` (fusion de #139, réécriture de l'article A, et D59 de la série A/B) intégré dans #129. La décision de #129, proposée D59 sur la branche, devient **D60** : la D59 de `main` a été fusionnée avant (règle appliquée à D53 et D54).
+
+**Pourquoi** — GitHub signalait la PR en conflit (`DECISIONS.md`, `JOURNAL.md`) après la fusion de #139 ; sans fusion, les contrôles d'intégration ne démarrent pas.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md` (D60 au-dessus de la D59 de `main`, texte inchangé hors titre et statut), `docs/seo-geo/JOURNAL.md` (union des deux côtés), `docs/seo-geo/RELEASE-129-OCCASION.md` et `docs/seo-geo/ETAT.md` (références D59 de #129 → D60). Fichiers de #139 repris tels quels.
+
+**Effet attendu** — Aucun sur le site au-delà de ce que `main` publie déjà.
+
+**Vérifié** — Aucune ligne perdue : chaque ligne de `JOURNAL.md` et de `DECISIONS.md` des deux côtés est présente après fusion, sauf les deux lignes renommées (titre et statut de D60). Tests, type-check et build : voir le commit.
+**Supposé** — Les entrées antérieures du JOURNAL qui citent « D59 » pour #129 (append-only, non réécrites) désignent la D60.
+**Non regardé** — Contenu de l'article A (#139), hors périmètre.
+
+**Suite** — Inchangée : phase 0 Chrome, fenêtre de test, variables Production ; HOLD de la fusion de #129 (conservation, validation éditoriale).
+
+---
+
+## 2026-10-14 · #129 — Arbitrages groupés pour la clôture ; e-mail « Inscription confirmée » avec lien personnel de désinscription · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (« Arbitrages groupés pour la clôture » de Laurent, 14/10 ; item 2 : GO_CODE ciblé, option E-MAIL) | **PR** : #129 (brouillon) | **Commit** : ce commit
+
+**Quoi** — Après le clic qui crée l'inscription au double opt-in, un unique e-mail « Inscription confirmée » part, en FR, EN ou DE-CH, avec le lien personnel `#desinscrire-alerte=` vers la page de la langue. Arbitrages du 14/10 consignés (`RELEASE-129-OCCASION.md`, section 0 bis).
+
+**Pourquoi** — Un inscrit n'avait aucun lien de désinscription avant le premier bulletin, sans fréquence fixe. Décision de Laurent : option E-MAIL. Effet de bord : la route publique de désinscription devient vérifiable en bout en bout pendant le test réel.
+
+**Fichiers** — `lib/occasion/alertes/courriel.ts` (`composerInscriptionConfirmee`, textes des trois langues), `lib/occasion/alertes/resend.ts` (`EnvoiConfirmation.inscriptionConfirmee`), `lib/occasion/alertes/gestionnaires.ts` (envoi sur `inscrit` seulement), `lib/occasion/__tests__/alertes-gestionnaires.test.ts`, `alertes-registre.test.ts`, `occasion-langues.test.ts` ; `docs/seo-geo/RELEASE-129-OCCASION.md` (sections 0 bis, 7, 10), `docs/seo-geo/ETAT.md` (ligne de #129).
+
+**Effet attendu** — Aucun en production : verrous fermés, routes en 503. En test réel, deux e-mails par adresse de test au lieu d'un (budget de la fenêtre : 8 e-mails sur un plafond de 11).
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur ; `npx vitest run` : 45 fichiers, 842 tests, tous verts ; ESLint sur les six fichiers touchés : 0 erreur, 0 avertissement ; `npx next build` (variables factices) : vert. Tests ajoutés : e-mail de double opt-in toujours sans lien de désinscription ; un seul e-mail « Inscription confirmée », après l'écriture du contact ; aucun e-mail sur `deja_inscrit` ni `desinscrit` ; double clic simultané → un seul e-mail ; échec d'envoi → 200 `inscrit`, journal sans donnée personnelle, pas de renvoi ; jeton du lien = jeton de désinscription de la bonne adresse, et la route le traite (topic `opt_out`, segment retiré, statut global inchangé), puis non-réinscription ; `OCCASION_ALERTES_URL_BASE` prioritaire ; objets, liens et libellés FR, EN, DE-CH ; HTML échappé.
+**Supposé** — [Inférence] Le comportement de Resend réel est celui de la doublure pour `emails.send` ; à établir pendant le test réel. Article 9, `p3` (« le lien présent dans chaque message ») tenu pour cohérent sans modification.
+**Non regardé** — Envoi réel (GO_ENVOI_TEST conditionné à la phase 0 Chrome) ; délivrabilité ; deux clics simultanés sur deux instances serverless distinctes (anti-doublon en mémoire de l'instance, frein local documenté).
+
+**Suite** — Textes de l'e-mail à valider (D42) ; phase 0 Chrome ; fenêtre de test ; variables Production ; **HOLD de la fusion et de la publication** tant que la conservation (actifs, désinscrits, point de départ, purge) et la validation éditoriale ne sont pas établies.
+
+---
+
+## 2026-10-14 · #129 — SEO option B (D59) : landing indexable à la publication, sitemap conditionnel, maillage depuis deux articles de blog · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (décision SEO définitive de Laurent du 14/10 : GO_SEO_OPTION_B, GO_CORRECTIFS_SEO_BRANCHE_129, GO_PUSH_PREVIEW = YES) | **PR** : #129 (brouillon) | **Commit** : ce commit
+
+**Quoi** —
+- `lib/occasion/seo.ts` : canonique par langue sur www, hreflang réciproques par `buildLanguages` (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), `index, follow` seulement sur la production publiée (`pageOccasionIndexable`), chemins de sitemap seulement une fois publiée (`cheminsSitemapOccasion`). Page réelle branchée dessus ; `app/sitemap.ts` ajoute les trois URL à la publication. Exemples fictifs inchangés (`noindex`, 404 en production, hors sitemap). Aucun `Product` ni `Offer`.
+- Titres et descriptions FR, EN, DE-CH exacts à stock vide (« quand ils sont disponibles », au lieu de « découvrez nos équipements ») et alignés sur les intentions (studio photo packshot, Orbitvu d'occasion, recherche, alertes).
+- Maillage : encadré sous l'article FR `acheter-studio-photo-packshot-occasion` et l'article EN `second-hand-packshot-photo-studio`, vers la landing de la même langue, aux mêmes conditions que le lien du menu ; texte des articles et mises en garde inchangés.
+- D59 inscrite dans `DECISIONS.md` (option B, navigation, stock vide, destinataire, RGPD selon l'appréciation de Laurent).
+
+**Pourquoi** — Décision SEO définitive de Laurent du 14/10 : publication indexable dès la mise en ligne, même sans stock ; aucun lien public vers un 404.
+
+**Fichiers** — `lib/occasion/seo.ts` (nouveau), `app/[lang]/studios-photo-automatises/opportunites/page.tsx`, `app/sitemap.ts`, `components/landings/occasion/contenu-{fr,en,de-ch}.ts` (META), `components/landings/occasion/EncadreOccasionBlog.tsx` (nouveau), `app/[lang]/blog/[slug]/page.tsx` (une ligne), `lib/occasion/navigation.ts`, `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{DECISIONS,RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Aucun en production avant publication. À la publication (commit des verrous) : page indexable, trois URL au sitemap, encadrés de blog visibles.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` 45 fichiers, 831 tests verts (7 nouveaux). Build `VERCEL_ENV=production` (verrous fermés) servi en local : pages et exemples fictifs en 404 dans les trois langues, sitemap sans la landing, articles FR et EN sans encadré ni lien, accueil sans lien. Build hors production servi en local : `noindex, nofollow`, canonique de la langue sur www, cinq `<link rel="alternate">` identiques dans les trois langues, nouveaux titres, aucun `Product`/`Offer` ; exemples fictifs `noindex` sans canonique ni alternate ; sitemap sans la landing ; encadré présent sous les deux articles, lien vers `/fr/…` et `/en/…`. `public/robots.txt` relu : aucun blocage des moteurs ni des robots de citation.
+
+**Supposé** — État publié (`index, follow`, trois URL au sitemap) : vérifié par tests unitaires seulement, aucun build avec `PUBLICATION_AUTORISEE = true`. [Non vérifié] Les Previews Vercel portent aussi leur propre protection (Vercel Authentication), indépendante de la balise `robots`.
+
+**Non regardé** — Avertissement ESLint `HeadingData` inutilisé dans `app/[lang]/blog/[slug]/page.tsx` : antérieur, non corrigé. Validation des titres, descriptions et de l'encadré (D42). Numéro D59 à confirmer à la fusion si une autre PR fusionne un D59 avant.
+
+**Suite** — Inchangée : préalables en lecture seule, GO des essais réels, décisions de Sébastien, GO d'écriture Vercel Production, GO_MERGE puis GO_PUBLICATION ; après publication, contrôle de `www` et inspection Search Console.
+
+---
+
+## 2026-10-14 · #129 — rectificatif de navigation : « Offres d'occasion » en fin de menu Solutions et dans la colonne Solutions du pied de page · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_NAVIGATION_129 de Laurent, 14/10 ; remplace la seule décision de navigation du 10/10) | **PR** : #129 (brouillon) | **Commit** : ce commit
+
+**Quoi** —
+- Menu haut : le lien quitte la position sous « Studios Photo Automatisés » ; il devient la dernière entrée du menu déroulant Solutions, après les rubriques Par secteur, Documentation pour industriels et Guides, hors du sous-menu Guides, séparé par un trait et en texte discret (desktop et mobile). Les trois offres principales restent en tête ; aucune entrée nouvelle dans la barre principale.
+- Pied de page : le lien quitte la colonne des studios (modèles neufs seuls) pour la colonne Solutions, après « Questions clés » ; une seule occurrence.
+- Libellés (« Offres d'occasion », « Pre-owned offers », « Occasionen »), destinations localisées et condition de publication inchangés. Commentaires et tests d'emplacement mis à jour.
+
+**Pourquoi** — Décision de Laurent du 14/10 : rendre les offres d'occasion accessibles sans détourner les prospects des studios neufs.
+
+**Fichiers** — `components/layout/Header.tsx`, `components/layout/Footer.tsx`, `app/[lang]/layout.tsx` (commentaire), `lib/occasion/navigation.ts` (commentaire), `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,ETAT,JOURNAL}.md`.
+
+**Effet attendu** — Aucun en production (lien absent tant que `PUBLICATION_AUTORISEE` est faux). Preview : nouvel emplacement.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` 45 fichiers, 824 tests verts (dont 2 nouveaux sur les emplacements) ; `npx next build` vert. QA locale sur ce build (Chromium, `/fr`, `/en`, `/de-ch`) : 33 contrôles sur 36 verts — barre principale sans le lien ; menu desktop : lien unique, dernier, après les trois rubriques en flyout, absent du sous-menu Guides, cible localisée ; pied de page : une occurrence, dernière de la colonne Solutions ; mobile : lien présent, dernier de Solutions avant « Formations ». Les 3 contrôles en échec mesurent un débordement horizontal de 53 px sur l'accueil à 390 px : bandeau défilant de logos (`animate-marquee`), présent menu fermé, sans débordement sur la page occasion menu ouvert : défaut antérieur, hors de ce changement.
+
+**Supposé** — Rien.
+
+**Non regardé** — Avertissement ESLint `Calculator` importé et inutilisé dans `Header.tsx` : déjà présent sur `main`, lint non bloquant en CI ; non corrigé ici. Preview Vercel (protégée par SSO).
+
+**Suite** — Inchangée : préalables en lecture seule, GO des essais réels, décisions de Sébastien, GO d'écriture Vercel Production, GO_MERGE puis GO_PUBLICATION.
+
+---
+
+## 2026-10-14 · #129 — finalisation avant publication : e-mail de confirmation DE-CH corrigé, configuration réelle consignée, protocole de test mis à jour, `main` `1ebda83` intégré · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO de Laurent du 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS, GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129 = YES) | **PR** : #129 (brouillon) | **Commits** : correctif DE-CH, gouvernance, fusion de `main`
+
+**Quoi** —
+- E-mail de confirmation des alertes, DE-CH : « Jede Nachricht enthält einen Abmeldelink. » devient « Jede künftige E-Mail mit neuen Angeboten enthält einen Abmeldelink. » ; le message de confirmation ne contient pas ce lien. Consentement V3 inchangé ; un test fige la règle dans les trois langues.
+- Gouvernance : configuration Resend et Vercel réellement faite (13/10) consignée dans ETAT, le dossier de release et la PR ; décisions de Laurent du 14/10 enregistrées ; protocole de test réel mis à jour (désinscription manuelle dans Resend, route publique NON VÉRIFIÉE EN BOUT EN BOUT) ; article 9 préparé sans durée ; désinscription autonome proposée, non implémentée ; séquence de mise en ligne et retour arrière.
+- `main` `1ebda83` (#136, #137, #138) fusionné dans la branche ; seul conflit : ce JOURNAL, résolu par union.
+
+**Pourquoi** — Mission « GO Laurent — finalisation active avant publication » du 14/10. Le texte DE-CH promettait un lien que le message ne contient pas ; ETAT, le dossier de release et la PR disaient encore les variables d'alerte « absentes ».
+
+**Fichiers** — `lib/occasion/alertes/courriel.ts`, `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,ETAT,BOITE-AUX-LETTRES,JOURNAL}.md` ; fusion : fichiers de #136, #137, #138 venant de `main`.
+
+**Effet attendu** — Aucun en production (verrous fermés, page en 404). Nouvelle Preview de la branche.
+
+**Vérifié** — Têtes relues avant intervention : branche `ef5f054`, `main` `1ebda83` ; `git merge-tree` : un seul conflit (`docs/seo-geo/JOURNAL.md`) ; `i18n/routing.ts` modifié des deux côtés, fusionné sans conflit. État à stock vide relu dans le code : bloc machines et bouton « Voir les machines » seulement avec du stock, étiquette « Aucune machine affichée en ce moment », exemples fictifs dans la seule vue `…/exemples-fictifs` (404 en production). Avant fusion de `main` : `npx tsc --noEmit` vert ; `npx vitest run` 44 fichiers, 816 tests verts (815 + 1 nouveau) ; ESLint sans erreur sur les deux fichiers de code touchés. Après fusion : voir le rapport de la PR (build R1, tests, CI).
+
+**Supposé** — Configuration Resend et Vercel : contrôle de Claude dans Chrome du 13/10, rapporté par Laurent ; cette session n'a accès ni à Resend ni à Vercel. Décisions du 14/10 : transmises par Laurent ; la compatibilité RGPD est son appréciation métier, pas un audit juridique.
+
+**Non regardé** — Envois réels, Production, déploiements Vercel (aucune suppression), contacts Resend. Relecture native de la phrase DE-CH.
+
+**Suite** — Préalables en lecture seule (compte Resend, quotas, adresses de test, déploiements de `75d5914`) ; GO_TEST_REEL_ALERTES et adresses ; décisions de Sébastien (conservation, non-réinscription, textes) ; GO d'écriture Vercel Production ; GO_MERGE puis GO_PUBLICATION distincts.
 
 ---
 
@@ -897,6 +1211,31 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 
 ---
 
+## 2026-10-13 · #129 — `main` (#135) intégré, conflits de gouvernance résolus ; Q25 préparée pour l'accès Resend de Laurent (aucune écriture) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, reprise Q25 du 13/10 (GO_AUDIT_READ_ONLY, GO_PRÉPARATION_Q25 = YES ; écritures Resend et Vercel en attente de GO) | **PR** : #129 (brouillon) | **Commits** : fusion `56f9382`, puis ce commit
+
+**Quoi** —
+- `main` `4c53314` (#135 : D57, D58, Q26) fusionné dans la branche : GitHub signalait `mergeable_state = dirty`. Conflits additifs sur `ETAT.md` (ligne #129 et ligne #135 au même endroit), `JOURNAL.md` (entrée #135 du 12/10 au-dessus des entrées #129) et `BOITE-AUX-LETTRES.md` (Q26 au-dessus de Q25) : les deux côtés conservés, rien d'écrasé. `DECISIONS.md` sans conflit. Aucun fichier du site concerné.
+- Dossier de release complété : documentation primaire Resend relue (topic `opt_out` non modifiable, visibilité, propriétés, limites de l'offre gratuite, `batch` contre Broadcasts), consigne unique de lecture pour Claude dans Chrome, lot de configuration à valider (R1 à R4, V1, V2), protocole du test réel des alertes, dernière checklist de release.
+- Q25 complétée (ajout du 13/10).
+
+**Pourquoi** — Mission « Reprise Q25 — nouvel accès Resend » de Laurent du 13/10 : Sébastien lui a ouvert le compte Resend de Sysnext.
+
+**Fichiers** — `docs/seo-geo/{RELEASE-129-OCCASION,BOITE-AUX-LETTRES,ETAT,JOURNAL}.md` ; fusion : `docs/seo-geo/{DECISIONS,BOITE-AUX-LETTRES,ETAT,JOURNAL}.md` venant de `main`.
+
+**Effet attendu** — Aucun sur le site ; PR de nouveau fusionnable sans conflit.
+
+**Vérifié** — Tête de PR `bf3f00d` et `main` `4c53314` relus avant intervention ; `git merge-tree` : trois conflits, tous dans `docs/seo-geo/` ; après résolution, aucun marqueur restant, Q24, Q25, Q26 et les entrées du JOURNAL présentes une fois chacune ; `npx next build` vert avant le push. Documentation Resend : pages « Topics », « Create topic », « Create contact property », « Batch sending », « What sending feature to use », tarifs (13/10).
+
+**Supposé** — [Inférence] Le Worker du dépôt relaie vers `NEXTJS_ORIGIN` : sans `OCCASION_ALERTES_URL_BASE`, les liens des e-mails pointeraient vers l'origine Vercel ; le Worker déployé peut différer du dépôt (R5).
+
+**Non regardé** — Compte Resend et variables Vercel : aucun accès depuis cette session (pas de clé, pas de navigateur), d'où la consigne Chrome. Aucune ressource créée, aucune variable écrite, aucun envoi.
+
+**Suite** — Inventaire Chrome en lecture seule ; GO groupé sur le lot de configuration ; durée de conservation et règle de non-réinscription (Sébastien) ; GO_TEST_REEL_ALERTES.
+
+---
+
 ## 2026-10-13 · #117 — `main` `2759239` (#114, #127, #135) intégré, sans changement de code ; QA locale desktop et mobile 390 · Claude de Laurent
 
 **Chantier** : médias externes et consentement | **PR** : #117, brouillon | **Commit** : `e619b34` (fusion de `main` `2759239`)
@@ -1078,6 +1417,34 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 
 ---
 
+## 2026-10-12 · #129 — lot final avant le retour de Sébastien : promesse « nouvelles offres », bulletin d'arrivage préparé et verrouillé, guide de saisie, dossier de release · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, « lot final avant retour de Sébastien » et décision de cadrage du 12/10 (GO_CODE = YES ; GO_ENVOI_REEL, GO_MERGE, GO_PUBLICATION = NO) | **PR** : #129 (brouillon) | **Commits** : quatre commits successifs sur `3d8efa5`
+
+**Quoi** —
+- **Décision de cadrage de Laurent (12/10)** : alertes sur **nouvel arrivage** vérifié, pas de bulletin périodique. Un seul modèle, « Nouvelles occasions Orbitvu disponibles », pour une ou plusieurs machines ; validation de Sébastien avant tout envoi ; rien si le stock vérifié est vide ; une correction de fiche n'est pas un arrivage ; jamais deux fois la même annonce. À inscrire en D à la fusion (numéro libre à ce moment-là).
+- **Page** : promesse « Recevez les nouvelles offres de studios Orbitvu d'occasion » (EN, DE-CH traduits), quatre puces (famille ou toutes les familles ; e-mail sans fréquence fixe ; confirmation et désinscription ; hors newsletter), aide sous le choix de famille. Aucune notification immédiate ni cadence promise. Texte d'accord **v3** (`occasion-alertes-v3-2026-10-12`, trois langues) ; e-mail de confirmation aligné. Mécanique du double opt-in inchangée ; information « alertes pas encore ouvertes » inchangée.
+- **Bulletin** (`lib/occasion/bulletin/**`, `scripts/occasion-bulletin.mts`) : machines annonçables (réelles, disponibles, confirmées depuis 30 jours au plus, fiche complète, jamais annoncées) ; inscrits retenus (confirmés, topic Occasion, non désinscrits, adresses de test exclues, famille connue), langue lue dans la page d'origine ; lots par langue et famille ; brouillon lisible avec **empreinte** SHA-256 ; envoi refusé sans `BULLETIN_ENVOI_AUTORISE` (nouveau verrou, faux), liste en service et page publiée, sans empreinte identique et validation nominative, ou si une machine n'est plus annonçable ; lien de désinscription personnel et `List-Unsubscribe` dans chaque message ; tranches de 100 avec clé d'idempotence. **Bulletin de test** (`--test`) : seuls les inscrits désignés, publication non exigée, aucune machine marquée annoncée (sans lui, aucun bulletin n'aurait pu être testé avant la mise en ligne). Dédoublonnage durable : champ `annonce` du registre, renseigné par commit après l'envoi. Aucune route, aucun cron, aucun n8n.
+- **Registre** : guide `data/occasion/AJOUT-MACHINE.md` ; garde-fous ajoutés (date AAAA-MM-JJ, photos présentes dans `public/`, forme de `annonce`, fraîcheur provisoire de 30 jours).
+- **Menus** : relus, inchangés (un lien sous Studios, sans description, moins visible que la gamme neuve ; mobile et pied de page ; absent en production).
+- **Dossier de release** : `docs/seo-geo/RELEASE-129-OCCASION.md` (contrôle par surface, options d'indexation A et B, variables Vercel, limites du dédoublonnage).
+
+**Pourquoi** — Mission de Laurent du 12/10 (terminer tout ce qui ne dépend pas de l'accès Resend de Sébastien) et complément du même jour (alertes sur nouvel arrivage, pas de récapitulatif périodique).
+
+**Fichiers** — `lib/occasion/{formulaires,activation}.ts`, `lib/occasion/alertes/courriel.ts`, `lib/occasion/bulletin/{familles,selection,abonnes,courriel,plan,envoi,resend}.ts`, `components/landings/occasion/{contenu-fr,contenu-en,contenu-de-ch}.ts`, `{OccasionOrbitvu,FormulaireAlertes}.tsx`, `data/occasion/machines.ts`, `data/occasion/AJOUT-MACHINE.md`, `scripts/occasion-bulletin.mts`, tests `lib/occasion/__tests__/{bulletin,occasion,occasion-langues,alertes-validation,alertes-gestionnaires}.test.ts`, `docs/seo-geo/{RELEASE-129-OCCASION,ETAT,JOURNAL,BOITE-AUX-LETTRES}.md`.
+
+**Effet attendu** — Production : aucun (page en 404, liens absents, routes en 503, aucun envoi possible). L'article 9 de la politique de confidentialité, inchangé ici, reste public dès la fusion.
+
+**Vérifié** — `npx tsc --noEmit` vert (adaptateur Resend contrôlé contre les types du SDK 6.9.3) ; `npx vitest run` 44 fichiers, 815 tests verts (dont 28 pour le bulletin) ; ESLint sans erreur sur les fichiers touchés (un avertissement `Calculator` de `Header.tsx`, présent sur `main`) ; `npx next build` vert, puis avec `VERCEL_ENV=production` : six URL en 404, aucun lien sur `/fr`, `/en`, `/de-ch`, `POST` des quatre routes en 503. `npx tsx scripts/occasion-bulletin.mts apercu` : « Aucun nouvel arrivage vérifié : aucun bulletin. » QA Playwright locales, chacune sur une instance neuve : trilingue 58/58, recherche 34/34, alertes 34/34 (attentes de texte mises à jour) ; captures de la section d'alerte à 1280 et 390 px, sans débordement. Une première passe a signalé un faux succès : la puce « Inscription confirmée par e-mail… » reprenait le titre de l'état de succès ; reformulée « Confirmation par e-mail… ».
+
+**Supposé** — [Non vérifié] Comportement réel de `contacts.list`, `contacts.get`, `contacts.topics.list` et `batch.send` chez Resend (types seulement, aucune clé dans cette session), durée de validité de la clé d'idempotence. [Inférence] En production, derrière le Worker, l'origine vue par l'application peut ne pas être `www` : `OCCASION_ALERTES_URL_BASE` recommandée.
+
+**Non regardé** — Ressources Resend (aucune lecture ni écriture) ; variables Vercel ; Worker ; autres menus et chantiers ; traductions Webflow (D9/C5) ; échecs historiques de `language-switch` et `mobile-overflow` (hors CI, hors périmètre).
+
+**Suite** — Q25 ; test réel des alertes puis du bulletin sur GO ; validation de la copy ; durée de conservation ; GO de fusion et de publication ; première machine réelle selon le guide.
+
+---
+
 ## 2026-10-12 · D9 L1 : horlogerie et distributeur suisse traduits en EN, noindex conservé — brouillon · Claude de Laurent
 
 **Chantier** : D9 (L0/L1), kit S7 | **PR** : brouillon, branche `claude/g5-pr-c-traduction-l1` | **Commit** : voir PR
@@ -1097,6 +1464,160 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 **Non regardé** — Claims NON ÉTABLIS (polarisé, « moins de deux heures de Genève », gratuité du devis, Light + Byte, Beynost / D1) ; L2 et L3 (L14, HOLD) ; relecture humaine de l'anglais.
 
 **Suite** — Relecture de l'anglais par Laurent ; publication (LOT-7b) : GO_CODE de publication, GO_MERGE, GO_PUBLICATION, hors J+7 (13-14/10), décision SB-L1.
+
+---
+
+## 2026-10-11 · #129 — landing occasion en FR, EN et DE-CH, menus, confidentialité (article 9) ; collectes toujours fermées · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, mission finale du 11/10 (GO_CODE, GO_TRADUCTION, GO_MENUS = YES ; GO_TEST_REEL_ALERTES = NO ; GO_MERGE, GO_PUBLICATION en attente) | **PR** : #129 (brouillon) | **Commits** : quatre commits successifs sur `89280e0`
+
+**Quoi** —
+- **Trois langues** : textes de la page dans `components/landings/occasion/contenu-{fr,en,de-ch}.ts` (même structure, FR inchangé, vérifié par comparaison), pages et vue de contrôle générées en `/fr`, `/en`, `/de-ch`, au **même chemin** `/studios-photo-automatises/opportunites` (comme le hub, segment non localisé : ni redirection, ni segment nouveau). DE-CH rédigé pour la Suisse alémanique (« Occasion », « Offerte », « MWST », « innert », pas de ß). Bandeau et annotations de l'aperçu : outils internes, restés en français.
+- **Formulaires** : libellés, messages de validation (ceux du serveur remplacés par ceux de la langue), familles et horizons traduits ; valeurs transmises inchangées (canoniques). La langue est transmise aux deux routes : accusé de réception de la recherche et e-mail de confirmation des alertes dans la langue du visiteur ; notification interne en français, avec la langue indiquée. Consentement des alertes : un texte et une **version par langue** (`OPTIN`), la route refuse une version d'une autre langue ; la source conservée (`/en/…`) donne la langue des futurs envois, sans nouvelle propriété Resend.
+- **Navigation** : lien texte du menu Solutions > Studios (desktop et mobile) et du pied de page dans les trois langues (« Offres d'occasion », « Pre-owned offers », « Occasionen »), chacun vers la page de sa locale ; toujours absent en production sans GO. Couverture de-ch et sélecteur de langue mis à jour (`FR_ONLY` → `DE_CH_COVERED_STATIC`).
+- **Confidentialité** : article 2 (deux collectes), article 3 (`purpose7`), nouvel article 9 « Offres d'occasion » (FR, EN ; de-ch.json = copie française, la page légale n'étant servie qu'en FR et EN). **Aucune durée de conservation écrite** pour les alertes : non décidée (Q25).
+- **Cartes** : textes EN et DE-CH par machine (`traductions`), exigés pour une machine réelle « disponible » (`elementsManquants`) ; exemples fictifs traduits.
+
+**Pourquoi** — Mission « Q25 + traductions + navigation + QA » de Laurent du 11/10.
+
+**Fichiers** — `lib/occasion/{langues,formulaires,schema,courriel,fiche,gestionnaire,resend,stock,navigation}.ts`, `lib/occasion/alertes/{schema,jeton,courriel,resend,gestionnaires}.ts`, `components/landings/occasion/{contenu,contenu-fr,contenu-en,contenu-de-ch,cartes,mesure}.ts`, `{OccasionOrbitvu,FormulaireRecherche,FormulaireAlertes,BandeauApercu}.tsx`, `data/occasion/{machines,exemples-fictifs}.ts`, les deux `page.tsx`, `app/[lang]/layout.tsx`, `components/layout/{Header,Footer}.tsx`, `i18n/{routing,deChCoverage}.ts`, `app/[lang]/confidentialite/page.tsx`, `messages/{fr,en,de-ch}.json` (bloc `privacy` seulement), tests `lib/occasion/__tests__/{occasion-langues,alertes-gestionnaires,alertes-validation,recherche-services}.test.ts`.
+
+**Effet attendu** — Production : aucun (pages 404 dans les trois locales, liens absents, quatre routes en 503) ; **mais l'article 9 de la politique de confidentialité devient public dès la fusion**. Preview : page et liens dans les trois langues.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `npx vitest run` 43 fichiers, 778 tests verts (dont 22 pour les trois langues) ; ESLint sans erreur ; `npx next build` vert (pages en `/fr`, `/en`, `/de-ch`). Build avec `VERCEL_ENV=production` : six URL en 404, aucun lien sur `/fr`, `/en`, `/de-ch`, `/api/occasion` et les trois routes d'alerte en 503. QA Playwright locales, chacune sur une instance neuve : trilingue 58/58 (h1, CTA, menu desktop et mobile, pied de page, sélecteur, liens de confidentialité FR/EN, validation localisée, 503 réels, alertes 200 et confirmation simulées, exemples fictifs, 390 et 320 px, aucun texte visiteur resté en français, aucune erreur JavaScript), recherche FR 34/34, alertes FR 34/34 (deux attentes adaptées au nouveau comportement voulu : liens EN/DE-CH présents, langue transmise). Une première passe a renvoyé 429 : limitation de l'instance locale épuisée par les passes précédentes, comportement attendu.
+
+**Supposé** — [Non vérifié] Ressources Resend relevées par l'agent Chrome : non transmises à cette session, Q25 non comparée au réel. [Non vérifié] Rendu des e-mails dans les messageries.
+
+**Non regardé** — Traductions Webflow historiques (D9/C5), autres pages du site, Worker (il transmet toutes les locales à Next.js : aucune règle à ajouter). Indexation : `noindex` conservé, recommandation A/B dans la PR. Aucune variable Vercel, aucune ressource Resend, aucun envoi.
+
+**Suite** — Q25 (ressources Resend, variables, durée de conservation, règle de réinscription) ; relecture de la copy EN et DE-CH ; alignement « France et Suisse » du bloc distributeur en EN/DE-CH (source FR : « en France ») ; GO de fusion et de publication.
+
+---
+
+## 2026-10-11 · #129 — liste d'alerte « prochaines occasions Orbitvu » : double opt-in codé et testé, fermé (sans test réel) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, sprint final du 11/10 (GO_CODE = YES ; GO_TEST_REEL_ALERTES, GO_MERGE, GO_PUBLICATION, GO_CAMPAGNE_EMAIL = NO) | **PR** : #129 (brouillon) | **Commit** : commit de développement qui suit la fermeture `4dddd32`
+
+**Quoi** — Décision de Laurent : conserver et activer le parcours d'alerte, secondaire sous la recherche.
+- Formulaire simplifié : e-mail (obligatoire), famille ou type de studio (facultatif), case d'accord décochée (obligatoire) ; prénom retiré ; titre « Soyez informé des prochaines occasions Orbitvu », bouton « M'avertir des prochaines disponibilités ». Textes de simulation retirés ; tant que la liste est fermée, une information honnête : « Les alertes ne sont pas encore ouvertes : aucune inscription n'est enregistrée pour le moment. »
+- Double opt-in sans stockage temporaire : `POST /api/occasion/alertes` n'écrit RIEN chez Resend ; il envoie un e-mail de confirmation dont le lien porte la demande chiffrée et authentifiée (AES-256-GCM, `OCCASION_ALERTES_SECRET`, 48 h, dans le fragment de l'URL). Seul le clic sur « Confirmer mon inscription » (`POST /api/occasion/alertes/confirmation`) crée ou met à jour le contact Resend : segment dédié, topic dédié (créé en « opt_out » par défaut), propriétés de preuve `occasion_alertes_*` (état, date de la demande, date de confirmation, version du texte, source, famille). `POST /api/occasion/alertes/desinscription` sort l'adresse du topic et du segment Occasion seulement.
+- Contacts globaux de Resend : jamais d'écriture de `unsubscribed`, d'un autre topic ni du prénom ; un contact globalement désinscrit ou sorti du topic Occasion n'est jamais réinscrit (« desinscrit ») ; une désinscription ne crée jamais de contact.
+- Verrou indépendant `ALERTES_REELLES_AUTORISEES = false` et `FENETRE_TEST_ALERTES_JUSQUA = null` (`lib/occasion/activation.ts`) : les trois routes répondent 503 sans lire la demande ; en production, publication exigée en plus.
+- Texte d'accord exact et versionné : `TEXTE_OPTIN`, `VERSION_TEXTE_OPTIN = occasion-alertes-v2-2026-10-11` (`lib/occasion/formulaires.ts`) ; la route refuse une version différente.
+
+**Pourquoi** — Message de Laurent « SPRINT FINAL OCCASION #129 » du 11/10, phases 1 à 6.
+
+**Fichiers** — Nouveaux : `lib/occasion/alertes/{schema,jeton,courriel,resend,services,gestionnaires,instance}.ts`, `app/api/occasion/alertes/route.ts`, `app/api/occasion/alertes/{confirmation,desinscription}/route.ts`, `lib/occasion/__tests__/alertes-{validation,registre,gestionnaires,isolation}.test.ts`, `lib/occasion/__tests__/alertes-doublures.ts`. Modifiés : `components/landings/occasion/{FormulaireAlertes.tsx,contenu.ts,BandeauApercu.tsx,OccasionOrbitvu.tsx}`, les deux `page.tsx`, `lib/occasion/{formulaires,activation}.ts`, `lib/occasion/__tests__/occasion.test.ts` (anciens tests du parcours B, remplacés). Le formulaire de recherche et `/api/occasion` ne sont pas modifiés.
+
+**Effet attendu** — Aucun en production (page 404, routes 503). Preview : formulaire d'alerte visible, réponse « Alertes pas encore ouvertes », jamais un succès.
+
+**Vérifié** —
+- SDK `resend` 6.9.3 installé : `contacts.get/create/update`, `contacts.segments.list/add/remove`, `contacts.topics.list/update`, propriétés de contact texte ou nombre (types `index.d.mts`) ; contrôle de types par `clientAlertesResend`. Documentation Resend lue : contacts globaux, propriétés à créer avant usage, topic « opt_out » reçu seulement par les inscrits explicites.
+- Tests à client Resend simulé (aucune requête réelle) : 70 tests d'alerte (4 fichiers) ; suite complète 42 fichiers, 754 tests verts. Validation (e-mail absent, invalide, trop long ; famille inconnue ou absente ; accord non coché ; clés inattendues dont prénom et référence fictive ; HTML ; longueurs), jetons (aller-retour, expiration, altération, autre secret, type croisé), préférences d'un contact existant conservées, désinscription puis tentative de réinscription refusée, pannes Resend et réponses sans identifiant, segment ou topic absents, secret absent ou court, double clic, limitation, champ piège, journal sans donnée personnelle, isolation (aucun import CRM, n8n, Supabase, `/api/contact`, catalogue ; aucune clé côté navigateur).
+- QA Playwright locale 34/34 : position sous la recherche, textes, champs, case décochée, clavier, 503 réel, états 200/400/429/500 et liens (inscrit, déjà inscrit, désinscrit, expiré, invalide, indisponible, erreur, désinscription) simulés par interception, 390 et 320 px sans débordement, aucune erreur JavaScript.
+
+**Supposé** — [Non vérifié] Comportement réel de Resend sur un contact déjà dans le segment (`segments.add` n'est appelé qu'après lecture des segments du contact) et sur une propriété absente du compte (refus attendu, traité comme une erreur). [Non vérifié] Conservation du fragment `#confirmer-alerte=…` par le suivi des clics de Resend s'il est activé.
+
+**Non regardé** — Aucun envoi, aucun contact, segment, topic ou propriété créé chez Resend (GO_TEST_REEL_ALERTES = NO). Aucune variable Vercel modifiée. Campagnes : hors périmètre (GO_CAMPAGNE_EMAIL = NO).
+
+**Suite** — Q25 (ressources Resend, variables, politique de confidentialité, règle de réinscription). Fermer le verrou après une mise en service couperait aussi la désinscription : prévoir alors un verrou d'inscription distinct.
+
+---
+
+## 2026-10-11 · #129 — test réel de la recherche en Preview : ouverture `75d5914`, fermeture `4dddd32` · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (GO_TEST_REEL_RECHERCHE de Laurent, Preview seulement) | **PR** : #129 (brouillon) | **Commits** : `75d5914` (ouverture), `4dddd32` (fermeture)
+
+**Quoi** — `75d5914` (poussé à 15:19 UTC) : `COLLECTE_REELLE_AUTORISEE = true`, `FENETRE_TEST_JUSQUA = '2026-10-11T17:17:00Z'`, `PUBLICATION_AUTORISEE = false`. Fermeture `4dddd32` à 17:17:24 UTC (push) : verrous remis (`false`, `null`), arbre identique à celui de `f265e04`.
+
+**Pourquoi** — Protocole de test réel de la PR (repris de #82) ; `OCCASION_NOTIFICATION_EMAIL` créée par Laurent sur Vercel, portée limitée à la branche Preview.
+
+**Fichiers** — `lib/occasion/activation.ts`.
+
+**Effet attendu** — Production inchangée. Preview fermée de nouveau (503).
+
+**Vérifié** — Déploiement Vercel de `75d5914` terminé à 15:21 UTC ; CI de `75d5914` rouge sur les seuls trois tests de verrou, comme attendu (commentaire sur la PR). Fermeture à l'échéance prévue : le résultat du test B n'avait pas été transmis à cette session. CI de `4dddd32` : 4 contrôles verts (« Types, build et intégrité des données » terminé à 17:23:12 UTC) ; déploiement Vercel de `4dddd32` terminé à 17:18:34 UTC.
+
+**Supposé** — Test A : soumis par Laurent, écran « Demande reçue », HTTP 200 (transmis par Laurent, non vu par cette session).
+
+**Non regardé** — Test B, quatre e-mails (identifiants Resend, `delivered`, réception) : non établis dans cette session. Preview inaccessible par script (SSO Vercel) ; `GET` et `POST` sur l'alias, suppression du déploiement de `75d5914` et 404 : à faire dans Chrome.
+
+**Suite** — Agent Chrome : contrôle 503 et `{"disponible":false}` sur l'alias, suppression de tout déploiement construit sur `75d5914`, 404 `DEPLOYMENT_NOT_FOUND`, relevé Resend et lecture des boîtes pour A (et B s'il a été envoyé avant 17:17 UTC).
+
+---
+
+## 2026-10-11 · #129 — fenêtre de test datée, bandeau fidèle à l'état réel de la collecte, protocole de test réel (sans test) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, suite de la mission S0 (GO_CODE = YES ; GO_TEST_REEL et autres GO = NO) | **PR** : #129 (brouillon) | **Commit** : base `2d9df02`
+
+**Quoi** — Trois constats de Laurent du 11/10, tirés du protocole de #82 (ouverture `4a800f0`, deux demandes, quatre messages, fermeture `971d0bc`, 503, suppression du déploiement de test) :
+- Le bandeau de l'aperçu suit désormais l'état **réel** de la collecte. Collecte fermée : « Aperçu interne · … recherche fermée (503) … ». Collecte ouverte : titre rouge « Test réel en cours », envois réels annoncés avec l'heure de fin ; l'avis du formulaire devient « Test réel en cours : cette demande envoie de vrais e-mails… ».
+- Nouveau verrou `FENETRE_TEST_JUSQUA` (`lib/occasion/activation.ts`, `null`) : hors production, la collecte n'est ouverte que si `COLLECTE_REELLE_AUTORISEE` est vrai **et** que cette heure n'est pas passée. La fin est revérifiée à chaque demande : un déploiement d'ouverture oublié se referme seul (503). En production, la fenêtre est ignorée.
+- Page prérendue au build : le bandeau et l'avis repassent à l'état fermé dans le navigateur à l'heure de fin (`useCollecteCourante`), sans écart d'hydratation.
+
+**Pourquoi** — Le JOURNAL de #82 (09/10, « Non regardé ») consigne un bandeau resté « aucune demande enregistrée ni envoyée » pendant le test réel. Un déploiement Vercel garde le code de sa construction : l'URL propre du commit d'ouverture resterait ouverte après le commit de fermeture si elle n'était pas supprimée.
+
+**Fichiers** — `lib/occasion/{activation,services,gestionnaire}.ts`, `app/api/occasion/route.ts` (`GET` : `servicesOuverts`), `components/landings/occasion/{contenu.ts,BandeauApercu.tsx,FormulaireRecherche.tsx,OccasionOrbitvu.tsx}`, nouveau `components/landings/occasion/useCollecteCourante.ts`, les deux `page.tsx`, tests `lib/occasion/__tests__/{occasion,recherche-gestionnaire,recherche-services}.test.ts`.
+
+**Effet attendu** — Aucun en production (404, 503). Preview : bandeau « recherche fermée (503) » tant qu'aucun test réel n'est ouvert.
+
+**Vérifié** —
+- Aucun déploiement de #129 n'a jamais eu la collecte ouverte : `COLLECTE_REELLE_AUTORISEE = false` dans `1a0af85`, `28177a3` et `2d9df02` (`git show`) ; route absente des deux premiers.
+- Local : `npx tsc --noEmit` vert ; `npx vitest run` 38 fichiers, 686 tests verts (fenêtre en cours, échue, illisible, absente ; production ignorant la fenêtre ; 503 sans lecture du corps après l'heure de fin, revérifiée à chaque demande ; textes du bandeau et de l'avis) ; ESLint sans erreur ; `npx next build` vert hors production et avec `VERCEL_ENV=production` (pages 404, `POST` 503, `GET` `{"disponible":false}`, aucun lien sur `/fr`).
+- QA Playwright S0 locale 34/34 ; bandeau servi : « Aperçu interne · Page non publiée · recherche fermée (503) et liste d'alerte non activée : aucune donnée transmise ni enregistrée ».
+- Simulation locale d'une fenêtre ouverte, dans une copie du dépôt en dehors de la branche (`COLLECTE_REELLE_AUTORISEE = true`, fenêtre de 5 min, valeurs Resend factices, aucune demande POST pendant la fenêtre), QA Playwright 16/16 : pendant la fenêtre, `GET` `{"disponible":true}`, titre rouge « Test réel en cours », envois réels et heure de fin annoncés, avis rouge du formulaire, vue exemples « Test réel en cours · exemples fictifs… » ; après l'heure de fin, sans redémarrage du serveur ni rechargement, bandeau repassé « Aperçu interne · … recherche fermée (503) », avis retiré, `GET` `{"disponible":false}`, `POST` 503 `occasion_unavailable` ; HTML prérendu portant encore « Test réel en cours » (constat), corrigé au montage sur un nouveau chargement ; aucune erreur JavaScript. Un premier passage (fenêtre de 15 min) s'est arrêté sur un délai de chargement dépassé de Playwright après l'attente (serveur sain, page en 200), relancé avec un chargement sans attente du réseau inactif.
+
+**Supposé** — Qu'une variable d'environnement Vercel modifiée ne s'applique qu'aux déploiements construits après la modification (comportement documenté par Vercel, non revérifié ici).
+
+**Non regardé** — Aucun test réel (GO_TEST_REEL = NO) : aucun e-mail, aucune variable Vercel modifiée. Preview non ouverte par script (SSO Vercel). Bandeau de #82 (hors périmètre de #129).
+
+**Suite** — Protocole de test réel inscrit dans la description de #129, à n'exécuter que sur GO_TEST_REEL distinct : ouverture datée (2 h au plus), deux demandes, **quatre messages lus dans les boîtes** (pas seulement `delivered` chez Resend), fermeture, 503 sur l'alias, suppression au dashboard Vercel de tout déploiement construit sur le commit d'ouverture et 404 `DEPLOYMENT_NOT_FOUND` sur son URL.
+
+---
+
+## 2026-10-11 · #129 — parcours « recherche d'un studio d'occasion » et route `/api/occasion` fermée (mission S0, GO_CODE) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, mission S0 du 11/10 (GO_CODE = YES ; GO_MERGE, GO_PUBLICATION, GO_COLLECTE_REELLE, GO_TEST_REEL, GO_DEPENSE, GO_TRADUCTION = NO) | **PR** : #129 (brouillon) | **Commit** : base de la branche `28177a3`
+
+**Quoi** — Fait métier de Laurent du 11/10 : des machines d'occasion peuvent être recherchées à la demande. Le parcours prioritaire devient une **demande de recherche** visible avec ou sans machine affichée : CTA du hero « Je recherche un studio d'occasion », formulaire (prénom, e-mail, entreprise, besoin obligatoires ; famille, téléphone, budget HT indicatif, horizon, commentaire, référence facultatifs ; aucun opt-in marketing), présélection de la référence par la carte d'une machine. Route `POST /api/occasion` sur le modèle de #82, sans `/api/contact`. La liste d'alerte devient secondaire, en fin de page, non activée : jamais de message de succès. Bloc « contact général » de la V4.1 retiré, remplacé par la recherche.
+
+**Pourquoi** — Mission `MISSION_CLAUDE_CODE_PR129_WORKFLOW_LEADS_GO_CODE_2026-10-11.md` et spec `PSC_OCCASION_PR129_WORKFLOW_LEADS_SPEC_2026-10-11.md` (objectif : contacts chauds à budget contraint, test de quelques mois accepté en principe par Sébastien, sans GO de publication).
+
+**Fichiers** — Nouveaux : `app/api/occasion/route.ts`, `lib/occasion/{schema,gestionnaire,services,resend,fiche,courriel}.ts`, `components/landings/occasion/{FormulaireRecherche.tsx,mesure.ts}`, `lib/occasion/__tests__/recherche-{gestionnaire,services,mesure}.test.ts`. Modifiés : `components/landings/occasion/{OccasionOrbitvu,FormulaireAlertes}.tsx`, `contenu.ts`, `styles.ts`, les deux `page.tsx`, `lib/occasion/{activation,formulaires}.ts`, `lib/occasion/__tests__/occasion.test.ts` (tests du parcours « machine obligatoire » retirés, devenus sans objet). Supprimé : `components/landings/occasion/FormulaireDemande.tsx`.
+
+**Effet attendu** — Aucun en production : page en 404, liens absents, route en 503. Preview : formulaire de recherche visible ; un envoi renvoie l'état « Formulaire pas encore en service », jamais un succès.
+
+**Vérifié** — Local : `npx tsc --noEmit` vert ; `npx vitest run` 38 fichiers, 672 tests verts avant le dernier correctif de lint, puis `lib/occasion` 45/45 ; ESLint sans erreur sur les fichiers touchés ; `npx next build` vert hors production (`/api/occasion` dynamique, pages en `/fr` seulement). Build avec `VERCEL_ENV=production` et de faux secrets Resend et `OCCASION_NOTIFICATION_EMAIL` présents : les deux pages en 404, `POST /api/occasion` 503 `occasion_unavailable`, `GET` `{"disponible":false}`, aucun lien « occasion » sur `/fr`, `/fr/studios-photo-automatises`, `/en`, `/de-ch`. Tests à services simulés (aucun réseau) : recherche sans machine, référence fictive rejetée (409), validations et longueurs, champ piège, limitation, anti-doublon de l'instance, notification puis accusé, panne de la notification (500, aucun accusé, nouvel essai possible), panne du seul accusé (demande reçue, `ackSent: false`), verrou fermé (503 sans lecture du corps), HTML échappé, journal et GA4 sans donnée personnelle, aucun repli sur `CATALOGUE_NOTIFICATION_EMAIL` ni `NOTIFICATION_EMAIL`. QA Playwright locale 34/34 : ordres des sections (vide : hero, recherche, fiche, garantie, alertes ; avec exemples : hero, machines, recherche, fiche, garantie, alertes), validation client sans requête, réponse réelle locale 503 et état « pas encore en service », liste d'alerte sans succès ni requête, états 200 (avec ou sans accusé), 409, 429, 500 simulés par interception, présélection au clic et au toucher, 1440, 390 et 320 px sans débordement, liens en FR seulement, aucune erreur JavaScript.
+
+**Supposé** — La Preview Vercel reçoit `VERCEL_ENV=preview` ; la production `VERCEL_ENV=production` (non revérifié sur la production).
+
+**Non regardé** — Aucun envoi réel (GO_TEST_REEL = NO) : délivrabilité Resend, réception par Sébastien, traitement par son assistant. Preview non ouverte par script (SSO Vercel). Firefox, Safari, appareils réels. Politique de confidentialité non modifiée (hors périmètre).
+
+**Suite** — Avant GO_TEST_REEL : `OCCASION_NOTIFICATION_EMAIL` en Preview seulement, adresses de test approuvées, `COLLECTE_REELLE_AUTORISEE` ouvert sur la branche de test. Avant GO_PUBLICATION : finalité « demandes Occasion » dans la politique, mentions et copy validées, HOLD de la PR levés. L'idempotence et la limitation restent locales à l'instance (pas d'anti-doublon distribué).
+
+---
+
+## 2026-10-10 · Landing « Studios Orbitvu d'occasion » : intégration Next.js de la V4.1 en Preview (brouillon, DO NOT MERGE) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, GO de Laurent du 10/10 (GO CODE, BRANCHE + PUSH, PR DRAFT, PREVIEW = YES ; MERGE, PUBLICATION, FORMULAIRES RÉELS, ENVOI D'E-MAIL, N8N, RECHERCHE PAYANTE = NO) | **PR** : #129 (brouillon), branche `claude/gallant-galileo-f32xk6` | **Commit** : `1a0af85` (code), base `main` `0f960b5`
+
+**Quoi** — Page FR `/fr/studios-photo-automatises/opportunites` en composants natifs, fidèle à la maquette V4.1 (copie reprise sans réécriture ; seuls écarts : avis et messages de simulation des formulaires). Deux états calculés côté serveur depuis le registre `data/occasion/machines.ts` (vide par défaut) ; vue de contrôle `…/opportunites/exemples-fictifs` avec les trois exemples de la V4.1, bandeau « Exemples fictifs – aucune offre réelle ». Lien texte « Offres d'occasion » sous Solutions > Studios (desktop, mobile) et dans la colonne des studios du pied de page, FR seulement, calculé dans `app/[lang]/layout.tsx`.
+
+**Pourquoi** — GO d'exécution de Laurent du 10/10 (mission `MISSION_CLAUDE_CODE_PREVIEW_OCCASION_2026-10-10.md`, livrables `packshot-occasion-orbitvu-livrables-2026-10-10.zip`) : obtenir une Preview à montrer à Sébastien, sans effet de bord sur les ventes neuves.
+
+**Fichiers** — Nouveaux : `lib/occasion/activation.ts` (`PUBLICATION_AUTORISEE = false`, `COLLECTE_REELLE_AUTORISEE = false`), `lib/occasion/stock.ts`, `lib/occasion/formulaires.ts` (validation, preuve de consentement prévue, rien n'est stocké), `lib/occasion/navigation.ts`, `lib/occasion/__tests__/occasion.test.ts`, `data/occasion/machines.ts`, `data/occasion/exemples-fictifs.ts`, `components/landings/occasion/**`, `app/[lang]/studios-photo-automatises/opportunites/page.tsx` et `exemples-fictifs/page.tsx`, `public/images/occasion/*.avif` (3). Modifiés : `components/layout/Header.tsx`, `components/layout/Footer.tsx`, `app/[lang]/layout.tsx`, `i18n/routing.ts`, `i18n/deChCoverage.ts` (`FR_ONLY`), `lib/engagement/regles.ts` (`ROUTES_EXCLUES`).
+
+**Effet attendu** — Aucun en production : page 404 et liens absents tant que `PUBLICATION_AUTORISEE` est faux. Preview : page, vue de contrôle et deux liens visibles.
+
+**Vérifié** — Local, avant push : `npx tsc --noEmit` vert ; `npx vitest run` 645/645 (dont 18 tests de `lib/occasion`) ; ESLint sans erreur sur les fichiers touchés (1 avertissement préexistant, `Calculator` inutilisé dans `Header.tsx`) ; `npx next build` vert (variables factices), les deux pages prérendues en `/fr` seulement. Build local avec `VERCEL_ENV=production` : les deux URL en 404, sans titre ni description de la page ; aucun lien « occasion » sur `/fr`, `/fr/studios-photo-automatises`, `/en`, `/de-ch`. QA Playwright locale (build hors production) 47/47 : état vide (aucune carte ni formulaire machine, liste d'attente juste après le hero, contact général vers `/fr/contact`) ; état exemples (3 cartes « Exemple fictif », ordre V4.1, aucun prix) ; `#alertes` ne change pas l'état ; carte → présélection de la référence (OCC-02, OCC-03, OCC-01 au toucher en 390 px) ; erreurs, focus et opt-in décoché ; envois simulés sans aucune requête portant les données (seuls des préchargements Next `?_rsc=` des liens du pied de page) ; lien du menu desktop juste sous Studios, menu mobile, pied de page ; sélecteur de langue vers `/en` et `/de-ch` ; 1440, 390 et 320 px sans débordement horizontal ; aucune erreur JavaScript. Specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`) : 81/81 sur ce build.
+
+**Preview** — https://sysnext-git-claude-gallant-galile-2aa852-sebs-projects-ca1e93a7.vercel.app/fr/studios-photo-automatises/opportunites (vue exemples : `…/opportunites/exemples-fictifs`). Déploiement Vercel `HvwJXPnZ5MYCP6bG8XvBhXepwyab` « Ready » le 10/10 à 11:10:25 UTC (statut de `1a0af85`). **Non contrôlée par le Claude de Laurent** : toute requête répond 302 vers `vercel.com/sso-api` (protection SSO, `05-INFRA.md`) ; aucun `VERCEL_AUTOMATION_BYPASS_SECRET` dans l'environnement de la session. Contrôle à faire par Laurent, connecté à l'équipe Vercel.
+
+**Supposé** — Le build Vercel de Preview reçoit `VERCEL_ENV=preview` (page et liens servis) et celui de production `VERCEL_ENV=production` (comportement de #82 et #122, non revérifié sur la production).
+
+**Non regardé** — Production (aucun déploiement, GO_PUBLICATION = NO). Firefox, Safari, appareils réels, tablette. GA4 (aucun événement ajouté). Droits des photos (HOLD). Pages longues (D44) : page sous le seuil C1 à 1 440 px (5 674 px avec exemples), forme C, non inscrite au registre.
+
+**Suite** — HOLD avant toute publication : machines réelles et leurs photos ; contenu de chaque fiche ; garantie PackshotCreator ; accord Orbitvu sur la revente et la présentation en ligne ; frais de transfert de licence ; circuit de la demande ; outil, lieu, double opt-in et durée de conservation de la liste d'attente, puis routes serveur ; politique de confidentialité ; droits photo (showroom : lieu, date, droits ; exemple XXL : `machines/alphastudio-xxl/hero.avif`, droits confirmés, à la place de la vignette de salon Orbitvu de la V4.1, personnes visibles et accord d'OVTECH non obtenu) ; installation, formation et visite pour l'occasion ; validation de la copy par Sébastien (D13, D16) ; fraîcheur maximale d'une machine (`FRAICHEUR_MAX_JOURS = 30`, valeur provisoire). Pop-in : route exclue (`ROUTES_EXCLUES`), #122 étant fusionnée.
 
 ---
 
