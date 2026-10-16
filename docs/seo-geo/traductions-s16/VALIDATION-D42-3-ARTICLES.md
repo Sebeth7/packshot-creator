@@ -37,3 +37,28 @@ Conservés tels quels dans FR **et** EN, **non vérifiés par une source primair
 - GO_MERGE distinct de Laurent.
 
 La présente PR livre les **3 traductions EN terminées** + cette trace d'arbitrage. Aucune publication, aucun merge.
+
+---
+
+## Correctif factuel de date — fait métier de Laurent du 16/10/2026
+
+**Fait métier validé par Laurent (16/10)** :
+- **Sysnext** est une société, **créée en 2001**.
+- **PackshotCreator** est une **marque commerciale de Sysnext**, **lancée en 2004**.
+- PackshotCreator **n'est pas** une société indépendante.
+- Cette clarification du 16/10 **prévaut** sur la confusion de dates de l'ancien arbitrage **D33 (25/09)**, **sans annuler** les autres dispositions de D33.
+
+**Correction appliquée (GO_CODE_146_DATE, GO_COMMIT/PUSH_146_DATE)** — article 360° uniquement, FR et EN, une phrase chacune (lien `selecteur-machines` et structure HTML préservés) :
+- FR : « Depuis 2001, PackshotCreator développe des plateaux tournants et des studios photo 360° … » → « **Sysnext, société créée en 2001, propose aujourd'hui des [plateaux tournants et des studios photo 360°](/fr/studio-photo/selecteur-machines) sous sa marque commerciale PackshotCreator, lancée en 2004.** »
+- EN : « Since 2001, PackshotCreator has been developing turntables and 360° photo studios … » → « **Founded in 2001, Sysnext now offers [turntables and 360° photography studios](/en/studio-photo/selecteur-machines) under its PackshotCreator commercial brand, launched in 2004.** »
+- Formulation volontairement neutre : **n'affirme pas** que ces équipements étaient commercialisés dès 2001 ni 2004 (« propose aujourd'hui » / « now offers »). Fichiers : `content/blog/{fr,en}/photographie-de-produits-a-360-degres-en-interne.json`. Aucune autre occurrence de 2001 remplacée ; aucun lien, ALT, média, slug, Hn, canonical, hreflang, JSON-LD ni autre paragraphe modifié.
+
+**Données structurées Organization — identification, non modifiées** :
+- `components/seo/SchemaOrg.tsx` → `organizationSchema()` : `name: 'PackshotCreator'`, `foundingDate: '2004'`. **Cohérent** avec le fait métier (marque lancée 2004). **Non modifié** (hors périmètre #146 ; aucun GO). [Inférence] Question de conception distincte, à trancher séparément : faut-il décrire l'Organization comme **Sysnext** (entité juridique, 2001) plutôt que la marque ? À ne pas traiter dans #146.
+
+**Clarification D33 à consigner dans `DECISIONS.md` (préparée, NON appliquée ici)** — fichier partagé, vérifier le propriétaire et les collisions éventuelles avec #152 avant écriture. Formulation proposée :
+> **D33 — clarification du 16/10/2026 (Laurent).** Sysnext est la société, créée en 2001. PackshotCreator est sa marque commerciale, lancée en 2004 ; ce n'est pas une société indépendante. Toute mention « depuis 2001 » se rapporte à Sysnext, non à la marque PackshotCreator. Cette clarification prévaut sur la confusion de dates du D33 du 25/09 et n'annule aucune autre disposition de D33.
+
+**Claims restant NON VALIDÉS (HOLD D42, inchangés par ce correctif)** : « world leader », « more than 70 patents », « 20,000 users in 35 countries », superlatifs et garanties de vitesse/résultat. Non supprimés, non renforcés. La correction de date **n'est pas** une validation D42 générale.
+
+**`noindex` D9 conservé.** GO_MERGE = NON, GO_PUBLICATION = NON, GO_LEVEE_NOINDEX = NON, GO_TEST_REEL = NON.

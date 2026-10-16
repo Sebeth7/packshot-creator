@@ -34,6 +34,23 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · #146 : correctif factuel de date (article 360°, FR+EN) — Sysnext 2001 / marque PackshotCreator 2004 · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) — correctif ciblé | **PR** : #146, branche `claude/traductions-en-dech-s16` | **Commit** : voir PR
+
+**Quoi** — Sur fait métier de Laurent du 16/10 (GO_CODE_146_DATE + GO_COMMIT/PUSH_146_DATE, strictement limités à ce correctif) : correction de la date dans `content/blog/{fr,en}/photographie-de-produits-a-360-degres-en-interne.json`, une phrase par langue.
+- FR : « Depuis 2001, PackshotCreator développe… » → « Sysnext, société créée en 2001, propose aujourd'hui des [plateaux tournants et des studios photo 360°](/fr/studio-photo/selecteur-machines) sous sa marque commerciale PackshotCreator, lancée en 2004. »
+- EN : « Since 2001, PackshotCreator has been developing… » → « Founded in 2001, Sysnext now offers [turntables and 360° photography studios](/en/studio-photo/selecteur-machines) under its PackshotCreator commercial brand, launched in 2004. »
+
+**Fait métier (16/10)** — Sysnext = société créée 2001 ; PackshotCreator = marque commerciale de Sysnext, lancée 2004 (pas une société indépendante). Clarifie la confusion de dates de D33 (25/09) sans annuler ses autres dispositions. Formulation neutre : n'affirme pas une commercialisation dès 2001/2004.
+
+**Rayon d'action** — Deux fichiers de contenu, une phrase chacun ; lien `selecteur-machines`, balisage de marque et structure HTML préservés. Aucun autre `2001` remplacé ; aucun lien/ALT/média/slug/Hn/canonical/hreflang/JSON-LD ni autre paragraphe touché. `components/seo/SchemaOrg.tsx` (`organizationSchema()` : `name: 'PackshotCreator'`, `foundingDate: '2004'`) **identifié et non modifié** (cohérent, hors périmètre). `DECISIONS.md` **non modifié** : clarification D33 préparée dans `docs/seo-geo/traductions-s16/VALIDATION-D42-3-ARTICLES.md`, à consigner par le propriétaire (collision possible avec #152). Retour arrière : `git revert`.
+
+**Vérifié** — 2 JSON valides ; diff = 2 fichiers / 1 ligne chacun ; FR et EN relus. CI du nouveau HEAD : à relever au push.
+**Non regardé** — Preview SSO (QA humaine groupée par Laurent, ultérieure).
+
+**Reste en HOLD** — Claims « world leader », « 70 patents », « 20,000 users in 35 countries », superlatifs vitesse/résultat : NON VALIDÉS (D42), non supprimés ni renforcés. `noindex` D9 conservé. GO_MERGE / GO_PUBLICATION / GO_LEVEE_NOINDEX / GO_TEST_REEL = NON. Base #146 (`2ae6e15`) périmée vs `main` `f562e3b` : resync non exécuté (GO_RESYNC non accordé).
+
 ## 2026-10-14 · S16 : décision Laurent — conserver le FR + traduction EN des 3 articles (fidèle, claims conservés) · Claude de Laurent
 
 **Chantier** : S16 (traductions EN) | **PR** : #146, branche `claude/traductions-en-dech-s16` (distincte de #141) | **Commit** : voir PR
