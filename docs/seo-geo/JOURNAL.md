@@ -154,6 +154,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Sprint ROI FR — échec de génération du PDF du conseiller (`jsPDF.scale`), PR Draft · Claude de Laurent
+
+**Chantier** : sprint ROI FR (V9), décision de Laurent du 16/10 : GO_CODE_ROI_FR_PDF et GO_PR/PUSH_ROI_FR_PDF ; GO_TEST_REEL, GO_MERGE, GO_PUBLICATION : NON | **PR** : Draft, branche `claude/vibrant-maxwell-y90y3b` | **Base** : `main` `b8ae3b2`
+
+**Quoi** — Le rendu PDF hors écran du conseiller est monté dans un portail sur `document.body`, donc mis en page quelle que soit la visibilité du volet qui le monte. `PDFGenerator` attend le graphique dimensionné et refuse toute section non rendue, toute capture vide ou en échec (plus de NaN, plus de PDF amputé en silence). Un échec local du PDF après un lead accepté a son propre message et un nouvel essai sans second envoi.
+
+**Pourquoi** — QA Chrome du 16/10 : après un 200 simulé de `/api/roi-lead`, « Invalid argument passed to jsPDF.scale ». Mécanisme établi par instrumentation (Playwright, Chromium local, `/api/*` simulés) : `DossierPanel` est monté deux fois (volet desktop `hidden lg:block`, tiroir mobile) ; sous 1 024 px, l'instance du volet reste montée en `display: none`, ses 6 sections mesurent 0 × 0, html2canvas rend un canvas de 0 × 0 et la hauteur (0 × 190) / 0 vaut NaN. Erreur reproduite à l'identique à 390 et 900 px par un clic programmatique sur le bouton de cette instance. Clics visibles (desktop 1 280 px, tiroir mobile 390 px) : PDF généré, sur `main` comme après correctif. Avertissements Recharts `width(-1)` : émis aussi par les instances visibles avant mesure, sans effet.
+
+**Fichiers** — `components/roiChat/public/DossierPanel.tsx`, `components/roiChat/public/PdfReport.tsx`, `components/calculators/ROICalculator/results/PDFGenerator.tsx`, `components/calculators/ROICalculator/lib/pdfCapture.ts` (nouveau), `lib/__tests__/roi-pdf-capture.test.ts` (nouveau), `e2e/roi-pdf.spec.ts` (nouveau). Aucune route `/api/*`, ni `lib/pipedrive.ts`, ni enrichissement, ni GA4, ni fichier de #131.
+
+**Effet attendu** — Aucun effet SEO. PDF généré depuis l'une ou l'autre instance ; un échec local n'est plus affiché comme un échec d'envoi.
+
+**Vérifié** — `npx tsc --noEmit` vert ; Vitest 700/700 (dont 9 nouveaux) ; `verifier-json` 198 ; `npx next build` vert (390 pages, valeurs factices) ; `e2e/roi-pdf.spec.ts` 7/7 sur serveur de développement et sur `next start` ; contre-épreuves : portail retiré → 2 échecs, message fusionné → 1 échec (code remis à l'identique, `cmp`) ; ligne de base sur `main` : instance masquée en échec, autres cas verts ; `e2e/roi-calculator.spec.ts` sur `next start` : 29/30, l'échec (« salary cost ») non reproduit sur 15 répétitions, fichier non touché.
+**Supposé** — Que la QA du 16/10 a déclenché l'instance masquée (fenêtre sous 1 024 px ou clic programmatique) ; [Non vérifié].
+**Non regardé** — Preview, `www` (R4), Safari, Firefox, appareils réels ; ESLint : 4 erreurs `no-explicit-any` préexistantes dans `PDFGenerator.tsx` (`GState`), non introduites.
+
+**Suite** — QA Preview avec appels simulés (scénario dans la PR), puis GO_MERGE et GO_PUBLICATION distincts. `e2e/roi-pdf.spec.ts` hors `ATTENDUS` de `pr-checks.yml` (fichier hors périmètre). Copy FR des deux nouveaux messages à valider par Sébastien (D13, D42). 16/10 : QA Preview des cinq scénarios PASS sur `fe3b875` (rapport de Laurent, appels simulés) ; `main` `86fe43d` intégré par fusion, `JOURNAL.md` et `ETAT.md` réunis par union, aucun fichier de site en commun.
+
+---
+
 ## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
 
 **Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
