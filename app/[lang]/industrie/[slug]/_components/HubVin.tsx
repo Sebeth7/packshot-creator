@@ -39,8 +39,9 @@ type Visuel = { src: string; alt: string; width: number; height: number };
 
 const DOSSIER = '/images/secteurs/vin';
 
-/** Légende commune des illustrations (manifeste du 08/10/2026). */
-const LEGENDE_IA = 'Illustration générée par IA, bouteilles et étiquettes fictives.';
+/** Légende publique commune des visuels d’illustration (décision de Laurent du 16/10/2026 ; provenance et
+ *  création par IA consignées dans docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md). */
+const LEGENDE_VISUEL = 'Visuel d’illustration — bouteilles et étiquettes fictives.';
 
 const HERO: Visuel = {
   src: `${DOSSIER}/vin-i1-hero-cinq-bouteilles.avif`,
@@ -122,7 +123,7 @@ const GAMME = {
     'Bordelaise, bourguignonne, flûte, flacon de spiritueux : d’une référence à l’autre, la hauteur, le diamètre, la teinte du verre et les finitions changent. Le rendu de la gamme, lui, doit rester homogène.',
     'Un modèle Orbitvu Station mémorise le nombre d’images, la lumière, les angles, la position de l’appareil, l’ouverture, la vitesse et le détourage. Il donne une base de capture cohérente, que l’on ajuste selon la forme, les dimensions, le verre et les finitions de chaque bouteille. Station conserve un modèle par type de produit : un par format, si votre gamme l’exige. Une correction peut ensuite s’appliquer à toute une série d’images.',
   ],
-  legende: `${LEGENDE_IA} Elle figure une présentation homogène, pas le résultat d’un réglage de studio.`,
+  legende: `${LEGENDE_VISUEL} Il figure une présentation homogène, pas le résultat d’un réglage de studio.`,
   vuesTitre: 'Les vues dont vos fiches ont besoin',
   vuesIntro: 'Selon vos fiches produit, un même passage peut produire :',
   vues: [
@@ -132,7 +133,7 @@ const GAMME = {
     'de courtes vidéos du produit.',
   ],
   usages: 'Les mêmes fichiers servent à la fiche produit, au catalogue et aux visuels transmis aux distributeurs et aux importateurs.',
-  vuesLegende: 'Illustration générée par IA, flacon et étiquettes fictifs. Vues conceptuelles, sans correspondance géométrique mesurée.',
+  vuesLegende: 'Visuel d’illustration — flacon et étiquettes fictifs. Vues conceptuelles, sans correspondance géométrique mesurée.',
 };
 
 /* D2. Sources : guide Orbitvu 2021 (préparation, gants en coton) ; article Orbitvu 2019 (le logiciel pilote
@@ -225,7 +226,7 @@ function HeroVisuel() {
         <source media="(max-width: 767px)" srcSet={srcSetMobile} width={HERO_MOBILE.width} height={HERO_MOBILE.height} />
         <img {...img} alt={HERO.alt} className="block w-full h-auto rounded-lg" />
       </picture>
-      <figcaption className="mt-3 text-sm text-neutral-medium">{LEGENDE_IA}</figcaption>
+      <figcaption className="mt-3 text-sm text-neutral-medium">{LEGENDE_VISUEL}</figcaption>
     </figure>
   );
 }
@@ -313,7 +314,7 @@ export default function HubVin({ secteur, lang, slug, breadcrumbs, autresSecteur
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-sm text-neutral-medium">{LEGENDE_IA}</p>
+          <p className="mt-8 text-sm text-neutral-medium">{LEGENDE_VISUEL}</p>
         </div>
       </section>
 

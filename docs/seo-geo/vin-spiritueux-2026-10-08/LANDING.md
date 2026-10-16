@@ -110,14 +110,14 @@ Conversion : AVIF qualité 80, chroma 4:4:4, dimensions natives, sans agrandisse
 
 | ID | PNG source (SHA-256, 16 premiers caractères) | Fichier intégré | Dimensions | Octets | Emplacement | Légende affichée | Réserve conservée |
 |---|---|---|---|---|---|---|---|
-| I1 | `I1_hero_cinq_bouteilles.png` (`a4aae92e44e3b004`) | `vin-i1-hero-cinq-bouteilles.avif` | 1 536 × 1 024 | 132 038 | Hero, ≥ 768 px | Illustration générée par IA, bouteilles et étiquettes fictives. | Éléments imaginaires, pas des photographies d’un studio Orbitvu |
+| I1 | `I1_hero_cinq_bouteilles.png` (`a4aae92e44e3b004`) | `vin-i1-hero-cinq-bouteilles.avif` | 1 536 × 1 024 | 132 038 | Hero, ≥ 768 px | Visuel d’illustration — bouteilles et étiquettes fictives. | Éléments imaginaires, pas des photographies d’un studio Orbitvu |
 | I1-mobile | `I1_hero_mobile_4x5.png` (`931d9adb464f5820`) | `vin-i1-hero-mobile-4x5.avif` | 800 × 1 000 | 92 099 | Hero, < 768 px | Idem | Recadrage 4:5 de I1, sans nouvelle génération |
-| I2-A | `I2-A_macro_capsule_metal.png` (`cfe48a867bb3b28a`) | `vin-i2-a-capsule-metal.avif` | 1 254 × 1 254 | 67 895 | Matières, « Capsule et col » | Illustration générée par IA, bouteilles et étiquettes fictives. (sous la grille) | Capsule à géométrie fictive |
+| I2-A | `I2-A_macro_capsule_metal.png` (`cfe48a867bb3b28a`) | `vin-i2-a-capsule-metal.avif` | 1 254 × 1 254 | 67 895 | Matières, « Capsule et col » | Visuel d’illustration — bouteilles et étiquettes fictives. (sous la grille) | Capsule à géométrie fictive |
 | I2-B | `I2-B_macro_etiquette_texturee.png` (`c72094f96e1d59a5`) | `vin-i2-b-etiquette-texturee.avif` | 1 254 × 1 254 | 237 570 | Matières, « Étiquette » | Idem | Gaufrage et dorure simulés, non vérifiés sur support |
 | I2-C | `I2-C_macro_verre_liquide_ambre.png` (`85b023209adf2c8d`) | `vin-i2-c-verre-liquide-ambre.avif` | 1 254 × 1 254 | 72 493 | Matières, « Verre clair et liquide » | Idem | Réfraction simulée, non mesurée |
 | I2-D | `I2-D_macro_epaule_verre_sombre.png` (`40ef5472749e8f49`) | `vin-i2-d-epaule-verre-sombre.avif` | 1 254 × 1 254 | 23 048 | Matières, « Verre sombre » | Idem | Reflet principal plus large qu’un filet fin |
-| I3 | `I3_coherence_collection_six_bouteilles.png` (`274a5dc4f5aadf0d`) | `vin-i3-gamme-six-bouteilles.avif` | 1 536 × 1 024 | 129 475 | Gamme | Illustration générée par IA, bouteilles et étiquettes fictives. Elle figure une présentation homogène, pas le résultat d’un réglage de studio. | Plus de deux silhouettes : pas une preuve de réglages identiques |
-| I4 | `I4_vues_fiche_produit_quatre_panneaux.png` (`db9a1706f2bea9f7`) | `vin-i4-vues-fiche-produit.avif` | 1 536 × 1 024 | 80 092 | Vues | Illustration générée par IA, flacon et étiquettes fictifs. Vues conceptuelles, sans correspondance géométrique mesurée. | Quatre vues non contrôlées par un modèle 3D |
+| I3 | `I3_coherence_collection_six_bouteilles.png` (`274a5dc4f5aadf0d`) | `vin-i3-gamme-six-bouteilles.avif` | 1 536 × 1 024 | 129 475 | Gamme | Visuel d’illustration — bouteilles et étiquettes fictives. Il figure une présentation homogène, pas le résultat d’un réglage de studio. | Plus de deux silhouettes : pas une preuve de réglages identiques |
+| I4 | `I4_vues_fiche_produit_quatre_panneaux.png` (`db9a1706f2bea9f7`) | `vin-i4-vues-fiche-produit.avif` | 1 536 × 1 024 | 80 092 | Vues | Visuel d’illustration — flacon et étiquettes fictifs. Vues conceptuelles, sans correspondance géométrique mesurée. | Quatre vues non contrôlées par un modèle 3D |
 
 Textes alternatifs : dans `HubVin.tsx` (constantes `HERO`, `MATIERES`, `GAMME_VISUEL`, `VUES_VISUEL`).
 
@@ -167,7 +167,7 @@ Méthode : build local de la branche ; C simulée sur ce même build (I2 et I3 r
 | Images servies, 1 440 px | 200 028 o | 118 646 o |
 | Images servies, 390 px | 84 578 o | 55 660 o |
 | Image prioritaire (hero) | I1, identique | I1, identique |
-| Risque de lecture comme preuve | Huit images légendées « Illustration générée par IA » ; aucune ne représente un résultat Orbitvu | Deux images légendées |
+| Risque de lecture comme preuve | Huit images légendées comme visuels d’illustration fictifs (légende IA jusqu’au 16/10, voir 5.6) ; aucune ne représente un résultat Orbitvu | Deux images légendées |
 
 Défauts relevés sur B et corrigés dans cette reprise :
 
@@ -180,7 +180,7 @@ Défauts relevés sur B et corrigés dans cette reprise :
 
 - Provenance : huit fichiers de `PackshotCreator_Vin_Spiritueux_Wave2_Visuels.zip`, fournis par Laurent le 08/10/2026 ; `MANIFESTE.md` et `manifest.json` : « Image générée par IA (outil natif ChatGPT) » ; I1-mobile : recadrage de I1, sans nouvelle génération. SHA-256 vérifiés le 08/10.
 - Contenu : bouteilles et étiquettes fictives, aucun logo, aucune marque réelle, aucune interface Orbitvu (manifeste).
-- Identification : chaque image porte la légende « Illustration générée par IA, bouteilles et étiquettes fictives » ; I3 précise « pas le résultat d'un réglage de studio » ; I4 « vues conceptuelles, sans correspondance géométrique mesurée ».
+- Identification publique (depuis le correctif du 16/10, section 5.6) : chaque image porte la légende « Visuel d’illustration — bouteilles et étiquettes fictives » ; I3 précise « pas le résultat d'un réglage de studio » ; I4 « vues conceptuelles, sans correspondance géométrique mesurée ».
 - Droits d'usage : **confirmation de Laurent non reçue** (pour un autre visuel, D55 a consigné « Droits confirmés » de Laurent ; rien d'équivalent ici). [Non vérifié] Les conditions d'utilisation d'OpenAI attribuaient à l'utilisateur la propriété des contenus générés ; leur version applicable au 08/10/2026 n'a pas été relue.
 - Visuels studios : `/images/machines/alphashot-xl.avif` (XL Pro v2, visuel partagé de la fiche, réserve H8) et `/images/machines/alphashot-xl-g2.avif`, déjà publiés sur le site ; provenance non contrôlée dans cette PR.
 
@@ -201,4 +201,18 @@ Conséquence : aucune navigation ajoutée (forme C), registre `data/navigation/p
 - D9 : `/en/industrie/vin-spiritueux` garde `noindex, follow` ; canonical, robots et hreflang fr et en identiques à `main` `c92740c`.
 - HOLD H1 à H10 : aucune occurrence dans le contenu rendu fr et en. Seule mention de BlendAI : description du schéma `Organization`, commune au site (`SchemaOrg.tsx`, non modifié ; pas de retrait global de BlendAI, mission du 08/10).
 - Autres hubs : HTML prérendu de la branche contre `main` `c92740c`, identifiant de build neutralisé : 384 pages, 382 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. Mode (`fr/industrie/mode-textile`, `en/industrie/mode-textile`, `de-ch/branchen/mode`, `fr/packshot-mode`) et `de-ch/branchen/wein` : identiques.
+
+### 5.6 Correctif du 16/10/2026 : légendes publiques
+
+Décision de Laurent du 16/10/2026 (« V9 — CORRECTIF ÉDITORIAL PR #107 ») : la mention publique « Illustration générée par IA » est retirée de la landing. Fichier modifié : `HubVin.tsx` seul. Images, textes alternatifs, contenus métier, titres, données SEO et appels inchangés.
+
+| Emplacement | Avant | Après |
+|---|---|---|
+| Hero (I1) et matières (I2) | Illustration générée par IA, bouteilles et étiquettes fictives. | Visuel d’illustration — bouteilles et étiquettes fictives. |
+| Gamme (I3) | Illustration générée par IA, bouteilles et étiquettes fictives. Elle figure une présentation homogène, pas le résultat d’un réglage de studio. | Visuel d’illustration — bouteilles et étiquettes fictives. Il figure une présentation homogène, pas le résultat d’un réglage de studio. |
+| Vues (I4) | Illustration générée par IA, flacon et étiquettes fictifs. Vues conceptuelles, sans correspondance géométrique mesurée. | Visuel d’illustration — flacon et étiquettes fictifs. Vues conceptuelles, sans correspondance géométrique mesurée. |
+
+Provenance interne inchangée : les huit visuels ont été générés par IA (outil natif ChatGPT, manifeste du 08/10/2026) ; réserves de la section 3 et droits de la section 5.3 maintenus. La légende générale du manifeste (« Illustration générée par IA… ») est remplacée sur la page par décision de Laurent ; le manifeste lui-même n’est pas modifié.
+
+Réserve, non bloquante : selon l’article du site sur l’AI Act (`content/blog/en/ai-act-product-images.json`, et sa version FR), une mention visible n’est due par l’entreprise que si l’image est un hypertrucage, c’est-à-dire qu’elle ressemble à des objets existants et peut passer pour authentique (article 50, paragraphe 4). [Inférence] Les bouteilles et étiquettes sont fictives et légendées comme telles ; la qualification reste une décision de Laurent, pas un avis juridique. Cela repose sur des schémas observés.
 

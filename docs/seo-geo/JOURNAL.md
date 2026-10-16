@@ -34,6 +34,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Hub vin-spiritueux (#107) — correctif éditorial : légendes publiques sans mention « Illustration générée par IA » · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« V9 — CORRECTIF ÉDITORIAL PR #107 » : `GO_CODE_CORRECTIF_107`, `GO_PR_PUSH_CORRECTIF_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`
+
+**Quoi** — Légendes publiques des huit visuels : « Illustration générée par IA, bouteilles et étiquettes fictives » devient « Visuel d’illustration — bouteilles et étiquettes fictives » ; légendes de la gamme (« Il figure une présentation homogène… ») et des vues du flacon (« Visuel d’illustration — flacon et étiquettes fictifs… ») adaptées. Constante `LEGENDE_IA` renommée `LEGENDE_VISUEL`.
+
+**Pourquoi** — Décision éditoriale de Laurent : retirer la mention publique de l’IA, en gardant le caractère illustratif et non démonstratif des légendes.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubVin.tsx` ; `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md` (légendes du manifeste visuel, section 5.6 avec l’avant/après et la provenance IA conservée) ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun avant fusion. Texte visible des légendes seulement ; images, `alt`, Hn, données SEO et appels inchangés.
+
+**Vérifié** — Diff de `HubVin.tsx` : 7 lignes, légendes et constante seulement. `npx tsc --noEmit` vert ; ESLint sans remarque sur le fichier ; contrôles de rendu et de prérendu consignés dans la PR après build.
+
+**Supposé** — [Inférence] Les visuels, fictifs et légendés comme tels, ne sont pas des hypertrucages au sens de l’article 50, paragraphe 4, de l’AI Act tel que le résume l’article du site ; qualification de Laurent, pas un avis juridique. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) : vérification ciblée des légendes demandée à Laurent ; `www` (R4).
+
+**Suite** — Contrôle des légendes sur la Preview par Laurent ; validation commerciale et éditoriale de Sébastien requise avant fusion ; GO de fusion et de publication distincts.
+
+---
+
 ## 2026-10-16 · Hub vin-spiritueux (#107) — reprise V9 : synchronisation, `Service.url`, variante B ajustée, Preview prête pour la QA humaine · Claude de Laurent
 
 **Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; GO de Laurent du 16/10 (« V9 — GO REPRISE #107 VIN » : `GO_REPRISE_107`, `GO_CODE_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE`, `GO_PUBLICATION` = NON), après le HOLD du 08/10 | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `c92740c`
