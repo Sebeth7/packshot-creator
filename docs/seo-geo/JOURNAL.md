@@ -59,6 +59,52 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Tests réels #131 sur la Preview : S1, S2, S3 PASS technique ; réception interne NON vérifiée · Claude de Laurent
+
+**Chantier** : G5 — clôture | **PR** : #131 | **Tête testée** : `ec4aa9c`
+
+**Quoi** — Campagne unique de test réel exécutée par Laurent dans Chrome sur la
+Preview de `ec4aa9c`, le 16/10. Résultats rapportés ici tels qu'ils ont été
+constatés, sans extrapolation.
+
+| # | Parcours | Résultat | Réponse |
+|---|---|---|---|
+| S1 | Contact FR (`/api/contact`) | **PASS** | HTTP 200 ; notification interne et confirmation prospect acceptées |
+| S2 | Wizard ROI EN, envoi du PDF (`/api/roi-pdf`) | **PASS** | HTTP 200, `emailSent: true`, `leadRecorded: true`, PDF généré |
+| S3 | Rappel ROI EN (`/api/roi-pdf`) | **PASS** | HTTP 200, `emailSent: false`, `leadRecorded: true`, notification interne seule |
+
+Cinq envois acceptés par Resend, huit livraisons `delivered` confirmées au
+journal Resend, deux messages prospect effectivement reçus dans Gmail.
+Préflight Resend et Gemini : PASS. Zéro frais, aucun appel au conseiller IA.
+
+**Réserve, à ne pas requalifier** — Les trois notifications internes sont
+`delivered` au journal Resend. **Leur réception dans les boîtes de Sébastien et
+de Stéphane n'a pas été constatée.** `delivered` est une acceptation par le
+serveur destinataire, non une réception observée : les deux ne se confondent
+pas. Le verdict de la campagne est donc **PASS technique, réception interne non
+vérifiée**, et non PASS complet.
+
+**Hors périmètre de cette campagne, établi le 16/10** — Le ROI **français**
+(`/fr/calculateur-roi`) sert `RoiPublicChat` et soumet à `/api/roi-lead`, qui
+reste relié à Pipedrive : **#131 ne retire pas le CRM de cette route**. Son
+anomalie `Invalid argument passed to jsPDF.scale` porte sur du code que #131 ne
+modifie pas (`PDFGenerator.tsx`, `PdfReport.tsx`, `DossierPanel.tsx`) : chantier
+distinct. Un test du ROI français ne vaut donc pas test de `/api/roi-pdf`.
+
+**Vérifié** — Les trois réponses HTTP et les identifiants Resend figurent au
+rapport Chrome de Laurent. Aucun message n'a été renvoyé.
+
+**Supposé** — Rien.
+
+**Non regardé** — Réception interne (réserve ci-dessus) ; Worker Cloudflare, que
+la Preview ne traverse pas ; comportement réel de la limite par IP, observable
+en production seulement ; libellés de-ch.
+
+**Suite** — GO_MERGE de #131 conditionné à la confirmation de la réception
+interne ou à un arbitrage écrit de Laurent acceptant cette preuve manquante.
+
+---
+
 ## 2026-10-16 · Mentions CRM mises au réel, et durcissement de `lib/pipedrive.ts` repris de #132 · Claude de Laurent
 
 **Chantier** : G5 — clôture | **PR** : #131 | **Commit** : voir la tête de `claude/nice-carson-qc299m`
