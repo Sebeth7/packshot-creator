@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Landing occasion : contrôle `www` de #156 dans Chrome, PASS (rapporté par Laurent) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #156 | **PR** : #157 | **Commit** : ce commit
+
+**Quoi** — Événement ultérieur, ajouté sans réécrire l'entrée suivante (« #156 fusionnée et déployée sur l'origine sysnext (vérifiée) ; www non vérifié »), qui reste exacte à sa date : le contrôle de `www.packshot-creator.com` par Laurent dans Chrome, le 16/10/2026 (heure non communiquée), est **PASS** sur les trois pages `/{fr,en,de-ch}/studios-photo-automatises/opportunites`.
+
+**Pourquoi** — Le « non vérifié » de l'entrée précédente tenait au challenge Cloudflare (403) opposé aux navigateurs sans interface lancés depuis le conteneur (R4) ; seul le Chrome de Laurent atteint `www`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` seulement.
+
+**Effet attendu** — Aucun sur le site. La landing est vérifiée sur l'origine `sysnext` et sur `www`.
+
+**Vérifié** — Compte rendu de Laurent (Chrome sur `www`, 16/10/2026) : trois modèles affichés ; canonical, hreflang et robots corrects ; aucun prix ni disponibilité inventée ; aucun lien Occasion dans le menu haut ; un lien localisé au pied de page ; alertes fermées, recherche présente ; mobile de-ch à 390 px sans coupure ; aucun formulaire réel soumis.
+**Supposé** — Rien.
+**Non regardé** — Les lignes `RÉSULTAT` brutes de la console et l'heure du contrôle n'ont pas été transmises à cette session : le PASS est repris du compte rendu de Laurent, non revérifié par l'agent.
+
+**Suite** — Le contrôle de l'article 9 (#155) après sa fusion est ajouté ici avant la fusion de #157 ; #157 est la dernière PR documentaire de cette série.
+
+---
+
 ## 2026-10-16 · Landing occasion : #156 fusionnée et déployée sur l'origine sysnext (vérifiée) ; www non vérifié, contrôle dans Chrome en attente · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, fusion de la PR de navigation et de modèles et déploiement en production, constaté sur l'origine `sysnext` seulement (« V9 — GO FINAL PR #156 », 16/10/2026 ; GO_MERGE_156 et GO_PUBLICATION_156, distincts, limités à cette PR, ce HEAD et son déploiement) | **PR** : #156 | **Commit** : fusion `86fe43d6d418f534293c90da1da8dc13c34440f1` (parents `b23ea7d` et `b718e4a`)
