@@ -2,6 +2,17 @@
  * Helpers Pipedrive partagés (extraits de app/api/roi-pdf/route.ts pour être
  * réutilisés par la route roi-lead du chat public — CDC §2 : pipeline
  * PackshotCreator id 3, stage « Calculs ROI » id 54).
+ *
+ * Seul appelant depuis le 15/10/2026 : `app/api/roi-lead/route.ts`.
+ * `/api/contact` et `/api/roi-pdf` n'appellent plus aucun CRM (décision de
+ * Laurent du 15/10) ; ce module reste donc en service pour le chat ROI, et son
+ * durcissement a été repris de #132 le 16/10 :
+ * - une réponse HTTP non `ok` ne compte plus comme une création réussie. Avant,
+ *   `res.json()` sur un 4xx ou un 5xx renvoyait un corps sans `data.id`, et la
+ *   fonction retournait `null` sans dire pourquoi ; un 200 avec un corps
+ *   inattendu était traité de la même façon ;
+ * - l'échec de la note n'emporte plus l'affaire : l'affaire existe, son
+ *   identifiant est rendu, et la note manquante est seulement journalisée.
  */
 
 export const PIPEDRIVE_PIPELINE_ID = 3;
@@ -38,6 +49,10 @@ export async function findOrCreatePipedrivePerson(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(personData),
     });
+    if (!res.ok) {
+      console.warn('[pipedrive] personne non créée', { status: res.status });
+      return null;
+    }
     const data = await res.json();
     return data.data?.id || null;
   } catch (error) {
@@ -62,19 +77,28 @@ export async function createPipedriveDealWithNote(
         stage_id: PIPEDRIVE_STAGE_ID,
       }),
     });
+    if (!res.ok) {
+      console.warn('[pipedrive] affaire non créée', { status: res.status });
+      return null;
+    }
     const data = await res.json();
-    const dealId = data.data?.id;
+    const dealId: number | null = data.data?.id || null;
 
+    // L'affaire existe : un échec de la note ne doit pas la faire passer pour absente.
     if (dealId) {
-      await fetch(`https://api.pipedrive.com/v1/notes?api_token=${apiToken}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          deal_id: dealId,
-          content: params.noteContent,
-          pinned_to_deal_flag: true,
-        }),
-      });
+      try {
+        await fetch(`https://api.pipedrive.com/v1/notes?api_token=${apiToken}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            deal_id: dealId,
+            content: params.noteContent,
+            pinned_to_deal_flag: true,
+          }),
+        });
+      } catch {
+        console.warn('[pipedrive] note non créée');
+      }
     }
 
     return dealId;

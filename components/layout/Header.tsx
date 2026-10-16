@@ -10,12 +10,11 @@ import Image from 'next/image';
 import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
-import { LIEN_OCCASION, libelleLienOccasion } from '@/lib/occasion/navigation';
 
 interface DropdownItem {
   href: LinkHref;
   labelKey: string;
-  /** Libellé direct, hors messages/*.json (lien « Offres d'occasion », lib/occasion/navigation.ts). */
+  /** Libellé direct, hors messages/*.json. */
   label?: string;
   descKey: string;
   icon: React.ReactNode;
@@ -25,8 +24,8 @@ interface DropdownSection {
   titleKey?: string;
   /**
    * Lien secondaire, rendu en dernier, après les rubriques en flyout, séparé et
-   * en texte discret (desktop et mobile) : « Offres d'occasion » (décision de
-   * Laurent du 14/10/2026).
+   * en texte discret (desktop et mobile). Aucun usage actuel : le lien d'occasion
+   * n'est plus dans le menu haut (décision de Laurent du 16/10/2026).
    */
   secondaire?: boolean;
   items: DropdownItem[];
@@ -377,13 +376,11 @@ function LangSwitcher({ locale, pathname, slug }: { locale: string; pathname: st
 }
 
 /**
- * `lienOccasion` : lien texte « Offres d'occasion » en dernier dans le menu
- * Solutions, après la rubrique Guides et hors de son sous-menu, séparé et discret
- * (desktop et mobile ; décision de Laurent du 14/10/2026), libellé dans la langue
- * de la page. Calculé côté serveur par app/[lang]/layout.tsx : jamais en
- * production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
+ * Aucun lien vers la landing d'occasion dans le menu haut, ni en sous-menu, desktop
+ * et mobile (décision de Laurent du 16/10/2026, qui remplace celle du 14/10) : seul
+ * le pied de page, colonne Solutions, la porte (components/layout/Footer.tsx).
  */
-export default function Header({ lienOccasion = false }: { lienOccasion?: boolean }) {
+export default function Header() {
   const t = useTranslations('common.nav');
   const locale = useLocale();
   const pathname = usePathname();
@@ -537,19 +534,6 @@ export default function Header({ lienOccasion = false }: { lienOccasion?: boolea
         },
       ],
     },
-    // Après Guides, hors de son sous-menu : lien secondaire séparé et discret.
-    ...(lienOccasion
-      ? [{
-          secondaire: true,
-          items: [{
-            href: LIEN_OCCASION.href,
-            labelKey: 'occasion',
-            label: libelleLienOccasion(locale),
-            descKey: '',
-            icon: <></>,
-          }],
-        }]
-      : []),
   ];
 
   // Lock body scroll when mobile menu is open

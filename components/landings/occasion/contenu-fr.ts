@@ -134,6 +134,19 @@ export const FR = {
     invalide: 'Valeur non valide.',
   },
 
+  MODELES: {
+    surtitre: 'Références Orbitvu',
+    titre: "Trois modèles Orbitvu, présentés avec leur contexte d'usage",
+    texte: nb(
+      "Chaque modèle est présenté dans un contexte d'usage. Les caractéristiques sont celles du modèle ; les visuels illustrent le modèle et non une unité en particulier. La disponibilité d'une unité est confirmée sur demande.",
+    ),
+    libelles: { contexte: 'Contexte', usage: 'Usage', objet: 'Objet maximal', charge: 'Charge maximale' },
+    badges: { showroom: 'Présentation showroom', demonstration: 'Démonstration', salon: 'Présentation salon' },
+    bouton: 'Demander des informations',
+    besoin: 'Informations sur le modèle {nom}.',
+    credit: "Photo d'illustration",
+  },
+
   FICHE: {
     surtitre: 'Choisir en confiance',
     titre: 'Ce que vous saurez sur chaque machine',

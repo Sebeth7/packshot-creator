@@ -32,7 +32,7 @@ Append-only. Plus récent en haut.
 
 **La décision** —
 1. **Indexation, option B** : la landing `/{fr,en,de-ch}/studios-photo-automatises/opportunites` est publiée en `index, follow` dès sa mise en ligne, avec ou sans machine disponible. Canonique propre à chaque langue sur `https://www.packshot-creator.com`, hreflang réciproques par `buildLanguages` (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), trois entrées de sitemap seulement une fois la page servie en production. Remplace la recommandation A (`noindex` tant que le stock est vide).
-2. **Navigation** : lien « Offres d'occasion » en dernier dans le menu déroulant Solutions, après Guides et hors de son sous-menu, séparé et discret (desktop et mobile) ; dans le pied de page, colonne Solutions après « Questions clés », une seule occurrence. Remplace l'emplacement du 10/10 (sous Studios et dans la colonne des studios).
+2. **Navigation** (arbitrage définitif de Laurent du 16/10/2026, qui remplace ceux des 10/10 et 14/10) : **aucun lien vers la landing dans le menu haut**, ni dans le menu Solutions, ni dans un sous-menu, sur desktop comme sur mobile ; seul le pied de page la porte, colonne Solutions après « Questions clés », une seule occurrence, libellée « Matériel d'occasion » (FR), « Pre-owned equipment » (EN) et « Occasionsgeräte » (de-ch), jamais « reconditionné » ni « refurbished » ; aucun autre bouton ni élément de navigation promotionnel. URL, canonique et référencement inchangés : la découvrabilité tient au pied de page, au sitemap et aux encadrés des deux articles de blog.
 3. **Publication à stock vide** autorisée sur le principe ; la recherche d'un équipement et l'inscription aux futures disponibilités peuvent être proposées une fois les parcours éprouvés et autorisés.
 4. **Destinataire Production des recherches** : `sebastien.jourdan@sysnext.com`, par la variable `OCCASION_NOTIFICATION_EMAIL`.
 5. **RGPD** : dispositif de collecte et d'alertes compatible selon l'appréciation métier de Laurent ; ce n'est pas un audit juridique indépendant.
@@ -57,6 +57,47 @@ Ne valaient pas validation au 14/10 au matin : les claims commerciaux, les droit
 10. **Publication en deux étapes, décision de Laurent du 16/10/2026** (« GO accélération publication ») : étape A, prioritaire : landing FR/EN/de-ch à stock vide, recherche opérationnelle, sans CRM, notification à `sebastien.jourdan@sysnext.com` ; étape B, ultérieure : liste d'alertes et double opt-in, aucun test T1 à T3 maintenant. Cette décision remplace, pour la première publication, l'obligation de tester simultanément recherche et alertes ; le code et les décisions relatives aux alertes sont préservés, et les GO du 14/10 restent applicables à l'étape B. GO accordés pour l'étape A : GO_CODE_129_OPTION_A (limité aux adaptations nécessaires), commit et push sur la branche #129, GO_TEST_REEL_RECHERCHE_B (deux e-mails, plafond strict de deux acceptations Resend), ouverture et fermeture de la collecte recherche seule, GO_VERCEL_PRODUCTION_A (la seule variable `OCCASION_NOTIFICATION_EMAIL`, Production seulement), GO_RESYNC_129 après le test B ; conditionnels : GO_MERGE_129_A (test B PASS, fermeture prouvée, configuration Production, QA ciblée, CI verte) et GO_PUBLICATION_129_A (distinct, PR dédiée, après fusion vérifiée, option B d'indexation). Aucun GO pour activer les alertes, le bulletin ou une campagne. Détail : `RELEASE-129-OCCASION.md`, section 0 ter.
 11. **Promesses d'alertes retirées à l'étape A, décision éditoriale de Laurent du 16/10/2026** : tant que la liste d'alerte est fermée, les descriptions SEO FR, EN et de-ch de la landing et l'encadré des deux articles de blog (`acheter-studio-photo-packshot-occasion`, `second-hand-packshot-photo-studio`) n'annoncent plus d'alertes ; seule la clause « alertes sur les nouvelles offres » est supprimée, les encadrés, leurs liens vers la landing et la pertinence SEO des textes sont conservés, sans autre réécriture. La mention sera rétablie, avec validation D42, à l'activation de l'étape B. GO_CODE / GO_PR-PUSH_PUBLICATION_129_A = OUI, limité au patch A et à ces corrections ; GO_MERGE et GO_PUBLICATION de la PR dédiée restent conditionnels et distincts.
 12. **Précision à l'article 9, décision de Laurent du 16/10/2026** : tant que la liste d'alerte est fermée, `privacy.article9.p2` commence par la phrase validée par Laurent, FR « Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. » et EN « Sign-ups for availability alerts are not yet open. » (le bloc de-ch, copie française, reçoit la phrase française) ; le reste des cinq paragraphes (consentement, désinscriptions, sous-traitant Resend, conservation D42/Q25) est conservé mot pour mot, sans réouverture du chantier juridique. Cette phrase doit être supprimée à l'activation de l'étape B. GO_CODE et GO_PR/PUSH = OUI, limités à ces trois paragraphes ; GO_MERGE et GO_PUBLICATION conditionnels et distincts.
+13. **Navigation, arbitrage du 16/10/2026** : le lien « Offres d'occasion » du menu Solutions (desktop et mobile) est supprimé, sans déplacement dans un sous-menu ; le lien du pied de page est renommé (« Matériel d'occasion », « Pre-owned equipment », « Occasionsgeräte »). Le point 2 de la décision ci-dessus est mis à jour : aucune règle de menu haut ne subsiste. GO_CODE_NAVIGATION_OCCASION = OUI ; GO_MERGE et GO_PUBLICATION de la PR dédiée conditionnels et distincts.
+14. **Présentation de trois modèles, décision de Laurent du 16/10/2026** : tant qu'aucune machine réelle n'est établie, la landing présente trois modèles Orbitvu avec leur contexte d'usage, validés par Laurent comme sa présentation métier : Alphadesk (showroom PackshotCreator, exposition et démonstrations), Alphashot Micro v2 (démonstrations clients, bijoux et horlogerie), Alphastudio XXL v2 (retour de salon professionnel). Positionnement corporate et technologique, **aucun prix**, aucune remise, promotion, déstockage ni reconditionnement, aucune « estimation » ni « prix sur demande ». Ce n'est pas un stock : les valeurs explicitement fictives des exemples (état, inspection, licence, garantie, références OCC-01 à OCC-03) ne sont pas reprises ; les visuels illustrent le modèle et non une unité ; aucune disponibilité actuelle n'est affirmée ; aucun balisage `Offer`. Les caractéristiques (objet et charge maximaux) viennent du référentiel D45. Le registre réel `data/occasion/machines.ts` reste séparé, avec ses contrôles de fiabilité ; dès qu'il affiche une machine réelle, la présentation de modèles disparaît. Recherche opérationnelle, alertes fermées, SEO, canonique, hreflang, sitemap et traductions inchangés. GO_CODE limité à cette présentation, GO_PR/PUSH sur la PR de navigation ; GO_MERGE et GO_PUBLICATION = NON à cette tête. **Arbitrages D42 du 16/10/2026 (QA Chrome)** : pied de page « Occasionsgeräte » conservé ; badges des cartes = cadres d'usage (showroom, démonstration, salon ; en de-ch « Messepräsentation », jamais « Messerückläufer »), non l'origine ni l'existence d'une unité précise ; informations générales sur la garantie des machines réelles conservées, aucune garantie attribuée aux trois illustrations ; caractéristiques D45 et trois modèles inchangés. Correctifs de mise en page mobile de-ch et de synchronisation du préfixe du message : GO_CODE_CORRECTIF_156 et GO_PR/PUSH_CORRECTIF_156 = OUI ; GO_MERGE et GO_PUBLICATION = NON.
+
+---
+
+## D(numéro à attribuer) · 2026-10-15 · Traitement des leads sans CRM pour Contact et ROI PDF (option 1)
+
+**Décidé par** : Laurent — « V9 — MISSION G5, rationalisation définitive des leads » puis « V9 — GO d'exécution #131 / #132 », 15/10/2026
+**Statut** : en vigueur. Aucun numéro de décision n'est attribué ici : il se prend au moment de la consignation définitive, après vérification de `main`.
+
+**La décision** —
+1. **Aucun appel Pipedrive depuis `/api/contact` ni `/api/roi-pdf`.** Les demandes
+   sont traitées à la main par Sébastien depuis les notifications Resend, sur le
+   modèle de la landing Catalogue (#82, fusionnée le 10/10/2026 ; décision de
+   Sébastien du 09/10 : aucun CRM, Resend et notification interne).
+2. **Option 1 pour le parcours « envoi du PDF ROI »** : ce parcours reçoit une
+   notification interne, qu'il n'avait pas. Sa seule trace était l'affaire
+   Pipedrive ; sans ce remplacement, le lead devenait silencieux.
+3. **Contrat de succès par parcours**, et non règle unique : la trace requise est
+   la notification interne pour Contact et pour « être recontacté » ; pour l'envoi
+   du PDF, l'e-mail d'analyse au prospect ou la notification interne. Trois issues :
+   503 si l'envoi n'est pas configuré, 500 si aucune trace n'est acceptée par
+   Resend, 200 dès qu'une trace existe. L'échec partiel du parcours PDF est déclaré
+   dans la réponse (`emailSent`, `leadRecorded`), jamais masqué.
+4. **Aucune suppression de Pipedrive hors de ces deux routes** : `lib/pipedrive.ts`,
+   `/api/roi-lead`, `/api/submit-survey` et les variables Vercel sont inchangés.
+5. **Aucun CRM de remplacement, aucune séquence marketing.**
+
+**Le contexte** — #131 (P0 sécurité) et #132 (contrat de succès) étaient bloquées :
+la règle de #132 reposait sur l'affaire Pipedrive comme trace de secours, et #132
+était empilée sur une tête de #131 antérieure, en conflit, donc sans CI. Le
+traitement commercial réel est manuel depuis les notifications e-mail. Poursuivre
+un projet CRM n'avait pas d'objet ; le précédent validé existait déjà (#82).
+
+**Ce qu'elle interdit** —
+- Supprimer `lib/pipedrive.ts`, toucher `/api/roi-lead` ou `/api/submit-survey`, ou
+  retirer une variable Vercel Pipedrive au titre de cette décision.
+- Renvoyer `success` quand aucune trace n'a été acceptée, ou présenter un échec
+  partiel du parcours PDF comme un succès complet.
+- Tenir « accepté par Resend » pour une remise en boîte de réception ou une lecture.
+- Reconstruire un CRM, ou créer une séquence marketing, sans décision nouvelle.
 
 ---
 

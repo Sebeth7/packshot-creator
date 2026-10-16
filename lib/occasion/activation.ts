@@ -141,7 +141,7 @@ export function pageOccasionServie(env: Env = process.env): boolean {
 }
 
 /**
- * Les liens « Offres d'occasion » du menu haut et du pied de page sont-ils
+ * Les liens « Matériel d'occasion » (pied de page) et les encadrés de blog sont-ils
  * affichés ? Mêmes conditions que la page : un lien ne mène jamais à un 404.
  * Évalué au rendu serveur (layout), jamais dans le navigateur.
  */
