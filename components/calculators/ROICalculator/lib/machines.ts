@@ -36,7 +36,7 @@ export const MACHINES: Machine[] = [
       { fr: 'Limité aux très petits objets (< 1kg)', en: 'Limited to very small objects (< 1kg)', 'de-ch': 'Beschränkt auf sehr kleine Objekte (< 1 kg)' },
     ],
     spaceRequired: 'Bureau',
-    studioFootprint: { l: 83, w: 52, h: 72 },
+    studioFootprint: { l: 83, w: 54, h: 72 },
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec l\'Alphashot Micro Pro v2 ?', en: 'What types of products can be photographed with the Alphashot Micro Pro v2?', 'de-ch': 'Welche Produkttypen lassen sich mit dem Alphashot Micro Pro v2 fotografieren?' },
@@ -44,7 +44,7 @@ export const MACHINES: Machine[] = [
       },
       {
         question: { fr: 'Quel espace est nécessaire pour installer l\'Alphashot Micro Pro v2 ?', en: 'How much space is needed to install the Alphashot Micro Pro v2?', 'de-ch': 'Wie viel Platz wird f\u00FCr die Installation des Alphashot Micro Pro v2 ben\u00F6tigt?' },
-        answer: { fr: 'L\'Alphashot Micro Pro v2 se pose simplement sur un bureau. Son empreinte compacte de 83x52 cm et sa hauteur de 72 cm le rendent facile à intégrer dans n\'importe quel espace de travail. Aucun aménagement spécial n\'est nécessaire, un simple bureau solide suffit.', en: 'The Alphashot Micro Pro v2 simply sits on a desk. Its compact footprint of 83x52 cm and height of 72 cm make it easy to integrate into any workspace. No special setup is needed, a simple sturdy desk is sufficient.', 'de-ch': 'Der Alphashot Micro Pro v2 wird einfach auf einen Tisch gestellt. Seine kompakte Stellfl\u00E4che von 83x52 cm und die H\u00F6he von 72 cm lassen ihn problemlos in jeden Arbeitsplatz integrieren. Es ist keine spezielle Einrichtung n\u00F6tig, ein stabiler Tisch gen\u00FCgt.' },
+        answer: { fr: 'L\'Alphashot Micro Pro v2 se pose simplement sur un bureau. Son empreinte compacte de 83x54 cm et sa hauteur de 72 cm le rendent facile à intégrer dans n\'importe quel espace de travail. Aucun aménagement spécial n\'est nécessaire, un simple bureau solide suffit.', en: 'The Alphashot Micro Pro v2 simply sits on a desk. Its compact footprint of 83x54 cm and height of 72 cm make it easy to integrate into any workspace. No special setup is needed, a simple sturdy desk is sufficient.', 'de-ch': 'Der Alphashot Micro Pro v2 wird einfach auf einen Tisch gestellt. Seine kompakte Stellfl\u00E4che von 83x54 cm und die H\u00F6he von 72 cm lassen ihn problemlos in jeden Arbeitsplatz integrieren. Es ist keine spezielle Einrichtung n\u00F6tig, ein stabiler Tisch gen\u00FCgt.' },
       },
       {
         question: { fr: 'Comment se déroule la formation sur l\'Alphashot Micro Pro v2 ?', en: 'How does training on the Alphashot Micro Pro v2 work?', 'de-ch': 'Wie l\u00E4uft die Schulung zum Alphashot Micro Pro v2 ab?' },
@@ -224,7 +224,7 @@ export const MACHINES: Machine[] = [
       { fr: 'Encombrement et poids (140 kg) nécessitant un espace dédié', en: 'Footprint and weight (140 kg) requiring dedicated space', 'de-ch': 'Platzbedarf und Gewicht (140 kg) erfordern einen eigenen Raum' },
     ],
     spaceRequired: 'Studio',
-    studioFootprint: { l: 142, w: 87, h: 176 },
+    studioFootprint: { l: 88, w: 140, h: 197 },
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec l\'Alphashot XL G2 ?', en: 'What types of products can be photographed with the Alphashot XL G2?', 'de-ch': 'Welche Produkttypen lassen sich mit dem Alphashot XL G2 fotografieren?' },
@@ -236,7 +236,7 @@ export const MACHINES: Machine[] = [
       },
       {
         question: { fr: 'Quel espace est nécessaire pour installer l\'Alphashot XL G2 ?', en: 'How much space is needed to install the Alphashot XL G2?', 'de-ch': 'Wie viel Platz wird für die Installation des Alphashot XL G2 benötigt?' },
-        answer: { fr: 'L\'Alphashot XL G2 nécessite un espace studio dédié, avec une empreinte d\'environ 142x87 cm et une hauteur de 176 cm pour une machine de 140 kg. Prévoyez un accès permettant la manutention d\'objets jusqu\'à 25 kg sur le plateau tournant.', en: 'The Alphashot XL G2 requires a dedicated studio space, with a footprint of about 142x87 cm and a height of 176 cm for a 140 kg machine. Plan for access allowing handling of objects up to 25 kg on the turntable.', 'de-ch': 'Der Alphashot XL G2 benötigt einen eigenen Studioraum mit einer Stellfläche von rund 142x87 cm und einer Höhe von 176 cm bei einem Maschinengewicht von 140 kg. Planen Sie einen Zugang ein, der die Handhabung von Objekten bis 25 kg auf dem Drehteller ermöglicht.' },
+        answer: { fr: 'L\'Alphashot XL G2 nécessite un espace studio dédié pour une machine de 88x140 cm au sol et de 197 cm de hauteur (dimensions de la machine selon le fabricant), d\'un poids de 140 kg. Prévoyez un accès permettant la manutention d\'objets jusqu\'à 25 kg sur le plateau tournant.', en: 'The Alphashot XL G2 requires a dedicated studio space for a machine measuring 88x140 cm on the floor and 197 cm in height (manufacturer\'s machine dimensions), weighing 140 kg. Plan for access allowing handling of objects up to 25 kg on the turntable.', 'de-ch': 'Der Alphashot XL G2 benötigt einen eigenen Studioraum für eine Maschine mit 88x140 cm Grundfläche und 197 cm Höhe (Abmessungen der Maschine laut Hersteller) bei einem Gewicht von 140 kg. Planen Sie einen Zugang ein, der die Handhabung von Objekten bis 25 kg auf dem Drehteller ermöglicht.' },
       },
       {
         question: { fr: 'Quelles sont les options de financement pour l\'Alphashot XL G2 ?', en: 'What are the financing options for the Alphashot XL G2?', 'de-ch': 'Welche Finanzierungsmöglichkeiten gibt es für den Alphashot XL G2?' },
@@ -459,14 +459,14 @@ export const MACHINES: Machine[] = [
     nom: 'Alphashot XL Pro v2',
     prix: 22450,
     capaciteJour: 200,
-    tailleMax: '50×70×30 cm',
+    tailleMax: '50×30×70 cm',
     poidsMax: '25 kg',
     tailleCategories: ['moyen'],
     useCases: ['Version Pro du XL', 'Éclairage avancé', 'Haute qualité'],
     useCasesI18n: { en: ['Pro version of the XL', 'Advanced lighting', 'High quality'], 'de-ch': ['Pro-Version des XL', 'Erweiterte Beleuchtung', 'Hohe Qualität'] },
     maintenanceAnnuelle: 0,
     consommablesAnnuels: 500,
-    dimensionsMax: { l: 50, w: 70, h: 30 },
+    dimensionsMax: { l: 50, w: 30, h: 70 },
     poidsMaxKg: 25,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
@@ -485,7 +485,7 @@ export const MACHINES: Machine[] = [
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec l\'Alphashot XL Pro v2 ?', en: 'What types of products can be photographed with the Alphashot XL Pro v2?', 'de-ch': 'Welche Produkttypen lassen sich mit dem Alphashot XL Pro v2 fotografieren?' },
-        answer: { fr: 'L\'Alphashot XL Pro v2 est la version professionnelle pour les produits moyens jusqu\'à 50x70x30 cm et 25 kg. Il est idéal pour les chaussures, sacs, électronique et tout produit nécessitant un éclairage de précision. Ses éclairages coulissants, son laser de centrage et le contrôle de 5 caméras simultanées garantissent des résultats de qualité supérieure.', en: 'The Alphashot XL Pro v2 is the professional version for medium products up to 50x70x30 cm and 25 kg. It is ideal for shoes, bags, electronics and any product requiring precision lighting. Its sliding lights, centering laser and control of 5 simultaneous cameras ensure superior quality results.', 'de-ch': 'Der Alphashot XL Pro v2 ist die professionelle Version für mittelgrosse Produkte bis 50x70x30 cm und 25 kg. Er eignet sich ideal für Schuhe, Taschen, Elektronik und alle Produkte, die eine präzise Ausleuchtung erfordern. Seine verschiebbare Beleuchtung, der Zentrierlaser und die Steuerung von 5 gleichzeitigen Kameras gewährleisten erstklassige Ergebnisse.' },
+        answer: { fr: 'L\'Alphashot XL Pro v2 est la version professionnelle pour les produits moyens jusqu\'à 50x30x70 cm et 25 kg. Il est idéal pour les chaussures, sacs, électronique et tout produit nécessitant un éclairage de précision. Ses éclairages coulissants, son laser de centrage et le contrôle de 5 caméras simultanées garantissent des résultats de qualité supérieure.', en: 'The Alphashot XL Pro v2 is the professional version for medium products up to 50x30x70 cm and 25 kg. It is ideal for shoes, bags, electronics and any product requiring precision lighting. Its sliding lights, centering laser and control of 5 simultaneous cameras ensure superior quality results.', 'de-ch': 'Der Alphashot XL Pro v2 ist die professionelle Version für mittelgrosse Produkte bis 50x30x70 cm und 25 kg. Er eignet sich ideal für Schuhe, Taschen, Elektronik und alle Produkte, die eine präzise Ausleuchtung erfordern. Seine verschiebbare Beleuchtung, der Zentrierlaser und die Steuerung von 5 gleichzeitigen Kameras gewährleisten erstklassige Ergebnisse.' },
       },
       {
         question: { fr: 'Quel espace est nécessaire pour installer l\'Alphashot XL Pro v2 ?', en: 'How much space is needed to install the Alphashot XL Pro v2?', 'de-ch': 'Wie viel Platz wird für die Installation des Alphashot XL Pro v2 benötigt?' },
@@ -539,7 +539,7 @@ export const MACHINES: Machine[] = [
       { fr: 'Hauteur produit max 5cm', en: 'Max product height 5cm', 'de-ch': 'Maximale Produkthöhe 5 cm' },
     ],
     spaceRequired: 'Bureau',
-    studioFootprint: { l: 137, w: 123, h: 155 },
+    studioFootprint: { l: 156, w: 124, h: 138 },
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec l\'Alphadesk v2 ?', en: 'What types of products can be photographed with the Alphadesk v2?', 'de-ch': 'Welche Produkttypen lassen sich mit dem Alphadesk v2 fotografieren?' },
@@ -547,7 +547,7 @@ export const MACHINES: Machine[] = [
       },
       {
         question: { fr: 'Quel espace est nécessaire pour installer l\'Alphadesk v2 ?', en: 'How much space is needed to install the Alphadesk v2?', 'de-ch': 'Wie viel Platz wird für die Installation des Alphadesk v2 benötigt?' },
-        answer: { fr: 'L\'Alphadesk v2 est un poste de travail de type bureau avec une empreinte de 137x123 cm et une hauteur de 155 cm. Il s\'installe dans un espace bureau standard. Prévoyez un dégagement autour du plan de travail pour déposer et retirer les produits facilement et avoir accès aux boutons de capture instantanée.', en: 'The Alphadesk v2 is a desk-type workstation with a footprint of 137x123 cm and a height of 155 cm. It fits in a standard office space. Plan for clearance around the work surface to easily place and remove products and access the instant capture buttons.', 'de-ch': 'Der Alphadesk v2 ist ein Arbeitsplatz in Tischform mit einer Stellfläche von 137x123 cm und einer Höhe von 155 cm. Er lässt sich in einen Standard-Büroplatz integrieren. Planen Sie Freiraum rund um die Arbeitsfläche ein, um Produkte leicht aufzulegen und zu entnehmen und auf die Sofortauslöser zuzugreifen.' },
+        answer: { fr: 'L\'Alphadesk v2 est un poste de travail de type bureau avec une empreinte de 156x124 cm et une hauteur de 138 cm. Il s\'installe dans un espace bureau standard. Prévoyez un dégagement autour du plan de travail pour déposer et retirer les produits facilement et avoir accès aux boutons de capture instantanée.', en: 'The Alphadesk v2 is a desk-type workstation with a footprint of 156x124 cm and a height of 138 cm. It fits in a standard office space. Plan for clearance around the work surface to easily place and remove products and access the instant capture buttons.', 'de-ch': 'Der Alphadesk v2 ist ein Arbeitsplatz in Tischform mit einer Stellfläche von 156x124 cm und einer Höhe von 138 cm. Er lässt sich in einen Standard-Büroplatz integrieren. Planen Sie Freiraum rund um die Arbeitsfläche ein, um Produkte leicht aufzulegen und zu entnehmen und auf die Sofortauslöser zuzugreifen.' },
       },
       {
         question: { fr: 'Comment se déroule la formation sur l\'Alphadesk v2 ?', en: 'How does training on the Alphadesk v2 work?', 'de-ch': 'Wie läuft die Schulung zum Alphadesk v2 ab?' },
@@ -786,7 +786,7 @@ export const MACHINES: Machine[] = [
     prix: 84450,
     capaciteJour: 100,
     tailleMax: '200×100×200 cm (Espace scénique 3×3m)',
-    poidsMax: '200 kg/m²',
+    poidsMax: '35 kg (charge ponctuelle) / 200 kg (charge répartie)',
     tailleCategories: ['grand', 'tres-grand'],
     useCases: ['Mode portée', 'Défilé vidéo', 'Stylisme complet'],
     useCasesI18n: { en: ['Worn fashion', 'Runway video', 'Complete styling'], 'de-ch': ['Getragene Mode', 'Laufsteg-Video', 'Komplettes Styling'] },
@@ -892,14 +892,14 @@ export const MACHINES: Machine[] = [
     prix: 119450,
     capaciteJour: 40,
     tailleMax: 'Mobilier XXL',
-    poidsMax: '500 kg',
+    poidsMax: '1 000 kg (version 4 000 kg)',
     tailleCategories: ['tres-grand'],
     useCases: ['Canapés', 'Lits', 'Mobilier grande taille'],
     useCasesI18n: { en: ['Sofas', 'Beds', 'Large furniture'], 'de-ch': ['Sofas', 'Betten', 'Grosse Möbel'] },
     maintenanceAnnuelle: 0,
     consommablesAnnuels: 2000,
     dimensionsMax: { l: 250, w: 200, h: 180 },
-    poidsMaxKg: 500,
+    poidsMaxKg: 1000,
     features: ['packshot', '360', 'video'],
     automationLevel: 'full-auto',
     idealSectors: ['furniture', 'appliances'],
@@ -914,15 +914,16 @@ export const MACHINES: Machine[] = [
       { fr: 'Nécessite grand espace dédié', en: 'Requires large dedicated space', 'de-ch': 'Erfordert grossen eigenen Platz' },
     ],
     spaceRequired: 'Entrepôt',
-    studioFootprint: { l: 500, w: 400, h: 300 },
+    studioFootprint: { l: 670, w: 588, h: 302 },
+    studioFootprintMaxFabricant: true,
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec le Furniture Studio ?', en: 'What types of products can be photographed with the Furniture Studio?', 'de-ch': 'Welche Produkttypen lassen sich mit dem Furniture Studio fotografieren?' },
-        answer: { fr: 'Le Furniture Studio est conçu pour le mobilier de grande taille et les objets lourds jusqu\'à 250x200x180 cm et 500 kg : canapés, lits, armoires, tables, mobilier de bureau et électroménager lourd. Son plateau haute capacité supporte 500 kg, permettant de photographier en 360 les meubles les plus imposants. Il produit des packshots, des vues 360 et des vidéos de qualité catalogue.', en: 'The Furniture Studio is designed for large furniture and heavy objects up to 250x200x180 cm and 500 kg: sofas, beds, wardrobes, tables, office furniture and heavy appliances. Its high-capacity turntable supports 500 kg, allowing 360 photography of the most imposing furniture. It produces packshots, 360 views and catalog-quality videos.', 'de-ch': 'Das Furniture Studio ist für grosse Möbel und schwere Objekte bis 250x200x180 cm und 500 kg konzipiert: Sofas, Betten, Schränke, Tische, Büromöbel und schwere Haushaltsgeräte. Sein Drehteller mit hoher Tragfähigkeit trägt 500 kg und ermöglicht 360-Grad-Aufnahmen auch der imposantesten Möbel. Es erzeugt Packshots, 360-Grad-Ansichten und Videos in Katalogqualität.' },
+        answer: { fr: 'Le Furniture Studio est conçu pour le mobilier de grande taille et les objets lourds jusqu\'à 250x200x180 cm et 1 000 kg : canapés, lits, armoires, tables, mobilier de bureau et électroménager lourd. Son plateau haute capacité supporte 1 000 kg en standard (4 000 kg en version renforcée), permettant de photographier en 360 les meubles les plus imposants. Il produit des packshots, des vues 360 et des vidéos de qualité catalogue.', en: 'The Furniture Studio is designed for large furniture and heavy objects up to 250x200x180 cm and 1,000 kg: sofas, beds, wardrobes, tables, office furniture and heavy appliances. Its high-capacity turntable supports 1,000 kg as standard (4,000 kg in the reinforced version), allowing 360 photography of the most imposing furniture. It produces packshots, 360 views and catalog-quality videos.', 'de-ch': 'Das Furniture Studio ist für grosse Möbel und schwere Objekte bis 250x200x180 cm und 1000 kg konzipiert: Sofas, Betten, Schränke, Tische, Büromöbel und schwere Haushaltsgeräte. Sein Drehteller mit hoher Tragfähigkeit trägt standardmässig 1000 kg (4000 kg in der verstärkten Version) und ermöglicht 360-Grad-Aufnahmen auch der imposantesten Möbel. Es erzeugt Packshots, 360-Grad-Ansichten und Videos in Katalogqualität.' },
       },
       {
         question: { fr: 'Quel espace est nécessaire pour installer le Furniture Studio ?', en: 'How much space is needed to install the Furniture Studio?', 'de-ch': 'Wie viel Platz wird für die Installation des Furniture Studio benötigt?' },
-        answer: { fr: 'Le Furniture Studio nécessite un espace de type entrepôt avec une empreinte de 500x400 cm et une hauteur de 300 cm. Prévoyez un espace dédié d\'au moins 25 à 30 m2 avec une hauteur sous plafond de 3,5 mètres, un sol industriel capable de supporter 500 kg sur le plateau tournant et un accès pour chariot élévateur ou transpalette.', en: 'The Furniture Studio requires a warehouse-type space with a footprint of 500x400 cm and a height of 300 cm. Plan for a dedicated space of at least 25 to 30 sqm with a ceiling height of 3.5 meters, an industrial floor capable of supporting 500 kg on the turntable and access for forklift or pallet truck.', 'de-ch': 'Das Furniture Studio benötigt einen Raum vom Typ Lagerhalle mit einer Stellfläche von 500x400 cm und einer Höhe von 300 cm. Planen Sie einen eigenen Raum von mindestens 25 bis 30 m2 mit einer Raumhöhe von 3,5 Metern, einen Industrieboden, der 500 kg auf dem Drehteller tragen kann, sowie Zugang für Gabelstapler oder Hubwagen ein.' },
+        answer: { fr: 'Le Furniture Studio nécessite un espace de type entrepôt. Selon le fabricant, ses dimensions maximales sont de 670x588 cm au sol pour une hauteur de 302 cm. Prévoyez une hauteur sous plafond de 3,5 mètres, un sol industriel adapté à la charge du plateau (1 000 kg en standard, 4 000 kg en version renforcée) et un accès pour chariot élévateur ou transpalette.', en: 'The Furniture Studio requires a warehouse-type space. According to the manufacturer, its maximum dimensions are 670x588 cm on the floor with a height of 302 cm. Plan for a ceiling height of 3.5 meters, an industrial floor suited to the turntable load (1,000 kg as standard, 4,000 kg in the reinforced version) and access for forklift or pallet truck.', 'de-ch': 'Das Furniture Studio benötigt einen Raum vom Typ Lagerhalle. Laut Hersteller betragen seine maximalen Abmessungen 670x588 cm Grundfläche bei einer Höhe von 302 cm. Planen Sie eine Raumhöhe von 3,5 Metern, einen Industrieboden, der für die Last des Drehtellers ausgelegt ist (standardmässig 1000 kg, 4000 kg in der verstärkten Version), sowie Zugang für Gabelstapler oder Hubwagen ein.' },
       },
       {
         question: { fr: 'Comment se déroule la formation sur le Furniture Studio ?', en: 'How does training on the Furniture Studio work?', 'de-ch': 'Wie läuft die Schulung zum Furniture Studio ab?' },
@@ -935,7 +936,7 @@ export const MACHINES: Machine[] = [
     ],
     keyStats: [
       { value: '60', label: { fr: 'produits/jour', en: 'products/day', 'de-ch': 'Produkte/Tag' }, description: { fr: 'Meubles photographiés par jour en automatique complet', en: 'Furniture pieces photographed per day in fully automatic mode', 'de-ch': 'Pro Tag im vollautomatischen Betrieb fotografierte Möbel' } },
-      { value: '500kg', label: { fr: 'charge max', en: 'max load', 'de-ch': 'max. Last' }, description: { fr: 'Plateau tournant haute capacité pour mobilier lourd', en: 'High-capacity turntable for heavy furniture', 'de-ch': 'Drehteller mit hoher Tragfähigkeit für schwere Möbel' } },
+      { value: '1 000 kg', label: { fr: 'charge standard', en: 'standard load', 'de-ch': 'Standardlast' }, description: { fr: 'Plateau tournant haute capacité pour mobilier lourd', en: 'High-capacity turntable for heavy furniture', 'de-ch': 'Drehteller mit hoher Tragfähigkeit für schwere Möbel' } },
       { value: '100%', label: { fr: 'automatisé', en: 'automated', 'de-ch': 'automatisiert' }, description: { fr: 'Automatisation complète pour production en série de mobilier', en: 'Full automation for furniture batch production', 'de-ch': 'Vollständige Automatisierung für die Serienproduktion von Möbeln' } },
     ],
   },
@@ -968,6 +969,7 @@ export const MACHINES: Machine[] = [
     ],
     spaceRequired: 'Entrepôt',
     studioFootprint: { l: 670, w: 588, h: 302 },
+    studioFootprintMaxFabricant: true,
     faqItems: [
       {
         question: { fr: 'Quels types de produits peut-on photographier avec l\'E-Comm Studio+ ?', en: 'What types of products can be photographed with the E-Comm Studio+?', 'de-ch': 'Welche Produkttypen lassen sich mit dem E-Comm Studio+ fotografieren?' },

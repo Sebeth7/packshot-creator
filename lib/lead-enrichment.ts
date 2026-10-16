@@ -183,7 +183,7 @@ async function generateAISummary(
       ? `Email domain: ${emailDomain} (professional)`
       : `Email: generic/personal address (${contactData.email.split('@')[1]})`;
 
-    const prompt = `You are a sales assistant for PackshotCreator/Sysnext, exclusive Orbitvu distributor in France and Switzerland. You help qualify incoming leads.
+    const prompt = `You are a sales assistant for PackshotCreator/Sysnext, official Orbitvu distributor in France and Switzerland. You help qualify incoming leads.
 
 Lead context:
 - Contact: ${contactData.firstName} ${contactData.lastName}

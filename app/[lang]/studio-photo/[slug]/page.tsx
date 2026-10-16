@@ -20,6 +20,7 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL, pickListL } from '@/lib/locale-text';
 import { getMachineImage } from '@/lib/machine-images';
+import { estDansOffreOfficielle } from '@/data/produits/offre-officielle';
 import SommaireCollant from '@/components/navigation/SommaireCollant';
 import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
 
@@ -1086,7 +1087,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
                     { label: tx(lang, 'Poids max', 'Max weight', 'Max. Gewicht'), value: machine.poidsMax },
                     { label: tx(lang, 'Capacité journalière', 'Daily capacity', 'Tageskapazität'), value: `${machine.capaciteJour} ${tx(lang, 'produits', 'products', 'Produkte')}` },
                     { label: tx(lang, 'Espace requis', 'Space required', 'Platzbedarf'), value: machine.spaceRequired },
-                    ...(machine.studioFootprint ? [{ label: tx(lang, 'Encombrement studio', 'Studio footprint', 'Studio-Stellfläche'), value: `${machine.studioFootprint.l}x${machine.studioFootprint.w}x${machine.studioFootprint.h} cm` }] : []),
+                    ...(machine.studioFootprint ? [{ label: machine.studioFootprintMaxFabricant ? tx(lang, 'Encombrement studio (max. fabricant)', 'Studio footprint (manufacturer max.)', 'Studio-Stellfläche (max. laut Hersteller)') : tx(lang, 'Encombrement studio', 'Studio footprint', 'Studio-Stellfläche'), value: `${machine.studioFootprint.l}x${machine.studioFootprint.w}x${machine.studioFootprint.h} cm` }] : []),
                   ].map((spec) => (
                     <div key={spec.label} className="flex justify-between py-3.5 border-b border-neutral-100 last:border-0">
                       <span className="text-future-dusk-500">{spec.label}</span>
@@ -1497,7 +1498,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           sku: machine.id,
           brand: 'Orbitvu',
           category: tx(lang, 'Studio Photo Automatisé', 'Automated Photo Studio', 'Automatisiertes Fotostudio'),
-          ...(monthly !== null
+          // Aucune `Offer` pour une fiche hors de l'offre officielle actuelle ; aucune
+          // disponibilité déclarée sans preuve (L05, G5 du 11/10/2026).
+          ...(monthly !== null && estDansOffreOfficielle(machine.id)
             ? { leasingOffer: { monthly, priceCurrency, priceValidUntil: PRICE_VALID_UNTIL } }
             : {}),
         }),

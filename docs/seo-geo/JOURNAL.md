@@ -846,6 +846,56 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 
 ---
 
+## 2026-10-15 · #133 : disponibilité retirée de l'offre agrégée du service (L05, décision de Laurent du 15/10) · Claude de Laurent
+
+**Chantier** : G5 LOT-6 (L05), D45 | **PR** : #133 (brouillon, « DO NOT MERGE ») | **Commit** : voir PR
+
+**Quoi** — `components/seo/SchemaOrg.tsx` seul : la ligne `availability: 'https://schema.org/InStock'` est retirée du bloc `AggregateOffer` de `serviceSchema`. Aucun autre état de disponibilité n'est introduit. Prix, devise, nombre d'offres, vendeur et toutes les autres propriétés et fonctions sont conservés.
+
+**Pourquoi** — L05 : aucune disponibilité déclarée sans preuve de stock. Le retrait du `InStock` codé en dur avait été appliqué à `productSchema` ; ce `InStock` subsistait sur l'offre agrégée du service, défaut préexistant sur `main`, relevé le 15/10 et tranché le même jour par Laurent.
+
+**Fichiers** — `components/seo/SchemaOrg.tsx`, `lib/seo/__tests__/product-disponibilite.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Trois pages prérendues changent, en JSON-LD seulement : `/fr`, `/en` et `/de-ch` de `studios-photo-automatises`, seuls appelants de `serviceSchema` avec `aggregateOffer`. Les hubs `industrie`, qui appellent `serviceSchema` sans offre agrégée, sont inchangés. [Inférence] Google peut signaler « availability manquant » en avertissement, sans perte d'éligibilité attendue, comme pour les fiches produit. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert.
+- `lib/seo/__tests__/product-disponibilite.test.ts` : 8 cas verts, dont 3 ajoutés sur l'offre agrégée du service (aucune `availability`, aucune mention de `InStock`, `OutOfStock` ni `PreOrder` ; prix, devise, nombre d'offres et vendeur conservés ; un service sans `aggregateOffer` ne porte aucune offre).
+- `npx next build` vert (387 pages).
+- HTML prérendu comparé à la tête `e118a82` : 372 pages sur 375 identiques ; les 3 pages attendues diffèrent, par le seul bloc JSON-LD. HTML visible identique sur les trois. `schema.org/InStock` : 2 occurrences par page avant, 0 après. Bloc relu : `AggregateOffer` conserve `lowPrice` 12 000, `highPrice` 150 000, `priceCurrency` EUR, `offerCount` 16 et `seller`.
+
+**Supposé** — Aucun.
+
+**Non regardé** — #108 et la refonte Studios : non touchées. Test des résultats enrichis de Google : après fusion seulement.
+
+**Rayon d'action** — `serviceSchema` est appelé par `studios-photo-automatises` (avec offre agrégée) et par les hubs `industrie` (sans offre). Seul le premier cas change. Les autres fonctions du fichier, `productSchema` compris, ne sont pas modifiées.
+
+**Suite** — Réponse de Sébastien à Q26 (Q20 / D45, D42), puis GO_MERGE. Aucun donné à ce stade.
+
+---
+
+## 2026-10-12 · #133 : R3 adopté sur le principe (D58) ; `main` `4c53314` intégré ; aucune modification de code · Claude de Laurent
+
+**Chantier** : G5 LOT-2 + LOT-6 (L02, L05) | **PR** : #133 (brouillon) | **Commit** : voir PR
+
+**Quoi** — Ligne ETAT mise à jour : R3 adopté sur le principe (D58), D42 et Q20 toujours attendues de Sébastien (Q26). `main` `4c53314` (fusion de #135) intégré par union. Aucun fichier du site modifié par cette mise à jour.
+
+**Pourquoi** — Décision R3 de Laurent du 12/10, inscrite dans D58. Elle ne vaut ni D42, ni Q20, ni GO_MERGE.
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun.
+
+**Vérifié** — 89 pages prérendues modifiées par rapport à `main` : 51 fiches, 38 hors fiches (3 sélecteurs, 23 hubs `industrie`, 6 `solutions`, 3 `packshot-industriel`, 3 `studios-photo-automatises`). Aucune page de l'accueil, de F5 ou de la surface Mode. La fiche XXL ne reçoit que le JSON-LD de disponibilité, aucune valeur (O1 en HOLD). Objet maximal du Furniture inchangé (O2 en HOLD).
+
+**Supposé** — Aucun.
+
+**Non regardé** — Preview (SSO).
+
+**Suite** — Réponse de Sébastien à Q26 ; GO_MERGE de Laurent, avec un événement daté au JOURNAL si la fusion tombe pendant M5.
+
+---
+
 ## 2026-10-12 · #64 et #27 fermées sans fusion ; D57 (arbitrages G5), D58 (R1 et R3) et Q26 (arbitrages attendus de Sébastien, questions regroupées) ; fusion autorisée · Claude de Laurent
 
 **Chantier** : G5 (L01, L02, L03, L05, L11, L12, L15 ; R1, R3) | **PR** : #135, branche `claude/g5-docs-arbitrages` | **Commit** : voir PR
@@ -926,6 +976,28 @@ Aucun changement de sens, de claim ni de promesse commerciale : sept titles repr
 **Non regardé** — Preview et Chrome réel ; réponse 402 de saasphoto.com (à vérifier en navigateur réel, non corrigée ici).
 
 **Suite** — Validation humaine des textes de la fenêtre d'information ; contrôle Chrome de la Preview ; GO de fusion distinct.
+
+---
+
+## 2026-10-12 · Caractéristiques Orbitvu prouvées, InStock retiré, prompt des leads (G5 LOT-2 + LOT-6) — brouillon · Claude de Laurent
+
+**Chantier** : S6 Q20, référentiel D45 (L02, L05, D6) | **PR** : brouillon, branche `claude/g5-pr-b-produit-orbitvu` | **Commit** : voir PR
+
+**Quoi** — XL Pro v2 50 × 30 × 70 ; XL G2 88 × 140 × 197 (dimensions de la machine) ; Furniture 1 000 / 4 000 kg et encombrement « max. fabricant » ; Micro Pro v2 83 × 54 × 72, Alphadesk 156 × 124 × 138, Fashion 35 kg ponctuel / 200 kg réparti ; JSON-LD sans `InStock` et sans `Offer` pour les fiches hors offre officielle ; prompt des leads « official ».
+
+**Pourquoi** — Valeurs non conformes aux sources fabricant (S6 Q20.1, Q20.4, Q20.5, Q20.7, Q20.9, Q20.12, Q20.16 ; contre-enquête du 11/10) ; disponibilité déclarée sans preuve. Arbitrages L02, L05 et D6 ; GO_CODE du 11/10 et GO_PR_DRAFT du 12/10 de Laurent.
+
+**Fichiers** — `data/produits/fiches-techniques.ts`, `data/produits/offre-officielle.ts` (nouveau), `data/produits/ecarts-connus.ts`, les deux `machines.ts`, `ROICalculator/lib/types.ts`, `app/[lang]/studio-photo/[slug]/page.tsx`, `components/seo/SchemaOrg.tsx`, `lib/lead-enrichment.ts`, 3 fichiers de test.
+
+**Effet attendu** — 89 pages prérendues modifiées : 51 fiches, sélecteur (× 3), 23 hubs `industrie`, 6 `solutions`, `packshot-industriel` (× 3), Studios (× 3). Événement de mesure à déclarer à la fusion : fenêtre M5 (14-28/10) et J0 Studios (29/10) ; hors fiches, la seule valeur qui change est « 50×70×30 » → « 50×30×70 ».
+
+**Vérifié** — En local sur `main` + ce patch seul : tsc vert ; Vitest 643/643 (16 nouveaux cas ; `lib/produits` 33/33) ; `next build` vert ; HTML : 89 pages, identiques à celles de la pile validée le 11/10, aucune page gelée (accueil, F5, Mode, `mode-textile`) ; entrée `alphastudio-compact-v2` (réservée F5) non modifiée ; Playwright Chromium, 8 specs, sur `next start` local : 364 réussis, 12 échecs identiques à `main`. Aucune collision textuelle nouvelle avec les 12 PR ouvertes (12/10, 05:10 UTC). CI GitHub et Preview : à compléter.
+
+**Supposé** — Sources fabricant de la contre-enquête du 11/10 à jour.
+
+**Non regardé** — Objet maximal Furniture (E1, HOLD, question O2) ; 603 / 670 (E2) ; axes XXL (E4) ; hauteur 360 (E5) ; « polarisé » ; cadences (SB2) ; liste des machines du prompt dérivée du référentiel (LOT-6b, conditionnel).
+
+**Suite** — En attente d'arbitrage de Sébastien : Q20 / D45 (catalogues), validation D42 des textes de FAQ (R2) ; R3 (propagation pendant M5). Contrôle GSC J+7 à J+21 après publication.
 
 ---
 
