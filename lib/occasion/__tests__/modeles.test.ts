@@ -12,6 +12,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import OccasionOrbitvu from '@/components/landings/occasion/OccasionOrbitvu';
 import { versCartes } from '@/components/landings/occasion/cartes';
+import { contenuOccasion } from '@/components/landings/occasion/contenu';
 import { FR } from '@/components/landings/occasion/contenu-fr';
 import { EN } from '@/components/landings/occasion/contenu-en';
 import { DE_CH } from '@/components/landings/occasion/contenu-de-ch';
@@ -21,6 +22,7 @@ import { exemplesFictifs } from '@/data/occasion/exemples-fictifs';
 import { ficheTechnique } from '@/data/produits/fiches-techniques';
 import { FAMILLES } from '@/lib/occasion/formulaires';
 import { LANGUES_OCCASION } from '@/lib/occasion/langues';
+import { synchroniserPrefixeModele } from '@/lib/occasion/prefixe-modele';
 
 // Le lien localisé de next-intl demande un fournisseur de contexte : remplacé par un lien simple.
 vi.mock('@/i18n/routing', async (importOriginal) => {
@@ -216,5 +218,126 @@ describe('Code de la section : aucune mention de prix, aucun balisage', () => {
     for (const f of ['components/landings/occasion/ModelesOccasion.tsx', 'data/occasion/modeles.ts']) {
       expect(codeSeul(f), f).not.toMatch(/price|prix|Offer|Product|ld\+json|availability/i);
     }
+  });
+});
+
+describe('V9 (16/10) — badges : cadres d\'usage, jamais l\'origine ni l\'existence d\'une unité', () => {
+  const ORIGINE_OU_UNITE = /retour|ancien|former|back from|ehemalig|rückläufer|demogerät|demo machine|machine de démonstration|\bunit\b|unité|gerät\b/i;
+
+  it('trois badges de contexte par langue, sans formule d\'origine ni d\'unité précise', () => {
+    for (const [langue, c] of Object.entries(CONTENUS)) {
+      expect(Object.keys(c.MODELES.badges), langue).toEqual(['showroom', 'demonstration', 'salon']);
+      for (const [cadre, badge] of Object.entries(c.MODELES.badges)) expect(badge, `${langue} ${cadre}`).not.toMatch(ORIGINE_OU_UNITE);
+    }
+    expect(Object.values(DE_CH.MODELES.badges)).toEqual(['Showroom-Präsentation', 'Vorführung', 'Messepräsentation']);
+  });
+
+  it('rendu : chaque carte porte le badge de son cadre, « Messerückläufer » n\'apparaît nulle part', () => {
+    for (const langue of LANGUES_OCCASION) {
+      const html = page(langue);
+      const bloc = sectionModeles(html);
+      const { MODELES } = contenuOccasion(langue);
+      for (const m of MODELES_PRESENTES) expect(texteVisible(bloc), `${langue} ${m.id}`).toContain(MODELES.badges[m.origine]);
+      expect(html, langue).not.toContain('Messerückläufer');
+      // Anciens badges d'origine (ORIGINES[...].carte) : absents de la section.
+      for (const o of ['showroom', 'demonstration', 'salon'] as const) expect(texteVisible(bloc), `${langue} ${o}`).not.toContain(contenuOccasion(langue).ORIGINES[o].carte);
+    }
+    expect(texteVisible(sectionModeles(page('de-ch')))).toContain('Messepräsentation');
+  });
+
+  it('la ligne de fiche s\'intitule « Contexte », plus « Origine » (aucune origine d\'unité certifiée)', () => {
+    expect([FR.MODELES.libelles.contexte, EN.MODELES.libelles.contexte, DE_CH.MODELES.libelles.contexte]).toEqual(['Contexte', 'Context', 'Kontext']);
+    for (const langue of LANGUES_OCCASION) {
+      const texte = texteVisible(sectionModeles(page(langue)));
+      expect(texte, langue).not.toMatch(/\bOrigine\b|\bOrigin\b|\bHerkunft\b/);
+    }
+  });
+
+  it('aucune garantie attribuée aux trois illustrations ; la section générale sur la garantie des machines réelles est conservée', () => {
+    for (const langue of LANGUES_OCCASION) {
+      const html = page(langue);
+      expect(texteVisible(sectionModeles(html)), langue).not.toMatch(/garanti|warrant|gewährleist/i);
+      expect(html, langue).toContain(contenuOccasion(langue).GARANTIE.titre.replace(/'/g, '&#x27;'));
+    }
+  });
+});
+
+describe('V9 (16/10) — préfixe automatique du message : le dernier modèle choisi fait foi', () => {
+  const A = 'Informations sur le modèle Alphadesk.';
+  const B = 'Informations sur le modèle Alphashot Micro v2.';
+  const C = 'Informations sur le modèle Alphastudio XXL v2.';
+
+  it('champ vide : le préfixe est inséré et suivi', () => {
+    expect(synchroniserPrefixeModele('', null, A)).toEqual({ texte: A, prefixe: A });
+    expect(synchroniserPrefixeModele('   ', null, A)).toEqual({ texte: A, prefixe: A });
+  });
+
+  it('clics successifs sans saisie : le préfixe suit le dernier modèle', () => {
+    let etat = synchroniserPrefixeModele('', null, A);
+    etat = synchroniserPrefixeModele(etat.texte, etat.prefixe, B);
+    expect(etat).toEqual({ texte: B, prefixe: B });
+    etat = synchroniserPrefixeModele(etat.texte, etat.prefixe, C);
+    expect(etat).toEqual({ texte: C, prefixe: C });
+    etat = synchroniserPrefixeModele(etat.texte, etat.prefixe, C);
+    expect(etat.texte).toBe(C);
+  });
+
+  it('texte du visiteur après le préfixe : conservé intégralement, seul le préfixe change', () => {
+    const perso = `${A} Je cherche un studio pour des montres, livraison en Suisse.\nMerci de me rappeler.`;
+    const etat = synchroniserPrefixeModele(perso, A, B);
+    expect(etat.texte).toBe(`${B} Je cherche un studio pour des montres, livraison en Suisse.\nMerci de me rappeler.`);
+    expect(etat.prefixe).toBe(B);
+    const suite = synchroniserPrefixeModele(etat.texte, etat.prefixe, C);
+    expect(suite.texte).toBe(`${C} Je cherche un studio pour des montres, livraison en Suisse.\nMerci de me rappeler.`);
+  });
+
+  it('texte rédigé avant tout clic, préfixe modifié ou supprimé par le visiteur : jamais touché', () => {
+    const redige = 'Bonjour, je souhaite un devis pour un studio de bijoux.';
+    expect(synchroniserPrefixeModele(redige, null, A)).toEqual({ texte: redige, prefixe: null });
+    const modifie = 'Informations sur le modèle Alphadesk, pour juin. Merci.';
+    expect(synchroniserPrefixeModele(modifie, A, B)).toEqual({ texte: modifie, prefixe: null });
+    const decale = `Bonjour. ${A}`;
+    expect(synchroniserPrefixeModele(decale, A, B)).toEqual({ texte: decale, prefixe: null });
+    // Une fois le préfixe perdu, les clics suivants ne réécrivent plus rien.
+    expect(synchroniserPrefixeModele(modifie, null, C).texte).toBe(modifie);
+  });
+
+  it('dans chaque langue : la séquence réelle des trois clics, avec saisie personnelle entre deux', () => {
+    for (const langue of LANGUES_OCCASION) {
+      const { MODELES } = contenuOccasion(langue);
+      const prefixes = MODELES_PRESENTES.map((m) => MODELES.besoin.replace('{nom}', m.nom));
+      let etat = synchroniserPrefixeModele('', null, prefixes[0]);
+      etat = synchroniserPrefixeModele(etat.texte + ' Mon texte.', etat.prefixe, prefixes[1]);
+      etat = synchroniserPrefixeModele(etat.texte, etat.prefixe, prefixes[2]);
+      expect(etat.texte, langue).toBe(`${prefixes[2]} Mon texte.`);
+    }
+  });
+});
+
+describe('V9 (16/10) — mise en page mobile et câblage du formulaire', () => {
+  const codeSeul = (f: string) =>
+    readFileSync(join(process.cwd(), f), 'utf8')
+      .split('\n')
+      .filter((l) => !/^\s*(\*|\/\/|\/\*\*)/.test(l))
+      .join('\n');
+
+  it('cartes : colonne de texte bornée (minmax(0,1fr), min-w-0), retour à la ligne, lignes empilées en de-ch jusqu\'à lg', () => {
+    const src = codeSeul('components/landings/occasion/ModelesOccasion.tsx');
+    expect(src).toContain('grid-cols-[40%_minmax(0,1fr)]');
+    expect(src).toContain('flex min-w-0 flex-1');
+    expect(src).toContain('break-words');
+    expect(src).toMatch(/'de-ch': \{ dl: 'grid-cols-\[minmax\(0,1fr\)\] gap-y-0 lg:grid-cols-\[auto_1fr\]/);
+    expect(src).toContain("autre: {");
+    expect(src).toContain('min-[380px]:grid-cols-[auto_1fr]');
+    // Aucun texte masqué : pas de `hidden`, `truncate` ni `line-clamp` dans les cartes.
+    expect(src).not.toMatch(/\bhidden\b[^\n]*\{MODELES\.(libelles|badges)|truncate|line-clamp/);
+  });
+
+  it('formulaire : famille toujours alignée sur le dernier modèle, préfixe synchronisé par la fonction dédiée, schéma et envoi inchangés', () => {
+    const src = codeSeul('components/landings/occasion/FormulaireRecherche.tsx');
+    expect(src).toContain("setValue('famille', famille as (typeof FAMILLES)[number]);");
+    expect(src).toContain('synchroniserPrefixeModele(getValues(\'besoin\'), prefixeModele.current, besoin)');
+    expect(src).toContain('prefixeModele.current = prefixe;');
+    expect(src).not.toContain("if (!getValues('besoin').trim()) setValue('besoin', besoin);");
   });
 });

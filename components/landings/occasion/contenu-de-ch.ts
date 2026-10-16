@@ -123,8 +123,9 @@ export const DE_CH: ContenuOccasion = {
     surtitre: 'Orbitvu-Referenzen',
     titre: 'Drei Orbitvu-Modelle mit ihrem Verwendungskontext',
     texte:
-      'Jedes Modell wird mit Herkunft und Verwendung gezeigt. Die technischen Angaben gelten für das Modell; die Abbildungen zeigen das Modell, nicht ein bestimmtes Gerät. Die Verfügbarkeit eines Geräts wird auf Anfrage bestätigt.',
-    libelles: { origine: 'Herkunft', usage: 'Verwendung', objet: 'Maximale Objektgrösse', charge: 'Maximales Objektgewicht' },
+      'Jedes Modell wird in einem Verwendungskontext gezeigt. Die technischen Angaben gelten für das Modell; die Abbildungen zeigen das Modell, nicht ein bestimmtes Gerät. Die Verfügbarkeit eines Geräts wird auf Anfrage bestätigt.',
+    libelles: { contexte: 'Kontext', usage: 'Verwendung', objet: 'Maximale Objektgrösse', charge: 'Maximales Objektgewicht' },
+    badges: { showroom: 'Showroom-Präsentation', demonstration: 'Vorführung', salon: 'Messepräsentation' },
     bouton: 'Informationen anfragen',
     besoin: 'Informationen zum Modell {nom}.',
     credit: 'Illustrationsfoto',

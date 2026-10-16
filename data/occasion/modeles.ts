@@ -1,4 +1,3 @@
-import type { OrigineOccasion } from './machines';
 import type { Famille } from '@/lib/occasion/formulaires';
 import type { LangueOccasion } from '@/lib/occasion/langues';
 
@@ -19,6 +18,9 @@ import type { LangueOccasion } from '@/lib/occasion/langues';
  * Alphastudio XXL v2, retour de salon professionnel. Aucun balisage `Offer`.
  */
 
+/** Cadre d'usage présenté (badge de la carte). Ce n'est PAS l'origine certifiée d'une unité. */
+export type CadreUsage = 'showroom' | 'demonstration' | 'salon';
+
 export interface ContexteModele {
   origineDetail: string;
   usage: string;
@@ -34,7 +36,8 @@ export interface ModelePresente {
   nom: string;
   /** Identifiant du référentiel `data/produits/fiches-techniques.ts` (D45). */
   modeleId: string;
-  origine: OrigineOccasion;
+  /** Cadre d'usage du badge : showroom, démonstrations ou salon (jamais « ancien équipement », « retour de salon »). */
+  origine: CadreUsage;
   /** Famille présélectionnée dans le formulaire de recherche. */
   famille: Famille;
   /** Visuel du MODÈLE, jamais celui d'une unité. */

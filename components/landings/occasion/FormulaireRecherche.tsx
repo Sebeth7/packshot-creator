@@ -21,6 +21,7 @@ import { Annotation, AvisSimulation } from './Annotation';
 import { EVENEMENT_MACHINE, EVENEMENT_MODELE, type DemandeModele } from './BoutonMachine';
 import { avisTestReel, contenuOccasion, type CollecteAffichee, type ContenuOccasion } from './contenu';
 import { mesurerReponseOccasion } from './mesure';
+import { synchroniserPrefixeModele } from '@/lib/occasion/prefixe-modele';
 import { useCollecteCourante } from './useCollecteCourante';
 import { boutonPrincipal, champ, etiquette, facultatif, liste, mentionFine, messageErreur, saisie, zone } from './styles';
 
@@ -96,6 +97,8 @@ export function FormulaireRecherche({
   const piege = useRef<HTMLInputElement>(null);
   const titreFin = useRef<HTMLHeadingElement>(null);
   const alerte = useRef<HTMLDivElement>(null);
+  /** Préfixe automatique inséré par un clic sur une carte de modèle, tant qu'il est en tête du message. */
+  const prefixeModele = useRef<string | null>(null);
 
   const {
     register,
@@ -131,15 +134,18 @@ export function FormulaireRecherche({
     return () => window.removeEventListener(EVENEMENT_MACHINE, choisir);
   }, [machines, setValue, setFocus, clearErrors]);
 
-  // Clic sur « Demander des informations » d'une carte de modèle : famille présélectionnée
-  // et début de texte proposé (seulement si le champ est vide, modifiable).
+  // Clic sur « Demander des informations » d'une carte de modèle : famille et début de texte
+  // du DERNIER modèle choisi. Seul le préfixe que la page a insérée est remplacé ; le texte du
+  // visiteur est conservé (`prefixe-modele.ts`). Champ toujours modifiable.
   useEffect(() => {
     const choisirModele = (ev: Event) => {
       const { famille, besoin } = (ev as CustomEvent<DemandeModele>).detail;
       if (!(FAMILLES as readonly string[]).includes(famille)) return;
       setEtat({ type: 'saisie' });
       setValue('famille', famille as (typeof FAMILLES)[number]);
-      if (!getValues('besoin').trim()) setValue('besoin', besoin);
+      const { texte, prefixe } = synchroniserPrefixeModele(getValues('besoin'), prefixeModele.current, besoin);
+      if (texte !== getValues('besoin')) setValue('besoin', texte);
+      prefixeModele.current = prefixe;
       clearErrors(['famille', 'besoin']);
       document.getElementById('recherche')?.scrollIntoView({ behavior: 'smooth' });
       window.setTimeout(() => setFocus('besoin'), 400);
