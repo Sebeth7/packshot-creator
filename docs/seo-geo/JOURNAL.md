@@ -34,6 +34,19 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · #146 : exception D42 ponctuelle consignée (claims historiques conservés, non validés) — merge en attente de #131 · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) — clôture conditionnelle | **PR** : #146, branche `claude/traductions-en-dech-s16` | **Commit** : voir PR
+
+**Quoi** — Consignation de l'**exception D42 ponctuelle de Laurent du 16/10** (limitée à #146) dans `docs/seo-geo/traductions-s16/VALIDATION-D42-3-ARTICLES.md` : conservation des affirmations historiques FR + mise en ligne des traductions EN fidèles, **sans amplification**, **statut NON VÉRIFIÉ conservé**. Ne vaut aucune validation factuelle ; n'autorise ni ajout ni renforcement de claim ; ne s'étend à aucun autre article ; **`noindex` D9 conservé** (pas de GO de levée) ; pages accessibles par URL directe malgré le `noindex`. QA Chrome groupée de Laurent : PASS sur les 4 pages (3 EN + correction FR 360°).
+
+**Séquencement (point 6)** — Le resync final et la fusion de #146 **attendent la stabilisation de la fusion de #131** (ouverte, Draft, DO NOT MERGE au 16/10 ; `main` a avancé à `b8ae3b2`), afin de ne pas résoudre deux fois les mêmes conflits documentaires. GO_RESYNC_146 / GO_COMMIT-PUSH_RESYNC_146 = OUI strictement après ce changement de `main` ; GO_MERGE_146 = OUI conditionnel ; GO_PUBLICATION_146 = OUI conditionnel distinct, après fusion.
+
+**État** — Correction de date 360° (FR+EN), 3 traductions EN, liens, métadonnées et `noindex` intacts. Clarification D33 préparée, à reporter dans `DECISIONS.md` par le propriétaire (pas de PR isolée). Claims « world leader / 70 patents / 20,000 users / superlatifs » restent NON VALIDÉS. GO_LEVÉE_NOINDEX = NON.
+
+**Vérifié** — Doc consigné ; build local relancé au push. CI du HEAD : à relever.
+**Non regardé** — `sysnext`/`www` : sans objet tant que la fusion/publication n'a pas eu lieu (HOLD #131).
+
 ## 2026-10-16 · #146 : correctif factuel de date (article 360°, FR+EN) — Sysnext 2001 / marque PackshotCreator 2004 · Claude de Laurent
 
 **Chantier** : S16 (traductions EN) — correctif ciblé | **PR** : #146, branche `claude/traductions-en-dech-s16` | **Commit** : voir PR

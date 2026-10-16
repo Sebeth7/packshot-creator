@@ -62,3 +62,22 @@ La présente PR livre les **3 traductions EN terminées** + cette trace d'arbitr
 **Claims restant NON VALIDÉS (HOLD D42, inchangés par ce correctif)** : « world leader », « more than 70 patents », « 20,000 users in 35 countries », superlatifs et garanties de vitesse/résultat. Non supprimés, non renforcés. La correction de date **n'est pas** une validation D42 générale.
 
 **`noindex` D9 conservé.** GO_MERGE = NON, GO_PUBLICATION = NON, GO_LEVEE_NOINDEX = NON, GO_TEST_REEL = NON.
+
+---
+
+## Exception D42 ponctuelle — décision de Laurent du 16/10/2026 (limitée à #146)
+
+**CLAIMS HISTORIQUES CONSERVÉS, NON VALIDÉS.** Laurent confirme la conservation des affirmations historiques des trois articles FR et **autorise la mise en ligne des traductions EN fidèles**, sans amplification, en conservant leur statut **NON VÉRIFIÉ**.
+
+Portée de l'exception (ne vaut que pour #146) :
+- **Ne constitue aucune validation factuelle** des mentions « world leader », « more than 70 patents », « 20,000 users in 35 countries », superlatifs ni garanties.
+- **N'autorise ni ajout ni renforcement** d'un claim.
+- **Ne s'étend à aucun autre article.**
+- **Conserve intégralement** le `noindex` D9 ; **ne vaut pas** GO de levée du `noindex`.
+- Reconnaît que les pages restent **accessibles par URL directe** malgré le `noindex`.
+
+**QA Chrome groupée (Laurent, 16/10)** : PASS sur les 4 pages (3 EN + correction FR 360°) ; correction Sysnext 2001 / marque PackshotCreator lancée 2004 vérifiée sur Preview.
+
+**Séquencement (point 6 de l'ordre du 16/10)** : le resync final et la fusion de #146 attendent la **stabilisation de la fusion de #131** (ouverte, Draft, non fusionnée au 16/10), pour ne pas résoudre deux fois les mêmes conflits documentaires. GO_RESYNC_146 / GO_COMMIT-PUSH_RESYNC_146 = OUI strictement après ce changement de `main`. GO_MERGE_146 = OUI conditionnel ; GO_PUBLICATION_146 = OUI conditionnel distinct, après fusion ; GO_LEVÉE_NOINDEX = NON.
+
+**Clarification D33** : à reporter dans `DECISIONS.md` par le propriétaire du fichier lors de la prochaine opération documentaire autorisée (pas de PR isolée).
