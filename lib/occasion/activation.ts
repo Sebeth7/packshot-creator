@@ -23,7 +23,7 @@ export const PUBLICATION_AUTORISEE = false;
  * `RESEND_FROM_EMAIL` et `OCCASION_NOTIFICATION_EMAIL` existaient. La liste
  * d'alerte n'a pas de route : elle n'est pas activée, quel que soit ce verrou.
  */
-export const COLLECTE_REELLE_AUTORISEE = true;
+export const COLLECTE_REELLE_AUTORISEE = false;
 
 /**
  * Fin d'une fenêtre de test réel sur Preview (ISO 8601 UTC), ou `null`.
@@ -37,7 +37,7 @@ export const COLLECTE_REELLE_AUTORISEE = true;
  * été supprimé. Cela complète sa suppression, sans la remplacer.
  * En production, la fenêtre est ignorée : seule la publication décide.
  */
-export const FENETRE_TEST_JUSQUA: string | null = '2026-10-16T08:41:00Z';
+export const FENETRE_TEST_JUSQUA: string | null = null;
 
 type Env = Readonly<Record<string, string | undefined>>;
 
