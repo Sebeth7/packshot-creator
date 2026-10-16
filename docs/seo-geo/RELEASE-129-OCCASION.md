@@ -1,13 +1,13 @@
 # Dossier de release — #129, landing « Studios Orbitvu d'occasion »
 
-État au 12/10/2026, complété le 13/10 et le 14/10 (Claude de Laurent). PR brouillon, DO NOT MERGE.
+État au 12/10/2026, complété les 13/10, 14/10 et 16/10 (Claude de Laurent). PR brouillon, DO NOT MERGE.
 GO_CODE = YES ; 14/10 : GO_CORRECTIFS_BRANCHE_129, GO_PRÉPARATION_TESTS,
 GO_SYNC_MAIN_BRANCHE_129, GO_PUSH_PREVIEW_129, GO_NAVIGATION_129, GO_SEO_OPTION_B,
 GO_CORRECTIFS_SEO_BRANCHE_129 = YES (décision D60, ex-D59 de la branche). « Arbitrages groupés pour la
 clôture » (14/10, section 0 bis) : GO_CODE ciblé (e-mail « Inscription confirmée »,
 fait) ; GO_TEST_REEL_ALERTES, GO_TEST_REEL_RECHERCHE, GO_ENVOI_TEST,
 GO_NETTOYAGE_DEPLOIEMENTS, GO_VERCEL_PRODUCTION, GO_MERGE_PR129 et GO_PUBLICATION
-= YES **sous conditions** ; conservation et validation éditoriale **obtenues**
+= YES **sous conditions** ; **16/10 : publication en deux étapes, A (recherche) puis B (alertes), section 0 ter** ; conservation et validation éditoriale **obtenues**
 (validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026 ;
 libellé de l'article 9 `p5` approuvé par Laurent le 15/10/2026, D42 : OUI ;
 GO_CORRECTIFS_CONFIDENTIALITÉ_129 = YES ; section 9). GO_ENVOI_REEL (bulletin) = NO.
@@ -67,6 +67,58 @@ machine affichée en ce moment » (EN, DE-CH traduits). Les exemples fictifs ne
 vivent que dans la vue `…/exemples-fictifs`, en 404 en production quel que soit
 le verrou de publication (`exemplesFictifsServis()`, testé dans
 `occasion.test.ts`).
+
+## 0 ter. Publication en deux étapes (décision de Laurent, 16/10/2026)
+
+Cette décision remplace, pour la **première publication**, l'obligation de tester
+simultanément la recherche et les alertes. Elle n'efface aucun GO du 14/10 : ils
+restent consignés et valent pour l'étape B.
+
+| Étape | Contenu | État au 16/10 |
+|---|---|---|
+| A (prioritaire) | Landing FR, EN, de-ch à stock vide ; recherche opérationnelle, sans CRM ; notification à `sebastien.jourdan@sysnext.com` (`OCCASION_NOTIFICATION_EMAIL`) ; liste d'alertes fermée et masquée en vue publique | en cours |
+| B (ultérieure) | Liste d'alertes et double opt-in (tests T1, T2, T3, cinq variables, variante B du patch de publication) ; bulletin toujours fermé | non lancée ; aucun test T1 à T3 maintenant |
+
+GO accordés pour l'étape A : GO_CODE_129_OPTION_A (adaptations nécessaires seulement) ;
+commit et push sur la branche #129 ; GO_TEST_REEL_RECHERCHE_B (deux e-mails, plafond
+strict de deux acceptations Resend, adresse prospect de test désignée par Laurent,
+notification à Sébastien) ; ouverture et fermeture de la collecte recherche seule ;
+GO_VERCEL_PRODUCTION_A (la seule variable `OCCASION_NOTIFICATION_EMAIL`, en
+Production uniquement) ; GO_RESYNC_129 après le test B ; GO_MERGE_129_A conditionnel
+(test B PASS, fermeture prouvée, configuration Production, QA ciblée, CI verte) ;
+GO_PUBLICATION_129_A conditionnel et distinct (PR dédiée, après fusion vérifiée,
+option B d'indexation, D60). Aucun GO pour activer les alertes, le bulletin ou une
+campagne.
+
+Phase 0 Chrome du 16/10 (rapportée par Laurent, non revérifiée par Claude Code) :
+PASS sur la configuration (clé Resend en Full access, segment et topic, quota, alias
+de test) ; cinq variables `OCCASION_*` en Preview, aucune en Production ; recherche B
+non prouvée (les deux e-mails historiques correspondent à A).
+
+Dépendances de l'étape A, vérifiées dans le code le 16/10 : la recherche exige
+`COLLECTE_REELLE_AUTORISEE` (et, en production, `PUBLICATION_AUTORISEE`),
+`RESEND_API_KEY`, `RESEND_FROM_EMAIL` et `OCCASION_NOTIFICATION_EMAIL`
+(`lib/occasion/services.ts`). Les quatre autres variables `OCCASION_*` (segment,
+topic, secret, URL de base) ne servent qu'aux alertes (`lib/occasion/alertes/services.ts`),
+fermées par `ALERTES_REELLES_AUTORISEES` : elles ne sont pas des prérequis de l'étape A.
+La variable `OCCASION_NOTIFICATION_EMAIL` doit exister en Production **avant** la
+fusion : une variable ne s'applique qu'aux déploiements construits ensuite, et sans
+elle la recherche répond 503.
+
+Affichage : en vue publique, la section « liste d'alerte » et le lien qui y mène
+n'apparaissent que si la liste est ouverte (`lib/occasion/alertes/affichage.ts`) ;
+l'aperçu interne la montre toujours. Le mécanisme des alertes, ses textes, son
+consentement et ses verrous ne changent pas : ouvrir les alertes (étape B) fait
+réapparaître la section. Restent à arbitrer avant GO_PUBLICATION : les descriptions
+SEO et l'encadré des deux articles de blog mentionnent encore « alertes sur les
+nouvelles offres » (textes validés, D42, non modifiés).
+
+Rectification (R7) : l'étape 5 de la section 8 indiquait « un seul fichier ». C'est
+inexact (vérifié le 16/10 sur copie) : ouvrir `PUBLICATION_AUTORISEE` et
+`COLLECTE_REELLE_AUTORISEE` fait échouer sept tests dans quatre fichiers qui figent
+l'état fermé, et `occasion.test.ts` exige la collecte ouverte dès la publication. La PR
+de publication porte donc `lib/occasion/activation.ts` et trois fichiers de tests
+(étape A), ou quatre (étape B, alertes comprises).
 
 ## 1. Contrôle par surface
 
@@ -344,8 +396,9 @@ Fusion et activation publique sont **deux opérations distinctes**. Le verrou
    trois langues, aucun lien « Offres d'occasion », `/api/occasion` et
    `/api/occasion/alertes` → `{"disponible":false}` ; article 9 visible sur
    `/fr/confidentialite` et `/en/confidentialite`. Puis `www` dans Chrome (R4).
-5. **GO_PUBLICATION** : PR dédiée, un seul fichier (`lib/occasion/activation.ts`) :
-   `PUBLICATION_AUTORISEE`, puis `COLLECTE_REELLE_AUTORISEE` et
+5. **GO_PUBLICATION** : PR dédiée : `lib/occasion/activation.ts` et les fichiers de
+   tests qui figent l'état fermé (trois à l'étape A, quatre à l'étape B ; section 0 ter) :
+   `PUBLICATION_AUTORISEE` et `COLLECTE_REELLE_AUTORISEE`, puis
    `ALERTES_REELLES_AUTORISEES` pour les seuls parcours éprouvés. Fusion = production
    en environ 3 minutes. Le même commit ouvre, sans autre changement : la page, les
    liens du menu et du pied de page, l'encadré des deux articles de blog,

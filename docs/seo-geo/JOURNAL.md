@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · #129 — publication en deux étapes (décision de Laurent) et liste d'alerte masquée en vue publique · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu (« GO accélération publication », 16/10/2026 ; GO_CODE_129_OPTION_A) | **PR** : #129 (brouillon) | **Commit** : ce commit (documentation) et le commit de code qui le précède
+
+**Quoi** — Décision de Laurent : étape A (landing FR/EN/de-ch à stock vide, recherche opérationnelle, notification à `sebastien.jourdan@sysnext.com`), étape B ultérieure (liste d'alertes et double opt-in, aucun test T1 à T3 maintenant). Code : en vue publique, la section « liste d'alerte » et le lien qui y mène ne s'affichent que si la liste est ouverte ; l'aperçu interne les garde. Documentation : section 0 ter de la release, D60 (complément, point 10), rectification de l'étape 5 de la section 8 (« un seul fichier » était inexact).
+
+**Pourquoi** — Ne pas proposer au visiteur un formulaire d'inscription dont l'envoi aboutit à un 503 ; publier plus vite la recherche, déjà éprouvée (test A du 11/10), en laissant les alertes à une étape distincte.
+
+**Fichiers** — `lib/occasion/alertes/affichage.ts` (nouveau), `components/landings/occasion/OccasionOrbitvu.tsx`, `lib/occasion/__tests__/alertes-affichage.test.ts` (nouveau) ; `docs/seo-geo/RELEASE-129-OCCASION.md`, `DECISIONS.md`, `ETAT.md`, ce `JOURNAL.md`. `lib/occasion/activation.ts` inchangé : six verrous fermés.
+
+**Effet attendu** — Aucun en production (page en 404, publication fermée). En Preview et en local : inchangé (aperçu interne). À la publication : pas de section d'alerte ni de lien « Liste d'alerte de disponibilité ». Ouvrir les alertes (étape B) les fait réapparaître sans autre changement.
+
+**Vérifié** — Dépendances de la recherche lues dans `lib/occasion/services.ts` : clé Resend, expéditeur et `OCCASION_NOTIFICATION_EMAIL` seulement ; les quatre autres variables `OCCASION_*` ne servent qu'aux alertes. Test de rendu en FR, EN et de-ch (section présente en aperçu interne ou si ouverte, absente en vue publique fermée). `npx tsc --noEmit` vert ; `npx vitest run` : 49 fichiers, 913 tests verts ; ESLint sans erreur sur les fichiers touchés ; `npx next build` vert (variables factices, R1) sur la tête de code.
+**Supposé** — Rapport Chrome Phase 0 du 16/10 rapporté par Laurent (non revérifié par Claude Code).
+**Non regardé** — Les descriptions SEO FR/EN/de-ch et l'encadré des deux articles de blog mentionnent encore « alertes sur les nouvelles offres » : textes validés (D42), non modifiés ; à arbitrer avant GO_PUBLICATION.
+
+**Suite** — Test réel B (recherche seule, fenêtre bornée), fermeture prouvée, variable Production `OCCASION_NOTIFICATION_EMAIL`, resync, GO_MERGE_129_A conditionnel, PR de publication distincte.
+
+---
+
 ## 2026-10-15 · #129 — libellé de l'article 9 `p5` approuvé par Laurent (D42 : OUI) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu (décision de Laurent du 15/10/2026 : « J'approuve les textes p5 FR/EN de l'article 9 et la conservation sur trois ans ») | **PR** : #129 (brouillon) | **Commit** : ce commit (documentation seulement)
