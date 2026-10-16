@@ -195,7 +195,7 @@ export default async function GuidePage({ params }: PageProps) {
         <section className="py-12">
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <div
-              className="prose prose-lg max-w-none text-future-dusk-600 prose-headings:text-future-dusk-900 prose-a:text-very-peri-600 prose-a:hover:text-very-peri-700"
+              className="guide-content prose prose-lg max-w-none text-future-dusk-600 prose-headings:text-future-dusk-900 prose-a:text-very-peri-600 prose-a:hover:text-very-peri-700"
               dangerouslySetInnerHTML={{ __html: sanitizeHtml(guide.introText) }}
             />
           </div>
@@ -236,7 +236,7 @@ export default async function GuidePage({ params }: PageProps) {
                     {/* Step content */}
                     {step.content && (
                       <div
-                        className="prose max-w-none text-future-dusk-600 prose-headings:text-future-dusk-900 prose-a:text-very-peri-600"
+                        className="guide-content prose max-w-none text-future-dusk-600 prose-headings:text-future-dusk-900 prose-a:text-very-peri-600"
                         dangerouslySetInnerHTML={{ __html: sanitizeHtml(step.content) }}
                       />
                     )}
