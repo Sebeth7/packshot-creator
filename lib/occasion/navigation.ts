@@ -1,25 +1,26 @@
 import type { LangueOccasion } from './langues';
 
 /**
- * Lien texte « Offres d'occasion » : seuls emplacements autorisés (décision de
- * Laurent du 14/10/2026, qui remplace celle du 10/10) :
- * - menu haut, menu déroulant Solutions : en dernier, après la rubrique Guides et
- *   hors de son sous-menu, lien secondaire séparé et discret (desktop et mobile) ;
- *   jamais sous « Studios Photo Automatisés », jamais dans la barre principale ;
+ * Lien texte « Matériel d'occasion » : seul emplacement autorisé (décision définitive
+ * de Laurent du 16/10/2026, qui remplace celles des 10/10 et 14/10) :
  * - pied de page : colonne Solutions, après « Questions clés », une seule fois ;
- *   la colonne des studios ne présente que les modèles neufs.
- * Aucun bouton, bloc ni CTA ailleurs, aucune mise en avant sur les pages des
- * machines neuves : la page vise un public à intention occasion, distinct des
- * leads du neuf.
+ *   la colonne des studios ne présente que les modèles neufs ;
+ * - AUCUN lien dans le menu haut, ni dans le menu Solutions, ni dans un sous-menu,
+ *   ni sur desktop ni sur mobile.
+ * Aucun bouton, bloc ni CTA promotionnel ailleurs, aucune mise en avant sur les pages
+ * des machines neuves : la page vise un public à intention occasion, distinct des
+ * leads du neuf. La découvrabilité tient au pied de page, au sitemap et aux encadrés
+ * éditoriaux des deux articles de blog (ci-dessous). Jamais « reconditionné » ni
+ * « refurbished » : il s'agit de matériel d'occasion.
  *
  * Affiché seulement si `liensOccasionServis()` (lib/occasion/activation.ts), dans
  * les trois langues (mission finale du 11/10/2026) ; chaque locale pointe vers sa
  * propre page (même chemin, préfixe de la locale).
  */
 const LIBELLES: Record<LangueOccasion, string> = {
-  fr: "Offres d'occasion",
-  en: 'Pre-owned offers',
-  'de-ch': 'Occasionen',
+  fr: "Matériel d'occasion",
+  en: 'Pre-owned equipment',
+  'de-ch': 'Occasionsgeräte',
 };
 
 export const LIEN_OCCASION = {

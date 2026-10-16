@@ -84,9 +84,10 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
-  // Lien « Offres d'occasion » (menu Solutions après Guides, colonne Solutions du pied
-  // de page) : trois langues, absent de la production tant que la publication n'est
-  // pas autorisée (lib/occasion/activation.ts, lib/occasion/navigation.ts).
+  // Lien d'occasion (« Matériel d'occasion », colonne Solutions du pied de page seulement,
+  // plus de lien dans le menu haut : décision du 16/10/2026) : trois langues, absent de
+  // la production tant que la publication n'est pas autorisée (lib/occasion/activation.ts,
+  // lib/occasion/navigation.ts).
   const lienOccasion = liensOccasionServis();
 
   return (
@@ -96,7 +97,7 @@ export default async function LocaleLayout({
           <SmoothScroll />
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
           <AttributionTracker />
-          <Header lienOccasion={lienOccasion} />
+          <Header />
           <main>{children}</main>
           <Footer lienOccasion={lienOccasion} />
           {/* Pop-in d'engagement : FR seulement, absente de la production sans GO (lib/engagement/activation.ts) */}

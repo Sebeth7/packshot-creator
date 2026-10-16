@@ -11,7 +11,7 @@
  * d'occasion (A, prioritaire, `POST /api/occasion`, fermée tant que la collecte
  * n'est pas autorisée) et liste d'alerte (B, secondaire, non activée).
  *
- * Header et Footer partagés : seul le lien texte « Offres d'occasion » y est ajouté
+ * Header et Footer partagés : seul le lien texte « Matériel d'occasion » du pied de page y est ajouté
  * (lib/occasion/navigation.ts). Aucun CTA de démonstration ni lien vers le neuf ajouté.
  */
 import Image from 'next/image';

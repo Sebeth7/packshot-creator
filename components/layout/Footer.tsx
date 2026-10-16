@@ -27,10 +27,11 @@ const FOOTER_STUDIOS: { id: string; nom: string }[] = [
 ];
 
 /**
- * `lienOccasion` : lien texte « Offres d'occasion » dans la colonne Solutions, après
- * « Questions clés », seule occurrence du pied de page (décision de Laurent du
- * 14/10/2026 ; la colonne des studios ne présente que les modèles neufs), libellé
- * dans la langue de la page. Calculé côté serveur par app/[lang]/layout.tsx :
+ * `lienOccasion` : lien texte « Matériel d'occasion » dans la colonne Solutions, après
+ * « Questions clés », seule occurrence du pied de page et seul lien de navigation vers
+ * la landing (décision de Laurent du 16/10/2026 : plus aucun lien dans le menu haut ;
+ * la colonne des studios ne présente que les modèles neufs), libellé dans la langue de
+ * la page. Calculé côté serveur par app/[lang]/layout.tsx :
  * jamais en production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
  */
 export default function Footer({ lienOccasion = false }: { lienOccasion?: boolean }) {
