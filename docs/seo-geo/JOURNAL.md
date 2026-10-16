@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · U02 : vidéos MP4 rendues comme images → lecteur `<video>` natif · Claude de Laurent
+
+**Chantier** : U02 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
+
+**Quoi** — Les MP4 hérités de Webflow insérés dans une balise `<img>` (ne lisaient pas la vidéo, optimiseur Next = 400) sont désormais rendus en `<video>` natif. Corrigé **au niveau du rendu, aucun contenu JSON touché** : (1) `lib/blog-utils.ts` : nouvelle transformation `transformVideoImages` dans `processHtmlContent` (`<img src=….mp4>` → `<video controls muted playsinline preload="metadata">`, `aria-label` repris de l'ALT s'il est signifiant) ; couvre le corps des articles blog ; (2) `app/[lang]/guide/[slug]/page.tsx` : image principale et image d'étape rendues en `<video>` quand l'URL finit par `.mp4` (sinon `next/image` inchangé).
+
+**Pourquoi** — U02 : 5 MP4 sur ~8 pages affichés via `<img>` (naturalWidth = 0). Vidéos et contexte pédagogique conservés, lecture au clavier via contrôles natifs, chargement différé (`preload="metadata"`). Le hero/carte blog branchait déjà sur `.mp4` (non modifié).
+
+**Fichiers** — `lib/blog-utils.ts`, `lib/__tests__/blog-utils.test.ts`, `app/[lang]/guide/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Articles blog (`best-photo-studio…`, `taux-de-conversion…`) et guide `…multi-angles-chaussures` : les démonstrations MP4 se lisent au lieu d'une image cassée, FR/EN. Aucun effet SEO (rendu seul ; ALT/liens/contenu inchangés).
+
+**Vérifié** — `tsc`, Vitest (`transformVideoImages`), `next build` (compilation + TypeScript) à lancer dans la PR ; MP4 référencés présents sous `public/images/{blog,guides}/`.
+**Supposé** — Les navigateurs affichent la première image via `preload="metadata"` ; QA Preview à confirmer (lecture, clavier) FR/EN.
+**Non regardé** — Posters dédiés (aucun fourni ; non fabriqués) ; rendu pixel Preview.
+
+**Suite** — PR Draft U02, indépendante de la PR U04. Aucun chevauchement avec la PR linguistique des 6 articles EN (édition de renderers, pas de contenu). `GO_MERGE`/`GO_PUBLICATION` non accordés.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
