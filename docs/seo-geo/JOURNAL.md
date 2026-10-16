@@ -34,6 +34,86 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
+
+**Quoi** — Événement ultérieur, ajouté sans modifier l'entrée suivante (« #155 fusionnée … contrôle `www` FR/EN en attente de Chrome »), qui reste exacte à sa date : Laurent confirme explicitement, le 16/10/2026 (heure non communiquée), que les textes FR et EN de l'article 9 qu'il a transmis dans sa conversation proviennent des pages `www` de production `https://www.packshot-creator.com/fr/confidentialite` et `https://www.packshot-creator.com/en/confidentialite`. Résultat : `WWW_155_FR` = **PASS** et `WWW_155_EN` = **PASS**, au titre d'un contrôle humain du contenu.
+
+**Pourquoi** — Le « non vérifié » de l'entrée précédente tenait à R4 : seul le Chrome de Laurent atteint `www` (challenge Cloudflare opposé aux navigateurs sans interface lancés depuis le conteneur).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` seulement.
+
+**Effet attendu** — Aucun sur le site. L'article 9 est vérifié sur l'origine `sysnext` et sur `www`, en FR et en EN.
+
+**Vérifié** — Compte rendu de Laurent (pages `www`, contrôle humain du contenu) : les cinq paragraphes de l'article 9 sont présents dans chaque langue ; les phrases approuvées ouvrent le paragraphe 2 (FR : « Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. » ; EN : « Sign-ups for availability alerts are not yet open. ») ; les textes existants sont conservés.
+**Supposé** — Rien.
+**Non regardé** — **Ce n'est pas l'exécution du script de contrôle automatisé** dans la console de Chrome : aucune ligne `RÉSULTAT` n'existe et aucune n'est revendiquée. L'heure du contrôle n'a pas été communiquée. Les textes que Laurent dit avoir transmis ne figurent pas dans les messages reçus par cette session : le PASS est repris de sa confirmation, non revérifié par l'agent (R4). `/de-ch/confidentialite` (404 attendu) n'a été contrôlé que sur l'origine `sysnext` ; les balises canonical, hreflang et robots de ces deux pages n'ont pas été contrôlées sur `www`.
+
+**Suite** — Dernière PR documentaire de cette série : #157 est fusionnée avec cette entrée ; aucune PR documentaire supplémentaire n'est prévue.
+
+---
+
+## 2026-10-16 · Landing occasion : #155 fusionnée (article 9), origine `sysnext` vérifiée, contrôle `www` FR/EN en attente de Chrome · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, micro-correctif de l'article 9 de la politique de confidentialité (« GO D'EXÉCUTION GROUPÉ — #155 + #157 », 16/10/2026 ; GO_CODE_RESYNC_155, GO_COMMIT/PUSH_155, GO_MERGE_155 et GO_PUBLICATION_155 conditionnels) | **PR** : #155, consignée ici par #157 | **Commit** : fusion `2d250cd856c17f31bb8cc4673a75b4ed7e8e58db` (parents `b18d8c2` et `faf994a`)
+
+**Quoi** — #155 resynchronisée avec `main` `b18d8c2` (fusions de #156, #131 et #153) par un commit de fusion, conflits `DECISIONS`, `ETAT` et `JOURNAL` résolus par union (`faf994a`), puis fusionnée dans `main` le 16/10/2026 à 14:22:13 UTC. `privacy.article9.p2` commence désormais, en FR et en EN, par la phrase approuvée par Laurent (« Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. » ; « Sign-ups for availability alerts are not yet open. ») ; la copie de-ch du fichier de messages porte la phrase française et n'est pas servie (`/de-ch/confidentialite` renvoie 404). Aucun autre paragraphe, aucun mécanisme d'alerte, aucun verrou, aucun formulaire modifié. La phrase est à supprimer à l'activation de l'étape B (D60, complément, point 12).
+
+**Pourquoi** — L'article 9, public depuis la fusion de #129, décrivait la liste d'alerte alors qu'elle n'est pas ouverte (étape A de la publication en deux étapes).
+
+**Fichiers** — `messages/{fr,en,de-ch}.json` (une clé chacun), `lib/occasion/__tests__/occasion-langues.test.ts`, `docs/seo-geo/{DECISIONS,ETAT,JOURNAL,RELEASE-129-OCCASION}.md` : 8 fichiers, +48/−5 contre `main`.
+
+**Effet attendu** — Le texte de `/fr/confidentialite` et `/en/confidentialite` change ; rien d'autre.
+
+**Vérifié** — Avant la fusion : HEAD `faf994a`, CI 4/4 verte, Preview Vercel Ready, diff de huit fichiers, seule la clé `privacy.article9.p2` modifiée en FR, EN et de-ch, 255 tests ciblés verts. QA Preview FR et EN : **PASS visuel** sur les captures PDF Chrome de la Preview fournies par Laurent le 16/10/2026 (phrase en tête du paragraphe 2, cinq paragraphes, aucune anomalie de mise en page, aucun formulaire d'alerte visible) ; **le script de contrôle automatisé n'a pas été exécuté** et aucun de ses résultats n'est revendiqué. Après la fusion, sur `https://sysnext.vercel.app` (R4 : l'origine, hors Cloudflare) : phrase servie à 14:23:52 UTC (absente aux sondages de 14:22:20, 14:22:50 et 14:23:21) ; `node scripts/seo/smoke.mjs` : 17 pages et 3 ressources, tout vert ; contrôle de l'article 9 en lecture seule : 15 PASS, 0 FAIL (FR et EN : cinq paragraphes, paragraphe 2 commençant par la phrase approuvée suivie de l'ancien texte, paragraphes 1, 3, 4 et 5 inchangés, aucun formulaire d'alerte ; `/de-ch/confidentialite` = 404) ; contrôle de non-régression de la landing Occasion : 38 PASS, 0 FAIL sur trois exécutions consécutives après une première exécution, lancée pendant la bascule du déploiement, qui avait signalé 1 FAIL dont l'intitulé n'a pas été conservé et qui ne s'est pas reproduit [Inférence : transitoire]. Aucun formulaire réel soumis, aucun e-mail, aucune notification Resend, alertes non activées.
+**Supposé** — Que le déploiement Production servi par l'alias `sysnext.vercel.app` est celui du commit de fusion `2d250cd` (dernier commit de `main`, contenu de #155 servi après la fusion) ; l'état « Ready » et le SHA déployé n'ont pas été lus sur le tableau de bord Vercel.
+**Non regardé** — **`www.packshot-creator.com` FR et EN : NON VÉRIFIÉ à la date de cette entrée** (R4 : seul le Chrome de Laurent atteint `www`) ; le contrôle de Laurent dans Chrome est en attente et son résultat s'ajoute à cette entrée avant la fusion de #157.
+
+**Suite** — Résultats `www` de `/fr/confidentialite` et `/en/confidentialite` à consigner ici ; puis fusion de #157, dernière PR documentaire de cette série.
+
+---
+
+## 2026-10-16 · Landing occasion : contrôle `www` de #156 dans Chrome, PASS (rapporté par Laurent) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #156 | **PR** : #157 | **Commit** : ce commit
+
+**Quoi** — Événement ultérieur, ajouté sans réécrire l'entrée suivante (« #156 fusionnée et déployée sur l'origine sysnext (vérifiée) ; www non vérifié »), qui reste exacte à sa date : le contrôle de `www.packshot-creator.com` par Laurent dans Chrome, le 16/10/2026 (heure non communiquée), est **PASS** sur les trois pages `/{fr,en,de-ch}/studios-photo-automatises/opportunites`.
+
+**Pourquoi** — Le « non vérifié » de l'entrée précédente tenait au challenge Cloudflare (403) opposé aux navigateurs sans interface lancés depuis le conteneur (R4) ; seul le Chrome de Laurent atteint `www`.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` seulement.
+
+**Effet attendu** — Aucun sur le site. La landing est vérifiée sur l'origine `sysnext` et sur `www`.
+
+**Vérifié** — Compte rendu de Laurent (Chrome sur `www`, 16/10/2026) : trois modèles affichés ; canonical, hreflang et robots corrects ; aucun prix ni disponibilité inventée ; aucun lien Occasion dans le menu haut ; un lien localisé au pied de page ; alertes fermées, recherche présente ; mobile de-ch à 390 px sans coupure ; aucun formulaire réel soumis.
+**Supposé** — Rien.
+**Non regardé** — Les lignes `RÉSULTAT` brutes de la console et l'heure du contrôle n'ont pas été transmises à cette session : le PASS est repris du compte rendu de Laurent, non revérifié par l'agent.
+
+**Suite** — Le contrôle de l'article 9 (#155) après sa fusion est ajouté ici avant la fusion de #157 ; #157 est la dernière PR documentaire de cette série.
+
+---
+
+## 2026-10-16 · Landing occasion : #156 fusionnée et déployée sur l'origine sysnext (vérifiée) ; www non vérifié, contrôle dans Chrome en attente · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, fusion de la PR de navigation et de modèles et déploiement en production, constaté sur l'origine `sysnext` seulement (« V9 — GO FINAL PR #156 », 16/10/2026 ; GO_MERGE_156 et GO_PUBLICATION_156, distincts, limités à cette PR, ce HEAD et son déploiement) | **PR** : #156 | **Commit** : fusion `86fe43d6d418f534293c90da1da8dc13c34440f1` (parents `b23ea7d` et `b718e4a`)
+
+**Quoi** — #156 passée hors Draft puis fusionnée dans `main` par commit de fusion, le 16/10/2026 à 10:48:55 UTC, au HEAD approuvé `b718e4a`, `main` étant resté à `b23ea7d` (aucune autre PR incluse, aucun code modifié). Menu haut sans lien d'occasion, pied de page « Matériel d'occasion » / « Pre-owned equipment » / « Occasionsgeräte », trois modèles Orbitvu sans prix à stock vide, correctif mobile de-ch, préfixe du message, badges D42 : contenu de la PR, décrit dans les trois entrées précédentes.
+
+**Pourquoi** — Décision de Laurent du 16/10/2026 après QA Preview PASS et CI 4/4 verte.
+
+**Fichiers** — Aucun fichier de site modifié par cette entrée ; `docs/seo-geo/{JOURNAL,ETAT}.md` seulement.
+
+**Effet attendu** — Les trois pages `/{fr,en,de-ch}/studios-photo-automatises/opportunites` affichent les trois modèles ; le menu haut n'a plus de lien d'occasion ; le pied de page garde un lien localisé. Aucun changement de canonique, de hreflang ni d'indexation.
+
+**Vérifié** — Avant la fusion : HEAD `b718e4a`, base `b23ea7d`, `mergeable_state` « clean », 4 contrôles verts, 21 fichiers, +785 / −80. Après la fusion, sur `https://sysnext.vercel.app` (R4 : l'origine, hors Cloudflare) : le contenu des trois modèles est servi à 10:50:08 UTC (absent aux sondages de 10:49:06 et 10:49:37) ; `node scripts/seo/smoke.mjs https://sysnext.vercel.app` : 17 pages et 3 ressources, tout vert ; `controle-sysnext.sh publie --sans-alertes` : 38 PASS, 0 FAIL (pages 200, `index, follow`, canonique www, hreflang `de-ch fr fr-ch en x-default`, aucun `Product` ni `Offer`, aucune référence fictive, liens depuis l'accueil et les deux articles, sitemap à trois entrées, `/api/occasion` ouverte, alertes fermées) ; contrôle dans Chromium (Playwright, moteur de navigateur, depuis le conteneur) des trois langues à 1280 et 390 px : 67 contrôles PASS, 0 FAIL (trois cartes dans l'ordre, aucun prix, promotion, garantie ni référence fictive, badges de contexte, caractéristiques D45, aucun lien d'occasion dans l'en-tête, un seul lien localisé dans le pied de page, recherche présente, alertes absentes, aucun texte ni bouton coupé à 390 px, aucune requête POST). Aucun formulaire soumis, aucun e-mail, aucune API payante.
+**Supposé** — Que le déploiement Production servi par l'alias `sysnext.vercel.app` est celui du commit de fusion `86fe43d` (dernier commit de `main`, contenu de #156 servi après la fusion) ; l'état « Ready » et le SHA déployé n'ont pas été lus sur le tableau de bord Vercel, qui n'est pas accessible depuis cette session. En-tête `x-robots-tag: noindex` sur `sysnext.vercel.app` : garde de l'origine (D36, `origine-noindex-d36.test.ts`), identique pour toutes les pages, absente de `www`.
+**Non regardé** — **`www.packshot-creator.com` : NON VÉRIFIÉ.** Cloudflare répond 403 « Just a moment… » (`cf-mitigated: challenge`) à tout navigateur sans interface lancé depuis le conteneur (R4) ; aucun contournement tenté. Le contrôle des trois pages par Laurent dans Chrome (script de console en lecture seule remis à Laurent, 11 contrôles par page, à 1280 px puis en mode appareil 390 px) reste à faire ; son résultat s'ajoute à cette entrée. Tant qu'il n'est pas fait, la landing n'est pas déclarée publiée sur `www` : dans cette entrée, « déployée » ne vaut que pour l'origine `sysnext`, jamais comme preuve `www`.
+
+**Suite** — #155 (article 9) doit se resynchroniser avec `main` après cette fusion : conflits de documents attendus (`DECISIONS`, `ETAT`, `JOURNAL`, `RELEASE`) résolus par union, numérotation D60 (point 12 = #155, 13 = menu, 14 = modèles), et `occasion-langues.test.ts` ; non traité ici. Retour arrière si le contrôle `www` révèle une régression : `git revert -m 1 86fe43d6d418f534293c90da1da8dc13c34440f1`, puis push sur `main` (production en environ 3 minutes).
+
+---
+
 ## 2026-10-16 · Landing occasion : correctif V9 des trois modèles (mobile de-ch, préfixe du message, badges D42) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, correction finale de la PR de navigation et de modèles (« V9 — CORRECTION FINALE ET PUSH », 16/10/2026 ; GO_CODE_CORRECTIF_156, GO_PR/PUSH_CORRECTIF_156) | **PR** : PR de navigation (même branche) | **Commit** : ce commit
