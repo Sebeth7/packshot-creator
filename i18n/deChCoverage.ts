@@ -90,6 +90,10 @@ export const DE_CH_COVERED_STATIC: ReadonlySet<string> = new Set([
   '/blog', // listing servi en de-ch (generateStaticParams de-ch)
   '/guide', // listing servi en de-ch
   '/conversations-sebastien-jourdan', // hub « Méthodes » servi en de-ch (content/.../de-ch.json)
+  // Landing « Offres d'occasion », non publiée (lib/occasion/activation.ts), et sa
+  // vue de contrôle des exemples fictifs (jamais en production).
+  '/studios-photo-automatises/opportunites',
+  '/studios-photo-automatises/opportunites/exemples-fictifs',
 ]);
 
 // Routes dynamiques servies en de-ch : pathname interne → slugs couverts.
@@ -189,8 +193,14 @@ export function isEnNoindex(href: LinkHref): boolean {
  * - /catalogue-orbitvu-all-in-one : landing FR commune à la France et à la Suisse
  *   romande (kit du 02/10/2026). Exception : ses URL /en et /de-ch ne sont pas
  *   redirigées, elles n'existent pas (404) et ne sont liées nulle part.
+ * La landing « Offres d'occasion » (/studios-photo-automatises/opportunites) n'est
+ * plus FR seule depuis la mission finale du 11/10/2026 : elle est servie en FR, EN
+ * et DE-CH (cf DE_CH_COVERED_STATIC).
  */
-const FR_ONLY: ReadonlySet<string> = new Set(['/academy', '/catalogue-orbitvu-all-in-one']);
+const FR_ONLY: ReadonlySet<string> = new Set([
+  '/academy',
+  '/catalogue-orbitvu-all-in-one',
+]);
 
 const DE_CH_PIN_FR: ReadonlySet<string> = new Set([
   '/mentions-legales',

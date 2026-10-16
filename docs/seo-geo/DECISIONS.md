@@ -25,6 +25,39 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D60 · 2026-10-14 · Landing « Offres d'occasion » (#129) : publication indexable (option B), navigation discrète, publication à stock vide
+
+**Décidé par** : Laurent (14/10/2026 : « GO Laurent — finalisation active avant publication », « Rectificatif de la décision de navigation », « Décision SEO définitive — option B »)
+**Statut** : en vigueur ; proposée sur la branche de #129 sous le numéro D59, renumérotée **D60** le 14/10 : la D59 de `main` (exceptions de la série A/B) a été fusionnée avant (règle appliquée à D53 et D54)
+
+**La décision** —
+1. **Indexation, option B** : la landing `/{fr,en,de-ch}/studios-photo-automatises/opportunites` est publiée en `index, follow` dès sa mise en ligne, avec ou sans machine disponible. Canonique propre à chaque langue sur `https://www.packshot-creator.com`, hreflang réciproques par `buildLanguages` (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), trois entrées de sitemap seulement une fois la page servie en production. Remplace la recommandation A (`noindex` tant que le stock est vide).
+2. **Navigation** : lien « Offres d'occasion » en dernier dans le menu déroulant Solutions, après Guides et hors de son sous-menu, séparé et discret (desktop et mobile) ; dans le pied de page, colonne Solutions après « Questions clés », une seule occurrence. Remplace l'emplacement du 10/10 (sous Studios et dans la colonne des studios).
+3. **Publication à stock vide** autorisée sur le principe ; la recherche d'un équipement et l'inscription aux futures disponibilités peuvent être proposées une fois les parcours éprouvés et autorisés.
+4. **Destinataire Production des recherches** : `sebastien.jourdan@sysnext.com`, par la variable `OCCASION_NOTIFICATION_EMAIL`.
+5. **RGPD** : dispositif de collecte et d'alertes compatible selon l'appréciation métier de Laurent ; ce n'est pas un audit juridique indépendant.
+
+**Le contexte** — Rendre les offres d'occasion accessibles et trouvables (recherche d'un studio packshot ou Orbitvu d'occasion, choix entre neuf et occasion, demande de recherche, alertes) sans détourner les prospects des studios neufs. Mise en œuvre : `lib/occasion/seo.ts`, `app/sitemap.ts`, `components/layout/{Header,Footer}.tsx`, `docs/seo-geo/RELEASE-129-OCCASION.md`.
+
+**Ce qu'elle interdit** —
+- Indexer une Preview, ou la production avant publication : `index, follow` seulement sur la production publiée (`pageOccasionIndexable`).
+- Un lien public vers la landing (menu, pied de page, articles de blog) tant qu'elle répond 404 en production.
+- La vue `…/exemples-fictifs` en production ou dans le sitemap.
+- Un balisage `Product` ou `Offer` sans machine réellement disponible.
+- Un remplissage SEO, ou l'annonce d'une machine, d'un prix, d'une disponibilité, d'une garantie ou d'une condition commerciale non réels.
+- Mettre en avant les occasions sur les pages des machines neuves, ou ajouter une entrée à la barre de navigation principale.
+
+Ne valaient pas validation au 14/10 au matin : les claims commerciaux, les droits photographiques et les textes encore soumis à la validation de Sébastien (D42, étape 5) ; voir le complément ci-dessous.
+
+**Complément du 14/10/2026 — validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026** (« GO de finalisation — confirmation téléphonique de Sébastien » ; fait métier transmis par Laurent, pas un audit juridique indépendant) :
+6. **Conservation des alertes** : inscrits actifs, trois ans à compter de la confirmation ; adresses désinscrites, trois ans à compter de la désinscription, avec les seules informations nécessaires au respect de l'opposition (adresse, état, date de désinscription) ; purge par contrôle manuel trimestriel sous la responsabilité de Sébastien ; aucun cron, aucun n8n, aucune purge automatique.
+7. **Non-réinscription** : maintenue pendant la conservation de la désinscription ; aucun blocage perpétuel n'est promis ; après la purge, une nouvelle demande passe par un nouveau consentement explicite et le double opt-in.
+8. **Validation éditoriale (D42, étape 5)** des contenus soumis pour #129 : landing FR, EN, DE-CH ; titres et descriptions SEO ; recherche et accusés ; inscription et double opt-in ; e-mail « Inscription confirmée » ; encadrés des deux articles de blog ; présentation France/Suisse ; mentions existantes sur la licence Orbitvu Station ; photographie du showroom et son usage. La validation ne couvre aucune affirmation ajoutée ensuite : ni précision contractuelle, ni garantie, ni cessibilité de licence non écrite.
+9. **Approbation du libellé de `privacy.article9.p5` (D42) et de la conservation sur trois ans, par Laurent le 15/10/2026** : texte FR et texte EN approuvés tels qu'ils figurent dans `messages/fr.json` et `messages/en.json` ; validation métier et éditoriale D42 de `p5` : OUI. Consigne : conserver les textes existants, ne rien réécrire ; aucun développement ni audit RGPD supplémentaire demandé (validation métier et éditoriale, pas un audit juridique indépendant). Le bloc de-ch de `de-ch.json` n'est pas servi (`/de-ch/confidentialite` répond 404) et n'est pas modifié.
+10. **Publication en deux étapes, décision de Laurent du 16/10/2026** (« GO accélération publication ») : étape A, prioritaire : landing FR/EN/de-ch à stock vide, recherche opérationnelle, sans CRM, notification à `sebastien.jourdan@sysnext.com` ; étape B, ultérieure : liste d'alertes et double opt-in, aucun test T1 à T3 maintenant. Cette décision remplace, pour la première publication, l'obligation de tester simultanément recherche et alertes ; le code et les décisions relatives aux alertes sont préservés, et les GO du 14/10 restent applicables à l'étape B. GO accordés pour l'étape A : GO_CODE_129_OPTION_A (limité aux adaptations nécessaires), commit et push sur la branche #129, GO_TEST_REEL_RECHERCHE_B (deux e-mails, plafond strict de deux acceptations Resend), ouverture et fermeture de la collecte recherche seule, GO_VERCEL_PRODUCTION_A (la seule variable `OCCASION_NOTIFICATION_EMAIL`, Production seulement), GO_RESYNC_129 après le test B ; conditionnels : GO_MERGE_129_A (test B PASS, fermeture prouvée, configuration Production, QA ciblée, CI verte) et GO_PUBLICATION_129_A (distinct, PR dédiée, après fusion vérifiée, option B d'indexation). Aucun GO pour activer les alertes, le bulletin ou une campagne. Détail : `RELEASE-129-OCCASION.md`, section 0 ter.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-15 · Exception ponctuelle D13/D42 pour les textes de consentement de #117, et QA substitutive à la Preview (SSO)
 
 **Décidé par** : Laurent — « V9 — Clôture conditionnelle de #117 » et « V9 — GO_CODE_117_TRANSPARENCE + validation D42 ponctuelle », 15/10/2026
