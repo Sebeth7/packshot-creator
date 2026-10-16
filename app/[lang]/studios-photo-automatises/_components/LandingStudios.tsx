@@ -24,6 +24,10 @@ import { barreActive, sommaireLateralActif, LIBELLES_BARRE, LIBELLES_SOMMAIRE } 
  * Fil : produit réel → capture → modèle de prise de vue → IA qui assiste → images et données → diffusion.
  * Sources des faits : registre L2 du 08/10 (orbitvu.com, référentiel D45, D32, page contact, calculateur).
  *
+ * Finition éditoriale du 16/10 (Laurent, GO_CODE_CORRECTIF_EDITO_108) : H1, sous-titre du hero, présentation
+ * positive de PackshotCreator, collection allégée. Inchangés, en attente de validation de Sébastien : capacité
+ * d'environ 500 photos par jour, ROI de 6 à 12 mois, délai indicatif de livraison, conditions d'offre.
+ *
  * Interdits tenus : aucun nombre de systèmes, aucune cadence par machine, aucun prix, aucune gratuité,
  * aucun BlendAI, aucun logo client, aucun avis, aucun `id="calculateur-roi"` (D47). Reprise du 16/10 :
  * capacité d'environ 500 photos par jour formulée comme conditionnelle (arbitrage P3), faits publiés par
@@ -52,7 +56,11 @@ const MachineSelector = dynamic(
 /** Le lien vers la page IA n'est rendu qu'une fois la landing IA Orbitvu (#105) publiée et vérifiée sur `www`. */
 const LIEN_PAGE_IA_PUBLIEE = false;
 
-/** Marqueurs de statut des médias : Previews Vercel et développement local seulement, jamais en production. */
+/**
+ * Marqueurs de statut des médias : Previews Vercel et développement local seulement, jamais en production.
+ * À retirer du code avant publication, une fois les droits des médias validés (demande de Laurent du 16/10/2026) ;
+ * conservés d'ici là.
+ */
 const PREVISUALISATION = process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development';
 
 type Href = ComponentProps<typeof Link>['href'];
@@ -327,8 +335,8 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       <HeroSection
         layout="split"
         badge={{ label: 'Distributeur officiel Orbitvu — France et Suisse', colorClass: 'bg-amber-500/15 text-amber-300' }}
-        title="Studio photo automatisé : produisez vos packshots en interne."
-        subtitle="Un studio Orbitvu associe un environnement de prise de vue piloté par logiciel à un workflow de traitement. Votre équipe prépare les produits, enregistre des réglages réutilisables, les ajuste selon les références et contrôle les images avant leur diffusion."
+        title="Studio photo automatisé : produisez vos photos produit en interne"
+        subtitle="Votre équipe photographie vos produits. Orbitvu Station pilote la prise de vue et les traitements ; les réglages se réutilisent d’une référence à l’autre et l’opérateur garde le contrôle du résultat."
         ctas={[
           { label: 'Demander une démonstration', href: '#demonstration', variant: 'primary' },
           { label: 'Comparer les machines', href: '#studios', variant: 'secondary' },
@@ -365,14 +373,13 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             <div>
               <h2 className={H2}>{TITRES['a-quoi-sert']}</h2>
               <p className={`${PARAGRAPHE} mb-4`}>
-                Il permet à votre équipe de photographier vos produits en interne avec une méthode de capture reproductible.
-                Lorsqu’une nouvelle référence arrive, vous repartez d’un modèle de prise de vue existant et ajustez ce qui doit
-                l’être pour conserver une présentation cohérente avec le catalogue.
+                Il permet de photographier vos produits avec une méthode reproductible : chaque nouvelle référence repart d’un
+                modèle de prise de vue existant, et la présentation reste cohérente avec le catalogue.
               </p>
               <p className={`${PARAGRAPHE} mb-6`}>
-                PackshotCreator n’est pas une agence photo. Distributeur officiel Orbitvu, nous vous conseillons sur le choix de
-                l’équipement. La livraison et l’installation sont facturées en supplément ; la formation est facturée séparément.
-                C’est votre équipe qui réalise les prises de vue.
+                Distributeur officiel Orbitvu, PackshotCreator vous accompagne dans le choix de votre équipement. Votre équipe
+                réalise les prises de vue en interne. La livraison et l’installation sont facturées en supplément ; la formation
+                est facturée séparément.
               </p>
               <aside className="rounded-xl bg-future-dusk-0 border border-neutral-100 p-5">
                 <h3 className="font-heading font-semibold text-heading-dark mb-1">Quand un prestataire reste plus adapté</h3>
@@ -429,13 +436,13 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             <h2 className={H2}>{TITRES.collection}</h2>
             <div className="max-w-3xl space-y-4">
               <p className={PARAGRAPHE}>
-                Pour une famille de produits, l’opérateur prépare une première prise de vue et l’enregistre comme modèle. Les
-                références comparables reprennent une base de cadrage, de lumière et de traitement. Les paramètres peuvent ensuite
-                être adaptés au produit, et certaines corrections appliquées à un lot d’images.
+                Pour une famille de produits, l’opérateur enregistre une première prise de vue comme modèle : cadrage, lumière et
+                traitement. Les références comparables repartent de ce modèle, adapté au produit si besoin, et certaines
+                corrections s’appliquent à un lot d’images.
               </p>
               <p className={PARAGRAPHE}>
-                Les produits brillants, transparents ou de forme inhabituelle demandent souvent d’ajuster le modèle. L’ajustement
-                se fait une fois, puis il sert aux références comparables.
+                Les produits brillants, transparents ou atypiques demandent souvent d’ajuster le modèle : l’ajustement se fait
+                une fois, puis sert aux références comparables.
               </p>
             </div>
             <SchemaCollection />
