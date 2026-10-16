@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · U04 : retrait des réserves graphiques vides des pages secteurs · Claude de Laurent
+
+**Chantier** : U04 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
+
+**Quoi** — `app/[lang]/industrie/[slug]/page.tsx`, layout à deux solutions : la réserve graphique vide `h-[180px]` (icône + « Visuel solution ») est retirée du gabarit partagé. Elle est **conservée à l'identique** pour les seuls slugs protégés `vin-spiritueux` (PR #107 ouverte) et `mode-textile` (gel de mesure Mode jusqu'au 26/11/2026). Les deux solutions, leurs badges de type, titres, descriptions, avantages, CTA et liens sont inchangés sur toutes les pages. Aucun nouveau visuel fabriqué.
+
+**Pourquoi** — U04 : deux réserves de 180 px (360 px de vide par page mobile) répétées sur les pages secteurs à deux solutions, sans illustration utile. Décision de principe de Laurent : retirer le vide plutôt que fabriquer des illustrations.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Pages secteurs à deux solutions (hors `vin-spiritueux` et `mode-textile`) sans bande vide ; cartes solution plus compactes, FR/EN/de-ch. Aucun effet SEO (aucun texte, lien, Hn ni métadonnée touché).
+
+**Vérifié** — `npx tsc --noEmit` et `npx next build` (compilation + TypeScript) à lancer dans la PR ; isolation des surfaces gelées assurée par condition de slug (`vin-spiritueux`, `mode-textile` conservés), vérifiée par lecture du rendu.
+**Supposé** — Les pages secteurs à deux solutions tirent toutes un bénéfice de lisibilité du retrait ; QA visuelle Preview à confirmer.
+**Non regardé** — Rendu pixel sur Preview (4 largeurs, 3 langues), à faire dans la PR ; layout à 3+ solutions (pas de réserve, hors périmètre).
+
+**Suite** — PR Draft U04 ; `GO_MERGE`/`GO_PUBLICATION` non accordés. Lot U02 (MP4) traité en PR séparée.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
