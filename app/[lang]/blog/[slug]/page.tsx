@@ -255,7 +255,17 @@ export default async function BlogArticlePage({ params }: PageProps) {
                       <TableOfContents headings={headings} title={t('toc')} collapsible />
                     </div>
                   )}
-                  <article className={articleProseClasses}>
+                  {/* A3 — double navigation : la barre (48 px) s'ajoute à l'en-tête, donc
+                      les titres passent de scroll-mt-24 (96 px) à scroll-mt-36 (144 px) dès
+                      1024 px, pour qu'aucun H2/H3 ne soit masqué sous la barre. Ids et Hn
+                      inchangés. Appliqué au seul article pilote. */}
+                  <article
+                    className={
+                      barreHaute
+                        ? `${articleProseClasses} [&_h2]:lg:scroll-mt-36 [&_h3]:lg:scroll-mt-36`
+                        : articleProseClasses
+                    }
+                  >
                     <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
                   </article>
                   <div className="mt-12 pt-8 border-t border-neutral-100">

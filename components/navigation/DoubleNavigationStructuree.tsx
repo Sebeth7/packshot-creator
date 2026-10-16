@@ -1,12 +1,13 @@
 'use client';
 
 /**
- * Double navigation des pages structurées (guide, fiche machine). Règle D44.
+ * Double navigation à sommaire latéral EN OVERLAY. Règle D44, utilisée par la fiche machine
+ * (A2) : la barre horizontale en haut et le sommaire latéral `fixed` dans la gouttière
+ * droite, autour d'un unique scroll-spy (`FournisseurSectionActive`), mêmes sections.
  *
- * Rend, autour d'un unique scroll-spy (`FournisseurSectionActive`), la barre horizontale
- * en haut ET le sommaire vertical à droite, alimentés par les mêmes sections. Remplace le
- * rendu de la seule barre sur les pages basculées en double navigation ; les pages à barre
- * seule continuent de rendre `SommaireCollant` directement.
+ * Le seuil d'affichage du sommaire est porté par `classeLaterale` : la fiche Alphashot le
+ * limite à ≥ 1920 px (`d44-laterale-fiche`, seuil CSS explicite). Le guide, lui, utilise
+ * une vraie colonne réservée en flux (voir son gabarit), pas ce composant.
  */
 import { FournisseurSectionActive } from './NavigationPageLongue';
 import SommaireCollant, { type EntreeSommaire } from './SommaireCollant';
@@ -18,18 +19,27 @@ export default function DoubleNavigationStructuree({
   libelleLateral,
   entrees,
   ancreFin,
+  classeLaterale,
 }: {
   titre: string;
   libelle: string;
   libelleLateral: string;
   entrees: EntreeSommaire[];
   ancreFin?: string;
+  /** Classe de seuil d'affichage du sommaire latéral overlay (ex. `d44-laterale-fiche`). */
+  classeLaterale?: string;
 }) {
   if (entrees.length === 0) return null;
   return (
     <FournisseurSectionActive ids={entrees.map((e) => e.id)} ancreFin={ancreFin}>
       <SommaireCollant titre={titre} libelle={libelle} entrees={entrees} ancreFin={ancreFin} />
-      <SommaireLateral titre={titre} libelle={libelleLateral} entrees={entrees} />
+      <SommaireLateral
+        titre={titre}
+        libelle={libelleLateral}
+        entrees={entrees}
+        variant="overlay"
+        seuilClassName={classeLaterale}
+      />
     </FournisseurSectionActive>
   );
 }

@@ -715,6 +715,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
             libelle={LIBELLES_BARRE[lang as Langue].libelle}
             libelleLateral={LIBELLES_LATERAL[lang as Langue]}
             entrees={entreesSommaire}
+            classeLaterale="d44-laterale-fiche"
           />
         ) : (
           <SommaireCollant

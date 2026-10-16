@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · D44 correctifs QA A1–A4 (PR #162) · Claude de Laurent
+
+**Chantier** : D44 double navigation, correctifs de la QA Chrome `QA_CHROME_162 = FAIL` | **PR** : #162 | **Commit** : voir PR
+
+**Quoi** — Quatre correctifs sur les trois pilotes, sans généralisation. **A1 (guide)** : le sommaire latéral passe d'un overlay `fixed` à une **vraie colonne réservée en flux** (grille à droite du contenu, ≥ 1 280 px) — plus de chevauchement ; le gabarit guide est restructuré (sections extraites en constantes, chemin témoin inchangé). **A2 (fiche Alphashot)** : sommaire latéral overlay affiché **seulement ≥ 1 920 px** via un seuil CSS explicite `.d44-laterale-fiche` (pas le palier `2xl`) ; barre seule entre 1 024 et 1 919 px ; gabarit, cartes et FAQ inchangés. **A3 (blog)** : titres H2/H3 de l'article pilote portés à `scroll-mt-36` (144 px) dès 1 024 px pour ne pas être masqués sous la barre ; ids et Hn inchangés. **A4 (scroll-spy)** : tolérance sous-pixel dans `useSectionActive`, un seul calcul partagé.
+
+**Pourquoi** — QA Chrome de Laurent : chevauchement du sommaire (A1/A2), titres masqués sous la barre (A3), surbrillance décalée des positions fractionnaires (A4).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `app/globals.css`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`.
+
+**Effet attendu** — Sur les trois pilotes seulement : plus de chevauchement, titres visibles sous la barre, surbrillance alignée sur le lien cliqué. Témoins et pages non pilotes inchangés. Aucun effet SEO, média ou données structurées.
+
+**Vérifié** — `tsc` vert ; `next build` vert (env factice) ; Vitest ciblés 67/67 ; ESLint 0 erreur (warnings pré-existants de `main` seulement). e2e `navigation-pages-longues` adapté aux seuils par famille, exécuté en CI (non lançable en local).
+**Supposé** — [Non vérifié] Rendu pixel aux largeurs défaillantes (guide 1 280/1 440 ; fiche 1 280/1 536/1 920 ; blog 1 024/1 280) + un témoin : QA Chrome bloquée par le SSO Vercel, à refaire en externe.
+**Non regardé** — A5 (focus clavier) : non corrigé sur décision de Laurent (régression non établie) ; réserve maintenue, demande d'un contrôle Chrome comparatif avec la barre de `main`. Phase B non démarrée.
+
+**Suite** — PR #162 maintenue en Draft. `GO_MERGE_162` et `GO_PUBLICATION_162` = NON. QA Chrome de retour attendue.
+
+---
+
 ## 2026-10-16 · D44 double navigation : architecture mutualisée + pilotes (Phase A) · Claude de Laurent
 
 **Chantier** : D44 / G6 UX (décision Laurent du 15/10 : double navigation des pages longues) | **PR** : #<à venir> (brouillon) | **Commit** : voir PR

@@ -32,6 +32,11 @@ export type EtatSection = {
 
 export const HAUTEUR_BARRE = 48;
 export const MARGE = 16;
+// Tolérance sous-pixel (A4). `getBoundingClientRect().top` est fractionnaire (sous-pixel,
+// facteur de zoom) alors que le seuil est entier : sans marge, la section cliquée — qui
+// s'arrête exactement à son `scroll-margin-top` (= bas + MARGE) — pouvait ne pas devenir
+// active (écart lien cliqué / surbrillance). Un seul calcul, partagé barre + sommaire.
+const EPS = 2;
 const DESKTOP = '(min-width: 1024px)';
 
 const INERTE: EtatSection = { actif: null, visible: false, haut: 64 };
@@ -83,7 +88,7 @@ export function useSectionActive(
       let courant: string | null = null;
       for (const id of ids) {
         const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= bas + MARGE) courant = id;
+        if (el && el.getBoundingClientRect().top <= bas + MARGE + EPS) courant = id;
       }
       setHaut(h);
       setVisible(debutPasse && avantFin);
