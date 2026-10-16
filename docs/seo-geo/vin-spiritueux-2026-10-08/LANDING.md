@@ -2,7 +2,7 @@
 
 `/fr/industrie/vin-spiritueux` · Wave 2 · 08/10/2026 · Claude de Laurent
 
-**Statut : COPY READY FOR PREVIEW QA.** Ni publication validée, ni fusion autorisée (`GO_MERGE = NO`, `GO_PUBLICATION = NO`).
+**Statut au 16/10/2026 (reprise V9) : PREVIEW PRÊTE POUR LA QA HUMAINE.** Variante B retenue (huit illustrations, deux ajustements de mise en page, section 5). Ni publication validée, ni fusion autorisée (`GO_MERGE = NO`, `GO_PUBLICATION = NO`).
 
 Rendu : `app/[lang]/industrie/[slug]/_components/HubVin.tsx` (fr ; en servi en français, `noindex`, D9). `/de-ch/branchen/wein` reste sur le gabarit commun. Texte : entrée `vin-spiritueux` de `data/secteurs.ts` et constantes du composant.
 
@@ -142,3 +142,63 @@ Preuves réelles toujours absentes (aucun emplacement rendu) : photo d’une bou
 ### P0-C — `/industrie/bouteilles` (contrôle en lecture seule)
 
 Selon le dépôt : 301 unique vers `/fr/industrie/vin-spiritueux` (règle générique `/industrie/*` du Worker et entrée `/fr/industrie/bouteilles`). À contrôler en production par Laurent, dans Chrome ou par requête HEAD (D23) : `/industrie/bouteilles`, `/fr/industrie/bouteilles`, `/de/branchen/flaschen`, `/en/sector/wine-spirits`, `/industrie/wine-spirits`. Aucune modification du Worker.
+
+---
+
+## 5. Reprise V9 du 16/10/2026
+
+GO de Laurent du 16/10/2026 : `GO_REPRISE_107`, `GO_CODE_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE` et `GO_PUBLICATION` = NON. Ni nouvel audit, ni nouveau visuel.
+
+### 5.1 Synchronisation et `Service.url`
+
+- `main` `c92740c` fusionné dans la branche (commit de fusion) : `JOURNAL.md` et `ETAT.md` réunis par union ; `page.tsx` et `data/secteurs.ts` sans conflit.
+- `Service.url` de `HubVin.tsx` : construit avec `getPathname` (`/industrie/[slug]`), comme les fiches machines, au lieu d'un gabarit `${lang}/industrie/…`. Valeur rendue : `/fr/industrie/vin-spiritueux` et `/en/industrie/vin-spiritueux`, égale à la canonical de chaque page. Le test `lib/seo/__tests__/json-ld-url-canonique.test.ts` de `main` couvre ce fichier (il n'est pas dans ses exceptions).
+
+### 5.2 Variante B (huit illustrations) ou C (une ou deux)
+
+Méthode : build local de la branche ; C simulée sur ce même build (I2 et I3 retirées du DOM, leurs requêtes bloquées ; I1 et I4 conservées). Captures de la section « Matières » et de la section « Gamme » à 1 440 et 390 px. Poids : images réellement servies par l'optimiseur (`/_next/image`, WebP négocié), après chargement différé complet.
+
+| Critère | B (8) | C (I1 + I4) |
+|---|---|---|
+| Section « Matières » | Chaque contrainte (verre clair, verre sombre, étiquette, capsule) a son image : le texte décrit ce que l'image montre | Quatre blocs de texte sans repère visuel ; la contrainte reste abstraite |
+| Section « Gamme » | I3 illustre la cohérence d'une gamme ; I4 illustre la liste des vues | I4 seule ; texte plus compact |
+| Hauteur à 1 440 px (après ajustements de B) | 11 283 px | 10 278 px |
+| Hauteur à 390 px (après ajustements de B) | 17 264 px | 16 608 px |
+| Images servies, 1 440 px | 200 028 o | 118 646 o |
+| Images servies, 390 px | 84 578 o | 55 660 o |
+| Image prioritaire (hero) | I1, identique | I1, identique |
+| Risque de lecture comme preuve | Huit images légendées « Illustration générée par IA » ; aucune ne représente un résultat Orbitvu | Deux images légendées |
+
+Défauts relevés sur B et corrigés dans cette reprise :
+
+1. Mobile : le carrousel horizontal des matières masquait trois contraintes sur quatre derrière un défilement latéral. Remplacé par une liste verticale, vignette de 112 px à gauche du texte : les quatre contraintes se lisent sans geste latéral (`sizes` à 112 px : vignettes plus légères). Au-delà de 640 px, grille inchangée.
+2. Desktop : I3 était l'image la plus grande de la page (1 232 px de large, plus que le hero). Limitée à 56 rem (896 px) : elle accompagne le texte sans dominer une section qui ne montre pas un résultat de studio.
+
+**Décision : B ajustée.** C supprime des images qui portent le sens de la section « Matières », pour un gain de 81 Ko à 1 440 px et de 29 Ko à 390 px, sans effet sur l'image prioritaire. Aucune image retirée.
+
+### 5.3 Droits et réserves des illustrations
+
+- Provenance : huit fichiers de `PackshotCreator_Vin_Spiritueux_Wave2_Visuels.zip`, fournis par Laurent le 08/10/2026 ; `MANIFESTE.md` et `manifest.json` : « Image générée par IA (outil natif ChatGPT) » ; I1-mobile : recadrage de I1, sans nouvelle génération. SHA-256 vérifiés le 08/10.
+- Contenu : bouteilles et étiquettes fictives, aucun logo, aucune marque réelle, aucune interface Orbitvu (manifeste).
+- Identification : chaque image porte la légende « Illustration générée par IA, bouteilles et étiquettes fictives » ; I3 précise « pas le résultat d'un réglage de studio » ; I4 « vues conceptuelles, sans correspondance géométrique mesurée ».
+- Droits d'usage : **confirmation de Laurent non reçue** (pour un autre visuel, D55 a consigné « Droits confirmés » de Laurent ; rien d'équivalent ici). [Non vérifié] Les conditions d'utilisation d'OpenAI attribuaient à l'utilisateur la propriété des contenus générés ; leur version applicable au 08/10/2026 n'a pas été relue.
+- Visuels studios : `/images/machines/alphashot-xl.avif` (XL Pro v2, visuel partagé de la fiche, réserve H8) et `/images/machines/alphashot-xl-g2.avif`, déjà publiés sur le site ; provenance non contrôlée dans cette PR.
+
+### 5.4 Navigation des pages longues (D44, R-UX-LONG)
+
+| Critère | Mesure (build local, 1 440 × 900) | Résultat |
+|---|---|---|
+| C1 longueur | 11 283 px | ≥ 7 200 : évaluation déclenchée |
+| C2 sections | 5 (matières, lumière, gamme, parcours, studios), hors FAQ et formulaire | ≥ 4 |
+| C3 bénéfice | Lecture non linéaire plausible (studios, éclairage) | Plausible |
+| C4 libellés | Titres H2 existants ; `id` présents sur les titres | Oui |
+| C5 conflit | Page touchée par une PR éditoriale ouverte (#107 elle-même) ; refonte du programme Landings & Hubs | **Non** : HOLD (R-UX-LONG § 4) |
+
+Conséquence : aucune navigation ajoutée (forme C), registre `data/navigation/pages-longues.ts` inchangé (famille `hub-sectoriel`, `aucune`, `EXCLUDE`). Contrôle : aucun élément collant rendu par la page hors en-tête et bandeau cookies du site. À la clôture de #107 : réévaluation sur `main` ; la note de la famille (« Trois sections de contenu hors FAQ ») ne vaudra plus pour ce hub.
+
+### 5.5 Contrôles de cette reprise
+
+- D9 : `/en/industrie/vin-spiritueux` garde `noindex, follow` ; canonical, robots et hreflang fr et en identiques à `main` `c92740c`.
+- HOLD H1 à H10 : aucune occurrence dans le contenu rendu fr et en. Seule mention de BlendAI : description du schéma `Organization`, commune au site (`SchemaOrg.tsx`, non modifié ; pas de retrait global de BlendAI, mission du 08/10).
+- Autres hubs : HTML prérendu de la branche contre `main` `c92740c`, identifiant de build neutralisé : 384 pages, 382 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. Mode (`fr/industrie/mode-textile`, `en/industrie/mode-textile`, `de-ch/branchen/mode`, `fr/packshot-mode`) et `de-ch/branchen/wein` : identiques.
+

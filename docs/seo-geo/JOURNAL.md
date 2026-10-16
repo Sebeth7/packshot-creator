@@ -34,6 +34,34 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Hub vin-spiritueux (#107) — reprise V9 : synchronisation, `Service.url`, variante B ajustée, Preview prête pour la QA humaine · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; GO de Laurent du 16/10 (« V9 — GO REPRISE #107 VIN » : `GO_REPRISE_107`, `GO_CODE_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE`, `GO_PUBLICATION` = NON), après le HOLD du 08/10 | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `c92740c`
+
+**Quoi** — `main` fusionné dans #107 (union de `JOURNAL.md` et `ETAT.md`). `Service.url` du hub vin construit par le routage (`getPathname`). Comparaison des variantes B (huit illustrations) et C (I1 et I4) : B retenue, avec deux ajustements (matières en liste verticale à vignettes sous 640 px ; illustration de gamme limitée à 896 px). Droits, réserves, D44 et contrôles : section 5 de `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`. Information de Sébastien : Q27.
+
+**Pourquoi** — #107 était en conflit avec `main` (343 commits d'écart). Le test `json-ld-url-canonique` de `main` refuse un `Service.url` en `${lang}/industrie/…` hors de ses exceptions. Le carrousel mobile masquait trois contraintes sur quatre ; l'illustration de gamme dominait la page à 1 440 px.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubVin.tsx`, `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`.
+
+**Effet attendu** — Rien avant une fusion sur GO distinct. Après : identique à l'entrée du 08/10 (title, meta, H1, FAQ du hub vin) ; `Service.url` de valeur inchangée.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 1 047/1 047 (57 fichiers), dont `json-ld-url-canonique` ; ESLint : rien sur `HubVin.tsx` ; `npx next build` vert (variables factices), 396 pages générées.
+- HTML prérendu, branche contre `main` `c92740c`, identifiant de build neutralisé : 384 pages, 382 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. Mode et `de-ch/branchen/wein` identiques.
+- fr et en : canonical, robots, hreflang identiques à `main` ; EN `noindex, follow` (D9) ; `Service.url` = canonical ; JSON-LD Organization, BreadcrumbList, Service, FAQPage (6 = FAQ visible) ; 11 images, 0 sans `alt` ; HOLD H1 à H10 absents du contenu rendu.
+- Rendu local (`next start`), fr et en, 1 440, 1 024, 768 et 390 px : largeur de page = largeur de fenêtre, 0 erreur console, 9 images chargées, 1 H1, « Demander une démonstration » dans le premier écran (712, 733, 580, 736 px). Aucun formulaire envoyé.
+- Comparaison B/C (section 5.2 de `LANDING.md`) : hauteurs, poids des images servies, captures des deux sections concernées.
+- D44 : C1 11 283 px, C2 5 sections ; C5 non rempli (PR éditoriale ouverte) : HOLD, aucune navigation ajoutée, registre inchangé ; aucun élément collant hors en-tête et bandeau cookies.
+- Playwright, build local, Chromium : specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81, `consentement-medias` 20/20 ; `seo`, `mobile-overflow`, `internal-links` 236 passés, 11 échecs hors CI sur des pages au HTML identique à `main` (descriptions de plus de 160 caractères, title de 84 caractères, `/fr/packshot-bijoux` absente du prérendu, débordement de `/fr` à 375 px).
+
+**Supposé** — [Inférence] Les 11 échecs hors CI se reproduisent sur `main` `c92740c` : leur HTML prérendu est identique, et les valeurs de `main` dépassent les seuils de la spec. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels ; envoi réel du formulaire ; droits d'usage des illustrations (confirmation de Laurent non reçue) ; conditions d'utilisation d'OpenAI en vigueur.
+
+**Suite** — Contrôle de la Preview par Laurent (desktop, mobile). D15 : le délai de Sébastien ne court qu'à partir de la CI verte et de la Preview contrôlée ; aucune validation tacite n'est acquise à ce jour (Q27). Fusion et publication sur GO distincts.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
