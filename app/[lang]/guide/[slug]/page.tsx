@@ -182,14 +182,27 @@ export default async function GuidePage({ params }: PageProps) {
         <section className="py-10 bg-neutral-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg">
-              <Image
-                src={guide.image}
-                alt={cleanTitle}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 896px"
-                priority
-              />
+              {guide.image.endsWith('.mp4') ? (
+                // U02 — MP4 hérité de Webflow : <video> natif, pas d'optimiseur d'images (400 sur .mp4)
+                <video
+                  src={guide.image}
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-label={cleanTitle}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={guide.image}
+                  alt={cleanTitle}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  priority
+                />
+              )}
             </div>
           </div>
         </section>
@@ -234,13 +247,26 @@ export default async function GuidePage({ params }: PageProps) {
                     {/* Step image */}
                     {step.image && (
                       <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 shadow-sm">
-                        <Image
-                          src={step.image}
-                          alt={step.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 896px"
-                        />
+                        {step.image.endsWith('.mp4') ? (
+                          // U02 — MP4 hérité de Webflow : <video> natif, pas d'optimiseur d'images (400 sur .mp4)
+                          <video
+                            src={step.image}
+                            controls
+                            muted
+                            playsInline
+                            preload="metadata"
+                            aria-label={step.title}
+                            className="absolute inset-0 h-full w-full object-cover"
+                          />
+                        ) : (
+                          <Image
+                            src={step.image}
+                            alt={step.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 896px"
+                          />
+                        )}
                       </div>
                     )}
 
