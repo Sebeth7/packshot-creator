@@ -34,6 +34,68 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · L05 isolé de #133 : disponibilité et Offer des fiches produit en JSON-LD · Claude de Laurent
+
+**Chantier** : G5 — données structurées (D57 § 5) | **PR** : à ouvrir sur cette branche | **Base** : `main` `063c20c4`
+
+**Quoi** — La disponibilité `InStock` codée en dur disparaît du JSON-LD, et les
+fiches hors de l'offre officielle actuelle d'Orbitvu ne portent plus d'`Offer`.
+Code repris tel quel de #133 (`8fa7d53` du 12/10 et `5739438` du 15/10), limité
+au seul correctif L05 : aucune dimension, FAQ, recommandation, valeur produit,
+prompt de lead ni contenu visible n'est touché.
+
+**Pourquoi** — D57 § 5 : « aucune disponibilité déclarée en JSON-LD sans preuve
+actuelle de la configuration concrète : la propriété est omise, jamais remplacée
+par `OutOfStock` ni `PreOrder` » ; « aucune `Offer` pour une fiche hors de l'offre
+officielle actuelle ». Le site déclarait `InStock` pour toutes les fiches, sans
+aucune preuve de stock, y compris pour trois modèles absents du site fabricant.
+#133 reste entière en HOLD pour Q20/D45 et D42 : ce lot en est extrait parce
+qu'il ne dépend d'aucun de ces deux arbitrages.
+
+**Fichiers** — `components/seo/SchemaOrg.tsx`,
+`data/produits/offre-officielle.ts` (nouveau),
+`app/[lang]/studio-photo/[slug]/page.tsx` (un import et une condition),
+`lib/seo/__tests__/product-disponibilite.test.ts` (nouveau)
+
+**Effet attendu** — 54 pages prérendues : les 51 fiches `studio-photo` (JSON-LD
+seul) et les 3 `studios-photo-automatises`. La disponibilité disparaît des blocs
+`Product` et de l'`AggregateOffer` du service ; l'`Offer` disparaît des 9 blocs
+des trois fiches hors offre (`alphashot-g2`, `alphashot-xl-v2`,
+`alphashot-xl-wine-v2`, en trois langues). Aucun texte visible ne change.
+
+**Gels vérifiés** — Aucune page gelée n'est touchée. `productSchema` n'a qu'un
+appelant, `app/[lang]/studio-photo/[slug]/page.tsx`. Des trois appelants de
+`serviceSchema`, un seul passe `aggregateOffer`
+(`app/[lang]/studios-photo-automatises/page.tsx:444`) : les hubs `industrie`,
+dont `mode-textile`, et le hub vin ne changent pas. Accueil (M5, 28/10), F5
+(23/11) et landing Mode (26/11) hors périmètre, aucun de leurs fichiers réservés
+n'est modifié.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. `npx vitest run lib/seo` : 5
+fichiers, 86 cas verts, dont les 8 nouveaux de `product-disponibilite`.
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx next build`
+(R1) : code de sortie 0. Rendu structuré relu sur le HTML prérendu :
+- `fr/studio-photo/alphashot-xl-pro-v2` : `offers` présente, `price` 490 EUR et
+  `itemCondition` `NewCondition` conservés, **`availability` absente**, aucun
+  `InStock`, `OutOfStock` ni `PreOrder` ;
+- `fr/studio-photo/alphashot-g2` : **aucune `offers`** ;
+- `fr/studios-photo-automatises` : `AggregateOffer` conserve `lowPrice` 12000,
+  `highPrice` 150000, `priceCurrency` et `offerCount` 16, **sans `availability`**.
+
+**Supposé** — Rien.
+
+**Non regardé** — Le reste de #133 (valeurs fabricant, FAQ, catalogues, prompt
+des leads), qui attend Q20/D45 et D42 ; les contradictions E1, E2, E4, E5, SB1 et
+SB2 du référentiel, inchangées.
+
+**Suite** — [Inférence] Google Search Console peut signaler « availability
+manquant » en avertissement sur les blocs `Product`, sans perte d'éligibilité
+attendue ; cela repose sur des schémas observés, contrôle à J+7 à J+21. Après
+fusion : test des résultats enrichis sur une fiche en offre et sur
+`alphashot-g2`.
+
+---
+
 ## 2026-10-16 · #146 : exception D42 ponctuelle consignée (claims historiques conservés, non validés) — merge en attente de #131 · Claude de Laurent
 
 **Chantier** : S16 (traductions EN) — clôture conditionnelle | **PR** : #146, branche `claude/traductions-en-dech-s16` | **Commit** : voir PR
