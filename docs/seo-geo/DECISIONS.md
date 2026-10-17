@@ -123,6 +123,27 @@ un projet CRM n'avait pas d'objet ; le précédent validé existait déjà (#82)
 
 ---
 
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #160 (Audit B, lot L5 à L11, six articles EN, finition linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉCISION GROUPÉE PR #160 », 16/10/2026 (option A), sur la tête `a74c868` ; GO final « PACKSHOTCREATOR V9 — GO FINAL PR #160 », 17/10/2026, tête éditoriale `ab60f21`
+**Statut** : en vigueur pour le seul périmètre de #160 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée exclusivement à la finition linguistique des six articles EN de #160 : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Les affirmations commerciales, caractéristiques produit et chiffres préexistants restent inchangés, sans nouvelle validation préalable de Sébastien. Aucune validation n'est attribuée à Sébastien.
+
+Choix de traduction validés par Laurent : 08 « cut » (taille d'une pierre) ; 10 « background removal » (détourage) ; 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`). Correctif après QA Chrome : 06, FAQ 2, appel de note parasite « details36 » retiré (`ab60f21`).
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas les affirmations préexistantes et ne clôt pas les réserves factuelles listées dans la description de #160 (noms de produit non harmonisés, « exclusive », distributeur « exclusive » / « the official », chiffres de cadence, témoignages, superlatifs et garanties, compatibilité Windows 11, réponses FAQ de 07 plus fortes que le FR, etc.). Ces réserves restent des sujets éditoriaux distincts.
+
+**Le contexte** — Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11. Laurent a décidé de ne pas solliciter Sébastien séparément et a regroupé les réserves en une décision unique. QA_CHROME_160 = PASS_WITH_RESERVES ; QA_160_FAQ = PASS sur la Preview de `ab60f21`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, aux contenus FR ou de-ch, à #146 ou à L1 (D35/F5).
+- Toute nouvelle promesse ou tout renforcement d'un claim existant.
+- Modifier une règle d'indexation D9 ou lever un `noindex`.
+- Présenter les affirmations maintenues comme validées.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #152 (L2, L3, L4 EN, correction linguistique)
 
 **Décidé par** : Laurent — « V9 — DÉBLOCAGE ÉDITORIAL #152 », 16/10/2026, sur la tête `ef469da`

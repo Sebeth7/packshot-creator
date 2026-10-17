@@ -294,6 +294,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Audit B, lot L5 à L11 — finition linguistique EN de 6 articles (Draft) · Claude de Laurent
+
+**Chantier** : Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11 | **PR** : lot B L5–L11 (Draft) | **Base** : `main` `c92740c`
+
+**Quoi** — Anglais corrigé dans 6 articles EN (corps, FAQ ; quelques title, h1 et description) : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Retraduction fidèle depuis le FR publié pour les passages illisibles de 06 et 10 (autorisation de Laurent du 16/10).
+
+**Pourquoi** — Audit B : traductions Webflow automatiques, 36 à 110 anomalies EN encore présentes par article sur `main` au 16/10. GO_CODE_B_L5_L11 et GO_PR_PUSH_B_L5_L11 de Laurent du 16/10.
+
+**Fichiers** — les 6 JSON EN ci-dessus ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur les URL, ancres, canonical, hreflang ou robots ; lisibilité EN.
+
+**Vérifié** — Script d'invariants contre `main` : balises HTML (donc liens, images, ALT) identiques, ancres H2/H3 identiques, chiffres identiques, champs hors title/h1/metaTitle/description/content/faqs inchangés, nombre de FAQ identique. `verifier-json` 198 valides ; `verifier-consequences` effet local ; `vitest` 57 fichiers, 1047 tests ; `tsc` ; `next build` (valeurs factices). Relecture complète du texte reconstruit de 06.
+**Supposé** — Le FR publié est la référence de sens ; aucune validation factuelle n'est apportée par cette PR.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; FR et de-ch ; ALT et images (hors périmètre) ; véracité des claims, maintenus tels quels et listés en réserves D42 dans la PR.
+
+**Suite** — HOLD avant fusion : décision groupée sur les réserves D42 (noms de produit non harmonisés, claims, chiffres, témoignages), QA Preview humaine, GO_MERGE. L1 (D35/F5) et #146 hors périmètre.
+
+**MàJ 16/10 (décision et correctifs)** — PR #160. Décision groupée de Laurent (« V9 — DÉCISION GROUPÉE PR #160 ») : option A, exception D13/D42 limitée à la finition linguistique des 6 articles EN de #160 ; ni validation des claims préexistants, ni nouvelle promesse, ni renforcement ; réserves D42 conservées comme sujets éditoriaux distincts. Traductions validées : 08 « cut », 10 « background removal », 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`).
+**QA_CHROME_160 = PASS_WITH_RESERVES** (Laurent, Chrome, 6 articles, sans régression bloquante). Seul défaut corrigé : FAQ 2 de 06, « the smallest details36. » → « the smallest details. » (appel de note parasite, déjà présent sur `main`). Les autres anomalies relevées sont préexistantes, hors périmètre, conservées en réserve. Les cinq autres articles n'ont pas changé depuis la QA : QA réutilisée.
+**Vérifié** — 06 : FAQ visible et JSON-LD FAQPage identiques sur le build local ; CI et Preview : voir la PR. **Non regardé** — `www` (R4). GO_MERGE_160 et GO_PUBLICATION_160 : NON à ce stade.
+
+**MàJ 17/10 (sortie)** — GO final de Laurent (« PACKSHOTCREATOR V9 — GO FINAL PR #160 ») : GO_CODE_SORTIE_160, GO_PR_PUSH_SORTIE_160, GO_MERGE_160 et GO_PUBLICATION_160 sous conditions. Preuves acquises : CI 4/4 sur `ab60f21` ; QA_160_FAQ = PASS sur la Preview (absence de « details36 », FAQ visible et JSON-LD cohérents). `main` `1d1d970` (#161, ALT) fusionné dans la branche sans conflit (`7b19f5c`) ; aucun des six JSON EN n'est touché par #161.
+**Vérifié** — Les six JSON EN sont identiques octet pour octet à `ab60f21` ; le diff de la PR contre `main` se limite à ces six fichiers et à la documentation (JOURNAL, ETAT, DECISIONS). Exception D13/D42 de #160 inscrite dans DECISIONS. **Suite** — Fusion, puis contrôle `sysnext` des six URL EN ; SHA de fusion et résultats consignés dans la PR (pas de commit supplémentaire sur `main`). `www` réservé à la campagne Chrome groupée de Laurent : non vérifié.
+
 ## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
 
 **Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
@@ -316,6 +341,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **MàJ 16/10 (exception D13/D42 de Laurent)** — La demande à Sébastien prévue le 15/10 est **retirée** (décision de Laurent du 15/10 : ne pas le solliciter ; mention retirée du descriptif de #152). Laurent accorde le 16/10 une exception ponctuelle D13/D42 limitée à #152, consignée dans `DECISIONS.md` : corrections linguistiques L2 à L4 sans nouvelle validation de Sébastien ; affirmations préexistantes **non validées**, réserves maintenues (Station 24.2.0, SUN Cloud, fréquence des mises à jour, caractéristiques optiques, chiffres, garanties, superlatifs). Ni #146, ni FR/de-ch, ni L1 (D35/F5), ni D9. CI 4/4 sur `ef469da`.
 **Reste avant fusion** — QA Preview humaine (3 pages, 4 formats, campagne QA de Laurent), puis GO_MERGE_152 et GO_PUBLICATION_152 ; contrôle `sysnext` puis Chrome sur `www`. Aucun travail documentaire supplémentaire prévu avant la fusion, hors consignation du résultat QA et de la fusion.
+
+**MàJ 16/10 (fusion et déploiement)** — QA_OK_152 de Laurent (rapport Chrome du 16/10, 3 pages × 4 formats ; MP4 affiché comme image sur L3 : préexistant, backlog images). GO_MERGE_152 et GO_PUBLICATION_152. Fusion `b8ae3b2` (05:54:39 UTC). `sysnext` : nouveau contenu servi à 05:55:38 ; à 05:55:49, 3 pages en 200, title et H1 nouveaux, canonical, hreflang, absence de `noindex`, FAQPage et ancres identiques à l'état d'avant fusion ; L1 inchangé ; `smoke.mjs` « Tout est vert — 17 pages, 3 ressources ». `www` : 403 pour un client script (R4) → contrôle Chrome **BLOCKED**, à faire dans la campagne `www` groupée.
 
 ---
 
