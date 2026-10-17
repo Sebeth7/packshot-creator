@@ -50,6 +50,32 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #105 (landing IA photo produit), droits des visuels Orbitvu et publication FR seule
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V10 — GO REPRISE ET FINALISATION PR #105 » et « PACKSHOTCREATOR V10 — GO_MERGE + GO_PUBLICATION #105 IA ORBITVU », 17/10/2026 ; tête QA `9883fd6`
+**Statut** : en vigueur pour le seul périmètre de #105 ; épuisée par sa fusion et sa publication. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #105** : Laurent accepte, sous sa responsabilité éditoriale, le texte FR du bloc `iaPhotoProduit` de la tête `9883fd6` : title « IA photo produit : l’IA intégrée au studio Orbitvu — PackshotCreator », H1 « La photo produit réelle, assistée par l’IA », chaîne de production, quatre fonctions (AI Photo Assistant, AI Masking, AI Retoucher, AI OCR), CTA et FAQ de 8 questions. Ce n'est pas une validation de Sébastien. Formulations appuyées par les pages Orbitvu (fresh-check du 17/10, matrice de la description de #105) ; faits métier de Laurent : usages (e-commerce, catalogues, documentation, besoins internes) et démonstration sur les produits et le flux du prospect (« Testez l’IA sur les produits que vous photographiez », « Tester mon workflow ») ; formulations corrigées le 17/10 : étape « Modèles et séries » de la chaîne, libellé « Photo d’origine » de l'exemple AI Retoucher.
+2. **Statut bêta, option A** : formulations conservées en l'état ; aucune promesse de disponibilité générale ajoutée. Seule la légende de la capture AI OCR mentionne « fenêtre marquée bêta » ; la note de version 26.2 d'Orbitvu marque AI OCR et AI Retoucher « (Beta) », les pages produit du 17/10 n'en disent rien.
+3. **Droits** : fait métier de Laurent du 17/10 — PackshotCreator dispose des droits d'utilisation des visuels Orbitvu de la page (exemples de orbitvu.com/software/ai, captures de la fiche Alphashot XL G2), dans leur présentation prévue. Légendes et provenance conservées ; aucun droit déduit pour les marques tierces visibles ni hors de #105.
+4. **QA** : QA de la Preview par Claude pour Chrome sur `9883fd6` : PASS_WITH_RESERVES, sans anomalie bloquante (verdict transmis par Laurent) ; réutilisée pour la tête de fusion, dont le code de l'application est identique à `9883fd6`.
+5. **Langues et SEO** : publication FR seule ; EN et de-ch inchangées (ancienne page, contenu BlendAI) ; aucune traduction dans #105. **Réserve conservée** : les `hreflang` réciproques relient la landing FR (Orbitvu) à des pages EN et de-ch au contenu non équivalent. Jugée non bloquante au regard de la gouvernance actuelle : aucune décision n'impose l'équivalence des alternates pour une landing réécrite (D38 vise les nouveaux articles, D37 la seule F5) ; précédent #107, hub de-ch resté sur le gabarit commun. Toute modification des `hreflang` demande un GO_CODE SEO spécifique.
+6. **D15** : aucune validation tacite de Sébastien n'est acquise ni invoquée ; aucun nouvel e-mail ; la publication repose sur l'autorité de Laurent.
+
+**Ce qu'elle ne fait pas** — Elle ne modifie ni les `hreflang`, ni la canonique, ni les pages EN et de-ch ; elle ne traduit rien ; elle ne traite pas le JSON-LD `Organization` partagé (« IA BlendAI »).
+
+**Le contexte** — #105 réécrit `/fr/ia-photo-produit` à la même URL (vague 1, PR-3, brief B7) ; gel du 12/10 levé pour #105 le 17/10 ; `main` `1fc2230` puis `2a8c444` intégrés par fusion ; HTML prérendu : 383 pages sur 384 identiques à `main`, seule `fr/ia-photo-produit` diffère ; CI verte sur `9883fd6`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, à une autre langue ou à une traduction.
+- La présenter comme une validation de Sébastien ou comme une validation juridique.
+- Présenter les exemples Orbitvu comme des captures PackshotCreator, ou les illustrations générées par IA comme des résultats Orbitvu.
+- Revendiquer un droit sur une marque tierce.
+- Modifier les `hreflang` de la page au titre de cette décision.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #104 (hub bijoux, version C1) et QA substitutive au contrôle Chrome prépublication
 
 **Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX », 17/10/2026 ; tête éditoriale de référence `1878ba8`
