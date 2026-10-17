@@ -20,6 +20,7 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL, pickListL } from '@/lib/locale-text';
 import { getMachineImage } from '@/lib/machine-images';
+import { estDansOffreOfficielle } from '@/data/produits/offre-officielle';
 import SommaireCollant from '@/components/navigation/SommaireCollant';
 import DoubleNavigationStructuree from '@/components/navigation/DoubleNavigationStructuree';
 import { barreActive, formeSecondeActive, LIBELLES_BARRE, LIBELLES_LATERAL, type Langue } from '@/data/navigation/pages-longues';
@@ -1510,7 +1511,9 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           sku: machine.id,
           brand: 'Orbitvu',
           category: tx(lang, 'Studio Photo Automatisé', 'Automated Photo Studio', 'Automatisiertes Fotostudio'),
-          ...(monthly !== null
+          // Aucune `Offer` pour une fiche hors de l'offre officielle actuelle ; aucune
+          // disponibilité déclarée sans preuve (L05, G5 du 11/10/2026).
+          ...(monthly !== null && estDansOffreOfficielle(machine.id)
             ? { leasingOffer: { monthly, priceCurrency, priceValidUntil: PRICE_VALID_UNTIL } }
             : {}),
         }),

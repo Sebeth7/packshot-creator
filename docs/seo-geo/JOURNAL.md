@@ -34,6 +34,65 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · L05 (#163) : resynchronisation sur `main` `2a8c444`, QA Chrome PASS, fusion · Claude de Laurent
+
+**Chantier** : G5 — données structurées (D57 § 5) | **PR** : #163 | **Base** : `main` `2a8c444` (après #164) | **HEAD précédent** : `42ed17d5`
+
+**Quoi** — Deuxième resynchronisation de #163, sans aucune modification de son
+périmètre fonctionnel. `main` a avancé de `1fc2230` à `2a8c444` avec la fusion de
+#164 (Worker RSC). Les quatre fichiers L05 sont identiques octet pour octet à
+`42ed17d5`. Draft et mention DO NOT MERGE levés sur les GO_MERGE_163 et
+GO_PUBLICATION_163 de Laurent du 17/10.
+
+**Pourquoi** — GO_RESYNC puis GO_MERGE et GO_PUBLICATION de Laurent du 17/10,
+après sa QA Chrome PASS sur les trois JSON-LD de la Preview. #164 ne touche que
+`cloudflare-worker/`, donc aucun recoupement fonctionnel avec L05 ; la fusion
+s'est faite automatiquement, `docs/seo-geo/JOURNAL.md` compris.
+
+**Fichiers** — Aucun fichier fonctionnel modifié par cette resynchronisation.
+Apports de `main` repris tels quels : `cloudflare-worker/src/index.js`,
+`cloudflare-worker/test/rsc-cache.test.ts`, `cloudflare-worker/wrangler.toml`.
+Seul `docs/seo-geo/JOURNAL.md` fusionne les deux côtés.
+
+**Effet attendu** — Aucun effet nouveau par rapport à l'entrée L05 du 17/10 :
+mêmes 54 pages prérendues, même retrait de la disponibilité et des `Offer` hors
+offre officielle. La publication en production suit la fusion sur `main`, en
+environ trois minutes.
+
+**Vérifié** — Fusion `main` → branche sans conflit (`git merge-tree` : arbre
+propre, aucun fichier en conflit ; `git merge` : « Auto-merging
+docs/seo-geo/JOURNAL.md », aucun marqueur résiduel). Journal : 0 ligne perdue de
+chaque côté, 0 entrée dupliquée. Les quatre fichiers L05 identiques à `42ed17d5`
+(`git diff --quiet` par fichier). `npx tsc --noEmit` : 0 erreur.
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx vitest run lib/seo` :
+5 fichiers, 86 cas verts. `npx vitest run cloudflare-worker/test` (apports de
+#164) : 7 fichiers, 185 cas verts. `node --check cloudflare-worker/src/index.js` :
+OK. `npx next build` (R1) : code 0. JSON-LD relevés sur le HTML prérendu du
+build : `fr/studio-photo/alphashot-xl-pro-v2` → `Offer` avec `price` 490 EUR,
+`priceCurrency` EUR, `priceValidUntil` 2027-12-31, `itemCondition`
+`NewCondition`, `seller` présent, `availability` absente ;
+`fr/studio-photo/alphashot-g2` → aucune `offers` ; `fr/studios-photo-automatises`
+→ `AggregateOffer` avec `lowPrice` 12000, `highPrice` 150000, `offerCount` 16,
+`seller` présent, `availability` absente. Zéro occurrence de `InStock`,
+`OutOfStock` et `PreOrder` dans les trois blocs. Rendu strictement identique à
+celui soumis à la QA Chrome : celle-ci est réutilisée, elle n'est pas refaite.
+
+**Supposé** — Rien de nouveau. La QA Chrome PASS du 17/10 porte sur le rendu de
+la Preview, dont l'identité avec le rendu de ce HEAD est établie ci-dessus par
+l'égalité des quatre fichiers et des valeurs relevées.
+
+**Non regardé** — Le Worker n'est pas déployé par cette fusion : le flag
+`cache_option_enabled` de #164 reste à appliquer sur le GO distinct
+`GO_DEPLOIEMENT_WORKER`. Résultats enrichis Google et GSC : à J+7 à J+21.
+Contrôle de `www` dans Chrome : à faire par Laurent (R4, Cloudflare renvoie 403 à
+tout script).
+
+**Suite** — Publication en production par la fusion sur `main`. Contrôle du
+déploiement Vercel et des trois JSON-LD après publication. #133 reste entière et
+inchangée, en HOLD pour Q20/D45 et D42.
+
+---
+
 ## 2026-10-17 · Worker RSC (#164), complément : contournement explicite du cache et flag de compatibilité · Claude de Laurent
 
 **Chantier** : P0 du crawl SF du 15/10 (suite de l'entrée précédente) ; GO_CODE et GO_PR/PUSH complémentaires de Laurent (17/10), limités à #164 ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (brouillon, DO NOT MERGE) | **Commit** : voir PR
@@ -91,6 +150,68 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Rendu pixel sur Preview (4 largeurs, 3 langues), à faire dans la PR ; layout à 3+ solutions (pas de réserve, hors périmètre).
 
 **Suite** — PR Draft U04 ; `GO_MERGE`/`GO_PUBLICATION` non accordés. Lot U02 (MP4) traité en PR séparée.
+
+---
+
+## 2026-10-17 · L05 isolé de #133 : disponibilité et Offer des fiches produit en JSON-LD · Claude de Laurent
+
+**Chantier** : G5 — données structurées (D57 § 5) | **PR** : à ouvrir sur cette branche | **Base** : `main` `063c20c4`
+
+**Quoi** — La disponibilité `InStock` codée en dur disparaît du JSON-LD, et les
+fiches hors de l'offre officielle actuelle d'Orbitvu ne portent plus d'`Offer`.
+Code repris tel quel de #133 (`8fa7d53` du 12/10 et `5739438` du 15/10), limité
+au seul correctif L05 : aucune dimension, FAQ, recommandation, valeur produit,
+prompt de lead ni contenu visible n'est touché.
+
+**Pourquoi** — D57 § 5 : « aucune disponibilité déclarée en JSON-LD sans preuve
+actuelle de la configuration concrète : la propriété est omise, jamais remplacée
+par `OutOfStock` ni `PreOrder` » ; « aucune `Offer` pour une fiche hors de l'offre
+officielle actuelle ». Le site déclarait `InStock` pour toutes les fiches, sans
+aucune preuve de stock, y compris pour trois modèles absents du site fabricant.
+#133 reste entière en HOLD pour Q20/D45 et D42 : ce lot en est extrait parce
+qu'il ne dépend d'aucun de ces deux arbitrages.
+
+**Fichiers** — `components/seo/SchemaOrg.tsx`,
+`data/produits/offre-officielle.ts` (nouveau),
+`app/[lang]/studio-photo/[slug]/page.tsx` (un import et une condition),
+`lib/seo/__tests__/product-disponibilite.test.ts` (nouveau)
+
+**Effet attendu** — 54 pages prérendues : les 51 fiches `studio-photo` (JSON-LD
+seul) et les 3 `studios-photo-automatises`. La disponibilité disparaît des blocs
+`Product` et de l'`AggregateOffer` du service ; l'`Offer` disparaît des 9 blocs
+des trois fiches hors offre (`alphashot-g2`, `alphashot-xl-v2`,
+`alphashot-xl-wine-v2`, en trois langues). Aucun texte visible ne change.
+
+**Gels vérifiés** — Aucune page gelée n'est touchée. `productSchema` n'a qu'un
+appelant, `app/[lang]/studio-photo/[slug]/page.tsx`. Des trois appelants de
+`serviceSchema`, un seul passe `aggregateOffer`
+(`app/[lang]/studios-photo-automatises/page.tsx:444`) : les hubs `industrie`,
+dont `mode-textile`, et le hub vin ne changent pas. Accueil (M5, 28/10), F5
+(23/11) et landing Mode (26/11) hors périmètre, aucun de leurs fichiers réservés
+n'est modifié.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. `npx vitest run lib/seo` : 5
+fichiers, 86 cas verts, dont les 8 nouveaux de `product-disponibilite`.
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx next build`
+(R1) : code de sortie 0. Rendu structuré relu sur le HTML prérendu :
+- `fr/studio-photo/alphashot-xl-pro-v2` : `offers` présente, `price` 490 EUR et
+  `itemCondition` `NewCondition` conservés, **`availability` absente**, aucun
+  `InStock`, `OutOfStock` ni `PreOrder` ;
+- `fr/studio-photo/alphashot-g2` : **aucune `offers`** ;
+- `fr/studios-photo-automatises` : `AggregateOffer` conserve `lowPrice` 12000,
+  `highPrice` 150000, `priceCurrency` et `offerCount` 16, **sans `availability`**.
+
+**Supposé** — Rien.
+
+**Non regardé** — Le reste de #133 (valeurs fabricant, FAQ, catalogues, prompt
+des leads), qui attend Q20/D45 et D42 ; les contradictions E1, E2, E4, E5, SB1 et
+SB2 du référentiel, inchangées.
+
+**Suite** — [Inférence] Google Search Console peut signaler « availability
+manquant » en avertissement sur les blocs `Product`, sans perte d'éligibilité
+attendue ; cela repose sur des schémas observés, contrôle à J+7 à J+21. Après
+fusion : test des résultats enrichis sur une fiche en offre et sur
+`alphashot-g2`.
 
 ---
 
