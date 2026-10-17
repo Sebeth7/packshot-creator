@@ -6,6 +6,7 @@ import { secteurs } from '@/data/secteurs';
 import { secteurHorlogerieEn } from '@/data/secteurs-en-horlogerie';
 import { secteursDeCh } from '@/data/secteurs-de-ch';
 import HubVin from './_components/HubVin';
+import SchemaVuesMontre from './_components/SchemaVuesMontre';
 import { tx } from '@/lib/locale-text';
 import { NOINDEX_EN_INDUSTRIE_SLUGS } from '@/lib/seo-config';
 import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
@@ -254,6 +255,12 @@ export default async function SecteurPage({ params }: PageProps) {
     'documentation-qualite-produit': <ClipboardCheck className="h-5 w-5" />,
     'documentation-probatoire': <Scale className="h-5 w-5" />,
   };
+
+  // Horlogerie FR : vues de référence du contrôle qualité et du SAV sous les cas d'usage.
+  // Substitution de la grille plutôt qu'un enfant conditionnel : le HTML et la charge RSC
+  // des autres secteurs restent identiques.
+  const avecSchemaVuesMontre = (grille: React.ReactNode) =>
+    dataSlug === 'horlogerie' && lang === 'fr' ? <>{grille}<SchemaVuesMontre /></> : grille;
 
   return (
     <>
@@ -531,7 +538,7 @@ export default async function SecteurPage({ params }: PageProps) {
               </p>
             </FadeInView>
 
-            <StaggerContainer className={`grid gap-6 ${
+            {avecSchemaVuesMontre(<StaggerContainer className={`grid gap-6 ${
               secteur.useCases.length <= 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' :
               secteur.useCases.length === 3 ? 'md:grid-cols-3' :
               'md:grid-cols-2'
@@ -574,7 +581,7 @@ export default async function SecteurPage({ params }: PageProps) {
                   </SpringCard>
                 </StaggerItem>
               ))}
-            </StaggerContainer>
+            </StaggerContainer>)}
           </div>
         </section>
       )}

@@ -34,6 +34,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · #169 : schéma des vues de référence du contrôle qualité et du SAV (horlogerie FR) ; aucun visuel ajouté sur bijoux · Claude de Laurent
+
+**Chantier** : exigence de qualité éditoriale et visuelle de Laurent du 17/10 (visuel seulement s'il explique mieux un usage ; schéma HTML/CSS/SVG dans la charte ; aucun faux résultat) ; GO_CODE et GO_PR/PUSH de #169 | **PR** : #169 | **Commit** : voir PR
+
+**Quoi** —
+- Horlogerie FR : `SchemaVuesMontre.tsx` (nouveau), sous les deux cas d'usage. Pictogrammes cadran, boîtier (profil côté couronne) et bracelet, sur deux lignes « À réception » et « Après révision », reliées par « Même modèle de prise de vue, mêmes angles » ; légende « Schéma de principe […] Pictogrammes, pas des photographies. ». Aucun texte important dans le SVG ; pictogrammes `aria-hidden`.
+- `page.tsx` : import et substitution de la grille des cas d'usage pour `horlogerie` en FR seulement (pas d'enfant conditionnel) : HTML et charge RSC des autres secteurs identiques à `main`.
+- Bijoux : aucun visuel ajouté. Photographies réelles disponibles (guides bijoux) sans droits documentés ; décision distincte requise. Studios (session de #168) et Vin (schéma d'éclairage conservé) : hors de cette PR.
+
+**Pourquoi** — Le schéma montre d'un coup d'œil le principe du SAV et du contrôle qualité : les mêmes vues, avant et après, se comparent une à une. Il ne remplace ni n'invente aucune photographie.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/SchemaVuesMontre.tsx`, `app/[lang]/industrie/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — `/fr/industrie/horlogerie` seule : figure de 432 px de haut à 1 440 px et 380 px à 390 px. Aucune autre page.
+
+**Vérifié** — `tsc` vert ; ESLint : aucune remarque sur le composant, sur `page.tsx` les 3 remarques déjà présentes sur `main` ; Vitest 1104/1104 ; `next build` vert. HTML prérendu contre `main` `db3b34f` : 381 pages sur 384 identiques (bijoux FR et EN, horlogerie FR) ; contre la tête précédente `fbea72a` : seule `fr/industrie/horlogerie` change. Un premier essai par enfant conditionnel changeait la charge RSC de 16 autres secteurs (`false` sérialisé, HTML visible identique) : remplacé. Rendu local (Chromium, `next start`) à 1 440 et 390 px : aucun débordement, aucune erreur console ; captures relues.
+
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) ; lecteurs d'écran réels (structure vérifiée dans le code seulement) ; EN horlogerie et de-ch (pas de cas d'usage, schéma non rendu).
+
+**Suite** — CI de #169 ; GO_MERGE et GO_PUBLICATION distincts ; décision sur les droits des photographies des guides bijoux avant tout ajout.
+
+---
+
 ## 2026-10-17 · #169, second niveau : protocole de démonstration bijoux ; déroulement opérationnel du contrôle qualité et du SAV horlogers · Claude de Laurent
 
 **Chantier** : GO_CODE et GO_PR/PUSH de Laurent du 17/10 sur #169 (enrichissement issu des recherches du 17/10) | **PR** : #169 | **Commit** : voir PR
