@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Landing occasion : contraste du lien du pied de page et mention « Photo d'illustration » visible sur mobile (réserves de la QA Chrome du 17/10) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, micro-lot QA (GO_CODE_QA_OCCASION et GO_PR_PUSH_QA_OCCASION de Laurent du 17/10/2026 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : PR Draft dédiée, DO NOT MERGE | **Commit** : ce commit
+
+**Quoi** — Deux corrections CSS, une ligne chacune, et rien d'autre. (A) `components/layout/Footer.tsx` : la couleur normale du lien « Matériel d'occasion » / « Pre-owned equipment » / « Occasionsgeräte » passe de `text-future-dusk-400` à `text-future-dusk-300`, comme les liens voisins ; destination, libellé, survol (`hover:text-white`), focus et logique d'affichage inchangés. (B) `components/landings/occasion/ModelesOccasion.tsx` : la mention « Photo d'illustration » / « Illustrative photo » / « Illustrationsfoto » des trois cartes de modèles n'est plus masquée sous 768 px (`hidden … md:inline` retiré) ; `max-w-[calc(100%-1rem)]` la borne à la colonne de l'image (elle passe à la ligne plutôt que d'être coupée aux très petites largeurs). Texte localisé conservé ; les modèles restent illustratifs, sans disponibilité ni prix.
+
+**Pourquoi** — Réserves mineures de la QA Claude Chrome du 17/10/2026 sur `www` : contraste mesuré 4,15:1 pour le lien du pied de page (`#6E7592` sur `#0F1118`), les liens voisins étant à 6,31:1 (`#8F95A8`) ; mention d'illustration en `display:none` à 390 px.
+
+**Fichiers** — `components/layout/Footer.tsx`, `components/landings/occasion/ModelesOccasion.tsx` (une ligne chacun) ; `docs/seo-geo/JOURNAL.md` (cette entrée). Départ de `main` `1fc22309`, branche isolée ; aucun des deux fichiers n'est touché par une autre PR active (#163, #133, #108 et #105 contrôlées par différence avec leur base).
+
+**Effet attendu** — Lien du pied de page à 6,31:1 (seuil 4,5:1 : conforme) ; mention d'illustration lisible sur les cartes mobiles. Aucun effet sur les URL, canonical, hreflang, robots, JSON-LD, formulaires, stock ni textes.
+
+**Vérifié** — Serveur local, Chromium (moteur de navigateur), FR, EN et de-ch. Avant : mention en `display:none` à 390 et 320 px dans les trois langues ; lien à 4,15:1. Après : lien à 6,31:1, identique au voisin, survol 18,86:1 inchangé, focus inchangé (contour natif 1 px) ; mention en `display:block` à 390, 360 et 320 px, contenue dans la colonne de l'image, non tronquée, 0 px² de chevauchement avec le produit (l'image est centrée dans une colonne plus haute), hauteurs des cartes identiques à l'état précédent, aucun défilement horizontal ; à 1280 px rien ne change (largeurs 107, 96 et 90 px, chevauchement préexistant identique). `npx tsc --noEmit` sans erreur ; ESLint sans avertissement sur les deux fichiers ; `npx vitest run lib/occasion` : 12 fichiers, 255 tests verts ; `npx next build` (R1) vert, code de sortie 0 (variables factices, `VERCEL_ENV=production`).
+**Supposé** — Que le contraste mesuré par l'agent (couleurs calculées du navigateur sur le fond du pied de page) correspond à celui observé dans Chrome par la QA du 17/10 (4,15:1 retrouvé à l'identique avant correction).
+**Non regardé** — Rendu dans le Chrome de Laurent sur la Preview (SSO) et sur `www` après publication ; contraste de la mention elle-même (blanc sur fond sombre translucide, non revérifié) ; aucune campagne globale, aucun audit.
+
+**Suite** — Relecture de la PR par Laurent ; fusion et publication : GO distinct. #163, Draft, touche aussi `JOURNAL.md` : union à faire à la fusion du second.
+
+---
+
 ## 2026-10-16 · U04 : retrait des réserves graphiques vides des pages secteurs · Claude de Laurent
 
 **Chantier** : U04 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
