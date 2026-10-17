@@ -25,6 +25,55 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #104 (hub bijoux, version C1) et QA substitutive au contrôle Chrome prépublication
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX », 17/10/2026 ; tête éditoriale de référence `1878ba8`
+**Statut** : en vigueur pour le seul périmètre de #104 ; épuisée par sa fusion et sa publication. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #104** : Laurent accepte, sous sa responsabilité éditoriale, les textes et les affirmations de l'entrée `bijoux-joaillerie` de `data/secteurs.ts` tels que présents dans la tête `1878ba8`, y compris la démonstration avec les bijoux du prospect (meta description, titre et texte de l'appel final). Dérogation ponctuelle, limitée à cette publication. Aucune validation n'est attribuée à Sébastien ; ses remarques éventuelles seront sollicitées ultérieurement.
+2. **Visuels** : Laurent confirme les droits d'utilisation des visuels déjà employés sur cette landing (hero `hero-secteur-bijoux`, visuels des fiches Alphashot Micro Pro v2 et Alphashot Pro G2). Aucun remplacement ni nouvelle génération de média.
+3. **QA substitutive propre à #104** : la QA Chrome du 16/10 (`PASS_WITH_RESERVES`, 0 régression bloquante ; SHA de la Preview non prouvé par le rapport) et les contrôles locaux des neuf corrections éditoriales de `1878ba8` (1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur, CTA du hero dans le premier écran sauf à 390 px comme sur `main` ; HTML : seuls les hubs bijoux FR et EN changent ; `FAQPage` = FAQ visible) remplacent un nouveau contrôle Chrome prépublication. Le contrôle visuel de `www` est regroupé après les publications.
+4. **Gabarit commun** : le CTA « Demander un devis gratuit » n'est pas modifié par #104 ; décision réservée au propriétaire unique du gabarit (#158, #107).
+
+**Effet sur D15** — La publication intervient sans attendre l'échéance de D15 et sans validation explicite de Sébastien de l'engagement « démonstration avec les bijoux du prospect », sur la seule autorité de ce GO final de Laurent.
+
+**Le contexte** — #104 C1 (gabarit commun, entrée de f9a6d13) : reprise le 16/10, fichiers V1 non rendus retirés (`8e00893`), décision métier de Laurent sur la démonstration (`e8d1dba`), finition éditoriale (`1878ba8`), `main` `dd33884` intégré (`eea9f04`). Mail de Laurent à Sébastien envoyé le 16/10 ; aucune réponse consignée.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR (#107, #108, #158, #162), au gabarit commun, à une autre entrée de `data/secteurs.ts` ou aux contenus de-ch.
+- La tenir pour une validation de Sébastien.
+- Lever le `noindex` D9 de `/en/industrie/bijoux-joaillerie` ou traduire la page.
+- Annoncer `www` vérifié avant la QA groupée.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre.
+
+---
+
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #107 (hub vin-spiritueux), droits des illustrations confirmés et QA locale substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX », 17/10/2026 ; tête éditoriale de référence `e4ba732`
+**Statut** : en vigueur pour le seul périmètre de #107 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #107** : Laurent accepte, sous sa responsabilité éditoriale, la version Vin de la tête `e4ba732` : H1 « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes », introduction et formulations métier documentées dans `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md` (registre S1 à S19, HOLD H1 à H10). Ce n'est pas une validation de Sébastien : `SEBASTIEN_VALIDATION = NOT_RECEIVED` (Q27, pour information).
+2. **Droits** : Laurent confirme les droits d'utilisation des huit illustrations fournies le 08/10/2026. Elles restent légendées comme visuels d'illustration fictifs (« Visuel d'illustration — bouteilles et étiquettes fictives » ; réserves propres à I3 et I4), avec leur provenance IA documentée, et ne sont jamais présentées comme des résultats réels produits par Orbitvu.
+3. **QA substitutive propre à #107** : les contrôles locaux à quatre largeurs (1 440, 1 024, 768, 390 px), le contrôle visuel du hero et les tests techniques (TypeScript, build, Vitest, Playwright de la CI, comparaison du HTML prérendu) remplacent la QA de la Preview, bloquée par SSO. La Preview n'est pas déclarée visuellement validée par Laurent. La QA Chrome sur `www` est groupée après les publications.
+4. **D9** : `/en/industrie/vin-spiritueux` reste en `noindex, follow` ; le contenu de-ch (`/de-ch/branchen/wein`) n'est pas modifié.
+5. **Périmètre** : appel « Demander une démonstration » et gabarit commun inchangés au-delà du routage dédié du hub vin ; les corrections transversales du gabarit relèvent du propriétaire de #158.
+6. **D15** : le GO de fusion de Laurent intervient alors que le délai de D15 n'a pas été ouvert (Preview non contrôlée, Q27). Aucune validation tacite de Sébastien n'est acquise ni invoquée ; la publication repose sur l'autorité de Laurent.
+
+**Ce qu'elle ne fait pas** — Elle ne lève aucun `noindex` ; elle ne généralise pas D44 (hub vin en forme C, registre `data/navigation/pages-longues.ts` inchangé, réévaluation après fusion) ; elle ne vaut pas test réel du formulaire (GO_TEST_REEL distinct, dans la QA groupée) ; elle ne clôt pas les réserves de `LANDING.md` (H1 à H10, visuel partagé de l'XL Pro v2, note AI Act de la section 5.6).
+
+**Le contexte** — #107 réécrit le hub vin à la même URL : page dédiée `HubVin.tsx` (fr et en), huit illustrations, schémas D1 et D2, `Service.url` sur le chemin routé, légendes sans mention publique de l'IA (16/10), finition éditoriale (16/10). Preview protégée par SSO ; CI verte sur `e4ba732` ; HTML prérendu : 382 pages sur 384 identiques à `main`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, à un autre hub ou au gabarit commun.
+- La présenter comme une validation de Sébastien, une validation juridique ou une QA de la Preview par Laurent.
+- Présenter les illustrations comme des preuves de résultat Orbitvu.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
 ## D60 · 2026-10-14 · Landing « Offres d'occasion » (#129) : publication indexable (option B), navigation discrète, publication à stock vide
 
 **Décidé par** : Laurent (14/10/2026 : « GO Laurent — finalisation active avant publication », « Rectificatif de la décision de navigation », « Décision SEO définitive — option B »)
@@ -120,6 +169,27 @@ un projet CRM n'avait pas d'objet ; le précédent validé existait déjà (#82)
 - L'étendre à une autre PR ou à un autre texte.
 - La tenir pour une validation de Sébastien, une conclusion RGPD ou un constat de disponibilité de Vimeo ou d'Ortery.
 - Réutiliser la substitution de QA Preview pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #160 (Audit B, lot L5 à L11, six articles EN, finition linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉCISION GROUPÉE PR #160 », 16/10/2026 (option A), sur la tête `a74c868` ; GO final « PACKSHOTCREATOR V9 — GO FINAL PR #160 », 17/10/2026, tête éditoriale `ab60f21`
+**Statut** : en vigueur pour le seul périmètre de #160 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée exclusivement à la finition linguistique des six articles EN de #160 : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Les affirmations commerciales, caractéristiques produit et chiffres préexistants restent inchangés, sans nouvelle validation préalable de Sébastien. Aucune validation n'est attribuée à Sébastien.
+
+Choix de traduction validés par Laurent : 08 « cut » (taille d'une pierre) ; 10 « background removal » (détourage) ; 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`). Correctif après QA Chrome : 06, FAQ 2, appel de note parasite « details36 » retiré (`ab60f21`).
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas les affirmations préexistantes et ne clôt pas les réserves factuelles listées dans la description de #160 (noms de produit non harmonisés, « exclusive », distributeur « exclusive » / « the official », chiffres de cadence, témoignages, superlatifs et garanties, compatibilité Windows 11, réponses FAQ de 07 plus fortes que le FR, etc.). Ces réserves restent des sujets éditoriaux distincts.
+
+**Le contexte** — Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11. Laurent a décidé de ne pas solliciter Sébastien séparément et a regroupé les réserves en une décision unique. QA_CHROME_160 = PASS_WITH_RESERVES ; QA_160_FAQ = PASS sur la Preview de `ab60f21`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, aux contenus FR ou de-ch, à #146 ou à L1 (D35/F5).
+- Toute nouvelle promesse ou tout renforcement d'un claim existant.
+- Modifier une règle d'indexation D9 ou lever un `noindex`.
+- Présenter les affirmations maintenues comme validées.
 
 ---
 
@@ -544,6 +614,16 @@ Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisio
 **Le contexte** — Audit du 03/10/2026 sur 309 URL (livrables 01 et 02) : la barre de Mode (#66) donnait le comportement de référence ; le sommaire du blog avait deux défauts mesurés (titre visé hors écran à 390 px ; 29 listes latérales plus hautes que la fenêtre) ; 47 guides, 39 fiches et plusieurs landings longues n'avaient aucune navigation. La variante latérale avait été écartée sur Mode : à 1 440 px, elle ramène le contenu de 1 232 à 928 px. Mise en œuvre : PR UX-BLOG (#84), UX-STICKY (#85) ; contrôles en CI : PR #86.
 
 **Ce qu'elle interdit** — Afficher deux navigations collantes sur une page ; copier le composant dans une page au lieu d'utiliser le composant mutualisé ; ajouter un élément collant sous 1 024 px ; inventer un libellé pour la navigation (copywriting de Sébastien, D42) ; modifier par ce biais une URL, une canonique, un hreflang ou un contenu éditorial ; modifier une page gelée avant sa date de sortie (F5 23/11, Mode et hub mode-textile 26/11, accueil 28/10) ; modifier `slugify` ou le calcul des `id` des titres du blog (ancres historiques).
+
+### Addendum · 2026-10-15 · Double navigation — révision de la règle « jamais deux navigations collantes »
+
+**Décidé par** : Laurent — décision du 15/10/2026.
+
+**Ce qui change** — L'interdiction « une page ne cumule jamais deux navigations collantes » est **levée**. Une page longue éligible porte désormais **les deux** navigations à la fois : barre horizontale A **et** sommaire vertical B à droite, **synchronisés** (mêmes ancres, même section active). Le reste de D44 est inchangé : règle par famille, critères d'éligibilité, gels, interdiction de texte nouveau, ancres historiques, pas d'élément collant sous 1 024 px.
+
+**Ce qui reste interdit** — Deux scroll-spys indépendants sur une même page (un seul calcul de section active, partagé) ; une seconde navigation sur une page gelée ou avant la bascule contrôlée de sa famille ; copier un composant plutôt que passer par les composants mutualisés (`components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireLateral.tsx`, `DoubleNavigation*.tsx`).
+
+**Déploiement** — Progressif, par le registre (`secondeForme`, `piloteSecondeForme`). Phase A : un pilote par famille structurante (guide `comment-faire-focus-stacking-pour-photographier-bague`, fiche `alphashot-pro-g2`, article `images-ia-metadonnees-marketplaces`), en PR Draft, `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Phase B : généralisation par famille, par PR distinctes, après contrôle pixel des pilotes (Preview Vercel / `www` dans Chrome, R4). Référence : `docs/standards/R-UX-LONG.md`.
 
 ---
 

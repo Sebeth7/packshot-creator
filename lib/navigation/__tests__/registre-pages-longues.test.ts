@@ -1,11 +1,19 @@
 /**
  * Registre de la navigation des pages longues (règle D44) : les pages gelées par une
- * expérience SEO ou une PR ouverte ne reçoivent jamais la barre ; aucune famille à
- * sommaire latéral ne la reçoit ; chaque exception est motivée et datée.
+ * expérience SEO ou une PR ouverte ne reçoivent jamais la barre ; chaque exception est
+ * motivée et datée. Depuis la décision du 15/10/2026, une page longue peut porter DEUX
+ * navigations synchronisées (barre + sommaire latéral) : le déploiement est progressif,
+ * piloté par `formeSecondeActive` / `navigationPageLongue` (Phase A ci-dessous).
  */
 
 import { describe, it, expect } from 'vitest';
-import { NAVIGATION_PAGES_LONGUES, barreActive, type Langue } from '@/data/navigation/pages-longues';
+import {
+  NAVIGATION_PAGES_LONGUES,
+  barreActive,
+  formeSecondeActive,
+  navigationPageLongue,
+  type Langue,
+} from '@/data/navigation/pages-longues';
 
 const LANGUES: Langue[] = ['fr', 'en', 'de-ch'];
 
@@ -79,5 +87,58 @@ describe('Registre de la navigation des pages longues (D44)', () => {
 
   it('une famille inconnue ne reçoit pas la barre', () => {
     expect(barreActive('famille-inexistante', 'fr', 'x')).toBe(false);
+  });
+});
+
+describe('Double navigation D44 (Phase A) : seconde forme et vue d’ensemble', () => {
+  it('guide pilote : barre + sommaire latéral (FR et EN), une seule page de la famille', () => {
+    expect(formeSecondeActive('guide', 'fr', 'comment-faire-focus-stacking-pour-photographier-bague')).toBe('laterale');
+    expect(formeSecondeActive('guide', 'en', 'how-to-do-focus-stacking-for-ring-photography')).toBe('laterale');
+    expect(navigationPageLongue('guide', 'fr', 'comment-faire-focus-stacking-pour-photographier-bague')).toEqual({
+      barre: true,
+      laterale: true,
+    });
+    // Un autre guide garde la barre seule tant que la généralisation (Phase B) n’est pas faite.
+    expect(formeSecondeActive('guide', 'fr', 'guide-futur')).toBeNull();
+    expect(navigationPageLongue('guide', 'fr', 'guide-futur')).toEqual({ barre: true, laterale: false });
+  });
+
+  it('fiche pilote : barre + sommaire latéral (toutes langues), une seule fiche', () => {
+    for (const l of LANGUES) {
+      expect(formeSecondeActive('fiche-machine', l, 'alphashot-pro-g2')).toBe('laterale');
+      expect(navigationPageLongue('fiche-machine', l, 'alphashot-pro-g2')).toEqual({ barre: true, laterale: true });
+    }
+    expect(formeSecondeActive('fiche-machine', 'fr', 'machine-future')).toBeNull();
+    expect(navigationPageLongue('fiche-machine', 'fr', 'machine-future')).toEqual({ barre: true, laterale: false });
+  });
+
+  it('blog pilote : sommaire latéral existant + barre ajoutée (FR et EN), un seul article', () => {
+    expect(formeSecondeActive('blog-commun', 'fr', 'images-ia-metadonnees-marketplaces')).toBe('barre');
+    expect(formeSecondeActive('blog-commun', 'en', 'ai-product-images-metadata-marketplaces')).toBe('barre');
+    expect(navigationPageLongue('blog-commun', 'fr', 'images-ia-metadonnees-marketplaces')).toEqual({
+      barre: true,
+      laterale: true,
+    });
+    // Les autres articles gardent le sommaire latéral seul, sans barre.
+    expect(formeSecondeActive('blog-commun', 'fr', 'eclairage-photos-produits')).toBeNull();
+    expect(navigationPageLongue('blog-commun', 'fr', 'eclairage-photos-produits')).toEqual({
+      barre: false,
+      laterale: true,
+    });
+  });
+
+  it('une page gelée ne reçoit jamais la seconde forme', () => {
+    // Guide gelé par #27 (FR) : ni barre, ni seconde forme.
+    expect(formeSecondeActive('guide', 'fr', 'comment-faire-photos-multi-angles-chaussures')).toBeNull();
+    // Familles gelées / exclues.
+    for (const l of LANGUES) {
+      expect(formeSecondeActive('landing-mode', l, 'packshot-mode')).toBeNull();
+      expect(formeSecondeActive('hub-sectoriel', l, 'mode-textile')).toBeNull();
+    }
+  });
+
+  it('une famille sans seconde forme déclarée n’en reçoit pas', () => {
+    expect(formeSecondeActive('solution', 'fr', 'solution-future')).toBeNull();
+    expect(formeSecondeActive('famille-inexistante', 'fr', 'x')).toBeNull();
   });
 });

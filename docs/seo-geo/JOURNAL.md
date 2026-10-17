@@ -54,6 +54,328 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · U02 : vidéos MP4 rendues comme images → lecteur `<video>` natif · Claude de Laurent
+
+**Chantier** : U02 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
+
+**Quoi** — Les MP4 hérités de Webflow insérés dans une balise `<img>` (ne lisaient pas la vidéo, optimiseur Next = 400) sont désormais rendus en `<video>` natif. Corrigé **au niveau du rendu, aucun contenu JSON touché** : (1) `lib/blog-utils.ts` : nouvelle transformation `transformVideoImages` dans `processHtmlContent` (`<img src=….mp4>` → `<video controls muted playsinline preload="metadata">`, `aria-label` repris de l'ALT s'il est signifiant) ; couvre le corps des articles blog ; (2) `app/[lang]/guide/[slug]/page.tsx` : image principale et image d'étape rendues en `<video>` quand l'URL finit par `.mp4` (sinon `next/image` inchangé).
+
+**Pourquoi** — U02 : 5 MP4 sur ~8 pages affichés via `<img>` (naturalWidth = 0). Vidéos et contexte pédagogique conservés, lecture au clavier via contrôles natifs, chargement différé (`preload="metadata"`). Le hero/carte blog branchait déjà sur `.mp4` (non modifié).
+
+**Fichiers** — `lib/blog-utils.ts`, `lib/__tests__/blog-utils.test.ts`, `app/[lang]/guide/[slug]/page.tsx`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Articles blog (`best-photo-studio…`, `taux-de-conversion…`) et guide `…multi-angles-chaussures` : les démonstrations MP4 se lisent au lieu d'une image cassée, FR/EN. Aucun effet SEO (rendu seul ; ALT/liens/contenu inchangés).
+
+**Vérifié** — `tsc`, Vitest (`transformVideoImages`), `next build` (compilation + TypeScript) à lancer dans la PR ; MP4 référencés présents sous `public/images/{blog,guides}/`.
+**Supposé** — Les navigateurs affichent la première image via `preload="metadata"` ; QA Preview à confirmer (lecture, clavier) FR/EN.
+**Non regardé** — Posters dédiés (aucun fourni ; non fabriqués) ; rendu pixel Preview.
+
+**Suite** — PR Draft U02, indépendante de la PR U04. Aucun chevauchement avec la PR linguistique des 6 articles EN (édition de renderers, pas de contenu). `GO_MERGE`/`GO_PUBLICATION` non accordés.
+
+---
+
+## 2026-10-17 · Hub bijoux C1 — sortie de #104 : exception D13/D42 inscrite, `main` intégré, préparation de la fusion · Claude de Laurent
+
+**Chantier** : « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX » (17/10 ; `GO_EXCEPTION_D13_D42_104`, `GO_QA_SUBSTITUTIVE_104`, `GO_RESYNC_104`, `GO_CODE_DOCUMENTATION_104`, `GO_PR_PUSH_104` = OUI ; `GO_MERGE_104` et `GO_PUBLICATION_104` = OUI sous conditions) | **PR** : #104 | **Tête éditoriale de référence** : `1878ba8`
+
+**Quoi** — Documentation et synchronisation, aucun texte du site modifié :
+- `main` intégré trois fois par commit de fusion, sans rebase : `dd33884` (#160, #161) en `eea9f04`, `faa1645` (#162) en `1b367ef`, puis `46aba36` (#107, fusionnée à 04:04:57 UTC) ; conflits `JOURNAL.md` et `DECISIONS.md` résolus par union (aucune ligne perdue de part et d'autre) ; `data/secteurs.ts` : entrée bijoux identique à `1878ba8`, reste du fichier (dont l'entrée vin de #107) identique à `main`.
+- `DECISIONS.md` : exception ponctuelle D13/D42 pour #104 et QA substitutive au contrôle Chrome prépublication, inscrites sans numéro (règle des entrées voisines), avec leur effet sur D15.
+- `ETAT.md` : ligne #104.
+
+**Périmètre de la fusion** — Diff contre `main` : `data/secteurs.ts` (entrée `bijoux-joaillerie` seule), `docs/seo-geo/DECISIONS.md`, `JOURNAL.md`, `ETAT.md`. Gabarit commun, Vin, Mode, Studios et protections D9 (`noindex` EN) non touchés.
+
+**Vérifié** — Fresh-check du 17/10 : `main` `dd33884` (#160 fusionnée à 03:47:46 UTC) ; #104 `1878ba8` ; #162 ouverte, prête, sans fichier commun hors `DECISIONS.md` et `JOURNAL.md`, sans changement de la famille `hub-sectoriel` ; #161 fusionnée. Puis #162 (03:50 UTC) et #107 (04:04:57 UTC) fusionnées avant #104 : `main` repris à chaque fois. Contrôles de la tête de sortie : voir la PR.
+
+**Non regardé** — `www` (R4, QA groupée après les publications).
+
+**Suite** — Fusion de #104 dans `main` (publication automatique), puis contrôle technique de `sysnext.vercel.app` ; QA visuelle de `www` groupée ; remarques éventuelles de Sébastien sollicitées ultérieurement ; CTA « Demander un devis gratuit » : décision du propriétaire unique du gabarit (#158, #107).
+
+---
+
+## 2026-10-17 · Hub vin-spiritueux (#107) — GO final : resynchronisation, exception D13/D42, sortie de brouillon · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX » du 17/10 (`GO_EXCEPTION_D13_D42_107`, `GO_QA_LOCALE_SUBSTITUTIVE_107`, `GO_RESYNC_107`, `GO_CODE_DOCUMENTATION_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE_107` et `GO_PUBLICATION_107` = OUI sous conditions) | **PR** : #107 | **Base** : `main` `faa1645`
+
+**Quoi** — `main` `faa1645` (fusions de #160, #161, #162) intégré par fusion, JOURNAL par union. Exception D13/D42, droits des illustrations et QA locale substitutive inscrits dans `DECISIONS.md` (entrée du 17/10, numéro à attribuer). ETAT et statut de `LANDING.md` actualisés. Aucun fichier fonctionnel modifié depuis la tête éditoriale `e4ba732`.
+
+**Pourquoi** — Clôture et publication de #107 dans la même séquence, sur l'autorité de Laurent.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Effet attendu** — À la fusion : nouvelle landing vin en production (fr ; en servi en français, `noindex`) ; autres pages inchangées.
+
+**Vérifié** — `main` `faa1645` ; #160 et #162 fusionnées (17/10, 03:47 et 03:50 UTC) ; #104 et #158 ouvertes en brouillon, non fusionnées. Diff fonctionnel de #107 contre `main` : `HubVin.tsx`, `SchemaEclairageBouteille.tsx`, `page.tsx` (un import, un retour anticipé), entrée vin de `data/secteurs.ts`, 8 AVIF ; fichiers vin identiques à `e4ba732`. D44 : #162 ne touche ni le gabarit des hubs ni la famille `hub-sectoriel` (`aucune`, `EXCLUDE`). Fusions simulées : avec #158 (U04) et avec #104, conflit sur `JOURNAL.md` seul, code sans conflit. `npx tsc --noEmit` et `npx next build` verts avant le push.
+
+**Supposé** — [Inférence] Le rendu du hub vin est celui de `e4ba732`, aucun fichier qu'il importe n'ayant changé sur `main` depuis. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4, QA Chrome groupée) ; formulaire réel (GO_TEST_RÉEL distinct).
+
+**Suite** — CI du nouveau HEAD ; sortie de brouillon, fusion, contrôle de `sysnext.vercel.app` ; QA groupée sur `www` ; réévaluation D44 du hub vin.
+
+---
+
+## 2026-10-16 · Hub vin-spiritueux (#107) — finition éditoriale : nouveau H1, introduction resserrée, répétitions allégées · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« PSC V9 — FINITION ÉDITORIALE VIN #107 » : `GO_CODE_CORRECTIF_EDITO_107`, `GO_PR_PUSH_CORRECTIF_EDITO_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`
+
+**Quoi** — H1 « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes » ; introduction en trois temps (difficultés, studio Orbitvu, accompagnement) ; phrases raccourcies et doublons allégés dans les matières, l'éclairage, la gamme et le parcours. Title, meta description, H2, H3, FAQ, visuels, légendes, liens et données structurées inchangés. Détail et table des redondances : section 5.7 de `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Pourquoi** — Landing plus convaincante et plus courte à lire, introduction moins technique, sans perte de richesse SEO ni métier.
+
+**Fichiers** — `data/secteurs.ts` (entrée `vin-spiritueux` seule), `app/[lang]/industrie/[slug]/_components/HubVin.tsx` (constantes de texte affichées), `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Rien avant fusion. Après : H1 sans « packshot » ; le terme reste dans le `<title>` et une fois dans l'introduction. [Inférence] Effet sur la position de « packshot bouteille » non estimable sans mesure. Cela repose sur des schémas observés.
+
+**Vérifié** — `npx tsc --noEmit` vert ; build vert ; HTML prérendu contre `main` `c92740c` : 382/384 identiques. Contre le HEAD précédent (`80bf178`), fr et en : title, description, canonical, robots, hreflang, H2, H3, `id`, liens, `alt`, nombre d'images, légendes, types JSON-LD et FAQ JSON-LD identiques ; seul le H1 change parmi ces éléments. Chaque information retirée d'un passage reste présente ailleurs sur la page (table de la section 5.7).
+
+**Supposé** — Rien au-delà de l'inférence ci-dessus.
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; relecture de Sébastien (attendue).
+
+**Suite** — Relecture de Laurent sur la Preview ; validation de Sébastien requise avant fusion ; GO de fusion et de publication distincts.
+
+---
+
+## 2026-10-16 · Hub vin-spiritueux (#107) — correctif éditorial : légendes publiques sans mention « Illustration générée par IA » · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« V9 — CORRECTIF ÉDITORIAL PR #107 » : `GO_CODE_CORRECTIF_107`, `GO_PR_PUSH_CORRECTIF_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`
+
+**Quoi** — Légendes publiques des huit visuels : « Illustration générée par IA, bouteilles et étiquettes fictives » devient « Visuel d’illustration — bouteilles et étiquettes fictives » ; légendes de la gamme (« Il figure une présentation homogène… ») et des vues du flacon (« Visuel d’illustration — flacon et étiquettes fictifs… ») adaptées. Constante `LEGENDE_IA` renommée `LEGENDE_VISUEL`.
+
+**Pourquoi** — Décision éditoriale de Laurent : retirer la mention publique de l’IA, en gardant le caractère illustratif et non démonstratif des légendes.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubVin.tsx` ; `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md` (légendes du manifeste visuel, section 5.6 avec l’avant/après et la provenance IA conservée) ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun avant fusion. Texte visible des légendes seulement ; images, `alt`, Hn, données SEO et appels inchangés.
+
+**Vérifié** — Diff de `HubVin.tsx` : 7 lignes, légendes et constante seulement. `npx tsc --noEmit` vert ; ESLint sans remarque sur le fichier ; contrôles de rendu et de prérendu consignés dans la PR après build.
+
+**Supposé** — [Inférence] Les visuels, fictifs et légendés comme tels, ne sont pas des hypertrucages au sens de l’article 50, paragraphe 4, de l’AI Act tel que le résume l’article du site ; qualification de Laurent, pas un avis juridique. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) : vérification ciblée des légendes demandée à Laurent ; `www` (R4).
+
+**Suite** — Contrôle des légendes sur la Preview par Laurent ; validation commerciale et éditoriale de Sébastien requise avant fusion ; GO de fusion et de publication distincts.
+
+---
+
+## 2026-10-16 · Hub vin-spiritueux (#107) — reprise V9 : synchronisation, `Service.url`, variante B ajustée, Preview prête pour la QA humaine · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; GO de Laurent du 16/10 (« V9 — GO REPRISE #107 VIN » : `GO_REPRISE_107`, `GO_CODE_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE`, `GO_PUBLICATION` = NON), après le HOLD du 08/10 | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `c92740c`
+
+**Quoi** — `main` fusionné dans #107 (union de `JOURNAL.md` et `ETAT.md`). `Service.url` du hub vin construit par le routage (`getPathname`). Comparaison des variantes B (huit illustrations) et C (I1 et I4) : B retenue, avec deux ajustements (matières en liste verticale à vignettes sous 640 px ; illustration de gamme limitée à 896 px). Droits, réserves, D44 et contrôles : section 5 de `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`. Information de Sébastien : Q27.
+
+**Pourquoi** — #107 était en conflit avec `main` (343 commits d'écart). Le test `json-ld-url-canonique` de `main` refuse un `Service.url` en `${lang}/industrie/…` hors de ses exceptions. Le carrousel mobile masquait trois contraintes sur quatre ; l'illustration de gamme dominait la page à 1 440 px.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubVin.tsx`, `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`.
+
+**Effet attendu** — Rien avant une fusion sur GO distinct. Après : identique à l'entrée du 08/10 (title, meta, H1, FAQ du hub vin) ; `Service.url` de valeur inchangée.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 1 047/1 047 (57 fichiers), dont `json-ld-url-canonique` ; ESLint : rien sur `HubVin.tsx` ; `npx next build` vert (variables factices), 396 pages générées.
+- HTML prérendu, branche contre `main` `c92740c`, identifiant de build neutralisé : 384 pages, 382 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. Mode et `de-ch/branchen/wein` identiques.
+- fr et en : canonical, robots, hreflang identiques à `main` ; EN `noindex, follow` (D9) ; `Service.url` = canonical ; JSON-LD Organization, BreadcrumbList, Service, FAQPage (6 = FAQ visible) ; 11 images, 0 sans `alt` ; HOLD H1 à H10 absents du contenu rendu.
+- Rendu local (`next start`), fr et en, 1 440, 1 024, 768 et 390 px : largeur de page = largeur de fenêtre, 0 erreur console, 9 images chargées, 1 H1, « Demander une démonstration » dans le premier écran (712, 733, 580, 736 px). Aucun formulaire envoyé.
+- Comparaison B/C (section 5.2 de `LANDING.md`) : hauteurs, poids des images servies, captures des deux sections concernées.
+- D44 : C1 11 283 px, C2 5 sections ; C5 non rempli (PR éditoriale ouverte) : HOLD, aucune navigation ajoutée, registre inchangé ; aucun élément collant hors en-tête et bandeau cookies.
+- Playwright, build local, Chromium : specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81, `consentement-medias` 20/20 ; `seo`, `mobile-overflow`, `internal-links` 236 passés, 11 échecs hors CI sur des pages au HTML identique à `main` (descriptions de plus de 160 caractères, title de 84 caractères, `/fr/packshot-bijoux` absente du prérendu, débordement de `/fr` à 375 px).
+
+**Supposé** — [Inférence] Les 11 échecs hors CI se reproduisent sur `main` `c92740c` : leur HTML prérendu est identique, et les valeurs de `main` dépassent les seuils de la spec. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels ; envoi réel du formulaire ; droits d'usage des illustrations (confirmation de Laurent non reçue) ; conditions d'utilisation d'OpenAI en vigueur.
+
+**Suite** — Contrôle de la Preview par Laurent (desktop, mobile). D15 : le délai de Sébastien ne court qu'à partir de la CI verte et de la Preview contrôlée ; aucune validation tacite n'est acquise à ce jour (Q27). Fusion et publication sur GO distincts.
+
+---
+
+## 2026-10-16 · D44 correctifs QA A1–A4 (PR #162) · Claude de Laurent
+
+**Chantier** : D44 double navigation, correctifs de la QA Chrome `QA_CHROME_162 = FAIL` | **PR** : #162 | **Commit** : voir PR
+
+**Quoi** — Quatre correctifs sur les trois pilotes, sans généralisation. **A1 (guide)** : le sommaire latéral passe d'un overlay `fixed` à une **vraie colonne réservée en flux** (grille à droite du contenu, ≥ 1 280 px) — plus de chevauchement ; le gabarit guide est restructuré (sections extraites en constantes, chemin témoin inchangé). **A2 (fiche Alphashot)** : sommaire latéral overlay affiché **seulement ≥ 1 920 px** via un seuil CSS explicite `.d44-laterale-fiche` (pas le palier `2xl`) ; barre seule entre 1 024 et 1 919 px ; gabarit, cartes et FAQ inchangés. **A3 (blog)** : titres H2/H3 de l'article pilote portés à `scroll-mt-36` (144 px) dès 1 024 px pour ne pas être masqués sous la barre ; ids et Hn inchangés. **A4 (scroll-spy)** : tolérance sous-pixel dans `useSectionActive`, un seul calcul partagé.
+
+**Pourquoi** — QA Chrome de Laurent : chevauchement du sommaire (A1/A2), titres masqués sous la barre (A3), surbrillance décalée des positions fractionnaires (A4).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `app/globals.css`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`.
+
+**Effet attendu** — Sur les trois pilotes seulement : plus de chevauchement, titres visibles sous la barre, surbrillance alignée sur le lien cliqué. Témoins et pages non pilotes inchangés. Aucun effet SEO, média ou données structurées.
+
+**Vérifié** — `tsc` vert ; `next build` vert (env factice) ; Vitest ciblés 67/67 ; ESLint 0 erreur (warnings pré-existants de `main` seulement). e2e `navigation-pages-longues` adapté aux seuils par famille, exécuté en CI (non lançable en local).
+**Supposé** — [Non vérifié] Rendu pixel aux largeurs défaillantes (guide 1 280/1 440 ; fiche 1 280/1 536/1 920 ; blog 1 024/1 280) + un témoin : QA Chrome bloquée par le SSO Vercel, à refaire en externe.
+**Non regardé** — A5 (focus clavier) : non corrigé sur décision de Laurent (régression non établie) ; réserve maintenue, demande d'un contrôle Chrome comparatif avec la barre de `main`. Phase B non démarrée.
+
+**Suite** — PR #162 maintenue en Draft. `GO_MERGE_162` et `GO_PUBLICATION_162` = NON. QA Chrome de retour attendue.
+
+---
+
+## 2026-10-16 · D44 double navigation : architecture mutualisée + pilotes (Phase A) · Claude de Laurent
+
+**Chantier** : D44 / G6 UX (décision Laurent du 15/10 : double navigation des pages longues) | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
+
+**Quoi** — Architecture mutualisée pour afficher, sur une page longue, la barre horizontale ET le sommaire vertical droit, synchronisés par un **scroll-spy unique**. Nouveaux composants : `useSectionActive` (le scroll-spy, logique de la barre liftée), `NavigationPageLongue` (contexte + deux fournisseurs), `SommaireLateral` (sommaire vertical droit des pages structurées, ≥ 1 280 px), `DoubleNavigationStructuree` et `DoubleNavigationBlog`. `SommaireCollant` devient contrôlable (rétrocompatible : rendu hors fournisseur = comportement d'origine). `TableOfContents` rapporte sa section active à la barre sur le blog (son scroll-spy durci reste l'unique de la page). Registre étendu (`secondeForme`, `piloteSecondeForme`, `formeSecondeActive`, `navigationPageLongue`). Pilotes strictement limités par slug.
+
+**Pourquoi** — Décision de Laurent du 15/10 : la règle « jamais deux navigations collantes » est levée. Objectif : deux repères, mêmes ancres, même section active, sans deux scroll-spys contradictoires (cause d'écarts de surbrillance quand deux calculs cohabitent).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireCollant.tsx`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `DoubleNavigationBlog.tsx`, `components/blog/TableOfContents.tsx`, `data/navigation/pages-longues.ts`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/DECISIONS.md`.
+
+**Effet attendu** — Sur trois pages pilotes seulement (guide `comment-faire-focus-stacking-pour-photographier-bague` FR/EN, fiche `alphashot-pro-g2` toutes langues, article `images-ia-metadonnees-marketplaces` FR/EN) : barre + sommaire droit synchronisés ≥ 1 280 px. Toutes les autres pages rendent exactement comme avant. Aucun effet SEO (aucun texte, lien, ancre, Hn, métadonnée touché ; `id` déjà posés par la barre).
+
+**Vérifié** — `npx tsc --noEmit` vert ; Vitest 1052/1052 (dont 14 du registre, nouveaux cas double nav) ; ESLint des fichiers modifiés : 0 erreur (warnings préexistants `main` seulement). Rétrocompatibilité : `SommaireCollant` hors fournisseur inchangé ; `barreActive` et les familles existantes inchangés (lecture du code + tests). `next build` : compilation + TypeScript à valider en CI (R1 : échec local sur `Missing env var`).
+**Supposé** — [Non vérifié] Rendu pixel et synchronisation réelle des deux repères aux six largeurs (390/768/1024/1280/1440/1920) : non contrôlés, QA bloquée par le SSO Vercel (302 → `sso-api`). Cela repose sur la lecture du code, pas sur un contrôle navigateur.
+**Non regardé** — Généralisation par famille (Phase B, PR distinctes) ; raffinement mobile du double affichage ; écart P2 de surbrillance (page à barre seule, hors de ce lot) ; e2e Playwright non lançable en local (build bloqué), exécuté en CI.
+
+**Suite** — PR Draft D44. `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Contrôle pixel des pilotes requis avant Phase B.
+
+---
+
+## 2026-10-16 · Lot V1-ALT : 131 ALT Webflow remplacés dans 52 articles (FR 68, EN 62, de-ch 1), Draft · Claude de Laurent
+
+**Chantier** : lot V1-ALT de la qualification V9 (« PACKSHOTCREATOR V9 — GO CIBLÉ ALT WEBFLOW », 16/10/2026 : GO_CODE_ALT et GO_PR_PUSH_ALT = OUI, GO_MERGE et GO_PUBLICATION = NON) | **PR** : cette PR | **Commit** : ce commit
+
+**Quoi** — Substitution ciblée de la seule valeur de l'attribut `alt` de 131 balises `<img>` (valeur Webflow `__wf_reserved_inherit` pour 129, `__wf_reserved_decorative` pour 2, remplacée par une description) dans 52 fichiers `content/blog/{fr,en,de-ch}/*.json`. Aucun autre caractère modifié.
+
+**Pourquoi** — 159 images d'articles portaient une valeur Webflow réservée, lue telle quelle comme texte alternatif. Référence : `01_ALT_PROPOSITIONS.csv` du dossier ALT du 16/10 (SHA-256 du ZIP `3b4ecad5…0377`), après examen visuel documenté. Exception D13/D42 accordée par Laurent, limitée aux 68 descriptions ALT FR de ce lot ; elle ne valide aucune caractéristique produit, performance, chiffre ni argument commercial.
+
+**Fichiers** — 52 fichiers `content/blog/` (FR 28, EN 23, de-ch 1), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après fusion et déploiement : textes alternatifs signifiants sur ces 131 images. Une fois #159 intégrée, les 4 occurrences MP4 (3 médias) deviennent l'`aria-label` de leur balise `<video>`.
+
+**Vérifié** — Chaque substitution conditionnée à la valeur actuelle de la base du 16/10 : 131 appliquées, 0 conflit. Diff : 52 fichiers, 52 lignes ±, contenu identique une fois les valeurs `alt` neutralisées. `node scripts/seo/verifier-json.mjs` (198 JSON valides), `npx tsc --noEmit`, `npx vitest run` (1047/1047), `npx next build` : verts. Rendu local (`next start`) : 131/131 ALT présents dans le HTML des 52 pages, aucune valeur `__wf_reserved` restante sur ces pages ; 4 balises MP4 inchangées hors `alt`. Fonction `transformVideoImages` de #159 (`1633293`) appliquée aux 4 fichiers MP4 : `aria-label` signifiant sur la branche, absent sur `main`. Parcours Playwright de la CI (sélecteur, sommaire, pages longues, consentement) : 101/101.
+**Supposé** — Que `main` n'ait pas bougé sur ces 52 fichiers entre la vérification et la fusion (base `c92740c`).
+**Non regardé** — `www` et `sysnext` (aucun déploiement : GO_PUBLICATION = NON ; R4 pour `www`). Images hors articles de blog. Pertinence linguistique EN/de-ch non revue par un natif.
+
+**Suite** — 28 valeurs `__wf_reserved` restent, hors périmètre : 8 jumeaux FR/de-CH de l'article EN protégé par D35, 10 dans les deux articles Amazon, 6 dans les fichiers EN réservés à la session Traductions, 4 dans l'article EN protégé par D35. GO_MERGE et GO_PUBLICATION à demander séparément ; #159 non fusionnée.
+
+---
+
+## 2026-10-16 · Hub bijoux C1 — finition éditoriale ciblée : « packshot » allégé, titres et FAQ (#104) · Claude de Laurent
+
+**Chantier** : finition éditoriale demandée par Laurent (`GO_CODE_CORRECTIF_EDITO_104`, `GO_PR_PUSH_CORRECTIF_EDITO_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104` = NON) | **PR** : #104, brouillon | **Tête avant correctif** : `e8d1dba`
+
+**Quoi** — Une passe, `data/secteurs.ts`, entrée `bijoux-joaillerie` seule (9 chaînes) :
+
+| Élément | Avant | Après |
+|---|---|---|
+| H2 des défis | Défis du packshot bijoux | Les défis de la photographie de bijoux |
+| H2 des solutions | Nos solutions pour le packshot bijoux | Les solutions Orbitvu pour la joaillerie |
+| FAQ 1 | Comment restituer la brillance des pierres et des métaux en packshot ? | Comment maîtriser les reflets sur les pierres et les métaux polis ? |
+| FAQ 4 | Les packshots de bijoux conviennent-ils à la vente en ligne ? | Les photos de bijoux conviennent-elles à la vente en ligne ? |
+| Description du hero | … : packshots, focus stacking et vues 360°, produits en série dans vos locaux. | … : le détail des pierres et des sertissages, des prises de vue homogènes d'une collection à l'autre et des vues 360°, dans vos locaux. |
+
+Répétitions retirées, sans perte d'information technique : réponse FAQ 1 (« les métaux polis de reflets contrôlés » → « le métal poli d'une lumière maîtrisée », la question portant désormais sur les reflets) ; réponse FAQ 3 (« disponibles », « disponibilité », « disponible » → une occurrence ; On-model toujours annoncé sans date et non présenté comme disponible) ; cas d'usage 1 (valeur « Un rendu homogène, saison après saison ») ; cas d'usage 2 (« exportée vers la boutique », la valeur parlant déjà des fiches produit) ; cas d'usage 3 (la phrase « Montrer une bague sous tous les angles » répétait mot pour mot un défi : « La bague tourne sur le plateau de l'Alphashot Micro Pro v2 ; avec le Superfocus, l'animation reste nette sur toute la rotation, prête pour la fiche produit. »).
+
+Inchangés : title, meta description, H1 « Packshot bijoux : équipez votre studio interne » (et donc l'ALT du hero, égal au H1), sous-titre du hero, caractéristiques Orbitvu, réserves sur les fonctions IA, cartes de solutions, cinq questions de FAQ (deux reformulées), trois cas d'usage, appel final et proposition de démonstration avec les bijoux du prospect. Aucune image, URL, canonical, hreflang, robots ni `noindex` D9 modifié ; aucune traduction EN.
+
+**Gabarit commun, non modifié ici** — Le CTA du hero « Demander un devis gratuit » (`app/[lang]/industrie/[slug]/page.tsx`, 17 hubs) est moins cohérent que l'appel final de démonstration. Correction à porter par un propriétaire unique du gabarit lors de la réconciliation des branches qui touchent ce fichier (#158, #107) ; #104 ne modifie pas `page.tsx`, pour ne pas créer de modification concurrente.
+
+**Fichiers** — `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — Voir la PR (tests strictement nécessaires : `tsc`, `eslint` ciblé, `verifier-json`, Vitest, `next build`, HTML prérendu, `FAQPage` = FAQ visible, CTA du hero).
+
+**Supposé** — Aucune nouvelle capacité : détail des pierres et sertissages (macro, Superfocus), prises de vue homogènes (réglages enregistrés) et vues 360° sont déjà documentés dans l'entrée.
+
+**Non regardé** — Preview (SSO) et `www` (R4).
+
+**Suite** — Validation du contenu métier par Sébastien (mail de Laurent déjà envoyé ; aucun message de cette session) ; GO de fusion distinct.
+
+---
+
+## 2026-10-16 · Hub bijoux C1 — démonstration avec les bijoux du prospect validée par Laurent ; QA Chrome consignée (#104) · Claude de Laurent
+
+**Chantier** : validation métier et consignation, mission V9 de Laurent du 16/10 (`GO_CODE_CONSIGNATION_104`, `GO_PR_PUSH_CONSIGNATION_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104`, `GO_ENVOI_SEBASTIEN` = NON) | **PR** : #104, brouillon | **Tête de référence** : `8e00893`
+
+**Quoi** — Documentation seule ; aucun texte du site, média, composant, lien ni fichier retiré de la V1 modifié.
+
+**Décision métier** — Laurent, 16/10/2026 : « OK pour démonstration avec les bijoux du prospect. » Qualification : **FAIT MÉTIER VALIDÉ PAR LAURENT** ; ce n'est pas une validation de Sébastien. Les trois formulations de `data/secteurs.ts` sont conservées sans modification, ainsi que leurs reprises dans les métadonnées et les données structurées :
+- titre de l'appel final (H2) : « Testez un studio Orbitvu avec vos bijoux » ;
+- texte de l'appel final : « Démonstration avec vos propres pièces, choix du système adapté et accompagnement par PackshotCreator, distributeur officiel Orbitvu. » ;
+- meta description : « … Studios Orbitvu adaptés, démonstration avec vos bijoux. » (reprise dans `og:description`, `twitter:description` et `Service.description`).
+Aucune garantie, aucun délai, aucune gratuité, aucun lieu ni aucune modalité de démonstration ajoutés.
+
+**QA Chrome (rapport de Laurent du 16/10)** — `QA_CHROME_104 = PASS_WITH_RESERVES` ; `REGRESSIONS_BLOQUANTES_104 = 0` ; `READY_FOR_VALIDATION_METIER_104 = OUI`. Contrôles : FR à 1 440 et 390 px, structure et rendu conformes ; EN, contenu français préexistant, `noindex, follow` conservé ; de-ch, témoin conforme à la production ; métadonnées, canonical, hreflang et `FAQPage` contrôlés ; aucun débordement horizontal ni média cassé ; aucun formulaire soumis. **Limite** : le rapport ne prouve pas directement le SHA de la Preview contrôlée (Preview de `8e00893` : déploiement `7126543049`) ; les autres contrôles restent valables. Réserve des trois formulations de démonstration : **levée** par la décision de Laurent. Réserve EN : documentée, hors périmètre ; aucune traduction, `noindex` D9 conservé.
+
+**DECISIONS.md** — Non modifié. Un fait métier de Laurent se consigne au JOURNAL et dans la PR (usage du dépôt) ; aucune dérogation à D15 ou D42 n'a été décidée (les dérogations antérieures, D51, D54, D55, ont chacune une entrée formelle).
+
+**D15 / D42, état au 16/10** —
+- Validation de l'affirmation commerciale : Laurent, oui.
+- Sébastien : aucune information ni validation reçue ou envoyée pour #104 C1 ; rien ne lui est attribué.
+- D15 : la PR réécrit une page existante, sans prix affiché ni URL supprimée ; mais D15 maintient en validation explicite de Sébastien « tout engagement vis-à-vis d'un tiers ». [Inférence] La démonstration proposée aux prospects peut relever de cette catégorie. Si c'est le cas, une validation explicite de Sébastien, ou une dérogation formelle de Laurent comparable à D55, reste requise avant fusion ; l'arbitrage rédactionnel de Laurent n'est pas rouvert.
+- Délai D15 : **non démarré**. Les conditions pratiquées (D54, contexte de #123) sont l'information de Sébastien, une CI verte et une QA Chrome de Laurent ; l'information de Sébastien n'est pas faite (`GO_ENVOI_SEBASTIEN = NON`).
+- D42 étape 5 (validation de Sébastien selon la gouvernance applicable) : ouverte.
+- Fusion : non autorisée.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — Tête distante et `refs/pull/104/head` = `8e00893` avant écriture ; diff du commit limité aux deux fichiers ci-dessus ; HTML du site non affecté (aucun fichier du site dans le diff).
+
+**Non regardé** — Preview (SSO) et `www` (R4) ; aucune QA nouvelle (rapport de Laurent repris tel quel).
+
+**Suite** — Décision de Laurent sur la qualification « engagement vis-à-vis d'un tiers » (validation explicite de Sébastien ou dérogation formelle) ; puis information de Sébastien sur GO distinct ; délai D15 ; GO de fusion distinct.
+
+---
+
+## 2026-10-16 · Hub bijoux C1 — retrait des fichiers V1 non rendus ; engagement « démonstration » isolé (#104) · Claude de Laurent
+
+**Chantier** : arbitrage final de préparation de #104 C1, décisions de Laurent du 16/10 (`GO_CODE_NETTOYAGE_104`, `GO_PR_PUSH_NETTOYAGE_104` = OUI ; `GO_MERGE_104`, `GO_PUBLICATION_104` = NON) | **PR** : #104, brouillon | **Base** : `main` `c92740c` ; tête avant nettoyage `a5bb695`
+
+**Quoi** — Retirés du diff final, parce qu'ils ne sont plus rendus ni référencés : `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx` ; la fonction `sectorResourceLinks` de `components/maillage/MaillageSections.tsx` (fichier redevenu identique à `main`) ; les 6 AVIF de `public/images/secteurs/bijoux/` (`superfocus-mise-au-point-{avant,arriere}`, `v104-1-macro-joaillerie`, `v104-360-rotation`, `v104-hero-studio-monitor-bijou`, `v104-retouche-export`). Diff final contre `main` : `data/secteurs.ts` (entrée `bijoux-joaillerie`), `JOURNAL.md`, `ETAT.md`. Hero `hero-secteur-bijoux` et H1 « Packshot bijoux : équipez votre studio interne » conservés tels quels (décisions de Laurent). Aucun texte, visuel ni gabarit modifié.
+
+**Conservation, vérifiée avant retrait** —
+- Dépendances : aucune référence à `HubBijoux`, `sectorResourceLinks` ni aux 6 AVIF hors de `HubBijoux.tsx` (code, données, contenus, tests, e2e, configuration) ; seules des mentions historiques dans `JOURNAL.md` et `ETAT.md`.
+- Historique : blobs identiques dans `1a9a607` (dernière V1 rendue) et `a5bb695` ; ces deux commits sont des ancêtres de la branche et de `refs/pull/104/head` (GitHub). `HubBijoux.tsx` : `1a9a607` (version rendue) et `a5bb695` (même fichier, note C1).
+- Sources : les 2 recadrages Superfocus proviennent de captures des guides présentes sur `main` (`public/images/guides/67d991805e0a0980101b8a95`, `…8a9b`, `67d99180406090f303cb444c`, `67d991831d2c1c71ab213bca`) ; les 4 `v104-*` sont des conversions AVIF d'illustrations des packs de Laurent du 08/10 (PNG non commités) : seule copie commitée = l'historique ci-dessus ; `HubBijoux.tsx` : idem.
+- Copie hors git : archive `PSC_104_V1_FICHIERS_RETIRES_2026-10-16.zip` (fichiers à `a5bb695` et `1a9a607`, diff de `sectorResourceLinks`, `SHA256SUMS.txt`, manifeste), remise à Laurent.
+
+**Engagement métier isolé, à confirmer explicitement par Sébastien** — La proposition de démonstration avec les pièces du prospect figure dans trois champs de l'entrée, inchangés : meta description (« … Studios Orbitvu adaptés, démonstration avec vos bijoux. »), titre de l'appel final (« Testez un studio Orbitvu avec vos bijoux »), texte de l'appel final (« Démonstration avec vos propres pièces, choix du système adapté et accompagnement par PackshotCreator, distributeur officiel Orbitvu. »). Préexistant sur les 17 hubs (gabarit, hors #104) : « Voyez nos systèmes en action sur vos propres produits. » Statut : à confirmer par Sébastien, question préparée dans la PR, **non envoyée** ; la période D15 n'est pas lancée (conditions non remplies : QA Chrome de Laurent à faire).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx` (supprimé), `components/maillage/MaillageSections.tsx`, `public/images/secteurs/bijoux/*.avif` (6, supprimés), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit` vert ; `eslint` sur `data/secteurs.ts` et `MaillageSections.tsx` : 0 problème ; `verifier-json` 198 ; Vitest 1047/1047 ; `npx next build` vert. HTML prérendu : **384/384 identiques** à un second build de `a5bb695` (identifiants de build et chemins `/_next/static` neutralisés). Contre le premier build de `a5bb695`, `fr` et `en` `studios-photo-automatises` différaient par l'ordre du flux RSC seulement (HTML hors `<script>` identique) ; deux builds de `a5bb695` diffèrent de la même façon : ordre non déterministe, sans lien avec ce commit. CSS global : 23 règles retirées, 0 ajoutée ; les 23 classes (utilisées par `HubBijoux.tsx` seulement) n'apparaissent dans aucune des 384 pages. Les preuves de QA de `a5bb695` (rendu local, liens, FAQ, métadonnées) restent valables.
+
+**Supposé** — Conservation durable de `refs/pull/104/head` par GitHub après fusion ou suppression de la branche (comportement documenté de GitHub, non vérifiable ici au-delà de l'état actuel).
+
+**Non regardé** — Preview (SSO) et `www` (R4). Aucune nouvelle QA générale (HTML inchangé).
+
+**Suite** — CI et Preview de la nouvelle tête ; QA Chrome de Laurent sur le périmètre court ; puis information de Sébastien (D42 étape 5, D15) avec la confirmation de l'engagement ; GO de fusion distinct.
+
+---
+
+## 2026-10-16 · Hub bijoux — reprise de #104 en version allégée C1 : gabarit commun, données de f9a6d13 · Claude de Laurent
+
+**Chantier** : mission V9 de Laurent du 16/10, « GO REPRISE #104 BIJOUX, VERSION ALLÉGÉE C1 » (`GO_REPRISE_104`, `GO_CODE_104`, `GO_PR_PUSH_104` = OUI ; `GO_MERGE` et `GO_PUBLICATION` = NON) ; décision de Laurent, non inscrite dans `DECISIONS.md` | **PR** : #104, brouillon | **Base** : `main` `c92740c`, intégré dans la branche par commit de fusion (`7c35eb9`) ; tête avant reprise `1a9a607`
+
+**Quoi** — `/fr/industrie/bijoux-joaillerie` (et `/en/…`, `noindex`, données FR, D9) revient au gabarit commun des hubs, avec l'entrée `bijoux-joaillerie` de `data/secteurs.ts` reprise de f9a6d13 (B3, 07/10) :
+- `app/[lang]/industrie/[slug]/page.tsx` : import et retour anticipé de `HubBijoux` retirés ; fichier identique à `main`. Gabarit commun non modifié (U04 relève de la session G6, #158).
+- `data/secteurs.ts` : entrée `bijoux-joaillerie` de f9a6d13 (title, meta, H1, hero, défis, deux cartes de solutions, trois cas d'usage, CTA, FAQ de 5 questions), sans `casClients` ni carte BlendAI. Une phrase corrigée par rapport à f9a6d13 : « Les outils IA d'Orbitvu Station interviennent après la prise de vue » → « travaillent sur la photo du bijou réel » (AI Masking agit pendant la capture). Reste du fichier identique à `main`.
+- `HubBijoux.tsx`, `sectorResourceLinks` et les 6 AVIF de `public/images/secteurs/bijoux/` : conservés sur la branche, non rendus (note d'en-tête ajoutée au composant). Visuel trois pièces non réintroduit ; aucune illustration produite.
+- Phase B (finition visuelle du 11/10) : abandonnée pour cette reprise, non terminée.
+
+**Pourquoi** — Décision de Laurent du 16/10 : rouvrir #104 seule, sous la forme la plus légère, sur les données éditoriales déjà préparées et contrôlées (QA humaine PASS du 07/10 sur `2538b51`).
+
+**Claims de l'entrée** — Fresh-check orbitvu.com du 16/10 (`/software/ai`, `/software/orbitvu-station`, `curl`, lecture gratuite) : « AI Toolkit available via Orbitvu Station », « On-model coming soon », AI Photo Assistant sur Alphashot Pro G2 et XL G2, AI Masking « right in the capture process », AI Retoucher (reflets, imperfections, couleurs). Référentiel D45 de `main` : Pro G2 35 × 35 × 40 cm (`axes: 'non-precises'`), 10 kg, `conforme` ; Micro Pro v2 18 cm, 1 kg. Assistant Superfocus qui suggère les paramètres : guide FR focus stacking bague, étape 3. Réservation des outils IA aux abonnés : note 26.2 (lue le 08/10, non relue). « Distributeur officiel Orbitvu » : formulation déjà publiée sur `main` (12 fichiers).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx`, `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — [Inférence] Hub aligné sur le lexique « packshot bijoux », sans BlendAI ni claims chiffrés non sourcés ; effet de classement non prévisible (baseline 1 clic / 18 impressions en 90 jours, V2 `03` L10). Cela repose sur des schémas observés. Aucune publication avant un GO distinct.
+
+**Vérifié** —
+- Fresh-check : `main` `c92740c` ; tête distante de #104 `1a9a607`. PR ouvertes : #158 (U04, gabarit des hubs), #146, #133, #108, #107, #105, #104. #158 et #107 touchent `page.tsx`, #107 aussi `data/secteurs.ts` (entrée vin) ; #105, #107, #108 non modifiées.
+- `npx tsc --noEmit` vert ; `npx eslint` sur `data/secteurs.ts`, `HubBijoux.tsx`, `MaillageSections.tsx` : 0 problème ; `verifier-json` : 198 JSON valides ; Vitest 1047/1047 (57 fichiers) ; `npx next build` vert (variables factices).
+- HTML prérendu de `main` `c92740c` (arbre séparé) contre la branche, identifiant de build et chemins `/_next/static` neutralisés : 384 pages, **382 identiques, 2 différentes** (`fr` et `en` `industrie/bijoux-joaillerie`). `/de-ch/branchen/schmuck` et les 16 autres hubs FR, EN et de-ch identiques.
+- Hub FR et EN contre `main` : robots (`en` : `noindex, follow`), canonical, hreflang (fr, fr-CH, de-CH, x-default ; pas d'`en`, D9) et types JSON-LD (Organization, BreadcrumbList, Service, FAQPage) identiques ; `Service.url` identique ; `FAQPage` 5 questions = FAQ visible ; 16 liens de la zone principale, mêmes `href` qu'à `main`, 16/16 en 200 par langue ; 0 « BlendAI », « −90 % », « 20-50 », « lifestyle », « polarisé », « Cartier », « Tiffany » dans le texte visible (`main` : 3, 1, 1, 4, 2, 1, 1).
+- Rendu local (`next start`, Chromium) FR et EN à 1 440, 1 024, 768 et 390 px, branche et `main` : 1 H1, 0 débordement, 0 erreur console, 0 réponse 4xx, 3 images chargées avec alt. Bas du CTA du hero : 675, 723, 938 px (premier écran), 1 009 px à 390 (hors premier écran, comme `main`). Hauteur à 1 440 : 9 552 px (`main` : 8 017).
+- Playwright, specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `consentement-medias`) : 101/101. `seo` et `language-switch` filtrés sur les hubs : 48 réussis, 4 échecs identiques sur `main` (pages identiques).
+- `verifier-consequences` : voir la PR.
+
+**Supposé** — Provenance et génération du visuel du hero `hero-secteur-bijoux` : classé « généré par IA » par l'inventaire de #104 du 08/10, non revérifié.
+
+**Non regardé** — Preview Vercel (Vercel Authentication) et `www` (R4) ; Firefox, Safari, appareils réels. Prose EN et de-ch : aucune traduction (GO non donné ; EN `noindex` sert les données FR). Aucun appel payant.
+
+**Réserves (hors périmètre, non corrigées)** —
+- Hero conservé provisoirement : `hero-secteur-bijoux` montre une bague solitaire, un bracelet rivière et, au centre, une montre à cadran bleu portant un texte de marque illisible ; sujet dominant horloger, pièces en bas du cadre ; alt = H1 (gabarit). Adéquation à la joaillerie à juger par Laurent.
+- Gabarit commun : réserves « Visuel solution » vides des deux cartes (U04, #158) ; « Demander un devis gratuit » et « Découvrir nos formations » dans le hero ; « 30 minutes avec un expert » dans l'appel final ; bouton « Comparer tous les modèles » ; JSON-LD `Organization` avec « IA BlendAI ».
+- Catalogue des machines (`machines.ts`) : carte Micro Pro v2 « Jusqu'à 18x15x16 cm » (D45 : 15 × 16 non vérifiables) ; Pro G2 étiquetée « Petit ».
+
+**Suite** — CI et Preview de la nouvelle tête ; QA humaine de la Preview par Laurent ; information de Sébastien (D42 étape 5, D15 : réécriture d'une page existante ; engagement « Démonstration avec vos propres pièces ») ; décision sur les fichiers V1 non rendus avant fusion ; GO de fusion distinct.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
@@ -294,6 +616,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Audit B, lot L5 à L11 — finition linguistique EN de 6 articles (Draft) · Claude de Laurent
+
+**Chantier** : Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11 | **PR** : lot B L5–L11 (Draft) | **Base** : `main` `c92740c`
+
+**Quoi** — Anglais corrigé dans 6 articles EN (corps, FAQ ; quelques title, h1 et description) : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Retraduction fidèle depuis le FR publié pour les passages illisibles de 06 et 10 (autorisation de Laurent du 16/10).
+
+**Pourquoi** — Audit B : traductions Webflow automatiques, 36 à 110 anomalies EN encore présentes par article sur `main` au 16/10. GO_CODE_B_L5_L11 et GO_PR_PUSH_B_L5_L11 de Laurent du 16/10.
+
+**Fichiers** — les 6 JSON EN ci-dessus ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur les URL, ancres, canonical, hreflang ou robots ; lisibilité EN.
+
+**Vérifié** — Script d'invariants contre `main` : balises HTML (donc liens, images, ALT) identiques, ancres H2/H3 identiques, chiffres identiques, champs hors title/h1/metaTitle/description/content/faqs inchangés, nombre de FAQ identique. `verifier-json` 198 valides ; `verifier-consequences` effet local ; `vitest` 57 fichiers, 1047 tests ; `tsc` ; `next build` (valeurs factices). Relecture complète du texte reconstruit de 06.
+**Supposé** — Le FR publié est la référence de sens ; aucune validation factuelle n'est apportée par cette PR.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; FR et de-ch ; ALT et images (hors périmètre) ; véracité des claims, maintenus tels quels et listés en réserves D42 dans la PR.
+
+**Suite** — HOLD avant fusion : décision groupée sur les réserves D42 (noms de produit non harmonisés, claims, chiffres, témoignages), QA Preview humaine, GO_MERGE. L1 (D35/F5) et #146 hors périmètre.
+
+**MàJ 16/10 (décision et correctifs)** — PR #160. Décision groupée de Laurent (« V9 — DÉCISION GROUPÉE PR #160 ») : option A, exception D13/D42 limitée à la finition linguistique des 6 articles EN de #160 ; ni validation des claims préexistants, ni nouvelle promesse, ni renforcement ; réserves D42 conservées comme sujets éditoriaux distincts. Traductions validées : 08 « cut », 10 « background removal », 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`).
+**QA_CHROME_160 = PASS_WITH_RESERVES** (Laurent, Chrome, 6 articles, sans régression bloquante). Seul défaut corrigé : FAQ 2 de 06, « the smallest details36. » → « the smallest details. » (appel de note parasite, déjà présent sur `main`). Les autres anomalies relevées sont préexistantes, hors périmètre, conservées en réserve. Les cinq autres articles n'ont pas changé depuis la QA : QA réutilisée.
+**Vérifié** — 06 : FAQ visible et JSON-LD FAQPage identiques sur le build local ; CI et Preview : voir la PR. **Non regardé** — `www` (R4). GO_MERGE_160 et GO_PUBLICATION_160 : NON à ce stade.
+
+**MàJ 17/10 (sortie)** — GO final de Laurent (« PACKSHOTCREATOR V9 — GO FINAL PR #160 ») : GO_CODE_SORTIE_160, GO_PR_PUSH_SORTIE_160, GO_MERGE_160 et GO_PUBLICATION_160 sous conditions. Preuves acquises : CI 4/4 sur `ab60f21` ; QA_160_FAQ = PASS sur la Preview (absence de « details36 », FAQ visible et JSON-LD cohérents). `main` `1d1d970` (#161, ALT) fusionné dans la branche sans conflit (`7b19f5c`) ; aucun des six JSON EN n'est touché par #161.
+**Vérifié** — Les six JSON EN sont identiques octet pour octet à `ab60f21` ; le diff de la PR contre `main` se limite à ces six fichiers et à la documentation (JOURNAL, ETAT, DECISIONS). Exception D13/D42 de #160 inscrite dans DECISIONS. **Suite** — Fusion, puis contrôle `sysnext` des six URL EN ; SHA de fusion et résultats consignés dans la PR (pas de commit supplémentaire sur `main`). `www` réservé à la campagne Chrome groupée de Laurent : non vérifié.
+
 ## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
 
 **Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
@@ -316,6 +663,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **MàJ 16/10 (exception D13/D42 de Laurent)** — La demande à Sébastien prévue le 15/10 est **retirée** (décision de Laurent du 15/10 : ne pas le solliciter ; mention retirée du descriptif de #152). Laurent accorde le 16/10 une exception ponctuelle D13/D42 limitée à #152, consignée dans `DECISIONS.md` : corrections linguistiques L2 à L4 sans nouvelle validation de Sébastien ; affirmations préexistantes **non validées**, réserves maintenues (Station 24.2.0, SUN Cloud, fréquence des mises à jour, caractéristiques optiques, chiffres, garanties, superlatifs). Ni #146, ni FR/de-ch, ni L1 (D35/F5), ni D9. CI 4/4 sur `ef469da`.
 **Reste avant fusion** — QA Preview humaine (3 pages, 4 formats, campagne QA de Laurent), puis GO_MERGE_152 et GO_PUBLICATION_152 ; contrôle `sysnext` puis Chrome sur `www`. Aucun travail documentaire supplémentaire prévu avant la fusion, hors consignation du résultat QA et de la fusion.
+
+**MàJ 16/10 (fusion et déploiement)** — QA_OK_152 de Laurent (rapport Chrome du 16/10, 3 pages × 4 formats ; MP4 affiché comme image sur L3 : préexistant, backlog images). GO_MERGE_152 et GO_PUBLICATION_152. Fusion `b8ae3b2` (05:54:39 UTC). `sysnext` : nouveau contenu servi à 05:55:38 ; à 05:55:49, 3 pages en 200, title et H1 nouveaux, canonical, hreflang, absence de `noindex`, FAQPage et ancres identiques à l'état d'avant fusion ; L1 inchangé ; `smoke.mjs` « Tout est vert — 17 pages, 3 ressources ». `www` : 403 pour un client script (R4) → contrôle Chrome **BLOCKED**, à faire dans la campagne `www` groupée.
 
 ---
 
@@ -3188,6 +3537,335 @@ Aucun de ces 8 fichiers n'est modifié par #109 ou #111 : aucune classe COLLISIO
 **Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4). GSC : aucune nouvelle lecture ; seul chiffre disponible, celui de #70 pour l'article 2D (5 impressions, 0 clic sur 90 jours au 27/09). Liste source des 170 URL : hors dépôt, non réconciliée ligne à ligne. Les 70 titles de 66 à 79 caractères (IGNORE) et les classes DEFER et KEEP : non touchés. Contenu de l'article 2D : mêmes affirmations de la gamme PackshotCreator/Ortery que son jumeau EN en HOLD (D9-01) ; non modifié, backlog factuel.
 
 **Suite** — Laurent : arbitrer le point de gouvernance de #70 (title et D13), puis GO de fusion distinct ; #70 se ferme séparément sur GO. Chevauchement apparu après ouverture : #120 (autre session, 16:23 UTC ; #119 ouverte à 16:20 UTC) modifie les 2 mêmes titles EN avec les mêmes valeurs, et un 3e article EN (`how-shotflow-improves-real-time-task-tracking`, « | -50% delay » retiré du title) que sa description ne cite pas ; les candidats 7 et 10 ne doivent être fusionnés qu'une fois : choix de Laurent. Après fusion : `smoke.mjs`, puis Chrome sur `www`. Lot C : décisions de contenu séparées, après #112 et #113 pour les 3 fichiers qu'elles touchent.
+
+---
+
+## 2026-10-08 · Hub bijoux — finalisation visuelle : hero du pack, visuels 360° et retouche (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Finalisation visuelle #104 » (décision directeur : hero du pack, V104-1 conservée réduite, V104-2 abandonnée, visuel trois pièces conservé pour la Preview, deux visuels d’appoint) | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant finalisation `eeb8989`
+
+**Quoi** — Visuels seulement. H1, title, architecture, ordre des sections, vocabulaire, appels, FAQ, claims IA, métadonnées et maillage inchangés.
+- Hero : l’illustration de `eeb8989` (différente du fichier du pack, PSNR 11,4 dB) est remplacée par `V104-HERO_STUDIO_MONITOR_BIJOU.png` : studio, bague posée dedans, écran avec son gros plan. ALT et légende inchangés.
+- Section 360° : `V104-ICON_360_ROTATION.png` sous le texte, sur un cartouche clair (ses flèches se perdent sur le fond sombre), 528 × 134 px au plus. ALT : « Illustration éditoriale montrant plusieurs vues d’un bijou et une rotation. » Légende : « Illustration générée par IA, trois vues d’une même pièce et sa rotation. »
+- Section retouche et export : `V104-ICON_RETOUCHE_EXPORT.png` sous le texte, 440 × 127 px au plus, à côté de l’image IQ Mask réelle (560 × 560), qui reste dominante. ALT : « Illustration éditoriale montrant la retouche, le détourage et la diffusion d’une image de bijou. » Légende : « Illustration générée par IA, retouche, détourage et diffusion d’une image. »
+- V104-1 : KEEP, 480 × 320 px au plus, inchangée. V104-2 : ABANDONNÉE, non réintégrée. Visuel trois pièces : conservé pour la Preview, TO_CONFIRM.
+
+**Statuts** — V104_HERO, V104_360, V104_RETOUCHE_EXPORT : EDITORIAL_ILLUSTRATION ; provenance : ChatGPT native image generation, pack `PSC_104_BIJOUX_INTEGRATION_VISUELS_2026-10-08` fourni par Laurent (SHA-256 `2d884555…`, reçu deux fois, identique). V104_1 : EDITORIAL_ILLUSTRATION, KEEP. V104_2 : ABANDONNÉ. COLLECTION_CURRENT : TO_CONFIRM (origine et droits ; bloquant pour la fusion s’ils ne sont pas confirmés). Aucune de ces images n’est une photo d’un studio Orbitvu, une capture d’Orbitvu Station, une vraie vue 360° ni un résultat AI Masking ou AI Retoucher.
+
+**Fichiers web** — `public/images/secteurs/bijoux/v104-hero-studio-monitor-bijou.avif` (source PNG 1 448 × 1 086 ; AVIF 1 448 × 1 086, qualité 62, 49 172 octets, PSNR 43,4 dB ; sans recadrage), `v104-360-rotation.avif` (source PNG 2 172 × 724 transparent ; marges transparentes retirées, AVIF 1 200 × 306 avec transparence, 43 322 octets), `v104-retouche-export.avif` (source PNG 2 172 × 724 transparent ; AVIF 1 200 × 346 avec transparence, 67 186 octets). Supprimé : `v104-hero-studio-joaillerie.avif` (hero de `eeb8989`, plus référencé). PNG, ZIP, README et prompt du pack non commités.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, les trois AVIF ci-dessus, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `eeb8989`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens et FAQ (3, structurée et visible) identiques ; seul le hero est préchargé. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 10 images chargées avec alt, 0 contraste inférieur à 3:1, `#tester` atteint, formulaire non soumis. Hero : 584 × 438 px à 1 440, 456 × 342 à 1 024, 720 × 540 à 768, 358 × 269 à 390 (studio, écran et gros plan lisibles). Visuel 360° : 326 × 83 px à 390 ; retouche : 358 × 103 px à 390. 14 liens internes en 200. Specs de la CI : 81/81. `verifier-consequences` : effet local.
+
+**Points relevés (R7)** — La bague à l’écran du hero (or jaune, pierre coussin, corps fendu) ressemble à celle de V104-1 : la même bague revient deux fois, ce que la mission demande d’éviter. L’or jaune reste majoritaire (hero, V104-1, Superfocus, mise en place, IQ Mask) ; le métal blanc vient des deux visuels d’appoint et du visuel trois pièces.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). Droits d’utilisation des illustrations.
+
+**Suite** — QA humaine finale de la Preview ; confirmation de Sébastien sur le visuel trois pièces et sur l’appel final ; GO de fusion distinct. Aucune nouvelle variante visuelle #104 dans cette session.
+
+---
+
+## 2026-10-08 · Hub bijoux — nouveau hero éditorial V104-HERO (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Intégration du nouveau hero #104 » ; constat de Laurent : le hero pièce et machine se lisait comme un catalogue technique, sans désir ni contexte | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant intégration `09aad38`
+
+**Quoi** — Hero seulement, et ajustements nécessaires à son intégration. H1, chapeau, appels, vocabulaire, collection, V104-1, FAQ, IA, 360°, maillage et métadonnées inchangés.
+- Hero : le diptyque (bague en métal blanc et studio) est remplacé par une illustration générée par IA : un studio de photographie de petits objets, une bague posée dedans, son gros plan sur un écran, un bureau de joaillerie. ALT : « Illustration d’un studio de photographie de joaillerie avec un bijou placé dans le système et son image agrandie sur un écran. » Légende, visible à toutes les largeurs : « Illustration générée par IA, représentation éditoriale d’un workflow de photographie de joaillerie. »
+- Section studio : le visuel produit réel de l’Alphashot Micro Pro v2 (celui de la fiche), qui était dans le hero, revient à côté de la photo de mise en place (légende « L’Alphashot Micro Pro v2. »).
+- Le recadrage `bague-metal-blanc-pierre-rouge.avif`, ajouté en `09aad38` pour l’ancien hero et plus référencé, est supprimé.
+
+**Provenance** — HERO_ASSET_STATUS = EDITORIAL_ILLUSTRATION ; PROVENANCE = ChatGPT native image generation. Source : image jointe par Laurent au message du 08/10 (WebP 1 536 × 1 024, sRGB, 142 518 octets, SHA-256 `be55d60d…`) ; aucun ZIP ni fichier `V104-HERO_STUDIO_JOAILLERIE.png` reçu. Version web : `public/images/secteurs/bijoux/v104-hero-studio-joaillerie.avif`, AVIF 1 536 × 1 024, qualité 62, 70 699 octets, PSNR 42,8 dB contre la source, sans recadrage ni retouche. Ce n’est ni une photo d’un studio Orbitvu, ni une capture d’Orbitvu Station, ni un résultat Alphashot, Superfocus ou IA.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `public/images/secteurs/bijoux/v104-hero-studio-joaillerie.avif` (nouveau), `public/images/secteurs/bijoux/bague-metal-blanc-pierre-rouge.avif` (supprimé), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `09aad38`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens et FAQ (3, structurée et visible) identiques ; seul le visuel du hero est préchargé. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 8 images chargées avec alt, 0 contraste inférieur à 3:1, `#tester` atteint, formulaire non soumis. Visuel du hero : 584 × 390 px à 1 440, 456 × 304 à 1 024, 720 × 480 à 768, 358 × 239 à 390 (studio, écran et gros plan lisibles ; pas de recadrage mobile). 14 liens internes en 200. Specs de la CI : 81/81. `verifier-consequences` : effet local.
+
+**Supposé** — [Inférence] L’image jointe au message est la sortie à résolution native de ChatGPT (1 536 × 1 024, comme V104-1) ; si le PNG d’origine est transmis, seul le fichier AVIF est à régénérer. Cela repose sur des schémas observés.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). Droits d’utilisation de l’illustration.
+
+**Points relevés (R7)** — Le socle de la machine générée porte un logo et le nom « ORBITVU », et l’écran imite une interface de prise de vue : la légende visible est la seule chose qui distingue l’image d’un vrai studio. Le gros plan à l’écran est une bague pavée en or jaune, ce qui ramène l’or jaune et la bague en tête de page après la reprise du matin. Avec le retrait du recadrage, la page n’a plus de pièce réelle en métal blanc seule (le métal blanc reste dans le visuel trois pièces).
+
+**Suite** — QA humaine du hero sur la Preview ; confirmation de Sébastien sur le visuel trois pièces et sur l’appel final ; GO de fusion distinct.
+
+---
+
+## 2026-10-08 · Hub bijoux — reprise visuelle et lexicale : pièces, métaux, hero, macro, collection (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Reprise visuelle et lexicale #104 » ; fait métier de Laurent : la page répétait « bijou », « bague » et l’or jaune, alors que la joaillerie a un vocabulaire, des matières et des typologies plus riches | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant reprise `49932f2`
+
+**Quoi** — H1, ordre des sections, FAQ, métadonnées et claims validés (IQ Mask, AI Masking, AI Retoucher en bêta) inchangés.
+- Hero : deux tuiles 4:5 de même taille. À gauche, une bague en métal blanc sertie d’une pierre rouge (photo réelle du guide « Quels réglages faire pour photographier des bijoux ? », recadrée sur le fond seulement : `bague-metal-blanc-pierre-rouge.avif`) ; à droite, le visuel produit de l’Alphashot Micro Pro v2, son fond ramené à l’affichage au gris de la photo (`mix-blend-multiply`, fichier inchangé). Légende : « À gauche, une prise de vue réalisée dans un Alphashot Micro Pro v2 pour notre guide des réglages. À droite, le studio. »
+- Lumière : V104-1 passe d’un bandeau de 1 232 × 616 px à 480 × 320 px au plus, à droite de l’introduction ; les trois points et les deux mises au point Superfocus suivent. Texte : or jaune, or rose, métal blanc ; pavage ; texture martelée, satiné, gravure ; monture ; fermoir d’une chaîne.
+- Collection : V104-2 (générée) retirée et son fichier supprimé ; remplacée par le visuel réel trois pièces de l’article de Sébastien du 25/09 (`bijoux-profil-rendu-constant.avif` : bague en métal blanc, bracelet en métal jaune, bague en métal rose sertie de pierres de couleur). Légende : « Trois pièces, trois teintes de métal, un même fond. »
+- 360° : « Voir la bague sous tous ses angles » → « Montrer aussi le profil et l’arrière d’une pièce » ; profil d’une bague, galerie, bélière d’un pendentif, fermoir d’un bracelet.
+- Studio et retouche : légendes « Mise en place au centre du plateau, après nettoyage. » (étape 1 du guide) et « La bague ajourée posée plus haut, détourée avec l’IQ Mask d’Orbitvu Station. » ; « la photo du bijou réel » → « la photo du produit réel ».
+- Appel final : « Essayez le studio sur vos propres pièces » ; texte : références représentatives, métal poli, serti délicat, pierre difficile à éclairer, petite série déclinée en variantes ; bouton du hero « Tester avec vos références » ; titre du formulaire « Tester mon workflow ». Engagement « Nous pourrons regarder ensemble… » conservé.
+
+**Inventaire des visuels** — Retenus : bague `67d9918405afdf485e76dec4` (réelle ; captures Orbitvu Station du même guide avec le panneau « ALPHASHOT MICRO V2 ») ; trois pièces `blog/migrer-ancien-packshotcreator/bijoux-profil-rendu-constant.avif` (réelles en apparence, 1 600 × 520). Écartés : `guides/67d99183a2299f1c17eaaa90` (studio installé, mais une montre Rolex à l’écran) ; `illustrations/benefits-bijoux`, `hero/hero-landing-bijoux*`, `hero/hero-secteur-bijoux*`, `blog/…/collier-chainette-pendentif`, `blog/…/bijoux-portes-trois-gros-plans` (générés par IA) ; `hero/alphashot-micro-v2-slide*` (dessins au trait) ; `machines/alphashot-micro-v2/packshot-*` (300 px, provenance non établie) ; `guides/67d991842f685a27fca1fc0e` et `machines/alphashot-micro-v2/hw-reflection` (même bracelet, origine Orbitvu probable, non établie) ; `gallery/jewelry-macro` (vignette vidéo marquée Orbitvu, 600 px).
+
+**Comptage du corps visible (FR, hors formulaire)** — avant / après : « bijou » 6 / 2, « bijoux » 9 / 6, « bague(s) » 12 / 6, « or jaune » 0 / 1. Restent fixes : H1, surtitre, titres des guides liés, FAQ.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `data/secteurs.ts`, `public/images/secteurs/bijoux/bague-metal-blanc-pierre-rouge.avif` (nouveau, 1 120 × 1 400, 24 828 octets), `public/images/secteurs/bijoux/v104-2-collection-coherence.avif` (supprimé), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `main`, 370 identiques, 4 différentes ; contre `49932f2`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, FAQ (3, structurée et visible) identiques ; seul lien modifié : libellé de l’ancre `#tester`. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 8 images chargées avec alt, 0 contraste inférieur à 3:1, `#tester` atteint, formulaire non soumis. Tuiles du hero : 284 × 355 px à 1 440, 173 × 216 px à 390. 14 liens internes en 200. Specs de la CI : 81/81. `verifier-consequences` : effet local.
+
+**Supposé** — Équivalence « Alphashot Micro V2 » (guides) et « Alphashot Micro Pro v2 » (fiche), déjà retenue dans les révisions précédentes. Le visuel trois pièces est une photographie réelle : son origine (prise de vue PackshotCreator, Orbitvu ou client) n’est pas documentée dans le dépôt, et une signature gravée, illisible, figure dans l’anneau de gauche. La légende n’en fait pas la preuve d’un modèle Orbitvu Station.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). Droits d’utilisation du visuel trois pièces et de V104-1.
+
+**Suite** — Confirmation de Sébastien sur l’origine et les droits du visuel trois pièces avant fusion ; à défaut, le retirer et produire le visuel éditorial décrit dans la PR (bague, pendentif, paire de boucles d’oreilles, bracelet ; métal jaune, métal blanc, or rose ; pierres claires ; même fond, même lumière ; non généré). QA humaine finale de la Preview ; validation de Sébastien sur l’appel final ; GO de fusion distinct.
+
+---
+
+## 2026-10-08 · Hub bijoux — révision ciblée : hero produit et studio, IA, appel final (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Révision ciblée #104 » ; fait métier de Laurent : le prospect vient avec les produits qu’il photographie au quotidien, simples ou complexes, et les images servent l’e-commerce, les catalogues, la documentation et des besoins internes | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant révision `77b90d2`
+
+**Quoi** — H1, structure, FAQ, V104-1 et V104-2 inchangés.
+- Hero : diptyque d’images réelles, sans montage. Bague du guide de focus stacking (recadrage 4:5 du fond seulement) et visuel produit de l’Alphashot Micro Pro v2 (celui de la fiche). Légende : « La bague et le studio où elle a été photographiée, un Alphashot Micro Pro v2, pour nos guides de focus stacking. »
+- Section studio : la photo de mise en place d’une bague (guide bague) remplace le visuel de la machine, désormais dans le hero.
+- Retouche et export : « Le détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose aussi AI Masking, qui retire le fond pendant la prise de vue, sans étape de détourage à part, et AI Retoucher, encore en bêta, qui corrige des reflets indésirables, des imperfections ou des couleurs. Dans les deux cas, l’IA travaille sur la photo du bijou réel. » Export : « prêtes à être utilisées : e-commerce, catalogues, documentation ou besoins internes » (au lieu de « prêtes pour la fiche produit »).
+- Appel final : « Apportez vos pièces difficiles » → « Testez le workflow avec les bijoux que vous photographiez » ; texte : pièces représentatives de ce qui est photographié au quotidien, simples ou complexes ; prise de vue, lumière, profondeur de champ, cohérence d’une série, traitement, étapes où l’IA peut aider, fichiers adaptés aux usages.
+
+**Sources** — orbitvu.com, lu le 08/10/2026 : page « AI Product Photography » (`/software/ai` : « AI Masking removes the background right in the capture process », « Clean cutouts, no extra step », AI Retoucher « remove reflections, clean up imperfections, adjust color grading », « Every AI step is grounded in a real product », AI Photo Assistant réservé aux Alphashot Pro G2 et XL G2) ; note de version Orbitvu Station 26.2 du 23/06/2026 (AI Masking « built directly into the capture process », choix « AI Mask » ou « IQ Mask » ; AI Retoucher « (Beta) » ; « All AI features are available exclusively to users on subscription plans »). Aucune de ces pages ne précise les appareils compatibles avec AI Masking et AI Retoucher : la page dit « Orbitvu Station propose », pas « la Micro Pro v2 fait ». Usages des images : fait métier de Laurent du 08/10.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `verifier-json` (195), Vitest 483/483, `npx next build` verts. HTML prérendu : contre `main`, 370 identiques, 4 différentes ; contre `77b90d2`, 372 identiques (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens, FAQ (structurée et visible) identiques. Rendu local FR et EN à 1 440, 1 024, 768, 390 px : 1 H1, 0 débordement, 0 erreur, 8 images chargées avec alt, 0 contraste inférieur à 3:1, formulaire non soumis ; à 390 × 844, bague et machine côte à côte de 321 à 580 px. Specs de la CI : 81/81. 14 liens internes en 200.
+
+**Supposé** — Engagement de l’appel final (« Nous pourrons regarder ensemble… ») : toujours soumis à la validation de Sébastien.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4). La FAQ garde une mention « pour la fiche produit » (FAQ hors périmètre de la révision).
+
+**Suite** — QA humaine finale de la Preview ; validation de Sébastien sur l’appel final ; GO de fusion distinct.
+
+---
+
+## 2026-10-08 · Hub bijoux — bague détourée : IQ Mask, pas AI Masking (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Micro-fix final #104 » | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant correctif `a20908a`
+
+**Quoi** — Section « Retouche et export » seulement.
+- Légende de la bague détourée : « La même bague, détourée sur fond transparent. » → « La même bague, détourée avec l’IQ Mask d’Orbitvu Station. »
+- Phrase voisine : « Pour détourer une bague ou atténuer un reflet parasite sur le métal, AI Masking et AI Retoucher s’en chargent dans le même logiciel. Ils sont réservés aux abonnés d’Orbitvu Station. » → « Le détourage montré ici a été réalisé avec l’IQ Mask. Orbitvu Station propose également AI Masking et AI Retoucher pour d’autres traitements. » La réservation aux abonnés n’est plus affirmée (non revérifiée sur une source primaire).
+
+**Pourquoi** — L’image, issue du guide « Comment prendre une photo nette d’un bijou sans fond ? » (Superfocus et IQ Mask), était lue comme un résultat AI Masking.
+
+**Fichiers** — `data/secteurs.ts`, `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Vérifié** — `npx tsc --noEmit`, `npx eslint` ciblé, `npx next build` verts ; HTML prérendu contre `a20908a` : 372 pages sur 374 identiques (hub bijoux FR et EN) ; rendu local à 1 440 et 390 px ; V104-1 et V104-2 inchangées ; formulaire non soumis.
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4).
+
+**Suite** — HOLD « bague détourée » levé. QA humaine finale de la Preview ; appel final soumis à Sébastien ; GO de fusion distinct.
+
+---
+
+## 2026-10-08 · Hub bijoux — intégration des illustrations V104-1 et V104-2 (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Intégration des visuels finaux #104 » ; source : archive `PSC_104_BIJOUX_VISUELS_FINAUX_2026-10-08.zip` fournie par Laurent | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant intégration `e67d711`
+
+**Quoi** — Deux illustrations éditoriales intégrées ; ni copie, ni structure, ni appel final modifiés.
+- V104-1 (`public/images/secteurs/bijoux/v104-1-macro-joaillerie.avif`, AVIF 1 536 × 1 024, 122 129 octets) : bandeau large en tête de la section « Sur un bijou, la lumière se voit », avant le texte et les deux captures de mise au point. Recadrage 2:1 du fond seulement à partir de 1 024 px (bague entre 20 et 75 % de la hauteur source, `object-position` 50 % 45 %) ; image entière en 3:2 en dessous.
+- V104-2 (`public/images/secteurs/bijoux/v104-2-collection-coherence.avif`, AVIF 1 536 × 1 024, 133 872 octets) : section « Quand la collection s’agrandit », sur 7 colonnes au lieu de 6, image entière en 3:2 à toutes les largeurs. Remplace la photo de main gantée (`/images/guides/67d991805e0a0980101b8a98.avif`), retirée de la page, conservée dans le dépôt : les guides FR et EN de focus stacking pour bague l’utilisent.
+- Section lumière : le texte passe à gauche et la preuve technique à droite (plus d’inversion d’ordre sur desktop).
+- Alt descriptifs, sans mention d’Orbitvu, de Superfocus ni d’IA. Légendes selon la convention du cluster AI Act (`cluster-ai-act-2026-10-06/CLUSTER.md`, §5) : « Illustration générée par IA, bijou fictif. » et « Illustration générée par IA, collection fictive. »
+
+**Provenance** — V104-1 et V104-2 : ChatGPT native image generation, EDITORIAL_ILLUSTRATION (README de l’archive). Jamais PRODUCT_PROOF : aucune preuve de résultat Orbitvu, Superfocus, 360°, AI Masking, AI Retoucher, ni de reproductibilité. Fichiers web AVIF de l’archive intégrés tels quels (SHA-256 identiques), sans réencodage ; PNG d’origine, WebP, planche contact, README et archive non commités.
+
+**Pourquoi** — QA humaine : section collection sans sensation de collection avec la main gantée (`COLLECTION_FEEL = NON`) ; matière bijou peu présente face aux captures d’interface ; quatre sections 50/50 consécutives.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `public/images/secteurs/bijoux/v104-1-macro-joaillerie.avif` (nouveau), `public/images/secteurs/bijoux/v104-2-collection-coherence.avif` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Rayon d'action (R8)** — Composant dédié seulement. HTML prérendu contre `e67d711` : 372 pages sur 374 identiques, 2 différentes (hub bijoux FR et EN) ; title, description, canonical, hreflang, robots, liens, FAQ identiques ; 3 lignes de texte (2 légendes ajoutées, 1 retirée).
+
+**Effet attendu** — [Inférence] Page plus désirable et plus « bijou » ; hauteur à 1 440 px : 7 597 → 8 202 px (bandeau). Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2`, tête `e67d711`, PR ouverte, brouillon, `clean`, CI verte (4 contrôles). PR ouvertes : #105 (nouvelle tête `02aee10`, 11 fichiers, aucun commun hors `JOURNAL.md` et `ETAT.md`), #82, #70, #65, #64, #27.
+- Archive : 8 fichiers ; PNG, AVIF et WebP en 1 536 × 1 024, sRVB. AVIF contre PNG d’origine : PSNR 43,4 dB (V104-1) et 41,7 dB (V104-2), sans différence visible à 100 % sur la pierre et le métal.
+- `npx tsc --noEmit` vert ; `npx eslint` du composant : 0 problème ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices).
+- HTML prérendu contre `main` : 370 identiques, 4 différentes (hub FR, hub EN, M30, M32).
+- Rendu local (`next start`, Chromium), FR et EN, 1 440, 1 024, 768, 390 px : 1 H1 ; 0 débordement ; 0 erreur de page ; 7 images chargées, 7 alt ; 0 contraste inférieur à 3:1 ; `#tester` atteint ; formulaire non soumis ; hero mobile inchangé (bague 321-589 px, CTA 914 px à 390 × 844).
+- Images (optimiseur Next, qualité 75 par défaut) : V104-1 affichée 1 232 × 616 à 1 440 px (58 Ko transférés), 976 × 488 à 1 024 px (34 Ko), 720 × 480 à 768 px, 358 × 239 à 390 px (34 Ko en DPR 3) ; V104-2 affichée 692 × 461 à 1 440 px (21 Ko en DPR 1, 65 Ko en DPR 2), 358 × 239 à 390 px (37 Ko). CLS mesuré : 0 aux 5 configurations.
+- 14 liens internes et les 2 nouvelles images en 200.
+- Specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`), configuration locale supprimée après usage : 81/81.
+- Bague détourée de la section retouche (`67d991839ee10799cae56458`) : provenance établie par le guide « Comment prendre une photo nette d’un bijou sans fond ? » (Superfocus et détourage IQ Mask d’Orbitvu Station) ; ce n’est pas un résultat AI Masking.
+
+**Supposé** — Droits d’utilisation des deux illustrations : non établis par le dépôt (archive transmise par Laurent).
+
+**Non regardé** — Preview Vercel (Vercel Authentication), `www` (R4), Firefox, Safari, appareils réels.
+
+**Suite** — HOLD : la bague détourée (IQ Mask) reste placée à côté du texte sur AI Masking et AI Retoucher ; proposition de légende pour une passe ultérieure : « La même bague, détourée avec l’IQ Mask d’Orbitvu Station. ». Preuves réelles toujours manquantes : vrai résultat Superfocus, vraie vue 360°. QA humaine finale de la Preview ; appel final soumis à Sébastien ; GO de fusion distinct.
+
+---
+
+## 2026-10-08 · Hub bijoux — dernière passe éditoriale avant visuels (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 08/10, « Dernière passe éditoriale #104 bijoux » (contre-audit humain de la Preview : READY_FOR_FINAL_VISUALS après passe légère) ; arbitrage directeur du 08/10 sur le positionnement (production visuelle produit de bout en bout : capture, workflow, IA, diffusion), appliqué en arrière-plan, sans numéro de décision ni écriture dans `DECISIONS.md` | **PR** : #104, brouillon, « DO NOT MERGE » | **Base** : `main` `06b18e2` ; tête avant passe `48ccc03`
+
+**Quoi** — Copie, répétitions, micro-UX ; ordre des sections inchangé, aucune section ajoutée.
+- Titres : « Le bijou ne pardonne rien à la prise de vue » → « Sur un bijou, la lumière se voit » ; « La vraie difficulté commence à la deuxième pièce » → « Quand la collection s’agrandit » ; « Un studio conçu pour les petites pièces réfléchissantes » → « Photographier les petites pièces avec l’Alphashot Micro Pro v2 » ; « Une photo montre une face. Le 360° montre la pièce. » → « Voir la bague sous tous ses angles » ; « La retouche reste dans Orbitvu Station » → « Retouche et export ».
+- Retirés : « C’est ici que se joue l’image… », « Réussir une image ne suffit pas… », « Une belle photo isolée ne fait pas encore un catalogue », « Un bon reflet se construit au moment de la prise de vue », « Une démonstration n’a d’intérêt que si… », « selon Orbitvu », « Orbitvu indique », libellé « Dans Orbitvu Station » et sa liste à puces, phrase « sans transformer la fiche produit… », FAQ « bague nette en macro » et « démonstration » (5 → 3 questions).
+- Superfocus : expliqué une seule fois (légende des deux mises au point) ; ailleurs, une mention dans la liste du studio. Texte visible : 5 occurrences → 2 ; JSON-LD : 2 → 0.
+- Visuels : captures « Modèles » et « plateau 360° » retirées de la page et du dépôt (8 images → 6 ; 4 captures d’interface → 2). La photo de mise en place passe dans la section collection ; le studio montre le visuel produit. Section 360° en texte seul tant qu’aucune vraie vue 360° n’existe.
+- Hero mobile : surtitre et H1, puis la bague (recadrage 4:3 du blanc, bague entière), puis le texte et l’appel. Deux variantes essayées à 390 px (A : visuel avant le texte ; B : une phrase avant le visuel) : A retenue, bague entière dans le premier écran aussi sur un écran de 667 px de haut.
+- Formulaire : `hideRequestType` (prop existante de `ContactForm`, fichier non modifié) ; la demande part en « démonstration », comme avant par défaut.
+- Espace insécable avant « : ; ! ? » dans les textes rendus (un « ; » partait seul en début de ligne à 390 px).
+- Emplacements prêts, rien n’est rendu tant qu’ils sont vides : V104-1 et V104-2 (EDITORIAL_ILLUSTRATION, légende préfixée « Illustration »), vrai résultat Superfocus et vraie vue 360° (réels obligatoires).
+
+**Pourquoi** — Contre-audit humain du 08/10 : ton documentation Orbitvu, formules de copywriting IA, Superfocus répété, trop d’interfaces, bijou absent du premier écran mobile, appel final peu concret.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `data/secteurs.ts`, `public/images/secteurs/bijoux/station-modeles.avif` et `station-plateau-360.avif` (supprimés), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Rayon d'action (R8)** — Inchangé : composant dédié et entrée `bijoux-joaillerie` seulement. HTML prérendu contre `48ccc03` : 372 pages sur 374 identiques, 2 différentes (hub bijoux FR et EN). Title, meta description, canonical, hreflang, robots, `href` des liens : identiques. Les ancres des 2 ressources dont le titre finit par « ? » ne diffèrent que par l’espace insécable.
+
+**Effet attendu** — [Inférence] Lecture plus proche du métier ; page plus courte (1 440 px : 8 667 → 7 597 px ; 390 px : 12 710 → 11 036 px ; mots hors formulaire, méthode V2 : 1 045 → 807). Effet de classement non prévisible. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2`, tête `48ccc03`, PR ouverte, brouillon, `mergeable_state` `clean`. PR ouvertes : #105, #104, #82, #70, #65, #64, #27 ; têtes des autres PR inchangées depuis le 07/10 ; aucune ne touche les fichiers de cette passe.
+- `npx tsc --noEmit` vert ; `npx eslint` sur les deux fichiers : 0 problème ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; `npx next build` vert (variables factices).
+- HTML prérendu contre `main` `06b18e2` : 370 identiques, 4 différentes (hub FR, hub EN, M30, M32), comme avant la passe.
+- `FAQPage` = FAQ visible (3 questions) ; 4 JSON-LD.
+- Rendu local (`next start`, Chromium), FR et EN, 1 440, 1 024, 768, 390 px : 1 H1 ; 0 débordement ; 0 erreur de page ; 6 images chargées, 6 alt ; 0 contraste inférieur à 3:1 ; 2 sections sombres ; `#tester` atteint ; formulaire présent, non soumis. CTA du hero dans le premier écran à 1 440 et 1 024 px ; à 768 et 390 px, sous le premier écran (914 px à 390), après la bague.
+- 390 × 844 : H1 141-297 px, bague 321-589 px (entière), premier paragraphe à 661 px.
+- 14 liens internes en 200 ; `station-modeles.avif` répond 404 en local (fichier supprimé) ; aucune référence restante aux deux images supprimées.
+- Texte visible sans « défi », « enjeu », « transform », « optimis », « maximis », « sublim », « immersive », « innovant », « puissant », « exceptionnel », « valoriser », « ne pardonne », « selon Orbitvu », « Orbitvu indique », tiret cadratin.
+- Specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`), configuration locale supprimée après usage : 81/81.
+- Sources des faits ajoutés : infobulles « Modèles » (lumière, appareil photo, zoom motorisé et/ou position du plateau tournant, paramètres ÉDITION) et « Image » (couleurs, netteté, contraste, couleur sélective, report sur d’autres images) lues sur les captures `67d991805e0a0980101b8aa4` et `…8aa1` ; export JPEG, TIFF, PNG et HTML5, MP4, MOV, GIF : guides FR bague (étape 9) et animation 360° (étape 8) ; Superfocus à chaque angle : guide animation 360° (étape 7).
+
+**Supposé** — AI Masking et AI Retoucher, réservés aux abonnés : V2 B7, non revérifiés. Le zoom motorisé, cité par l’infobulle, n’est pas établi pour la Micro Pro v2 : non mentionné.
+
+**Non regardé** — Preview Vercel : protégée par Vercel Authentication, non ouverte par la session ; QA humaine à faire sur la nouvelle tête. `www` (R4). Firefox, Safari, appareils réels. EN et de-ch : aucune adaptation (GO traduction : NO).
+
+**Suite** — QA humaine de la Preview sur la nouvelle tête. Engagement commercial de l’appel final (« Nous pourrons regarder ensemble, sur vos pièces… ») : validation de Sébastien requise, non demandée (GO message : NO). Visuels V104-1, V104-2 (ChatGPT, après QA) ; vrai résultat Superfocus et vraie vue 360° (réels). H1 conservé (owner SEO, imposé le 07/10) : formule « révéler chaque détail » signalée pour arbitrage. GO de fusion distinct.
+
+---
+
+## 2026-10-07 · Hub bijoux — refonte éditoriale, UX et visuelle (#104) · Claude de Laurent
+
+**Chantier** : mission de Laurent du 07/10, « Refonte éditoriale, UX et visuelle — PR #104 » ; texte imposé par la mission (hero, sections matière, collection, studio, 360°, appel final) | **PR** : #104, brouillon, « DO NOT MERGE », branche `seo/hub-bijoux-v1-2026-10-07` | **Base** : `main` `06b18e2`, déjà contenu dans la branche ; tête avant refonte `e625c02`
+
+**Quoi** — `/fr/industrie/bijoux-joaillerie` (et `/en/…`, `noindex`, données FR) n'utilise plus le gabarit commun des hubs : page narrative dédiée.
+- `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx` (nouveau) : hero (texte et appel avant l'image sur mobile), matière, cohérence de collection, studio, 360° (séquence sombre 1/2), retouche, appel final avec formulaire (séquence sombre 2/2, ancre `#tester`), FAQ (5), guides et autres secteurs en version compacte (titres seuls).
+- `app/[lang]/industrie/[slug]/page.tsx` : import et retour anticipé, seulement si `dataSlug === 'bijoux-joaillerie'` et `lang !== 'de-ch'`. Les 16 autres hubs et `/de-ch/branchen/schmuck` gardent le gabarit.
+- `components/maillage/MaillageSections.tsx` : export `sectorResourceLinks(slug, lang)`, mêmes liens que `SectorResources`, sans extrait. `SectorResources` inchangé.
+- `data/secteurs.ts`, entrée `bijoux-joaillerie` : hero, matière, studio, retouche, appel final et FAQ réécrits ; `useCases` (ajouté par la première version de #104) retiré. Title et meta description inchangés depuis la première version de #104.
+- `public/images/secteurs/bijoux/` : 4 recadrages AVIF, sans retouche, de captures d'écran Orbitvu Station publiées dans nos guides.
+
+Retirés de la page : « Défis du packshot bijoux », cartes numérotées, carte « Visuel solution » vide, badge et étiquettes « Petit », triplets de dimensions, bouton « Comparer tous les modèles » blanc sur blanc (lien conservé en lien texte), carte ROI vide (lien conservé), CTA « Découvrir nos formations » et « Demander un devis gratuit » du hero (remplacés par « Tester avec vos bijoux » vers le formulaire de la page).
+
+**Pourquoi** — Preview de la première version jugée par Laurent « techniquement fonctionnelle mais éditorialement et visuellement insuffisante » : structure de gabarit (défis → solutions → cartes), libellés génériques, placeholders, contraste nul d'un bouton.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubBijoux.tsx`, `app/[lang]/industrie/[slug]/page.tsx`, `components/maillage/MaillageSections.tsx`, `data/secteurs.ts`, `public/images/secteurs/bijoux/*.avif` (4), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Rayon d'action (R8)** — Le gabarit partagé des 17 hubs est modifié par une branche gardée : vérifié par le HTML prérendu (ci-dessous), aucune autre page ne change. `MaillageSections.tsx` : ajout d'une fonction, aucun appelant existant modifié. `ContactForm` (réservé F5) non modifié : seules ses props existantes sont passées. Composant `SchemaOrg` et helpers inchangés.
+
+**Effet attendu** — [Inférence] Meilleure lisibilité pour un joaillier ; effet de classement non prévisible (1 clic / 18 impressions en 90 j, V2 `03` L10). Le hub perd ses liens vers `/fr/academy` et `/fr/contact` (CTA du hero) ; il garde ses liens vers les fiches Micro Pro v2 et Pro G2, le sélecteur, le calculateur ROI, les 4 ressources et les 6 secteurs. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2` ; tête distante de #104 `e625c02`. PR ouvertes : #105, #104, #82, #79, #70, #65, #64, #27. Fichiers relus sur GitHub : aucune ne touche le gabarit des hubs, `MaillageSections.tsx`, `data/secteurs.ts`, `public/images/secteurs/`, le JSON de M30 ou le guide de M32. Communs : `JOURNAL.md` (toutes), `ETAT.md` (toutes sauf #79).
+- `npx tsc --noEmit` vert ; `npx eslint` sur les fichiers nouveaux et modifiés : 0 problème hors 1 erreur et 2 avertissements du gabarit, identiques sur `main` ; `verifier-json` : 195 JSON valides ; Vitest 483/483 (23 fichiers) ; `npx next build` vert (variables factices).
+- HTML prérendu de `main` contre la branche, scripts retirés, identifiant de build et chemins `/_next/static` neutralisés : 374 pages, **370 identiques, 4 différentes**, les mêmes que pour la première version de #104 (hub FR, hub EN, M30, M32). Les 16 autres hubs FR, les 16 EN et les 8 de-ch sont identiques.
+- Hub FR contre `main` : robots, canonical, hreflang et nombre de JSON-LD (4) identiques ; `FAQPage` = FAQ visible (5 questions) ; liens de ressources et d'autres secteurs identiques (mêmes `href`, mêmes ancres).
+- Mots, méthode V2 : `WORDS_MAIN` 1 124, `WORDS_MAIN_HORS_FORM` 1 045 (`main` : 684 / 605).
+- Rendu local (`next start`, Chromium) à 1 440, 1 024, 768 et 390 px, FR et EN : 1 H1 ; 0 débordement ; 0 erreur de page ; 8 images chargées, 8 alt renseignés ; 0 lien ou bouton de contraste inférieur à 3:1 ; 2 sections sombres ; CTA « Tester avec vos bijoux » dans le premier écran aux 4 largeurs (après choix du bandeau de cookies) ; à 390 et 768 px, H1, texte et CTA avant l'image ; le CTA amène au formulaire (`#tester`, 80 px sous le haut). Formulaire présent, non soumis ; secteur présélectionné « Horlogerie, bijouterie, joaillerie » (EN : « Watches, jewelry »).
+- Liens et images de la page : 14 liens internes et 4 nouvelles images en 200 (serveur local).
+- Texte visible : aucun de « Vos défis », « Nos solutions », « Enjeux », « Au-delà du packshot », « révolution », « sublim », « Hyperfocus », « conseils exclusifs », « visuels exceptionnels », « optimiser », « BlendAI », « −90 », « 20-50 », « Visuel solution », tiret cadratin, « axes non précisés ».
+- Playwright, specs de la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`), configuration locale hors dépôt, supprimée après usage : 81/81.
+- Sources des faits produits affichés : référentiel D45 (`data/produits/fiches-techniques.ts` : Micro Pro v2 « small objects up to 18 cm long », 1 kg ; Pro G2 10 kg, `conforme`) ; catalogue `components/calculators/ROICalculator/lib/machines.ts` (macro, Super Focus, packshots, 360 et vidéos ; « petits produits ») ; guides FR de focus stacking (assistant Superfocus, étapes avant / arrière / nombre d'étapes ; Alphashot Micro Pro v2 et Orbitvu Station) ; infobulles et réglages lisibles sur les captures d'écran des guides (modèles, édition, rotation de 6 à 180 images).
+- Provenance des visuels : `/images/guides/67d9917f5e0a0980101b8a65.avif`, `67d991805e0a0980101b8a98.avif`, `67d991839ee10799cae56458.avif` (guides PackshotCreator publiés, prise de vue Alphashot Micro Pro v2 selon les guides) ; recadrages de `67d991805e0a0980101b8a95`, `…8a9b`, `67d99180406090f303cb444c`, `67d991831d2c1c71ab213bca` (captures Orbitvu Station des mêmes guides ; liste d'appareils photo et nom de session fautif exclus du cadre) ; `/images/machines/alphashot-micro-v2.avif` (visuel déjà affiché sur la fiche produit).
+
+**Supposé** — AI Masking et AI Retoucher, et leur réservation aux abonnés d'Orbitvu Station : fresh-check orbitvu.com de Laurent du 07/10 cité par la V2 (B7), non revérifié par cette session. Provenance Orbitvu de `/images/machines/alphashot-micro-v2.avif` : non revérifiée (image déjà en ligne sur la fiche).
+
+**Non regardé** — Preview Vercel (Vercel Authentication) et `www` (R4) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Le H2 « Un studio conçu pour les petites pièces réfléchissantes » est imposé par la mission ; « réfléchissantes » n'est porté que par le catalogue PackshotCreator. La phrase imposée de la section 360° contient « transformer », mot proscrit par la même mission : conservée mot pour mot. Le libellé du bouton du formulaire (« Envoyer ma demande ») vient de `ContactForm`, réservé : non modifié. Bandeau de cookies global : couvre le bas du premier écran avant choix, sur toutes les pages. JSON-LD `Organization` commun avec « IA BlendAI » : préexistant, hors périmètre.
+
+**Suite** — ASSET_REQUIRED : vue 360° réelle d'une bague (Orbitvu SUN ou vidéo ; emplacement prêt, `BAGUE_360` dans `HubBijoux.tsx`, rien n'est rendu tant qu'il est vide) ; paire avant / après Superfocus sur un bijou en haute définition (optionnel) ; médias de la page Micro v2 d'orbitvu.com, droits à confirmer. Nouvelle QA humaine de la Preview sur la nouvelle tête : la QA PASS du 07/10 porte sur `2538b51`, pas sur cette version. Information de Sébastien (D42, D15) à refaire sur la nouvelle tête. GO de fusion distinct.
+
+---
+
+## 2026-10-07 · Hub bijoux — enrichissement commercial limité, vague 2 anticipée (B3) ; M30, M32 · Claude de Laurent
+
+**Chantier** : PR-4 de la V2 `PSC_LANDINGS_COCONS_FINAL_2026-10-07` (B3 ; `07` M27 à M33, M46), codage anticipé sur GO de Laurent du 07/10 | **PR** : #104, brouillon, « DO NOT MERGE », branche `seo/hub-bijoux-v1-2026-10-07` | **Base** : `main` `35d250c`, puis `main` `b806291` (#102, #103) fusionné dans la branche
+
+**Quoi** — Trois fichiers de site :
+- `data/secteurs.ts`, entrée `bijoux-joaillerie` seule : title, meta description, H1, hero, défis, deux cartes de solutions, trois cas d'usage (champ `useCases`, nouveau pour ce hub), CTA, FAQ (4 → 5). `casClients` retiré (champ non rendu). La carte IA n'a plus de `type` : le gabarit affiche « BLENDAI.STUDIO » sur toute carte `type: 'ia'`.
+- M30 : `content/blog/fr/ia-lumieres-virtuelles-revolution-packshot.json`, `href` `/fr/industrie/bijoux-joaillerie` → `/fr/industrie/horlogerie` ; ancre « horlogerie » et reste du champ inchangés (CA10 a).
+- M32 : `content/guides/de-ch/wie-uhr-vor-fotoshooting-positionieren.json`, `href` `/de-ch/branchen/schmuck` → `/de-ch/branchen/uhren` ; ancre inchangée (CA10 a).
+
+Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-map.ts`, `sector-related-map.ts`, `content-maillage.ts`, `secteurs-de-ch.ts` (`/de-ch/branchen/schmuck`), `machines.ts`, Worker, redirections, F5, Mode, accueil, Studios, prose du hub horlogerie, articles BlendAI.
+
+**Pourquoi** — V2 du 07/10 : le hub devient la surface commerciale « équiper la production photo bijoux en interne » (I06J), sans reprendre l'intention informationnelle du guide ni celle d'orbitvu.fr (`08`). Retraits imposés par B3 : « −90 % », « 20-50 visuels lifestyle en 1 h », BlendAI. Nomenclature IA Orbitvu (`05`, règle 5 ter). Repli de `11` et `12` appliqué sans réponse de Sébastien (S4).
+
+**Fichiers** — `data/secteurs.ts`, `content/blog/fr/ia-lumieres-virtuelles-revolution-packshot.json`, `content/guides/de-ch/wie-uhr-vor-fotoshooting-positionieren.json`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — [Inférence] Hub aligné sur le lexique « packshot bijoux » ; effet de classement non prévisible (1 clic / 18 impressions en 90 j, V2 `03` L10). Hub horlogerie : un lien éditorial FR et un lien de-ch entrants de plus ; hub bijoux : deux de moins. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- Fresh-check du 07/10 : `main` `35d250c` ; 7 PR ouvertes : #27, #64, #65, #70, #79, #82, #102. Pendant le codage, #102 a été fusionnée (10:26 UTC) puis #103, documentation (10:55 UTC) : `main` `b806291`, fusionné dans la branche ; conflits de `JOURNAL.md` et `ETAT.md` résolus par union (ligne #100 retirée d'`ETAT.md` comme sur `main`). PR ouvertes ensuite : #27, #64, #65, #70, #79, #82, et #104. Fichiers des PR relus sur GitHub : aucune ne touche `data/secteurs.ts`, le JSON de M30 ou le guide de-ch de M32. #27 touche le guide FR de M31 (exclu). Fichiers communs : `JOURNAL.md` (toutes) ; `ETAT.md` (#27, #64, #65, #70, #82).
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 476/476 (22 fichiers) sur `35d250c`, 483/483 (23 fichiers) après fusion de `b806291` ; `npx eslint data/secteurs.ts` : 0 problème ; `npx next build` vert (variables factices), avant et après fusion.
+- HTML prérendu de `main` (arbre de travail séparé) contre la branche, scripts retirés, identifiant de build et chemins `/_next/static` neutralisés, contre `35d250c` puis contre `b806291` : 374 pages, **370 identiques, 4 différentes**, les mêmes dans les deux cas :
+  - `/fr/industrie/bijoux-joaillerie` ;
+  - `/en/industrie/bijoux-joaillerie` (`noindex, follow`, données FR servies en EN, préexistant, D9) ;
+  - `/fr/blog/ia-lumieres-virtuelles-revolution-packshot` ;
+  - `/de-ch/guide/wie-uhr-vor-fotoshooting-positionieren`.
+  Les 16 autres hubs FR, les 16 EN et les 8 de-ch sont identiques.
+- M30 et M32 : un `href` changé chacun ; 0 ligne de texte visible modifiée ; title, description, canonical, hreflang identiques.
+- Hub FR :
+  - 0 lien ajouté, 0 retiré dans la zone principale (16 liens) ; aucun lien vers `/packshot-e-commerce` ni `/packshot-mode` ;
+  - canonical et hreflang identiques ; JSON-LD `Service` (nouveau nom) et `FAQPage` à 5 questions, égal à la FAQ visible ;
+  - zone principale sans « BlendAI », « −90 % », « 20-50 », « lifestyle », « polarisé ».
+- Mots, méthode V2 (`annexes/rendu_sysnext/METHODE.md`, reproduite à l'identique sur `main` : 684 / 605) : FR `WORDS_MAIN` 1 136, `WORDS_MAIN_HORS_FORM` **1 057** (cible 1 000, fourchette 950-1 100, maximum 1 300) ; EN 1 113 / 1 040.
+- Rendu local (`next start`, Chromium) à 1 440, 1 024, 768 et 390 px : 1 H1, 0 débordement, 0 erreur de page, formulaire présent. CTA du hero dans le premier écran à 1 440, 1 024 et 768 px. À 390 px, hors du premier écran comme sur `main`, à la même position (1 009 px, gabarit). H1 et hero raccourcis pour ne pas dégrader `main` à 1 024 px : au premier essai, le CTA finissait à 812 px pour 768 visibles.
+- D44 : C1 = 9 552 px à 1 440 (`main` : 8 017) ; C2 = 4 sections hors FAQ (`main` : 3). Évaluation déclenchée ; C4 (identifiants à ajouter au gabarit) et C5 (PR éditoriale ouverte sur la page) la tranchent en EXCLUDE ; registre inchangé.
+- Liens internes des trois pages modifiées : 30 sur 30 en 200, sans redirection (serveur local).
+- Playwright (Chromium préinstallé, configuration locale hors dépôt), specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` : 80/81 au premier passage. L'échec porte sur `/fr/ia-photo-produit` à 1 024 px, page identique à `main`. Non reproduit : spec complète 44/44 deux fois sur la branche, 44/44 sur `main`, test isolé 2/2 sur les deux. Après fusion de `b806291` : 81/81 (premier passage : résumé à 80 réussis, le 81e non identifié par le filtre de sortie).
+- M33 : `content/guides/alternates.json` ne donne aucun équivalent de-ch pour `comment-nettoyer-montre-avant-shooting` ni `animation-360-focus-stacking` (fr et en seulement) : liens laissés inchangés.
+- M46 : le gabarit rend `description` et `avantages` en texte brut ; aucun lien possible dans la carte IA sans modifier le gabarit : aucun changement.
+- Dimensions (D45) : Pro G2 35 × 35 × 40 cm, 10 kg, statut `conforme` ; Micro Pro v2 « jusqu'à 18 cm de long », 1 kg (référentiel : 18 conforme, 15 × 16 non vérifiables, Q20.5) ; aucune autre valeur.
+
+- QA humaine de la Preview Vercel authentifiée (Laurent, 07/10, tête `2538b51`), `/fr/industrie/bijoux-joaillerie` à 1 440, 1 024, 768 et 390 px : **PASS**.
+  - HTTP 200 ; title, canonical et hreflang conformes ; 1 H1 ; sections et FAQ (5) attendues ; 16 liens internes de la zone principale en 200.
+  - 0 débordement ; 5 images, 0 cassée ; CTA ROI vers `/fr/calculateur-roi` ; formulaire de démonstration présent (non soumis).
+  - Claims retirés absents du texte visible et des FAQ ; FAQ « portés » : non disponible aujourd'hui, On-model annoncé.
+  - Anomalies non bloquantes : « IA BlendAI » dans le JSON-LD `Organization` commun à tout le site (composant partagé, préexistant, hors périmètre de #104) ; pas de barre D44, conforme au classement EXCLUDE ci-dessus. Capture mobile non obtenue (outil).
+
+**Supposé** — Capacités et noms Orbitvu (Orbitvu AI Toolkit, AI Photo Assistant, AI Masking, AI Retoucher, On-model annoncé) : fresh-check orbitvu.com de Laurent du 07/10, cité par la V2, non revérifié par cette session.
+
+**Non regardé** — `sysnext.vercel.app` et `www` (R4) ; Preview Vercel non accessible à la session (Vercel Authentication), contrôlée par Laurent (ci-dessus) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Prose EN et de-ch : aucune adaptation (EN `noindex` sert les données FR ; `/de-ch/branchen/schmuck` exclu, vague 3). Aucun audit SEO, SERP ou mots-clés ; aucun appel payant ; aucun service externe. Seul le paquet `tsx` a été téléchargé du registre npm, pour compter les mots des champs.
+
+**Suite** — Preview humaine faite (PASS) ; information de Sébastien, message préparé et non envoyé (CA10 a pour M30 et M32 ; D15 pour la réécriture) ; claims retirés ou neutralisés listés dans la PR. CA10 à inscrire par la première PR de vague 1. M31 après le sort de #27. #102, fusionnée le 07/10, est un événement concomitant à déclarer à la mesure du hub (libellés de-ch du gabarit ; rendu FR inchangé selon #102). GO de fusion distinct de Laurent.
+
+---
+
+## 2026-10-08 · Hub vin-spiritueux — landing Wave 2 : copie finale, 8 visuels, 2 schémas · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux`, mission d'exécution de Laurent du 08/10 (`GO_CODE` landing vin seule, `GO_PR_DRAFT` ; `GO_MERGE`, `GO_PUBLICATION`, `GO_TRADUCTIONS`, `GO_PAID_CALL` : NO) | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `06b18e2`
+
+**Quoi** — Page dédiée `HubVin.tsx` pour fr et en (EN servi en français, `noindex, follow`) ; de-ch garde le gabarit commun. Entrée `vin-spiritueux` de `data/secteurs.ts` réécrite. Schéma D1 (`SchemaEclairageBouteille.tsx`), parcours D2 en liste ordonnée, 8 illustrations IA en AVIF. Registre des claims (S1 à S19, HOLD H1 à H10) et manifeste visuel : `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Pourquoi** — La page de `main` rend l'Alphashot XL Wine (absente du catalogue Orbitvu), « éclairage polarisé », « étalonnage 74 points », des cadences et « −85 % » non sourcés, une carte et une FAQ BlendAI. Copie L3 du 08/10 avec les corrections A à G de la mission (modèles, éclairage, machines, IA, formation, démonstration, ton).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx` (1 import, 1 retour anticipé), `app/[lang]/industrie/[slug]/_components/HubVin.tsx` et `SchemaEclairageBouteille.tsx` (nouveaux), `data/secteurs.ts` (entrée vin seule), `public/images/secteurs/vin/*.avif` (8), `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Rien avant une fusion sur GO distinct. Après : nouveaux `<title>`, meta description, H1 et FAQ (6 questions) sur `/fr/industrie/vin-spiritueux` ; URL, canonical, hreflang, `noindex, follow` de la version EN et page de-ch inchangés. Effet sur les positions non estimé : aucune donnée GSC consultée dans cette mission.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2` ; #104 ouverte, brouillon, tête `16e106f`, base `06b18e2` ; #105 ouverte, tête `8135bb7`.
+- Assets : 8 PNG du ZIP de la mission, noms, dimensions et SHA-256 conformes à `manifest.json` ; AVIF sans agrandissement, PSNR 41,1 à 48,2 dB.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; ESLint : rien dans les fichiers nouveaux, 1 erreur et 2 avertissements de `page.tsx` déjà présents sur `main` (l. 793 et 198) ; `npx next build` vert (variables factices de la CI).
+- HTML prérendu, branche contre `main` `06b18e2`, identifiant de build neutralisé : 374 pages, 372 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. `de-ch/branchen/wein`, hubs bijoux et mode, autres hubs FR : identiques.
+- En-têtes fr et en : canonical et hreflang identiques à `main` ; EN `noindex, follow` conservé ; 1 H1 ; JSON-LD Organization, BreadcrumbList, Service, FAQPage ; FAQ JSON-LD 6 = FAQ visible 6 ; 11 images, 0 sans `alt`. Liens internes : 13/13 en 200 par langue ; liens F5 (2) et ROI identiques à `main` (D37).
+- Rendu local (`next start`), fr et en, à 1440, 1024, 768 et 390 px : largeur de page = largeur de fenêtre, 0 erreur console, 9 images chargées, 1 H1, H1 au-dessus du visuel en mobile, appel « Demander une démonstration » dans le premier écran aux quatre largeurs, bouton « Comparer tous les modèles » lisible (texte sombre sur blanc). Aucun formulaire envoyé.
+- Playwright, build local, Chromium : specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81 ; `seo`, `mobile-overflow`, `internal-links` 237/237.
+- `verifier-consequences.mjs` : effet local. Fusion simulée (`git merge-tree`) du commit de code avec #104 (`16e106f`) et avec #105 (`8135bb7`) : sans conflit ; `tsc` vert sur l'arbre fusionné avec #104 (deux retours anticipés distincts, bijoux puis vin). Avec cette entrée : conflit sur `docs/seo-geo/JOURNAL.md` seul, au point d'insertion commun du haut du journal (même conflit entre #104 et #105) ; résolution : conserver les deux blocs d'entrées. `ETAT.md` fusionne sans conflit.
+
+**Supposé** — [Inférence] Le rendu de la Preview Vercel suivra le rendu local du même commit. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel au moment de l'entrée ; `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari et appareils réels ; envoi réel du formulaire (interdit par la mission) ; P0-B (bouton illisible et visuels manquants du gabarit commun) et P0-C (`/industrie/bouteilles`) : recommandations seules, dans `LANDING.md` ; traductions en et de-ch ; preuves réelles (photos de bouteilles prises en studio) : aucune disponible.
+
+**Suite** — Contrôle de la Preview par Laurent (desktop, mobile). Fusion et publication sur GO distincts. Si #104 fusionne avant, reprendre `main` et relancer le build.
 
 ---
 
