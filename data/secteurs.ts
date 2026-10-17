@@ -126,13 +126,13 @@ export const secteurs: Secteur[] = [
     problematiques: {
       titre: 'Les défis de la photographie de bijoux',
       items: [
-        'Restituer la brillance et le feu des pierres sans les noyer dans les reflets',
-        'Maîtriser les reflets de l\'or, de l\'argent et du platine polis, qui renvoient tout ce qui les entoure',
-        'Photographier des pièces de quelques millimètres : à cette échelle, une seule mise au point ne rend net qu\'une partie du bijou',
-        'Garder le même rendu d\'une collection à l\'autre, quels que soient l\'opérateur et le jour de prise de vue',
+        'Restituer le feu des pierres sans les noyer dans les reflets',
+        'Maîtriser les reflets de l\'or, de l\'argent et du platine polis',
+        'Rendre nette une pièce de quelques millimètres, de l\'avant à l\'arrière : une seule mise au point n\'y suffit pas',
+        'Garder le même rendu d\'une collection à l\'autre, quel que soit l\'opérateur',
         'Montrer une bague sous tous les angles, nette sur toute la rotation',
-        'Montrer un collier en entier sans perdre le détail : chaîne fine, bélière, pendentif et fermoir n\'ont ni la même taille ni la même profondeur',
-        'Suivre le rythme des nouveautés et des réassorts sans dépendre d\'un photographe externe',
+        'Montrer un collier en entier : chaîne fine, bélière, pendentif et fermoir n\'ont ni la même taille ni la même profondeur',
+        'Suivre les nouveautés et les réassorts sans dépendre d\'un photographe externe',
       ],
     },
     solutions: {
@@ -142,22 +142,22 @@ export const secteurs: Secteur[] = [
           type: 'hardware',
           titre: 'Studios Orbitvu pour le bijou',
           description:
-            'Deux systèmes recommandés : l\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les pièces plus volumineuses.',
+            'Des photos nettes et homogènes de chaque pièce, produites dans vos locaux, avec deux systèmes : l\'Alphashot Micro Pro v2 et l\'Alphashot Pro G2.',
           avantages: [
-            'Alphashot Micro Pro v2 : conçu pour les très petits objets, jusqu\'à 18 cm de long et 1 kg selon Orbitvu ; macro pour le détail des sertissages, des gravures et des poinçons',
-            'Superfocus (focus stacking) dans Orbitvu Station : plusieurs mises au point réunies en une image nette, de l\'avant à l\'arrière du bijou',
-            'Vues 360° : Orbitvu Station enchaîne la rotation du plateau et le Superfocus pour produire une animation de bague nette sous tous les angles',
-            'Alphashot Pro G2 : objets jusqu\'à 35 × 35 × 40 cm (axes non précisés par Orbitvu) et 10 kg ; son AI Photo Assistant reconnaît le type de produit et propose une configuration d\'éclairage',
-            'Réglages enregistrés et réutilisés : les mêmes conditions de prise de vue d\'une session à l\'autre',
+            'Les sertissages, gravures et poinçons en détail : Alphashot Micro Pro v2, macro, objets jusqu\'à 18 cm de long et 1 kg selon Orbitvu',
+            'Un bijou net de l\'avant à l\'arrière : le Superfocus (focus stacking) d\'Orbitvu Station réunit plusieurs mises au point en une image',
+            'Une bague nette sous tous les angles : la vue 360° enchaîne la rotation du plateau et le Superfocus',
+            'Les pièces plus volumineuses : Alphashot Pro G2, objets jusqu\'à 35 × 35 × 40 cm (axes non précisés par Orbitvu) et 10 kg, avec l\'AI Photo Assistant pour l\'éclairage',
+            'Le même rendu d\'une session à l\'autre : les réglages sont enregistrés et réutilisés',
           ],
         },
         {
           titre: 'Orbitvu AI Toolkit, l\'IA d\'Orbitvu Station',
           description:
-            'Les outils IA d\'Orbitvu Station travaillent sur la photo du bijou réel.',
+            'Retouche et détourage automatisés, sur la photo du bijou réel.',
           avantages: [
-            'AI Retoucher : retouche automatique des reflets indésirables, des imperfections et des couleurs, pilotée par des préréglages ou des consignes écrites',
-            'AI Masking : détourage et suppression du fond, directement dans le flux de production',
+            'Reflets indésirables, imperfections et couleurs corrigés : AI Retoucher, piloté par des préréglages ou des consignes écrites',
+            'Le fond retiré dans le flux de production : AI Masking',
             'Outils réservés par Orbitvu aux abonnés d\'Orbitvu Station ; conditions sur demande',
           ],
         },
@@ -166,13 +166,13 @@ export const secteurs: Secteur[] = [
     useCases: [
       {
         titre: 'Catalogue de collection',
-        processus: 'Photographier une nouvelle collection avec les réglages enregistrés de la précédente : même fond, même éclairage, même cadrage. Bagues, pendentifs et boucles d\'oreilles d\'une même ligne se présentent de la même façon, du catalogue à la boutique en ligne.',
+        processus: 'Une nouvelle collection reprend les réglages enregistrés de la précédente : même fond, même éclairage, même cadrage. Bagues, pendentifs et boucles d\'oreilles se présentent de la même façon, du catalogue à la boutique en ligne.',
         fonctionsOrbitvu: ['Orbitvu Station', 'Réglages enregistrés', 'AI Masking'],
         valeur: 'Un rendu homogène, saison après saison',
       },
       {
         titre: 'E-commerce multi-références',
-        processus: 'Alimenter une boutique qui décline chaque modèle en plusieurs métaux, pierres ou tailles. Chaque variante est photographiée dans les mêmes conditions, détourée dans le flux, puis exportée vers la boutique.',
+        processus: 'Chaque variante de métal, de pierre ou de taille est photographiée dans les mêmes conditions, détourée dans le flux, puis exportée vers la boutique.',
         fonctionsOrbitvu: ['AI Masking', 'AI Retoucher', 'Orbitvu Station'],
         valeur: 'Des fiches produit comparables d\'une variante à l\'autre',
       },
@@ -193,8 +193,8 @@ export const secteurs: Secteur[] = [
       { question: 'Qu\'est-ce que le focus stacking en photo de bijoux ?', answer: 'C\'est la fusion de plusieurs photos prises avec des mises au point différentes, pour obtenir un bijou net de l\'avant à l\'arrière. Dans Orbitvu Station, l\'assistant Superfocus guide l\'empilement et suggère les paramètres, y compris pendant une animation 360°.' },
       { question: 'Peut-on créer des visuels portés de bijoux sans mannequin ?', answer: 'Pas aujourd\'hui : Orbitvu Station ne génère ni porté ni mannequin virtuel. Orbitvu annonce une fonction On-model, sans date ; nous ne la présentons pas comme disponible.' },
       { question: 'Les photos de bijoux conviennent-elles à la vente en ligne ?', answer: 'Oui : fond détouré par AI Masking, vues sous plusieurs angles et animations 360° exportées pour vos fiches produit. Les réglages enregistrés alignent chaque nouvelle référence sur les précédentes.' },
-      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Pour un collier, mesurez la présentation voulue : jusqu\'à 18 cm de long, la Micro Pro v2 convient ; un collier présenté en entier qui dépasse cette longueur relève de l\'Alphashot Pro G2, qui accepte des objets jusqu\'à 35 × 35 × 40 cm selon Orbitvu. Pour la Micro Pro v2, Orbitvu propose en accessoire optionnel un support semi-transparent qui permet de suspendre chaînes et colliers sans apparaître sur l\'image finale. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
-      { question: 'Comment se déroule une démonstration avec nos propres bijoux ?', answer: 'Sur rendez-vous, dans notre showroom près de Lyon. Apportez quatre pièces représentatives : une bague sertie, une pièce en métal poli, une chaîne ou un collier, une pièce gravée. Nous les photographions devant vous et vérifions ensemble la maîtrise des reflets sur le métal, la restitution des pierres et des sertissages, la netteté obtenue avec le Superfocus et la répétabilité des prises de vue avec des réglages enregistrés. Vous repartez avec le choix du système adapté à vos pièces : Micro Pro v2, avec ou sans accessoires, ou Pro G2.' },
+      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'Selon la taille des pièces : l\'Alphashot Micro Pro v2 jusqu\'à 18 cm de long, l\'Alphashot Pro G2 au-delà, jusqu\'à 35 × 35 × 40 cm selon Orbitvu. Pour un collier, mesurez la présentation voulue : au-delà de 18 cm, choisissez la Pro G2. Sur la Micro Pro v2, un support semi-transparent, en accessoire optionnel, suspend chaînes et colliers sans apparaître sur l\'image. Appareil, objectif et éclairage : voir notre guide « Quel équipement choisir pour la photo de bijoux ? », dans les ressources de cette page.' },
+      { question: 'Comment se déroule une démonstration avec nos propres bijoux ?', answer: 'Sur rendez-vous, dans notre showroom près de Lyon. Apportez quatre pièces représentatives : une bague sertie, une pièce en métal poli, une chaîne ou un collier, une pièce gravée. Nous les photographions devant vous et vérifions ensemble les reflets, le rendu des pierres et des sertissages, la netteté avec le Superfocus et la répétabilité des réglages enregistrés. Vous repartez avec le choix du système adapté : Micro Pro v2, avec ou sans accessoires, ou Pro G2.' },
     ],
   },
 

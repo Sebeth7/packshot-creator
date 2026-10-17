@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · #169, finition : schéma horlogerie retiré ; cartes et FAQ bijoux allégées, le gain avant la caractéristique · Claude de Laurent
+
+**Chantier** : « FINITION QUALITATIVE #169 » de Laurent du 17/10 | **PR** : #169 | **Commit** : voir PR
+
+**Quoi** —
+- Horlogerie : `SchemaVuesMontre.tsx` supprimé et son intégration retirée de `page.tsx`, qui redevient identique à `main` (le schéma répétait des pictogrammes sans montrer de différence photographique réelle). Cas d'usage contrôle qualité et SAV conservés tels quels.
+- Bijoux (`data/secteurs.ts`) : carte « Studios Orbitvu pour le bijou » et carte IA réécrites en « gain : preuve » (sertissages en détail, bijou net de l'avant à l'arrière, bague nette sous tous les angles, pièces volumineuses, même rendu d'une session à l'autre ; retouche et détourage automatisés) ; défis et cas d'usage 1 et 2 resserrés ; FAQ 5 (colliers) et FAQ 6 (démonstration) raccourcies. Preuves conservées : 18 cm et 1 kg, 35 × 35 × 40 cm (axes non précisés) et 10 kg, Superfocus, AI Photo Assistant, AI Retoucher, AI Masking, réservation aux abonnés, réglages enregistrés, support semi-transparent en accessoire optionnel, quatre pièces de la démonstration, showroom près de Lyon.
+
+**Pourquoi** — Lisibilité mobile et exigence commerciale de Laurent : montrer ce que le prospect gagne avant les caractéristiques, sans perdre l'information métier.
+
+**Fichiers** — `data/secteurs.ts`, `app/[lang]/industrie/[slug]/page.tsx` (retour à `main`), `app/[lang]/industrie/[slug]/_components/SchemaVuesMontre.tsx` (supprimé), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Bijoux FR (et EN, `noindex`) : 1 371 → 1 265 mots visibles ; hauteur à 390 px 14 574 → 14 305 px ; FAQ 5 : 18 → 14 lignes à 390 px. Horlogerie FR : retour au rendu de `fbea72a` (13 893 px à 390 px).
+
+**Vérifié** — `tsc` vert ; Vitest 1104/1104 ; `next build` vert. HTML prérendu contre `main` `db3b34f` : 381 pages sur 384 identiques (bijoux FR et EN, horlogerie FR) ; horlogerie FR, EN et de-ch identiques à `fbea72a`. Bijoux : métadonnées, JSON-LD, H1, liens et images identiques à `main` ; `FAQPage` = FAQ visible (6). Rendu local à 1 440 et 390 px : aucun débordement, aucune erreur ; captures avant et après relues.
+
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) ; QA Chrome groupée non reçue.
+
+**Suite** — CI de #169 ; QA Chrome ; exception D13/D42 de Laurent ; GO_MERGE_169 et GO_PUBLICATION_169 distincts.
+
+---
+
 ## 2026-10-17 · #169 : schéma des vues de référence du contrôle qualité et du SAV (horlogerie FR) ; aucun visuel ajouté sur bijoux · Claude de Laurent
 
 **Chantier** : exigence de qualité éditoriale et visuelle de Laurent du 17/10 (visuel seulement s'il explique mieux un usage ; schéma HTML/CSS/SVG dans la charte ; aucun faux résultat) ; GO_CODE et GO_PR/PUSH de #169 | **PR** : #169 | **Commit** : voir PR
