@@ -34,6 +34,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Worker #164 déployé (QA `www` en attente) ; réserve DNS `trail.packshot-creator.com` · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10 ; GO_DEPLOIEMENT_WORKER_164 de Laurent (17/10) ; contrôle ciblé `trail.` (lecture seule) | **PR** : #166 (documentation) | **Commit** : voir PR
+
+**Quoi** — `packshot-router` déployé depuis `main` `4b6fca9` (sous-arbre `cloudflare-worker/` identique à `2a8c444`, arbre propre, extraction détachée) par `npx wrangler deploy` 4.151.1. Version `d7d06bc1-a0a4-423c-a036-037a3b7266ea` (15/10, 11:01:45 UTC) → `f81fa93a-522b-4457-96d7-26ce09acc6a7`, créée le 17/10 à 13:00:31 UTC, active à 100 %.
+
+**Pourquoi** — Correctif P0 HTML/RSC (#164). Séparément, Laurent constate que `trail.packshot-creator.com` ne se résout plus.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Requêtes RSC et préchargements Next.js hors du cache HTML partagé sur `www`, à partir de 13:00 UTC le 17/10. **Événement technique pour M5 (14 au 28/10), F5 et Mode**, à rattacher à leurs mesures sans les modifier.
+
+**Vérifié** —
+- *Avant* : version active `d7d06bc1` à 100 % ; `origin/main` `4b6fca9`, aucun commit postérieur à `2a8c444` dans `cloudflare-worker/` ; un seul worktree, aucun fichier modifié ni non suivi.
+- *Après, par l'API Cloudflare* : `compatibility_date` 2024-01-01, `compatibility_flags` = `["cache_option_enabled"]` ; binding `NEXTJS_ORIGIN` = `https://sysnext.vercel.app` ; routes `www.packshot-creator.com/*`, `packshot-creator.com/*`, `*.packshot-creator.com/*` ; logpush et tail inchangés ; code relu : `isNextFlightRequest` présent, `cache: "no-store"` présent ; `d7d06bc1` toujours listée (rollback disponible).
+- *`trail.`* : requêtes DoH (`cloudflare-dns.com`, `dns.google`) du 17/10 : NOERROR sans aucune réponse pour A, AAAA, CNAME, TXT, MX, HTTPS et NS, réponse identique à celle d'un nom inexistant de la zone (`zz-inexistant-check`). Constat de Laurent : NXDOMAIN dans Chrome à 13:08:48 UTC, aucun enregistrement par 1.1.1.1 ni 8.8.8.8. Historique : 200 le 23/09 (`curl.exe`, lot F, JOURNAL de `e81e5c0` cité le 02/10) et le 25/09 (poste de Laurent et conteneur) ; le 28/09, page « Custom domain check » de Lemlist, domaine de suivi des e-mails Lemlist. Dans le code : `trail.` figure seulement dans `PASSTHROUGH_HOSTS` du Worker ; le tracker Lemlist du site a été supprimé le 28/09.
+**Supposé** — [Inférence] Le jeu NOERROR sans réponse est la réponse « négative compacte » de Cloudflare (DNSSEC) pour un nom absent ; il vaut absence d'enregistrement.
+**Non regardé** — La QA `www` (Laurent, dans Chrome, en cours) ; la zone DNS et le journal d'audit Cloudflare (jeton de cette session sans droit de lecture : « Authentication error ») ; le compte Lemlist.
+
+**Suite** —
+- QA `www` de Laurent ; P0 clos seulement si PASS ; sinon `npx wrangler@4 rollback d7d06bc1-a0a4-423c-a036-037a3b7266ea`.
+- `trail.` : **décision de Laurent**, Lemlist utilise-t-il encore ce domaine de suivi ? Oui : régression à corriger (Lemlist et DNS). Non : suppression à acter, puis retrait de `PASSTHROUGH_HOSTS` sur GO. La date et l'auteur de la suppression ne sont établissables que depuis le journal d'audit Cloudflare (dashboard). Sans lien avec le P0 HTML/RSC : un nom absent du DNS n'atteint pas le Worker.
+
+---
+
 ## 2026-10-17 · Landing IA Orbitvu (#105) — GO final : exception D13/D42, réserve hreflang, sortie de brouillon · Claude de Laurent
 
 **Chantier** : vague 1, PR-3, `/fr/ia-photo-produit` ; « PACKSHOTCREATOR V10 — GO_MERGE + GO_PUBLICATION #105 IA ORBITVU » du 17/10 (`GO_MERGE_105` et `GO_PUBLICATION_105` = OUI) | **PR** : #105 | **Base** : `main` `2a8c444`
