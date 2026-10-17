@@ -34,6 +34,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Hub vin-spiritueux (#107) — GO final : resynchronisation, exception D13/D42, sortie de brouillon · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX » du 17/10 (`GO_EXCEPTION_D13_D42_107`, `GO_QA_LOCALE_SUBSTITUTIVE_107`, `GO_RESYNC_107`, `GO_CODE_DOCUMENTATION_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE_107` et `GO_PUBLICATION_107` = OUI sous conditions) | **PR** : #107 | **Base** : `main` `faa1645`
+
+**Quoi** — `main` `faa1645` (fusions de #160, #161, #162) intégré par fusion, JOURNAL par union. Exception D13/D42, droits des illustrations et QA locale substitutive inscrits dans `DECISIONS.md` (entrée du 17/10, numéro à attribuer). ETAT et statut de `LANDING.md` actualisés. Aucun fichier fonctionnel modifié depuis la tête éditoriale `e4ba732`.
+
+**Pourquoi** — Clôture et publication de #107 dans la même séquence, sur l'autorité de Laurent.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Effet attendu** — À la fusion : nouvelle landing vin en production (fr ; en servi en français, `noindex`) ; autres pages inchangées.
+
+**Vérifié** — `main` `faa1645` ; #160 et #162 fusionnées (17/10, 03:47 et 03:50 UTC) ; #104 et #158 ouvertes en brouillon, non fusionnées. Diff fonctionnel de #107 contre `main` : `HubVin.tsx`, `SchemaEclairageBouteille.tsx`, `page.tsx` (un import, un retour anticipé), entrée vin de `data/secteurs.ts`, 8 AVIF ; fichiers vin identiques à `e4ba732`. D44 : #162 ne touche ni le gabarit des hubs ni la famille `hub-sectoriel` (`aucune`, `EXCLUDE`). Fusions simulées : avec #158 (U04) et avec #104, conflit sur `JOURNAL.md` seul, code sans conflit. `npx tsc --noEmit` et `npx next build` verts avant le push.
+
+**Supposé** — [Inférence] Le rendu du hub vin est celui de `e4ba732`, aucun fichier qu'il importe n'ayant changé sur `main` depuis. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4, QA Chrome groupée) ; formulaire réel (GO_TEST_RÉEL distinct).
+
+**Suite** — CI du nouveau HEAD ; sortie de brouillon, fusion, contrôle de `sysnext.vercel.app` ; QA groupée sur `www` ; réévaluation D44 du hub vin.
+
+---
+
 ## 2026-10-16 · Hub vin-spiritueux (#107) — finition éditoriale : nouveau H1, introduction resserrée, répétitions allégées · Claude de Laurent
 
 **Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« PSC V9 — FINITION ÉDITORIALE VIN #107 » : `GO_CODE_CORRECTIF_EDITO_107`, `GO_PR_PUSH_CORRECTIF_EDITO_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`

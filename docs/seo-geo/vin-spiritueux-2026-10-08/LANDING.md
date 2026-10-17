@@ -2,7 +2,7 @@
 
 `/fr/industrie/vin-spiritueux` · Wave 2 · 08/10/2026 · Claude de Laurent
 
-**Statut au 16/10/2026 (reprise V9) : PREVIEW PRÊTE POUR LA QA HUMAINE.** Variante B retenue (huit illustrations, deux ajustements de mise en page, section 5). Ni publication validée, ni fusion autorisée (`GO_MERGE = NO`, `GO_PUBLICATION = NO`).
+**Statut au 17/10/2026 : GO FINAL DE LAURENT.** Fusion et publication autorisées sous conditions (CI verte, aucun conflit, périmètre vin), avec exception D13/D42, droits des illustrations confirmés et QA locale substitutive à la Preview (`DECISIONS.md`, entrée du 17/10). Validation de Sébastien non reçue. Historique : 16/10, reprise V9, variante B retenue (huit illustrations, deux ajustements de mise en page, section 5).
 
 Rendu : `app/[lang]/industrie/[slug]/_components/HubVin.tsx` (fr ; en servi en français, `noindex`, D9). `/de-ch/branchen/wein` reste sur le gabarit commun. Texte : entrée `vin-spiritueux` de `data/secteurs.ts` et constantes du composant.
 

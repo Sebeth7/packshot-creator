@@ -25,6 +25,31 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #107 (hub vin-spiritueux), droits des illustrations confirmés et QA locale substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX », 17/10/2026 ; tête éditoriale de référence `e4ba732`
+**Statut** : en vigueur pour le seul périmètre de #107 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #107** : Laurent accepte, sous sa responsabilité éditoriale, la version Vin de la tête `e4ba732` : H1 « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes », introduction et formulations métier documentées dans `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md` (registre S1 à S19, HOLD H1 à H10). Ce n'est pas une validation de Sébastien : `SEBASTIEN_VALIDATION = NOT_RECEIVED` (Q27, pour information).
+2. **Droits** : Laurent confirme les droits d'utilisation des huit illustrations fournies le 08/10/2026. Elles restent légendées comme visuels d'illustration fictifs (« Visuel d'illustration — bouteilles et étiquettes fictives » ; réserves propres à I3 et I4), avec leur provenance IA documentée, et ne sont jamais présentées comme des résultats réels produits par Orbitvu.
+3. **QA substitutive propre à #107** : les contrôles locaux à quatre largeurs (1 440, 1 024, 768, 390 px), le contrôle visuel du hero et les tests techniques (TypeScript, build, Vitest, Playwright de la CI, comparaison du HTML prérendu) remplacent la QA de la Preview, bloquée par SSO. La Preview n'est pas déclarée visuellement validée par Laurent. La QA Chrome sur `www` est groupée après les publications.
+4. **D9** : `/en/industrie/vin-spiritueux` reste en `noindex, follow` ; le contenu de-ch (`/de-ch/branchen/wein`) n'est pas modifié.
+5. **Périmètre** : appel « Demander une démonstration » et gabarit commun inchangés au-delà du routage dédié du hub vin ; les corrections transversales du gabarit relèvent du propriétaire de #158.
+6. **D15** : le GO de fusion de Laurent intervient alors que le délai de D15 n'a pas été ouvert (Preview non contrôlée, Q27). Aucune validation tacite de Sébastien n'est acquise ni invoquée ; la publication repose sur l'autorité de Laurent.
+
+**Ce qu'elle ne fait pas** — Elle ne lève aucun `noindex` ; elle ne généralise pas D44 (hub vin en forme C, registre `data/navigation/pages-longues.ts` inchangé, réévaluation après fusion) ; elle ne vaut pas test réel du formulaire (GO_TEST_REEL distinct, dans la QA groupée) ; elle ne clôt pas les réserves de `LANDING.md` (H1 à H10, visuel partagé de l'XL Pro v2, note AI Act de la section 5.6).
+
+**Le contexte** — #107 réécrit le hub vin à la même URL : page dédiée `HubVin.tsx` (fr et en), huit illustrations, schémas D1 et D2, `Service.url` sur le chemin routé, légendes sans mention publique de l'IA (16/10), finition éditoriale (16/10). Preview protégée par SSO ; CI verte sur `e4ba732` ; HTML prérendu : 382 pages sur 384 identiques à `main`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, à un autre hub ou au gabarit commun.
+- La présenter comme une validation de Sébastien, une validation juridique ou une QA de la Preview par Laurent.
+- Présenter les illustrations comme des preuves de résultat Orbitvu.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
 ## D60 · 2026-10-14 · Landing « Offres d'occasion » (#129) : publication indexable (option B), navigation discrète, publication à stock vide
 
 **Décidé par** : Laurent (14/10/2026 : « GO Laurent — finalisation active avant publication », « Rectificatif de la décision de navigation », « Décision SEO définitive — option B »)
