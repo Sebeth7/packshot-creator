@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Lemlist et `trail.packshot-creator.com` abandonnés (décision de Laurent) ; réserve `trail.` close · Claude de Laurent
+
+**Chantier** : réserve `trail.` ouverte après le déploiement du Worker #164 | **PR** : #166 (documentation) | **Commit** : voir PR
+
+**Quoi** — Décision métier de Laurent du 17/10/2026 : Lemlist et son domaine de suivi `trail.packshot-creator.com` sont définitivement abandonnés. La réserve métier `trail.` est close.
+
+**Pourquoi** — Le sous-domaine ne se résout plus (constats du 17/10, entrées précédentes). Son absence DNS est cohérente avec l'abandon du service ; la date et la cause de la disparition de l'enregistrement restent inconnues, sans lien causal prouvé avec #164.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site ni au DNS : aucun enregistrement à supprimer. Le tracker Lemlist du site est retiré depuis le 28/09.
+
+**Vérifié** — Décision transmise par Laurent le 17/10 ; historique conservé dans les entrées précédentes (200 le 23/09 et le 25/09, page Lemlist le 28/09, NXDOMAIN le 17/10).
+**Supposé** — Aucun envoi Lemlist en cours ne dépend encore de `trail.` (conséquence de l'abandon décidé).
+**Non regardé** — Le compte Lemlist (hors dépôt). Témoins SEO sur `www` toujours **NON VÉRIFIÉS** faute de réponse HEAD réelle : redirections 301, réponses 410, en-tête `X-Robots-Tag`.
+
+**Suite** — Retrait de `trail.packshot-creator.com` de `PASSTHROUGH_HOSTS` (`cloudflare-worker/src/index.js`) : reporté à un GO_CODE Worker spécifique, sans déploiement immédiat (GO_CODE_WORKER = NON au 17/10).
+
+---
+
 ## 2026-10-17 · Worker #164 : QA Chrome `www` PASS (HTML/RSC) ; événement consigné pour M5, F5 et Mode ; réserve `trail.` qualifiée · Claude de Laurent
 
 **Chantier** : P0 du crawl SF du 15/10, clôture documentaire | **PR** : #166 (documentation) | **Commit** : voir PR
