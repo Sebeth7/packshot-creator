@@ -386,19 +386,26 @@ export default async function SecteurPage({ params }: PageProps) {
                       <div className={`rounded-2xl overflow-hidden h-full ${
                         isIa ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-future-dusk-900'
                       }`}>
-                        {/* Image placeholder top */}
-                        <div className={`w-full h-[180px] flex items-center justify-center ${
-                          isIa ? 'bg-amber-800/30' : 'bg-future-dusk-800/50'
-                        }`}>
-                          <div className="text-center">
-                            {isIa ? (
-                              <Sparkles className="w-10 h-10 text-amber-400/30 mx-auto mb-1" strokeWidth={1} />
-                            ) : (
-                              <Camera className="w-10 h-10 text-very-peri-400/30 mx-auto mb-1" strokeWidth={1} />
-                            )}
-                            <p className="text-xs text-white/15">{tx(lang, 'Visuel solution', 'Solution visual', 'Lösungsbild')}</p>
+                        {/* U04 — Réserve graphique vide « Visuel solution » retirée du gabarit
+                            partagé (économise 2×180 px de vide par page sur les secteurs à deux
+                            solutions). Conservée à l'identique pour les seules surfaces protégées :
+                            `vin-spiritueux` (PR #107 ouverte) et `mode-textile` (gel de mesure Mode
+                            jusqu'au 26/11/2026). Les deux solutions, leurs textes, badges, CTA et
+                            liens restent intacts sur toutes les pages. */}
+                        {(dataSlug === 'vin-spiritueux' || dataSlug === 'mode-textile') && (
+                          <div className={`w-full h-[180px] flex items-center justify-center ${
+                            isIa ? 'bg-amber-800/30' : 'bg-future-dusk-800/50'
+                          }`}>
+                            <div className="text-center">
+                              {isIa ? (
+                                <Sparkles className="w-10 h-10 text-amber-400/30 mx-auto mb-1" strokeWidth={1} />
+                              ) : (
+                                <Camera className="w-10 h-10 text-very-peri-400/30 mx-auto mb-1" strokeWidth={1} />
+                              )}
+                              <p className="text-xs text-white/15">{tx(lang, 'Visuel solution', 'Solution visual', 'Lösungsbild')}</p>
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                         <div className="p-8 lg:p-10">
                           {/* Type badge */}
