@@ -5,9 +5,15 @@
  * RSC ou de préchargement Next.js vise la même URL que la page : si elle passait
  * par ce cache, le flux RSC serait servi aux requêtes HTML, et le HTML aux
  * requêtes RSC (le cache Cloudflare ignore `Vary`). Ces requêtes doivent donc
- * partir vers l'origine sans option `cf` ; le HTML ordinaire garde son cache.
+ * partir vers l'origine sans option `cf` et avec `cache: "no-store"`, seul
+ * contournement explicite documenté par Cloudflare ; le HTML ordinaire garde
+ * son cache, sans champ `cache`. Le champ `cache` exige le flag
+ * `cache_option_enabled` à la date de compatibilité du Worker (2024-01-01) :
+ * sans lui, workerd lève « The 'cache' field on 'RequestInitializerDict' is not
+ * implemented ».
  */
 import { describe, it, expect, vi, afterAll, beforeEach } from 'vitest';
+import { readFileSync } from 'node:fs';
 import worker from '../src/index.js';
 
 const ENV = { NEXTJS_ORIGIN: 'https://sysnext.vercel.app' };
@@ -27,6 +33,8 @@ async function servir(chemin: string, headers: Record<string, string> = {}, meth
   await worker.fetch(new Request(`https://www.packshot-creator.com${chemin}`, { method, headers }), ENV);
   expect(fetchOrigine).toHaveBeenCalledTimes(1);
   const [url, init] = fetchOrigine.mock.calls[0] as [string, RequestInit & { cf?: unknown; headers: Headers }];
+  // Le champ `cache` n'est posé que pour les requêtes de navigation Next.js.
+  if (init.cache === undefined) expect('cache' in init).toBe(false);
   return { url, init };
 }
 
@@ -35,6 +43,7 @@ describe('HTML ordinaire : cache partagé inchangé', () => {
     const { url, init } = await servir('/fr/cgu', { accept: 'text/html,application/xhtml+xml' });
     expect(url).toBe('https://sysnext.vercel.app/fr/cgu');
     expect(init.cf).toEqual(CACHE_HTML);
+    expect(init.cache).toBeUndefined();
   });
 
   it('GET sans aucun en-tête', async () => {
@@ -68,6 +77,7 @@ describe('Requêtes de navigation Next.js : hors du cache partagé', () => {
       const { url, init } = await servir('/fr/contact', headers);
       expect(url).toBe('https://sysnext.vercel.app/fr/contact');
       expect(init.cf).toBeUndefined();
+      expect(init.cache).toBe('no-store');
       // Les en-têtes sont transmis à l'origine : Next.js répond toujours le flux RSC.
       for (const [k, v] of Object.entries(headers)) expect(init.headers.get(k)).toBe(v);
     });
@@ -76,7 +86,9 @@ describe('Requêtes de navigation Next.js : hors du cache partagé', () => {
 
 describe('Exclusions existantes conservées', () => {
   it('API', async () => {
-    expect((await servir('/api/contact')).init.cf).toBeUndefined();
+    const { init } = await servir('/api/contact');
+    expect(init.cf).toBeUndefined();
+    expect(init.cache).toBeUndefined();
   });
   it('ressource _next', async () => {
     expect((await servir('/_next/static/chunks/main.js')).init.cf).toBeUndefined();
@@ -97,5 +109,13 @@ describe('Exclusions existantes conservées', () => {
   }
   it('cookie banal : cache conservé', async () => {
     expect((await servir('/fr/contact', { cookie: 'cookie-consent=accepted' })).init.cf).toEqual(CACHE_HTML);
+  });
+});
+
+describe('Configuration du Worker', () => {
+  it('wrangler.toml active cache_option_enabled (champ cache, date 2024-01-01)', () => {
+    const toml = readFileSync(new URL('../wrangler.toml', import.meta.url), 'utf8');
+    expect(toml).toMatch(/^compatibility_date = "2024-01-01"$/m);
+    expect(toml).toMatch(/^compatibility_flags = \[[^\]]*"cache_option_enabled"[^\]]*\]$/m);
   });
 });

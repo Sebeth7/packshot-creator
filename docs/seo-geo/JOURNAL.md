@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Worker RSC (#164), complément : contournement explicite du cache et flag de compatibilité · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10 (suite de l'entrée précédente) ; GO_CODE et GO_PR/PUSH complémentaires de Laurent (17/10), limités à #164 ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (brouillon, DO NOT MERGE) | **Commit** : voir PR
+
+**Quoi** — Les requêtes de navigation Next.js partent avec `cache: "no-store"` en plus de l'absence d'option `cf` ; `wrangler.toml` déclare `compatibility_flags = ["cache_option_enabled"]`. HTML ordinaire, API, `_next` et cookies : aucun champ `cache`, comportement inchangé.
+
+**Pourquoi** — Réserve de Laurent : selon la documentation Cloudflare (`workers/runtime-apis/fetch`), omettre `cf` ne garantit pas l'absence de lecture du cache ; « For `no-store`, requests to origins not hosted by Cloudflare bypass the use of Cloudflare's caches ». Avec `compatibility_date = "2024-01-01"`, le champ `cache` exige le flag `cache_option_enabled` (actif par défaut à partir du 2024-11-11, page `compatibility-flags`).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/wrangler.toml`, `cloudflare-worker/test/rsc-cache.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement : séparation HTML/RSC dans les deux sens, la seconde par contournement documenté du cache et non plus par déduction.
+
+**Vérifié** — Runtime workerd local (`wrangler dev --local` 4.151.1, origine simulée, aucune requête externe), date 2024-01-01 : sans le flag, la requête RSC renvoie 500 « The 'cache' field on 'RequestInitializerDict' is not implemented » ; avec le flag, HTML 200 `text/html` et RSC 200 `text/x-component`, et l'origine reçoit `Cache-Control: no-cache` et `Pragma: no-cache` sur la seule requête RSC. `npx vitest run cloudflare-worker/test` : 7 fichiers, 185 tests verts ; contre-épreuves : 7 échecs contre le Worker de `5872410`, 1 échec (configuration) sans le flag.
+**Supposé** — Le contournement effectif du cache de la zone repose sur la documentation Cloudflare, le runtime local ne modélisant pas ce cache.
+**Non regardé** — Effet du `Cache-Control: no-cache` transmis sur le cache de Vercel pour les flux RSC ; compatibilité du mode de déploiement réel (voir Suite).
+
+**Suite** — **Condition de déploiement** : le flag doit être effectif sur le Worker déployé. Un déploiement `wrangler deploy` depuis ce dépôt l'applique ; un code collé au dashboard sans le flag ferait échouer toutes les navigations RSC (500). À vérifier dans la configuration du Worker avant et après déploiement.
+
+---
+
 ## 2026-10-17 · Worker : requêtes RSC et préchargements Next.js hors du cache HTML partagé (P0 du crawl SF du 15/10) · Claude de Laurent
 
 **Chantier** : P0 du tri V10 du crawl Screaming Frog du 15/10 (chantier 1) ; `GO_CODE_WORKER_RSC_CACHE` et `GO_PR/PUSH_WORKER_RSC_CACHE` de Laurent (17/10) ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : brouillon, DO NOT MERGE | **Commit** : `01c84b2`

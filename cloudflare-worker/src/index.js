@@ -2014,7 +2014,9 @@ var index_default = {
     // Une requete de navigation Next.js (flux RSC, prechargement) vise la meme URL
     // que la page HTML. Le cache Cloudflare ignore Vary : mise en cache, elle
     // servirait le flux RSC aux requetes HTML, et inversement (crawl SF 15/10/2026).
-    // Elle passe donc hors du cache partage, sans option cf.
+    // Elle passe donc hors du cache partage : aucune option cf, et cache "no-store",
+    // seul contournement explicite du cache documente pour une origine externe
+    // (exige le flag cache_option_enabled, wrangler.toml).
     const isNextFlightRequest = request.headers.has("rsc") || request.headers.has("next-router-prefetch") || request.headers.has("next-router-segment-prefetch") || request.headers.has("next-router-state-tree");
     const isCacheableHTML = request.method === "GET" && url.search === "" && !isNextFlightRequest && !pathname.startsWith("/api/") && !pathname.startsWith("/_next/") && !request.headers.get("cookie")?.match(/(__vercel|__next_preview|session=|token=)/i);
     const response = await fetch(targetUrl.toString(), {
@@ -2022,6 +2024,7 @@ var index_default = {
       headers,
       body: request.method !== "GET" && request.method !== "HEAD" ? request.body : void 0,
       redirect: "manual",
+      ...isNextFlightRequest ? { cache: "no-store" } : {},
       cf: isCacheableHTML ? { cacheTtl: 60, cacheEverything: true, cacheTtlByStatus: { "200-299": 60, "301-399": 86400, "404": 10, "500-599": 0 } } : void 0
     });
     const newResponse = new Response(response.body, {
