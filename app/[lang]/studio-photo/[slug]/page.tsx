@@ -21,7 +21,8 @@ import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL, pickListL } from '@/lib/locale-text';
 import { getMachineImage } from '@/lib/machine-images';
 import SommaireCollant from '@/components/navigation/SommaireCollant';
-import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
+import DoubleNavigationStructuree from '@/components/navigation/DoubleNavigationStructuree';
+import { barreActive, formeSecondeActive, LIBELLES_BARRE, LIBELLES_LATERAL, type Langue } from '@/data/navigation/pages-longues';
 
 // Gamme complète servie en allemand suisse (/de-ch/fotostudio/[slug]) — Palier 2.
 // Les slugs machines sont identiques en de-ch (ids produit, alignés sur le legacy /de/fotostudio/*).
@@ -645,6 +646,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
   // Les id ne sont posés que si la barre est active pour cette fiche.
   const barre = barreActive('fiche-machine', lang as Langue, machine.id);
+  // Double navigation D44 (Phase A) : sommaire latéral en plus de la barre, sur un pilote.
+  const doubleNav = formeSecondeActive('fiche-machine', lang as Langue, machine.id) === 'laterale';
   const ancre = (id: string) => (barre ? id : undefined);
   const entreesSommaire = barre
     ? [
@@ -706,11 +709,21 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   return (
     <>
       {barre && (
-        <SommaireCollant
-          titre={LIBELLES_BARRE[lang as Langue].titre}
-          libelle={LIBELLES_BARRE[lang as Langue].libelle}
-          entrees={entreesSommaire}
-        />
+        doubleNav ? (
+          <DoubleNavigationStructuree
+            titre={LIBELLES_BARRE[lang as Langue].titre}
+            libelle={LIBELLES_BARRE[lang as Langue].libelle}
+            libelleLateral={LIBELLES_LATERAL[lang as Langue]}
+            entrees={entreesSommaire}
+            classeLaterale="d44-laterale-fiche"
+          />
+        ) : (
+          <SommaireCollant
+            titre={LIBELLES_BARRE[lang as Langue].titre}
+            libelle={LIBELLES_BARRE[lang as Langue].libelle}
+            entrees={entreesSommaire}
+          />
+        )
       )}
 
       {/* Hero Product */}

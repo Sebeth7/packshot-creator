@@ -566,6 +566,16 @@ Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisio
 
 **Ce qu'elle interdit** — Afficher deux navigations collantes sur une page ; copier le composant dans une page au lieu d'utiliser le composant mutualisé ; ajouter un élément collant sous 1 024 px ; inventer un libellé pour la navigation (copywriting de Sébastien, D42) ; modifier par ce biais une URL, une canonique, un hreflang ou un contenu éditorial ; modifier une page gelée avant sa date de sortie (F5 23/11, Mode et hub mode-textile 26/11, accueil 28/10) ; modifier `slugify` ou le calcul des `id` des titres du blog (ancres historiques).
 
+### Addendum · 2026-10-15 · Double navigation — révision de la règle « jamais deux navigations collantes »
+
+**Décidé par** : Laurent — décision du 15/10/2026.
+
+**Ce qui change** — L'interdiction « une page ne cumule jamais deux navigations collantes » est **levée**. Une page longue éligible porte désormais **les deux** navigations à la fois : barre horizontale A **et** sommaire vertical B à droite, **synchronisés** (mêmes ancres, même section active). Le reste de D44 est inchangé : règle par famille, critères d'éligibilité, gels, interdiction de texte nouveau, ancres historiques, pas d'élément collant sous 1 024 px.
+
+**Ce qui reste interdit** — Deux scroll-spys indépendants sur une même page (un seul calcul de section active, partagé) ; une seconde navigation sur une page gelée ou avant la bascule contrôlée de sa famille ; copier un composant plutôt que passer par les composants mutualisés (`components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireLateral.tsx`, `DoubleNavigation*.tsx`).
+
+**Déploiement** — Progressif, par le registre (`secondeForme`, `piloteSecondeForme`). Phase A : un pilote par famille structurante (guide `comment-faire-focus-stacking-pour-photographier-bague`, fiche `alphashot-pro-g2`, article `images-ia-metadonnees-marketplaces`), en PR Draft, `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Phase B : généralisation par famille, par PR distinctes, après contrôle pixel des pilotes (Preview Vercel / `www` dans Chrome, R4). Référence : `docs/standards/R-UX-LONG.md`.
+
 ---
 
 ## D43 · 2026-10-02 · Services payants de recherche SEO/GEO : budget global de 200 USD par mois, GO explicite de Laurent avant tout appel
