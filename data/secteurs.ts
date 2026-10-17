@@ -193,7 +193,8 @@ export const secteurs: Secteur[] = [
       { question: 'Qu\'est-ce que le focus stacking en photo de bijoux ?', answer: 'C\'est la fusion de plusieurs photos prises avec des mises au point différentes, pour obtenir un bijou net de l\'avant à l\'arrière. Dans Orbitvu Station, l\'assistant Superfocus guide l\'empilement et suggère les paramètres, y compris pendant une animation 360°.' },
       { question: 'Peut-on créer des visuels portés de bijoux sans mannequin ?', answer: 'Pas aujourd\'hui : Orbitvu Station ne génère ni porté ni mannequin virtuel. Orbitvu annonce une fonction On-model, sans date ; nous ne la présentons pas comme disponible.' },
       { question: 'Les photos de bijoux conviennent-elles à la vente en ligne ?', answer: 'Oui : fond détouré par AI Masking, vues sous plusieurs angles et animations 360° exportées pour vos fiches produit. Les réglages enregistrés alignent chaque nouvelle référence sur les précédentes.' },
-      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Pour un collier, mesurez la présentation voulue : jusqu\'à 18 cm de long, la Micro Pro v2 convient ; un collier présenté en entier qui dépasse cette longueur relève de l\'Alphashot Pro G2, qui accepte des objets jusqu\'à 35 × 35 × 40 cm selon Orbitvu. Pour la Micro Pro v2, Orbitvu propose en accessoire un support semi-transparent qui permet de suspendre chaînes et colliers sans apparaître sur l\'image finale. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
+      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Pour un collier, mesurez la présentation voulue : jusqu\'à 18 cm de long, la Micro Pro v2 convient ; un collier présenté en entier qui dépasse cette longueur relève de l\'Alphashot Pro G2, qui accepte des objets jusqu\'à 35 × 35 × 40 cm selon Orbitvu. Pour la Micro Pro v2, Orbitvu propose en accessoire optionnel un support semi-transparent qui permet de suspendre chaînes et colliers sans apparaître sur l\'image finale. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
+      { question: 'Comment se déroule une démonstration avec nos propres bijoux ?', answer: 'Sur rendez-vous, dans notre showroom près de Lyon. Apportez quatre pièces représentatives : une bague sertie, une pièce en métal poli, une chaîne ou un collier, une pièce gravée. Nous les photographions devant vous et vérifions ensemble la maîtrise des reflets sur le métal, la restitution des pierres et des sertissages, la netteté obtenue avec le Superfocus et la répétabilité des prises de vue avec des réglages enregistrés. Vous repartez avec le choix du système adapté à vos pièces : Micro Pro v2, avec ou sans accessoires, ou Pro G2.' },
     ],
   },
 
@@ -1345,7 +1346,7 @@ export const secteurs: Secteur[] = [
       titre: 'Photographie de Montre : Packshot Horlogerie & 360°',
       sousTitre: 'Cadrans, complications, bracelets : chaque détail capturé',
       description:
-        'Studios photo automatisés Orbitvu pour marques, manufactures et sous-traitants horlogers : packshot haute résolution, rotation 360° et macro avec gestion des reflets sur verres saphir et boîtiers polis.',
+        'Studios photo automatisés Orbitvu pour marques, manufactures, sous-traitants et ateliers SAV horlogers, en Suisse comme en France : packshot haute résolution, rotation 360° et macro avec gestion des reflets sur verres saphir et boîtiers polis.',
     },
     problematiques: {
       titre: 'Défis Photo Horlogerie',
@@ -1390,15 +1391,15 @@ export const secteurs: Secteur[] = [
     useCases: [
       {
         titre: 'Documentation visuelle du contrôle qualité',
-        processus: 'Chaque lot de montres ou de composants est photographié avec le même modèle de prise de vue, lancé par le scan du code-barres de la référence : même lumière, même cadrage, mêmes réglages. Vos contrôleurs comparent des images homogènes d\'un lot à l\'autre.',
-        fonctionsOrbitvu: ['Modèles de prise de vue', 'Scan du code-barres', 'Superfocus'],
+        processus: 'Pour une manufacture ou un fournisseur de composants : la référence est identifiée par le scan de son code-barres, puis le cadran, le boîtier et le bracelet sont photographiés avec le même modèle de prise de vue, qui reprend la lumière, les réglages de l\'appareil et les angles du plateau. Chaque lot est documenté dans les mêmes conditions ; vos contrôleurs comparent des images homogènes et décident.',
+        fonctionsOrbitvu: ['Scan du code-barres', 'Modèles de prise de vue', 'Superfocus'],
         valeur: 'Des images comparables d\'un lot à l\'autre',
       },
       {
         titre: 'État avant/après intervention et SAV',
-        processus: 'En atelier SAV, en Suisse comme en France : la montre est photographiée à réception sous plusieurs angles, puis après révision, avec le même modèle de prise de vue et les repères de position de la visée directe. Les fichiers d\'origine, sans retouche, documentent son état.',
+        processus: 'Pour un atelier ou un service après-vente, en Suisse comme en France : à réception, la référence est identifiée, puis le cadran, le boîtier et le bracelet sont photographiés. Après révision, la montre repasse avec le même modèle et les mêmes angles, guidée par les repères de position de la visée directe. Les originaux, conservés sans retouche, permettent de comparer l\'état avant et après l\'intervention.',
         fonctionsOrbitvu: ['Repères de position', 'Modèles de prise de vue', 'Superfocus'],
-        valeur: 'Un état de la montre documenté et partageable',
+        valeur: 'Un état avant/après documenté, pour le client et l\'atelier',
       },
     ],
     cta: {

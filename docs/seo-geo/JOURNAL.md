@@ -34,6 +34,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · #169, second niveau : protocole de démonstration bijoux ; déroulement opérationnel du contrôle qualité et du SAV horlogers · Claude de Laurent
+
+**Chantier** : GO_CODE et GO_PR/PUSH de Laurent du 17/10 sur #169 (enrichissement issu des recherches du 17/10) | **PR** : #169 | **Commit** : voir PR
+
+**Quoi** — `data/secteurs.ts` seul, corrections du premier niveau conservées :
+- `bijoux-joaillerie` : FAQ 6 « Comment se déroule une démonstration avec nos propres bijoux ? » (sur rendez-vous, showroom près de Lyon ; bague sertie, métal poli, chaîne ou collier, pièce gravée ; reflets, pierres et sertissages, netteté, répétabilité, choix du système) ; support pour colliers de la Micro Pro v2 précisé « accessoire optionnel ».
+- `horlogerie` : les deux cas d'usage reçoivent leur déroulement (identification de la référence, cadran, boîtier et bracelet, mêmes réglages et angles du plateau, originaux conservés, comparaison avant/après) et leurs destinataires (manufactures et fournisseurs ; ateliers et services après-vente, en Suisse comme en France) ; description du hero : « ateliers SAV », « en Suisse comme en France ». Ni détection automatique, ni certification, ni traçabilité.
+
+**Pourquoi** — Protocole de démonstration et déroulement opérationnel demandés par Laurent le 17/10 (fait métier de Laurent) ; retour de Sébastien du 17/10.
+
+**Fichiers** — `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Bijoux FR (et EN, servi en français, `noindex`) : FAQ à 6 questions, `FAQPage` alignée. Horlogerie FR : cartes et hero enrichis. URL, title, meta description, H1, canonical, hreflang, robots, liens et images inchangés.
+
+**Vérifié** — Sources : orbitvu.com, lu le 17/10, `/products/alphashot-micro-v2` (« preprogramming turntable angles », modèles, éclairage des surfaces réfléchissantes, accessoire pour chaînes et colliers) et `/software/orbitvu-station` (modèles, « Scan the barcode », « position overlays »). `tsc` vert ; Vitest 1104/1104 ; `next build` vert. HTML prérendu contre `main` `db3b34f` : 381 pages sur 384 identiques (bijoux FR et EN, horlogerie FR) ; `FAQPage` = FAQ visible. Rendu local à 1 440 et 390 px : 1 H1, aucun débordement, aucune erreur.
+
+**Supposé** — Rien.
+**Non regardé** — `www` (R4) ; de-ch et EN horlogerie (inchangés) ; médias (chantier distinct).
+
+**Suite** — CI de #169 ; validation éditoriale D42 ; GO_MERGE et GO_PUBLICATION distincts ; resynchronisation par union si #168 fusionne avant.
+
+---
+
 ## 2026-10-17 · Bijoux et horlogerie : compléments métier demandés par Sébastien (colliers ; contrôle qualité et SAV des montres), affirmations FR non établies corrigées · Claude de Laurent
 
 **Chantier** : retour de Sébastien du 17/10, rapporté par Laurent ; GO_CODE puis GO_PR/PUSH de Laurent du 17/10 ; suite de #104 (fusionnée le 17/10, `70ba55d`) | **PR** : celle de la branche `claude/ecstatic-carson-i20oxn` | **Commit** : voir PR
