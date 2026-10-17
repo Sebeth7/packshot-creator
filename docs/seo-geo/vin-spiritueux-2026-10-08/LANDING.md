@@ -238,3 +238,22 @@ Redondances allégées et emplacement de l'information conservée :
 
 Inchangés : huit visuels et leurs légendes ; schéma D1 ; deux studios et leurs caractéristiques ; six FAQ ; sept étapes et la note sur les fonctions IA ; démonstration en visioconférence et showroom sur rendez-vous ; H2, H3, `id`, ancres, `alt`, liens, canonical, hreflang, `noindex` de la version EN. Aucun engagement commercial ni chiffre ajouté.
 
+### 5.8 Enrichissement du 17/10/2026 : « Quelles images prévoir pour chaque bouteille ? »
+
+Demandes de Laurent du 17/10/2026 : « GO_CODE — ENRICHISSEMENT VIN & SPIRITUEUX » (vues et livrables à prévoir par bouteille, présentés comme une préparation du shooting, pas comme une fonction d'Orbitvu Station), puis « EXIGENCE DE QUALITÉ ÉDITORIALE ET VISUELLE » (pas d'accumulation de texte, pas de visuel sans gain pédagogique évident). Version condensée retenue par Laurent ; une section séparée de cinq points, qui répétait la liste des vues existante, a été écartée avant publication.
+
+Fichier : `HubVin.tsx`, constante `GAMME`, seul.
+
+| Élément | Avant | Après |
+|---|---|---|
+| H3 de la sous-partie vues | Les vues dont vos fiches ont besoin | Quelles images prévoir pour chaque bouteille ? |
+| Paragraphe ajouté après la phrase sur les usages | — | Avant la séance, dressez pour chaque référence la liste des vues attendues, gros plans compris : relief du verre, col et capsule, dorure ou gaufrage de l’étiquette. Fixez aussi le nommage des fichiers par référence, cuvée, millésime et destination commerciale : à chaque nouveau millésime, vous savez quelles vues refaire. |
+| Liste des vues, phrase sur les usages, illustration I4 | — | Inchangées |
+
+Appuis : orbitvu.com/products/alphashot-xl-g2, relu le 17/10 (« Motorized Zoom + Top Camera Mount for overhead and close-up shots ») ; capsule, col, dorure, gaufrage déjà publiés (matières, `data/secteurs.ts`) ; « relief du verre » : fait métier sans source écrite (catégorie M9 du rapport du 08/10). Nommage et classement présentés comme une préparation du client.
+
+Requêtes visées (Search Console, landing `/fr/industrie/vin-spiritueux`, 90 jours du 08/07 au 05/10/2026, rapport vin du 08/10, section B.2, hors dépôt) : « packshot bouteille de vin » 311 impressions, position 11,1 ; « packshot bouteille » 299, 11,7 ; « comment réaliser de beaux packshots de bouteilles de vin » 159, 23,6 ; « comment photographier une bouteille de vin » 122, 21,6. La « recherche approfondie SEO/GEO du 17/10 » n'était pas disponible dans la session.
+
+Langues : `/en/industrie/vin-spiritueux` rend le même composant, en français, sans traduction ; `noindex, follow` conservé (D9, `NOINDEX_EN_INDUSTRIE_SLUGS`). `/de-ch/branchen/wein` reste sur le gabarit commun, non touché.
+
+Inchangés : huit visuels, légendes, `alt` ; schéma D1 ; title, meta description, H1, H2, `id`, canonical, hreflang ; six FAQ et JSON-LD ; liens ; `data/secteurs.ts`. D44 : 5 sections, aucune navigation ajoutée.

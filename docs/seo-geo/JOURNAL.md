@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Hub vin et spiritueux : « Quelles images prévoir pour chaque bouteille ? » dans la sous-partie des vues · Claude de Laurent
+
+**Chantier** : enrichissement du hub vin après #107 (GO_CODE et complément qualité de Laurent du 17/10) | **PR** : à ouvrir sur GO_PR/PUSH_VIN | **Commit** : voir PR
+
+**Quoi** — H3 de la sous-partie des vues renommé « Quelles images prévoir pour chaque bouteille ? » ; paragraphe de préparation ajouté (gros plans ; nommage des fichiers par référence, cuvée, millésime et destination commerciale). Aucune section ni aucun visuel ajouté.
+
+**Pourquoi** — Requêtes de la landing sur 90 jours au 05/10/2026 : « packshot bouteille de vin » 311 impressions, position 11,1 ; « packshot bouteille » 299, 11,7 ; « comment réaliser de beaux packshots de bouteilles de vin » 159, 23,6. Détail : `vin-spiritueux-2026-10-08/LANDING.md`, section 5.8.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubVin.tsx`, `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Une réponse directe, à côté de l'illustration des quatre vues, à la question des images à prévoir. Mesure en Search Console à partir de quatre semaines après une mise en production, soumise à GO_MERGE et GO_PUBLICATION.
+
+**Vérifié** — Base `main` `db3b34f`, `HubVin.tsx` identique à la version contrôlée : `npx tsc --noEmit` OK ; ESLint sans erreur ; `npx next build` exit 0, 396 pages ; Vitest 1 104/1 104 ; HTML prérendu fr et en contre `sysnext.vercel.app` du 17/10 : seuls diffèrent le H3 et le paragraphe (title, description, canonical, robots, hreflang, H1, H2, `id`, liens, `alt`, légendes, JSON-LD identiques) ; `de-ch/industrie/wein` identique ; rendu local fr et en à 1 440, 1 024, 768 et 390 px : aucun débordement, aucune erreur console, 9 images sur 9 ; en : `noindex, follow`.
+**Supposé** — « relief du verre » exact sans source écrite (catégorie M9 du rapport du 08/10).
+**Non regardé** — Preview Vercel et CI (rien n'est poussé) ; traduction de la version EN, qui sert le texte français jusqu'à sa traduction (D9).
+
+**Suite** — GO_PR/PUSH_VIN, puis GO_MERGE et GO_PUBLICATION, distincts.
+
+---
+
 ## 2026-10-17 · Lemlist et `trail.packshot-creator.com` abandonnés (décision de Laurent) ; réserve `trail.` close · Claude de Laurent
 
 **Chantier** : réserve `trail.` ouverte après le déploiement du Worker #164 | **PR** : #166 (documentation) | **Commit** : voir PR
