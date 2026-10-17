@@ -123,6 +123,27 @@ un projet CRM n'avait pas d'objet ; le précédent validé existait déjà (#82)
 
 ---
 
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #160 (Audit B, lot L5 à L11, six articles EN, finition linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉCISION GROUPÉE PR #160 », 16/10/2026 (option A), sur la tête `a74c868` ; GO final « PACKSHOTCREATOR V9 — GO FINAL PR #160 », 17/10/2026, tête éditoriale `ab60f21`
+**Statut** : en vigueur pour le seul périmètre de #160 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée exclusivement à la finition linguistique des six articles EN de #160 : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Les affirmations commerciales, caractéristiques produit et chiffres préexistants restent inchangés, sans nouvelle validation préalable de Sébastien. Aucune validation n'est attribuée à Sébastien.
+
+Choix de traduction validés par Laurent : 08 « cut » (taille d'une pierre) ; 10 « background removal » (détourage) ; 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`). Correctif après QA Chrome : 06, FAQ 2, appel de note parasite « details36 » retiré (`ab60f21`).
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas les affirmations préexistantes et ne clôt pas les réserves factuelles listées dans la description de #160 (noms de produit non harmonisés, « exclusive », distributeur « exclusive » / « the official », chiffres de cadence, témoignages, superlatifs et garanties, compatibilité Windows 11, réponses FAQ de 07 plus fortes que le FR, etc.). Ces réserves restent des sujets éditoriaux distincts.
+
+**Le contexte** — Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11. Laurent a décidé de ne pas solliciter Sébastien séparément et a regroupé les réserves en une décision unique. QA_CHROME_160 = PASS_WITH_RESERVES ; QA_160_FAQ = PASS sur la Preview de `ab60f21`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, aux contenus FR ou de-ch, à #146 ou à L1 (D35/F5).
+- Toute nouvelle promesse ou tout renforcement d'un claim existant.
+- Modifier une règle d'indexation D9 ou lever un `noindex`.
+- Présenter les affirmations maintenues comme validées.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #152 (L2, L3, L4 EN, correction linguistique)
 
 **Décidé par** : Laurent — « V9 — DÉBLOCAGE ÉDITORIAL #152 », 16/10/2026, sur la tête `ef469da`
@@ -544,6 +565,16 @@ Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisio
 **Le contexte** — Audit du 03/10/2026 sur 309 URL (livrables 01 et 02) : la barre de Mode (#66) donnait le comportement de référence ; le sommaire du blog avait deux défauts mesurés (titre visé hors écran à 390 px ; 29 listes latérales plus hautes que la fenêtre) ; 47 guides, 39 fiches et plusieurs landings longues n'avaient aucune navigation. La variante latérale avait été écartée sur Mode : à 1 440 px, elle ramène le contenu de 1 232 à 928 px. Mise en œuvre : PR UX-BLOG (#84), UX-STICKY (#85) ; contrôles en CI : PR #86.
 
 **Ce qu'elle interdit** — Afficher deux navigations collantes sur une page ; copier le composant dans une page au lieu d'utiliser le composant mutualisé ; ajouter un élément collant sous 1 024 px ; inventer un libellé pour la navigation (copywriting de Sébastien, D42) ; modifier par ce biais une URL, une canonique, un hreflang ou un contenu éditorial ; modifier une page gelée avant sa date de sortie (F5 23/11, Mode et hub mode-textile 26/11, accueil 28/10) ; modifier `slugify` ou le calcul des `id` des titres du blog (ancres historiques).
+
+### Addendum · 2026-10-15 · Double navigation — révision de la règle « jamais deux navigations collantes »
+
+**Décidé par** : Laurent — décision du 15/10/2026.
+
+**Ce qui change** — L'interdiction « une page ne cumule jamais deux navigations collantes » est **levée**. Une page longue éligible porte désormais **les deux** navigations à la fois : barre horizontale A **et** sommaire vertical B à droite, **synchronisés** (mêmes ancres, même section active). Le reste de D44 est inchangé : règle par famille, critères d'éligibilité, gels, interdiction de texte nouveau, ancres historiques, pas d'élément collant sous 1 024 px.
+
+**Ce qui reste interdit** — Deux scroll-spys indépendants sur une même page (un seul calcul de section active, partagé) ; une seconde navigation sur une page gelée ou avant la bascule contrôlée de sa famille ; copier un composant plutôt que passer par les composants mutualisés (`components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireLateral.tsx`, `DoubleNavigation*.tsx`).
+
+**Déploiement** — Progressif, par le registre (`secondeForme`, `piloteSecondeForme`). Phase A : un pilote par famille structurante (guide `comment-faire-focus-stacking-pour-photographier-bague`, fiche `alphashot-pro-g2`, article `images-ia-metadonnees-marketplaces`), en PR Draft, `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Phase B : généralisation par famille, par PR distinctes, après contrôle pixel des pilotes (Preview Vercel / `www` dans Chrome, R4). Référence : `docs/standards/R-UX-LONG.md`.
 
 ---
 

@@ -7,10 +7,20 @@
  * - `statique`  : sommaire dans la page, sans élément collant ajouté ;
  * - `aucune`    : pas de navigation persistante (page courte, page de liste, outil).
  *
- * Une page ne cumule jamais deux navigations collantes. Les gabarits lisent
- * `barreActive()` : une nouvelle page d'une famille active (guide, fiche…) reçoit la
- * barre sans autre modification ; une page gelée ne la reçoit pas avant sa date de sortie.
- * Toute exception porte son motif et sa condition de sortie.
+ * DÉCISION LAURENT DU 15/10/2026 — double navigation. La règle antérieure (« une page ne
+ * cumule jamais deux navigations collantes ») est abandonnée. Une page longue éligible
+ * porte désormais DEUX navigations synchronisées : la barre horizontale en haut ET le
+ * sommaire vertical à droite, mêmes ancres, même section active (un seul scroll-spy,
+ * composants de components/navigation/). Le déploiement est progressif :
+ * - `forme` reste la navigation PRIMAIRE historique de la famille (barre OU latérale) ;
+ * - `secondeForme` nomme la navigation complémentaire que la double navigation ajoute ;
+ * - `piloteSecondeForme` liste les pages où cette seconde forme est déjà activée (Phase A).
+ *   La généralisation par famille (Phase B) remplacera cette liste par `'toutes'`.
+ *
+ * Les gabarits lisent `barreActive()` (barre) et `formeSecondeActive()` (seconde forme) :
+ * une nouvelle page d'une famille active reçoit sa navigation primaire sans modification ;
+ * une page gelée ne reçoit rien avant sa date de sortie. Toute exception porte son motif et
+ * sa condition de sortie.
  *
  * Inventaire et mesures : audit du 03/10/2026 (309 URL, livrables 01 et 02).
  */
@@ -31,10 +41,21 @@ export interface Exception {
 export interface RegleFamille {
   famille: string;
   gabarit: string;
+  /** Navigation primaire historique de la famille. */
   forme: Forme;
   statut: Statut;
   /** Barre activée : pour toute la famille (`'toutes'`) ou pour une liste de pages. */
   portee: 'toutes' | { slug: string; langue?: Langue }[];
+  /**
+   * Navigation complémentaire ajoutée par la double navigation (D44, 15/10/2026). Pour une
+   * famille `forme: 'barre'`, c'est `'laterale'` ; pour `forme: 'laterale'`, c'est `'barre'`.
+   */
+  secondeForme?: 'barre' | 'laterale';
+  /**
+   * Pages où la seconde forme est activée (Phase A). `'toutes'` à la généralisation
+   * (Phase B). Une page gelée (exception) ne reçoit jamais la seconde forme.
+   */
+  piloteSecondeForme?: 'toutes' | { slug: string; langue?: Langue }[];
   exceptions: Exception[];
   note: string;
 }
@@ -49,6 +70,12 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     forme: 'barre',
     statut: 'ADOPT',
     portee: 'toutes',
+    secondeForme: 'laterale',
+    // Phase A : un seul guide en double navigation, le temps du contrôle pixel.
+    piloteSecondeForme: [
+      { slug: 'comment-faire-focus-stacking-pour-photographier-bague', langue: 'fr' },
+      { slug: 'how-to-do-focus-stacking-for-ring-photography', langue: 'en' },
+    ],
     exceptions: [
       { slug: 'comment-faire-photos-multi-angles-chaussures', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
       { slug: 'comment-positionner-montre-avant-shooting-photo', langue: 'fr', motif: PR27, jusqua: FIN_PR27 },
@@ -62,6 +89,9 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     forme: 'barre',
     statut: 'ADAPT',
     portee: 'toutes',
+    secondeForme: 'laterale',
+    // Phase A : une seule fiche en double navigation (toutes langues : id de machine commun).
+    piloteSecondeForme: [{ slug: 'alphashot-pro-g2' }],
     exceptions: [],
     note: 'Sections à titre (vidéo, avantages, caractéristiques, logiciel, accessoires, systèmes similaires, formation, FAQ). 39 fiches, 11 732 à 12 647 px. Colonne FAQ collante à 128 px : compatible.',
   },
@@ -116,8 +146,15 @@ export const NAVIGATION_PAGES_LONGUES: readonly RegleFamille[] = [
     forme: 'laterale',
     statut: 'KEEP',
     portee: [],
+    secondeForme: 'barre',
+    // Phase A : un seul article en double navigation (barre ajoutée au sommaire latéral),
+    // les deux langues de la même page. Mêmes ancres (h2 + h3 de l'article).
+    piloteSecondeForme: [
+      { slug: 'images-ia-metadonnees-marketplaces' },
+      { slug: 'ai-product-images-metadata-marketplaces' },
+    ],
     exceptions: [],
-    note: 'Sommaire latéral corrigé (PR UX-BLOG) ; aucune barre horizontale superposée. 122 articles.',
+    note: 'Sommaire latéral corrigé (PR UX-BLOG). Barre horizontale ajoutée en double navigation (D44, 15/10). 122 articles.',
   },
   {
     famille: 'blog-dedie-avec-sommaire',
@@ -195,9 +232,50 @@ export function barreActive(famille: string, langue: Langue, slug: string): bool
   return r.portee.some((p) => p.slug === slug && (!p.langue || p.langue === langue));
 }
 
+/**
+ * Quelle seconde navigation (double navigation D44) cette page reçoit-elle, en plus de sa
+ * navigation primaire ? `'laterale'` pour une famille à barre (guide, fiche), `'barre'`
+ * pour une famille à sommaire latéral (blog). `null` si la page n'est pas (encore) en
+ * double navigation, ou si elle est gelée.
+ */
+export function formeSecondeActive(famille: string, langue: Langue, slug: string): 'barre' | 'laterale' | null {
+  const r = regle(famille);
+  if (!r || !r.secondeForme || !r.piloteSecondeForme) return null;
+  if (r.statut === 'HOLD' || r.statut === 'EXCLUDE') return null;
+  if (r.exceptions.some((e) => e.slug === slug && (!e.langue || e.langue === langue))) return null;
+  // Une seconde forme 'laterale' complète la barre : celle-ci doit être active.
+  if (r.secondeForme === 'laterale' && !barreActive(famille, langue, slug)) return null;
+  const dansPilote =
+    r.piloteSecondeForme === 'toutes' ||
+    r.piloteSecondeForme.some((p) => p.slug === slug && (!p.langue || p.langue === langue));
+  return dansPilote ? r.secondeForme : null;
+}
+
+/** Vue d'ensemble : quelles navigations (barre haute, sommaire latéral) une page porte. */
+export function navigationPageLongue(
+  famille: string,
+  langue: Langue,
+  slug: string,
+): { barre: boolean; laterale: boolean } {
+  const r = regle(famille);
+  const seconde = formeSecondeActive(famille, langue, slug);
+  const barre = barreActive(famille, langue, slug) || seconde === 'barre';
+  // Latéral : navigation primaire du blog (rendue dès qu'il y a des titres), ou seconde
+  // forme d'une page structurée en double navigation.
+  const laterale = r?.forme === 'laterale' || seconde === 'laterale';
+  return { barre, laterale };
+}
+
 /** Libellés de la barre, identiques à ceux validés sur Mode (`packshotMode.sommaire`). */
 export const LIBELLES_BARRE: Record<Langue, { titre: string; libelle: string }> = {
   fr: { titre: 'Sommaire', libelle: 'Accès rapide aux sections' },
   en: { titre: 'Contents', libelle: 'Quick access to sections' },
   'de-ch': { titre: 'Inhalt', libelle: 'Schnellzugriff auf die Abschnitte' },
+};
+
+/** Nom accessible du sommaire latéral, distinct de celui de la barre (deux repères). */
+export const LIBELLES_LATERAL: Record<Langue, string> = {
+  fr: 'Sommaire de la page',
+  en: 'Page contents',
+  'de-ch': 'Seiteninhalt',
 };
