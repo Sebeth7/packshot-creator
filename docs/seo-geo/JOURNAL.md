@@ -34,6 +34,116 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Landing IA Orbitvu (#105) — GO final : exception D13/D42, réserve hreflang, sortie de brouillon · Claude de Laurent
+
+**Chantier** : vague 1, PR-3, `/fr/ia-photo-produit` ; « PACKSHOTCREATOR V10 — GO_MERGE + GO_PUBLICATION #105 IA ORBITVU » du 17/10 (`GO_MERGE_105` et `GO_PUBLICATION_105` = OUI) | **PR** : #105 | **Base** : `main` `2a8c444`
+
+**Quoi** — `main` `2a8c444` (#164, Worker seul) intégré par fusion (`541c292`), JOURNAL par union. Exception D13/D42, statut bêta (option A), droits des visuels Orbitvu, QA Chrome réutilisée et réserve `hreflang` inscrits dans `DECISIONS.md` (entrée du 17/10, numéro à attribuer). Aucun fichier de l'application modifié depuis la tête QA `9883fd6`.
+
+**Pourquoi** — Fusion et publication de #105 sur l'autorité de Laurent, FR seule, sans traduction ni modification SEO supplémentaire.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — À la fusion : `/fr/ia-photo-produit` publiée dans sa nouvelle version (même URL, même canonique, mêmes `hreflang` ; title de la refonte validé le 08/10 : « IA photo produit : l’IA intégrée au studio Orbitvu — PackshotCreator », au lieu de « Photo produit IA : packshots en déclinaisons lifestyle — BlendAI ») ; EN, de-ch et autres pages inchangées. **Événement SEO** : refonte de `/fr/ia-photo-produit` publiée le jour de la fusion de #105 (17/10/2026) ; à déclarer avec elle : lien vers `/fr/blog/ai-act-images-produit` (M43, fin de page ; mesure D46 si publication avant le 03-04/11), retrait des liens sortants vers blendai.studio et des liens vers `generer-images-produit-ia`, `ia-lumieres-virtuelles-revolution-packshot`, `comment-ia-revolutionne-production-visuelle`. Mesure GSC sans audit général : J+7 (24/10) et J+28 (14/11), impressions, clics et position moyenne de `/fr/ia-photo-produit` (requêtes « ia photo produit » et voisines) et du garde-fou `/fr/blog/generer-images-produit-ia`, comparés aux 28 jours précédant la publication.
+
+**Vérifié** — `main` `2a8c444` : seuls `cloudflare-worker/` et `JOURNAL.md` ont changé depuis `1fc2230`. `git diff 9883fd6 HEAD` hors `docs/` et `cloudflare-worker/` : 0 fichier ; diff contre `main` : les 23 fichiers de #105. Réserve `hreflang` : la FR déclare `en` et `de-CH` vers l'ancienne page (contenu BlendAI) ; aucune décision n'impose l'équivalence des alternates pour une landing réécrite ; précédent #107 constaté dans le HTML prérendu (`fr/industrie/vin-spiritueux` déclare `de-CH` vers `/de-ch/branchen/wein`, resté sur le gabarit commun).
+**Supposé** — [Inférence] Le verdict PASS_WITH_RESERVES de Claude pour Chrome sur `9883fd6` vaut pour la tête de fusion, le code de l'application étant identique ; cela repose sur des schémas observés.
+**Non regardé** — Détail des réserves de la QA Chrome (verdict transmis par Laurent, rapport non lu ici) ; `www` avant publication (R4).
+
+**Suite** — CI de la tête finale ; sortie de brouillon et fusion ; contrôle de l'origine `sysnext.vercel.app` ; contrôle de `www` par Claude pour Chrome ; mesures GSC J+7 et J+28.
+
+---
+
+## 2026-10-17 · Landing IA Orbitvu (#105) — reprise : resynchronisation, fresh-check ciblé, droits des visuels Orbitvu · Claude de Laurent
+
+**Chantier** : vague 1, PR-3, `/fr/ia-photo-produit` (FR) ; « PACKSHOTCREATOR V10 — GO REPRISE ET FINALISATION PR #105 » du 17/10 (`GO_REPRISE_105`, `GO_CODE_CIBLÉ_105`, `GO_RESYNC_105`, `GO_PR_PUSH_105` = OUI ; `GO_MERGE_105` et `GO_PUBLICATION_105` non donnés) | **PR** : #105 | **Base** : `main` `1fc2230`
+
+**Quoi** — `main` `1fc2230` intégré par fusion (`bd056d0`), JOURNAL et ETAT par union. Deux nuances de texte issues du fresh-check ; droits de réutilisation des visuels Orbitvu confirmés par Laurent ; exception D13/D42 propre à #105 proposée dans la description de la PR, non inscrite dans `DECISIONS.md` avant la décision de Laurent.
+
+**Pourquoi** — Gel du 12/10 levé pour #105 seule (décision de Laurent du 17/10) ; la branche partait de `main` `06b18e2`, 410 commits plus tôt.
+
+**Fichiers** — `messages/fr.json` (bloc `iaPhotoProduit` : `workflow.e3.texte`, `retoucher.avantLibelle`), `app/[lang]/ia-photo-produit/_components/LandingIaOrbitvu.tsx` (commentaire de provenance seul), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+- Fusion : conflits limités à `JOURNAL.md` (entrée #105 du 07/10 replacée avant PACK-D9, aucune ligne de `main` retirée) et `ETAT.md` (lignes #70 et #119 de `main` conservées, ligne #105 ajoutée). Registre D44 (#162) : l'exception `landing-ia` / `fr` reste la seule différence ; la famille `landing-ia` n'a ni `secondeForme` ni pilote, la page FR ne reçoit aucune navigation D44 ; aucune autre règle modifiée. #159 (MP4) et #161 (ALT) : aucun fichier commun. #163 (brouillon) : `SchemaOrg.tsx` non touché par #105. #108 (brouillon) touche les mêmes fichiers de registre D44 et `messages/fr.json`, hors de l'entrée `landing-ia` et du bloc `iaPhotoProduit`.
+- Fresh-check du 17/10 (orbitvu.com : `/software/ai`, `/software/orbitvu-station`, `/software/orbitvu-station-trial`, note de version 26.2 ; aucune note de version plus récente dans le blog) :
+  - AI Photo Assistant : « available on the Alphashot Pro G2 and Alphashot XL G2 » ; inchangé.
+  - AI Masking : « removes the background right in the capture process », « works directly on your high-resolution images », « uniform edges and clean silhouettes across your batch » ; 5 crédits par image (26.2) ; inchangé.
+  - AI Retoucher : reflets, imperfections, étalonnage des couleurs, ombre, « while keeping your real product faithfully intact » ; consignes (« prompts ») et préréglages (26.2) ; « (Beta)* » dans la note 26.2 seulement.
+  - AI OCR : références, contenus, descriptions ; « (Beta)* » dans la note 26.2 seulement, pages produit sans mention.
+  - Abonnement : outils IA réservés aux abonnements ; Enterprise : 4 500 crédits par mois, API, mode hors ligne, support prioritaire ; essai de 30 jours sans carte bancaire, compte Orbitvu Cloud et appareil Canon ; inchangé.
+  - « une correction s’applique à toute la série » (chaîne, étape « Modèles et séries ») : non retrouvé ; la page Station écrit « applies post-production tools automatically according to the selected template ». Texte précisé : « la post-production s’applique automatiquement selon le modèle choisi ».
+  - Libellé « Photo prise au studio » sur l'avant de l'exemple AI Retoucher : Orbitvu ne décrit pas les conditions de prise de vue de l'exemple. Libellé neutre : « Photo d’origine ». « Photo issue de la capture » (AI Masking) conservé : la section Orbitvu situe AI Masking dans la capture.
+- Droits : fait métier de Laurent du 17/10 — PackshotCreator dispose des droits d'utilisation des visuels Orbitvu de cette page (exemples de orbitvu.com/software/ai, captures de la fiche Alphashot XL G2), dans leur présentation prévue. `ORBITVU_REUSE_PERMISSION` levé pour ces médias ; légendes, provenance et distinction entre exemples officiels, captures d'Orbitvu Station et illustrations générées par IA inchangées ; aucun droit n'est déduit pour les marques tierces visibles (exemple AI Masking) ni hors de #105.
+
+**Effet attendu** — À la fusion : nouvelle version de `/fr/ia-photo-produit` en production, même URL ; EN, de-ch et autres pages inchangées.
+
+**Vérifié** — `main` `1fc2230` et tête de départ `f5ca7dd` (locale = distante). `git diff origin/main` : 23 fichiers, tous propres à #105 (composant et `page.tsx` de la page IA, bloc `iaPhotoProduit`, exception D44 et ses deux tests, 15 AVIF, JOURNAL, ETAT). `node scripts/seo/verifier-json.mjs` : 198 JSON valides ; `npx tsc --noEmit` : 0 ; ESLint des 5 fichiers TypeScript de la branche : 0 ; Vitest : 1 056/1 056 ; `npx next build` (R1, variables factices) : code 0. HTML prérendu comparé à un build de `main` `1fc2230` : 383 pages sur 384 identiques, seule `fr/ia-photo-produit` diffère. Chromium à 1 440, 1 024, 768 et 390 px : 1 H1, 7 H2, 16 images chargées avec `alt`, aucun débordement, aucune erreur console, aucun élément collant, 0 marqueur. Playwright, 7 specs (navigation des pages longues, responsive, débordement mobile, SEO, destinations des CTA, liens internes, liens externes) : 351 réussis, 22 échecs, tous présents sur le build de `main` ; 3 échecs de `main` résolus (`responsive`, `/fr/ia-photo-produit`).
+**Supposé** — [Inférence] Le statut bêta d'AI OCR et d'AI Retoucher est celui de la note 26.2 (juin 2026), faute de note plus récente ; cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel et `www` (R4 : QA confiée à Claude pour Chrome) ; EN et de-ch ; formulaire de contact (aucun envoi).
+
+**Suite** — CI du nouveau HEAD ; QA de la Preview par Claude pour Chrome ; décision de Laurent sur l'exception D13/D42 et sur la mention bêta ; `GO_MERGE_105` et `GO_PUBLICATION_105` distincts ; information de Sébastien sur `GO_ENVOI`.
+
+---
+
+## 2026-10-17 · L05 (#163) : resynchronisation sur `main` `2a8c444`, QA Chrome PASS, fusion · Claude de Laurent
+
+**Chantier** : G5 — données structurées (D57 § 5) | **PR** : #163 | **Base** : `main` `2a8c444` (après #164) | **HEAD précédent** : `42ed17d5`
+
+**Quoi** — Deuxième resynchronisation de #163, sans aucune modification de son
+périmètre fonctionnel. `main` a avancé de `1fc2230` à `2a8c444` avec la fusion de
+#164 (Worker RSC). Les quatre fichiers L05 sont identiques octet pour octet à
+`42ed17d5`. Draft et mention DO NOT MERGE levés sur les GO_MERGE_163 et
+GO_PUBLICATION_163 de Laurent du 17/10.
+
+**Pourquoi** — GO_RESYNC puis GO_MERGE et GO_PUBLICATION de Laurent du 17/10,
+après sa QA Chrome PASS sur les trois JSON-LD de la Preview. #164 ne touche que
+`cloudflare-worker/`, donc aucun recoupement fonctionnel avec L05 ; la fusion
+s'est faite automatiquement, `docs/seo-geo/JOURNAL.md` compris.
+
+**Fichiers** — Aucun fichier fonctionnel modifié par cette resynchronisation.
+Apports de `main` repris tels quels : `cloudflare-worker/src/index.js`,
+`cloudflare-worker/test/rsc-cache.test.ts`, `cloudflare-worker/wrangler.toml`.
+Seul `docs/seo-geo/JOURNAL.md` fusionne les deux côtés.
+
+**Effet attendu** — Aucun effet nouveau par rapport à l'entrée L05 du 17/10 :
+mêmes 54 pages prérendues, même retrait de la disponibilité et des `Offer` hors
+offre officielle. La publication en production suit la fusion sur `main`, en
+environ trois minutes.
+
+**Vérifié** — Fusion `main` → branche sans conflit (`git merge-tree` : arbre
+propre, aucun fichier en conflit ; `git merge` : « Auto-merging
+docs/seo-geo/JOURNAL.md », aucun marqueur résiduel). Journal : 0 ligne perdue de
+chaque côté, 0 entrée dupliquée. Les quatre fichiers L05 identiques à `42ed17d5`
+(`git diff --quiet` par fichier). `npx tsc --noEmit` : 0 erreur.
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx vitest run lib/seo` :
+5 fichiers, 86 cas verts. `npx vitest run cloudflare-worker/test` (apports de
+#164) : 7 fichiers, 185 cas verts. `node --check cloudflare-worker/src/index.js` :
+OK. `npx next build` (R1) : code 0. JSON-LD relevés sur le HTML prérendu du
+build : `fr/studio-photo/alphashot-xl-pro-v2` → `Offer` avec `price` 490 EUR,
+`priceCurrency` EUR, `priceValidUntil` 2027-12-31, `itemCondition`
+`NewCondition`, `seller` présent, `availability` absente ;
+`fr/studio-photo/alphashot-g2` → aucune `offers` ; `fr/studios-photo-automatises`
+→ `AggregateOffer` avec `lowPrice` 12000, `highPrice` 150000, `offerCount` 16,
+`seller` présent, `availability` absente. Zéro occurrence de `InStock`,
+`OutOfStock` et `PreOrder` dans les trois blocs. Rendu strictement identique à
+celui soumis à la QA Chrome : celle-ci est réutilisée, elle n'est pas refaite.
+
+**Supposé** — Rien de nouveau. La QA Chrome PASS du 17/10 porte sur le rendu de
+la Preview, dont l'identité avec le rendu de ce HEAD est établie ci-dessus par
+l'égalité des quatre fichiers et des valeurs relevées.
+
+**Non regardé** — Le Worker n'est pas déployé par cette fusion : le flag
+`cache_option_enabled` de #164 reste à appliquer sur le GO distinct
+`GO_DEPLOIEMENT_WORKER`. Résultats enrichis Google et GSC : à J+7 à J+21.
+Contrôle de `www` dans Chrome : à faire par Laurent (R4, Cloudflare renvoie 403 à
+tout script).
+
+**Suite** — Publication en production par la fusion sur `main`. Contrôle du
+déploiement Vercel et des trois JSON-LD après publication. #133 reste entière et
+inchangée, en HOLD pour Q20/D45 et D42.
+
+---
+
 ## 2026-10-17 · #164 fusionnée (Worker, cache RSC) ; Worker non déployé ; protocole de déploiement proposé · Claude de Laurent
 
 **Chantier** : P0 du crawl SF du 15/10 ; `GO_MERGE_164` de Laurent (17/10) au HEAD `9794ce8` ; `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (fusionnée), PR documentaire de cette entrée | **Commit** : `2a8c444` (squash)
@@ -109,6 +219,27 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Landing occasion : contraste du lien du pied de page et mention « Photo d'illustration » visible sur mobile (réserves de la QA Chrome du 17/10) · Claude de Laurent
+
+**Chantier** : landing occasion Orbitvu, micro-lot QA (GO_CODE_QA_OCCASION et GO_PR_PUSH_QA_OCCASION de Laurent du 17/10/2026 ; GO_MERGE_165 et GO_PUBLICATION_165 = OUI, accordés par Laurent le 17/10/2026 après la QA Chrome) | **PR** : #165 | **Commit** : ce commit
+
+**Quoi** — Deux corrections CSS, une ligne chacune, et rien d'autre. (A) `components/layout/Footer.tsx` : la couleur normale du lien « Matériel d'occasion » / « Pre-owned equipment » / « Occasionsgeräte » passe de `text-future-dusk-400` à `text-future-dusk-300`, comme les liens voisins ; destination, libellé, survol (`hover:text-white`), focus et logique d'affichage inchangés. (B) `components/landings/occasion/ModelesOccasion.tsx` : la mention « Photo d'illustration » / « Illustrative photo » / « Illustrationsfoto » des trois cartes de modèles n'est plus masquée sous 768 px (`hidden … md:inline` retiré) ; `max-w-[calc(100%-1rem)]` la borne à la colonne de l'image (elle passe à la ligne plutôt que d'être coupée aux très petites largeurs). Texte localisé conservé ; les modèles restent illustratifs, sans disponibilité ni prix.
+
+**Pourquoi** — Réserves mineures de la QA Claude Chrome du 17/10/2026 sur `www` : contraste mesuré 4,15:1 pour le lien du pied de page (`#6E7592` sur `#0F1118`), les liens voisins étant à 6,31:1 (`#8F95A8`) ; mention d'illustration en `display:none` à 390 px.
+
+**Fichiers** — `components/layout/Footer.tsx`, `components/landings/occasion/ModelesOccasion.tsx` (une ligne chacun) ; `docs/seo-geo/JOURNAL.md` (cette entrée). Départ de `main` `1fc22309`, branche isolée ; aucun des deux fichiers n'est touché par une autre PR active (#163, #133, #108 et #105 contrôlées par différence avec leur base).
+
+**Effet attendu** — Lien du pied de page à 6,31:1 (seuil 4,5:1 : conforme) ; mention d'illustration lisible sur les cartes mobiles. Aucun effet sur les URL, canonical, hreflang, robots, JSON-LD, formulaires, stock ni textes.
+
+**Vérifié** — Serveur local, Chromium (moteur de navigateur), FR, EN et de-ch. Avant : mention en `display:none` à 390 et 320 px dans les trois langues ; lien à 4,15:1. Après : lien à 6,31:1, identique au voisin, survol 18,86:1 inchangé, focus inchangé (contour natif 1 px) ; mention en `display:block` à 390, 360 et 320 px, contenue dans la colonne de l'image, non tronquée, 0 px² de chevauchement avec le produit (l'image est centrée dans une colonne plus haute), hauteurs des cartes identiques à l'état précédent, aucun défilement horizontal ; à 1280 px rien ne change (largeurs 107, 96 et 90 px, chevauchement préexistant identique). `npx tsc --noEmit` sans erreur ; ESLint sans avertissement sur les deux fichiers ; `npx vitest run lib/occasion` : 12 fichiers, 255 tests verts ; `npx next build` (R1) vert, code de sortie 0 (variables factices, `VERCEL_ENV=production`).
+**Rapporté par Laurent (non revérifié par l'agent)** — QA Claude Chrome sur la Preview : PASS (FR, EN et de-ch à 390 et 320 px, bureau à 1280 px, pied de page, contraste, focus). La Preview est protégée par SSO : l'agent n'y a pas accès.
+**Supposé** — Que le contraste mesuré par l'agent (couleurs calculées du navigateur sur le fond du pied de page) correspond à celui observé dans Chrome par la QA du 17/10 (4,15:1 retrouvé à l'identique avant correction).
+**Non regardé** — Rendu dans le Chrome de Laurent sur la Preview (SSO) et sur `www` après publication ; contraste de la mention elle-même : 5,7:1 calculé en local (blanc sur le fond sombre translucide mêlé à `#f1f2f6`), non mesuré dans Chrome ; aucune campagne globale, aucun audit.
+
+**Suite** — Fusion de #165 sur GO de Laurent ; vérification du déploiement sur l'origine `sysnext` et du rendu sur `www` consignées par un événement ultérieur (aucune réécriture de celui-ci). #163 a été fusionnée (`453228a5`, 09:07 UTC) pendant la CI de #165, comme Laurent l'avait ordonné (fusion de #163 avant celle de #165) : `main` est réintégré une seconde fois, `JOURNAL.md` auto-fusionné sans conflit (union vérifiée ligne à ligne, aucune perte ni doublon), aucun des fichiers de #163 ne recoupe `Footer.tsx` ni `ModelesOccasion.tsx`.
+
+---
+
 ## 2026-10-16 · U04 : retrait des réserves graphiques vides des pages secteurs · Claude de Laurent
 
 **Chantier** : U04 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
@@ -126,6 +257,68 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Rendu pixel sur Preview (4 largeurs, 3 langues), à faire dans la PR ; layout à 3+ solutions (pas de réserve, hors périmètre).
 
 **Suite** — PR Draft U04 ; `GO_MERGE`/`GO_PUBLICATION` non accordés. Lot U02 (MP4) traité en PR séparée.
+
+---
+
+## 2026-10-17 · L05 isolé de #133 : disponibilité et Offer des fiches produit en JSON-LD · Claude de Laurent
+
+**Chantier** : G5 — données structurées (D57 § 5) | **PR** : à ouvrir sur cette branche | **Base** : `main` `063c20c4`
+
+**Quoi** — La disponibilité `InStock` codée en dur disparaît du JSON-LD, et les
+fiches hors de l'offre officielle actuelle d'Orbitvu ne portent plus d'`Offer`.
+Code repris tel quel de #133 (`8fa7d53` du 12/10 et `5739438` du 15/10), limité
+au seul correctif L05 : aucune dimension, FAQ, recommandation, valeur produit,
+prompt de lead ni contenu visible n'est touché.
+
+**Pourquoi** — D57 § 5 : « aucune disponibilité déclarée en JSON-LD sans preuve
+actuelle de la configuration concrète : la propriété est omise, jamais remplacée
+par `OutOfStock` ni `PreOrder` » ; « aucune `Offer` pour une fiche hors de l'offre
+officielle actuelle ». Le site déclarait `InStock` pour toutes les fiches, sans
+aucune preuve de stock, y compris pour trois modèles absents du site fabricant.
+#133 reste entière en HOLD pour Q20/D45 et D42 : ce lot en est extrait parce
+qu'il ne dépend d'aucun de ces deux arbitrages.
+
+**Fichiers** — `components/seo/SchemaOrg.tsx`,
+`data/produits/offre-officielle.ts` (nouveau),
+`app/[lang]/studio-photo/[slug]/page.tsx` (un import et une condition),
+`lib/seo/__tests__/product-disponibilite.test.ts` (nouveau)
+
+**Effet attendu** — 54 pages prérendues : les 51 fiches `studio-photo` (JSON-LD
+seul) et les 3 `studios-photo-automatises`. La disponibilité disparaît des blocs
+`Product` et de l'`AggregateOffer` du service ; l'`Offer` disparaît des 9 blocs
+des trois fiches hors offre (`alphashot-g2`, `alphashot-xl-v2`,
+`alphashot-xl-wine-v2`, en trois langues). Aucun texte visible ne change.
+
+**Gels vérifiés** — Aucune page gelée n'est touchée. `productSchema` n'a qu'un
+appelant, `app/[lang]/studio-photo/[slug]/page.tsx`. Des trois appelants de
+`serviceSchema`, un seul passe `aggregateOffer`
+(`app/[lang]/studios-photo-automatises/page.tsx:444`) : les hubs `industrie`,
+dont `mode-textile`, et le hub vin ne changent pas. Accueil (M5, 28/10), F5
+(23/11) et landing Mode (26/11) hors périmètre, aucun de leurs fichiers réservés
+n'est modifié.
+
+**Vérifié** — `npx tsc --noEmit` : 0 erreur. `npx vitest run lib/seo` : 5
+fichiers, 86 cas verts, dont les 8 nouveaux de `product-disponibilite`.
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx next build`
+(R1) : code de sortie 0. Rendu structuré relu sur le HTML prérendu :
+- `fr/studio-photo/alphashot-xl-pro-v2` : `offers` présente, `price` 490 EUR et
+  `itemCondition` `NewCondition` conservés, **`availability` absente**, aucun
+  `InStock`, `OutOfStock` ni `PreOrder` ;
+- `fr/studio-photo/alphashot-g2` : **aucune `offers`** ;
+- `fr/studios-photo-automatises` : `AggregateOffer` conserve `lowPrice` 12000,
+  `highPrice` 150000, `priceCurrency` et `offerCount` 16, **sans `availability`**.
+
+**Supposé** — Rien.
+
+**Non regardé** — Le reste de #133 (valeurs fabricant, FAQ, catalogues, prompt
+des leads), qui attend Q20/D45 et D42 ; les contradictions E1, E2, E4, E5, SB1 et
+SB2 du référentiel, inchangées.
+
+**Suite** — [Inférence] Google Search Console peut signaler « availability
+manquant » en avertissement sur les blocs `Product`, sans perte d'éligibilité
+attendue ; cela repose sur des schémas observés, contrôle à J+7 à J+21. Après
+fusion : test des résultats enrichis sur une fiche en offre et sur
+`alphashot-g2`.
 
 ---
 
@@ -4009,6 +4202,117 @@ Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-
 **Non regardé** — Preview Vercel au moment de l'entrée ; `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari et appareils réels ; envoi réel du formulaire (interdit par la mission) ; P0-B (bouton illisible et visuels manquants du gabarit commun) et P0-C (`/industrie/bouteilles`) : recommandations seules, dans `LANDING.md` ; traductions en et de-ch ; preuves réelles (photos de bouteilles prises en studio) : aucune disponible.
 
 **Suite** — Contrôle de la Preview par Laurent (desktop, mobile). Fusion et publication sur GO distincts. Si #104 fusionne avant, reprendre `main` et relancer le build.
+
+---
+
+## 2026-10-07 · Landing IA Orbitvu — reconstruction de `/fr/ia-photo-produit` (vague 1, PR-3, FR seule) · Claude de Laurent
+
+**Chantier** : vague 1 du dossier `PSC_LANDINGS_COCONS_FINAL_2026-10-07` V2, PR-3 (brief B7), GO de codage de Laurent du 07/10 (« CODAGE AUTORISÉ SUR CE PÉRIMÈTRE UNIQUEMENT ») | **PR** : #105, brouillon, « DO NOT MERGE », branche `claude/inspiring-edison-dgtlr8` | **Base** : `main` `b806291` (fusion de #103 ; #102 fusionnée avant, dépendance levée)
+
+**Quoi** — `/fr/ia-photo-produit` reconstruite en landing commerciale sur les capacités Orbitvu AI Toolkit établies, avec le repli A4 :
+- composant FR dédié `_components/LandingIaOrbitvu.tsx`, appelé par `page.tsx` quand `lang = fr` ; EN et de-ch servent l'ancienne page, inchangée ;
+- namespace `iaPhotoProduit` de `messages/fr.json` remplacé en un seul bloc ; `en.json` et `de-ch.json` non modifiés ;
+- structure B7 : hero, sections 1 à 7 (Orbitvu AI Toolkit et workflow en 7 étapes, AI Photo Assistant, AI Masking et AI Retoucher, AI OCR, part générative, On-model annoncé, conditions et essai), démonstration, FAQ de 7 questions, liens de fin existants ;
+- CTA principal « Demander une démonstration » vers `/contact` (hero et section démonstration) ; CTA secondaire « Découvrir les fonctions IA Orbitvu » vers l'ancre interne `#fonctions-ia-orbitvu` ; aucun lien sortant ;
+- JSON-LD : `SoftwareApplication` BlendAI et son `Offer` (75 EUR) retirés ; restent `Organization`, `BreadcrumbList`, `FAQPage` (7 questions = FAQ visible) ; aucune note agrégée, aucun `Review` ;
+- barre D44 : huit entrées dont la FAQ, libellés = titres H2 ; note de l'entrée `landing-ia` de `data/navigation/pages-longues.ts` actualisée, sans changement de comportement.
+
+**Pourquoi** — Rendu du 07/10 (V2, `01`) : page entièrement BlendAI (title, H1, 7 H2, galerie et avant/après BlendAI, 3 CTA vers blendai.studio, `SoftwareApplication`), hors offre. A4 (11, 07/10) : repli sûr validé. Prose : proposition soumise à l'étape 5 de D42 (D15, réécriture de page existante).
+
+**Fichiers** — `app/[lang]/ia-photo-produit/page.tsx` (7 lignes ajoutées), `app/[lang]/ia-photo-produit/_components/LandingIaOrbitvu.tsx` (nouveau), `messages/fr.json` (bloc `iaPhotoProduit`), `data/navigation/pages-longues.ts` (note `landing-ia`), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Claims** — Conservés (SUPPORTED, fresh-check orbitvu.com de Laurent du 07/10, non revérifié par cette session, aucun service externe appelé) : nomenclature Orbitvu Station, Orbitvu AI Toolkit, AI Photo Assistant, AI Masking, AI Retoucher, AI OCR ; AI Photo Assistant sur Alphashot Pro G2 et Alphashot XL G2 ; Station aussi sans matériel Orbitvu avec un appareil Canon compatible ; AI Retoucher décrit par Orbitvu comme génératif ; outils IA réservés aux abonnés ; plan à 4 500 crédits par mois, API, mode hors ligne, support prioritaire ; AI Masking 5 crédits par image ; essai de 30 jours sans carte bancaire ; On-model « coming soon », jamais présenté comme disponible ; « distributeur officiel » (D6). Formulations datées « au 7 octobre 2026 » ou « selon Orbitvu ». Retirés : tous les claims BlendAI (fidélité 100 %, zéro hallucination, 2 minutes, 100+ styles, 75 €/mois, solution propriétaire, compatible avec tous les systèmes, mannequins virtuels, retouche humaine incluse) ; statistiques −66 %, 98 %, +38 % ; 6 témoignages ; 9 logos clients et « 300+ marques » ; « 20 systèmes » ; « 14 secteurs » ; « certifiées » et « Qualiopi » des liens de fin. Neutralisés : IA-1 (« Démonstration et conditions sur demande ») ; IA-2 (aucun visuel IA ; seules les deux vignettes catalogue des fiches Pro G2 et XL G2). Non écrits : prix d'abonnement, crédits d'AI Retoucher et d'AI OCR, autres modèles compatibles, SLA, gains de productivité, cas client. « Ajout d'une ombre » (AI Retoucher) : absent de la liste de B7, ajouté après le fresh-check source primaire du 07/10 (voir « Micro-correctif »).
+
+**Effet attendu** — Après fusion et publication : l'URL propriétaire de l'intention I10 sert l'offre IA Orbitvu ; plus aucun lien commercial vers blendai.studio depuis la page FR. [Inférence] Effet de classement non mesurable avant J+28. Cela repose sur des schémas observés.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` 195 fichiers ; Vitest 483/483 (23 fichiers) ; `npx next build` vert (variables factices) ; ESLint des fichiers modifiés : 0 problème (l'étape Lint de la CI est `continue-on-error`, 301 problèmes préexistants sur le dépôt).
+- HTML prérendu `main` `b806291` / branche, scripts retirés, identifiant de build neutralisé : 374 pages, **373 identiques, 1 différente : `fr/ia-photo-produit`**. Identiques : EN et de-ch de la page IA, accueil `fr`, `en`, `de-ch`, F5 et Mode dans les trois langues. Les scripts (messages client de next-intl) changent sur les 160 pages FR : charge non rendue.
+- Page FR : title 68 caractères, meta description 153, 1 H1, 9 H2 ; canonical et 5 hreflang identiques à `main` ; 1 448 mots dans la zone principale (méthode V2 : `<main>` sans `<nav>` ; cible 1 400, fourchette 1 300-1 500) ; FAQ visible et `FAQPage` : 7 questions.
+- Chaînes absentes du HTML rendu (hors scripts) : BlendAI, blendai, AggregateRating, ratingValue, Review, SoftwareApplication, 100 %, hallucination, 300+, Chanel, 20 systèmes, 14 secteurs, exclusif, orbitvu.fr, orbitvu.com. « lifestyle » et « mannequin » : 2 occurrences, en négation (section 5 et FAQ). Liens vers F5 et Mode : en-tête et pied de page globaux seulement, inchangés.
+- Liens de la zone principale : `main` 12 occurrences, 10 cibles ; branche 21 occurrences, 16 cibles. Retirés : `https://blendai.studio` (3), `#resultats`. Ajoutés : `/fr/studio-photo/alphashot-pro-g2`, `/fr/studio-photo/alphashot-xl-g2`, `/fr/guide/comment-obtenir-fond-blanc-parfait-sans-detourage-produit`, `/fr/industrie/bijoux-joaillerie`, `/fr/industrie/vin-spiritueux`, `/fr/blog/alphashot-xl-g2-photo-mesures-donnees-produit`, `/fr/blog/ai-act-images-produit` (M43), `#fonctions-ia-orbitvu`. Conservés : `/fr/contact`, `/fr/studios-photo-automatises` (M44), `/fr/industrie`, `/fr/academy`, les 4 ressources de `MONEY_PAGE_RESOURCES_MAP` (non modifiée), dont `/fr/blog/generer-images-produit-ia`, aussi lié dans le texte.
+- Liens entrants : aucun lien vers une ancre de la page dans le dépôt ; URL, redirections (`/blendai`, `/logiciel`, `/gestion-workflow-shotflow`) et fichiers sources non modifiés.
+- Chromium sur `next start` de la branche : rendu à 1 440, 1 024, 768 et 390 px : 1 H1, aucun débordement, CTA principal visible au premier écran aux quatre largeurs, 2 images chargées ; hauteur 9 090 px à 1 440 px (seuil C1 de D44 : 7 200 px). Specs exécutés par la CI (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`) : 81/81 sur le build final de la branche.
+- Playwright, mêmes 9 specs sur la branche et sur `main` (`navigation-pages-longues`, `internal-links-all`, `mobile-overflow`, `responsive`, `external-links`, `cta-destinations`, `seo`, `redirections`, `language-switch`) : branche 382 réussis, 72 échecs ; `main` 379 réussis, 75 échecs. Les 72 échecs de la branche échouent aussi sur `main` (redirections du Worker absentes de `next start`, title et meta EN, pages `/fr`, Studios, `industrie-defense`). Les 3 échecs de `main` absents de la branche : débordements de l'ancienne page IA FR (375, 768, 1 440 px). Barre D44 FR et de-ch : 4/4.
+- PR ouvertes (#104, #82, #79, #70, #65, #64, #27) : aucun fichier de code commun. `messages/fr.json` : #64 et #27 le modifient hors du namespace `iaPhotoProduit` (namespace identique entre leur base et leur tête). `JOURNAL.md` : toutes ; `ETAT.md` : #104, #82, #70, #65, #64, #27.
+
+**Supposé** — [Inférence] Les capacités et conditions Orbitvu sont celles du fresh-check de Laurent du 07/10 ; elles n'ont pas été relues sur orbitvu.com (aucun service externe autorisé). Cela repose sur le dossier V2 (`05`, B7).
+**Non regardé** — Preview Vercel et `www` (R4) ; relecture de la prose par Sébastien (étape 5 de D42) ; EN et de-ch (ancienne page BlendAI conservée, voir Suite) ; description globale de `organizationSchema()` (« IA BlendAI », « Qualiopi »), rendue sur toutes les pages : `components/seo/SchemaOrg.tsx` est modifié par #64, non touché ; composants morts `components/sections/IAManifesteSection.tsx` et `AIFeaturesGrid.tsx` (aucun import), qui lisent des clés FR retirées : non modifiés.
+
+**Événements de mesure à déclarer à la publication** — M43 : lien de la landing vers `/fr/blog/ai-act-images-produit` ; si la publication précède le J+28 AI Act (03 ou 04/11), c'est un événement de la mesure D46. Retrait de 3 liens sortants vers blendai.studio. Lecture de la landing : J+28 et J+56 depuis sa publication, famille IA hors requêtes `site:` ; garde-fou : positions de `/fr/blog/generer-images-produit-ia`.
+
+**CI de la tête `6937403`** — 4/4 verte : « Types, build et intégrité des données » (12:04:51 UTC), « Le journal est à jour », « Les conséquences ont été regardées », Preview Vercel déployée.
+
+**QA humaine de la Preview FR (Laurent, 07/10/2026) : PASS** — Preview Vercel authentifiée de #105, `/fr/ia-photo-produit`, aux 4 largeurs (rapport transmis par Laurent ; EN et de-ch non contrôlées en détail) :
+- HTTP 200 ; title, meta description, canonical et 5 hreflang conformes ; 1 H1 ; les 9 H2 de contenu (un dixième H2 relevé, « Gestion des cookies », appartient au bandeau cookies) ; CTA « Demander une démonstration » (hero et section démonstration) vers `/fr/contact`.
+- Barre D44 : 8 ancres ; affichée à 1 440 et 1 024 px, masquée à 768 et 390 px (`hidden lg:block`). Défilement et clic non testés par la QA humaine ; couverts par `navigation-pages-longues` en local et en CI.
+- 15 liens internes uniques, tous en 200 ; aucun débordement ; 4/4 images chargées dans le document réel après défilement ; FAQ en `details`.
+- BlendAI : 0 texte visible, 0 lien, 0 CTA blendai.studio ; aucun `AggregateRating` dans les 3 blocs JSON-LD ; anciens témoignages, logos et statistiques absents. Fonctions Orbitvu et On-model présentées comme dans le brief B7.
+- Anomalies, toutes non bloquantes (décisions de Laurent du 07/10) : (1) « BlendAI » dans le JSON-LD `Organization` : composant partagé `SchemaOrg.tsx`, préexistant, hors périmètre de #105, collision #64, non corrigé ici ; (2) 2 images signalées « cassées » par le test en iframe à 1 440 et 1 024 px, chargées dans le document réel : artefact du chargement différé du test, non bloquant ; (3) lien vers `/fr/blog/generer-images-produit-ia` : renvoi éditorial prévu par B7 (section 5), pas un CTA BlendAI ; (4) plan Orbitvu cité : source non vérifiée par la QA.
+- Décisions de Laurent du 07/10 : vignettes Pro G2 et XL G2 conservées ; « ombres » non ajoutées à AI Retoucher (décision remplacée le même jour, voir « Micro-correctif ») ; M39 hors périmètre ; EN et de-ch non traduites à ce stade ; aucune fusion ; #105 ne sera pas fusionnée en FR seule.
+- Valeurs Orbitvu visibles (4 500 crédits par mois, AI Masking 5 crédits par image, essai de 30 jours sans carte bancaire) : issues du fresh-check orbitvu.com de Laurent du 07/10. Sur la page, elles sont attribuées à Orbitvu : « Selon la page d'Orbitvu consultée le 7 octobre 2026 » (section « Conditions et essai »), réponses de FAQ datées du 7 octobre 2026, mention « Informations communiquées par Orbitvu, susceptibles d'évoluer ». Leur fraîcheur est à reconfirmer avant la publication finale.
+
+**Fresh-check source primaire externe d'Orbitvu (Laurent, 07/10/2026)** — Pages officielles Orbitvu accessibles le 07/10, vérifiées par Laurent hors de cette session (aucun service externe appelé ici) : AI Photo Assistant disponible sur Alphashot Pro G2 et Alphashot XL G2 ; AI Retoucher supprime des reflets, nettoie les imperfections, ajuste les couleurs, ajoute une ombre ; AI Masking 5 crédits par image ; offre Enterprise à 4 500 crédits mensuels ; essai d'Orbitvu Station de 30 jours, accès complet, sans carte bancaire ; On-model présenté comme « coming soon ». QA de la Preview FR : PASS avec réserves non bloquantes ; CI et Vercel PASS sur `6937403`.
+
+**Micro-correctif du 07/10 (décisions A et B de Laurent)** — Deux phrases de `messages/fr.json`, rien d'autre :
+- A : FAQ q1, « AI Photo Assistant est en revanche annoncé sur » devient « … disponible sur l'Alphashot Pro G2 et l'Alphashot XL G2 » (FAQ visible et `FAQPage`).
+- B : AI Retoucher (section 3), « … travail sur les couleurs » devient « … travail sur les couleurs, ajout d'une ombre ». Aucune nouvelle promesse commerciale.
+- Vérifié : `verifier-json` 195 ; `tsc` vert ; Vitest 483/483 ; `next build` vert ; HTML prérendu : 373/374 identiques à `main`, seule `fr/ia-photo-produit` diffère ; 1 451 mots dans la zone principale ; Playwright ciblé (`navigation-pages-longues`, `seo`, `mobile-overflow`, `responsive`, `internal-links-all` filtrés sur la page IA FR et de-ch) : 19 réussis, 1 échec (`navigation-pages-longues`, `/de-ch/ia-photo-produit`, 1 024 px, exécution à 4 processus) ; HTML de-ch identique à `main` ; rejeu en série, 2 passages : 8/8. Message d'erreur du premier échec non conservé.
+- Décisions maintenues : chiffres Orbitvu conservés avec leur datation (C) ; date « 7 octobre 2026 » conservée comme date du relevé, non dynamique (H) ; nouveau fresh-check obligatoire juste avant publication si celle-ci est différée ; vignettes conservées (D).
+
+**Dettes séparées, hors #105 (décisions E, F, G de Laurent)** — E : « IA BlendAI » dans le JSON-LD `Organization` partagé (`components/seo/SchemaOrg.tsx`, collision #64), non touché. F : chaînes BlendAI encore présentes dans la charge i18n envoyée au client et non rendue (autres namespaces de `messages/fr.json`, namespaces `iaPhotoProduit` EN et de-ch), non traitées. G : bandeau cookies mobile, composant global, non modifié.
+
+**Refonte éditoriale, UX et visuelle du 07/10 (mission de Laurent, après la QA FR)** — La page devient une landing visuelle : le produit est photographié, l'IA d'Orbitvu Station intervient avant et après la capture.
+- Structure : hero (« L’IA assiste la photo. Elle ne remplace pas le produit. ») ; workflow en 6 étapes avec repères IA / sans IA, servant de navigation statique ; AI Photo Assistant ; AI Masking et AI Retoucher ; AI OCR ; encart « Et le génératif ? » ; CTA final « Venez avec un produit, pas avec un prompt » ; FAQ de 5 questions (compatibilité, accès, crédits, essai, contrôle du résultat) ; liens de fin et ressources inchangés. CTA vers `/contact`.
+- Retirés : grille de 7 cartes, section « Conditions », section On-model, formulations « l’IA intervient à chaque étape », « de la capture à la publication », « désigne l’ensemble », « La distinction compte », répétitions de « produit réel », de la date et de « selon Orbitvu » ; la barre D44 numérotée.
+- D44 : exception `ia-photo-produit` / `fr` au registre `landing-ia` (forme C, navigation statique par le schéma du workflow) ; aucune navigation collante ajoutée (D44 interdit une navigation collante hors composant mutualisé). Tests adaptés : `lib/navigation/__tests__/registre-pages-longues.test.ts` (FR attendue sans barre), `e2e/navigation-pages-longues.spec.ts` (`/fr/ia-photo-produit` passée des pages équipées aux pages sans barre). `docs/standards/R-UX-LONG.md` (décompte de 93 pages) non actualisé.
+- Visuels, tous réels et déjà publiés sur le site : photo d’opératrice et studio (fiche Alphashot XL G2, `packshot-operator.avif`) ; capture Orbitvu Station du sachet de café et fenêtre « (Beta) AI OCR » du même sachet (fiche XL G2, publiées par Sébastien le 07/07/2026) ; capture Orbitvu Station sur Alphashot Pro G2 avec le panneau « AI Templates » (article « migrer un ancien studio », PR #36 du 25/09/2026) ; photos catalogue Pro G2 et XL G2. Aucun visuel généré, aucune interface reconstituée. Écartés faute de pouvoir établir l’outil utilisé : avant/après de détourage et de retouche des fiches Pro G2 et Micro v2.
+- Fresh-check source primaire de cette session, le 07/10/2026 : `orbitvu.com/software/ai` (AI Photo Assistant sur Pro G2 et XL G2 ; AI Masking dans le flux de capture ; AI Retoucher : reflets, imperfections, étalonnage des couleurs, ombre ; AI OCR vers des métadonnées structurées ; On-model « coming soon », sans date) ; `/software/orbitvu-station` (Station seul avec un appareil Canon ; retouche automatique avec l’IA générative) ; `/software/orbitvu-station-trial` (essai de 30 jours, accès complet, sans carte bancaire ; Enterprise : 4 500 crédits par mois, API, mode hors ligne, support prioritaire, AI Mask, AI Retoucher, AI OCR) ; note de version Station 26.2 du 23/06/2026 (AI Masking 5 crédits par image ; prompts et presets d’AI Retoucher). Prix : non publiés par la source.
+- Vérifié : `verifier-json` 195 ; `tsc` vert ; Vitest 483/483 ; `next build` vert ; ESLint des fichiers modifiés : 0 problème ; HTML prérendu : 373/374 identiques à `main`, seule `fr/ia-photo-produit` diffère ; title 68 caractères, description 145, 1 H1, 8 H2, canonical et 5 hreflang inchangés, JSON-LD `Organization`, `BreadcrumbList`, `FAQPage` (5) ; 905 mots dans la zone principale (sous le minimum utile de 1 000 du dossier V2, `04`, choix de la refonte) ; Chromium à 1 440, 1 024, 768, 390 px : aucun débordement, CTA au premier écran, 6 images réelles chargées avec `alt`, aucune barre collante, aucune erreur console ; Playwright, 11 specs : 418 réussis, 72 échecs, tous présents sur `main`.
+
+**Deuxième passe éditoriale avant visuels, 08/10/2026 (mission de Laurent ; tête avant `872ca38`, base `main` `06b18e2`)** — Contre-audit : page lisible mais documentaire, sans résultat visuel pour Masking et Retoucher. Décision stratégique de Laurent du 08/10 (non inscrite dans `DECISIONS.md`, aucun numéro attribué) : PackshotCreator = production visuelle produit de bout en bout (capture, workflow, IA, diffusion) ; #105 est propriétaire de la brique IA dans ce parcours.
+- Chaîne de production : le workflow devient 4 colonnes Capture, Workflow, IA, Diffusion et 7 étapes ; pastille « IA · <outil> » ou « Sans IA » sur chaque étape. Étape « Publication » : profils de publication vers boutique en ligne, PIM, DAM ou stockage (SUPPORTED, voir ci-dessous) ; « marketplace » non écrit (non établi).
+- Retirés du texte visible : répétition du hero ; « L’opérateur choisit, ajuste et décide du résultat » ; phrase bouteille, bague, textile ; renvoi « fond régulier » et lien vers le guide fond blanc ; encart « Et le génératif ? » (On-model compris) ; phrase AI Act du corps ; ligne de sourcing de la FAQ ; « n’est pas indiquée ici » ; « communiquées sur demande » ; « où elle n’a rien à faire ». H2 réécrits : « Avant le déclenchement : préparer l’éclairage », « Détourer l’image dans Orbitvu Station », « Corriger une image déjà photographiée », « Lire les informations présentes sur le produit » ; titre du workflow : « Où l’IA intervient, de la prise de vue à la publication ». CTA du hero et CTA final : « Demander une démonstration » (`/fr/contact`, page « Demandez une démo, un devis ou des informations »). FAQ : 6 questions (ajout : destinations de publication).
+- Ressources de fin : retirés de cette page seulement, par le paramètre `exclure` de `MoneyPageResources` (table partagée inchangée) : `generer-images-produit-ia`, `ia-lumieres-virtuelles-revolution-packshot`, `comment-ia-revolutionne-production-visuelle` ; cartes génériques « Solutions par secteur » et « Academy » remplacées par des liens nommés : Studios (M44), article Alphashot XL G2 données produit, pilier AI Act (M43, déplacé du corps vers la fin). Aucune décision de `DECISIONS.md` ni ligne du plan `07` ne protège les liens retirés. **Conséquence (R8)** : dans le HTML prérendu de `main`, `/fr/blog/generer-images-produit-ia` et `/fr/blog/comment-ia-revolutionne-production-visuelle` ne reçoivent de lien que de `/fr/blog` et de `/fr/ia-photo-produit` ; après publication de #105, seule la liste du blog les liera. `generer-images-produit-ia` est le garde-fou de mesure de la landing (B7). `ia-lumieres-virtuelles-revolution-packshot` garde ses liens d’articles liés.
+- Hero : visuel remplacé par la capture Orbitvu Station du sachet de café (fil conducteur jusqu’à AI OCR). Image de l’opératrice et de la botte : HOLD. Provenance établie le 08/10 par comparaison d’images : visuel officiel Orbitvu, identique à `orbitvu.com/products/alphashot-xl-g2/images/intro-process.webp` ; nature photographique non établie (l’écran affiche une botte noire, le studio une botte bordeaux). Captures du sachet : identiques à `…/images/station.webp` et `…/closer-look/etykieta-2-v2.webp` du même site.
+- Mobile : sous 768 px, découpes de la zone utile des trois captures (`public/images/ia-photo-produit/`, recadrage seul, aucun pixel ajouté), servies en direction artistique (`getImageProps`, `<picture>`), avec lien « Afficher la capture entière » sous les captures AI Photo Assistant et AI OCR. Ordre du hero sous 1 024 px : surtitre, H1, visuel, texte, CTA.
+- ASSET_REQUIRED_REAL : marqueurs `VisuelRequis` rendus seulement si `VERCEL_ENV === 'preview'` ou en développement (nouveau mécanisme, limité à ce composant) ; build sans `VERCEL_ENV` : 0 marqueur.
+- Fresh-check source primaire de cette session, le 08/10/2026 (`curl`, texte exact) : `orbitvu.com/software/ai` : « suggests several optimized lighting setups » ; « AI Photo Assistant is available on the Alphashot Pro G2 and Alphashot XL G2 » ; « AI Masking removes the background right in the capture process » ; « remove reflections, clean up imperfections, adjust color grading and add shadow » ; « AI OCR extracts data from the product or its packaging » ; On-model « coming soon » ; aucune mention « beta ». `/software/orbitvu-station` : « AI assists, but the final choice is yours » ; « Save lighting setup within capture templates » ; « Apply one correction to any number of images at once » ; « Publish stills and 360 spins straight to your e-shop - Shopify, Shopware, Magento, PrestaShop, or WooCommerce » ; « Station runs standalone with a Canon camera » ; « Tether up to 5 Canon cameras ». `/software/orbitvu-station-trial` : « You can publish it directly to your e-shop, PIM, DAM, or cloud/local storage » ; « 30 days, full access, no credit card » ; « An Orbitvu Cloud account (free to create) and a Canon camera » ; Enterprise « 4500 credits monthly », API, mode hors ligne, support prioritaire, AI Mask, AI Retoucher, AI OCR ; aucun prix. Note de version 26.2 (23/06/2026) : « AI OCR (Beta)* », « AI Retoucher (Beta)* », « Use prompts to control the result, then save them as presets », « 5 credits per image, down from 15 », « All AI features are available exclusively to users on subscription plans ». Statut bêta d’AI OCR et d’AI Retoucher : UNRESOLVED (bêta dans la note du 23/06 et dans la capture, absent des pages produit du 08/10, aucune source de sortie de bêta) ; la légende de la capture AI OCR dit « marquée bêta », le corps du texte ne le mentionne pas.
+- Vérifié : `verifier-json` 195 ; `tsc` vert ; ESLint du composant : 0 problème ; Vitest 483/483 ; `next build` vert, avec et sans `VERCEL_ENV=preview` ; HTML prérendu : 373/374 identiques à `main`, seule `fr/ia-photo-produit` diffère ; 1 H1, 7 H2, `FAQPage` (6) ; 793 mots dans la zone principale (917 avant, même méthode ; minimum utile de 1 000 du dossier V2 non atteint) ; termes « IA photo produit », « Orbitvu Station », « détourage IA », « retouche photo produit », « AI Photo Assistant », « AI Masking », « AI Retoucher », « AI OCR » présents ; précautions méta visibles 15 → 0, tournures signalées 7 → 0, On-model 2 → 0, AI Act dans le corps 2 → 0, cartes de fin 7 → 4 ; zones sans visuel : 3 en production (Masking, Retoucher, CTA final), 1 sur Preview ; Chromium à 1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur console, 5 images chargées avec `alt`, aucune barre collante, CTA au premier écran aux 4 largeurs (390 px : visuel de 274 à 519 px, CTA en bas à 827 px pour 844) ; Playwright, 11 specs : 418 réussis, 72 échecs, tous présents sur `main` ; 3 échecs de `main` résolus (`responsive`, `/fr/ia-photo-produit`, 375, 768, 1 440 px).
+
+**Verdict lexical DataForSEO et application, 08/10/2026 (missions de Laurent ; tête avant `534256d`)** — Micro-test lexical en lecture seule, puis application du verdict de Laurent.
+- Données : lot DataForSEO déjà exécuté le 08/10 à 04:57 UTC (workflow n8n jetable `gJ1ftUOUDki2dhJs`, exécution 3598 ; 1 tâche Google Ads `search_volume` FR, 17 mots-clés, 0,09 USD ; 5 SERP Google France desktop, profondeur 20, 5 × 0,0035 USD ; total 0,1075 USD). Aucun nouvel appel payant. Sortie brute conservée dans l’historique n8n seulement, non archivée dans `dfs_archive` (piège H3). Résultats : « ia photo produit » 20 recherches/mois (CPC 6,17, concurrence HIGH, indice 86 ; moyenne 24 sur 12 mois contre 39 sur les 11 mois précédents) ; « photo produit ia », « packshot ia », « studio photo ia », « photo produit intelligence artificielle », « retouche photo produit ia » : `null` (non détecté par cette configuration). Référentiel FR du 17/09 (`td_known_concepts`, fournisseur non indiqué) : « photo produit ia » 40, « packshot ia » 30. SERP : outils génératifs majoritaires sur « photo produit ia » et « ia photo produit » ; résultats mixtes, photographes et studios packshot compris, sur « packshot ia » ; applications grand public sur « studio photo ia ». GSC 90 j au 05/10 (tous pays, planchers) : la famille est captée par `/fr/blog/generer-images-produit-ia`.
+- Verdict de Laurent : terme principal « IA photo produit » ; « packshot IA » non retenu comme principal ; différenciation : IA intégrée à une production photo produit réelle, avec Orbitvu Station, du produit capturé à la publication.
+- Title : inchangé et validé, « IA photo produit : l’IA intégrée au studio Orbitvu — PackshotCreator ».
+- H1 : « La photo produit réelle, assistée par l’IA » (espace insécable avant « l’IA »). L’ancien H1 devient la première phrase du chapeau : « L’IA ne remplace pas le produit. Dans Orbitvu Station, elle propose un éclairage avant le déclenchement ; après la prise de vue, elle détoure l’image, la retouche et lit les étiquettes. »
+- FAQ : 8 questions (FAQ visible = `FAQPage`), ajout de « Quelle IA produit des images ? » (générateur sans prise de vue / photo prise au studio ; retouche générative appliquée à cette photo) et de « Comment retoucher une photo avec l’IA ? » (AI Retoucher, consigne écrite, préréglage, contrôle avant publication) ; ordre : nature de l’IA, intégrité du produit, retouche, studio requis, accès, crédits, essai, publication. Étape 6 du workflow renommée « Lecture d’étiquettes ». Aucun nouveau H2, aucune nouvelle page.
+- Écart signalé (R7) : la consigne « renforcer « Et le génératif ? » comme section de différenciation » vise une section absente de la tête `534256d`, retirée sur consigne de Laurent le matin du 08/10 (« SUPPRIMER intégralement du corps principal »). La recréer ajouterait un H2, contraire à `NEW_H2 = NO`. Non recréée : la distinction produit réel / génération sans prise de vue est portée par la question « Quelle IA produit des images ? ». Décision de Laurent attendue.
+- Vérifié : `verifier-json` 195 ; `tsc` vert ; ESLint du composant : 0 problème ; Vitest 483/483 ; `next build` vert ; HTML prérendu : 373/374 identiques à `main`, seule `fr/ia-photo-produit` diffère ; title inchangé ; 1 H1, 7 H2 ; `FAQPage` 8 = 8 questions visibles ; 898 mots dans la zone principale ; précautions méta visibles 0, tournures signalées 0 ; Chromium à 1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur console, CTA au premier écran aux 4 largeurs (390 px : bas du CTA à 827 px pour 844) ; Playwright, 11 specs : 417 réussis, 73 échecs, dont 72 présents sur `main` ; le 73e (`sommaire-blog`, `/fr/blog/comment-choisir-objectif-en-photographie-packshot`, 1 024 px, titre mesuré à −9 918 px, page au HTML identique à `main`) passe 2 fois sur 2 relancé seul, en série, sur le même build ; 3 échecs de `main` résolus.
+
+**Refonte visuelle et narrative, puis intégration du pack éditorial V105, 08/10/2026 (missions de Laurent ; tête avant `02aee10`, base `main` `06b18e2`)** — Constat de Laurent : « On voit surtout des screenshots. On ne comprend pas où est l’IA, ce qu’elle fait, pourquoi, comment, ni ce qu’elle apporte. » Récit visé : produit réel → capture → action de l’IA → résultat → usages.
+- Structure (7 H2, aucun nouveau, title et H1 inchangés) : hero avec V105-E1 et les quatre actions de l’IA (liens vers les sections) puis « Des images et des données prêtes à être utilisées » ; chaîne Capture / Workflow / IA / Diffusion suivie de la capture réelle d’Orbitvu Station (preuve secondaire) ; bandeau sans titre « L’IA propose et traite ; l’opérateur garde la main » avec V105-E2 ; AI Photo Assistant, AI Masking, AI Retoucher (avec V105-E4) et AI OCR présentés chacun en quatre temps (Entrée, Ce que fait l’IA, Résultat, À quoi ça sert) ; CTA « Testez l’IA sur les produits que vous photographiez », bouton « Tester mon workflow », ligne d’usages (e-commerce, catalogues, documentation, besoins internes) et V105-E3. Retoucher : une phrase sur la retouche générative partant de la photographie du produit. Workflow : « de la prise de vue aux images prêtes à être utilisées ».
+- Pack V105 (ZIP de Laurent du 08/10, README lu) : quatre `EDITORIAL_ILLUSTRATION` générées nativement par ChatGPT, pot cosmétique fictif, recadrages natifs d’une composition commune (830 × 467, 591 × 394, 693 × 462, 693 × 462). Réencodées en AVIF depuis les PNG de référence (qualité 80, 4:4:4), sans agrandissement ; découpe mobile de E1 (540 × 467). Légendes selon la convention du cluster AI Act : « Illustration générée par IA… », produit (et personne pour E2) fictifs ; E3 : « Les déclinaisons représentées sont conceptuelles, ce ne sont pas des résultats Orbitvu » ; E4 : « une image produit avant traitement ». Aucune n’est présentée comme résultat AI Masking, AI Retoucher, AI Photo Assistant ou AI OCR. Non commités : ZIP, PNG, WebP, planche contact, README.
+- Captures : `soft-station-capture` déplacée du hero vers la chaîne (preuve secondaire de prise de vue) ; AI OCR conservée et redécoupée en deux temps (étiquette → champs lus) ; capture « AI Templates » retirée (rattachement à AI Photo Assistant non établi) ; découpes `station-ai-templates-mobile`, `station-ai-ocr-mobile` supprimées.
+- Preuves réelles toujours requises (marqueurs Preview seulement, 0 en production) : capture d’AI Photo Assistant ; avant/après AI Masking ; avant/après AI Retoucher ; publication réelle si la page doit la montrer.
+- Vérifié : `verifier-json` 195 ; `tsc` vert ; ESLint du composant : 0 ; Vitest 483/483 ; `next build` vert, avec et sans `VERCEL_ENV=preview` ; HTML prérendu : 373/374 identiques à `main`, seule `fr/ia-photo-produit` diffère ; title, canonical, `hreflang`, robots inchangés ; JSON-LD `Organization`, `BreadcrumbList`, `FAQPage` (8 = 8 questions visibles) ; 1 128 mots dans la zone principale ; précautions méta visibles 0 ; Chromium à 1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur console, 9 images chargées avec `alt`, aucune image affichée au-delà de sa largeur native, CTA au premier écran aux 4 largeurs (390 px : bas du CTA à 501 px, illustration du hero à partir de 594 px) ; Playwright, 11 specs : 418 réussis, 72 échecs, tous présents sur `main` ; 3 échecs de `main` résolus.
+
+**Preuves officielles Orbitvu pour AI Photo Assistant, AI Masking et AI Retoucher, 08/10/2026 (mission de Laurent ; tête avant `8135bb7`, base `main` `06b18e2`)** — Décision de Laurent du 08/10 : avancer avec les exemples publiés par Orbitvu, sans attendre de captures PackshotCreator ; d’éventuelles captures de Sébastien pourront les remplacer. Autorisation de réutilisation annoncée par Roby (Orbitvu), non formalisée à ce jour : `ORBITVU_REUSE_PERMISSION = TO_CONFIRM`, `PUBLICATION_HOLD_IF_NOT_CONFIRMED = YES` ; ce statut ne bloque ni la branche, ni la Preview, ni la QA, et se lève sans refaire la page.
+- Source primaire unique : https://orbitvu.com/software/ai, consultée le 08/10/2026. Fichiers téléchargés depuis leur URL directe (pas depuis l’optimiseur `/_next/image`), identiques octet pour octet aux copies de l’audit du matin (SHA-256). Statut des trois paires : `REAL_OFFICIAL_ORBITVU_ASSET`.
+
+| Fonction | Fichier original (`https://orbitvu.com` + chemin) | Dimensions | Section de la page Orbitvu | Fichiers du site (`public/images/ia-photo-produit/`) |
+|---|---|---|---|---|
+| AI Photo Assistant | `/pages/software/ai/ai-photo-assistant-option-1-v2.webp`, `…-option-2-v2.webp` | 1152 × 2048 | « AI Photo Assistant », légendes « Lighting option 1 / 2 » | `orbitvu-ai-photo-assistant-eclairage-1.avif`, `-2.avif` : même recadrage 900 × 1800 (x 126, y 120) |
+| AI Masking | `/homepage/images/produces/ai-background-removal-before-v7.webp`, `…-after-v5.webp` | 1200 × 900 | « AI background removal » : « AI Masking removes the background right in the capture process. » | `orbitvu-ai-masking-avant.avif`, `-apres.avif` : entiers, transparence conservée |
+| AI Retoucher | `/homepage/images/produces/ai-retouching-before.webp`, `…-after.webp` | 1200 × 900 | « AI photo retouching » : « Advanced image models of AI Retoucher remove reflections… » | `orbitvu-ai-retoucher-avant.avif`, `-apres.avif` : entiers ; `orbitvu-ai-retoucher-detail-avant.avif`, `-apres.avif` : 480 × 360 aux mêmes coordonnées (x 460, y 170) |
+
+- Traitement : recadrage et conversion AVIF (qualité 80, 4:4:4), sans redimensionnement ni retouche ; écart moyen entre AVIF décodé et source inférieur à 1/255 par canal, sans dérive de couleur. Produit de l’exemple AI Masking : marque tierce visible (`THIRD_PARTY_BRAND_IN_OFFICIAL_ORBITVU_ASSET = YES`), non effacée. Bouteille d’AI Photo Assistant : étiquette « SYRAH », « La Septentrionale », marque réelle ou fictive non vérifiée. Chaque légende nomme la provenance (« Exemple(s) officiel(s) Orbitvu… ») ; aucune n’est présentée comme capture PackshotCreator ou de Sébastien.
+- AI Photo Assistant : deux résultats côte à côte, « Proposition d’éclairage 1 / 2 », aussi en mobile (171 px chacun à 390 px), ni capture d’interface ni avant/après. AI Masking et AI Retoucher : sortis de la demi-colonne (environ 286 px par image) et passés en pleine largeur sous leur déroulé, avec le composant `Paire` (entrée → outil → sortie, modèle d’AI OCR) : 445 px par image à 1 440 px, empilées sous 768 px ; sortie AI Masking sur damier CSS ; AI Retoucher suivi du détail agrandi. AI OCR inchangée. Aucun H2 ajouté ; title, H1 et FAQ inchangés.
+- Interface AI Retoucher (`ai-where-it-matters-hero-v2.webp`, panneau BETA, preset, Prompt) non utilisée : la bague affichée n’est pas celle de la paire, et un troisième visuel alourdirait une section déjà haute de 2 296 px à 390 px.
+- V105-E4 retirée : à côté du vrai « avant » officiel, elle aurait présenté un second « avant », fictif, d’un autre produit ; aucun autre emplacement ne l’appelait. Fichier et clés `retoucher.contexte*` supprimés ; E1, E2, E3 conservées.
+- Marqueurs `ASSET_REQUIRED_REAL` d’AI Photo Assistant, AI Masking et AI Retoucher supprimés, avec `VisuelRequis`, `AvantApres` et la constante `REVUE` ; la page n’en comptait pas d’autre.
+- Vérifié : `verifier-json` 195 ; `tsc` vert ; ESLint des fichiers de la branche : 0 (les 301 problèmes du dépôt sont dans 52 fichiers que la branche ne touche pas) ; Vitest 483/483 ; `next build` vert, avec et sans `VERCEL_ENV=preview` ; 0 marqueur dans les deux builds ; HTML prérendu : 373/374 identiques à `main`, seule `fr/ia-photo-produit` diffère ; title, canonical, `hreflang` inchangés ; 1 H1, 7 H2 ; `FAQPage` 8 = 8 questions et réponses visibles ; 1 194 mots dans la zone principale ; précautions méta visibles 0, tournures signalées 0 ; Chromium à 1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur console, aucun élément collant, 16 images chargées avec `alt`, aucune affichée au-delà de sa largeur source ; Playwright, 11 specs : 418 réussis, 72 échecs, tous présents sur `main` ; 3 échecs de `main` résolus.
+
+**Suite** — Après la deuxième passe : QA humaine de la Preview FR, puis information de Sébastien (étape 5 de D42 ; D15 : 5 jours ouvrés à compter de son information) ; message court à actualiser avec la nouvelle tête dans la description de #105, **non envoyé** ; envoi par Laurent. Engagement commercial de la démonstration avec le produit du client (« Choisissez un produit représentatif… ») : proposition, validation de Sébastien requise. Visuels : autorisation de réutilisation des exemples officiels Orbitvu à formaliser avant publication (HOLD) ; captures de Sébastien facultatives, en remplacement ; statut bêta d’AI OCR ; visuel de hero dont la nature photographique est établie, si souhaité. Lien entrant de remplacement pour `generer-images-produit-ia` (M39 ou autre) : à décider. IA-1 à IA-3 facultatifs. Après validation FR : traduction EN puis adaptation de-ch depuis la FR validée (D42, étape 7), dans #105 si la collision et le rayon d'action restent maîtrisés, avec retrait de l'ancien contenu BlendAI des variantes EN et de-ch et du code de l'ancienne page ; puis QA humaine des trois langues ; reconfirmation des valeurs Orbitvu avant publication ; GO de fusion et GO de publication distincts de Laurent. M39 (lien depuis `generer-images-produit-ia`, CA10 b) non appliqué : hors du périmètre autorisé, il exige l'inscription de CA10 dans `DECISIONS.md`. D'ici la traduction, EN et de-ch gardent les CTA blendai.studio.
 
 ---
 

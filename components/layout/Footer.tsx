@@ -113,7 +113,7 @@ export default function Footer({ lienOccasion = false }: { lienOccasion?: boolea
               </li>
               {lienOccasion && (
                 <li>
-                  <Link href={LIEN_OCCASION.href} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                  <Link href={LIEN_OCCASION.href} className="text-sm text-future-dusk-300 hover:text-white transition-colors">
                     {libelleLienOccasion(locale)}
                   </Link>
                 </li>

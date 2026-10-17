@@ -65,7 +65,7 @@ export function ModelesOccasion({ langue }: { langue: LangueOccasion }) {
                     sizes="(min-width: 1120px) 360px, (min-width: 768px) 32vw, 40vw"
                     className="object-contain p-3 md:p-5"
                   />
-                  <span className="absolute bottom-2 left-2 hidden rounded bg-[rgba(15,17,24,.62)] px-[7px] py-0.5 text-[10.5px] text-white md:inline">
+                  <span className="absolute bottom-2 left-2 max-w-[calc(100%-1rem)] rounded bg-[rgba(15,17,24,.62)] px-[7px] py-0.5 text-[10.5px] text-white">
                     {MODELES.credit}
                   </span>
                 </div>
