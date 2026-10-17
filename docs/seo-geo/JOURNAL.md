@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Landing IA Orbitvu (#105) — GO final : exception D13/D42, réserve hreflang, sortie de brouillon · Claude de Laurent
+
+**Chantier** : vague 1, PR-3, `/fr/ia-photo-produit` ; « PACKSHOTCREATOR V10 — GO_MERGE + GO_PUBLICATION #105 IA ORBITVU » du 17/10 (`GO_MERGE_105` et `GO_PUBLICATION_105` = OUI) | **PR** : #105 | **Base** : `main` `2a8c444`
+
+**Quoi** — `main` `2a8c444` (#164, Worker seul) intégré par fusion (`541c292`), JOURNAL par union. Exception D13/D42, statut bêta (option A), droits des visuels Orbitvu, QA Chrome réutilisée et réserve `hreflang` inscrits dans `DECISIONS.md` (entrée du 17/10, numéro à attribuer). Aucun fichier de l'application modifié depuis la tête QA `9883fd6`.
+
+**Pourquoi** — Fusion et publication de #105 sur l'autorité de Laurent, FR seule, sans traduction ni modification SEO supplémentaire.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — À la fusion : `/fr/ia-photo-produit` publiée dans sa nouvelle version (même URL, même title, même canonique, mêmes `hreflang`) ; EN, de-ch et autres pages inchangées. **Événement SEO** : refonte de `/fr/ia-photo-produit` publiée le jour de la fusion de #105 (17/10/2026) ; à déclarer avec elle : lien vers `/fr/blog/ai-act-images-produit` (M43, fin de page ; mesure D46 si publication avant le 03-04/11), retrait des liens sortants vers blendai.studio et des liens vers `generer-images-produit-ia`, `ia-lumieres-virtuelles-revolution-packshot`, `comment-ia-revolutionne-production-visuelle`. Mesure GSC sans audit général : J+7 (24/10) et J+28 (14/11), impressions, clics et position moyenne de `/fr/ia-photo-produit` (requêtes « ia photo produit » et voisines) et du garde-fou `/fr/blog/generer-images-produit-ia`, comparés aux 28 jours précédant la publication.
+
+**Vérifié** — `main` `2a8c444` : seuls `cloudflare-worker/` et `JOURNAL.md` ont changé depuis `1fc2230`. `git diff 9883fd6 HEAD` hors `docs/` et `cloudflare-worker/` : 0 fichier ; diff contre `main` : les 23 fichiers de #105. Réserve `hreflang` : la FR déclare `en` et `de-CH` vers l'ancienne page (contenu BlendAI) ; aucune décision n'impose l'équivalence des alternates pour une landing réécrite ; précédent #107 constaté dans le HTML prérendu (`fr/industrie/vin-spiritueux` déclare `de-CH` vers `/de-ch/branchen/wein`, resté sur le gabarit commun).
+**Supposé** — [Inférence] Le verdict PASS_WITH_RESERVES de Claude pour Chrome sur `9883fd6` vaut pour la tête de fusion, le code de l'application étant identique ; cela repose sur des schémas observés.
+**Non regardé** — Détail des réserves de la QA Chrome (verdict transmis par Laurent, rapport non lu ici) ; `www` avant publication (R4).
+
+**Suite** — CI de la tête finale ; sortie de brouillon et fusion ; contrôle de l'origine `sysnext.vercel.app` ; contrôle de `www` par Claude pour Chrome ; mesures GSC J+7 et J+28.
+
+---
+
 ## 2026-10-17 · Landing IA Orbitvu (#105) — reprise : resynchronisation, fresh-check ciblé, droits des visuels Orbitvu · Claude de Laurent
 
 **Chantier** : vague 1, PR-3, `/fr/ia-photo-produit` (FR) ; « PACKSHOTCREATOR V10 — GO REPRISE ET FINALISATION PR #105 » du 17/10 (`GO_REPRISE_105`, `GO_CODE_CIBLÉ_105`, `GO_RESYNC_105`, `GO_PR_PUSH_105` = OUI ; `GO_MERGE_105` et `GO_PUBLICATION_105` non donnés) | **PR** : #105 | **Base** : `main` `1fc2230`
