@@ -11,7 +11,9 @@ import { RecommendedStudio, GuideRelated } from '@/components/maillage/MaillageS
 import { ArticleCTA } from '@/components/blog';
 import { tx } from '@/lib/locale-text';
 import SommaireCollant from '@/components/navigation/SommaireCollant';
-import { barreActive, LIBELLES_BARRE } from '@/data/navigation/pages-longues';
+import SommaireLateral from '@/components/navigation/SommaireLateral';
+import { FournisseurSectionActive } from '@/components/navigation/NavigationPageLongue';
+import { barreActive, formeSecondeActive, LIBELLES_BARRE, LIBELLES_LATERAL } from '@/data/navigation/pages-longues';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -74,6 +76,8 @@ export default async function GuidePage({ params }: PageProps) {
 
   // Barre de sommaire collante (D44) : étapes, puis FAQ. Les id ne sont posés que si elle est active.
   const barre = barreActive('guide', lang as Lang, slug);
+  // Double navigation D44 (Phase A) : sommaire latéral en plus de la barre, sur un pilote.
+  const doubleNav = formeSecondeActive('guide', lang as Lang, slug) === 'laterale';
   const titreFaq = tx(lang, 'Questions fréquentes', 'Frequently asked questions', 'Häufige Fragen');
   const entreesSommaire = barre
     ? [
@@ -120,18 +124,19 @@ export default async function GuidePage({ params }: PageProps) {
     { name: cleanTitle, url: `https://www.packshot-creator.com/${lang}/guide/${slug}` },
   ]);
 
-  return (
+  const schema = <SchemaOrg schema={[howToSchema, breadcrumbs, ...(faqSchema ? [faqSchema] : [])]} />;
+
+  const sommaireBarre = (
+    <SommaireCollant
+      titre={LIBELLES_BARRE[lang as Lang].titre}
+      libelle={LIBELLES_BARRE[lang as Lang].libelle}
+      entrees={entreesSommaire}
+    />
+  );
+
+  // Tête (hero + image) : toujours pleine largeur, hors colonne (la barre n'y est pas visible).
+  const tete = (
     <>
-      <SchemaOrg schema={[howToSchema, breadcrumbs, ...(faqSchema ? [faqSchema] : [])]} />
-
-      {barre && entreesSommaire.length > 0 && (
-        <SommaireCollant
-          titre={LIBELLES_BARRE[lang as Lang].titre}
-          libelle={LIBELLES_BARRE[lang as Lang].libelle}
-          entrees={entreesSommaire}
-        />
-      )}
-
       {/* Hero */}
       <section className="bg-gradient-to-br from-future-dusk-900 via-future-dusk-800 to-very-peri-800 py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -202,7 +207,13 @@ export default async function GuidePage({ params }: PageProps) {
           </div>
         </section>
       )}
+    </>
+  );
 
+  // Corps de l'article (sections à ancres). En double navigation, ce bloc occupe la colonne
+  // de gauche de la grille ; le sommaire latéral occupe la colonne de droite réservée.
+  const corpsArticle = (
+    <>
       {/* Introduction */}
       {guide.introText && (
         <section className="py-12">
@@ -306,7 +317,11 @@ export default async function GuidePage({ params }: PageProps) {
           </div>
         </section>
       )}
+    </>
+  );
 
+  const pied = (
+    <>
       {/* Studio recommandé (tunnel conversion — P1.B/D) */}
       <RecommendedStudio contentSlug={slug} lang={lang} />
 
@@ -315,6 +330,45 @@ export default async function GuidePage({ params }: PageProps) {
 
       {/* CTA (Contact + Calculateur ROI — QW-1 tunnel de conversion sur le trafic guide) */}
       <ArticleCTA lang={lang} />
+    </>
+  );
+
+  // Double navigation (A1) : barre en haut + VRAIE COLONNE réservée à droite (sommaire en
+  // flux, pas d'overlay), autour d'un unique scroll-spy. Grille ≥ 1280 px (xl) ; sous xl,
+  // une colonne, barre seule. Les guides témoins passent par le chemin ci-dessous, inchangé.
+  if (doubleNav) {
+    return (
+      <>
+        {schema}
+        <FournisseurSectionActive ids={entreesSommaire.map((e) => e.id)}>
+          {sommaireBarre}
+          {tete}
+          <div className="xl:mx-auto xl:grid xl:max-w-[88rem] xl:grid-cols-[minmax(0,1fr)_15rem] xl:gap-10 xl:px-6">
+            <div className="xl:min-w-0">{corpsArticle}</div>
+            <aside className="hidden xl:block">
+              <div className="sticky top-28">
+                <SommaireLateral
+                  variant="colonne"
+                  titre={LIBELLES_BARRE[lang as Lang].titre}
+                  libelle={LIBELLES_LATERAL[lang as Lang]}
+                  entrees={entreesSommaire}
+                />
+              </div>
+            </aside>
+          </div>
+          {pied}
+        </FournisseurSectionActive>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {schema}
+      {barre && entreesSommaire.length > 0 && sommaireBarre}
+      {tete}
+      {corpsArticle}
+      {pied}
     </>
   );
 }

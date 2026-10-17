@@ -54,6 +54,66 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · D44 correctifs QA A1–A4 (PR #162) · Claude de Laurent
+
+**Chantier** : D44 double navigation, correctifs de la QA Chrome `QA_CHROME_162 = FAIL` | **PR** : #162 | **Commit** : voir PR
+
+**Quoi** — Quatre correctifs sur les trois pilotes, sans généralisation. **A1 (guide)** : le sommaire latéral passe d'un overlay `fixed` à une **vraie colonne réservée en flux** (grille à droite du contenu, ≥ 1 280 px) — plus de chevauchement ; le gabarit guide est restructuré (sections extraites en constantes, chemin témoin inchangé). **A2 (fiche Alphashot)** : sommaire latéral overlay affiché **seulement ≥ 1 920 px** via un seuil CSS explicite `.d44-laterale-fiche` (pas le palier `2xl`) ; barre seule entre 1 024 et 1 919 px ; gabarit, cartes et FAQ inchangés. **A3 (blog)** : titres H2/H3 de l'article pilote portés à `scroll-mt-36` (144 px) dès 1 024 px pour ne pas être masqués sous la barre ; ids et Hn inchangés. **A4 (scroll-spy)** : tolérance sous-pixel dans `useSectionActive`, un seul calcul partagé.
+
+**Pourquoi** — QA Chrome de Laurent : chevauchement du sommaire (A1/A2), titres masqués sous la barre (A3), surbrillance décalée des positions fractionnaires (A4).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `app/globals.css`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`.
+
+**Effet attendu** — Sur les trois pilotes seulement : plus de chevauchement, titres visibles sous la barre, surbrillance alignée sur le lien cliqué. Témoins et pages non pilotes inchangés. Aucun effet SEO, média ou données structurées.
+
+**Vérifié** — `tsc` vert ; `next build` vert (env factice) ; Vitest ciblés 67/67 ; ESLint 0 erreur (warnings pré-existants de `main` seulement). e2e `navigation-pages-longues` adapté aux seuils par famille, exécuté en CI (non lançable en local).
+**Supposé** — [Non vérifié] Rendu pixel aux largeurs défaillantes (guide 1 280/1 440 ; fiche 1 280/1 536/1 920 ; blog 1 024/1 280) + un témoin : QA Chrome bloquée par le SSO Vercel, à refaire en externe.
+**Non regardé** — A5 (focus clavier) : non corrigé sur décision de Laurent (régression non établie) ; réserve maintenue, demande d'un contrôle Chrome comparatif avec la barre de `main`. Phase B non démarrée.
+
+**Suite** — PR #162 maintenue en Draft. `GO_MERGE_162` et `GO_PUBLICATION_162` = NON. QA Chrome de retour attendue.
+
+---
+
+## 2026-10-16 · D44 double navigation : architecture mutualisée + pilotes (Phase A) · Claude de Laurent
+
+**Chantier** : D44 / G6 UX (décision Laurent du 15/10 : double navigation des pages longues) | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
+
+**Quoi** — Architecture mutualisée pour afficher, sur une page longue, la barre horizontale ET le sommaire vertical droit, synchronisés par un **scroll-spy unique**. Nouveaux composants : `useSectionActive` (le scroll-spy, logique de la barre liftée), `NavigationPageLongue` (contexte + deux fournisseurs), `SommaireLateral` (sommaire vertical droit des pages structurées, ≥ 1 280 px), `DoubleNavigationStructuree` et `DoubleNavigationBlog`. `SommaireCollant` devient contrôlable (rétrocompatible : rendu hors fournisseur = comportement d'origine). `TableOfContents` rapporte sa section active à la barre sur le blog (son scroll-spy durci reste l'unique de la page). Registre étendu (`secondeForme`, `piloteSecondeForme`, `formeSecondeActive`, `navigationPageLongue`). Pilotes strictement limités par slug.
+
+**Pourquoi** — Décision de Laurent du 15/10 : la règle « jamais deux navigations collantes » est levée. Objectif : deux repères, mêmes ancres, même section active, sans deux scroll-spys contradictoires (cause d'écarts de surbrillance quand deux calculs cohabitent).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireCollant.tsx`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `DoubleNavigationBlog.tsx`, `components/blog/TableOfContents.tsx`, `data/navigation/pages-longues.ts`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/DECISIONS.md`.
+
+**Effet attendu** — Sur trois pages pilotes seulement (guide `comment-faire-focus-stacking-pour-photographier-bague` FR/EN, fiche `alphashot-pro-g2` toutes langues, article `images-ia-metadonnees-marketplaces` FR/EN) : barre + sommaire droit synchronisés ≥ 1 280 px. Toutes les autres pages rendent exactement comme avant. Aucun effet SEO (aucun texte, lien, ancre, Hn, métadonnée touché ; `id` déjà posés par la barre).
+
+**Vérifié** — `npx tsc --noEmit` vert ; Vitest 1052/1052 (dont 14 du registre, nouveaux cas double nav) ; ESLint des fichiers modifiés : 0 erreur (warnings préexistants `main` seulement). Rétrocompatibilité : `SommaireCollant` hors fournisseur inchangé ; `barreActive` et les familles existantes inchangés (lecture du code + tests). `next build` : compilation + TypeScript à valider en CI (R1 : échec local sur `Missing env var`).
+**Supposé** — [Non vérifié] Rendu pixel et synchronisation réelle des deux repères aux six largeurs (390/768/1024/1280/1440/1920) : non contrôlés, QA bloquée par le SSO Vercel (302 → `sso-api`). Cela repose sur la lecture du code, pas sur un contrôle navigateur.
+**Non regardé** — Généralisation par famille (Phase B, PR distinctes) ; raffinement mobile du double affichage ; écart P2 de surbrillance (page à barre seule, hors de ce lot) ; e2e Playwright non lançable en local (build bloqué), exécuté en CI.
+
+**Suite** — PR Draft D44. `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Contrôle pixel des pilotes requis avant Phase B.
+
+---
+
+## 2026-10-16 · Lot V1-ALT : 131 ALT Webflow remplacés dans 52 articles (FR 68, EN 62, de-ch 1), Draft · Claude de Laurent
+
+**Chantier** : lot V1-ALT de la qualification V9 (« PACKSHOTCREATOR V9 — GO CIBLÉ ALT WEBFLOW », 16/10/2026 : GO_CODE_ALT et GO_PR_PUSH_ALT = OUI, GO_MERGE et GO_PUBLICATION = NON) | **PR** : cette PR | **Commit** : ce commit
+
+**Quoi** — Substitution ciblée de la seule valeur de l'attribut `alt` de 131 balises `<img>` (valeur Webflow `__wf_reserved_inherit` pour 129, `__wf_reserved_decorative` pour 2, remplacée par une description) dans 52 fichiers `content/blog/{fr,en,de-ch}/*.json`. Aucun autre caractère modifié.
+
+**Pourquoi** — 159 images d'articles portaient une valeur Webflow réservée, lue telle quelle comme texte alternatif. Référence : `01_ALT_PROPOSITIONS.csv` du dossier ALT du 16/10 (SHA-256 du ZIP `3b4ecad5…0377`), après examen visuel documenté. Exception D13/D42 accordée par Laurent, limitée aux 68 descriptions ALT FR de ce lot ; elle ne valide aucune caractéristique produit, performance, chiffre ni argument commercial.
+
+**Fichiers** — 52 fichiers `content/blog/` (FR 28, EN 23, de-ch 1), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après fusion et déploiement : textes alternatifs signifiants sur ces 131 images. Une fois #159 intégrée, les 4 occurrences MP4 (3 médias) deviennent l'`aria-label` de leur balise `<video>`.
+
+**Vérifié** — Chaque substitution conditionnée à la valeur actuelle de la base du 16/10 : 131 appliquées, 0 conflit. Diff : 52 fichiers, 52 lignes ±, contenu identique une fois les valeurs `alt` neutralisées. `node scripts/seo/verifier-json.mjs` (198 JSON valides), `npx tsc --noEmit`, `npx vitest run` (1047/1047), `npx next build` : verts. Rendu local (`next start`) : 131/131 ALT présents dans le HTML des 52 pages, aucune valeur `__wf_reserved` restante sur ces pages ; 4 balises MP4 inchangées hors `alt`. Fonction `transformVideoImages` de #159 (`1633293`) appliquée aux 4 fichiers MP4 : `aria-label` signifiant sur la branche, absent sur `main`. Parcours Playwright de la CI (sélecteur, sommaire, pages longues, consentement) : 101/101.
+**Supposé** — Que `main` n'ait pas bougé sur ces 52 fichiers entre la vérification et la fusion (base `c92740c`).
+**Non regardé** — `www` et `sysnext` (aucun déploiement : GO_PUBLICATION = NON ; R4 pour `www`). Images hors articles de blog. Pertinence linguistique EN/de-ch non revue par un natif.
+
+**Suite** — 28 valeurs `__wf_reserved` restent, hors périmètre : 8 jumeaux FR/de-CH de l'article EN protégé par D35, 10 dans les deux articles Amazon, 6 dans les fichiers EN réservés à la session Traductions, 4 dans l'article EN protégé par D35. GO_MERGE et GO_PUBLICATION à demander séparément ; #159 non fusionnée.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
@@ -294,6 +354,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Audit B, lot L5 à L11 — finition linguistique EN de 6 articles (Draft) · Claude de Laurent
+
+**Chantier** : Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11 | **PR** : lot B L5–L11 (Draft) | **Base** : `main` `c92740c`
+
+**Quoi** — Anglais corrigé dans 6 articles EN (corps, FAQ ; quelques title, h1 et description) : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Retraduction fidèle depuis le FR publié pour les passages illisibles de 06 et 10 (autorisation de Laurent du 16/10).
+
+**Pourquoi** — Audit B : traductions Webflow automatiques, 36 à 110 anomalies EN encore présentes par article sur `main` au 16/10. GO_CODE_B_L5_L11 et GO_PR_PUSH_B_L5_L11 de Laurent du 16/10.
+
+**Fichiers** — les 6 JSON EN ci-dessus ; `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur les URL, ancres, canonical, hreflang ou robots ; lisibilité EN.
+
+**Vérifié** — Script d'invariants contre `main` : balises HTML (donc liens, images, ALT) identiques, ancres H2/H3 identiques, chiffres identiques, champs hors title/h1/metaTitle/description/content/faqs inchangés, nombre de FAQ identique. `verifier-json` 198 valides ; `verifier-consequences` effet local ; `vitest` 57 fichiers, 1047 tests ; `tsc` ; `next build` (valeurs factices). Relecture complète du texte reconstruit de 06.
+**Supposé** — Le FR publié est la référence de sens ; aucune validation factuelle n'est apportée par cette PR.
+**Non regardé** — Preview (SSO) ; `www` (R4) ; FR et de-ch ; ALT et images (hors périmètre) ; véracité des claims, maintenus tels quels et listés en réserves D42 dans la PR.
+
+**Suite** — HOLD avant fusion : décision groupée sur les réserves D42 (noms de produit non harmonisés, claims, chiffres, témoignages), QA Preview humaine, GO_MERGE. L1 (D35/F5) et #146 hors périmètre.
+
+**MàJ 16/10 (décision et correctifs)** — PR #160. Décision groupée de Laurent (« V9 — DÉCISION GROUPÉE PR #160 ») : option A, exception D13/D42 limitée à la finition linguistique des 6 articles EN de #160 ; ni validation des claims préexistants, ni nouvelle promesse, ni renforcement ; réserves D42 conservées comme sujets éditoriaux distincts. Traductions validées : 08 « cut », 10 « background removal », 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`).
+**QA_CHROME_160 = PASS_WITH_RESERVES** (Laurent, Chrome, 6 articles, sans régression bloquante). Seul défaut corrigé : FAQ 2 de 06, « the smallest details36. » → « the smallest details. » (appel de note parasite, déjà présent sur `main`). Les autres anomalies relevées sont préexistantes, hors périmètre, conservées en réserve. Les cinq autres articles n'ont pas changé depuis la QA : QA réutilisée.
+**Vérifié** — 06 : FAQ visible et JSON-LD FAQPage identiques sur le build local ; CI et Preview : voir la PR. **Non regardé** — `www` (R4). GO_MERGE_160 et GO_PUBLICATION_160 : NON à ce stade.
+
+**MàJ 17/10 (sortie)** — GO final de Laurent (« PACKSHOTCREATOR V9 — GO FINAL PR #160 ») : GO_CODE_SORTIE_160, GO_PR_PUSH_SORTIE_160, GO_MERGE_160 et GO_PUBLICATION_160 sous conditions. Preuves acquises : CI 4/4 sur `ab60f21` ; QA_160_FAQ = PASS sur la Preview (absence de « details36 », FAQ visible et JSON-LD cohérents). `main` `1d1d970` (#161, ALT) fusionné dans la branche sans conflit (`7b19f5c`) ; aucun des six JSON EN n'est touché par #161.
+**Vérifié** — Les six JSON EN sont identiques octet pour octet à `ab60f21` ; le diff de la PR contre `main` se limite à ces six fichiers et à la documentation (JOURNAL, ETAT, DECISIONS). Exception D13/D42 de #160 inscrite dans DECISIONS. **Suite** — Fusion, puis contrôle `sysnext` des six URL EN ; SHA de fusion et résultats consignés dans la PR (pas de commit supplémentaire sur `main`). `www` réservé à la campagne Chrome groupée de Laurent : non vérifié.
+
 ## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
 
 **Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
@@ -316,6 +401,8 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 **MàJ 16/10 (exception D13/D42 de Laurent)** — La demande à Sébastien prévue le 15/10 est **retirée** (décision de Laurent du 15/10 : ne pas le solliciter ; mention retirée du descriptif de #152). Laurent accorde le 16/10 une exception ponctuelle D13/D42 limitée à #152, consignée dans `DECISIONS.md` : corrections linguistiques L2 à L4 sans nouvelle validation de Sébastien ; affirmations préexistantes **non validées**, réserves maintenues (Station 24.2.0, SUN Cloud, fréquence des mises à jour, caractéristiques optiques, chiffres, garanties, superlatifs). Ni #146, ni FR/de-ch, ni L1 (D35/F5), ni D9. CI 4/4 sur `ef469da`.
 **Reste avant fusion** — QA Preview humaine (3 pages, 4 formats, campagne QA de Laurent), puis GO_MERGE_152 et GO_PUBLICATION_152 ; contrôle `sysnext` puis Chrome sur `www`. Aucun travail documentaire supplémentaire prévu avant la fusion, hors consignation du résultat QA et de la fusion.
+
+**MàJ 16/10 (fusion et déploiement)** — QA_OK_152 de Laurent (rapport Chrome du 16/10, 3 pages × 4 formats ; MP4 affiché comme image sur L3 : préexistant, backlog images). GO_MERGE_152 et GO_PUBLICATION_152. Fusion `b8ae3b2` (05:54:39 UTC). `sysnext` : nouveau contenu servi à 05:55:38 ; à 05:55:49, 3 pages en 200, title et H1 nouveaux, canonical, hreflang, absence de `noindex`, FAQPage et ancres identiques à l'état d'avant fusion ; L1 inchangé ; `smoke.mjs` « Tout est vert — 17 pages, 3 ressources ». `www` : 403 pour un client script (R4) → contrôle Chrome **BLOCKED**, à faire dans la campagne `www` groupée.
 
 ---
 
