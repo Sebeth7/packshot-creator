@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Worker : requêtes RSC et préchargements Next.js hors du cache HTML partagé (P0 du crawl SF du 15/10) · Claude de Laurent
+
+**Chantier** : P0 du tri V10 du crawl Screaming Frog du 15/10 (chantier 1) ; `GO_CODE_WORKER_RSC_CACHE` et `GO_PR/PUSH_WORKER_RSC_CACHE` de Laurent (17/10) ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : brouillon, DO NOT MERGE | **Commit** : `01c84b2`
+
+**Quoi** — `isCacheableHTML` exclut les requêtes portant `RSC`, `Next-Router-Prefetch`, `Next-Router-Segment-Prefetch` ou `Next-Router-State-Tree` : elles partent vers l'origine sans option `cf`. HTML ordinaire, TTL (60 s), exclusions API, `_next`, paramètres, méthodes autres que GET et cookies sensibles inchangés.
+
+**Pourquoi** — Crawl du 15/10 (`interne_tous.csv`, `tous_les_entêtes_de_requête_http.csv`) : 12 requêtes HTML sans en-tête `rsc` ont reçu le flux RSC (`text/x-component`, `cf-cache-status: HIT`, âge 1 à 58 s) et 11 requêtes RSC ont reçu du HTML. Cause : `cacheEverything` posé sans test des en-têtes Next.js depuis `28a1169` (#50, 29/09) ; le cache Cloudflare ignore `Vary`.
+
+**Fichiers** — `cloudflare-worker/src/index.js` (+6/−1), `cloudflare-worker/test/rsc-cache.test.ts` (nouveau, 19 cas), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement : plus de flux RSC servi aux requêtes HTML de `www`, ni de HTML aux navigations Next.js. **Événement technique à consigner pour M5, F5 et Mode à la date du déploiement.**
+
+**Vérifié** — `node --check` vert ; `npx vitest run cloudflare-worker/test` : 7 fichiers, 184 tests verts ; contre-épreuve : le nouveau fichier de tests exécuté contre le Worker de `main` `1fc2230` échoue sur les 7 cas RSC et préchargement, les 12 autres passent ; `npx tsc --noEmit` vert.
+**Supposé** — [Inférence] Une sous-requête sans option `cf` est traitée en `DYNAMIC` par Cloudflare et ne lit pas l'objet mis en cache par une requête HTML (cohérent avec les requêtes à paramètre en `DYNAMIC` du crawl du 15/10) ; à prouver après déploiement.
+**Non regardé** — Worker effectivement déployé (`DEPLOYED_WORKER_SHA` = NON ÉTABLI ; resynchronisation R5 à faire avant tout déploiement) ; aucun test sur `www` (risque de contaminer le cache) ; canoniques Google, JSON-LD Article, 504/C3 et autres constats du crawl.
+
+**Suite** — Avant fusion : resynchronisation R5, preuve Cloudflare du sens RSC → HTML, QA de production non perturbatrice, rollback (`git revert`, puis redéploiement depuis le dépôt, D4 ; objets en cache expirés en 60 s au plus), GO_MERGE et GO_DEPLOIEMENT_WORKER distincts.
+
+---
+
 ## 2026-10-16 · U04 : retrait des réserves graphiques vides des pages secteurs · Claude de Laurent
 
 **Chantier** : U04 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
