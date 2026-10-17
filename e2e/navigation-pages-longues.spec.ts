@@ -3,7 +3,13 @@ import { test, expect, type Page } from '@playwright/test';
 /**
  * Navigation des pages longues (règle D44) : barre de sommaire horizontale collante
  * (components/navigation/SommaireCollant.tsx) sur les familles équipées, rien sous
- * 1 024 px, jamais deux navigations collantes, pages gelées non équipées.
+ * 1 024 px, pages gelées non équipées.
+ *
+ * Double navigation (décision du 15/10/2026) : sur les pages pilotes (Phase A), la barre
+ * cohabite avec un sommaire vertical à droite (components/navigation/SommaireLateral.tsx,
+ * rendu ≥ 1 280 px). Les deux sont synchronisés : mêmes ancres, même section active (un
+ * seul scroll-spy). Le test ci-dessous vérifie donc UNE navigation collante sur les pages
+ * à barre seule, et DEUX synchronisées sur les pilotes à partir de 1 280 px.
  * Registre : data/navigation/pages-longues.ts.
  */
 
@@ -38,7 +44,25 @@ const GELEES = [
   '/fr',
 ];
 
-const BARRE = 'nav.fixed[aria-label]';
+/**
+ * Pages en double navigation (Phase A). Seuils d'affichage du sommaire latéral distincts :
+ * - guides pilotes : vraie colonne réservée, visible ≥ 1 280 px (A1) ;
+ * - fiche Alphashot : overlay, visible seulement ≥ 1 920 px (A2, seuil CSS explicite).
+ * Sous ces seuils : barre horizontale seule.
+ */
+const GUIDE_DOUBLE = new Set([
+  '/fr/guide/comment-faire-focus-stacking-pour-photographier-bague',
+  '/en/guide/how-to-do-focus-stacking-for-ring-photography',
+]);
+const FICHE_DOUBLE = new Set([
+  '/fr/studio-photo/alphashot-pro-g2',
+  '/en/studio-photo/alphashot-pro-g2',
+  '/de-ch/fotostudio/alphashot-pro-g2',
+]);
+const SEUIL_GUIDE = 1280;
+const SEUIL_FICHE = 1920;
+
+const BARRE = 'nav[data-d44="barre"]';
 
 test.beforeEach(async ({ context, baseURL }) => {
   await context.addCookies([
@@ -54,6 +78,9 @@ async function etat(page: Page) {
       if (n.closest('header') || n.closest('footer')) return false;
       const cs = getComputedStyle(n);
       if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return false;
+      // Masqué par un ancêtre (ex. colonne guide dans un `aside` `hidden` sous 1 280 px) :
+      // le `display` propre reste « block », mais l'élément n'est pas rendu.
+      if ((n as HTMLElement).getClientRects().length === 0) return false;
       for (let e: Element | null = n; e && e !== document.body; e = e.parentElement) {
         const p = getComputedStyle(e).position;
         if (p === 'sticky' || p === 'fixed') return true;
@@ -108,7 +135,11 @@ test.describe('Barre de sommaire, desktop', () => {
             const e = await etat(page);
             expect(Math.abs(e.haut! - e.entete), 'collée sous l’en-tête').toBeLessThanOrEqual(1);
             expect(e.liste!, 'liste dans le cadre').toBeLessThanOrEqual(e.cadre! + 1);
-            expect(e.collantes, 'une seule navigation collante').toBe(1);
+            // Barre seule → 1 ; pilote double navigation au-dessus de son seuil → 2.
+            const estDouble =
+              (GUIDE_DOUBLE.has(url) && largeur >= SEUIL_GUIDE) ||
+              (FICHE_DOUBLE.has(url) && largeur >= SEUIL_FICHE);
+            expect(e.collantes, 'navigations collantes attendues').toBe(estDouble ? 2 : 1);
           }
 
           // Clavier : focus sur la troisième entrée, Entrée → titre visible sous la barre.
@@ -126,6 +157,48 @@ test.describe('Barre de sommaire, desktop', () => {
           await expect.poll(async () => (await etat(page)).visible, { message: 'masquée en fin de page', timeout: 3000 }).toBe(false);
         });
       }
+    });
+  }
+});
+
+async function controlerSync(page: Page, url: string) {
+  await page.goto(url, { waitUntil: 'networkidle' });
+  const cibles = (await etat(page)).cibles!;
+  // Au milieu de la page : les deux repères sont visibles.
+  await defilerVers(page, cibles[Math.floor(cibles.length / 2)]);
+  await page.waitForTimeout(300);
+  const sync = await page.evaluate(() => {
+    const reperes = [...document.querySelectorAll<HTMLElement>('nav[data-d44]')].filter((n) => {
+      const cs = getComputedStyle(n);
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return false;
+      return n.getClientRects().length > 0; // non masqué par un ancêtre
+    });
+    const ancres = reperes.map((n) => [...n.querySelectorAll('a')].map((a) => a.getAttribute('href')!.slice(1)));
+    const actifs = reperes.map((n) => n.querySelector('[aria-current="location"]')?.getAttribute('href') ?? null);
+    return { nombre: reperes.length, ancres, actifs };
+  });
+  expect(sync.nombre, 'barre + sommaire latéral').toBe(2);
+  // Mêmes ancres dans le même ordre.
+  expect(sync.ancres[1]).toEqual(sync.ancres[0]);
+  // Une seule section active, identique dans les deux repères.
+  expect(sync.actifs[0], 'section active de la barre').not.toBeNull();
+  expect(sync.actifs[1], 'section active du sommaire latéral').toBe(sync.actifs[0]);
+}
+
+test.describe('Double navigation guides (A1) — barre + colonne réservée, ≥ 1 280 px', () => {
+  test.use({ viewport: { width: SEUIL_GUIDE, height: 900 } });
+  for (const url of GUIDE_DOUBLE) {
+    test(`deux repères synchronisés, mêmes ancres, même section active — ${url}`, async ({ page }) => {
+      await controlerSync(page, url);
+    });
+  }
+});
+
+test.describe('Double navigation fiche (A2) — barre + sommaire overlay, ≥ 1 920 px', () => {
+  test.use({ viewport: { width: SEUIL_FICHE, height: 1080 } });
+  for (const url of FICHE_DOUBLE) {
+    test(`deux repères synchronisés, mêmes ancres, même section active — ${url}`, async ({ page }) => {
+      await controlerSync(page, url);
     });
   }
 });

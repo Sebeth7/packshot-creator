@@ -6,31 +6,26 @@
  * (`components/landings/SommaireCollant.tsx`), qui reste en place jusqu'à la fin de la
  * mesure Mode (26/11/2026) ; la bascule de Mode se fera après contrôle de parité.
  *
- * Comportement :
+ * Deux modes :
+ * - AUTONOME (hors fournisseur D44) : la barre calcule elle-même la section active et sa
+ *   visibilité avec le scroll-spy mutualisé `useSectionActive`. Comportement identique à la
+ *   version d'origine, pour les pages à barre seule non encore basculées en double
+ *   navigation.
+ * - CONTRÔLÉ (dans un `FournisseurSectionActive…`) : la barre lit l'état par le contexte,
+ *   partagé avec le sommaire latéral. Un seul scroll-spy par page (voir R-UX-LONG §3.1).
+ *
+ * Comportement commun :
  * - rien n'est rendu sous lg (1 024 px) ; sans JavaScript, la barre reste masquée ;
  * - placée sous l'en-tête collant du site (`header.sticky`, hauteur mesurée), z-40 ;
- * - apparition : quand le sommaire de la page (`ancreSommaire`) est sorti de l'écran,
- *   ou, à défaut, quand la première section atteint le bas de la barre ;
- * - disparition : avant la zone finale `ancreFin` (formulaire, CTA), ou à défaut après
- *   la dernière entrée ;
  * - section active : numéro souligné, `aria-current="location"`, libellé affiché dans un
- *   emplacement fixe à droite des numéros (tronqué s'il est long). Différence voulue avec
- *   la barre de Mode, où le libellé s'insère après le numéro actif : les numéros
- *   suivants s'y décalent à chaque changement de section (CLS de défilement mesuré le
- *   03/10 : 0,036 sur Mode à 1 024 px, 0,080 sur un guide de 12 étapes). Chaque lien
- *   garde le libellé complet dans son nom accessible ; infobulle au survol et au focus ;
- * - décalage des ancres : le composant donne à chaque section ciblée un
- *   `scroll-margin-top` égal à en-tête + barre + 16 px, recalculé au redimensionnement ;
- *   les pages n'ont qu'à porter les `id`.
+ *   emplacement fixe à droite des numéros (tronqué s'il est long). Chaque lien garde le
+ *   libellé complet dans son nom accessible ; infobulle au survol et au focus.
  * Masquée, la barre n'est pas focalisable (`invisible`).
  */
-import { useEffect, useState } from 'react';
+import { useEtatSection } from './NavigationPageLongue';
+import { useSectionActive } from './useSectionActive';
 
 export type EntreeSommaire = { id: string; libelle: string };
-
-const HAUTEUR_BARRE = 48;
-const MARGE = 16;
-const DESKTOP = '(min-width: 1024px)';
 
 export default function SommaireCollant({
   titre,
@@ -47,81 +42,22 @@ export default function SommaireCollant({
   ancreSommaire?: string;
   ancreFin?: string;
 }) {
-  const [visible, setVisible] = useState(false);
-  const [actif, setActif] = useState<string | null>(null);
-  const [haut, setHaut] = useState(64);
-  const cle = entrees.map((e) => e.id).join('|');
-
-  useEffect(() => {
-    if (entrees.length === 0) return;
-    let image = 0;
-    const desktop = window.matchMedia(DESKTOP);
-
-    const decaler = (h: number) => {
-      for (const e of entrees) {
-        const el = document.getElementById(e.id);
-        if (el) el.style.scrollMarginTop = desktop.matches ? `${h + HAUTEUR_BARRE + MARGE}px` : '';
-      }
-    };
-
-    const mesurer = () => {
-      image = 0;
-      const entete = document.querySelector<HTMLElement>('header.sticky');
-      const h = entete ? entete.offsetHeight : 64;
-      const bas = h + HAUTEUR_BARRE;
-      const sommaire = ancreSommaire ? document.getElementById(ancreSommaire) : null;
-      const premiere = document.getElementById(entrees[0].id);
-      const derniere = document.getElementById(entrees[entrees.length - 1].id);
-      const fin = ancreFin ? document.getElementById(ancreFin) : null;
-
-      const debutPasse = sommaire
-        ? sommaire.getBoundingClientRect().bottom < h
-        : premiere
-          ? premiere.getBoundingClientRect().top <= bas
-          : false;
-      const avantFin = fin
-        ? fin.getBoundingClientRect().top > bas
-        : derniere
-          ? derniere.getBoundingClientRect().bottom > bas
-          : true;
-
-      let courant: string | null = null;
-      for (const e of entrees) {
-        const el = document.getElementById(e.id);
-        if (el && el.getBoundingClientRect().top <= bas + MARGE) courant = e.id;
-      }
-      setHaut(h);
-      setVisible(debutPasse && avantFin);
-      setActif(courant);
-    };
-
-    const planifier = () => {
-      if (!image) image = requestAnimationFrame(mesurer);
-    };
-    const redimensionner = () => {
-      const entete = document.querySelector<HTMLElement>('header.sticky');
-      decaler(entete ? entete.offsetHeight : 64);
-      planifier();
-    };
-
-    redimensionner();
-    mesurer();
-    window.addEventListener('scroll', planifier, { passive: true });
-    window.addEventListener('resize', redimensionner);
-    return () => {
-      window.removeEventListener('scroll', planifier);
-      window.removeEventListener('resize', redimensionner);
-      if (image) cancelAnimationFrame(image);
-    };
-    // `cle` résume `entrees` : la barre ne se réinscrit pas si le parent recrée le tableau.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cle, ancreSommaire, ancreFin]);
+  // Contexte présent = mode contrôlé : l'état vient du fournisseur D44, et le scroll-spy
+  // autonome ci-dessous est désactivé (`enabled = false`) pour ne pas en créer un second.
+  const ctx = useEtatSection();
+  const auto = useSectionActive(
+    entrees.map((e) => e.id),
+    { ancreSommaire, ancreFin },
+    ctx === null,
+  );
+  const { actif, visible, haut } = ctx ?? auto;
 
   if (entrees.length === 0) return null;
 
   return (
     <nav
       aria-label={libelle}
+      data-d44="barre"
       style={{ top: haut }}
       className={`hidden lg:block fixed inset-x-0 z-40 border-b border-neutral-200 bg-white/95 backdrop-blur-sm transition-opacity duration-200 motion-reduce:transition-none ${
         visible ? 'opacity-100' : 'opacity-0 invisible'

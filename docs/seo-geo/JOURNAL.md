@@ -53,6 +53,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · D44 correctifs QA A1–A4 (PR #162) · Claude de Laurent
+
+**Chantier** : D44 double navigation, correctifs de la QA Chrome `QA_CHROME_162 = FAIL` | **PR** : #162 | **Commit** : voir PR
+
+**Quoi** — Quatre correctifs sur les trois pilotes, sans généralisation. **A1 (guide)** : le sommaire latéral passe d'un overlay `fixed` à une **vraie colonne réservée en flux** (grille à droite du contenu, ≥ 1 280 px) — plus de chevauchement ; le gabarit guide est restructuré (sections extraites en constantes, chemin témoin inchangé). **A2 (fiche Alphashot)** : sommaire latéral overlay affiché **seulement ≥ 1 920 px** via un seuil CSS explicite `.d44-laterale-fiche` (pas le palier `2xl`) ; barre seule entre 1 024 et 1 919 px ; gabarit, cartes et FAQ inchangés. **A3 (blog)** : titres H2/H3 de l'article pilote portés à `scroll-mt-36` (144 px) dès 1 024 px pour ne pas être masqués sous la barre ; ids et Hn inchangés. **A4 (scroll-spy)** : tolérance sous-pixel dans `useSectionActive`, un seul calcul partagé.
+
+**Pourquoi** — QA Chrome de Laurent : chevauchement du sommaire (A1/A2), titres masqués sous la barre (A3), surbrillance décalée des positions fractionnaires (A4).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `app/globals.css`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`.
+
+**Effet attendu** — Sur les trois pilotes seulement : plus de chevauchement, titres visibles sous la barre, surbrillance alignée sur le lien cliqué. Témoins et pages non pilotes inchangés. Aucun effet SEO, média ou données structurées.
+
+**Vérifié** — `tsc` vert ; `next build` vert (env factice) ; Vitest ciblés 67/67 ; ESLint 0 erreur (warnings pré-existants de `main` seulement). e2e `navigation-pages-longues` adapté aux seuils par famille, exécuté en CI (non lançable en local).
+**Supposé** — [Non vérifié] Rendu pixel aux largeurs défaillantes (guide 1 280/1 440 ; fiche 1 280/1 536/1 920 ; blog 1 024/1 280) + un témoin : QA Chrome bloquée par le SSO Vercel, à refaire en externe.
+**Non regardé** — A5 (focus clavier) : non corrigé sur décision de Laurent (régression non établie) ; réserve maintenue, demande d'un contrôle Chrome comparatif avec la barre de `main`. Phase B non démarrée.
+
+**Suite** — PR #162 maintenue en Draft. `GO_MERGE_162` et `GO_PUBLICATION_162` = NON. QA Chrome de retour attendue.
+
+---
+
+## 2026-10-16 · D44 double navigation : architecture mutualisée + pilotes (Phase A) · Claude de Laurent
+
+**Chantier** : D44 / G6 UX (décision Laurent du 15/10 : double navigation des pages longues) | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
+
+**Quoi** — Architecture mutualisée pour afficher, sur une page longue, la barre horizontale ET le sommaire vertical droit, synchronisés par un **scroll-spy unique**. Nouveaux composants : `useSectionActive` (le scroll-spy, logique de la barre liftée), `NavigationPageLongue` (contexte + deux fournisseurs), `SommaireLateral` (sommaire vertical droit des pages structurées, ≥ 1 280 px), `DoubleNavigationStructuree` et `DoubleNavigationBlog`. `SommaireCollant` devient contrôlable (rétrocompatible : rendu hors fournisseur = comportement d'origine). `TableOfContents` rapporte sa section active à la barre sur le blog (son scroll-spy durci reste l'unique de la page). Registre étendu (`secondeForme`, `piloteSecondeForme`, `formeSecondeActive`, `navigationPageLongue`). Pilotes strictement limités par slug.
+
+**Pourquoi** — Décision de Laurent du 15/10 : la règle « jamais deux navigations collantes » est levée. Objectif : deux repères, mêmes ancres, même section active, sans deux scroll-spys contradictoires (cause d'écarts de surbrillance quand deux calculs cohabitent).
+
+**Fichiers** — `components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireCollant.tsx`, `SommaireLateral.tsx`, `DoubleNavigationStructuree.tsx`, `DoubleNavigationBlog.tsx`, `components/blog/TableOfContents.tsx`, `data/navigation/pages-longues.ts`, `app/[lang]/guide/[slug]/page.tsx`, `app/[lang]/studio-photo/[slug]/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/DECISIONS.md`.
+
+**Effet attendu** — Sur trois pages pilotes seulement (guide `comment-faire-focus-stacking-pour-photographier-bague` FR/EN, fiche `alphashot-pro-g2` toutes langues, article `images-ia-metadonnees-marketplaces` FR/EN) : barre + sommaire droit synchronisés ≥ 1 280 px. Toutes les autres pages rendent exactement comme avant. Aucun effet SEO (aucun texte, lien, ancre, Hn, métadonnée touché ; `id` déjà posés par la barre).
+
+**Vérifié** — `npx tsc --noEmit` vert ; Vitest 1052/1052 (dont 14 du registre, nouveaux cas double nav) ; ESLint des fichiers modifiés : 0 erreur (warnings préexistants `main` seulement). Rétrocompatibilité : `SommaireCollant` hors fournisseur inchangé ; `barreActive` et les familles existantes inchangés (lecture du code + tests). `next build` : compilation + TypeScript à valider en CI (R1 : échec local sur `Missing env var`).
+**Supposé** — [Non vérifié] Rendu pixel et synchronisation réelle des deux repères aux six largeurs (390/768/1024/1280/1440/1920) : non contrôlés, QA bloquée par le SSO Vercel (302 → `sso-api`). Cela repose sur la lecture du code, pas sur un contrôle navigateur.
+**Non regardé** — Généralisation par famille (Phase B, PR distinctes) ; raffinement mobile du double affichage ; écart P2 de surbrillance (page à barre seule, hors de ce lot) ; e2e Playwright non lançable en local (build bloqué), exécuté en CI.
+
+**Suite** — PR Draft D44. `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Contrôle pixel des pilotes requis avant Phase B.
+
+---
+
 ## 2026-10-16 · Lot V1-ALT : 131 ALT Webflow remplacés dans 52 articles (FR 68, EN 62, de-ch 1), Draft · Claude de Laurent
 
 **Chantier** : lot V1-ALT de la qualification V9 (« PACKSHOTCREATOR V9 — GO CIBLÉ ALT WEBFLOW », 16/10/2026 : GO_CODE_ALT et GO_PR_PUSH_ALT = OUI, GO_MERGE et GO_PUBLICATION = NON) | **PR** : cette PR | **Commit** : ce commit
