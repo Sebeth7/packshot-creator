@@ -10,8 +10,9 @@ import { HeroSection, HeroVideoPanel } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
-import NavigationSections from '@/components/navigation/NavigationSections';
-import { barreActive, sommaireLateralActif, LIBELLES_BARRE, LIBELLES_SOMMAIRE } from '@/data/navigation/pages-longues';
+import DoubleNavigationStructuree from '@/components/navigation/DoubleNavigationStructuree';
+import SommaireCollant from '@/components/navigation/SommaireCollant';
+import { barreActive, formeSecondeActive, LIBELLES_BARRE, LIBELLES_LATERAL } from '@/data/navigation/pages-longues';
 
 /**
  * Landing Studios photo automatisés, version FR (Wave 2, 08/10/2026).
@@ -25,8 +26,10 @@ import { barreActive, sommaireLateralActif, LIBELLES_BARRE, LIBELLES_SOMMAIRE } 
  * Sources des faits : registre L2 du 08/10 (orbitvu.com, référentiel D45, D32, page contact, calculateur).
  *
  * Finition éditoriale du 16/10 (Laurent, GO_CODE_CORRECTIF_EDITO_108) : H1, sous-titre du hero, présentation
- * positive de PackshotCreator, collection allégée. Inchangés, en attente de validation de Sébastien : capacité
- * d'environ 500 photos par jour, ROI de 6 à 12 mois, délai indicatif de livraison, conditions d'offre.
+ * positive de PackshotCreator, collection allégée. Capacité d'environ 500 photos par jour, ROI de 6 à 12 mois,
+ * délai indicatif de livraison et conditions d'offre : formulations qualifiées inchangées, jamais présentées
+ * comme des garanties ; validation éditoriale de la version FR assumée par Laurent (exception ponctuelle D13/D42
+ * du 17/10/2026, limitée à #108).
  *
  * Interdits tenus : aucun nombre de systèmes, aucune cadence par machine, aucun prix, aucune gratuité,
  * aucun BlendAI, aucun logo client, aucun avis, aucun `id="calculateur-roi"` (D47). Reprise du 16/10 :
@@ -34,18 +37,20 @@ import { barreActive, sommaireLateralActif, LIBELLES_BARRE, LIBELLES_SOMMAIRE } 
  * #109 repris (délai indicatif d'environ 12 jours sans garantie, formation facturée séparément, showroom
  * « près de Lyon » selon D1, ROI de 6 à 12 mois sans garantie).
  *
- * Navigation V9 (décision de Laurent du 16/10/2026, `NavigationSections`), activée par le registre
- * (`landing-gamme`, FR) ; libellés = titres de section (`TITRES`), mêmes ancres pour tous les sommaires :
- * - barre horizontale (`SommaireCollant`) à partir de 1 024 px ; la chaîne S1 précède directement la
- *   première section : la barre apparaît quand cette section l'atteint (repli de R-UX-LONG § 3.1), sans
- *   `ancreSommaire`, et disparaît avant la démonstration ;
- * - sommaire vertical à droite à partir de 1 280 px (les conteneurs de la zone lui réservent `xl:pr-80`),
- *   sommaire repliable dans le flux en dessous ;
+ * Double navigation D44 (décision de Laurent du 15/10/2026, architecture mutualisée de #162), activée par le
+ * registre (`landing-gamme`, FR, pilote) ; libellés = titres de section (`TITRES`), mêmes ancres, une seule
+ * section active calculée par `FournisseurSectionActive` :
+ * - barre horizontale à partir de 1 024 px ; la chaîne S1 précède directement la première section : la barre
+ *   apparaît quand cette section l'atteint (repli de R-UX-LONG § 3.1), sans `ancreSommaire`, et disparaît avant
+ *   la démonstration ;
+ * - sommaire latéral en surimpression à partir de 1 280 px, visible avec la barre ; les conteneurs des sections
+ *   lui réservent leur droite (`xl:pr-80`) ;
+ * - sous 1 024 px : aucune navigation collante ;
  * - la chaîne S1 reste un schéma pédagogique statique, jamais une troisième navigation collante.
  *
- * Médias : tous réels, aucun visuel généré. Droits de réutilisation non formalisés
- * (`ORBITVU_REUSE_PERMISSION = TO_CONFIRM`) : un bandeau le signale sur les Previews Vercel
- * seulement ; publication bloquée tant que les droits ne sont pas établis.
+ * Médias : tous réels, aucun visuel généré. Droits de réutilisation sur cette page confirmés par Laurent le
+ * 17/10/2026 (fait métier, périmètre de #108) pour V01, V02, V03, leurs découpes mobiles et V12 ; V05 remplacée
+ * par un visuel machine Orbitvu déjà publié sur la fiche XL G2. Les légendes de provenance restent affichées.
  */
 
 const MachineSelector = dynamic(
@@ -56,18 +61,11 @@ const MachineSelector = dynamic(
 /** Le lien vers la page IA n'est rendu qu'une fois la landing IA Orbitvu (#105) publiée et vérifiée sur `www`. */
 const LIEN_PAGE_IA_PUBLIEE = false;
 
-/**
- * Marqueurs de statut des médias : Previews Vercel et développement local seulement, jamais en production.
- * À retirer du code avant publication, une fois les droits des médias validés (demande de Laurent du 16/10/2026) ;
- * conservés d'ici là.
- */
-const PREVISUALISATION = process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV === 'development';
-
 type Href = ComponentProps<typeof Link>['href'];
 const fiche = (slug: string): Href => ({ pathname: '/studio-photo/[slug]', params: { slug } });
 
 type Fichier = { src: string; w: number; h: number };
-type Visuel = Fichier & { mobile?: Fichier; statut: string };
+type Visuel = Fichier & { mobile?: Fichier };
 
 const VIDEO_GAMME = {
   // V01 : film de la gamme Orbitvu fourni par Sébastien (accueil, #95) ; affiche fixe seule sous 768 px
@@ -77,23 +75,22 @@ const VIDEO_GAMME = {
 };
 
 const VISUELS = {
-  // V05 : photo réelle (import Webflow) ; provenance et droits TO_CONFIRM.
-  operatrice: { src: '/images/blog/6787d343815aa433b695f1bd.avif', w: 2414, h: 1508, statut: 'V05 · provenance et droits à confirmer' },
+  // Remplace V05 (photo Webflow de provenance non établie) : visuel Orbitvu de l'Alphashot XL G2, sans personne, déjà
+  // publié sur la fiche XL G2 et sur la landing catalogue ; aucune capture de Station répétée (V02, V03 plus bas).
+  studio: { src: '/images/machines/alphashot-xl-g2/advantage-open-doors.avif', w: 1400, h: 1004 },
   // V02 : capture Orbitvu Station publiée sur la fiche XL G2 ; découpe mobile = recadrage seul.
   station: {
     src: '/images/machines/alphashot-xl-g2/soft-station-capture.avif', w: 1400, h: 875,
     mobile: { src: '/images/studios/station-capture-mobile.avif', w: 600, h: 750 },
-    statut: 'V02 · visuel Orbitvu, droits de réutilisation à confirmer',
   },
   // V03 : capture AI OCR publiée sur la fiche XL G2 ; découpe mobile = recadrage seul.
   ocr: {
     src: '/images/machines/alphashot-xl-g2/soft-ai-ocr.avif', w: 1400, h: 945,
     mobile: { src: '/images/studios/station-ai-ocr-mobile.avif', w: 680, h: 850 },
-    statut: 'V03 · visuel Orbitvu, droits de réutilisation à confirmer',
   },
 } satisfies Record<string, Visuel>;
 
-/** V12 : packshots publiés sur les fiches machines ; provenance et droits TO_CONFIRM. */
+/** V12 : packshots Orbitvu publiés sur les fiches machines, présentés comme exemples de résultat. */
 const EXEMPLES = [
   { src: '/images/machines/alphashot-pro-g2/packshot-mascara.avif', w: 1080, h: 1080, alt: 'Mascara rouge sur fond blanc', machine: 'Alphashot Pro G2' },
   { src: '/images/machines/alphashot-360/packshot-camera.avif', w: 1080, h: 1080, alt: 'Appareil photo instantané blanc sur fond blanc', machine: 'Alphashot 360' },
@@ -220,15 +217,6 @@ function ReponseFaq({ item }: { item: QuestionFaq }) {
   );
 }
 
-function StatutMedia({ statut }: { statut: string }) {
-  if (!PREVISUALISATION) return null;
-  return (
-    <span className="absolute left-2 top-2 z-10 rounded bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-900 shadow">
-      Préversion · {statut}
-    </span>
-  );
-}
-
 function Figure({ visuel, alt, legende, sizes }: { visuel: Visuel; alt: string; legende: string; sizes: string }) {
   const m = visuel.mobile;
   let image;
@@ -250,7 +238,6 @@ function Figure({ visuel, alt, legende, sizes }: { visuel: Visuel; alt: string; 
   return (
     <figure>
       <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-        <StatutMedia statut={visuel.statut} />
         {image}
       </div>
       <figcaption className="mt-2 text-sm text-neutral-medium leading-relaxed">{legende}</figcaption>
@@ -322,11 +309,19 @@ function SchemaCollection() {
 
 const ENTREES = Object.entries(TITRES).map(([id, libelle]) => ({ id, libelle }));
 
+/**
+ * Sommaire latéral en surimpression (`fixed`, 224 px, à 24 px du bord droit) : seuil d'affichage à 1 280 px,
+ * puis carte opaque, propre à cette page, pour rester lisible au-dessus de la section sombre « Choisir le
+ * studio », et hauteur bornée à l'écran (défilement interne sur les écrans bas, dernière entrée atteignable).
+ */
+const CLASSE_LATERALE =
+  'hidden xl:block max-h-[calc(100vh-9rem)] overflow-y-auto rounded-xl border border-neutral-200 bg-white/95 p-4 shadow-sm backdrop-blur-sm';
+
 export default function LandingStudios({ lang }: { lang: 'fr' }) {
   const url = `https://www.packshot-creator.com/${lang}/studios-photo-automatises`;
   const barre = barreActive('landing-gamme', lang, 'studios-photo-automatises');
-  const lateral = sommaireLateralActif('landing-gamme', lang, 'studios-photo-automatises');
-  // Conteneur des sections de la zone : largeur réservée au sommaire vertical à partir de 1 280 px.
+  const lateral = formeSecondeActive('landing-gamme', lang, 'studios-photo-automatises') === 'laterale';
+  // Conteneur des sections : largeur réservée au sommaire latéral (surimpression) à partir de 1 280 px.
   const conteneur = lateral ? `${CONTENEUR} xl:pr-80` : CONTENEUR;
 
   return (
@@ -343,7 +338,6 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
         ]}
         media={
           <figure className="relative">
-            <StatutMedia statut="V01 · film Orbitvu, droits de réutilisation à confirmer" />
             <HeroVideoPanel
               src={VIDEO_GAMME.src}
               poster={VIDEO_GAMME.poster}
@@ -358,292 +352,296 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
       {/* 2. S1 : chaîne de production. */}
       <Chaine />
 
-      {/* 3 à 12 : sections listées par les sommaires (navigation V9). */}
-      <NavigationSections
-        barre={barre}
-        lateral={lateral}
-        libellesBarre={LIBELLES_BARRE[lang]}
-        libellesSommaire={LIBELLES_SOMMAIRE[lang]}
-        entrees={ENTREES}
-        ancreFin="demonstration"
-      >
-        {/* 3. À quoi sert un studio photo automatisé. */}
-        <section id="a-quoi-sert" className={`${SECTION} bg-white`}>
-          <div className={`${conteneur} grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center`}>
-            <div>
-              <h2 className={H2}>{TITRES['a-quoi-sert']}</h2>
-              <p className={`${PARAGRAPHE} mb-4`}>
-                Il permet de photographier vos produits avec une méthode reproductible : chaque nouvelle référence repart d’un
-                modèle de prise de vue existant, et la présentation reste cohérente avec le catalogue.
+      {/* 3 à 12 : sections listées par la barre et le sommaire latéral (double navigation D44). */}
+      {lateral ? (
+        <DoubleNavigationStructuree
+          titre={LIBELLES_BARRE[lang].titre}
+          libelle={LIBELLES_BARRE[lang].libelle}
+          libelleLateral={LIBELLES_LATERAL[lang]}
+          entrees={ENTREES}
+          ancreFin="demonstration"
+          classeLaterale={CLASSE_LATERALE}
+        />
+      ) : barre ? (
+        <SommaireCollant titre={LIBELLES_BARRE[lang].titre} libelle={LIBELLES_BARRE[lang].libelle} entrees={ENTREES} ancreFin="demonstration" />
+      ) : null}
+
+      {/* 3. À quoi sert un studio photo automatisé. */}
+      <section id="a-quoi-sert" className={`${SECTION} bg-white`}>
+        <div className={`${conteneur} grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center`}>
+          <div>
+            <h2 className={H2}>{TITRES['a-quoi-sert']}</h2>
+            <p className={`${PARAGRAPHE} mb-4`}>
+              Il permet de photographier vos produits avec une méthode reproductible : chaque nouvelle référence repart d’un
+              modèle de prise de vue existant, et la présentation reste cohérente avec le catalogue.
+            </p>
+            <p className={`${PARAGRAPHE} mb-6`}>
+              Distributeur officiel Orbitvu, PackshotCreator vous accompagne dans le choix de votre équipement. Votre équipe
+              réalise les prises de vue en interne. La livraison et l’installation sont facturées en supplément ; la formation
+              est facturée séparément.
+            </p>
+            <aside className="rounded-xl bg-future-dusk-0 border border-neutral-100 p-5">
+              <h3 className="font-heading font-semibold text-heading-dark mb-1">Quand un prestataire reste plus adapté</h3>
+              <p className="text-neutral-medium leading-relaxed">
+                Peu de références par an, des mises en scène créatives, ou des produits hors des dimensions des studios.
               </p>
-              <p className={`${PARAGRAPHE} mb-6`}>
-                Distributeur officiel Orbitvu, PackshotCreator vous accompagne dans le choix de votre équipement. Votre équipe
-                réalise les prises de vue en interne. La livraison et l’installation sont facturées en supplément ; la formation
-                est facturée séparément.
-              </p>
-              <aside className="rounded-xl bg-future-dusk-0 border border-neutral-100 p-5">
-                <h3 className="font-heading font-semibold text-heading-dark mb-1">Quand un prestataire reste plus adapté</h3>
-                <p className="text-neutral-medium leading-relaxed">
-                  Peu de références par an, des mises en scène créatives, ou des produits hors des dimensions des studios.
-                </p>
-              </aside>
+            </aside>
+          </div>
+          <Figure
+            visuel={VISUELS.studio}
+            alt="Alphashot XL G2 aux portes ouvertes : chambre de prise de vue blanche, panneaux d’éclairage et appareil photo monté sur son bras"
+            legende="Alphashot XL G2, portes ouvertes : chambre de prise de vue, éclairage et appareil photo réunis dans le studio (visuel Orbitvu)."
+            sizes="(min-width: 1024px) 600px, 100vw"
+          />
+        </div>
+      </section>
+
+      {/* 4. La machine et l'opérateur. */}
+      <section id="capture" className={`${SECTION} bg-future-dusk-0`}>
+        <div className={conteneur}>
+          <h2 className={H2}>{TITRES.capture}</h2>
+          <div className="grid gap-5 md:grid-cols-2 mb-8">
+            <div className="rounded-2xl bg-white border border-neutral-200 p-6">
+              <h3 className="font-heading font-semibold text-heading-dark mb-3">Le studio et Orbitvu Station</h3>
+              <ul className="list-disc pl-5 space-y-2 text-neutral-medium leading-relaxed">
+                {ROLE_STUDIO.map((r) => <li key={r}>{r}</li>)}
+              </ul>
             </div>
+            <div className="rounded-2xl bg-white border border-neutral-200 p-6">
+              <h3 className="font-heading font-semibold text-heading-dark mb-3">L’opérateur</h3>
+              <ul className="list-disc pl-5 space-y-2 text-neutral-medium leading-relaxed">
+                {ROLE_OPERATEUR.map((r) => <li key={r}>{r}</li>)}
+              </ul>
+            </div>
+          </div>
+          <p className={`${PARAGRAPHE} mb-8`}>Orbitvu le résume ainsi : l’IA assiste, le choix final revient à l’opérateur.</p>
+          <Figure
+            visuel={VISUELS.station}
+            alt="Capture d’écran d’Orbitvu Station pendant la prise de vue d’un sachet de café"
+            legende="Orbitvu Station pendant une prise de vue (visuel Orbitvu)."
+            sizes={lateral ? '(min-width: 1280px) 936px, 100vw' : '(min-width: 1280px) 1232px, 100vw'}
+          />
+          <p className="mt-4">
+            <Link href={fiche('alphashot-xl-g2')} className={LIEN}>
+              Voir l’Alphashot XL G2 en fonctionnement <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      {/* 5. Une collection reproductible (S2). */}
+      <section id="collection" className={`${SECTION} bg-white`}>
+        <div className={conteneur}>
+          <h2 className={H2}>{TITRES.collection}</h2>
+          <div className="max-w-3xl space-y-4">
+            <p className={PARAGRAPHE}>
+              Pour une famille de produits, l’opérateur enregistre une première prise de vue comme modèle : cadrage, lumière et
+              traitement. Les références comparables repartent de ce modèle, adapté au produit si besoin, et certaines
+              corrections s’appliquent à un lot d’images.
+            </p>
+            <p className={PARAGRAPHE}>
+              Les produits brillants, transparents ou atypiques demandent souvent d’ajuster le modèle : l’ajustement se fait
+              une fois, puis sert aux références comparables.
+            </p>
+          </div>
+          <SchemaCollection />
+        </div>
+      </section>
+
+      {/* 6. L'IA qui assiste. */}
+      <section id="ia" className={`${SECTION} bg-future-dusk-0`}>
+        <div className={`${conteneur} grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start`}>
+          <div className="lg:order-2">
+            <h2 className={H2}>{TITRES.ia}</h2>
+            <p className={`${PARAGRAPHE} mb-6`}>
+              Les fonctions d’IA d’Orbitvu Station assistent la prise de vue ou le traitement d’images de produits réels. Leur
+              disponibilité dépend des équipements et d’un abonnement Orbitvu Station ; l’opérateur vérifie le résultat.
+            </p>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {FONCTIONS_IA.map((f) => (
+                <li key={f.nom} className="rounded-xl bg-white border border-neutral-200 p-4 text-neutral-medium leading-relaxed">
+                  <strong className="block font-semibold text-heading-dark">{f.nom}</strong>
+                  {f.texte}
+                </li>
+              ))}
+            </ul>
+            {LIEN_PAGE_IA_PUBLIEE && (
+              <p className="mt-6">
+                <Link href="/ia-photo-produit" className={LIEN}>
+                  Voir comment l’IA intervient dans Orbitvu Station <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </p>
+            )}
+          </div>
+          <div className="lg:order-1">
             <Figure
-              visuel={VISUELS.operatrice}
-              alt="Opératrice devant un Alphashot Micro, l’écran du poste affichant une montre en cours de prise de vue"
-              legende="Une opératrice prépare une prise de vue ; l’écran affiche Orbitvu Station."
+              visuel={VISUELS.ocr}
+              alt="Fenêtre AI OCR d’Orbitvu Station lisant l’étiquette d’un sachet de café"
+              legende="Lecture d’une étiquette par AI OCR dans Orbitvu Station (visuel Orbitvu)."
               sizes="(min-width: 1024px) 600px, 100vw"
             />
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 4. La machine et l'opérateur. */}
-        <section id="capture" className={`${SECTION} bg-future-dusk-0`}>
-          <div className={conteneur}>
-            <h2 className={H2}>{TITRES.capture}</h2>
-            <div className="grid gap-5 md:grid-cols-2 mb-8">
-              <div className="rounded-2xl bg-white border border-neutral-200 p-6">
-                <h3 className="font-heading font-semibold text-heading-dark mb-3">Le studio et Orbitvu Station</h3>
-                <ul className="list-disc pl-5 space-y-2 text-neutral-medium leading-relaxed">
-                  {ROLE_STUDIO.map((r) => <li key={r}>{r}</li>)}
-                </ul>
-              </div>
-              <div className="rounded-2xl bg-white border border-neutral-200 p-6">
-                <h3 className="font-heading font-semibold text-heading-dark mb-3">L’opérateur</h3>
-                <ul className="list-disc pl-5 space-y-2 text-neutral-medium leading-relaxed">
-                  {ROLE_OPERATEUR.map((r) => <li key={r}>{r}</li>)}
-                </ul>
-              </div>
-            </div>
-            <p className={`${PARAGRAPHE} mb-8`}>Orbitvu le résume ainsi : l’IA assiste, le choix final revient à l’opérateur.</p>
-            <Figure
-              visuel={VISUELS.station}
-              alt="Capture d’écran d’Orbitvu Station pendant la prise de vue d’un sachet de café"
-              legende="Orbitvu Station pendant une prise de vue (visuel Orbitvu)."
-              sizes={lateral ? '(min-width: 1280px) 936px, 100vw' : '(min-width: 1280px) 1232px, 100vw'}
-            />
-            <p className="mt-4">
-              <Link href={fiche('alphashot-xl-g2')} className={LIEN}>
-                Voir l’Alphashot XL G2 en fonctionnement <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </p>
-          </div>
-        </section>
+      {/* 7. Ce que vous obtenez. */}
+      <section id="images" className={`${SECTION} bg-white`}>
+        <div className={conteneur}>
+          <h2 className={H2}>{TITRES.images}</h2>
+          <p className={`${PARAGRAPHE} max-w-3xl`}>
+            Selon l’équipement et les réglages, un studio Orbitvu peut produire des photos fixes, des séquences, des vidéos ou des
+            vues à 360°. Selon le système utilisé, les produits photographiés et l’organisation de la production, il est possible
+            de réaliser de l’ordre de 500 photos par jour. Les mesures physiques sont réservées aux configurations qui les prennent en charge ; la lecture
+            d’informations sur l’emballage par AI OCR est une fonction distincte, soumise à vérification.
+          </p>
+          <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {EXEMPLES.map((e) => (
+              <li key={e.src}>
+                <figure>
+                  <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white">
+                    <Image src={e.src} alt={e.alt} width={e.w} height={e.h} sizes="(min-width: 1024px) 296px, 50vw" loading="lazy" className="block w-full h-auto" />
+                  </div>
+                  <figcaption className="mt-2 text-sm text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {e.machine}.</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6">
+            <Link href={fiche('alphashot-360')} className={LIEN}>
+              Pour les vues à 360°, voir l’Alphashot 360 <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </p>
+        </div>
+      </section>
 
-        {/* 5. Une collection reproductible (S2). */}
-        <section id="collection" className={`${SECTION} bg-white`}>
-          <div className={conteneur}>
-            <h2 className={H2}>{TITRES.collection}</h2>
-            <div className="max-w-3xl space-y-4">
-              <p className={PARAGRAPHE}>
-                Pour une famille de produits, l’opérateur enregistre une première prise de vue comme modèle : cadrage, lumière et
-                traitement. Les références comparables repartent de ce modèle, adapté au produit si besoin, et certaines
-                corrections s’appliquent à un lot d’images.
-              </p>
-              <p className={PARAGRAPHE}>
-                Les produits brillants, transparents ou atypiques demandent souvent d’ajuster le modèle : l’ajustement se fait
-                une fois, puis sert aux références comparables.
-              </p>
-            </div>
-            <SchemaCollection />
-          </div>
-        </section>
+      {/* 8. La diffusion. */}
+      <section id="diffusion" className={`${SECTION} bg-future-dusk-0`}>
+        <div className={conteneur}>
+          <h2 className={H2}>{TITRES.diffusion}</h2>
+          <p className={`${PARAGRAPHE} max-w-3xl`}>
+            Orbitvu Station enregistre les fichiers sur votre poste ou dans le cloud, et peut les envoyer vers vos destinations
+            e-commerce, web ou ERP. Orbitvu cite des connexions avec Shopify, Magento, Shopware et WooCommerce, et avec les
+            stockages Amazon S3, Azure et Google Storage.
+          </p>
+        </div>
+      </section>
 
-        {/* 6. L'IA qui assiste. */}
-        <section id="ia" className={`${SECTION} bg-future-dusk-0`}>
-          <div className={`${conteneur} grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start`}>
-            <div className="lg:order-2">
-              <h2 className={H2}>{TITRES.ia}</h2>
-              <p className={`${PARAGRAPHE} mb-6`}>
-                Les fonctions d’IA d’Orbitvu Station assistent la prise de vue ou le traitement d’images de produits réels. Leur
-                disponibilité dépend des équipements et d’un abonnement Orbitvu Station ; l’opérateur vérifie le résultat.
-              </p>
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {FONCTIONS_IA.map((f) => (
-                  <li key={f.nom} className="rounded-xl bg-white border border-neutral-200 p-4 text-neutral-medium leading-relaxed">
-                    <strong className="block font-semibold text-heading-dark">{f.nom}</strong>
-                    {f.texte}
-                  </li>
-                ))}
+      {/* 9. Choisir le studio : sélecteur existant, inchangé. */}
+      <section id="studios" className={`${SECTION} bg-future-dusk-900 text-white`}>
+        <div className={conteneur}>
+          <h2 className="text-3xl lg:text-4xl font-heading font-bold leading-tight mb-5 text-balance">{TITRES.studios}</h2>
+          <div className="grid gap-8 lg:grid-cols-2 mb-10">
+            <div>
+              <p className="text-lg text-future-dusk-200 mb-3">Quatre questions orientent le choix :</p>
+              <ul className="list-disc pl-5 space-y-1.5 text-future-dusk-200 leading-relaxed">
+                {CRITERES.map((c) => <li key={c}>{c}</li>)}
               </ul>
-              {LIEN_PAGE_IA_PUBLIEE && (
-                <p className="mt-6">
-                  <Link href="/ia-photo-produit" className={LIEN}>
-                    Voir comment l’IA intervient dans Orbitvu Station <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </p>
-              )}
             </div>
-            <div className="lg:order-1">
-              <Figure
-                visuel={VISUELS.ocr}
-                alt="Fenêtre AI OCR d’Orbitvu Station lisant l’étiquette d’un sachet de café"
-                legende="Lecture d’une étiquette par AI OCR dans Orbitvu Station (visuel Orbitvu)."
-                sizes="(min-width: 1024px) 600px, 100vw"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* 7. Ce que vous obtenez. */}
-        <section id="images" className={`${SECTION} bg-white`}>
-          <div className={conteneur}>
-            <h2 className={H2}>{TITRES.images}</h2>
-            <p className={`${PARAGRAPHE} max-w-3xl`}>
-              Selon l’équipement et les réglages, un studio Orbitvu peut produire des photos fixes, des séquences, des vidéos ou des
-              vues à 360°. Selon le système utilisé, les produits photographiés et l’organisation de la production, il est possible
-              de réaliser de l’ordre de 500 photos par jour. Les mesures physiques sont réservées aux configurations qui les prennent en charge ; la lecture
-              d’informations sur l’emballage par AI OCR est une fonction distincte, soumise à vérification.
+            <p className="text-lg text-future-dusk-200 leading-relaxed">
+              Deux repères publiés par Orbitvu : l’Alphashot Pro G2 accepte des objets jusqu’à 35 × 35 × 40 cm et 10 kg ;
+              l’Alphashot XL G2, jusqu’à 60 × 40 × 70 cm et 25 kg. La gamme comprend aussi des studios pour la mode, le mobilier,
+              les vélos et les très grands objets.
             </p>
-            <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {EXEMPLES.map((e) => (
-                <li key={e.src}>
-                  <figure>
-                    <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white">
-                      <StatutMedia statut="V12 · à confirmer" />
-                      <Image src={e.src} alt={e.alt} width={e.w} height={e.h} sizes="(min-width: 1024px) 296px, 50vw" loading="lazy" className="block w-full h-auto" />
-                    </div>
-                    <figcaption className="mt-2 text-sm text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {e.machine}.</figcaption>
-                  </figure>
-                </li>
-              ))}
-            </ul>
+          </div>
+          <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-10 shadow-2xl shadow-black/20 text-heading-dark">
+            <p className="text-neutral-medium mb-6">
+              Filtrez par taille de produit, niveau d’automatisation, secteur ou fonctionnalité, puis ouvrez la fiche de chaque machine.
+            </p>
+            <MachineSelector mode="display" showFilters={true} showPrices={false} locale={lang} />
             <p className="mt-6">
-              <Link href={fiche('alphashot-360')} className={LIEN}>
-                Pour les vues à 360°, voir l’Alphashot 360 <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <Link href="/besoins-photographie-produit" className={LIEN}>
+                Pas sûr ? Identifiez votre besoin <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 8. La diffusion. */}
-        <section id="diffusion" className={`${SECTION} bg-future-dusk-0`}>
-          <div className={conteneur}>
-            <h2 className={H2}>{TITRES.diffusion}</h2>
-            <p className={`${PARAGRAPHE} max-w-3xl`}>
-              Orbitvu Station enregistre les fichiers sur votre poste ou dans le cloud, et peut les envoyer vers vos destinations
-              e-commerce, web ou ERP. Orbitvu cite des connexions avec Shopify, Magento, Shopware et WooCommerce, et avec les
-              stockages Amazon S3, Azure et Google Storage.
-            </p>
-          </div>
-        </section>
+      {/* 10. Prérequis. */}
+      <section id="prerequis" className={`${SECTION} bg-white`}>
+        <div className={conteneur}>
+          <h2 className={H2}>{TITRES.prerequis}</h2>
+          <ul className="grid gap-4 md:grid-cols-2 max-w-5xl">
+            {PREREQUIS.map((p) => (
+              <li key={p.titre} className="rounded-xl border border-neutral-200 p-5 text-neutral-medium leading-relaxed">
+                <strong className="font-semibold text-heading-dark">{p.titre}</strong> {p.texte}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6">
+            <a href="https://orbitvu.com/compatibility-guide" target="_blank" rel="noopener noreferrer" className={LIEN}>
+              Guide de compatibilité Orbitvu <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </p>
+        </div>
+      </section>
 
-        {/* 9. Choisir le studio : sélecteur existant, inchangé. */}
-        <section id="studios" className={`${SECTION} bg-future-dusk-900 text-white`}>
-          <div className={conteneur}>
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold leading-tight mb-5 text-balance">{TITRES.studios}</h2>
-            <div className="grid gap-8 lg:grid-cols-2 mb-10">
-              <div>
-                <p className="text-lg text-future-dusk-200 mb-3">Quatre questions orientent le choix :</p>
-                <ul className="list-disc pl-5 space-y-1.5 text-future-dusk-200 leading-relaxed">
-                  {CRITERES.map((c) => <li key={c}>{c}</li>)}
-                </ul>
-              </div>
-              <p className="text-lg text-future-dusk-200 leading-relaxed">
-                Deux repères publiés par Orbitvu : l’Alphashot Pro G2 accepte des objets jusqu’à 35 × 35 × 40 cm et 10 kg ;
-                l’Alphashot XL G2, jusqu’à 60 × 40 × 70 cm et 25 kg. La gamme comprend aussi des studios pour la mode, le mobilier,
-                les vélos et les très grands objets.
+      {/* 11. Coût complet, ROI, démonstration. */}
+      <section id="projet" className={`${SECTION} bg-future-dusk-0`}>
+        <div className={conteneur}>
+          <h2 className={H2}>{TITRES.projet}</h2>
+          <p className={`${PARAGRAPHE} max-w-3xl mb-3`}>
+            Le budget d’un projet dépend du studio choisi, de la livraison et de l’installation facturées en supplément, ainsi que
+            des options et de la formation, facturée séparément : Essential Training (4 h, à distance) ou Master Training (7 h,
+            en présentiel). Vérifiez également l’appareil photo compatible nécessaire et l’abonnement Orbitvu Station
+            correspondant aux fonctions souhaitées. Le délai de livraison est actuellement d’environ 12 jours, à titre indicatif
+            et sans garantie ; la durée d’installation dépend du système et de la configuration.
+          </p>
+          <p className="mb-10">
+            <Link href="/academy" className={LIEN}>
+              Voir les formations <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </p>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl bg-white border border-neutral-200 p-6 lg:p-8 flex flex-col">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-very-peri-100 text-very-peri-600 mb-4" aria-hidden="true">
+                <Calculator className="h-6 w-6" />
+              </span>
+              <h3 className="text-xl font-heading font-bold text-heading-dark mb-2">Calculer votre retour sur investissement</h3>
+              <p className="text-neutral-medium leading-relaxed mb-6 flex-1">
+                Le calculateur vous pose quelques questions sur votre production actuelle. Il calcule ensuite les économies, le
+                temps libéré et le retour sur investissement à partir de vos chiffres.
               </p>
+              <Button asChild size="lg" className="self-start bg-white text-very-peri-600 border border-very-peri-500 hover:bg-very-peri-50 rounded-xl px-6 h-12 font-semibold">
+                <Link href="/calculateur-roi">Calculer mon ROI</Link>
+              </Button>
             </div>
-            <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-10 shadow-2xl shadow-black/20 text-heading-dark">
-              <p className="text-neutral-medium mb-6">
-                Filtrez par taille de produit, niveau d’automatisation, secteur ou fonctionnalité, puis ouvrez la fiche de chaque machine.
+            <div className="rounded-2xl bg-white border border-neutral-200 p-6 lg:p-8 flex flex-col">
+              <h3 className="text-xl font-heading font-bold text-heading-dark mb-2">Voir un studio avant de décider</h3>
+              <p className="text-neutral-medium leading-relaxed mb-6 flex-1">
+                Une première présentation peut être organisée à distance. Une visite de notre showroom, près de Lyon, est possible sur rendez-vous,
+                avec vos propres produits pour discuter des contraintes de prise de vue.
               </p>
-              <MachineSelector mode="display" showFilters={true} showPrices={false} locale={lang} />
-              <p className="mt-6">
-                <Link href="/besoins-photographie-produit" className={LIEN}>
-                  Pas sûr ? Identifiez votre besoin <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </p>
+              <Button asChild size="lg" className="self-start bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl px-6 h-12 font-semibold">
+                <a href="#demonstration">Demander une démonstration</a>
+              </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 10. Prérequis. */}
-        <section id="prerequis" className={`${SECTION} bg-white`}>
-          <div className={conteneur}>
-            <h2 className={H2}>{TITRES.prerequis}</h2>
-            <ul className="grid gap-4 md:grid-cols-2 max-w-5xl">
-              {PREREQUIS.map((p) => (
-                <li key={p.titre} className="rounded-xl border border-neutral-200 p-5 text-neutral-medium leading-relaxed">
-                  <strong className="font-semibold text-heading-dark">{p.titre}</strong> {p.texte}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6">
-              <a href="https://orbitvu.com/compatibility-guide" target="_blank" rel="noopener noreferrer" className={LIEN}>
-                Guide de compatibilité Orbitvu <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </p>
+      {/* 12. FAQ (= FAQPage). */}
+      <section id="faq" className={`${SECTION} bg-white`}>
+        <div className={lateral ? `${conteneur} max-w-4xl xl:max-w-7xl` : `${CONTENEUR} max-w-4xl`}>
+          <h2 className={H2}>{TITRES.faq}</h2>
+          <div className="space-y-3">
+            {FAQ.map((item) => (
+              <details key={item.q} className="group rounded-2xl border border-neutral-200 bg-white open:shadow-md open:border-very-peri-200">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 lg:p-6 [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-400 rounded-2xl">
+                  <h3 className="text-lg font-heading font-semibold text-heading-dark leading-snug">{item.q}</h3>
+                  <ChevronDown className="h-5 w-5 shrink-0 text-future-dusk-400 transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
+                </summary>
+                <p className="px-5 pb-5 lg:px-6 lg:pb-6 text-neutral-medium leading-relaxed"><ReponseFaq item={item} /></p>
+              </details>
+            ))}
           </div>
-        </section>
-
-        {/* 11. Coût complet, ROI, démonstration. */}
-        <section id="projet" className={`${SECTION} bg-future-dusk-0`}>
-          <div className={conteneur}>
-            <h2 className={H2}>{TITRES.projet}</h2>
-            <p className={`${PARAGRAPHE} max-w-3xl mb-3`}>
-              Le budget d’un projet dépend du studio choisi, de la livraison et de l’installation facturées en supplément, ainsi que
-              des options et de la formation, facturée séparément : Essential Training (4 h, à distance) ou Master Training (7 h,
-              en présentiel). Vérifiez également l’appareil photo compatible nécessaire et l’abonnement Orbitvu Station
-              correspondant aux fonctions souhaitées. Le délai de livraison est actuellement d’environ 12 jours, à titre indicatif
-              et sans garantie ; la durée d’installation dépend du système et de la configuration.
-            </p>
-            <p className="mb-10">
-              <Link href="/academy" className={LIEN}>
-                Voir les formations <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </p>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl bg-white border border-neutral-200 p-6 lg:p-8 flex flex-col">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-very-peri-100 text-very-peri-600 mb-4" aria-hidden="true">
-                  <Calculator className="h-6 w-6" />
-                </span>
-                <h3 className="text-xl font-heading font-bold text-heading-dark mb-2">Calculer votre retour sur investissement</h3>
-                <p className="text-neutral-medium leading-relaxed mb-6 flex-1">
-                  Le calculateur vous pose quelques questions sur votre production actuelle. Il calcule ensuite les économies, le
-                  temps libéré et le retour sur investissement à partir de vos chiffres.
-                </p>
-                <Button asChild size="lg" className="self-start bg-white text-very-peri-600 border border-very-peri-500 hover:bg-very-peri-50 rounded-xl px-6 h-12 font-semibold">
-                  <Link href="/calculateur-roi">Calculer mon ROI</Link>
-                </Button>
-              </div>
-              <div className="rounded-2xl bg-white border border-neutral-200 p-6 lg:p-8 flex flex-col">
-                <h3 className="text-xl font-heading font-bold text-heading-dark mb-2">Voir un studio avant de décider</h3>
-                <p className="text-neutral-medium leading-relaxed mb-6 flex-1">
-                  Une première présentation peut être organisée à distance. Une visite de notre showroom, près de Lyon, est possible sur rendez-vous,
-                  avec vos propres produits pour discuter des contraintes de prise de vue.
-                </p>
-                <Button asChild size="lg" className="self-start bg-very-peri-500 hover:bg-very-peri-600 text-white rounded-xl px-6 h-12 font-semibold">
-                  <a href="#demonstration">Demander une démonstration</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 12. FAQ (= FAQPage). */}
-        <section id="faq" className={`${SECTION} bg-white`}>
-          <div className={lateral ? `${conteneur} max-w-4xl xl:max-w-7xl` : `${CONTENEUR} max-w-4xl`}>
-            <h2 className={H2}>{TITRES.faq}</h2>
-            <div className="space-y-3">
-              {FAQ.map((item) => (
-                <details key={item.q} className="group rounded-2xl border border-neutral-200 bg-white open:shadow-md open:border-very-peri-200">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 lg:p-6 [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-400 rounded-2xl">
-                    <h3 className="text-lg font-heading font-semibold text-heading-dark leading-snug">{item.q}</h3>
-                    <ChevronDown className="h-5 w-5 shrink-0 text-future-dusk-400 transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
-                  </summary>
-                  <p className="px-5 pb-5 lg:px-6 lg:pb-6 text-neutral-medium leading-relaxed"><ReponseFaq item={item} /></p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-      </NavigationSections>
+        </div>
+      </section>
 
       {/* 13. Demande de démonstration : formulaire existant, type « demo ». */}
       <section id="demonstration" className={`${SECTION} bg-future-dusk-900`}>
-        <div className={`${CONTENEUR} max-w-2xl`}>
+        {/* Droite réservée aussi : le sommaire latéral reste visible tant que cette section n'a pas atteint la barre. */}
+        <div className={`${conteneur} max-w-2xl`}>
           <div className="bg-white rounded-3xl p-6 sm:p-10">
             <h2 className="text-3xl font-heading font-bold text-heading-dark mb-3 text-balance">Demander une démonstration</h2>
             <p className="text-neutral-medium text-lg leading-relaxed mb-8">

@@ -61,9 +61,11 @@ Sébastien (voir `01-RAYON-ACTION.md`).
 Avant de créer ou de modifier une page, appliquer les standards permanents
 (`docs/standards/README.md`) :
 - **page longue** : forme de navigation selon sa famille de gabarits
-  (`data/navigation/pages-longues.ts`, D44) ; barre et sommaire vertical cumulés
-  seulement par `NavigationSections`, sur validation (navigation V9 du 16/10/2026,
-  R-UX-LONG § 2 bis) ; jamais une troisième navigation collante ;
+  (`data/navigation/pages-longues.ts`, D44) ; double navigation (barre et sommaire
+  latéral, décision de Laurent du 15/10/2026) seulement par les composants
+  mutualisés de `components/navigation/` et le registre (`secondeForme`,
+  `piloteSecondeForme`), page pilote par page pilote ; jamais un second scroll-spy
+  ni une troisième navigation collante ;
 - **dimension, charge ou encombrement d'une machine** : valeur du référentiel
   `data/produits/fiches-techniques.ts`, avec sa source (D45) ; une contradiction
   se signale, elle ne se tranche pas en silence.

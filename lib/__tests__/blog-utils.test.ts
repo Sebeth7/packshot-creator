@@ -9,6 +9,7 @@ import {
   removeEmptyParagraphs,
   slugify,
   transformEmbedShortcodes,
+  transformVideoImages,
 } from '../blog-utils';
 import { transformYouTubeEmbeds } from '../youtube';
 
@@ -657,5 +658,38 @@ describe('addRelToBlankTargets — liens target="_blank" (F22, règle UX du 29/0
     expect(count(res, /target="_blank"/g)).toBe(3);
     for (const tag of res.match(/<a\b[^>]*>/g) ?? []) expect(count(tag, /\srel\s*=/gi)).toBeLessThanOrEqual(1);
     expect(out(res)).toBe(res);
+  });
+});
+
+describe('transformVideoImages (U02)', () => {
+  it('convertit <img src=….mp4> en <video> natif avec contrôles et chargement différé', () => {
+    const r = transformVideoImages('<img src="/images/blog/a.mp4" alt="Démo produit">');
+    expect(r.count).toBe(1);
+    expect(r.html).toContain('<video src="/images/blog/a.mp4"');
+    expect(r.html).toContain('controls');
+    expect(r.html).toContain('preload="metadata"');
+    expect(r.html).toContain('aria-label="Démo produit"');
+    expect(r.html).not.toContain('<img');
+  });
+
+  it('laisse les images non-.mp4 intactes', () => {
+    const src = '<img src="/images/blog/a.avif" alt="Photo" loading="lazy">';
+    const r = transformVideoImages(src);
+    expect(r.count).toBe(0);
+    expect(r.html).toBe(src);
+  });
+
+  it('omet aria-label pour le marqueur Webflow __wf_reserved_inherit', () => {
+    const r = transformVideoImages('<img src="/images/blog/b.mp4" alt="__wf_reserved_inherit">');
+    expect(r.count).toBe(1);
+    expect(r.html).not.toContain('aria-label');
+  });
+
+  it('est idempotent et intégré à processHtmlContent', () => {
+    const once = transformVideoImages('<img src="/x.mp4" alt="A">').html;
+    expect(transformVideoImages(once).html).toBe(once);
+    const processed = processHtmlContent('<p id=""><img src="/images/blog/c.mp4" alt="A" loading="auto"></p>').processedHtml;
+    expect(processed).toContain('<video src="/images/blog/c.mp4"');
+    expect(processed).not.toContain('<img');
   });
 });

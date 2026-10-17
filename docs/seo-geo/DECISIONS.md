@@ -25,27 +25,77 @@ Append-only. Plus récent en haut.
 
 ---
 
-## D(numéro à attribuer) · 2026-10-16 · Navigation V9 : barre horizontale et sommaire vertical à droite coexistent sur les pages longues organisées en sections ; D44 amendée
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #108 (landing Studios FR), droits des médias confirmés et V05 remplacée
 
-**Décidé par** : Laurent — « ADDENDUM PRIORITAIRE — DÉCISION LAURENT — NAVIGATION V9 », 16/10/2026, joint au GO de reprise de #108
-**Statut** : en vigueur sur le principe ; appliquée à la seule landing Studios FR de #108 (à sa fusion, `GO_MERGE_108 = NON` au 16/10). Aucun numéro attribué ici (même règle que les entrées voisines). Règle écrite : `docs/standards/R-UX-LONG.md` § 2 bis.
+**Décidé par** : Laurent — « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 », arbitrages du rapport en lecture seule du même jour ; tête de départ `2041b80`
+**Statut** : en vigueur pour le seul périmètre de #108 ; épuisée par sa fusion et sa publication. Au 17/10 : `GO_MERGE_108`, `GO_PUBLICATION_108`, `GO_TEST_REEL` et `GO_ENVOI` = NON ; gel de publication maintenu jusqu'au 28/10/2026, sauf nouvelle décision expresse de Laurent. Aucun numéro attribué ici (même règle que les entrées voisines).
 
 **La décision** —
-1. Sur une page de contenu organisée en sections, un sommaire vertical à droite donne un accès direct aux sections principales.
-2. Sur une page longue, une barre horizontale apparaît sous le menu principal au défilement.
-3. Les deux peuvent coexister sur desktop. **L'interdiction de cumul de D44 et de R-UX-LONG (« Une page ne cumule jamais deux navigations collantes ») est remplacée** et ne s'applique plus comme blocage.
-4. Studios #108 : sommaire droit complet, barre d'accès rapide, synchronisés sur la section active, ancres communes, aucun `id` dupliqué, aucun titre masqué au clic ; la chaîne de production reste pédagogique, jamais une troisième navigation collante.
-5. Responsive : écran large, les deux ; écran intermédiaire, adaptation sans chevauchement ni perte de largeur ; mobile, sommaire accessible et repliable, jamais deux barres fixes.
-6. Composants existants réutilisés (`SommaireCollant`, `TableOfContents`), aucune duplication par landing.
+1. **D13/D42, exception limitée à #108** : Laurent assume la validation éditoriale de la version FR de `/fr/studios-photo-automatises` préparée le 16/10 (finition éditoriale comprise). Pas d'attente de la validation tacite D15, pas de nouvelle sollicitation de Sébastien. Aucune validation personnelle de Sébastien n'est attribuée à ce GO.
+2. **Affirmations** : C1 à C5 conservées telles que qualifiées, sans renforcement (cadence « de l'ordre de 500 photos par jour » au conditionnel ; ROI de 6 à 12 mois sans garantie ; délai indicatif d'environ 12 jours ; livraison et installation facturées en supplément ; formation facturée séparément). Cadence, ROI et délais ne sont jamais présentés comme des garanties contractuelles. C6 (données du sélecteur) : aucun changement dans #108, chantier #133 / Q20.
+3. **Médias, FAIT MÉTIER LAURENT du 17/10/2026, périmètre de #108** : droits de réutilisation sur la page Studios confirmés pour V02 et V03 (captures Orbitvu Station), leurs recadrages mobiles sans retouche de contenu, V12 (quatre packshots) et V01 (film de gamme et affiche). La confirmation ne s'étend ni aux marques tierces visibles dans ces visuels, ni à d'autres usages, ni aux droits à l'image individuels des personnes identifiables.
+4. **V05 remplacée** : la photo Webflow d'origine non établie (opératrice) est remplacée, dans « À quoi sert un studio photo automatisé ? », par un visuel machine Orbitvu existant, sans personne : `machines/alphashot-xl-g2/advantage-open-doors.avif`, déjà publié sur la fiche Alphashot XL G2 et sur la landing catalogue All-in-One. Aucun média généré, aucune capture de Station répétée.
+5. **Marqueurs « Préversion »** des médias retirés du code (`StatutMedia`, `PREVISUALISATION`) ; légendes de provenance conservées (« visuel Orbitvu », « Exemple de résultat présenté par Orbitvu pour… »).
+6. **Navigation** : Studios FR rejoint la double navigation D44 (15/10) comme pilote de la famille `landing-gamme`, par les composants mutualisés de #162 (`DoubleNavigationStructuree`) ; la navigation V9 de #108 (16/10 : `NavigationSections`, sommaire repliable, § 2 bis de R-UX-LONG) n'est pas reprise.
 
-**Le contexte** — D44 (03/10) avait écarté la variante latérale sur Mode (contenu ramené de 1 232 à 928 px à 1 440 px) et interdit le cumul. Mise en œuvre sur #108 : `components/navigation/NavigationSections.tsx`, champ `lateral` du registre. Sur Studios, la colonne ramène le contenu à 936 px à partir de 1 280 px ; de 1 024 à 1 279 px, le sommaire vertical devient repliable dans le flux.
+**Le contexte** — #108 était prête le 16/10 (CI verte sur `2041b80`) mais en conflit avec `main` après #162 (double navigation mutualisée) et sans décision sur les droits des médias ni sur l'échéance D15. Le rapport en lecture seule du 17/10 a ramené la publication à cinq arbitrages, tranchés par ce GO.
 
 **Ce qu'elle interdit** —
-- Étendre automatiquement le sommaire vertical aux autres pages équipées de la barre (111 au build du 16/10, 93 au recompte du 06/10) : inventaire `docs/standards/NAVIGATION-V9-INVENTAIRE.md`, déploiement sur validation distincte.
-- Une troisième navigation collante ; deux barres fixes sur mobile.
-- Une navigation qui recouvre l'en-tête, un CTA, un formulaire ou un titre.
-- Une copie des composants par page.
-- Modifier une page gelée (F5, Mode, mode-textile, accueil) avant sa date de sortie.
+- L'étendre à une autre PR, à une autre landing, aux fiches machines, aux formulaires ou au Worker.
+- La tenir pour une validation de Sébastien, ou ajouter toute nouvelle promesse commerciale substantielle ou fonctionnalité produit non établie sous son couvert.
+- Modifier les valeurs commerciales du sélecteur, créer une page ou une URL, traduire en entier EN ou de-ch.
+- Fusionner ou publier sans GO distinct ; publier avant le 28/10/2026 sans nouvelle décision expresse de Laurent.
+- Généraliser la double navigation à d'autres pages.
+- Tenir les droits à l'image des personnes visibles dans le film V01 pour vérifiés.
+
+---
+
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #104 (hub bijoux, version C1) et QA substitutive au contrôle Chrome prépublication
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX », 17/10/2026 ; tête éditoriale de référence `1878ba8`
+**Statut** : en vigueur pour le seul périmètre de #104 ; épuisée par sa fusion et sa publication. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #104** : Laurent accepte, sous sa responsabilité éditoriale, les textes et les affirmations de l'entrée `bijoux-joaillerie` de `data/secteurs.ts` tels que présents dans la tête `1878ba8`, y compris la démonstration avec les bijoux du prospect (meta description, titre et texte de l'appel final). Dérogation ponctuelle, limitée à cette publication. Aucune validation n'est attribuée à Sébastien ; ses remarques éventuelles seront sollicitées ultérieurement.
+2. **Visuels** : Laurent confirme les droits d'utilisation des visuels déjà employés sur cette landing (hero `hero-secteur-bijoux`, visuels des fiches Alphashot Micro Pro v2 et Alphashot Pro G2). Aucun remplacement ni nouvelle génération de média.
+3. **QA substitutive propre à #104** : la QA Chrome du 16/10 (`PASS_WITH_RESERVES`, 0 régression bloquante ; SHA de la Preview non prouvé par le rapport) et les contrôles locaux des neuf corrections éditoriales de `1878ba8` (1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur, CTA du hero dans le premier écran sauf à 390 px comme sur `main` ; HTML : seuls les hubs bijoux FR et EN changent ; `FAQPage` = FAQ visible) remplacent un nouveau contrôle Chrome prépublication. Le contrôle visuel de `www` est regroupé après les publications.
+4. **Gabarit commun** : le CTA « Demander un devis gratuit » n'est pas modifié par #104 ; décision réservée au propriétaire unique du gabarit (#158, #107).
+
+**Effet sur D15** — La publication intervient sans attendre l'échéance de D15 et sans validation explicite de Sébastien de l'engagement « démonstration avec les bijoux du prospect », sur la seule autorité de ce GO final de Laurent.
+
+**Le contexte** — #104 C1 (gabarit commun, entrée de f9a6d13) : reprise le 16/10, fichiers V1 non rendus retirés (`8e00893`), décision métier de Laurent sur la démonstration (`e8d1dba`), finition éditoriale (`1878ba8`), `main` `dd33884` intégré (`eea9f04`). Mail de Laurent à Sébastien envoyé le 16/10 ; aucune réponse consignée.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR (#107, #108, #158, #162), au gabarit commun, à une autre entrée de `data/secteurs.ts` ou aux contenus de-ch.
+- La tenir pour une validation de Sébastien.
+- Lever le `noindex` D9 de `/en/industrie/bijoux-joaillerie` ou traduire la page.
+- Annoncer `www` vérifié avant la QA groupée.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre.
+
+---
+
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #107 (hub vin-spiritueux), droits des illustrations confirmés et QA locale substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX », 17/10/2026 ; tête éditoriale de référence `e4ba732`
+**Statut** : en vigueur pour le seul périmètre de #107 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #107** : Laurent accepte, sous sa responsabilité éditoriale, la version Vin de la tête `e4ba732` : H1 « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes », introduction et formulations métier documentées dans `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md` (registre S1 à S19, HOLD H1 à H10). Ce n'est pas une validation de Sébastien : `SEBASTIEN_VALIDATION = NOT_RECEIVED` (Q27, pour information).
+2. **Droits** : Laurent confirme les droits d'utilisation des huit illustrations fournies le 08/10/2026. Elles restent légendées comme visuels d'illustration fictifs (« Visuel d'illustration — bouteilles et étiquettes fictives » ; réserves propres à I3 et I4), avec leur provenance IA documentée, et ne sont jamais présentées comme des résultats réels produits par Orbitvu.
+3. **QA substitutive propre à #107** : les contrôles locaux à quatre largeurs (1 440, 1 024, 768, 390 px), le contrôle visuel du hero et les tests techniques (TypeScript, build, Vitest, Playwright de la CI, comparaison du HTML prérendu) remplacent la QA de la Preview, bloquée par SSO. La Preview n'est pas déclarée visuellement validée par Laurent. La QA Chrome sur `www` est groupée après les publications.
+4. **D9** : `/en/industrie/vin-spiritueux` reste en `noindex, follow` ; le contenu de-ch (`/de-ch/branchen/wein`) n'est pas modifié.
+5. **Périmètre** : appel « Demander une démonstration » et gabarit commun inchangés au-delà du routage dédié du hub vin ; les corrections transversales du gabarit relèvent du propriétaire de #158.
+6. **D15** : le GO de fusion de Laurent intervient alors que le délai de D15 n'a pas été ouvert (Preview non contrôlée, Q27). Aucune validation tacite de Sébastien n'est acquise ni invoquée ; la publication repose sur l'autorité de Laurent.
+
+**Ce qu'elle ne fait pas** — Elle ne lève aucun `noindex` ; elle ne généralise pas D44 (hub vin en forme C, registre `data/navigation/pages-longues.ts` inchangé, réévaluation après fusion) ; elle ne vaut pas test réel du formulaire (GO_TEST_REEL distinct, dans la QA groupée) ; elle ne clôt pas les réserves de `LANDING.md` (H1 à H10, visuel partagé de l'XL Pro v2, note AI Act de la section 5.6).
+
+**Le contexte** — #107 réécrit le hub vin à la même URL : page dédiée `HubVin.tsx` (fr et en), huit illustrations, schémas D1 et D2, `Service.url` sur le chemin routé, légendes sans mention publique de l'IA (16/10), finition éditoriale (16/10). Preview protégée par SSO ; CI verte sur `e4ba732` ; HTML prérendu : 382 pages sur 384 identiques à `main`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, à un autre hub ou au gabarit commun.
+- La présenter comme une validation de Sébastien, une validation juridique ou une QA de la Preview par Laurent.
+- Présenter les illustrations comme des preuves de résultat Orbitvu.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre à cette PR.
 
 ---
 
@@ -144,6 +194,27 @@ un projet CRM n'avait pas d'objet ; le précédent validé existait déjà (#82)
 - L'étendre à une autre PR ou à un autre texte.
 - La tenir pour une validation de Sébastien, une conclusion RGPD ou un constat de disponibilité de Vimeo ou d'Ortery.
 - Réutiliser la substitution de QA Preview pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #160 (Audit B, lot L5 à L11, six articles EN, finition linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉCISION GROUPÉE PR #160 », 16/10/2026 (option A), sur la tête `a74c868` ; GO final « PACKSHOTCREATOR V9 — GO FINAL PR #160 », 17/10/2026, tête éditoriale `ab60f21`
+**Statut** : en vigueur pour le seul périmètre de #160 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée exclusivement à la finition linguistique des six articles EN de #160 : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Les affirmations commerciales, caractéristiques produit et chiffres préexistants restent inchangés, sans nouvelle validation préalable de Sébastien. Aucune validation n'est attribuée à Sébastien.
+
+Choix de traduction validés par Laurent : 08 « cut » (taille d'une pierre) ; 10 « background removal » (détourage) ; 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`). Correctif après QA Chrome : 06, FAQ 2, appel de note parasite « details36 » retiré (`ab60f21`).
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas les affirmations préexistantes et ne clôt pas les réserves factuelles listées dans la description de #160 (noms de produit non harmonisés, « exclusive », distributeur « exclusive » / « the official », chiffres de cadence, témoignages, superlatifs et garanties, compatibilité Windows 11, réponses FAQ de 07 plus fortes que le FR, etc.). Ces réserves restent des sujets éditoriaux distincts.
+
+**Le contexte** — Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11. Laurent a décidé de ne pas solliciter Sébastien séparément et a regroupé les réserves en une décision unique. QA_CHROME_160 = PASS_WITH_RESERVES ; QA_160_FAQ = PASS sur la Preview de `ab60f21`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, aux contenus FR ou de-ch, à #146 ou à L1 (D35/F5).
+- Toute nouvelle promesse ou tout renforcement d'un claim existant.
+- Modifier une règle d'indexation D9 ou lever un `noindex`.
+- Présenter les affirmations maintenues comme validées.
 
 ---
 
@@ -561,13 +632,23 @@ Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisio
 ## D44 · 2026-10-03 · R-UX-LONG : navigation des pages longues, une règle par famille de gabarits
 
 **Décidé par** : Laurent — GO encadré du 03/10/2026 (mission d'exécution « Standard UX et fiabilité des données produit »)
-**Statut** : **amendée le 16/10/2026** par la décision « Navigation V9 » (entrée en tête de fichier) : l'interdiction de cumuler deux navigations collantes est remplacée ; le reste de D44 demeure. Principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le sommaire du blog (forme B) avec #84 ; la barre mutualisée et le registre (forme A) avec #85 ; leur contrôle en CI avec #86. Référence stable : `docs/standards/R-UX-LONG.md` ; registre `data/navigation/pages-longues.ts`
+**Statut** : principe approuvé par Laurent le 03/10/2026. Inscription : PR #87 (brouillon au 03/10). Application effective à la fusion de chaque PR de mise en œuvre : la règle écrite avec #87 ; le sommaire du blog (forme B) avec #84 ; la barre mutualisée et le registre (forme A) avec #85 ; leur contrôle en CI avec #86. Référence stable : `docs/standards/R-UX-LONG.md` ; registre `data/navigation/pages-longues.ts`
 
 **La décision** — Toute page longue reçoit une navigation adaptée à sa structure et à son gabarit, dès lors qu'elle améliore réellement l'accès aux sections ; la règle s'applique aux pages existantes et futures, FR, EN et de-ch, par famille de gabarits. Trois comportements : (A) sommaire horizontal collant sous l'en-tête, desktop (≥ 1 024 px), composant mutualisé `components/navigation/SommaireCollant.tsx` ; (B) sommaire latéral existant du blog, corrigé et utilisable sur toute la hauteur de l'écran ; (C) sommaire statique ou aucune navigation persistante quand un élément collant dégraderait l'expérience. Une page ne cumule jamais deux navigations collantes. Éligibilité : longueur rendue (≥ 7 200 px à 1 440 px, indicatif), au moins quatre sections de contenu hors FAQ (indicatif), bénéfice écrit, libellés sans texte nouveau, absence de conflit. Les pages sous expérience SEO ou touchées par une PR éditoriale ouverte sont en HOLD jusqu'à leur date de sortie.
 
 **Le contexte** — Audit du 03/10/2026 sur 309 URL (livrables 01 et 02) : la barre de Mode (#66) donnait le comportement de référence ; le sommaire du blog avait deux défauts mesurés (titre visé hors écran à 390 px ; 29 listes latérales plus hautes que la fenêtre) ; 47 guides, 39 fiches et plusieurs landings longues n'avaient aucune navigation. La variante latérale avait été écartée sur Mode : à 1 440 px, elle ramène le contenu de 1 232 à 928 px. Mise en œuvre : PR UX-BLOG (#84), UX-STICKY (#85) ; contrôles en CI : PR #86.
 
 **Ce qu'elle interdit** — Afficher deux navigations collantes sur une page ; copier le composant dans une page au lieu d'utiliser le composant mutualisé ; ajouter un élément collant sous 1 024 px ; inventer un libellé pour la navigation (copywriting de Sébastien, D42) ; modifier par ce biais une URL, une canonique, un hreflang ou un contenu éditorial ; modifier une page gelée avant sa date de sortie (F5 23/11, Mode et hub mode-textile 26/11, accueil 28/10) ; modifier `slugify` ou le calcul des `id` des titres du blog (ancres historiques).
+
+### Addendum · 2026-10-15 · Double navigation — révision de la règle « jamais deux navigations collantes »
+
+**Décidé par** : Laurent — décision du 15/10/2026.
+
+**Ce qui change** — L'interdiction « une page ne cumule jamais deux navigations collantes » est **levée**. Une page longue éligible porte désormais **les deux** navigations à la fois : barre horizontale A **et** sommaire vertical B à droite, **synchronisés** (mêmes ancres, même section active). Le reste de D44 est inchangé : règle par famille, critères d'éligibilité, gels, interdiction de texte nouveau, ancres historiques, pas d'élément collant sous 1 024 px.
+
+**Ce qui reste interdit** — Deux scroll-spys indépendants sur une même page (un seul calcul de section active, partagé) ; une seconde navigation sur une page gelée ou avant la bascule contrôlée de sa famille ; copier un composant plutôt que passer par les composants mutualisés (`components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireLateral.tsx`, `DoubleNavigation*.tsx`).
+
+**Déploiement** — Progressif, par le registre (`secondeForme`, `piloteSecondeForme`). Phase A : un pilote par famille structurante (guide `comment-faire-focus-stacking-pour-photographier-bague`, fiche `alphashot-pro-g2`, article `images-ia-metadonnees-marketplaces`), en PR Draft, `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Phase B : généralisation par famille, par PR distinctes, après contrôle pixel des pilotes (Preview Vercel / `www` dans Chrome, R4). Référence : `docs/standards/R-UX-LONG.md`.
 
 ---
 

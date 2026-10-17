@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, type RefObject } from 'react';
 import { ChevronDown, List } from 'lucide-react';
 import type { HeadingData } from '@/lib/blog-utils';
+import { useRapporteurSection } from '@/components/navigation/NavigationPageLongue';
 
 interface TableOfContentsProps {
   headings: HeadingData[];
@@ -10,14 +11,11 @@ interface TableOfContentsProps {
   collapsible?: boolean;
   className?: string;
   /**
-   * Entrée active fournie par la page (mode contrôlé) : le sommaire ne la calcule plus
-   * lui-même. Sert à le synchroniser avec la barre horizontale (`NavigationSections`).
+   * Double navigation D44 : rapporter la section active à la barre horizontale. Réservé à
+   * l'instance de bureau, pour que la barre ait une source unique (l'instance mobile, bien
+   * que montée, ne rapporte pas). Sans effet hors d'un fournisseur de double navigation.
    */
-  actif?: string | null;
-  /** Nom accessible du repère latéral, quand la page porte une autre navigation. */
-  libelle?: string;
-  /** Hauteur maximale de la liste latérale, si la colonne n'est pas collée à `top-24`. */
-  classeListe?: string;
+  rapporteActif?: boolean;
 }
 
 /**
@@ -38,21 +36,15 @@ interface TableOfContentsProps {
  *   défilement en cours.
  * - Les `id` des titres ne sont pas calculés ici (`processHtmlContent`) : ancres
  *   historiques inchangées. L'adresse de la page n'est pas modifiée au clic.
- * - Navigation V9 (16/10/2026) : `actif`, `libelle` et `classeListe` sont facultatifs ;
- *   sans eux, le rendu et le comportement du blog sont inchangés.
  */
 export function TableOfContents({
   headings,
   title = 'Sommaire',
   collapsible = false,
   className = '',
-  actif,
-  libelle,
-  classeListe = 'max-h-[calc(100vh-10rem)]',
+  rapporteActif = false,
 }: TableOfContentsProps) {
-  const [activeIdInterne, setActiveId] = useState<string>('');
-  const controle = actif !== undefined;
-  const activeId = controle ? (actif ?? '') : activeIdInterne;
+  const [activeId, setActiveId] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
   const [cible, setCible] = useState<string | null>(null);
   const racineRef = useRef<HTMLElement>(null);
@@ -61,6 +53,14 @@ export function TableOfContents({
   const annulerDefilement = useRef<(() => void) | null>(null);
   const [finDefilement, setFinDefilement] = useState(0);
   const panneauId = useId();
+
+  // Double navigation D44 : rapporte la section active à la barre horizontale, quand le
+  // gabarit l'a enveloppé dans un fournisseur. Hors double navigation, le contexte est nul
+  // et ce rapport n'a aucun effet. La détection reste faite ici, unique scroll-spy du blog.
+  const rapporter = useRapporteurSection();
+  useEffect(() => {
+    if (rapporteActif) rapporter?.(activeId || null);
+  }, [activeId, rapporter, rapporteActif]);
 
   /**
    * Défile vers le titre, puis vérifie sa position à l'arrivée. Les images des articles
@@ -137,7 +137,7 @@ export function TableOfContents({
    * active fausse après un clic sur la première entrée, absente après la dernière.
    */
   useEffect(() => {
-    if (controle || headings.length === 0) return;
+    if (headings.length === 0) return;
     const titres = headings
       .map(({ id }) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -177,7 +177,7 @@ export function TableOfContents({
       window.removeEventListener('resize', redimensionner);
       cancelAnimationFrame(image);
     };
-  }, [headings, controle]);
+  }, [headings]);
 
   // Défilement différé : il part une fois le panneau replié et la page remise en page.
   useEffect(() => {
@@ -266,7 +266,7 @@ export function TableOfContents({
   }
 
   return (
-    <nav ref={racineRef} className={className} aria-label={libelle}>
+    <nav ref={racineRef} className={className}>
       <h2 className="text-sm font-bold text-future-dusk-900 mb-4 uppercase tracking-wide flex items-center gap-2">
         <List className="h-4 w-4" />
         {title}
@@ -274,7 +274,7 @@ export function TableOfContents({
       {/* 10rem : décalage de la colonne collante (top-24), titre du sommaire et marge basse. */}
       <div
         ref={listeRef}
-        className={`relative border-l-2 border-neutral-200 pl-4 pr-2 ${classeListe} overflow-y-auto overscroll-contain`}
+        className="relative border-l-2 border-neutral-200 pl-4 pr-2 max-h-[calc(100vh-10rem)] overflow-y-auto overscroll-contain"
       >
         {list}
       </div>

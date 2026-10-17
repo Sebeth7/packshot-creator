@@ -1,20 +1,19 @@
 /**
  * Registre de la navigation des pages longues (règle D44) : les pages gelées par une
- * expérience SEO ou une PR ouverte ne reçoivent jamais la barre ; aucune famille à
- * sommaire latéral ne la reçoit ; chaque exception est motivée et datée.
- *
- * Navigation V9 (décision de Laurent du 16/10/2026) : la barre et le sommaire vertical à
- * droite peuvent coexister ; le sommaire vertical n'est activé que sur Studios FR, les
- * autres pages équipées attendent une validation distincte.
+ * expérience SEO ou une PR ouverte ne reçoivent jamais la barre ; chaque exception est
+ * motivée et datée. Depuis la décision du 15/10/2026, une page longue peut porter DEUX
+ * navigations synchronisées (barre + sommaire latéral) : le déploiement est progressif,
+ * piloté par `formeSecondeActive` / `navigationPageLongue` (Phase A ci-dessous).
  */
 
 import { describe, it, expect } from 'vitest';
 import {
   NAVIGATION_PAGES_LONGUES,
   barreActive,
-  sommaireLateralActif,
+  formeSecondeActive,
+  navigationPageLongue,
   LIBELLES_BARRE,
-  LIBELLES_SOMMAIRE,
+  LIBELLES_LATERAL,
   type Langue,
 } from '@/data/navigation/pages-longues';
 
@@ -45,33 +44,12 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     }
   });
 
-  it('Studios : barre sur la landing FR de #108 seulement (accord de Laurent du 16/10), gabarit transitoire EN et de-ch sans barre', () => {
+  it('landing Studios : barre sur la page FR seulement (#108), EN et de-ch sur leur gabarit transitoire', () => {
     expect(barreActive('landing-gamme', 'fr', 'studios-photo-automatises')).toBe(true);
     expect(barreActive('landing-gamme', 'en', 'studios-photo-automatises')).toBe(false);
     expect(barreActive('landing-gamme', 'de-ch', 'studios-photo-automatises')).toBe(false);
-  });
-
-  it('navigation V9 : sommaire vertical à droite sur la landing Studios FR de #108 seulement', () => {
-    expect(sommaireLateralActif('landing-gamme', 'fr', 'studios-photo-automatises')).toBe(true);
-    expect(sommaireLateralActif('landing-gamme', 'en', 'studios-photo-automatises')).toBe(false);
-    expect(sommaireLateralActif('landing-gamme', 'de-ch', 'studios-photo-automatises')).toBe(false);
-  });
-
-  it('navigation V9 : aucune autre famille ne reçoit le sommaire vertical (déploiement à valider séparément)', () => {
-    const avecLateral = NAVIGATION_PAGES_LONGUES.filter((r) => r.lateral && r.lateral.length > 0).map((r) => r.famille);
-    expect(avecLateral).toEqual(['landing-gamme']);
-    for (const r of NAVIGATION_PAGES_LONGUES.filter((x) => x.famille !== 'landing-gamme')) {
-      for (const l of LANGUES) expect(sommaireLateralActif(r.famille, l, 'nimporte-quelle-page'), r.famille).toBe(false);
-    }
-    for (const l of LANGUES) {
-      expect(sommaireLateralActif('guide', l, 'comment-faire-focus-stacking-pour-photographier-bague')).toBe(false);
-      expect(sommaireLateralActif('fiche-machine', l, 'alphashot-pro-g2')).toBe(false);
-      expect(sommaireLateralActif('landing-ia', l, 'ia-photo-produit')).toBe(false);
-    }
-  });
-
-  it('navigation V9 : le sommaire vertical a un nom de repère distinct de celui de la barre', () => {
-    for (const l of LANGUES) expect(LIBELLES_SOMMAIRE[l].libelle).not.toBe(LIBELLES_BARRE[l].libelle);
+    // Aucune autre page de la famille n’est équipée.
+    for (const l of LANGUES) expect(barreActive('landing-gamme', l, 'landing-future')).toBe(false);
   });
 
   it('contenus des PR ouvertes gelés (#27, #64)', () => {
@@ -113,8 +91,80 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     expect(barreActive('guide', 'en', 'comment-faire-photos-multi-angles-chaussures')).toBe(true);
   });
 
-  it('une famille inconnue ne reçoit ni la barre ni le sommaire vertical', () => {
+  it('une famille inconnue ne reçoit pas la barre', () => {
     expect(barreActive('famille-inexistante', 'fr', 'x')).toBe(false);
-    expect(sommaireLateralActif('famille-inexistante', 'fr', 'x')).toBe(false);
+  });
+});
+
+describe('Double navigation D44 (Phase A) : seconde forme et vue d’ensemble', () => {
+  it('guide pilote : barre + sommaire latéral (FR et EN), une seule page de la famille', () => {
+    expect(formeSecondeActive('guide', 'fr', 'comment-faire-focus-stacking-pour-photographier-bague')).toBe('laterale');
+    expect(formeSecondeActive('guide', 'en', 'how-to-do-focus-stacking-for-ring-photography')).toBe('laterale');
+    expect(navigationPageLongue('guide', 'fr', 'comment-faire-focus-stacking-pour-photographier-bague')).toEqual({
+      barre: true,
+      laterale: true,
+    });
+    // Un autre guide garde la barre seule tant que la généralisation (Phase B) n’est pas faite.
+    expect(formeSecondeActive('guide', 'fr', 'guide-futur')).toBeNull();
+    expect(navigationPageLongue('guide', 'fr', 'guide-futur')).toEqual({ barre: true, laterale: false });
+  });
+
+  it('fiche pilote : barre + sommaire latéral (toutes langues), une seule fiche', () => {
+    for (const l of LANGUES) {
+      expect(formeSecondeActive('fiche-machine', l, 'alphashot-pro-g2')).toBe('laterale');
+      expect(navigationPageLongue('fiche-machine', l, 'alphashot-pro-g2')).toEqual({ barre: true, laterale: true });
+    }
+    expect(formeSecondeActive('fiche-machine', 'fr', 'machine-future')).toBeNull();
+    expect(navigationPageLongue('fiche-machine', 'fr', 'machine-future')).toEqual({ barre: true, laterale: false });
+  });
+
+  it('blog pilote : sommaire latéral existant + barre ajoutée (FR et EN), un seul article', () => {
+    expect(formeSecondeActive('blog-commun', 'fr', 'images-ia-metadonnees-marketplaces')).toBe('barre');
+    expect(formeSecondeActive('blog-commun', 'en', 'ai-product-images-metadata-marketplaces')).toBe('barre');
+    expect(navigationPageLongue('blog-commun', 'fr', 'images-ia-metadonnees-marketplaces')).toEqual({
+      barre: true,
+      laterale: true,
+    });
+    // Les autres articles gardent le sommaire latéral seul, sans barre.
+    expect(formeSecondeActive('blog-commun', 'fr', 'eclairage-photos-produits')).toBeNull();
+    expect(navigationPageLongue('blog-commun', 'fr', 'eclairage-photos-produits')).toEqual({
+      barre: false,
+      laterale: true,
+    });
+  });
+
+  it('une page gelée ne reçoit jamais la seconde forme', () => {
+    // Guide gelé par #27 (FR) : ni barre, ni seconde forme.
+    expect(formeSecondeActive('guide', 'fr', 'comment-faire-photos-multi-angles-chaussures')).toBeNull();
+    // Familles gelées / exclues.
+    for (const l of LANGUES) {
+      expect(formeSecondeActive('landing-mode', l, 'packshot-mode')).toBeNull();
+      expect(formeSecondeActive('hub-sectoriel', l, 'mode-textile')).toBeNull();
+    }
+  });
+
+  it('landing Studios pilote : barre + sommaire latéral sur la page FR seulement (#108)', () => {
+    expect(formeSecondeActive('landing-gamme', 'fr', 'studios-photo-automatises')).toBe('laterale');
+    expect(navigationPageLongue('landing-gamme', 'fr', 'studios-photo-automatises')).toEqual({
+      barre: true,
+      laterale: true,
+    });
+    for (const l of ['en', 'de-ch'] as const) {
+      expect(formeSecondeActive('landing-gamme', l, 'studios-photo-automatises')).toBeNull();
+      expect(navigationPageLongue('landing-gamme', l, 'studios-photo-automatises')).toEqual({
+        barre: false,
+        laterale: false,
+      });
+    }
+    for (const l of LANGUES) expect(formeSecondeActive('landing-gamme', l, 'landing-future')).toBeNull();
+  });
+
+  it('les noms accessibles de la barre et du sommaire latéral restent distincts (deux repères)', () => {
+    for (const l of LANGUES) expect(LIBELLES_LATERAL[l]).not.toBe(LIBELLES_BARRE[l].libelle);
+  });
+
+  it('une famille sans seconde forme déclarée n’en reçoit pas', () => {
+    expect(formeSecondeActive('solution', 'fr', 'solution-future')).toBeNull();
+    expect(formeSecondeActive('famille-inexistante', 'fr', 'x')).toBeNull();
   });
 });
