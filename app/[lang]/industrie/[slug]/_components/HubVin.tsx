@@ -116,7 +116,9 @@ const LUMIERE = {
 /* Sources : article Orbitvu du 15/05/2019 (contenu d'un modèle) ; orbitvu.com/software/orbitvu-station
    (« Keep a database of templates for different products », « Apply one correction to any number of
    images at once ») ; captures des guides PSC (rotation de 6 à 180 images, export HTML5 ou vidéo) ;
-   orbitvu.com/products/alphashot-xl-g2 (« Top Camera Mount for overhead and close-up shots »). */
+   orbitvu.com/products/alphashot-xl-g2 (« Top Camera Mount for overhead and close-up shots »).
+   Titre des vues et paragraphe de préparation (17/10/2026) : conseil de préparation, pas une fonction du
+   logiciel. Requêtes visées : docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md, section 5.8. */
 const GAMME = {
   titre: 'Une gamme cohérente, sous tous les angles',
   paragraphes: [
@@ -124,7 +126,7 @@ const GAMME = {
     'Un modèle Orbitvu Station mémorise le nombre d’images, la lumière, les angles, la position de l’appareil, l’ouverture, la vitesse et le détourage. C’est une base réutilisable, pas un réglage universel : on l’ajuste à la forme, aux dimensions, au verre et aux finitions de chaque bouteille. Station conserve un modèle par type de produit, un par format si votre gamme l’exige. Une correction peut ensuite s’appliquer à toute une série d’images.',
   ],
   legende: `${LEGENDE_VISUEL} Il figure une présentation homogène, pas le résultat d’un réglage de studio.`,
-  vuesTitre: 'Les vues dont vos fiches ont besoin',
+  vuesTitre: 'Quelles images prévoir pour chaque bouteille ?',
   vuesIntro: 'Selon vos fiches produit, un même passage peut produire :',
   vues: [
     'la face, la contre-étiquette et le profil ;',
@@ -133,6 +135,7 @@ const GAMME = {
     'de courtes vidéos du produit.',
   ],
   usages: 'Les mêmes fichiers servent à la fiche produit, au catalogue et aux visuels transmis aux distributeurs et aux importateurs.',
+  preparation: 'Avant la séance, dressez pour chaque référence la liste des vues attendues, gros plans compris : relief du verre, col et capsule, dorure ou gaufrage de l’étiquette. Fixez aussi le nommage des fichiers par référence, cuvée, millésime et destination commerciale : à chaque nouveau millésime, vous savez quelles vues refaire.',
   vuesLegende: 'Visuel d’illustration — flacon et étiquettes fictifs. Vues conceptuelles, sans correspondance géométrique mesurée.',
 };
 
@@ -377,6 +380,7 @@ export default function HubVin({ secteur, lang, slug, breadcrumbs, autresSecteur
                 ))}
               </ul>
               <p className="mt-6 text-neutral-medium leading-relaxed">{typo(GAMME.usages)}</p>
+              <p className="mt-4 text-neutral-medium leading-relaxed">{typo(GAMME.preparation)}</p>
             </div>
             <Figure
               visuel={VUES_VISUEL}
