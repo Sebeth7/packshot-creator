@@ -887,3 +887,13 @@
   border-radius: 4px;
 }
 .roi-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--future-dusk-5); }
+
+/* D44 — exception fiche Alphashot (A2, décision Laurent du 16/10/2026).
+   Le sommaire latéral de la fiche n'apparaît qu'à partir de 1 920 px : en dessous, le
+   contenu `max-w-7xl` (1 280 px) ne laisse pas de gouttière droite suffisante et l'overlay
+   chevaucherait le contenu. Seuil CSS explicite à 1 920 px, et NON le palier Tailwind
+   `2xl` (1 536 px). Entre 1 024 et 1 919 px : barre horizontale seule. */
+.d44-laterale-fiche { display: none; }
+@media (min-width: 1920px) {
+  .d44-laterale-fiche { display: block; }
+}

@@ -25,6 +25,131 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #104 (hub bijoux, version C1) et QA substitutive au contrôle Chrome prépublication
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX », 17/10/2026 ; tête éditoriale de référence `1878ba8`
+**Statut** : en vigueur pour le seul périmètre de #104 ; épuisée par sa fusion et sa publication. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #104** : Laurent accepte, sous sa responsabilité éditoriale, les textes et les affirmations de l'entrée `bijoux-joaillerie` de `data/secteurs.ts` tels que présents dans la tête `1878ba8`, y compris la démonstration avec les bijoux du prospect (meta description, titre et texte de l'appel final). Dérogation ponctuelle, limitée à cette publication. Aucune validation n'est attribuée à Sébastien ; ses remarques éventuelles seront sollicitées ultérieurement.
+2. **Visuels** : Laurent confirme les droits d'utilisation des visuels déjà employés sur cette landing (hero `hero-secteur-bijoux`, visuels des fiches Alphashot Micro Pro v2 et Alphashot Pro G2). Aucun remplacement ni nouvelle génération de média.
+3. **QA substitutive propre à #104** : la QA Chrome du 16/10 (`PASS_WITH_RESERVES`, 0 régression bloquante ; SHA de la Preview non prouvé par le rapport) et les contrôles locaux des neuf corrections éditoriales de `1878ba8` (1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur, CTA du hero dans le premier écran sauf à 390 px comme sur `main` ; HTML : seuls les hubs bijoux FR et EN changent ; `FAQPage` = FAQ visible) remplacent un nouveau contrôle Chrome prépublication. Le contrôle visuel de `www` est regroupé après les publications.
+4. **Gabarit commun** : le CTA « Demander un devis gratuit » n'est pas modifié par #104 ; décision réservée au propriétaire unique du gabarit (#158, #107).
+
+**Effet sur D15** — La publication intervient sans attendre l'échéance de D15 et sans validation explicite de Sébastien de l'engagement « démonstration avec les bijoux du prospect », sur la seule autorité de ce GO final de Laurent.
+
+**Le contexte** — #104 C1 (gabarit commun, entrée de f9a6d13) : reprise le 16/10, fichiers V1 non rendus retirés (`8e00893`), décision métier de Laurent sur la démonstration (`e8d1dba`), finition éditoriale (`1878ba8`), `main` `dd33884` intégré (`eea9f04`). Mail de Laurent à Sébastien envoyé le 16/10 ; aucune réponse consignée.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR (#107, #108, #158, #162), au gabarit commun, à une autre entrée de `data/secteurs.ts` ou aux contenus de-ch.
+- La tenir pour une validation de Sébastien.
+- Lever le `noindex` D9 de `/en/industrie/bijoux-joaillerie` ou traduire la page.
+- Annoncer `www` vérifié avant la QA groupée.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre.
+
+---
+
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #107 (hub vin-spiritueux), droits des illustrations confirmés et QA locale substitutive à la Preview (SSO)
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX », 17/10/2026 ; tête éditoriale de référence `e4ba732`
+**Statut** : en vigueur pour le seul périmètre de #107 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #107** : Laurent accepte, sous sa responsabilité éditoriale, la version Vin de la tête `e4ba732` : H1 « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes », introduction et formulations métier documentées dans `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md` (registre S1 à S19, HOLD H1 à H10). Ce n'est pas une validation de Sébastien : `SEBASTIEN_VALIDATION = NOT_RECEIVED` (Q27, pour information).
+2. **Droits** : Laurent confirme les droits d'utilisation des huit illustrations fournies le 08/10/2026. Elles restent légendées comme visuels d'illustration fictifs (« Visuel d'illustration — bouteilles et étiquettes fictives » ; réserves propres à I3 et I4), avec leur provenance IA documentée, et ne sont jamais présentées comme des résultats réels produits par Orbitvu.
+3. **QA substitutive propre à #107** : les contrôles locaux à quatre largeurs (1 440, 1 024, 768, 390 px), le contrôle visuel du hero et les tests techniques (TypeScript, build, Vitest, Playwright de la CI, comparaison du HTML prérendu) remplacent la QA de la Preview, bloquée par SSO. La Preview n'est pas déclarée visuellement validée par Laurent. La QA Chrome sur `www` est groupée après les publications.
+4. **D9** : `/en/industrie/vin-spiritueux` reste en `noindex, follow` ; le contenu de-ch (`/de-ch/branchen/wein`) n'est pas modifié.
+5. **Périmètre** : appel « Demander une démonstration » et gabarit commun inchangés au-delà du routage dédié du hub vin ; les corrections transversales du gabarit relèvent du propriétaire de #158.
+6. **D15** : le GO de fusion de Laurent intervient alors que le délai de D15 n'a pas été ouvert (Preview non contrôlée, Q27). Aucune validation tacite de Sébastien n'est acquise ni invoquée ; la publication repose sur l'autorité de Laurent.
+
+**Ce qu'elle ne fait pas** — Elle ne lève aucun `noindex` ; elle ne généralise pas D44 (hub vin en forme C, registre `data/navigation/pages-longues.ts` inchangé, réévaluation après fusion) ; elle ne vaut pas test réel du formulaire (GO_TEST_REEL distinct, dans la QA groupée) ; elle ne clôt pas les réserves de `LANDING.md` (H1 à H10, visuel partagé de l'XL Pro v2, note AI Act de la section 5.6).
+
+**Le contexte** — #107 réécrit le hub vin à la même URL : page dédiée `HubVin.tsx` (fr et en), huit illustrations, schémas D1 et D2, `Service.url` sur le chemin routé, légendes sans mention publique de l'IA (16/10), finition éditoriale (16/10). Preview protégée par SSO ; CI verte sur `e4ba732` ; HTML prérendu : 382 pages sur 384 identiques à `main`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, à un autre hub ou au gabarit commun.
+- La présenter comme une validation de Sébastien, une validation juridique ou une QA de la Preview par Laurent.
+- Présenter les illustrations comme des preuves de résultat Orbitvu.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
+## D60 · 2026-10-14 · Landing « Offres d'occasion » (#129) : publication indexable (option B), navigation discrète, publication à stock vide
+
+**Décidé par** : Laurent (14/10/2026 : « GO Laurent — finalisation active avant publication », « Rectificatif de la décision de navigation », « Décision SEO définitive — option B »)
+**Statut** : en vigueur ; proposée sur la branche de #129 sous le numéro D59, renumérotée **D60** le 14/10 : la D59 de `main` (exceptions de la série A/B) a été fusionnée avant (règle appliquée à D53 et D54)
+
+**La décision** —
+1. **Indexation, option B** : la landing `/{fr,en,de-ch}/studios-photo-automatises/opportunites` est publiée en `index, follow` dès sa mise en ligne, avec ou sans machine disponible. Canonique propre à chaque langue sur `https://www.packshot-creator.com`, hreflang réciproques par `buildLanguages` (`fr`, `fr-CH`, `en`, `de-CH`, `x-default`), trois entrées de sitemap seulement une fois la page servie en production. Remplace la recommandation A (`noindex` tant que le stock est vide).
+2. **Navigation** (arbitrage définitif de Laurent du 16/10/2026, qui remplace ceux des 10/10 et 14/10) : **aucun lien vers la landing dans le menu haut**, ni dans le menu Solutions, ni dans un sous-menu, sur desktop comme sur mobile ; seul le pied de page la porte, colonne Solutions après « Questions clés », une seule occurrence, libellée « Matériel d'occasion » (FR), « Pre-owned equipment » (EN) et « Occasionsgeräte » (de-ch), jamais « reconditionné » ni « refurbished » ; aucun autre bouton ni élément de navigation promotionnel. URL, canonique et référencement inchangés : la découvrabilité tient au pied de page, au sitemap et aux encadrés des deux articles de blog.
+3. **Publication à stock vide** autorisée sur le principe ; la recherche d'un équipement et l'inscription aux futures disponibilités peuvent être proposées une fois les parcours éprouvés et autorisés.
+4. **Destinataire Production des recherches** : `sebastien.jourdan@sysnext.com`, par la variable `OCCASION_NOTIFICATION_EMAIL`.
+5. **RGPD** : dispositif de collecte et d'alertes compatible selon l'appréciation métier de Laurent ; ce n'est pas un audit juridique indépendant.
+
+**Le contexte** — Rendre les offres d'occasion accessibles et trouvables (recherche d'un studio packshot ou Orbitvu d'occasion, choix entre neuf et occasion, demande de recherche, alertes) sans détourner les prospects des studios neufs. Mise en œuvre : `lib/occasion/seo.ts`, `app/sitemap.ts`, `components/layout/{Header,Footer}.tsx`, `docs/seo-geo/RELEASE-129-OCCASION.md`.
+
+**Ce qu'elle interdit** —
+- Indexer une Preview, ou la production avant publication : `index, follow` seulement sur la production publiée (`pageOccasionIndexable`).
+- Un lien public vers la landing (menu, pied de page, articles de blog) tant qu'elle répond 404 en production.
+- La vue `…/exemples-fictifs` en production ou dans le sitemap.
+- Un balisage `Product` ou `Offer` sans machine réellement disponible.
+- Un remplissage SEO, ou l'annonce d'une machine, d'un prix, d'une disponibilité, d'une garantie ou d'une condition commerciale non réels.
+- Mettre en avant les occasions sur les pages des machines neuves, ou ajouter une entrée à la barre de navigation principale.
+
+Ne valaient pas validation au 14/10 au matin : les claims commerciaux, les droits photographiques et les textes encore soumis à la validation de Sébastien (D42, étape 5) ; voir le complément ci-dessous.
+
+**Complément du 14/10/2026 — validation téléphonique de Sébastien rapportée par Laurent, le 14/10/2026** (« GO de finalisation — confirmation téléphonique de Sébastien » ; fait métier transmis par Laurent, pas un audit juridique indépendant) :
+6. **Conservation des alertes** : inscrits actifs, trois ans à compter de la confirmation ; adresses désinscrites, trois ans à compter de la désinscription, avec les seules informations nécessaires au respect de l'opposition (adresse, état, date de désinscription) ; purge par contrôle manuel trimestriel sous la responsabilité de Sébastien ; aucun cron, aucun n8n, aucune purge automatique.
+7. **Non-réinscription** : maintenue pendant la conservation de la désinscription ; aucun blocage perpétuel n'est promis ; après la purge, une nouvelle demande passe par un nouveau consentement explicite et le double opt-in.
+8. **Validation éditoriale (D42, étape 5)** des contenus soumis pour #129 : landing FR, EN, DE-CH ; titres et descriptions SEO ; recherche et accusés ; inscription et double opt-in ; e-mail « Inscription confirmée » ; encadrés des deux articles de blog ; présentation France/Suisse ; mentions existantes sur la licence Orbitvu Station ; photographie du showroom et son usage. La validation ne couvre aucune affirmation ajoutée ensuite : ni précision contractuelle, ni garantie, ni cessibilité de licence non écrite.
+9. **Approbation du libellé de `privacy.article9.p5` (D42) et de la conservation sur trois ans, par Laurent le 15/10/2026** : texte FR et texte EN approuvés tels qu'ils figurent dans `messages/fr.json` et `messages/en.json` ; validation métier et éditoriale D42 de `p5` : OUI. Consigne : conserver les textes existants, ne rien réécrire ; aucun développement ni audit RGPD supplémentaire demandé (validation métier et éditoriale, pas un audit juridique indépendant). Le bloc de-ch de `de-ch.json` n'est pas servi (`/de-ch/confidentialite` répond 404) et n'est pas modifié.
+10. **Publication en deux étapes, décision de Laurent du 16/10/2026** (« GO accélération publication ») : étape A, prioritaire : landing FR/EN/de-ch à stock vide, recherche opérationnelle, sans CRM, notification à `sebastien.jourdan@sysnext.com` ; étape B, ultérieure : liste d'alertes et double opt-in, aucun test T1 à T3 maintenant. Cette décision remplace, pour la première publication, l'obligation de tester simultanément recherche et alertes ; le code et les décisions relatives aux alertes sont préservés, et les GO du 14/10 restent applicables à l'étape B. GO accordés pour l'étape A : GO_CODE_129_OPTION_A (limité aux adaptations nécessaires), commit et push sur la branche #129, GO_TEST_REEL_RECHERCHE_B (deux e-mails, plafond strict de deux acceptations Resend), ouverture et fermeture de la collecte recherche seule, GO_VERCEL_PRODUCTION_A (la seule variable `OCCASION_NOTIFICATION_EMAIL`, Production seulement), GO_RESYNC_129 après le test B ; conditionnels : GO_MERGE_129_A (test B PASS, fermeture prouvée, configuration Production, QA ciblée, CI verte) et GO_PUBLICATION_129_A (distinct, PR dédiée, après fusion vérifiée, option B d'indexation). Aucun GO pour activer les alertes, le bulletin ou une campagne. Détail : `RELEASE-129-OCCASION.md`, section 0 ter.
+11. **Promesses d'alertes retirées à l'étape A, décision éditoriale de Laurent du 16/10/2026** : tant que la liste d'alerte est fermée, les descriptions SEO FR, EN et de-ch de la landing et l'encadré des deux articles de blog (`acheter-studio-photo-packshot-occasion`, `second-hand-packshot-photo-studio`) n'annoncent plus d'alertes ; seule la clause « alertes sur les nouvelles offres » est supprimée, les encadrés, leurs liens vers la landing et la pertinence SEO des textes sont conservés, sans autre réécriture. La mention sera rétablie, avec validation D42, à l'activation de l'étape B. GO_CODE / GO_PR-PUSH_PUBLICATION_129_A = OUI, limité au patch A et à ces corrections ; GO_MERGE et GO_PUBLICATION de la PR dédiée restent conditionnels et distincts.
+12. **Précision à l'article 9, décision de Laurent du 16/10/2026** : tant que la liste d'alerte est fermée, `privacy.article9.p2` commence par la phrase validée par Laurent, FR « Les inscriptions aux alertes de disponibilité ne sont pas encore ouvertes. » et EN « Sign-ups for availability alerts are not yet open. » (le bloc de-ch, copie française, reçoit la phrase française) ; le reste des cinq paragraphes (consentement, désinscriptions, sous-traitant Resend, conservation D42/Q25) est conservé mot pour mot, sans réouverture du chantier juridique. Cette phrase doit être supprimée à l'activation de l'étape B. GO_CODE et GO_PR/PUSH = OUI, limités à ces trois paragraphes ; GO_MERGE et GO_PUBLICATION conditionnels et distincts.
+13. **Navigation, arbitrage du 16/10/2026** : le lien « Offres d'occasion » du menu Solutions (desktop et mobile) est supprimé, sans déplacement dans un sous-menu ; le lien du pied de page est renommé (« Matériel d'occasion », « Pre-owned equipment », « Occasionsgeräte »). Le point 2 de la décision ci-dessus est mis à jour : aucune règle de menu haut ne subsiste. GO_CODE_NAVIGATION_OCCASION = OUI ; GO_MERGE et GO_PUBLICATION de la PR dédiée conditionnels et distincts.
+14. **Présentation de trois modèles, décision de Laurent du 16/10/2026** : tant qu'aucune machine réelle n'est établie, la landing présente trois modèles Orbitvu avec leur contexte d'usage, validés par Laurent comme sa présentation métier : Alphadesk (showroom PackshotCreator, exposition et démonstrations), Alphashot Micro v2 (démonstrations clients, bijoux et horlogerie), Alphastudio XXL v2 (retour de salon professionnel). Positionnement corporate et technologique, **aucun prix**, aucune remise, promotion, déstockage ni reconditionnement, aucune « estimation » ni « prix sur demande ». Ce n'est pas un stock : les valeurs explicitement fictives des exemples (état, inspection, licence, garantie, références OCC-01 à OCC-03) ne sont pas reprises ; les visuels illustrent le modèle et non une unité ; aucune disponibilité actuelle n'est affirmée ; aucun balisage `Offer`. Les caractéristiques (objet et charge maximaux) viennent du référentiel D45. Le registre réel `data/occasion/machines.ts` reste séparé, avec ses contrôles de fiabilité ; dès qu'il affiche une machine réelle, la présentation de modèles disparaît. Recherche opérationnelle, alertes fermées, SEO, canonique, hreflang, sitemap et traductions inchangés. GO_CODE limité à cette présentation, GO_PR/PUSH sur la PR de navigation ; GO_MERGE et GO_PUBLICATION = NON à cette tête. **Arbitrages D42 du 16/10/2026 (QA Chrome)** : pied de page « Occasionsgeräte » conservé ; badges des cartes = cadres d'usage (showroom, démonstration, salon ; en de-ch « Messepräsentation », jamais « Messerückläufer »), non l'origine ni l'existence d'une unité précise ; informations générales sur la garantie des machines réelles conservées, aucune garantie attribuée aux trois illustrations ; caractéristiques D45 et trois modèles inchangés. Correctifs de mise en page mobile de-ch et de synchronisation du préfixe du message : GO_CODE_CORRECTIF_156 et GO_PR/PUSH_CORRECTIF_156 = OUI ; GO_MERGE et GO_PUBLICATION = NON.
+
+---
+
+## D(numéro à attribuer) · 2026-10-15 · Traitement des leads sans CRM pour Contact et ROI PDF (option 1)
+
+**Décidé par** : Laurent — « V9 — MISSION G5, rationalisation définitive des leads » puis « V9 — GO d'exécution #131 / #132 », 15/10/2026
+**Statut** : en vigueur. Aucun numéro de décision n'est attribué ici : il se prend au moment de la consignation définitive, après vérification de `main`.
+
+**La décision** —
+1. **Aucun appel Pipedrive depuis `/api/contact` ni `/api/roi-pdf`.** Les demandes
+   sont traitées à la main par Sébastien depuis les notifications Resend, sur le
+   modèle de la landing Catalogue (#82, fusionnée le 10/10/2026 ; décision de
+   Sébastien du 09/10 : aucun CRM, Resend et notification interne).
+2. **Option 1 pour le parcours « envoi du PDF ROI »** : ce parcours reçoit une
+   notification interne, qu'il n'avait pas. Sa seule trace était l'affaire
+   Pipedrive ; sans ce remplacement, le lead devenait silencieux.
+3. **Contrat de succès par parcours**, et non règle unique : la trace requise est
+   la notification interne pour Contact et pour « être recontacté » ; pour l'envoi
+   du PDF, l'e-mail d'analyse au prospect ou la notification interne. Trois issues :
+   503 si l'envoi n'est pas configuré, 500 si aucune trace n'est acceptée par
+   Resend, 200 dès qu'une trace existe. L'échec partiel du parcours PDF est déclaré
+   dans la réponse (`emailSent`, `leadRecorded`), jamais masqué.
+4. **Aucune suppression de Pipedrive hors de ces deux routes** : `lib/pipedrive.ts`,
+   `/api/roi-lead`, `/api/submit-survey` et les variables Vercel sont inchangés.
+5. **Aucun CRM de remplacement, aucune séquence marketing.**
+
+**Le contexte** — #131 (P0 sécurité) et #132 (contrat de succès) étaient bloquées :
+la règle de #132 reposait sur l'affaire Pipedrive comme trace de secours, et #132
+était empilée sur une tête de #131 antérieure, en conflit, donc sans CI. Le
+traitement commercial réel est manuel depuis les notifications e-mail. Poursuivre
+un projet CRM n'avait pas d'objet ; le précédent validé existait déjà (#82).
+
+**Ce qu'elle interdit** —
+- Supprimer `lib/pipedrive.ts`, toucher `/api/roi-lead` ou `/api/submit-survey`, ou
+  retirer une variable Vercel Pipedrive au titre de cette décision.
+- Renvoyer `success` quand aucune trace n'a été acceptée, ou présenter un échec
+  partiel du parcours PDF comme un succès complet.
+- Tenir « accepté par Resend » pour une remise en boîte de réception ou une lecture.
+- Reconstruire un CRM, ou créer une séquence marketing, sans décision nouvelle.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-15 · Exception ponctuelle D13/D42 pour les textes de consentement de #117, et QA substitutive à la Preview (SSO)
 
 **Décidé par** : Laurent — « V9 — Clôture conditionnelle de #117 » et « V9 — GO_CODE_117_TRANSPARENCE + validation D42 ponctuelle », 15/10/2026
@@ -44,6 +169,66 @@ Append-only. Plus récent en haut.
 - L'étendre à une autre PR ou à un autre texte.
 - La tenir pour une validation de Sébastien, une conclusion RGPD ou un constat de disponibilité de Vimeo ou d'Ortery.
 - Réutiliser la substitution de QA Preview pour une autre PR sans exception écrite propre à cette PR.
+
+---
+
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #160 (Audit B, lot L5 à L11, six articles EN, finition linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉCISION GROUPÉE PR #160 », 16/10/2026 (option A), sur la tête `a74c868` ; GO final « PACKSHOTCREATOR V9 — GO FINAL PR #160 », 17/10/2026, tête éditoriale `ab60f21`
+**Statut** : en vigueur pour le seul périmètre de #160 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée exclusivement à la finition linguistique des six articles EN de #160 : `packshot-photography-guide-product-photography-equipment`, `8-steps-to-professional-jewelry-photography`, `lost-packshotcreator-ortery-software-solution`, `technique-photograph-jewelry-tutorial`, `how-to-e-commerce-product-photography`, `how-to-ensure-consistency-between-photos-packshot-photography-guide`. Les affirmations commerciales, caractéristiques produit et chiffres préexistants restent inchangés, sans nouvelle validation préalable de Sébastien. Aucune validation n'est attribuée à Sébastien.
+
+Choix de traduction validés par Laurent : 08 « cut » (taille d'une pierre) ; 10 « background removal » (détourage) ; 05 « softbox (a light modifier that softens and diffuses light) » (`08f242e`). Correctif après QA Chrome : 06, FAQ 2, appel de note parasite « details36 » retiré (`ab60f21`).
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas les affirmations préexistantes et ne clôt pas les réserves factuelles listées dans la description de #160 (noms de produit non harmonisés, « exclusive », distributeur « exclusive » / « the official », chiffres de cadence, témoignages, superlatifs et garanties, compatibilité Windows 11, réponses FAQ de 07 plus fortes que le FR, etc.). Ces réserves restent des sujets éditoriaux distincts.
+
+**Le contexte** — Audit B (`ec2b4c6`), dossiers 05, 06, 07, 08, 10, 11. Laurent a décidé de ne pas solliciter Sébastien séparément et a regroupé les réserves en une décision unique. QA_CHROME_160 = PASS_WITH_RESERVES ; QA_160_FAQ = PASS sur la Preview de `ab60f21`.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, aux contenus FR ou de-ch, à #146 ou à L1 (D35/F5).
+- Toute nouvelle promesse ou tout renforcement d'un claim existant.
+- Modifier une règle d'indexation D9 ou lever un `noindex`.
+- Présenter les affirmations maintenues comme validées.
+
+---
+
+## D(numéro à attribuer) · 2026-10-16 · Exception ponctuelle D13/D42 pour #152 (L2, L3, L4 EN, correction linguistique)
+
+**Décidé par** : Laurent — « V9 — DÉBLOCAGE ÉDITORIAL #152 », 16/10/2026, sur la tête `ef469da`
+**Statut** : en vigueur pour le seul périmètre de #152 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** — Exception ponctuelle D13/D42, limitée strictement à #152 : les corrections linguistiques EN de `best-image-format-for-the-web`, `how-to-choose-best-lens-for-product-photography` et `tips-photo-framing-composition` avancent sans nouvelle validation de Sébastien, car elles ne créent ni n'aggravent aucun claim, chiffre ou garantie. Aucune validation n'est attribuée à Sébastien.
+
+**Ce qu'elle ne fait pas** — Elle ne valide pas factuellement les affirmations préexistantes. Réserves maintenues : Station 24.2.0 et SUN Cloud, fréquence des mises à jour (« several updates per year »), caractéristiques optiques (IA des objectifs, 0,05 s, APS-C, 1:2, ouvertures), chiffres (« 90 % »), garanties (« guarantee ») et superlatifs (« exceptional »).
+
+**Le contexte** — #152 (Audit B, `ec2b4c6`), option B du 15/10 (L1 retiré, D35/F5). L'entrée du 15/10 conditionnait la fusion à la levée explicite des réserves D42 ; Laurent a décidé le 15/10 de ne pas solliciter Sébastien et rend ici l'exception écrite.
+
+**Ce qu'elle interdit** —
+- L'étendre à #146, aux contenus FR ou de-ch, ou à une autre PR.
+- Réintroduire L1 (D35/F5, jusqu'au 23/11).
+- Modifier une règle d'indexation D9.
+- Présenter les affirmations maintenues comme validées.
+- Tenir l'exception pour une QA : la QA Preview humaine sur 3 pages et 4 formats reste requise avant fusion.
+
+---
+
+## D(numéro à attribuer) · 2026-10-15 · #152 : option B (L1 retiré, D35/F5) et instruction D42 limitée à la correction linguistique de L2 à L4
+
+**Décidé par** : Laurent — « V9 — PR #152 — DÉCISION DE CLÔTURE », 15/10/2026
+**Statut** : en vigueur pour le seul périmètre de #152 ; épuisée par sa fusion. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **Option B** : L1 (`packshot-photography-guide-why-make-product-packshots`, EN) sort du diff de #152 et reste à sa version de `main` ; D35 et la mesure F5 sont maintenus. Les corrections L1 sont conservées (commit `b3df50e`, blob `3679186`) pour une PR distincte après F5 ou sur décision explicite de Laurent.
+2. **Instruction D42 limitée** : #152 corrige la langue de L2, L3 et L4 sans ajouter ni renforcer d'affirmation. Les affirmations préexistantes y sont **maintenues sans être validées** : leur maintien ne vaut pas validation factuelle.
+3. **Conditions de fusion inchangées** : GO_MERGE et GO_PUBLICATION restent conditionnels — CI verte sur la tête finale, QA Preview humaine réellement effectuée (desktop, tablette, mobile ; SSO = BLOCKED), levée explicite des réserves D42 applicables, demandée à Sébastien en une seule demande avec la QA.
+
+**Le contexte** — #152 (Audit B, `ec2b4c6`) : finition linguistique de quatre articles EN ; L1 est protégé par D35 pendant F5 (J+28 le 26/10, J+56 le 23/11) ; ses réserves D42 et celles de L2 à L4 portent sur des affirmations déjà en ligne, listées dans la PR.
+
+**Ce qu'elle interdit** —
+- Présenter le maintien d'une affirmation de L2 à L4 comme une validation factuelle, ou l'attribuer à Sébastien sans sa réponse.
+- Réintroduire L1 dans #152, ou le modifier pendant F5, sans décision explicite de Laurent.
+- L'étendre à une autre PR, aux versions FR ou de-ch, ou substituer une QA locale à la QA Preview.
 
 ---
 
@@ -429,6 +614,16 @@ Aucun des deux régimes ne vaut GO de fusion ni GO de publication : ces décisio
 **Le contexte** — Audit du 03/10/2026 sur 309 URL (livrables 01 et 02) : la barre de Mode (#66) donnait le comportement de référence ; le sommaire du blog avait deux défauts mesurés (titre visé hors écran à 390 px ; 29 listes latérales plus hautes que la fenêtre) ; 47 guides, 39 fiches et plusieurs landings longues n'avaient aucune navigation. La variante latérale avait été écartée sur Mode : à 1 440 px, elle ramène le contenu de 1 232 à 928 px. Mise en œuvre : PR UX-BLOG (#84), UX-STICKY (#85) ; contrôles en CI : PR #86.
 
 **Ce qu'elle interdit** — Afficher deux navigations collantes sur une page ; copier le composant dans une page au lieu d'utiliser le composant mutualisé ; ajouter un élément collant sous 1 024 px ; inventer un libellé pour la navigation (copywriting de Sébastien, D42) ; modifier par ce biais une URL, une canonique, un hreflang ou un contenu éditorial ; modifier une page gelée avant sa date de sortie (F5 23/11, Mode et hub mode-textile 26/11, accueil 28/10) ; modifier `slugify` ou le calcul des `id` des titres du blog (ancres historiques).
+
+### Addendum · 2026-10-15 · Double navigation — révision de la règle « jamais deux navigations collantes »
+
+**Décidé par** : Laurent — décision du 15/10/2026.
+
+**Ce qui change** — L'interdiction « une page ne cumule jamais deux navigations collantes » est **levée**. Une page longue éligible porte désormais **les deux** navigations à la fois : barre horizontale A **et** sommaire vertical B à droite, **synchronisés** (mêmes ancres, même section active). Le reste de D44 est inchangé : règle par famille, critères d'éligibilité, gels, interdiction de texte nouveau, ancres historiques, pas d'élément collant sous 1 024 px.
+
+**Ce qui reste interdit** — Deux scroll-spys indépendants sur une même page (un seul calcul de section active, partagé) ; une seconde navigation sur une page gelée ou avant la bascule contrôlée de sa famille ; copier un composant plutôt que passer par les composants mutualisés (`components/navigation/useSectionActive.ts`, `NavigationPageLongue.tsx`, `SommaireLateral.tsx`, `DoubleNavigation*.tsx`).
+
+**Déploiement** — Progressif, par le registre (`secondeForme`, `piloteSecondeForme`). Phase A : un pilote par famille structurante (guide `comment-faire-focus-stacking-pour-photographier-bague`, fiche `alphashot-pro-g2`, article `images-ia-metadonnees-marketplaces`), en PR Draft, `GO_MERGE = NON`, `GO_PUBLICATION = NON`. Phase B : généralisation par famille, par PR distinctes, après contrôle pixel des pilotes (Preview Vercel / `www` dans Chrome, R4). Référence : `docs/standards/R-UX-LONG.md`.
 
 ---
 

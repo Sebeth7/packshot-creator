@@ -14,12 +14,20 @@ import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 interface DropdownItem {
   href: LinkHref;
   labelKey: string;
+  /** Libellé direct, hors messages/*.json. */
+  label?: string;
   descKey: string;
   icon: React.ReactNode;
 }
 
 interface DropdownSection {
   titleKey?: string;
+  /**
+   * Lien secondaire, rendu en dernier, après les rubriques en flyout, séparé et
+   * en texte discret (desktop et mobile). Aucun usage actuel : le lien d'occasion
+   * n'est plus dans le menu haut (décision de Laurent du 16/10/2026).
+   */
+  secondaire?: boolean;
   items: DropdownItem[];
 }
 
@@ -166,13 +174,26 @@ function NavDropdown({
         className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
         onClick={close}
       >
-        {t(item.labelKey)}
+        {item.label ?? t(item.labelKey)}
       </Link>
     );
 
-  /* Sections avec titre = affichées en flyout, sans titre = affichées en plein */
-  const mainSections = sections.filter((s) => !s.titleKey);
+  const renderSecondaire = (item: DropdownItem) => (
+    <Link
+      key={item.labelKey}
+      href={item.href}
+      className="block px-3 py-2 text-xs font-medium text-future-dusk-500 hover:text-very-peri-600 transition-colors"
+      onClick={close}
+    >
+      {item.label ?? t(item.labelKey)}
+    </Link>
+  );
+
+  /* Sections avec titre = affichées en flyout, sans titre = affichées en plein ;
+     sections secondaires = affichées en dernier, après un séparateur */
+  const mainSections = sections.filter((s) => !s.titleKey && !s.secondaire);
   const flyoutSections = sections.filter((s) => s.titleKey);
+  const secondarySections = sections.filter((s) => s.secondaire);
 
   return (
     <div
@@ -229,6 +250,14 @@ function NavDropdown({
                 {section.items.map(renderItem)}
               </div>
             ))}
+
+            {/* Liens secondaires, en dernier */}
+            {secondarySections.map((section, sIdx) => (
+              <div key={sIdx}>
+                <div className="border-t border-neutral-100 my-2" />
+                {section.items.map(renderSecondaire)}
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -270,19 +299,30 @@ function MobileNavSection({
                   {t(section.titleKey)}
                 </span>
               )}
-              {section.items.map((item) => (
-                <Link
-                  key={item.labelKey}
-                  href={item.href}
-                  className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
-                  onClick={onClose}
-                >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
-                    {item.icon}
-                  </span>
-                  {t(item.labelKey)}
-                </Link>
-              ))}
+              {section.items.map((item) =>
+                section.secondaire ? (
+                  <Link
+                    key={item.labelKey}
+                    href={item.href}
+                    className="block py-2 text-sm text-future-dusk-500 hover:text-very-peri-600"
+                    onClick={onClose}
+                  >
+                    {item.label ?? t(item.labelKey)}
+                  </Link>
+                ) : (
+                  <Link
+                    key={item.labelKey}
+                    href={item.href}
+                    className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
+                    onClick={onClose}
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
+                      {item.icon}
+                    </span>
+                    {item.label ?? t(item.labelKey)}
+                  </Link>
+                )
+              )}
             </div>
           ))}
         </div>
@@ -335,6 +375,11 @@ function LangSwitcher({ locale, pathname, slug }: { locale: string; pathname: st
   );
 }
 
+/**
+ * Aucun lien vers la landing d'occasion dans le menu haut, ni en sous-menu, desktop
+ * et mobile (décision de Laurent du 16/10/2026, qui remplace celle du 14/10) : seul
+ * le pied de page, colonne Solutions, la porte (components/layout/Footer.tsx).
+ */
 export default function Header() {
   const t = useTranslations('common.nav');
   const locale = useLocale();

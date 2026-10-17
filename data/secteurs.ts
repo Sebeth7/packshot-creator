@@ -114,71 +114,85 @@ export const secteurs: Secteur[] = [
   // 2. BIJOUX / JOAILLERIE
   {
     slug: 'bijoux-joaillerie',
-    titre: 'Photo Produit Bijoux & Joaillerie Haute Précision',
+    titre: 'Packshot bijoux : équiper votre production photo en interne',
     description:
-      'Studios photo automatisés pour bijoux : capture pierres précieuses, reflets or et argent. IA lifestyle luxe.',
+      'Packshot bijoux en interne : pierres, métaux polis, petites pièces, focus stacking et 360° de bague. Studios Orbitvu adaptés, démonstration avec vos bijoux.',
     hero: {
-      titre: 'Photo Bijoux Professionnelle : Précision & Luxe',
-      sousTitre: 'Capturez chaque détail : pierres, reflets métaux, sertissages',
+      titre: 'Packshot bijoux : équipez votre studio interne',
+      sousTitre: 'Pierres, métaux polis, sertissages : des visuels homogènes',
       description:
-        'Solutions packshot haute résolution pour bijoux et joaillerie + IA lifestyle mises en scène luxe (portés, ambiances haut de gamme).',
+        'Studios photo automatisés Orbitvu pour joailliers et marques de bijoux : le détail des pierres et des sertissages, des prises de vue homogènes d\'une collection à l\'autre et des vues 360°, dans vos locaux.',
     },
     problematiques: {
-      titre: 'Défis Photo Bijoux',
+      titre: 'Les défis de la photographie de bijoux',
       items: [
-        'Capturer reflets métaux (or, argent, platine) sans surexposition',
-        'Photographier pierres précieuses avec brillance et feux réalistes',
-        'Profondeur de champ extrême (focus stacking bijoux 3D)',
-        'Taille produits minuscule nécessitant macrophotographie',
-        'Visuels portés lifestyle (mannequins, mains) coûteux et longs à produire',
+        'Restituer la brillance et le feu des pierres sans les noyer dans les reflets',
+        'Maîtriser les reflets de l\'or, de l\'argent et du platine polis, qui renvoient tout ce qui les entoure',
+        'Photographier des pièces de quelques millimètres : à cette échelle, une seule mise au point ne rend net qu\'une partie du bijou',
+        'Garder le même rendu d\'une collection à l\'autre, quels que soient l\'opérateur et le jour de prise de vue',
+        'Montrer une bague sous tous les angles, nette sur toute la rotation',
+        'Suivre le rythme des nouveautés et des réassorts sans dépendre d\'un photographe externe',
       ],
     },
     solutions: {
-      titre: 'Nos Solutions Bijoux',
+      titre: 'Les solutions Orbitvu pour la joaillerie',
       items: [
         {
           type: 'hardware',
-          titre: 'Studios Orbitvu Joaillerie',
-          description: 'Packshot haute résolution avec focus stacking automatique',
+          titre: 'Studios Orbitvu pour le bijou',
+          description:
+            'Deux systèmes recommandés : l\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les pièces plus volumineuses.',
           avantages: [
-            'Focus stacking : netteté absolue sur toute la profondeur bijou 3D',
-            'Éclairage polarisé : contrôle reflets métaux, sublimation pierres',
-            'Macrophotographie : capture détails microscopiques (sertissages, poinçons)',
-            '360° bijoux : rotation interactive pour vente en ligne',
-            'Cohérence colorimétrique : or 18k rendu identique sur tout le catalogue',
+            'Alphashot Micro Pro v2 : conçu pour les très petits objets, jusqu\'à 18 cm de long et 1 kg selon Orbitvu ; macro pour le détail des sertissages, des gravures et des poinçons',
+            'Superfocus (focus stacking) dans Orbitvu Station : plusieurs mises au point réunies en une image nette, de l\'avant à l\'arrière du bijou',
+            'Vues 360° : Orbitvu Station enchaîne la rotation du plateau et le Superfocus pour produire une animation de bague nette sous tous les angles',
+            'Alphashot Pro G2 : objets jusqu\'à 35 × 35 × 40 cm (axes non précisés par Orbitvu) et 10 kg ; son AI Photo Assistant reconnaît le type de produit et propose une configuration d\'éclairage',
+            'Réglages enregistrés et réutilisés : les mêmes conditions de prise de vue d\'une session à l\'autre',
           ],
         },
         {
-          type: 'ia',
-          titre: 'BlendAI Lifestyle Luxe',
-          description: 'Visuels portés et mises en scène haut de gamme via IA',
+          titre: 'Orbitvu AI Toolkit, l\'IA d\'Orbitvu Station',
+          description:
+            'Les outils IA d\'Orbitvu Station travaillent sur la photo du bijou réel.',
           avantages: [
-            'Portés IA : bagues sur mains élégantes, colliers sur mannequins',
-            'Ambiances luxe : décors marbre, velours, écrin joaillerie',
-            'Styles personnalisés : ADN visuel marque (Cartier-like, Tiffany-like...)',
-            'Production rapide : 20-50 visuels lifestyle en 1h',
-            'ROI : -90% coûts vs shooting mannequin joaillerie',
+            'AI Retoucher : retouche automatique des reflets indésirables, des imperfections et des couleurs, pilotée par des préréglages ou des consignes écrites',
+            'AI Masking : détourage et suppression du fond, directement dans le flux de production',
+            'Outils réservés par Orbitvu aux abonnés d\'Orbitvu Station ; conditions sur demande',
           ],
         },
       ],
     },
-    casClients: [
+    useCases: [
       {
-        titre: 'Joaillier 150 créations/an',
-        description:
-          'Packshot focus stacking + 3 visuels lifestyle IA/bijou. Délais -75%. Qualité image 300% supérieure vs photographe manuel.',
+        titre: 'Catalogue de collection',
+        processus: 'Photographier une nouvelle collection avec les réglages enregistrés de la précédente : même fond, même éclairage, même cadrage. Bagues, pendentifs et boucles d\'oreilles d\'une même ligne se présentent de la même façon, du catalogue à la boutique en ligne.',
+        fonctionsOrbitvu: ['Orbitvu Station', 'Réglages enregistrés', 'AI Masking'],
+        valeur: 'Un rendu homogène, saison après saison',
+      },
+      {
+        titre: 'E-commerce multi-références',
+        processus: 'Alimenter une boutique qui décline chaque modèle en plusieurs métaux, pierres ou tailles. Chaque variante est photographiée dans les mêmes conditions, détourée dans le flux, puis exportée vers la boutique.',
+        fonctionsOrbitvu: ['AI Masking', 'AI Retoucher', 'Orbitvu Station'],
+        valeur: 'Des fiches produit comparables d\'une variante à l\'autre',
+      },
+      {
+        titre: 'Vues 360° de bagues',
+        processus: 'La bague tourne sur le plateau de l\'Alphashot Micro Pro v2 ; avec le Superfocus, l\'animation reste nette sur toute la rotation, prête pour la fiche produit.',
+        fonctionsOrbitvu: ['360°', 'Superfocus', 'Alphashot Micro Pro v2'],
+        valeur: 'La monture, le serti et la pierre visibles avant l\'achat',
       },
     ],
     cta: {
-      titre: 'Sublimez vos bijoux',
+      titre: 'Testez un studio Orbitvu avec vos bijoux',
       description:
-        'Devis studio Orbitvu joaillerie + démo BlendAI lifestyle luxe gratuite.',
+        'Démonstration avec vos propres pièces, choix du système adapté et accompagnement par PackshotCreator, distributeur officiel Orbitvu.',
     },
     faq: [
-      { question: 'Comment photographier les pierres précieuses avec leur brillance réelle ?', answer: 'Les studios Orbitvu utilisent un éclairage polarisé et le focus stacking automatique pour capturer les feux des pierres précieuses (diamants, saphirs, rubis) avec une netteté et une brillance fidèles.' },
-      { question: 'Qu\'est-ce que le focus stacking pour la photo bijoux ?', answer: 'Le focus stacking combine automatiquement plusieurs prises de vue à différentes profondeurs de champ pour obtenir une netteté absolue sur l\'ensemble du bijou 3D, des sertissages aux détails microscopiques.' },
-      { question: 'Peut-on créer des visuels portés bijoux sans mannequin ?', answer: 'Oui, BlendAI génère des visuels portés réalistes : bagues sur mains élégantes, colliers sur mannequins, dans des ambiances luxe (marbre, velours, écrin). Production de 20 à 50 visuels par heure.' },
-      { question: 'La photo packshot bijoux est-elle adaptée à la vente en ligne ?', answer: 'Les studios Orbitvu produisent des packshots HD fond blanc avec rotation 360° interactive, idéaux pour les fiches produit e-commerce joaillerie. Le détourage est automatique.' },
+      { question: 'Comment maîtriser les reflets sur les pierres et les métaux polis ?', answer: 'Par l\'éclairage d\'abord : les pierres ont besoin de lumière pour leur feu, le métal poli d\'une lumière maîtrisée. Sur l\'Alphashot Pro G2, l\'AI Photo Assistant propose une configuration d\'éclairage adaptée au produit. Après la prise de vue, AI Retoucher peut atténuer les reflets indésirables.' },
+      { question: 'Qu\'est-ce que le focus stacking en photo de bijoux ?', answer: 'C\'est la fusion de plusieurs photos prises avec des mises au point différentes, pour obtenir un bijou net de l\'avant à l\'arrière. Dans Orbitvu Station, l\'assistant Superfocus guide l\'empilement et suggère les paramètres, y compris pendant une animation 360°.' },
+      { question: 'Peut-on créer des visuels portés de bijoux sans mannequin ?', answer: 'Pas aujourd\'hui : Orbitvu Station ne génère ni porté ni mannequin virtuel. Orbitvu annonce une fonction On-model, sans date ; nous ne la présentons pas comme disponible.' },
+      { question: 'Les photos de bijoux conviennent-elles à la vente en ligne ?', answer: 'Oui : fond détouré par AI Masking, vues sous plusieurs angles et animations 360° exportées pour vos fiches produit. Les réglages enregistrés alignent chaque nouvelle référence sur les précédentes.' },
+      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
     ],
   },
 
@@ -1251,93 +1265,72 @@ export const secteurs: Secteur[] = [
   },
 
   // 16. VIN & SPIRITUEUX
+  // Rendu fr et en par app/[lang]/industrie/[slug]/_components/HubVin.tsx (de-ch : gabarit commun,
+  // données de data/secteurs-de-ch.ts). Sources de chaque affirmation : registre de claims de la PR
+  // (docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md). Retirés le 08/10/2026 : Alphashot XL Wine
+  // (délistée le 07/07, absente du catalogue Orbitvu), « éclairage polarisé », « étalonnage 74 points »,
+  // cadences, « −85 % », carte et FAQ BlendAI, cas d'usage non sourcés.
   {
     slug: 'vin-spiritueux',
-    titre: 'Photo Produit Vin & Spiritueux : Packshot Bouteilles & Lifestyle IA',
+    titre: 'Packshot bouteille de vin et spiritueux : studio photo automatisé',
     description:
-      'Studios photo automatisés pour bouteilles de vin et spiritueux : gestion des reflets verre, fidélité étiquettes et mises en scène IA cave, bar, table.',
+      'Photographiez vos bouteilles de vin et de spiritueux en interne : lumière réglée pour le verre et l’étiquette, rendu cohérent d’une référence à l’autre.',
     hero: {
-      titre: 'Photo Bouteilles Vin & Spiritueux : Packshot & Lifestyle IA',
-      sousTitre: 'Sublimez vos cuvées avec des visuels dignes des plus grands domaines',
+      titre: 'Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes',
+      sousTitre: 'Vin et spiritueux',
       description:
-        'Capturez chaque bouteille avec une fidélité parfaite — étiquettes lisibles, reflets maîtrisés, couleurs du vin préservées — puis créez des mises en scène cave, bar ou table gastronomique par IA.',
+        'Verre qui reflète, liquide qui change de teinte, étiquette à garder lisible : une bouteille cumule les difficultés de prise de vue. Un studio photo automatisé Orbitvu enregistre lumière, cadrage et traitement dans des modèles : vos packshots repartent d’une base cohérente, ajustée à chaque bouteille.\n\nPackshotCreator, distributeur officiel d’Orbitvu en France et en Suisse, vous conseille sur le choix du studio et l’installe. La formation de vos équipes est proposée séparément.',
     },
     problematiques: {
-      titre: 'Défis Photo Vin & Spiritueux',
+      titre: 'Verre, liquide, étiquette : ce qu’une bouteille impose à la prise de vue',
       items: [
-        'Reflets parasites sur le verre (bouteilles, flacons, carafes)',
-        'Lisibilité et fidélité colorimétrique des étiquettes (dorures, reliefs, papier texturé)',
-        'Formes variées de bouteilles (bordelaise, bourguignonne, alsacienne, champagne, flûte, pot)',
-        'Capsules et muselet métalliques créant des reflets incontrôlés',
-        'Shootings lifestyle cave ou bar coûteux et logistiquement complexes',
-        'Suppression des contre-étiquettes complexe en post-production (codes-barres, mentions légales au dos)',
-        'Volumes saisonniers importants (foires aux vins, primeurs, fêtes de fin d\'année)',
+        'Verre clair et liquide : le verre renvoie les sources de lumière et son environnement. En haute définition, une poussière ou une trace de doigt se voit.',
+        'Verre sombre : sur un vin rouge, un plateau clair se reflète dans le bas du verre. Ce sont les reflets qui dessinent l’épaule et les bords.',
+        'Étiquette : éclairée seulement par l’arrière, elle ressort plus sombre que le verre. Papier texturé, dorure, gaufrage : chaque finition prend la lumière à sa façon.',
+        'Capsule et col : capsule métallique, muselet ou bouchon renvoient la lumière sous d’autres angles que le corps de la bouteille.',
       ],
     },
     solutions: {
-      titre: 'Nos Solutions Vin & Spiritueux',
+      titre: 'Deux studios pour photographier vos bouteilles',
       items: [
         {
           type: 'hardware',
-          titre: 'Alphashot XL Wine v2 — Studio dédié bouteilles',
+          titre: 'Alphashot XL Pro v2',
           description:
-            'Conçu spécifiquement pour la photographie de bouteilles, avec un éclairage optimisé verre et étiquettes',
+            'Studio de la gamme XL que nous recommandons pour les bouteilles. Orbitvu l’a mis en œuvre sur des bouteilles en verre avec des accessoires dédiés.',
           avantages: [
-            'Éclairage polarisé anti-reflets verre : suppression des reflets parasites dès la capture',
-            'Zone d\'éclairage calibrée étiquettes : lisibilité parfaite, dorures et reliefs préservés',
-            'Compatibilité toutes formes : bordelaise, bourguignonne, champagne, magnum, flacon spiritueux',
-            '360° bouteille : rotation interactive montrant l\'étiquette, la contre-étiquette et la capsule',
-            'Détourage automatique fond blanc pour catalogues et e-commerce',
-            'Workflow rapide : 20-40 bouteilles/heure photographiées',
+            'Support bouteille, kit antireflet et cache textile noir',
+            'Réglages enregistrés dans des modèles Orbitvu Station',
+            'Photos, rotations à 360° et vidéos',
           ],
         },
         {
-          type: 'ia',
-          titre: 'BlendAI Studio — Mises en scène IA',
+          type: 'hardware',
+          titre: 'Alphashot XL G2',
           description:
-            'Transformez vos packshots en visuels lifestyle cave, bar, table gastronomique',
+            'Studio fermé de la gamme XL, conçu pour capturer les images et les données du produit dans le même cycle.',
           avantages: [
-            'Ambiances cave : voûtes en pierre, barriques, lumière tamisée',
-            'Ambiances bar & restaurant : comptoir bois, cocktails, ambiance lounge',
-            'Accords mets-vins : table dressée, fromages, charcuterie, plats gastronomiques',
-            'Ambiances saisonnières : vendanges, fêtes, terrasse estivale',
-            'Production série : 30-100 visuels lifestyle en quelques heures',
-            'ROI : -85% coûts vs shootings lifestyle sur site (cave, château, restaurant)',
+            '170 panneaux LED pilotés, chambre fermée à paroi courbe',
+            'Support bouteille en accessoire',
+            'AI Photo Assistant propose un éclairage adapté au produit ; le choix final reste à l’opérateur',
+            'Objet jusqu’à 60 × 40 × 70 cm (l × p × h)',
+            'Variante MDC : dimensions et poids mesurés dans le même cycle',
           ],
         },
       ],
     },
-    useCases: [
-      {
-        titre: 'Catalogue domaine viticole',
-        processus: 'Photographier l\'intégralité de la gamme (cuvées, millésimes, formats) avec un rendu cohérent pour le site web, les fiches techniques et les salons professionnels.',
-        fonctionsOrbitvu: ['Templates bouteille', '360°', 'Multi-export PDF/Web'],
-        valeur: 'Catalogue visuel complet prêt pour le web et l\'impression en quelques jours',
-      },
-      {
-        titre: 'E-commerce CHR & cavistes',
-        processus: 'Production de visuels packshot et lifestyle pour les plateformes B2B (cafés, hôtels, restaurants) et les cavistes en ligne nécessitant des visuels homogènes sur des catalogues de plusieurs centaines de références.',
-        fonctionsOrbitvu: ['Détourage auto', 'Export multi-format', 'Workflow batch'],
-        valeur: 'Intégration rapide dans les plateformes e-commerce CHR',
-      },
-      {
-        titre: 'Communication importateur / distributeur',
-        processus: 'Fournir aux importateurs et distributeurs des visuels professionnels prêts à l\'emploi pour leurs propres supports de vente (catalogues, fiches, réseaux sociaux).',
-        fonctionsOrbitvu: ['Templates', 'Export HD', 'Métadonnées'],
-        valeur: 'Visuels standardisés pour tout le réseau de distribution',
-      },
-    ],
     cta: {
-      titre: 'Sublimez vos bouteilles',
+      titre: 'Parler de votre projet de photographie de bouteilles',
       description:
-        'Réservez une démo avec vos propres bouteilles. 30 minutes pour voir la différence Alphashot XL Wine.',
+        'Décrivez vos références : formats, teintes de verre, finitions d’étiquette, nombre de bouteilles à photographier, vues souhaitées.\n\nUne première démonstration peut se faire en visioconférence. Pour juger sur vos propres bouteilles, une visite du showroom se prévoit sur rendez-vous.',
     },
     faq: [
-      { question: 'Comment éliminer les reflets sur les bouteilles en verre ?', answer: 'L\'Alphashot XL Wine v2 utilise un éclairage LED polarisé spécifiquement calibré pour le verre. Les reflets parasites sont supprimés dès la capture, sans retouche. Le protocole fonctionne sur le verre clair, teinté et les flacons de spiritueux.' },
-      { question: 'Les étiquettes avec dorures ou reliefs sont-elles bien rendues ?', answer: 'Oui, la zone d\'éclairage dédiée étiquettes préserve les dorures à chaud, les gaufrages et les textures papier. La fidélité colorimétrique est assurée par un étalonnage LED 74 points.' },
-      { question: 'Peut-on photographier toutes les formes de bouteilles ?', answer: 'Le studio accepte toutes les formes courantes : bordelaise, bourguignonne, alsacienne, champagne, magnum, demi-bouteille et flacons de spiritueux. Un système de calage ajustable maintient chaque bouteille parfaitement droite.' },
-      { question: 'Comment gérer les volumes importants en période de foire aux vins ?', answer: 'Le workflow automatisé permet de photographier 20 à 40 bouteilles par heure. Sur une journée, vous pouvez traiter 150 à 300 références avec packshot fond blanc, détourage et export multi-format.' },
-      { question: 'Les visuels lifestyle IA sont-ils réalistes pour le vin ?', answer: 'BlendAI génère des mises en scène réalistes : cave en pierre, table de dégustation, comptoir bar. Les bouteilles sont intégrées avec gestion des ombres, reflets et éclairage ambiant cohérent.' },
+      { question: 'Comment photographier une bouteille de vin sans reflets parasites ?', answer: 'En privilégiant une lumière diffuse plutôt qu’une lumière directe de face. Le contre-jour révèle la transparence du liquide, des lumières latérales dessinent le verre, une lumière dirigée éclaire l’étiquette. Un support surélevé et des surfaces sombres limitent les reflets du plateau et de l’environnement. Le réglage s’enregistre et se réutilise ; certains reflets forts demandent encore une retouche.' },
+      { question: 'Peut-on photographier des bouteilles de formats différents avec un rendu homogène ?', answer: 'Oui, en partant d’une base commune. Orbitvu Station conserve un modèle par type de produit : vous pouvez en créer un par format, avec la même lumière et le même cadrage, puis l’ajuster selon la bouteille. Le studio se choisit selon la plus grande bouteille de la gamme.' },
+      { question: 'Comment montrer la contre-étiquette et la capsule ?', answer: 'Le plateau tournant enregistre les angles : face, dos et profil dans le même passage. Une vue de dessus de la capsule demande un support d’appareil photo supérieur. Pour montrer toute la bouteille, une rotation à 360° de 6 à 180 images s’exporte en HTML5 ou en vidéo.' },
+      { question: 'Le détourage d’une bouteille transparente est-il automatique ?', answer: 'Orbitvu Station retire le fond pendant la prise de vue, par une seconde exposition (IQ Mask) ou par l’IA (AI Masking), y compris en mode transparent. Les supports transparents sont détectés et retirés. L’opérateur contrôle le résultat à l’écran avant l’export.' },
+      { question: 'Faut-il un photographe pour utiliser le studio ?', answer: 'Pas nécessairement. Orbitvu indique que l’Alphashot XL G2 se prend en main après une courte formation, et les réglages enregistrés dans des modèles se réutilisent d’une séance à l’autre. La formation de vos équipes est proposée séparément du studio.' },
+      { question: 'L’IA peut-elle lire les informations de l’étiquette ?', answer: 'Avec AI OCR, Orbitvu Station lit le texte imprimé sur plusieurs vues d’une même bouteille et le range dans les champs que vous définissez. L’opérateur vérifie les données avant de les enregistrer. La fonction est réservée aux abonnements ; elle a été annoncée en bêta en juin 2026.' },
     ],
   },
 

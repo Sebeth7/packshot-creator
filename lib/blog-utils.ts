@@ -255,6 +255,38 @@ export function addRelToBlankTargets(html: string): string {
   });
 }
 
+// Fichiers vidéo auto-hébergés insérés à tort par Webflow dans une balise <img>
+// (src se terminant par .mp4) : l'élément <img> ne lit pas la vidéo
+// (naturalWidth = 0) et l'optimiseur d'images Next renvoie 400. U02.
+const IMG_TAG = /<img\b((?:[^>"']|"[^"]*"|'[^']*')*)\/?>/gi;
+const MP4_SRC = /\.mp4(?:[?#]|$)/i;
+
+/**
+ * Remplace chaque `<img src="….mp4">` du corps d'article par une balise `<video>`
+ * native (U02). Chaîne HTML uniquement, aucun composant React injecté :
+ * - `controls` (accessible au clavier), `preload="metadata"` (chargement différé :
+ *   seule la métadonnée est récupérée, pas toute la vidéo), `playsinline`, `muted` ;
+ * - l'ALT devient `aria-label` seulement s'il est signifiant (ni vide, ni le
+ *   marqueur Webflow `__wf_reserved_inherit`) ;
+ * - le `<figure>`/légende éventuel qui entoure l'image est conservé tel quel.
+ * Une image non-.mp4 est laissée intacte. Deux passages donnent la même sortie.
+ */
+export function transformVideoImages(html: string): { html: string; count: number } {
+  let count = 0;
+  const out = html.replace(IMG_TAG, (tag, attrs: string) => {
+    const src = attrs.match(/\ssrc\s*=\s*(?:"([^"]*)"|'([^']*)')/i);
+    const url = src?.[1] ?? src?.[2];
+    if (!url || !MP4_SRC.test(url)) return tag;
+    const altMatch = attrs.match(/\salt\s*=\s*(?:"([^"]*)"|'([^']*)')/i);
+    const alt = (altMatch?.[1] ?? altMatch?.[2] ?? '').trim();
+    const meaningful = alt && alt !== '__wf_reserved_inherit';
+    const label = meaningful ? ` aria-label="${alt}"` : '';
+    count++;
+    return `<video src="${url}" controls muted playsinline preload="metadata" class="w-full h-auto rounded-lg"${label}></video>`;
+  });
+  return { html: out, count };
+}
+
 /**
  * Process Webflow HTML content:
  * - Add IDs to h2/h3 elements for ToC navigation
@@ -328,12 +360,14 @@ export function processHtmlContent(
   const withYouTubeReferrer = addYouTubeReferrerPolicy(embeds.html);
   const withoutEmptyParagraphs = removeEmptyParagraphs(withYouTubeReferrer);
   const withSafeBlankTargets = addRelToBlankTargets(withoutEmptyParagraphs);
+  // U02 : <img src="….mp4"> hérités de Webflow → <video> natif.
+  const withVideos = transformVideoImages(withSafeBlankTargets).html;
 
   const plainText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
 
   return {
-    processedHtml: withSafeBlankTargets,
+    processedHtml: withVideos,
     headings,
     wordCount,
     videoCount: shortcodes.count + videos.count,

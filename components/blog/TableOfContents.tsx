@@ -3,12 +3,19 @@
 import { useEffect, useId, useRef, useState, type RefObject } from 'react';
 import { ChevronDown, List } from 'lucide-react';
 import type { HeadingData } from '@/lib/blog-utils';
+import { useRapporteurSection } from '@/components/navigation/NavigationPageLongue';
 
 interface TableOfContentsProps {
   headings: HeadingData[];
   title?: string;
   collapsible?: boolean;
   className?: string;
+  /**
+   * Double navigation D44 : rapporter la section active à la barre horizontale. Réservé à
+   * l'instance de bureau, pour que la barre ait une source unique (l'instance mobile, bien
+   * que montée, ne rapporte pas). Sans effet hors d'un fournisseur de double navigation.
+   */
+  rapporteActif?: boolean;
 }
 
 /**
@@ -35,6 +42,7 @@ export function TableOfContents({
   title = 'Sommaire',
   collapsible = false,
   className = '',
+  rapporteActif = false,
 }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
@@ -45,6 +53,14 @@ export function TableOfContents({
   const annulerDefilement = useRef<(() => void) | null>(null);
   const [finDefilement, setFinDefilement] = useState(0);
   const panneauId = useId();
+
+  // Double navigation D44 : rapporte la section active à la barre horizontale, quand le
+  // gabarit l'a enveloppé dans un fournisseur. Hors double navigation, le contexte est nul
+  // et ce rapport n'a aucun effet. La détection reste faite ici, unique scroll-spy du blog.
+  const rapporter = useRapporteurSection();
+  useEffect(() => {
+    if (rapporteActif) rapporter?.(activeId || null);
+  }, [activeId, rapporter, rapporteActif]);
 
   /**
    * Défile vers le titre, puis vérifie sa position à l'arrivée. Les images des articles

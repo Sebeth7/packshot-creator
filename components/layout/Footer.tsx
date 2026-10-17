@@ -1,8 +1,9 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import Image from 'next/image';
+import { LIEN_OCCASION, libelleLienOccasion } from '@/lib/occasion/navigation';
 
 // Fiches machines listées en pied de page (audit Laurent 03/09/2026, §1.4 1.c :
 // 28 liens entrants par fiche contre 163 pour les hubs). Hors machines `delisted`
@@ -25,8 +26,17 @@ const FOOTER_STUDIOS: { id: string; nom: string }[] = [
   { id: 'e-comm-studio-plus', nom: 'E-Comm Studio+' },
 ];
 
-export default function Footer() {
+/**
+ * `lienOccasion` : lien texte « Matériel d'occasion » dans la colonne Solutions, après
+ * « Questions clés », seule occurrence du pied de page et seul lien de navigation vers
+ * la landing (décision de Laurent du 16/10/2026 : plus aucun lien dans le menu haut ;
+ * la colonne des studios ne présente que les modèles neufs), libellé dans la langue de
+ * la page. Calculé côté serveur par app/[lang]/layout.tsx :
+ * jamais en production tant que la publication n'est pas autorisée (lib/occasion/activation.ts).
+ */
+export default function Footer({ lienOccasion = false }: { lienOccasion?: boolean }) {
   const t = useTranslations('common.footer');
+  const locale = useLocale();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -101,6 +111,13 @@ export default function Footer() {
                   {t('guidesQuestions')}
                 </Link>
               </li>
+              {lienOccasion && (
+                <li>
+                  <Link href={LIEN_OCCASION.href} className="text-sm text-future-dusk-400 hover:text-white transition-colors">
+                    {libelleLienOccasion(locale)}
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 
