@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Worker #164 : QA Chrome `www` PASS (HTML/RSC) ; événement consigné pour M5, F5 et Mode ; réserve `trail.` qualifiée · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10, clôture documentaire | **PR** : #166 (documentation) | **Commit** : voir PR
+
+**Quoi** — QA de production de `packshot-router` `f81fa93a-522b-4457-96d7-26ce09acc6a7` (déployé le 17/10 à 13:00:31 UTC) réalisée par Laurent dans Chrome sur `www`, de 13:04 à 13:09 UTC : **PASS pour le P0 HTML/RSC sur les parcours testés**. Événement Worker inscrit en E pour M5, F5 et Mode.
+
+**Pourquoi** — Clôture du P0 : correctif effectivement déployé (flag `cache_option_enabled` actif, entrée précédente) et vérifié sur `www` (R4).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Plus de flux RSC servi aux requêtes HTML de `www`, ni de HTML aux navigations Next.js. Événement à rattacher aux mesures en cours, sans changer leurs métriques ni leurs fenêtres : M5 (14 au 28/10), F5 (J+28 le 26/10, J+56 le 23/11), Mode (J+28 le 29/10, J+56 le 26/11).
+
+**Vérifié** — QA Chrome `www` de Laurent, rapportée le 17/10 : PASS sur les parcours HTML et de navigation Next.js testés (13:04–13:09 UTC).
+**Supposé** — Que les parcours testés sont représentatifs des pages servies par le Worker ; le verdict ne couvre que ces parcours.
+**Non regardé** — **NON VÉRIFIÉ** faute de réponse HEAD réelle : redirections 301 (#115/#151), réponses 410, en-tête `X-Robots-Tag` sur `www`. `trail.packshot-creator.com` : **indisponibilité DNS d'apparition indéterminée, sans lien causal prouvé avec #164** ; preuves historiques conservées (200 le 23/09 et le 25/09, page Lemlist le 28/09 ; entrée précédente et ETAT, C).
+
+**Suite** — P0 HTML/RSC : résolu sur les parcours testés ; contrôles 301, 410 et `X-Robots-Tag` à mener par requêtes HEAD réelles depuis le poste de Laurent (D23). `trail.` : décision de Laurent sur l'usage de Lemlist. Rollback toujours disponible : `npx wrangler@4 rollback d7d06bc1-a0a4-423c-a036-037a3b7266ea`.
+
+---
+
 ## 2026-10-17 · Studios #108 — GO final de préparation : `main` intégré, double navigation mutualisée, droits des médias, V05 remplacée, exception D13/D42 · Claude de Laurent
 
 **Chantier** : Studios Wave 2, « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 » (GO_RESYNC_108, GO_CODE_108, GO_PR_PUSH_108, GO_D13_D42_EXCEPTION_108, GO_QA_PREVIEW_108 = OUI ; GO_MERGE_108, GO_PUBLICATION_108, GO_TEST_REEL, GO_ENVOI = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `2041b80`, `main` `1fc2230`, puis `2a8c444` (#164), puis `4b6fca9` (#163, #165, #105)
