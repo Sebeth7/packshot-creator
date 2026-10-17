@@ -131,6 +131,7 @@ export const secteurs: Secteur[] = [
         'Photographier des pièces de quelques millimètres : à cette échelle, une seule mise au point ne rend net qu\'une partie du bijou',
         'Garder le même rendu d\'une collection à l\'autre, quels que soient l\'opérateur et le jour de prise de vue',
         'Montrer une bague sous tous les angles, nette sur toute la rotation',
+        'Montrer un collier en entier sans perdre le détail : chaîne fine, bélière, pendentif et fermoir n\'ont ni la même taille ni la même profondeur',
         'Suivre le rythme des nouveautés et des réassorts sans dépendre d\'un photographe externe',
       ],
     },
@@ -192,7 +193,7 @@ export const secteurs: Secteur[] = [
       { question: 'Qu\'est-ce que le focus stacking en photo de bijoux ?', answer: 'C\'est la fusion de plusieurs photos prises avec des mises au point différentes, pour obtenir un bijou net de l\'avant à l\'arrière. Dans Orbitvu Station, l\'assistant Superfocus guide l\'empilement et suggère les paramètres, y compris pendant une animation 360°.' },
       { question: 'Peut-on créer des visuels portés de bijoux sans mannequin ?', answer: 'Pas aujourd\'hui : Orbitvu Station ne génère ni porté ni mannequin virtuel. Orbitvu annonce une fonction On-model, sans date ; nous ne la présentons pas comme disponible.' },
       { question: 'Les photos de bijoux conviennent-elles à la vente en ligne ?', answer: 'Oui : fond détouré par AI Masking, vues sous plusieurs angles et animations 360° exportées pour vos fiches produit. Les réglages enregistrés alignent chaque nouvelle référence sur les précédentes.' },
-      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
+      { question: 'Quel studio photo choisir pour des bijoux ?', answer: 'L\'Alphashot Micro Pro v2 pour les plus petites pièces, l\'Alphashot Pro G2 pour les plus volumineuses. Pour un collier, mesurez la présentation voulue : jusqu\'à 18 cm de long, la Micro Pro v2 convient ; un collier présenté en entier qui dépasse cette longueur relève de l\'Alphashot Pro G2, qui accepte des objets jusqu\'à 35 × 35 × 40 cm selon Orbitvu. Pour la Micro Pro v2, Orbitvu propose en accessoire un support semi-transparent qui permet de suspendre chaînes et colliers sans apparaître sur l\'image finale. Le choix de l\'appareil, de l\'objectif et de l\'éclairage est détaillé dans notre guide « Quel équipement choisir pour la photo de bijoux ? », parmi les ressources de cette page.' },
     ],
   },
 
@@ -1366,7 +1367,7 @@ export const secteurs: Secteur[] = [
             'Packshot et 360° haute résolution en interne, avec focus stacking automatique',
           avantages: [
             'Focus stacking : netteté absolue sur cadran, index, aiguilles et complications',
-            'Éclairage polarisé : reflets maîtrisés sur verre saphir, boîtiers polis et maillons',
+            'Éclairage maîtrisé : il aide à réduire les reflets indésirables sur le verre saphir, les boîtiers polis et les maillons',
             'Macro haute résolution : guillochages, sertissages et gravures restitués',
             'Rotation 360° interactive : la montre sous tous les angles pour l\'e-commerce',
             'Production internalisée : prototypes et nouveautés restent dans vos murs',
@@ -1386,23 +1387,30 @@ export const secteurs: Secteur[] = [
         },
       ],
     },
-    casClients: [
+    useCases: [
       {
-        titre: '[CAS_CLIENT_A_VALIDER] Horloger suisse',
-        description:
-          '[CAS_CLIENT_A_VALIDER] Cas client horloger suisse (Genève / Vallée de Joux) à documenter : internalisation de la production packshot + 360°.',
+        titre: 'Documentation visuelle du contrôle qualité',
+        processus: 'Chaque lot de montres ou de composants est photographié avec le même modèle de prise de vue, lancé par le scan du code-barres de la référence : même lumière, même cadrage, mêmes réglages. Vos contrôleurs comparent des images homogènes d\'un lot à l\'autre.',
+        fonctionsOrbitvu: ['Modèles de prise de vue', 'Scan du code-barres', 'Superfocus'],
+        valeur: 'Des images comparables d\'un lot à l\'autre',
+      },
+      {
+        titre: 'État avant/après intervention et SAV',
+        processus: 'En atelier SAV, en Suisse comme en France : la montre est photographiée à réception sous plusieurs angles, puis après révision, avec le même modèle de prise de vue et les repères de position de la visée directe. Les fichiers d\'origine, sans retouche, documentent son état.',
+        fonctionsOrbitvu: ['Repères de position', 'Modèles de prise de vue', 'Superfocus'],
+        valeur: 'Un état de la montre documenté et partageable',
       },
     ],
     cta: {
       titre: 'Équipez votre production horlogère',
       description:
-        'Devis studio Orbitvu horlogerie + démonstration avec vos propres montres, en France ou en Suisse.',
+        'Devis studio Orbitvu horlogerie + démonstration avec vos propres montres, pour la France et la Suisse.',
     },
     faq: [
-      { question: 'Comment photographier une montre sans reflets sur le verre saphir ?', answer: 'Les studios Orbitvu utilisent un éclairage LED polarisé qui supprime les reflets parasites sur le verre saphir, les boîtiers polis et les bracelets métalliques dès la capture, sans retouche manuelle.' },
+      { question: 'Comment photographier une montre sans reflets sur le verre saphir ?', answer: 'Un éclairage maîtrisé aide à réduire les reflets indésirables sur le verre saphir et les boîtiers polis. Sur l\'Alphashot Pro G2, l\'AI Photo Assistant propose une configuration d\'éclairage adaptée au produit.' },
       { question: 'Peut-on automatiser le packshot 360° d\'une montre ?', answer: 'Oui. La rotation 360° est entièrement automatisée : la montre est photographiée sous tous les angles en quelques minutes, avec un rendu interactif intégrable directement dans une fiche produit e-commerce.' },
-      { question: 'Livrez-vous et installez-vous en Suisse ?', answer: 'Oui. PackshotCreator est distributeur officiel Orbitvu pour la France et la Suisse : livraison, installation et formation sur site sont assurées dans toute la Suisse, notamment dans l\'Arc jurassien et le bassin lémanique. Contact Suisse : +41 44 580 43 84.' },
-      { question: 'Peut-on tester un studio avec ses propres montres avant l\'achat ?', answer: 'Oui. Notre showroom, à moins de 2 heures de Genève, vous accueille sur rendez-vous pour une démonstration avec vos propres montres, accompagné par nos experts.' },
+      { question: 'Livrez-vous et installez-vous en Suisse ?', answer: 'Oui. PackshotCreator est le distributeur officiel Orbitvu pour la France et la Suisse. La livraison et l\'installation sur site sont proposées dans toute la Suisse, y compris dans l\'Arc jurassien et le bassin lémanique, et facturées en supplément ; la formation, à distance ou sur site, est facturée séparément. Contact Suisse : +41 44 580 43 84.' },
+      { question: 'Peut-on tester un studio avec ses propres montres avant l\'achat ?', answer: 'Oui. Notre showroom près de Lyon vous accueille sur rendez-vous pour une démonstration avec vos propres montres, accompagnée par nos experts.' },
       { question: 'Comment préserver la confidentialité des prototypes avant un lancement ?', answer: 'En internalisant la production visuelle avec un studio automatisé, vos prototypes ne quittent jamais vos locaux : aucun prestataire externe n\'a accès aux nouveautés avant leur présentation officielle.' },
     ],
   },

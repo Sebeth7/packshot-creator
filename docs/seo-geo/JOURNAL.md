@@ -34,6 +34,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Bijoux et horlogerie : compléments métier demandés par Sébastien (colliers ; contrôle qualité et SAV des montres), affirmations FR non établies corrigées · Claude de Laurent
+
+**Chantier** : retour de Sébastien du 17/10, rapporté par Laurent ; GO_CODE puis GO_PR/PUSH de Laurent du 17/10 ; suite de #104 (fusionnée le 17/10, `70ba55d`) | **PR** : celle de la branche `claude/ecstatic-carson-i20oxn` | **Commit** : voir PR
+
+**Quoi** — `data/secteurs.ts` seul :
+- `bijoux-joaillerie` : un défi « collier » (chaîne fine, bélière, pendentif, fermoir, profondeur, présentation complète) ; FAQ 5 : choix du studio selon l'encombrement du collier (Micro Pro v2 jusqu'à 18 cm de long, Pro G2 jusqu'à 35 × 35 × 40 cm) et support semi-transparent proposé en accessoire par Orbitvu. Rien de changé sur les bagues.
+- `horlogerie` : deux cas d'usage (documentation visuelle du contrôle qualité ; état avant/après intervention et SAV, « en Suisse comme en France »), sans détection automatique des défauts ni certification. Affirmations non établies corrigées : éclairage polarisé (puce et FAQ 1) ; suppression des reflets « sans retouche manuelle » (FAQ 1) ; formation « assurée » (FAQ 3 : livraison et installation proposées et facturées en supplément, formation facturée séparément, D32) ; showroom « à moins de 2 heures de Genève » (FAQ 4 : « près de Lyon », D57, arbitrage de Laurent) ; démonstration « en Suisse » (appel final : « pour la France et la Suisse »). Placeholder `[CAS_CLIENT_A_VALIDER]` retiré (non rendu).
+
+**Pourquoi** — Retour de Sébastien du 17/10 : fond de la page Bijoux validé ; plus de détails métier sur les colliers et les montres, sans surcharge ; l'horlogerie est un marché distinct, intéressant en Suisse pour la documentation qualité et le SAV. Rapport V10 du 17/10 : affirmations FR non établies sur la page Horlogerie.
+
+**Fichiers** — `data/secteurs.ts`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — `/fr/industrie/bijoux-joaillerie` (et `/en/…`, servi en français, `noindex`) : un défi et deux phrases de FAQ. `/fr/industrie/horlogerie` : section « Et si vos studios faisaient bien plus ? » (2 cartes) et 5 corrections. URL, title, meta description, H1, canonical, hreflang, robots, questions de FAQ, liens et images inchangés.
+
+**Vérifié** —
+- Sources primaires lues le 17/10 : orbitvu.com `/products/alphashot-micro-v2` (« small objects up to 18 cm long », 1 kg, accessoire « Support for chains and earrings ») ; `/products/alphashot-pro-g2` (35 x 35 x 40 cm, 10 kg) ; `/software/orbitvu-station` (modèles, « Scan the barcode », « position overlays », Super Focus) ; `/software/ai` (AI Photo Assistant sur Pro G2 et XL G2). Internes : D45 (`data/produits/fiches-techniques.ts`), D32, D57, page distributeur suisse (formation Essential à distance, Master en présentiel), arbitrage EN de Laurent du 13/10.
+- `npx tsc --noEmit` vert ; Vitest 1104/1104 ; `npx next build` vert (variables factices). HTML prérendu contre `main` `db3b34f`, identifiant de build neutralisé : 384 pages, 381 identiques ; seuls les hubs bijoux FR et EN et le hub horlogerie FR diffèrent ; métadonnées, types JSON-LD, questions de FAQ, H1, liens et images identiques ; `FAQPage` = FAQ visible. EN horlogerie et de-ch identiques.
+- Rendu local (`next start`, Chromium) à 1 440 et 390 px : 1 H1, aucun débordement horizontal, aucune erreur console.
+
+**Supposé** — Rien.
+**Non regardé** — `www` (R4). de-ch : `/de-ch/branchen/uhren` et `/de-ch/branchen/schmuck` gardent leurs affirmations non établies (lot distinct, traduction et validation). EN horlogerie : fichier propre, `noindex`, sans les deux cas d'usage. Médias authentiques manquants : chantier distinct.
+
+**Suite** — CI et Preview de la PR. Validation éditoriale D42 des nouveaux textes : Sébastien ne les a pas vus. GO_MERGE et GO_PUBLICATION distincts ; si Studios fusionne avant, reprendre `main` (JOURNAL par union). Réévaluation D44 du hub horlogerie (une section ajoutée) par G6.
+
+---
+
 ## 2026-10-17 · Lemlist et `trail.packshot-creator.com` abandonnés (décision de Laurent) ; réserve `trail.` close · Claude de Laurent
 
 **Chantier** : réserve `trail.` ouverte après le déploiement du Worker #164 | **PR** : #166 (documentation) | **Commit** : voir PR
