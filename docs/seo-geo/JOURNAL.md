@@ -74,6 +74,28 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Studios — bloc « Des usages bien au-delà du e-commerce » (retour de Sébastien) · Claude de Laurent
+
+**Chantier** : complément Studios demandé par Sébastien le 17/10, relayé par Laurent (GO_CODE puis GO_PR/PUSH du 17/10 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : à ouvrir depuis `claude/friendly-ritchie-aop8qn` | **Base** : `main` `db3b34f`
+
+**Quoi** — Dans la section « À quoi sert un studio photo automatisé ? » de la landing FR (`LandingStudios.tsx`), sous le texte et le visuel : un H3 « Des usages bien au-delà du e-commerce », l'introduction fournie par Laurent et quatre usages (contrôle qualité, documentation technique, logistique et pièces détachées, SAV). Aucun H2, aucune ancre, aucun média ; les sommaires D44 ne listent que les titres de section.
+
+**Pourquoi** — Retour de Sébastien : mieux signaler les usages hors e-commerce, sans anticiper la future branche du site dédiée à ces marchés.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` (+31 lignes) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : un H3 et quatre cartes de plus sur `/fr/studios-photo-automatises` ; title, meta description, canonical, hreflang, JSON-LD, ancres, CTA, formulaire et médias inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — Alphashot XL G2 : objet jusqu'à 60 × 40 × 70 cm et 25 kg, référentiel D45 (`data/produits/fiches-techniques.ts`, `version: 'etablie'`, statuts conformes, source Orbitvu), valeurs déjà citées dans la FAQ de la page. `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu : 383 pages sur 384 identiques à `main`, seule `/fr/studios-photo-automatises` change (un H3 ajouté) ; Playwright Studios de `navigation-pages-longues` 14/14, balayage sans recouvrement compris ; captures à 1 440 et 390 px sans débordement.
+**Supposé** — Aucun.
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; Safari, Firefox ; aucune source externe ni API payante utilisée.
+
+**Garde-fous de formulation** — Aucune détection automatique des défauts, aucune traçabilité certifiée, aucune valeur probante juridique ; la conservation des fichiers d'origine est formulée comme une pratique de l'utilisateur.
+
+**Suite** — CI et Preview de la PR ; QA Chrome ciblée de la section ; GO_MERGE et GO_PUBLICATION distincts.
+
+---
+
 ## 2026-10-17 · Studios #108 — publication et QA `www` (événement SEO distinct de #112) · Claude de Laurent
 
 **Chantier** : enregistrement documentaire de la publication de #108 (fiche « PSC_STUDIOS_108_ENREGISTREMENT_SEO_2026-10-17 » de Laurent) | **PR** : #108, fusionnée | **Base** : `main` `62aa020`
