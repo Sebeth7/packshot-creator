@@ -90,12 +90,15 @@ const VISUELS = {
   },
 } satisfies Record<string, Visuel>;
 
-/** V12 : packshots Orbitvu publiés sur les fiches machines, présentés comme exemples de résultat. */
+/**
+ * V12 : packshots Orbitvu publiés sur les fiches machines, présentés comme exemples de résultat. Ordre du bandeau
+ * résultats : le fauteuil en photo principale (aucune marque tierce visible), puis les trois vignettes.
+ */
 const EXEMPLES = [
-  { src: '/images/machines/alphashot-pro-g2/packshot-mascara.avif', w: 1080, h: 1080, alt: 'Mascara rouge sur fond blanc', machine: 'Alphashot Pro G2' },
-  { src: '/images/machines/alphashot-360/packshot-camera.avif', w: 1080, h: 1080, alt: 'Appareil photo instantané blanc sur fond blanc', machine: 'Alphashot 360' },
   { src: '/images/machines/alphastudio-compact/packshot-chair.avif', w: 1080, h: 1080, alt: 'Fauteuil jaune sur fond blanc', machine: 'Alphastudio Compact' },
   { src: '/images/machines/alphatable-alphadesk/packshot-coat.avif', w: 1200, h: 1200, alt: 'Manteau rose présenté à plat sur fond blanc', machine: 'Alphatable' },
+  { src: '/images/machines/alphashot-pro-g2/packshot-mascara.avif', w: 1080, h: 1080, alt: 'Mascara rouge sur fond blanc', machine: 'Alphashot Pro G2' },
+  { src: '/images/machines/alphashot-360/packshot-camera.avif', w: 1080, h: 1080, alt: 'Appareil photo instantané blanc sur fond blanc', machine: 'Alphashot 360' },
 ] as const;
 
 const CHAINE = [
@@ -121,6 +124,33 @@ const ROLE_OPERATEUR = [
   'le place et choisit le modèle de prise de vue ;',
   'contrôle l’image à l’écran et ajuste si besoin ;',
   'valide les images avant leur envoi.',
+] as const;
+
+/**
+ * Usages hors e-commerce (retour de Sébastien du 17/10/2026, GO_CODE de Laurent). Aucune détection automatique des
+ * défauts, aucune traçabilité certifiée, aucune valeur probante promise ; XL G2 : caractéristiques du référentiel D45.
+ */
+const USAGES_HORS_ECOMMERCE = [
+  { nom: 'Contrôle qualité', texte: 'Des séries d’images comparables, prises avec les mêmes réglages, facilitent le contrôle visuel par vos équipes.' },
+  { nom: 'Documentation technique', texte: 'Photographie de composants, d’assemblages et d’équipements, avec le même cadrage et le même éclairage d’une prise de vue à l’autre.' },
+  {
+    nom: 'Logistique et pièces détachées',
+    texte: 'Identification visuelle, catalogage et gestion des références à partir de photos homogènes. Pour les pièces volumineuses, l’Alphashot XL G2 accepte des objets jusqu’à 60 × 40 × 70 cm et 25 kg.',
+  },
+  { nom: 'SAV', texte: 'Documentation de l’état d’un produit à réception et après intervention, en conservant les fichiers d’origine.' },
+] as const;
+
+/**
+ * Parcours d'une référence (enrichissement du 17/10/2026, GO_CODE de Laurent sur #168) : étapes publiées par Orbitvu
+ * (orbitvu.com/why-orbitvu/how-it-works : scan du code produit, modèles d'éclairage et de scène, export vers des
+ * destinations prédéfinies) ; vérification par l'opérateur comme dans `ROLE_OPERATEUR`. Présenté dans un seul
+ * encadré, sous les usages qu'il sert (finition du 17/10).
+ */
+const PARCOURS = [
+  'Identifier une référence produit, par saisie ou scan d’un code-barres.',
+  'Rappeler un modèle de prise de vue : cadrage, lumière, traitements.',
+  'Photographier les vues nécessaires et faire vérifier les images par l’opérateur.',
+  'Associer les images à la référence et les exporter vers les destinations configurées.',
 ] as const;
 
 const FONCTIONS_IA = [
@@ -202,6 +232,9 @@ const SECTION = 'py-16 lg:py-24 scroll-mt-20';
 const H2 = 'text-3xl lg:text-4xl font-heading font-bold text-heading-dark leading-tight mb-5 text-balance';
 const PARAGRAPHE = 'text-lg text-neutral-medium leading-relaxed';
 const LIEN = 'inline-flex items-center gap-1.5 font-semibold text-very-peri-600 hover:text-very-peri-700 underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-very-peri-400 rounded';
+
+/** Espace insécable avant « ; : ? ! » dans les listes : la ponctuation ne tombe plus seule en début ou fin de ligne. */
+const insecable = (texte: string) => texte.replace(/ ([;:?!])/g, ' $1');
 
 function ReponseFaq({ item }: { item: QuestionFaq }) {
   if (!item.lien) return <>{item.r}</>;
@@ -307,6 +340,65 @@ function SchemaCollection() {
   );
 }
 
+/**
+ * Bandeau résultats (pilote du 17/10/2026, maquette A du lot PSC_WOW_01_STUDIOS, GO_CODE_WOW_STUDIOS) : les quatre
+ * exemples V12, déplacés depuis « Ce que vous obtenez », entre le hero et la chaîne S1 ; fauteuil en photo
+ * principale, trois vignettes. Une légende de provenance par photo (décision #108, point 5). Aucun titre : H1 et H2
+ * inchangés, la chaîne S1 précède toujours la première section (D44). L'accroche est une proposition éditoriale
+ * de Laurent, à valider.
+ */
+function BandeauResultats() {
+  const [principal, ...vignettes] = EXEMPLES;
+  return (
+    <section aria-label="Exemples de résultats photographiques Orbitvu" className="bg-white py-12 lg:py-20">
+      <div className={`${CONTENEUR} grid gap-8 lg:grid-cols-12 lg:gap-x-12`}>
+        <div className="lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-very-peri-600">Résultats photographiques</p>
+          <p className="mb-4 font-heading text-3xl lg:text-5xl font-bold leading-tight text-heading-dark text-balance">
+            La qualité se voit. La production se maîtrise.
+          </p>
+          <p className={PARAGRAPHE}>Des photographies homogènes sur fond blanc, produites en interne par votre équipe avec un studio Orbitvu.</p>
+        </div>
+        <figure className="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:self-center">
+          <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+            <Image
+              src={principal.src}
+              alt={principal.alt}
+              width={principal.w}
+              height={principal.h}
+              sizes="(min-width: 1280px) 592px, (min-width: 1024px) 46vw, calc(100vw - 32px)"
+              loading="lazy"
+              className="block w-full h-auto"
+            />
+          </div>
+          <figcaption className="mt-2 text-sm text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {principal.machine}.</figcaption>
+        </figure>
+        <div className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:self-start">
+          <ul className="grid grid-cols-3 gap-3">
+            {vignettes.map((e) => (
+              <li key={e.src}>
+                <figure>
+                  <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+                    <Image src={e.src} alt={e.alt} width={e.w} height={e.h} sizes="(min-width: 1280px) 189px, (min-width: 1024px) 15vw, 30vw" loading="lazy" className="block w-full h-auto" />
+                  </div>
+                  <figcaption className="mt-2 text-xs leading-snug text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {e.machine}.</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          {/* Lien en ligne, pas en flex : sur deux lignes à 390 px, la flèche suit le dernier mot. */}
+          <p className="mt-6">
+            <a href="#demonstration" className={LIEN.replace('inline-flex items-center gap-1.5', 'inline')}>
+              Demander une démonstration avec vos produits
+              <ArrowRight className="ml-1.5 inline h-4 w-4 align-[-0.125em]" aria-hidden="true" />
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const ENTREES = Object.entries(TITRES).map(([id, libelle]) => ({ id, libelle }));
 
 /**
@@ -344,10 +436,12 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
               title="Studios photo Orbitvu : présentation de la gamme"
               labels={{ pause: 'Mettre la vidéo en pause', play: 'Lire la vidéo' }}
             />
-            <figcaption className="mt-2 text-sm text-future-dusk-300">Film de présentation de la gamme Orbitvu.</figcaption>
           </figure>
         }
       />
+
+      {/* 1 bis. Résultats : les quatre exemples V12, avant la chaîne. */}
+      <BandeauResultats />
 
       {/* 2. S1 : chaîne de production. */}
       <Chaine />
@@ -377,8 +471,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             </p>
             <p className={`${PARAGRAPHE} mb-6`}>
               Distributeur officiel Orbitvu, PackshotCreator vous accompagne dans le choix de votre équipement. Votre équipe
-              réalise les prises de vue en interne. La livraison et l’installation sont facturées en supplément ; la formation
-              est facturée séparément.
+              réalise les prises de vue en interne.
             </p>
             <aside className="rounded-xl bg-future-dusk-0 border border-neutral-100 p-5">
               <h3 className="font-heading font-semibold text-heading-dark mb-1">Quand un prestataire reste plus adapté</h3>
@@ -390,9 +483,40 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
           <Figure
             visuel={VISUELS.studio}
             alt="Alphashot XL G2 aux portes ouvertes : chambre de prise de vue blanche, panneaux d’éclairage et appareil photo monté sur son bras"
-            legende="Alphashot XL G2, portes ouvertes : chambre de prise de vue, éclairage et appareil photo réunis dans le studio (visuel Orbitvu)."
+            legende="Alphashot XL G2 (visuel Orbitvu)."
             sizes="(min-width: 1024px) 600px, 100vw"
           />
+        </div>
+        {/* Usages hors e-commerce : H3 de la section, pas une entrée des sommaires. */}
+        <div className={`${conteneur} mt-14 lg:mt-20`}>
+          <h3 className="text-2xl font-heading font-bold text-heading-dark mb-3 text-balance">Des usages bien au-delà du e-commerce</h3>
+          <p className={`${PARAGRAPHE} max-w-3xl mb-6`}>
+            Les studios Orbitvu ne servent pas uniquement à produire des images pour les catalogues et les boutiques en ligne. Ils
+            peuvent également fournir des photographies homogènes pour documenter des produits et des pièces tout au long de leur
+            cycle de vie.
+          </p>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {USAGES_HORS_ECOMMERCE.map((u) => (
+              <li key={u.nom} className="rounded-xl bg-future-dusk-0 border border-neutral-100 p-5 text-neutral-medium leading-relaxed">
+                <strong className="block font-semibold text-heading-dark mb-1">{u.nom}</strong>
+                {u.texte}
+              </li>
+            ))}
+          </ul>
+          {/* Parcours d'une référence : H3 de la section, pas une entrée des sommaires ; un seul encadré, aucun visuel. */}
+          <div className="mt-8 rounded-2xl border border-neutral-200 p-5 sm:p-6">
+            <h3 className="text-lg font-heading font-bold text-heading-dark mb-4 text-balance">Le parcours d’une référence, en quatre étapes</h3>
+            <ol className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+              {PARCOURS.map((etape, i) => (
+                <li key={etape} className="flex gap-3 text-neutral-medium leading-relaxed">
+                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-very-peri-100 text-sm font-semibold text-very-peri-600 tabular-nums" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <span>{insecable(etape)}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -404,13 +528,13 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             <div className="rounded-2xl bg-white border border-neutral-200 p-6">
               <h3 className="font-heading font-semibold text-heading-dark mb-3">Le studio et Orbitvu Station</h3>
               <ul className="list-disc pl-5 space-y-2 text-neutral-medium leading-relaxed">
-                {ROLE_STUDIO.map((r) => <li key={r}>{r}</li>)}
+                {ROLE_STUDIO.map((r) => <li key={r}>{insecable(r)}</li>)}
               </ul>
             </div>
             <div className="rounded-2xl bg-white border border-neutral-200 p-6">
               <h3 className="font-heading font-semibold text-heading-dark mb-3">L’opérateur</h3>
               <ul className="list-disc pl-5 space-y-2 text-neutral-medium leading-relaxed">
-                {ROLE_OPERATEUR.map((r) => <li key={r}>{r}</li>)}
+                {ROLE_OPERATEUR.map((r) => <li key={r}>{insecable(r)}</li>)}
               </ul>
             </div>
           </div>
@@ -491,21 +615,10 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
           <p className={`${PARAGRAPHE} max-w-3xl`}>
             Selon l’équipement et les réglages, un studio Orbitvu peut produire des photos fixes, des séquences, des vidéos ou des
             vues à 360°. Selon le système utilisé, les produits photographiés et l’organisation de la production, il est possible
-            de réaliser de l’ordre de 500 photos par jour. Les mesures physiques sont réservées aux configurations qui les prennent en charge ; la lecture
-            d’informations sur l’emballage par AI OCR est une fonction distincte, soumise à vérification.
+            de réaliser de l’ordre de 500 photos par jour. Avec la variante MDC de l’Alphashot XL G2, les dimensions et le
+            poids du produit sont mesurés dans le même cycle que les photos, par deux lasers et une balance intégrée ; la
+            version standard ne mesure pas.
           </p>
-          <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {EXEMPLES.map((e) => (
-              <li key={e.src}>
-                <figure>
-                  <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white">
-                    <Image src={e.src} alt={e.alt} width={e.w} height={e.h} sizes="(min-width: 1024px) 296px, 50vw" loading="lazy" className="block w-full h-auto" />
-                  </div>
-                  <figcaption className="mt-2 text-sm text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {e.machine}.</figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
           <p className="mt-6">
             <Link href={fiche('alphashot-360')} className={LIEN}>
               Pour les vues à 360°, voir l’Alphashot 360 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -534,7 +647,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             <div>
               <p className="text-lg text-future-dusk-200 mb-3">Quatre questions orientent le choix :</p>
               <ul className="list-disc pl-5 space-y-1.5 text-future-dusk-200 leading-relaxed">
-                {CRITERES.map((c) => <li key={c}>{c}</li>)}
+                {CRITERES.map((c) => <li key={c}>{insecable(c)}</li>)}
               </ul>
             </div>
             <p className="text-lg text-future-dusk-200 leading-relaxed">
@@ -564,7 +677,7 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
           <ul className="grid gap-4 md:grid-cols-2 max-w-5xl">
             {PREREQUIS.map((p) => (
               <li key={p.titre} className="rounded-xl border border-neutral-200 p-5 text-neutral-medium leading-relaxed">
-                <strong className="font-semibold text-heading-dark">{p.titre}</strong> {p.texte}
+                <strong className="font-semibold text-heading-dark">{p.titre}</strong> {insecable(p.texte)}
               </li>
             ))}
           </ul>

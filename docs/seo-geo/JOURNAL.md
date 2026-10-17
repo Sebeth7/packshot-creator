@@ -74,6 +74,118 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Studios — bandeau résultats sous le hero (pilote WOW, maquette A) · Claude de Laurent
+
+**Chantier** : « EXÉCUTION PILOTE WOW STUDIOS #168 » (GO_CODE_WOW_STUDIOS, GO_PR_PUSH_WOW_STUDIOS de Laurent ; lot PSC_WOW_01_STUDIOS du 17/10, maquette A ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon | **Base** : `main` `db3b34f`
+
+**Quoi** — `LandingStudios.tsx` seul : les quatre exemples V12 quittent la galerie de « Ce que vous obtenez » pour un bandeau entre le hero et la chaîne S1 (fauteuil en photo principale ; manteau, mascara, appareil photo en vignettes ; une légende de provenance par photo, texte inchangé, décision #108 point 5 ; surtitre, accroche « La qualité se voit. La production se maîtrise. », une phrase et le lien « Demander une démonstration avec vos produits » vers `#demonstration`). Ancienne galerie retirée, texte et lien de la section conservés. Aucun nouveau média ni composant partagé ; les JPEG d'aperçu du lot ne sont pas utilisés.
+
+**Pourquoi** — Mettre en valeur les résultats photographiques plus tôt : première photo à 918 px au lieu de 6 046 px à 1 440 × 900, à 1 318 px au lieu de 9 160 px à 390 × 844.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` ; `docs/seo-geo/ETAT.md` (ligne #168) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : bandeau visible juste sous le hero ; H1, 12 H2, title, meta, canonical, hreflang, JSON-LD, ALT, film, CTA, formulaire et navigation D44 inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu contre `2eb4f56` : 383 pages sur 384 identiques, marqueurs SEO identiques ; titres H1/H2/H3 identiques (1, 12, 36) ; ALT identiques ; 4 légendes « Exemple de résultat présenté par Orbitvu pour… » ; chaque photo présente une fois ; ordre H1 < bandeau < chaîne S1 ; Playwright Studios de `navigation-pages-longues` 14/14 ; build local, Chromium, 3 passages : LCP toujours l'affiche du film (médiane 196 → 220 ms à 1 440 px, 236 → 208 ms à 390 px, écart dans le bruit local), CLS au chargement 0 avant et après, CLS après défilement complet inchangé (0,0008 à 1 440 px, 0 à 390 px) ; captures à 1 440 et 390 px sans débordement. Lien du bandeau corrigé à 390 px (flèche solidaire du dernier mot).
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) et `www` (R4) ; mesures de terrain (CrUX) ; validation éditoriale de l'accroche (proposition de Laurent, non approuvée par Sébastien).
+
+**Suite** — CI de la nouvelle tête ; QA Chrome ; GO_MERGE_168 et GO_PUBLICATION_168 distincts.
+
+---
+
+## 2026-10-17 · Studios — finition qualitative de #168 : redondances allégées, légendes, typographie · Claude de Laurent
+
+**Chantier** : « FINITION QUALITATIVE #168 » de Laurent (GO du périmètre #168 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon | **Base** : `main` `db3b34f`
+
+**Quoi** — `LandingStudios.tsx` seul, mêmes sections, aucun média, schéma, CTA, formulaire, métadonnée ni navigation D44 modifié :
+- « À quoi sert » : phrase de facturation (livraison, installation, formation) retirée, déjà dite dans « Ce que comprend un projet » et la FAQ ; quatre usages conservés mot pour mot ; parcours en quatre étapes conservé mot pour mot, regroupé dans un seul encadré à titre plus discret, sans cartes séparées ;
+- note « Mesures physiques » retirée de « À quoi sert » et fondue dans « Ce que vous obtenez », où elle remplace la réserve générale sur les mesures et sur AI OCR (AI OCR déjà soumis à vérification dans la section IA) : variante MDC de l'Alphashot XL G2, dimensions et poids mesurés dans le même cycle par deux lasers et une balance intégrée ; version standard sans mesure ;
+- légendes : « Film de présentation de la gamme Orbitvu. » supprimée (descriptive, hors des légendes de provenance de la décision #108, point 5) ; légende du visuel XL G2 réduite à « Alphashot XL G2 (visuel Orbitvu). » ; « visuel Orbitvu » et « Exemple de résultat présenté par Orbitvu pour… » conservés ;
+- typographie : espace insécable avant « ; : ? ! » dans les listes du composant (rôles, critères, prérequis, parcours) ; constaté sur captures : « ; » seul en fin de ligne à 1 440 px, « : » en début de ligne à 390 px.
+
+**Pourquoi** — Demande de Laurent : page plus convaincante, moins administrative et moins textuelle, sans perdre les apports de Sébastien.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` ; `docs/seo-geo/ETAT.md` (ligne #168) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : `/fr/studios-photo-automatises` un peu plus courte ; title, meta description, canonical, hreflang, JSON-LD, ancres, CTA, formulaire et médias inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu contre `eae7ade` : 383 pages sur 384 identiques, seule `/fr/studios-photo-automatises` change, marqueurs SEO identiques, 12 H2 ; Playwright Studios de `navigation-pages-longues` 14/14 ; captures à 1 440 et 390 px sans débordement.
+**Supposé** — Aucun.
+**Non regardé** — Liste des détails typographiques de la QA Chrome groupée : non reçue ; seuls les défauts constatés sur captures sont traités. Preview (SSO) et `www` (R4).
+
+**Suite** — CI de la nouvelle tête ; QA Chrome ; GO_MERGE_168 et GO_PUBLICATION_168 distincts.
+
+---
+
+## 2026-10-17 · Studios — parcours d'une référence en quatre étapes et note XL G2 standard / MDC (#168) · Claude de Laurent
+
+**Chantier** : enrichissement Studios du 17/10, second niveau (« GO_CODE / GO_PR_PUSH — ENRICHISSEMENT STUDIOS #168 » de Laurent ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon, même branche | **Base** : `main` `db3b34f`
+
+**Quoi** — Dans la section « À quoi sert un studio photo automatisé ? », sous les quatre cartes hors e-commerce (conservées) : un H3 « Le parcours d'une référence, en quatre étapes » (liste numérotée en 2 × 2, étapes de Laurent mot pour mot) et une note « Mesures physiques » : l'Alphashot XL G2 standard produit les images sans mesurer ; sa variante MDC ajoute, dans le même cycle, les dimensions par deux lasers et la pesée sur balance intégrée. Aucun H2, aucune ancre, aucun visuel.
+
+**Pourquoi** — Enrichissement métier demandé par Laurent à partir des recherches du 17/10.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` (+30 lignes) ; `docs/seo-geo/ETAT.md` (ligne #168 en B) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : un H3, quatre étapes et une note de plus sur `/fr/studios-photo-automatises` ; title, meta description, canonical, hreflang, JSON-LD, ancres, CTA, formulaire et médias inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — Sources primaires Orbitvu lues le 17/10 (pages publiques, aucun appel payant) : `orbitvu.com/why-orbitvu/how-it-works/` (« Start by scanning the unique product code », réglages d'éclairage et de scène en un clic, « Export and publish online to multiple pre-defined locations ») ; `orbitvu.com/products/alphashot-xl-g2` (« Alphashot XL G2 MDC - all of the above, plus dimensions and weight captured in the same cycle », « Two independent lasers measure L × W × H », balance de 25 kg). Vérification par l'opérateur : formulation existante de la page (`ROLE_OPERATEUR`). `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu contre la tête précédente : 383 pages sur 384 identiques, seule `/fr/studios-photo-automatises` change, marqueurs SEO identiques ; Playwright Studios de `navigation-pages-longues` 14/14 ; captures à 1 440, 1 280, 1 024 et 390 px : aucun débordement, aucun recouvrement du sommaire latéral.
+**Supposé** — « par saisie » : la saisie manuelle de la référence n'est pas décrite mot pour mot par la page Orbitvu lue ; formulation de Laurent conservée.
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; taille mesurable de la variante MDC et précision de la balance, publiées par Orbitvu mais non affichées (hors référentiel D45). Aucun visuel ajouté : le seul média Orbitvu proche (`machines/alphashot-xl-g2/hw-turntable.avif`, plateau de la variante MDC) n'illustre pas le parcours et n'entre pas dans la confirmation de droits du 17/10 pour cette page.
+
+**Suite** — CI et Preview de #168 ; QA Chrome ciblée de la section ; GO_MERGE et GO_PUBLICATION distincts.
+
+---
+
+## 2026-10-17 · Studios — bloc « Des usages bien au-delà du e-commerce » (retour de Sébastien) · Claude de Laurent
+
+**Chantier** : complément Studios demandé par Sébastien le 17/10, relayé par Laurent (GO_CODE puis GO_PR/PUSH du 17/10 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon, branche `claude/friendly-ritchie-aop8qn` | **Base** : `main` `db3b34f`
+
+**Quoi** — Dans la section « À quoi sert un studio photo automatisé ? » de la landing FR (`LandingStudios.tsx`), sous le texte et le visuel : un H3 « Des usages bien au-delà du e-commerce », l'introduction fournie par Laurent et quatre usages (contrôle qualité, documentation technique, logistique et pièces détachées, SAV). Aucun H2, aucune ancre, aucun média ; les sommaires D44 ne listent que les titres de section.
+
+**Pourquoi** — Retour de Sébastien : mieux signaler les usages hors e-commerce, sans anticiper la future branche du site dédiée à ces marchés.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` (+31 lignes) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : un H3 et quatre cartes de plus sur `/fr/studios-photo-automatises` ; title, meta description, canonical, hreflang, JSON-LD, ancres, CTA, formulaire et médias inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — Alphashot XL G2 : objet jusqu'à 60 × 40 × 70 cm et 25 kg, référentiel D45 (`data/produits/fiches-techniques.ts`, `version: 'etablie'`, statuts conformes, source Orbitvu), valeurs déjà citées dans la FAQ de la page. `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu : 383 pages sur 384 identiques à `main`, seule `/fr/studios-photo-automatises` change (un H3 ajouté) ; Playwright Studios de `navigation-pages-longues` 14/14, balayage sans recouvrement compris ; captures à 1 440 et 390 px sans débordement.
+**Supposé** — Aucun.
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; Safari, Firefox ; aucune source externe ni API payante utilisée.
+
+**Garde-fous de formulation** — Aucune détection automatique des défauts, aucune traçabilité certifiée, aucune valeur probante juridique ; la conservation des fichiers d'origine est formulée comme une pratique de l'utilisateur.
+
+**Suite** — CI et Preview de la PR ; QA Chrome ciblée de la section ; GO_MERGE et GO_PUBLICATION distincts.
+
+---
+
+## 2026-10-17 · Studios #108 — publication et QA `www` (événement SEO distinct de #112) · Claude de Laurent
+
+**Chantier** : enregistrement documentaire de la publication de #108 (fiche « PSC_STUDIOS_108_ENREGISTREMENT_SEO_2026-10-17 » de Laurent) | **PR** : #108, fusionnée | **Base** : `main` `62aa020`
+
+**Quoi** — Événement ultérieur ; l'entrée suivante (GO final de préparation) reste exacte à sa date.
+- **GitHub vérifié** : #108 fusionnée dans `main` le 17/10/2026 à **13:26:43 UTC**, commit de fusion `62aa02052ddee911c259b7909f443b51cc7bebb9`, tête intégrée `c9ab36291c56de8db4f242670c82d8117cddcbf9` ; CI 4/4 verte sur cette tête. GO_MERGE_108 et GO_PUBLICATION_108 conditionnels du 17/10 appliqués après la QA Chrome de la Preview `c9ab362` (PASS_WITH_RESERVES), gel levé pour cette seule PR.
+- **`sysnext`** : nouvelle page FR constatée au plus tard à 13:28 UTC (barre et sommaire latéral, H1, visuel remplaçant V05, aucun « Préversion ») ; EN et de-ch sur les textes de #109 ; `smoke.mjs` vert (17 pages, 3 ressources).
+- **`www`** (rapport de Laurent, R4) : FR, EN et de-ch contrôlées dans Chrome le 17/10, **PASS_WITH_RESERVES**, sans défaut bloquant ; les trois pages répondent 200 et affichent la nouvelle version ; FR à 1 440 px (double navigation synchronisée) et à 390 px (aucune navigation collante, aucun débordement). Aucun formulaire soumis.
+- `ETAT.md` : ligne E « publication de la refonte #108 » datée ; #108 sortie des travaux actifs (B) et inscrite dans les livraisons (G) ; ligne D44 mise à jour. `DECISIONS.md` : statut de l'exception #108 complété par la décision expresse de fusion et de publication.
+
+**Pourquoi** — Dater la publication comme événement distinct de `STUDIOS_INTERNAL_LINKING_EVENT` (#112, fusion du 09/10 à 08:13:42 UTC) pour les analyses GSC page × requête, et lever l'ambiguïté du statut de l'exception #108, que la QA groupée avait relu comme « GO_MERGE = NON ».
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`. Documentation seule : aucune modification du site, des redirections, de `robots`, des formulaires, de GA4 ou GSC, du Worker ; aucune API payante.
+
+**Effet attendu** — Aucun sur le site. Conserver les deux dates (09/10 et 17/10) dans toute analyse de `/fr/studios-photo-automatises`. **Aucune hausse de trafic ni effet SEO démontré à cette date.**
+
+**Vérifié** — Horodatage et SHA de fusion sur GitHub ; contenu servi par `sysnext` après la fusion ; `smoke.mjs`.
+**Supposé** — Aucun.
+**Non regardé** — `www` par Claude Code (R4 : seul le Chrome de Laurent y accède ; le verdict ci-dessus est le sien) ; heure exacte du déploiement `sysnext` et de la bascule `www` ; Safari, Firefox, tactile réel, lecteurs d'écran ; attribution causale d'éventuelles variations GSC.
+
+**Réserves conservées** — Premier échec de chargement de `station-capture-mobile.avif` à 390 px sur `www`, non reproduit sur deux nouveaux passages (200), cause non établie ; entrée active éventuellement hors de la vue du sommaire latéral à 1 280 × 600 ; droits à l'image de la personne visible dans le film V01 et marques tierces des visuels (V02, V03, V12) non documentés ; données du sélecteur (Q20) non modifiées.
+
+**Suite** — Mesure GSC page × requête selon le protocole existant, en distinguant #112 et #108. Complément « usages hors e-commerce » (retour de Sébastien du 17/10) : chantier distinct, non démarré.
+
+---
+
 ## 2026-10-17 · Studios #108 — GO final de préparation : `main` intégré, double navigation mutualisée, droits des médias, V05 remplacée, exception D13/D42 · Claude de Laurent
 
 **Chantier** : Studios Wave 2, « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 » (GO_RESYNC_108, GO_CODE_108, GO_PR_PUSH_108, GO_D13_D42_EXCEPTION_108, GO_QA_PREVIEW_108 = OUI ; GO_MERGE_108, GO_PUBLICATION_108, GO_TEST_REEL, GO_ENVOI = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `2041b80`, `main` `1fc2230`, puis `2a8c444` (#164), puis `4b6fca9` (#163, #165, #105)
