@@ -74,6 +74,32 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Studios #108 — publication et QA `www` (événement SEO distinct de #112) · Claude de Laurent
+
+**Chantier** : enregistrement documentaire de la publication de #108 (fiche « PSC_STUDIOS_108_ENREGISTREMENT_SEO_2026-10-17 » de Laurent) | **PR** : #108, fusionnée | **Base** : `main` `62aa020`
+
+**Quoi** — Événement ultérieur ; l'entrée suivante (GO final de préparation) reste exacte à sa date.
+- **GitHub vérifié** : #108 fusionnée dans `main` le 17/10/2026 à **13:26:43 UTC**, commit de fusion `62aa02052ddee911c259b7909f443b51cc7bebb9`, tête intégrée `c9ab36291c56de8db4f242670c82d8117cddcbf9` ; CI 4/4 verte sur cette tête. GO_MERGE_108 et GO_PUBLICATION_108 conditionnels du 17/10 appliqués après la QA Chrome de la Preview `c9ab362` (PASS_WITH_RESERVES), gel levé pour cette seule PR.
+- **`sysnext`** : nouvelle page FR constatée au plus tard à 13:28 UTC (barre et sommaire latéral, H1, visuel remplaçant V05, aucun « Préversion ») ; EN et de-ch sur les textes de #109 ; `smoke.mjs` vert (17 pages, 3 ressources).
+- **`www`** (rapport de Laurent, R4) : FR, EN et de-ch contrôlées dans Chrome le 17/10, **PASS_WITH_RESERVES**, sans défaut bloquant ; les trois pages répondent 200 et affichent la nouvelle version ; FR à 1 440 px (double navigation synchronisée) et à 390 px (aucune navigation collante, aucun débordement). Aucun formulaire soumis.
+- `ETAT.md` : ligne E « publication de la refonte #108 » datée ; #108 sortie des travaux actifs (B) et inscrite dans les livraisons (G) ; ligne D44 mise à jour. `DECISIONS.md` : statut de l'exception #108 complété par la décision expresse de fusion et de publication.
+
+**Pourquoi** — Dater la publication comme événement distinct de `STUDIOS_INTERNAL_LINKING_EVENT` (#112, fusion du 09/10 à 08:13:42 UTC) pour les analyses GSC page × requête, et lever l'ambiguïté du statut de l'exception #108, que la QA groupée avait relu comme « GO_MERGE = NON ».
+
+**Fichiers** — `docs/seo-geo/ETAT.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/JOURNAL.md`. Documentation seule : aucune modification du site, des redirections, de `robots`, des formulaires, de GA4 ou GSC, du Worker ; aucune API payante.
+
+**Effet attendu** — Aucun sur le site. Conserver les deux dates (09/10 et 17/10) dans toute analyse de `/fr/studios-photo-automatises`. **Aucune hausse de trafic ni effet SEO démontré à cette date.**
+
+**Vérifié** — Horodatage et SHA de fusion sur GitHub ; contenu servi par `sysnext` après la fusion ; `smoke.mjs`.
+**Supposé** — Aucun.
+**Non regardé** — `www` par Claude Code (R4 : seul le Chrome de Laurent y accède ; le verdict ci-dessus est le sien) ; heure exacte du déploiement `sysnext` et de la bascule `www` ; Safari, Firefox, tactile réel, lecteurs d'écran ; attribution causale d'éventuelles variations GSC.
+
+**Réserves conservées** — Premier échec de chargement de `station-capture-mobile.avif` à 390 px sur `www`, non reproduit sur deux nouveaux passages (200), cause non établie ; entrée active éventuellement hors de la vue du sommaire latéral à 1 280 × 600 ; droits à l'image de la personne visible dans le film V01 et marques tierces des visuels (V02, V03, V12) non documentés ; données du sélecteur (Q20) non modifiées.
+
+**Suite** — Mesure GSC page × requête selon le protocole existant, en distinguant #112 et #108. Complément « usages hors e-commerce » (retour de Sébastien du 17/10) : chantier distinct, non démarré.
+
+---
+
 ## 2026-10-17 · Studios #108 — GO final de préparation : `main` intégré, double navigation mutualisée, droits des médias, V05 remplacée, exception D13/D42 · Claude de Laurent
 
 **Chantier** : Studios Wave 2, « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 » (GO_RESYNC_108, GO_CODE_108, GO_PR_PUSH_108, GO_D13_D42_EXCEPTION_108, GO_QA_PREVIEW_108 = OUI ; GO_MERGE_108, GO_PUBLICATION_108, GO_TEST_REEL, GO_ENVOI = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `2041b80`, `main` `1fc2230`, puis `2a8c444` (#164), puis `4b6fca9` (#163, #165, #105)
