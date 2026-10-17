@@ -54,6 +54,74 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · #146 : exception D42 ponctuelle consignée (claims historiques conservés, non validés) — merge en attente de #131 · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) — clôture conditionnelle | **PR** : #146, branche `claude/traductions-en-dech-s16` | **Commit** : voir PR
+
+**Quoi** — Consignation de l'**exception D42 ponctuelle de Laurent du 16/10** (limitée à #146) dans `docs/seo-geo/traductions-s16/VALIDATION-D42-3-ARTICLES.md` : conservation des affirmations historiques FR + mise en ligne des traductions EN fidèles, **sans amplification**, **statut NON VÉRIFIÉ conservé**. Ne vaut aucune validation factuelle ; n'autorise ni ajout ni renforcement de claim ; ne s'étend à aucun autre article ; **`noindex` D9 conservé** (pas de GO de levée) ; pages accessibles par URL directe malgré le `noindex`. QA Chrome groupée de Laurent : PASS sur les 4 pages (3 EN + correction FR 360°).
+
+**Séquencement (point 6)** — Le resync final et la fusion de #146 **attendent la stabilisation de la fusion de #131** (ouverte, Draft, DO NOT MERGE au 16/10 ; `main` a avancé à `b8ae3b2`), afin de ne pas résoudre deux fois les mêmes conflits documentaires. GO_RESYNC_146 / GO_COMMIT-PUSH_RESYNC_146 = OUI strictement après ce changement de `main` ; GO_MERGE_146 = OUI conditionnel ; GO_PUBLICATION_146 = OUI conditionnel distinct, après fusion.
+
+**État** — Correction de date 360° (FR+EN), 3 traductions EN, liens, métadonnées et `noindex` intacts. Clarification D33 préparée, à reporter dans `DECISIONS.md` par le propriétaire (pas de PR isolée). Claims « world leader / 70 patents / 20,000 users / superlatifs » restent NON VALIDÉS. GO_LEVÉE_NOINDEX = NON.
+
+**Vérifié** — Doc consigné ; build local relancé au push. CI du HEAD : à relever.
+**Non regardé** — `sysnext`/`www` : sans objet tant que la fusion/publication n'a pas eu lieu (HOLD #131).
+
+## 2026-10-16 · #146 : correctif factuel de date (article 360°, FR+EN) — Sysnext 2001 / marque PackshotCreator 2004 · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) — correctif ciblé | **PR** : #146, branche `claude/traductions-en-dech-s16` | **Commit** : voir PR
+
+**Quoi** — Sur fait métier de Laurent du 16/10 (GO_CODE_146_DATE + GO_COMMIT/PUSH_146_DATE, strictement limités à ce correctif) : correction de la date dans `content/blog/{fr,en}/photographie-de-produits-a-360-degres-en-interne.json`, une phrase par langue.
+- FR : « Depuis 2001, PackshotCreator développe… » → « Sysnext, société créée en 2001, propose aujourd'hui des [plateaux tournants et des studios photo 360°](/fr/studio-photo/selecteur-machines) sous sa marque commerciale PackshotCreator, lancée en 2004. »
+- EN : « Since 2001, PackshotCreator has been developing… » → « Founded in 2001, Sysnext now offers [turntables and 360° photography studios](/en/studio-photo/selecteur-machines) under its PackshotCreator commercial brand, launched in 2004. »
+
+**Fait métier (16/10)** — Sysnext = société créée 2001 ; PackshotCreator = marque commerciale de Sysnext, lancée 2004 (pas une société indépendante). Clarifie la confusion de dates de D33 (25/09) sans annuler ses autres dispositions. Formulation neutre : n'affirme pas une commercialisation dès 2001/2004.
+
+**Rayon d'action** — Deux fichiers de contenu, une phrase chacun ; lien `selecteur-machines`, balisage de marque et structure HTML préservés. Aucun autre `2001` remplacé ; aucun lien/ALT/média/slug/Hn/canonical/hreflang/JSON-LD ni autre paragraphe touché. `components/seo/SchemaOrg.tsx` (`organizationSchema()` : `name: 'PackshotCreator'`, `foundingDate: '2004'`) **identifié et non modifié** (cohérent, hors périmètre). `DECISIONS.md` **non modifié** : clarification D33 préparée dans `docs/seo-geo/traductions-s16/VALIDATION-D42-3-ARTICLES.md`, à consigner par le propriétaire (collision possible avec #152). Retour arrière : `git revert`.
+
+**Vérifié** — 2 JSON valides ; diff = 2 fichiers / 1 ligne chacun ; FR et EN relus. CI du nouveau HEAD : à relever au push.
+**Non regardé** — Preview SSO (QA humaine groupée par Laurent, ultérieure).
+
+**Reste en HOLD** — Claims « world leader », « 70 patents », « 20,000 users in 35 countries », superlatifs vitesse/résultat : NON VALIDÉS (D42), non supprimés ni renforcés. `noindex` D9 conservé. GO_MERGE / GO_PUBLICATION / GO_LEVEE_NOINDEX / GO_TEST_REEL = NON. Base #146 (`2ae6e15`) périmée vs `main` `f562e3b` : resync non exécuté (GO_RESYNC non accordé).
+
+## 2026-10-14 · S16 : décision Laurent — conserver le FR + traduction EN des 3 articles (fidèle, claims conservés) · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) | **PR** : #146, branche `claude/traductions-en-dech-s16` (distincte de #141) | **Commit** : voir PR
+
+**Quoi** — **Décision finale de Laurent du 14/10 : conserver tout le contenu FR existant.** Les 15 neutralisations de l'entrée précédente sont **annulées** (FR restauré à l'identique de `main`, diff FR vs `main` = 0 ; commit `97f4464`). Puis **traduction EN fidèle** du corps HTML + `title`/`h1` des 3 articles encore en français sous `/en`, **affirmations commerciales conservées sans atténuation ni renforcement** (« leader mondial » → « world leader », « plus de 20 000 utilisateurs dans 35 pays » → « more than 20,000 users in 35 countries », « garantissent le flux le plus rapide » → « guarantee the fastest workflow », « best-sellers », « Since 2001 »). `description` des 3 était **déjà en anglais** (R7) : laissée inchangée. `metaTitle` reste null.
+
+**Pourquoi** — « DÉCISION FINALE LAURENT — S16, TERMINER LES 3 TRADUCTIONS EN » (14/10) : conservation du contenu (pas une validation factuelle des claims, qui restent « source non établie ») ; terminer le travail technique de traduction sans attendre Sébastien. GO_CODE/COMMIT/PUSH/PR_DRAFT ; **GO_MERGE = NO**.
+
+**Fichiers** — `content/blog/en/photographie-2d-de-produits.json`, `content/blog/en/photographie-de-produits-a-360-degres-en-interne.json`, `content/blog/en/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre.json` (+ `docs/seo-geo/traductions-s16/`, `JOURNAL.md`). FR et autres articles non modifiés.
+
+**Effet attendu** — Les 3 pages `/en` passent du français à l'anglais. Aucun effet SEO immédiat : elles restent en `noindex, follow` (D9, `GO_LEVEE_NOINDEX = NO`).
+
+**Vérifié** — Diff FR vs `main` = 0 (3 fichiers). 3 JSON valides. Parité des balises HTML (hors texte `alt` traduit) **identique** à `main` pour les 3 (275/312/287). `href`/`src` strictement identiques (24/28/25). Français résiduel = 0. `noindex` conservé (3 slugs dans `NOINDEX_EN_BLOG_SLUGS`). `tsc` 0 ; `vitest` 663/663 ; `verifier-json` 200 ; `next build` 392/392, exit 0.
+**Supposé** — Traductions produites par 3 sous-agents, recoupées par contrôles structurels automatiques ; relecture humaine fine non faite.
+**Non regardé** — QA Preview `www` (SSO). Claims « 70 brevets », « 20 000 utilisateurs / 35 pays », « Since 2001 » : **conservés, non revérifiés** (source non établie), à ne pas présenter comme faits.
+
+**Suite** — Obstacles restants à la **seule publication** (hors de cette PR) : validation D42 de Sébastien (non sollicitée, indisponible), levée du `noindex` (D9), GO_MERGE distinct. Ne pas étendre D59.
+
+## 2026-10-14 · S16 : assainissement FR de 3 articles (claims neutralisés) — EN ATTENTE DE VALIDATION D42 · Claude de Laurent
+
+**Chantier** : S16 (traductions EN) | **PR** : brouillon dédié, branche `claude/traductions-en-dech-s16` (distincte de #141) | **Commit** : voir PR
+
+**Quoi** — Neutralisation éditoriale des affirmations commerciales non prouvées dans les 3 articles encore en français sous `/en` (fichiers FR) : 2D (8 changements), 360° (3), 3D (3). Claims retirés/adoucis : « leader mondial », « 20 000 utilisateurs / 35 pays », « best-sellers », « le plus puissant/accessible/unique du marché », « le meilleur de l'innovation », « garantissent … » → formulations prudentes. **Rien inventé, aucun chiffre ajouté.** Technique (100 % LED, brevets, formats, specs), médias, liens, structure, métadonnées et slugs : **inchangés**. **EN non traduit** (D42). `noindex` des 3 pages EN conservé.
+
+**Pourquoi** — Mission « GO traductions en une passe » puis « finition des 3 articles » (14/10) : préparer des FR fiables pour permettre la traduction EN ultérieure, sans publier de contenu non validé. GO_CODE limité à la préparation/neutralisation ; GO_MERGE = NO.
+
+**Fichiers** — `content/blog/fr/photographie-2d-de-produits.json`, `content/blog/fr/photographie-de-produits-a-360-degres-en-interne.json`, `content/blog/fr/photographie-3d-de-produits-une-serie-complete-dequipement-avec-logiciel-integre.json`, `docs/seo-geo/traductions-s16/VALIDATION-D42-3-ARTICLES.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md` (Q27), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun avant validation + traduction : les 3 pages EN restent en français et en `noindex`. Les FR assainis sont des **propositions** (D42) jusqu'à l'accord de Sébastien (Q27).
+
+**Vérifié** — 3 JSON parse OK ; aucun claim ciblé résiduel (`leader mondial`, `20.000`, `best-seller`, `le plus … du marché`, `garanti*`) ; `tsc`/`vitest`/`verifier-json`/`next build` relancés (voir ligne de contrôle au push). `noindex` EN confirmé (`NOINDEX_EN_BLOG_SLUGS` → `robots: index:false, follow:true`).
+**Supposé** — La version FR assainie est publiable une fois validée par Sébastien.
+**Non regardé** — `www` / QA Preview (SSO). Deux faits conservés non revérifiés : « plus de 70 brevets » (2D), « Depuis 2001 » (360°, arbitrage date D33).
+
+**Suite** — Q27 (validation D42 de Sébastien). Après accord : traduction EN depuis la FR validée, `noindex` conservé, GO_MERGE distinct. Ne pas étendre D59 à ces articles.
+
+---
+
 ## 2026-10-16 · U02 : vidéos MP4 rendues comme images → lecteur `<video>` natif · Claude de Laurent
 
 **Chantier** : U02 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
