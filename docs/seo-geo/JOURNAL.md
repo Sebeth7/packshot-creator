@@ -34,6 +34,25 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Hub bijoux C1 — sortie de #104 : exception D13/D42 inscrite, `main` intégré, préparation de la fusion · Claude de Laurent
+
+**Chantier** : « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX » (17/10 ; `GO_EXCEPTION_D13_D42_104`, `GO_QA_SUBSTITUTIVE_104`, `GO_RESYNC_104`, `GO_CODE_DOCUMENTATION_104`, `GO_PR_PUSH_104` = OUI ; `GO_MERGE_104` et `GO_PUBLICATION_104` = OUI sous conditions) | **PR** : #104 | **Tête éditoriale de référence** : `1878ba8`
+
+**Quoi** — Documentation et synchronisation, aucun texte du site modifié :
+- `main` `dd33884` (#160, #161) intégré par commit de fusion (`eea9f04`) ; conflit `JOURNAL.md` résolu par union ; `data/secteurs.ts` identique à `1878ba8`.
+- `DECISIONS.md` : exception ponctuelle D13/D42 pour #104 et QA substitutive au contrôle Chrome prépublication, inscrites sans numéro (règle des entrées voisines), avec leur effet sur D15.
+- `ETAT.md` : ligne #104.
+
+**Périmètre de la fusion** — Diff contre `main` : `data/secteurs.ts` (entrée `bijoux-joaillerie` seule), `docs/seo-geo/DECISIONS.md`, `JOURNAL.md`, `ETAT.md`. Gabarit commun, Vin, Mode, Studios et protections D9 (`noindex` EN) non touchés.
+
+**Vérifié** — Fresh-check du 17/10 : `main` `dd33884` (#160 fusionnée à 03:47:46 UTC) ; #104 `1878ba8` ; #162 ouverte, prête, sans fichier commun hors `DECISIONS.md` et `JOURNAL.md`, sans changement de la famille `hub-sectoriel` ; #161 fusionnée. Contrôles de la tête de sortie : voir la PR.
+
+**Non regardé** — `www` (R4, QA groupée après les publications).
+
+**Suite** — Fusion de #104 dans `main` (publication automatique), puis contrôle technique de `sysnext.vercel.app` ; QA visuelle de `www` groupée ; remarques éventuelles de Sébastien sollicitées ultérieurement ; CTA « Demander un devis gratuit » : décision du propriétaire unique du gabarit (#158, #107).
+
+---
+
 ## 2026-10-16 · Lot V1-ALT : 131 ALT Webflow remplacés dans 52 articles (FR 68, EN 62, de-ch 1), Draft · Claude de Laurent
 
 **Chantier** : lot V1-ALT de la qualification V9 (« PACKSHOTCREATOR V9 — GO CIBLÉ ALT WEBFLOW », 16/10/2026 : GO_CODE_ALT et GO_PR_PUSH_ALT = OUI, GO_MERGE et GO_PUBLICATION = NON) | **PR** : cette PR | **Commit** : ce commit
