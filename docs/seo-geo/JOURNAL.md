@@ -36,12 +36,13 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ## 2026-10-17 · Studios #108 — GO final de préparation : `main` intégré, double navigation mutualisée, droits des médias, V05 remplacée, exception D13/D42 · Claude de Laurent
 
-**Chantier** : Studios Wave 2, « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 » (GO_RESYNC_108, GO_CODE_108, GO_PR_PUSH_108, GO_D13_D42_EXCEPTION_108, GO_QA_PREVIEW_108 = OUI ; GO_MERGE_108, GO_PUBLICATION_108, GO_TEST_REEL, GO_ENVOI = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `2041b80`, `main` `1fc2230`
+**Chantier** : Studios Wave 2, « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 » (GO_RESYNC_108, GO_CODE_108, GO_PR_PUSH_108, GO_D13_D42_EXCEPTION_108, GO_QA_PREVIEW_108 = OUI ; GO_MERGE_108, GO_PUBLICATION_108, GO_TEST_REEL, GO_ENVOI = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `2041b80`, `main` `1fc2230`, puis `main` `2a8c444` (#164)
 
 **Quoi** — Événement ultérieur ; les deux entrées suivantes (navigation V9 et reprise, 16/10) restent exactes à leur date. La finition éditoriale du 16/10 (H1, sous-titre, présentation de PackshotCreator, collection) n'avait pas d'entrée propre : elle est décrite dans la PR.
 - Fusion de `main` `1fc2230` par commit de fusion, sans rebase ni force-push. Contrôle préalable : #163, #105 et #165 ouvertes, non fusionnées. 9 conflits :
   - code : `SommaireCollant.tsx` et `TableOfContents.tsx` repris de `main` (props `onActif`, `tolerance`, `actif`, `libelle`, `classeListe` abandonnées) ; registre, test du registre et spec e2e : version de `main` plus les ajouts Studios ;
   - documents : `DECISIONS.md` et `R-UX-LONG.md` repris de `main` (entrée « Navigation V9 », amendement de D44 et § 2 bis non réintroduits), puis ajouts Studios ; `ETAT.md` et ce journal par union.
+- Seconde fusion de `main` après le push de `fc91d84` : `2a8c444` (#164, cache du Worker pour les requêtes RSC), fusionnée pendant la CI. Seul conflit : ce journal, résolu par union. #164 ne touche que `cloudflare-worker/` et ce journal ; #108 ne modifie pas le Worker (diff contre `main` inchangé : 17 fichiers). #163, #105 et #165 toujours non fusionnées.
 - `components/navigation/NavigationSections.tsx` supprimé ; `docs/standards/NAVIGATION-V9-INVENTAIRE.md` retiré ; références alignées dans `docs/standards/README.md` (version de `main`), `01-RAYON-ACTION.md` et `02-PROCEDURE.md`.
 - Landing FR : `DoubleNavigationStructuree` (#162), mêmes 10 entrées (`TITRES`), `ancreFin="demonstration"` ; barre à partir de 1 024 px ; sommaire latéral en surimpression à partir de 1 280 px, en carte opaque à hauteur bornée par l'écran (classe propre à la page, passée par `classeLaterale`) ; conteneurs des sections et de la démonstration à droite réservée (`xl:pr-80`) ; rien de collant sous 1 024 px ; chaîne S1 statique. Aucun composant partagé modifié.
 - Registre : `landing-gamme` ADAPT, portée et `piloteSecondeForme` = Studios FR, `secondeForme: 'laterale'`, exceptions EN et de-ch maintenues.
@@ -133,6 +134,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Preview Vercel (authentification) et `www` (R4) ; traduction EN et de-ch de la nouvelle landing (non autorisée) ; cadences et noms « v2 » du sélecteur (D45, Q20) ; `hero-studios-wide.avif` du hero EN et de-ch (gabarit transitoire conservé) ; `Organization` global.
 
 **Suite** — CI, puis contrôle de la Preview par Laurent (FR, EN, de-ch ; desktop, tablette, mobile). Information groupée de Sébastien selon D15, préparée dans la description de la PR, non envoyée : le délai ne court qu'après la CI verte et la Preview contrôlée. GO_MERGE_108 et GO_PUBLICATION_108 : décisions distinctes.
+
+---
+
+## 2026-10-17 · Worker RSC (#164), complément : contournement explicite du cache et flag de compatibilité · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10 (suite de l'entrée précédente) ; GO_CODE et GO_PR/PUSH complémentaires de Laurent (17/10), limités à #164 ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (brouillon, DO NOT MERGE) | **Commit** : voir PR
+
+**Quoi** — Les requêtes de navigation Next.js partent avec `cache: "no-store"` en plus de l'absence d'option `cf` ; `wrangler.toml` déclare `compatibility_flags = ["cache_option_enabled"]`. HTML ordinaire, API, `_next` et cookies : aucun champ `cache`, comportement inchangé.
+
+**Pourquoi** — Réserve de Laurent : selon la documentation Cloudflare (`workers/runtime-apis/fetch`), omettre `cf` ne garantit pas l'absence de lecture du cache ; « For `no-store`, requests to origins not hosted by Cloudflare bypass the use of Cloudflare's caches ». Avec `compatibility_date = "2024-01-01"`, le champ `cache` exige le flag `cache_option_enabled` (actif par défaut à partir du 2024-11-11, page `compatibility-flags`).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/wrangler.toml`, `cloudflare-worker/test/rsc-cache.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement : séparation HTML/RSC dans les deux sens, la seconde par contournement documenté du cache et non plus par déduction.
+
+**Vérifié** — Runtime workerd local (`wrangler dev --local` 4.151.1, origine simulée, aucune requête externe), date 2024-01-01 : sans le flag, la requête RSC renvoie 500 « The 'cache' field on 'RequestInitializerDict' is not implemented » ; avec le flag, HTML 200 `text/html` et RSC 200 `text/x-component`, et l'origine reçoit `Cache-Control: no-cache` et `Pragma: no-cache` sur la seule requête RSC. `npx vitest run cloudflare-worker/test` : 7 fichiers, 185 tests verts ; contre-épreuves : 7 échecs contre le Worker de `5872410`, 1 échec (configuration) sans le flag.
+**Supposé** — Le contournement effectif du cache de la zone repose sur la documentation Cloudflare, le runtime local ne modélisant pas ce cache.
+**Non regardé** — Effet du `Cache-Control: no-cache` transmis sur le cache de Vercel pour les flux RSC ; compatibilité du mode de déploiement réel (voir Suite).
+
+**Suite** — **Condition de déploiement** : le flag doit être effectif sur le Worker déployé. Un déploiement `wrangler deploy` depuis ce dépôt l'applique ; un code collé au dashboard sans le flag ferait échouer toutes les navigations RSC (500). À vérifier dans la configuration du Worker avant et après déploiement.
+
+---
+
+## 2026-10-17 · Worker : requêtes RSC et préchargements Next.js hors du cache HTML partagé (P0 du crawl SF du 15/10) · Claude de Laurent
+
+**Chantier** : P0 du tri V10 du crawl Screaming Frog du 15/10 (chantier 1) ; `GO_CODE_WORKER_RSC_CACHE` et `GO_PR/PUSH_WORKER_RSC_CACHE` de Laurent (17/10) ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : brouillon, DO NOT MERGE | **Commit** : `01c84b2`
+
+**Quoi** — `isCacheableHTML` exclut les requêtes portant `RSC`, `Next-Router-Prefetch`, `Next-Router-Segment-Prefetch` ou `Next-Router-State-Tree` : elles partent vers l'origine sans option `cf`. HTML ordinaire, TTL (60 s), exclusions API, `_next`, paramètres, méthodes autres que GET et cookies sensibles inchangés.
+
+**Pourquoi** — Crawl du 15/10 (`interne_tous.csv`, `tous_les_entêtes_de_requête_http.csv`) : 12 requêtes HTML sans en-tête `rsc` ont reçu le flux RSC (`text/x-component`, `cf-cache-status: HIT`, âge 1 à 58 s) et 11 requêtes RSC ont reçu du HTML. Cause : `cacheEverything` posé sans test des en-têtes Next.js depuis `28a1169` (#50, 29/09) ; le cache Cloudflare ignore `Vary`.
+
+**Fichiers** — `cloudflare-worker/src/index.js` (+6/−1), `cloudflare-worker/test/rsc-cache.test.ts` (nouveau, 19 cas), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement : plus de flux RSC servi aux requêtes HTML de `www`, ni de HTML aux navigations Next.js. **Événement technique à consigner pour M5, F5 et Mode à la date du déploiement.**
+
+**Vérifié** — `node --check` vert ; `npx vitest run cloudflare-worker/test` : 7 fichiers, 184 tests verts ; contre-épreuve : le nouveau fichier de tests exécuté contre le Worker de `main` `1fc2230` échoue sur les 7 cas RSC et préchargement, les 12 autres passent ; `npx tsc --noEmit` vert.
+**Supposé** — [Inférence] Une sous-requête sans option `cf` est traitée en `DYNAMIC` par Cloudflare et ne lit pas l'objet mis en cache par une requête HTML (cohérent avec les requêtes à paramètre en `DYNAMIC` du crawl du 15/10) ; à prouver après déploiement.
+**Non regardé** — Worker effectivement déployé (`DEPLOYED_WORKER_SHA` = NON ÉTABLI ; resynchronisation R5 à faire avant tout déploiement) ; aucun test sur `www` (risque de contaminer le cache) ; canoniques Google, JSON-LD Article, 504/C3 et autres constats du crawl.
+
+**Suite** — Avant fusion : resynchronisation R5, preuve Cloudflare du sens RSC → HTML, QA de production non perturbatrice, rollback (`git revert`, puis redéploiement depuis le dépôt, D4 ; objets en cache expirés en 60 s au plus), GO_MERGE et GO_DEPLOIEMENT_WORKER distincts.
 
 ---
 
