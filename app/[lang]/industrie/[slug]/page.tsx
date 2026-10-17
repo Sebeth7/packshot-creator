@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { NavLink as Link } from '@/components/layout/NavLink';
 import { secteurs } from '@/data/secteurs';
+import { secteurHorlogerieEn } from '@/data/secteurs-en-horlogerie';
 import { secteursDeCh } from '@/data/secteurs-de-ch';
+import HubVin from './_components/HubVin';
 import { tx } from '@/lib/locale-text';
 import { NOINDEX_EN_INDUSTRIE_SLUGS } from '@/lib/seo-config';
 import { CheckCircle, ArrowRight, ChevronRight, Camera, Sparkles, FileText, ClipboardCheck, Scale } from 'lucide-react';
@@ -96,7 +99,9 @@ const frSlugForDeCh = (deSlug: string): string => DE_CH_SECTOR_MAP[deSlug] ?? de
 function resolveSecteur(slug: string, lang: string) {
   return lang === 'de-ch'
     ? secteursDeCh.find((s) => s.slug === slug)
-    : secteurs.find((s) => s.slug === slug);
+    : lang === 'en' && slug === 'horlogerie'
+      ? secteurHorlogerieEn
+      : secteurs.find((s) => s.slug === slug);
 }
 
 /** Slug « données » pour les maps keyées en FR (machines, hero, related, solutions). */
@@ -165,6 +170,13 @@ export default async function SecteurPage({ params }: PageProps) {
   // Slug « données » (FR) pour les maps machines/hero/related/solutions, et
   // base d'URL localisée pour le fil d'Ariane (de-ch → /de-ch/branchen/...).
   const dataSlug = dataSlugFor(slug, lang);
+  // U03 : ALT localisé du HERO horlogerie (jamais de repli FR pour EN/DE-CH).
+  const heroImageAlt = tx(
+    lang,
+    'Packshot d’une montre chronographe à cadran bleu, boîtier en acier poli et bracelet en cuir brun.',
+    'Product photograph of a chronograph watch with a blue dial, polished steel case and brown leather strap.',
+    'Produktfoto einer Chronographenuhr mit blauem Zifferblatt, poliertem Stahlgehäuse und braunem Lederarmband.',
+  );
   const industrieBase =
     lang === 'de-ch'
       ? `https://www.packshot-creator.com/de-ch/branchen`
@@ -191,8 +203,31 @@ export default async function SecteurPage({ params }: PageProps) {
   ).slice(0, 6);
   // Libellés des secteurs connexes : de-ch traduit ; EN laissé tel quel (pages /en/industrie/*
   // servies en FR, hors de cette correction) ; page de-ch du hub mode inchangée (gel Mode, 26/11).
+  const EN_SECTOR_LABELS: Record<string, string> = {
+    'automobile-pieces-detachees': 'Automotive parts',
+    'bijoux-joaillerie': 'Jewelry',
+    'chaussures': 'Footwear',
+    'cosmetiques-beaute': 'Cosmetics and beauty',
+    'defense-securite': 'Defense and security',
+    'electronique-hightech': 'Electronics',
+    'food-alimentaire': 'Food',
+    'horlogerie': 'Watchmaking',
+    'industrie-manufacturiere': 'Manufacturing',
+    'jouets-puericulture': 'Toys and childcare',
+    'lunetterie': 'Eyewear',
+    'mobilier-decoration': 'Furniture and home decor',
+    'mode-textile': 'Fashion and textiles',
+    'pieces-techniques-industrie': 'Technical parts',
+    'sante-medical': 'Healthcare and medical',
+    'sport-outdoor': 'Sports and outdoor',
+    'vin-spiritueux': 'Wine and spirits',
+  };
   const nomSecteurConnexe = (s: (typeof DEFAULT_SECTORS)[number]) =>
-    lang === 'de-ch' && dataSlug !== 'mode-textile' ? sectorText(s, 'de-ch').name : s.name;
+    lang === 'en' && dataSlug === 'horlogerie'
+      ? (EN_SECTOR_LABELS[s.slug] ?? s.name)
+      : lang === 'de-ch' && dataSlug !== 'mode-textile'
+        ? sectorText(s, 'de-ch').name
+        : s.name;
 
   /* Featured solution (first) + remaining solutions */
   const [featuredSolution, ...otherSolutions] = secteur.solutions.items;
@@ -207,6 +242,12 @@ export default async function SecteurPage({ params }: PageProps) {
   const relevantSolutions = solutions.filter((sol) =>
     sol.secteurs.items.some((s) => s.slug === dataSlug)
   );
+
+  // Hub vin-spiritueux : page dédiée, fr et en (EN servi en FR, noindex).
+  // de-ch (/de-ch/branchen/wein) garde le gabarit commun.
+  if (dataSlug === 'vin-spiritueux' && lang !== 'de-ch') {
+    return <HubVin secteur={secteur} lang={lang} slug={slug} breadcrumbs={breadcrumbs} autresSecteurs={otherSectors} />;
+  }
 
   const solutionIcons: Record<string, React.ReactNode> = {
     'documentation-technique-visuelle': <FileText className="h-5 w-5" />,
@@ -234,7 +275,25 @@ export default async function SecteurPage({ params }: PageProps) {
         ]}
         media={
           <div className="w-full h-[360px] lg:h-[440px] rounded-2xl overflow-hidden">
-            {SECTOR_HERO_IMAGE_MAP[dataSlug] ? (
+            {dataSlug === 'horlogerie' ? (
+              /* U03 : HERO horlogerie — packshot réel (WebP transparent), cadré
+                 sans recadrage par object-contain sur le fond existant. Rendu
+                 dédié, hors de SECTOR_HERO_IMAGE_MAP/HeroImage : ce composant,
+                 partagé par tous les secteurs, impose object-cover et des
+                 variantes AVIF, incompatibles avec la transparence et l'intégrité
+                 de la montre. Le conteneur commun reste celui de main ; aucun
+                 autre secteur n'est modifié. */
+              <div className="relative w-full h-full">
+                <Image
+                  src="/images/hero/horlogerie-hero-montre-chronographe.webp"
+                  alt={heroImageAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain p-4"
+                />
+              </div>
+            ) : SECTOR_HERO_IMAGE_MAP[dataSlug] ? (
               <HeroImage
                 basePath={`/images/hero/${SECTOR_HERO_IMAGE_MAP[dataSlug]}`}
                 alt={secteur.hero.titre}
@@ -327,19 +386,26 @@ export default async function SecteurPage({ params }: PageProps) {
                       <div className={`rounded-2xl overflow-hidden h-full ${
                         isIa ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-future-dusk-900'
                       }`}>
-                        {/* Image placeholder top */}
-                        <div className={`w-full h-[180px] flex items-center justify-center ${
-                          isIa ? 'bg-amber-800/30' : 'bg-future-dusk-800/50'
-                        }`}>
-                          <div className="text-center">
-                            {isIa ? (
-                              <Sparkles className="w-10 h-10 text-amber-400/30 mx-auto mb-1" strokeWidth={1} />
-                            ) : (
-                              <Camera className="w-10 h-10 text-very-peri-400/30 mx-auto mb-1" strokeWidth={1} />
-                            )}
-                            <p className="text-xs text-white/15">{tx(lang, 'Visuel solution', 'Solution visual', 'Lösungsbild')}</p>
+                        {/* U04 — Réserve graphique vide « Visuel solution » retirée du gabarit
+                            partagé (économise 2×180 px de vide par page sur les secteurs à deux
+                            solutions). Conservée à l'identique pour les seules surfaces protégées :
+                            `vin-spiritueux` (PR #107 ouverte) et `mode-textile` (gel de mesure Mode
+                            jusqu'au 26/11/2026). Les deux solutions, leurs textes, badges, CTA et
+                            liens restent intacts sur toutes les pages. */}
+                        {(dataSlug === 'vin-spiritueux' || dataSlug === 'mode-textile') && (
+                          <div className={`w-full h-[180px] flex items-center justify-center ${
+                            isIa ? 'bg-amber-800/30' : 'bg-future-dusk-800/50'
+                          }`}>
+                            <div className="text-center">
+                              {isIa ? (
+                                <Sparkles className="w-10 h-10 text-amber-400/30 mx-auto mb-1" strokeWidth={1} />
+                              ) : (
+                                <Camera className="w-10 h-10 text-very-peri-400/30 mx-auto mb-1" strokeWidth={1} />
+                              )}
+                              <p className="text-xs text-white/15">{tx(lang, 'Visuel solution', 'Solution visual', 'Lösungsbild')}</p>
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                         <div className="p-8 lg:p-10">
                           {/* Type badge */}
@@ -856,7 +922,13 @@ export default async function SecteurPage({ params }: PageProps) {
           name: secteur.titre,
           description: secteur.description,
           serviceType: tx(lang, 'Photographie produit automatisée', 'Automated product photography', 'Automatisierte Produktfotografie'),
-          url: `https://www.packshot-creator.com/${lang}/industrie/${slug}`,
+          // URL servie (de-ch : /de-ch/branchen/<slug>), comme le fil d'Ariane ;
+          // Service.url visait /de-ch/industrie/<slug>, redirigée.
+          // D57 (L13) : /de-ch/branchen/mode garde son Service.url de main
+          // jusqu'à la fin du gel Mode (26/11/2026).
+          url: lang === 'de-ch' && slug === 'mode'
+            ? `https://www.packshot-creator.com/${lang}/industrie/${slug}`
+            : `${industrieBase}/${slug}`,
           category: secteur.titre.split(':')[0].trim(),
         }),
         ...(secteur.faq ? [faqSchema(secteur.faq)] : []),

@@ -7,19 +7,27 @@ import { NavLink as Link } from '@/components/layout/NavLink';
 import { type LinkHref, localeSwitchHref, type AppLocale } from '@/i18n/deChCoverage';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale } from 'lucide-react';
+import { ChevronDown, ChevronRight, Camera, Sparkles, Calculator, X, Menu, TrendingUp, Glasses, Wine, HeartPulse, Shield, Search, HelpCircle, FileText, ClipboardCheck, Scale, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 
 interface DropdownItem {
   href: LinkHref;
   labelKey: string;
+  /** Libellé direct, hors messages/*.json. */
+  label?: string;
   descKey: string;
   icon: React.ReactNode;
 }
 
 interface DropdownSection {
   titleKey?: string;
+  /**
+   * Lien secondaire, rendu en dernier, après les rubriques en flyout, séparé et
+   * en texte discret (desktop et mobile). Aucun usage actuel : le lien d'occasion
+   * n'est plus dans le menu haut (décision de Laurent du 16/10/2026).
+   */
+  secondaire?: boolean;
   items: DropdownItem[];
 }
 
@@ -166,13 +174,26 @@ function NavDropdown({
         className="block px-3 py-2 text-xs font-semibold text-very-peri-600 hover:text-very-peri-700 transition-colors"
         onClick={close}
       >
-        {t(item.labelKey)}
+        {item.label ?? t(item.labelKey)}
       </Link>
     );
 
-  /* Sections avec titre = affichées en flyout, sans titre = affichées en plein */
-  const mainSections = sections.filter((s) => !s.titleKey);
+  const renderSecondaire = (item: DropdownItem) => (
+    <Link
+      key={item.labelKey}
+      href={item.href}
+      className="block px-3 py-2 text-xs font-medium text-future-dusk-500 hover:text-very-peri-600 transition-colors"
+      onClick={close}
+    >
+      {item.label ?? t(item.labelKey)}
+    </Link>
+  );
+
+  /* Sections avec titre = affichées en flyout, sans titre = affichées en plein ;
+     sections secondaires = affichées en dernier, après un séparateur */
+  const mainSections = sections.filter((s) => !s.titleKey && !s.secondaire);
   const flyoutSections = sections.filter((s) => s.titleKey);
+  const secondarySections = sections.filter((s) => s.secondaire);
 
   return (
     <div
@@ -229,6 +250,14 @@ function NavDropdown({
                 {section.items.map(renderItem)}
               </div>
             ))}
+
+            {/* Liens secondaires, en dernier */}
+            {secondarySections.map((section, sIdx) => (
+              <div key={sIdx}>
+                <div className="border-t border-neutral-100 my-2" />
+                {section.items.map(renderSecondaire)}
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -270,19 +299,30 @@ function MobileNavSection({
                   {t(section.titleKey)}
                 </span>
               )}
-              {section.items.map((item) => (
-                <Link
-                  key={item.labelKey}
-                  href={item.href}
-                  className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
-                  onClick={onClose}
-                >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
-                    {item.icon}
-                  </span>
-                  {t(item.labelKey)}
-                </Link>
-              ))}
+              {section.items.map((item) =>
+                section.secondaire ? (
+                  <Link
+                    key={item.labelKey}
+                    href={item.href}
+                    className="block py-2 text-sm text-future-dusk-500 hover:text-very-peri-600"
+                    onClick={onClose}
+                  >
+                    {item.label ?? t(item.labelKey)}
+                  </Link>
+                ) : (
+                  <Link
+                    key={item.labelKey}
+                    href={item.href}
+                    className="flex items-center gap-3 py-2 text-sm text-future-dusk-600 hover:text-very-peri-600"
+                    onClick={onClose}
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-very-peri-50 text-very-peri-600">
+                      {item.icon}
+                    </span>
+                    {item.label ?? t(item.labelKey)}
+                  </Link>
+                )
+              )}
             </div>
           ))}
         </div>
@@ -335,6 +375,11 @@ function LangSwitcher({ locale, pathname, slug }: { locale: string; pathname: st
   );
 }
 
+/**
+ * Aucun lien vers la landing d'occasion dans le menu haut, ni en sous-menu, desktop
+ * et mobile (décision de Laurent du 16/10/2026, qui remplace celle du 14/10) : seul
+ * le pied de page, colonne Solutions, la porte (components/layout/Footer.tsx).
+ */
 export default function Header() {
   const t = useTranslations('common.nav');
   const locale = useLocale();
@@ -345,6 +390,27 @@ export default function Header() {
   const realPath = useRealPathname();
   const slug = pathname.endsWith('[slug]') ? realPath.split('/').filter(Boolean).pop() : undefined;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Slugs par locale des articles A et B (série « Produire ses images produit »).
+  // Les slugs d'article ne sont PAS localisés par next-intl : chaque langue a son
+  // propre fichier content/blog/<locale>/<slug>.json et son slug dans
+  // content/blog/alternates.json. On passe donc le slug de la locale courante ;
+  // NavLink rend l'URL native (en de-ch, le slug de-ch est couvert via alternates).
+  const serieSlug: Record<string, { a: string; b: string }> = {
+    fr: {
+      a: 'est-il-utile-dinternaliser-sa-production-de-photos-packshot',
+      b: 'e-commerce-comment-mettre-en-place-votre-studio-photo',
+    },
+    en: {
+      a: '5-questions-before-investing-in-an-in-house-photo-studio',
+      b: 'e-commerce-set-up-internal-packshots',
+    },
+    'de-ch': {
+      a: 'lohnt-sich-ein-internes-produktfotostudio',
+      b: 'e-commerce-fotostudio-organisieren',
+    },
+  };
+  const serie = serieSlug[locale] ?? serieSlug.fr;
 
   const solutionSections: DropdownSection[] = [
     {
@@ -441,6 +507,30 @@ export default function Header() {
           labelKey: 'guidesQuestions',
           descKey: 'guidesQuestionsDesc',
           icon: <HelpCircle className="h-4 w-4" />,
+        },
+        // Série « Produire ses images produit » (articles A et B). Les trois versions
+        // (fr, en, de-ch) sont publiées : entrées affichées dans toute locale, chacune
+        // avec le slug de sa langue (cf serieSlug). Jamais d'URL inventée.
+        {
+          href: { pathname: '/blog/[slug]', params: { slug: serie.a } },
+          labelKey: 'guidesChoisir',
+          descKey: 'guidesChoisirDesc',
+          icon: <Camera className="h-4 w-4" />,
+        },
+        {
+          href: { pathname: '/blog/[slug]', params: { slug: serie.b } },
+          labelKey: 'guidesOrganiser',
+          descKey: 'guidesOrganiserDesc',
+          icon: <ClipboardCheck className="h-4 w-4" />,
+        },
+        // Hub « Conversations avec Sébastien Jourdan » — libellé NEUTRE « Méthodes &
+        // bonnes pratiques » (ne pas afficher « Entretiens… » dans le menu). Les trois
+        // destinations linguistiques du hub existent déjà.
+        {
+          href: '/conversations-sebastien-jourdan',
+          labelKey: 'guidesMethodes',
+          descKey: 'guidesMethodesDesc',
+          icon: <BookOpen className="h-4 w-4" />,
         },
       ],
     },

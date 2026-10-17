@@ -2,8 +2,10 @@
 
 /**
  * Rendu DÉDIÉ à l'export PDF du mode public (demande Seb 07/08) : pleine
- * largeur A4 (794 px), monté hors écran dans DossierPanel — le PDF n'est
- * plus une capture du panneau étroit (tuiles écrasées, infos manquantes).
+ * largeur A4 (794 px), monté hors écran par DossierPanel, dans un portail sur
+ * `document.body` — le PDF n'est plus une capture du panneau étroit (tuiles
+ * écrasées, infos manquantes), et sa mise en page ne dépend pas de la
+ * visibilité du volet qui le monte.
  *
  * Sections capturées par PDFGenerator (data-pdf-section) :
  *  1. qualification du dossier (la conversation résumée en données) ;
@@ -124,7 +126,9 @@ export default function PdfReport({
                 <div data-pdf-section>
                   <HeroMetrics results={adapted} locale="fr" columns={4} />
                 </div>
-                <div data-pdf-section>
+                {/* data-pdf-chart : PDFGenerator attend ce graphique rendu et
+                    dimensionné avant la capture, et refuse le PDF sans lui. */}
+                <div data-pdf-section data-pdf-chart>
                   <EvolutionChart results={adapted} locale="fr" animate={false} />
                 </div>
                 <div data-pdf-section>

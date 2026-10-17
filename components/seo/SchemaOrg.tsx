@@ -345,16 +345,16 @@ export function localBusinessSchema() {
     email: 'sales@sysnext.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '22 Rue des Frères Lumière',
-      addressLocality: 'Saint-Bonnet-de-Mure',
-      postalCode: '69720',
+      streetAddress: '198 allée de la Tour',
+      addressLocality: 'Beynost',
+      postalCode: '01700',
       addressCountry: 'FR',
       addressRegion: 'Auvergne-Rhône-Alpes',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 45.7013014,
-      longitude: 5.015408,
+      latitude: 45.829766,
+      longitude: 4.998587,
     },
     hasMap: 'https://www.google.com/maps?cid=16728861988640520249',
     openingHoursSpecification: {

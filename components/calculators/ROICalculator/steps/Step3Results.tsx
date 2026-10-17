@@ -105,7 +105,9 @@ export default function Step3Results({ results, inputs, locale, onSelectMachine 
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 
-    // Envoyer les données en parallèle (email Resend + Pipedrive CRM, sans le PDF)
+    // Envoyer les données en parallèle, sans le PDF : e-mail d'analyse au
+    // prospect et notification interne à l'équipe (Resend). Aucun CRM depuis la
+    // décision de Laurent du 15/10/2026.
     fetch('/api/roi-pdf', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

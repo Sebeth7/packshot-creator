@@ -6,6 +6,7 @@ import {
   NOINDEX_EN_INDUSTRIE_SLUGS,
   NOINDEX_EN_SOLUTIONS_SLUGS,
 } from '@/lib/seo-config';
+import { cheminsSitemapOccasion } from '@/lib/occasion/seo';
 
 const BASE_URL = 'https://www.packshot-creator.com';
 
@@ -43,6 +44,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/en/studios-photo-automatises', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/fr/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/en/ia-photo-produit', priority: 0.9, changeFrequency: 'monthly' as const },
+    // Hub éditorial « Conversations avec Sébastien Jourdan » — trilingue (D38).
+    { path: '/fr/conversations-sebastien-jourdan', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/en/conversations-sebastien-jourdan', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/academy', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/fr/industrie', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/en/industrie', priority: 0.8, changeFrequency: 'monthly' as const },
@@ -154,6 +158,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/de-ch', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/de-ch/studios-photo-automatises', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/de-ch/ia-photo-produit', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/de-ch/conversations-sebastien-jourdan', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/de-ch/branchen', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/de-ch/wer-sind-wir', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/de-ch/kontakt', priority: 0.6, changeFrequency: 'monthly' },
@@ -185,6 +190,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     deChPages.push({ path: `/de-ch/blog/${slug}`, priority: 0.6, changeFrequency: 'weekly' });
   }
 
+  // --- Landing « Offres d'occasion » Orbitvu (#129, option B du 14/10/2026) ---
+  // FR, EN et DE-CH au même chemin ; aucune entrée tant que la page n'est pas
+  // publiée en production (PUBLICATION_AUTORISEE). La vue des exemples fictifs
+  // n'y entre jamais.
+  const occasionPages = cheminsSitemapOccasion().map((path) => ({
+    path,
+    priority: 0.7,
+    changeFrequency: 'weekly' as const,
+  }));
+
   return [
     ...mainPages,
     ...sectorPages,
@@ -193,6 +208,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogPages,
     ...guidePages,
     ...deChPages,
+    ...occasionPages,
   ].map(({ path, priority, changeFrequency }) => ({
     url: `${BASE_URL}${path}`,
     lastModified: now,

@@ -21,7 +21,8 @@ import { buildLanguages } from '@/lib/hreflang';
 import { tx, pickL, pickListL } from '@/lib/locale-text';
 import { getMachineImage } from '@/lib/machine-images';
 import SommaireCollant from '@/components/navigation/SommaireCollant';
-import { barreActive, LIBELLES_BARRE, type Langue } from '@/data/navigation/pages-longues';
+import DoubleNavigationStructuree from '@/components/navigation/DoubleNavigationStructuree';
+import { barreActive, formeSecondeActive, LIBELLES_BARRE, LIBELLES_LATERAL, type Langue } from '@/data/navigation/pages-longues';
 
 // Gamme complète servie en allemand suisse (/de-ch/fotostudio/[slug]) — Palier 2.
 // Les slugs machines sont identiques en de-ch (ids produit, alignés sur le legacy /de/fotostudio/*).
@@ -645,6 +646,8 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   // Barre de sommaire collante (D44) : sections à titre, libellés = titres existants.
   // Les id ne sont posés que si la barre est active pour cette fiche.
   const barre = barreActive('fiche-machine', lang as Langue, machine.id);
+  // Double navigation D44 (Phase A) : sommaire latéral en plus de la barre, sur un pilote.
+  const doubleNav = formeSecondeActive('fiche-machine', lang as Langue, machine.id) === 'laterale';
   const ancre = (id: string) => (barre ? id : undefined);
   const entreesSommaire = barre
     ? [
@@ -659,11 +662,15 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
       ]
     : [];
 
+  // URL canonique de la fiche, chemin localisé (de-ch : /fotostudio/…) : l'URL
+  // /de-ch/studio-photo/… répond 307. Partagée par le fil d'Ariane et par
+  // Product.url / Offer.url.
+  const urlFiche = `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: { pathname: '/studio-photo/[slug]', params: { slug } } })}`;
+
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
     { name: tx(lang, 'Studios Photo', 'Photo Studios', 'Fotostudios'), url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises` },
-    // Chemin localisé (de-ch : /fotostudio/…) : l'URL /de-ch/studio-photo/… répond 307.
-    { name: machine.nom, url: `https://www.packshot-creator.com${getPathname({ locale: lang as 'fr' | 'en' | 'de-ch', href: { pathname: '/studio-photo/[slug]', params: { slug } } })}` },
+    { name: machine.nom, url: urlFiche },
   ];
 
   const featureLabels: Record<string, { fr: string; en: string; 'de-ch': string }> = {
@@ -702,11 +709,21 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
   return (
     <>
       {barre && (
-        <SommaireCollant
-          titre={LIBELLES_BARRE[lang as Langue].titre}
-          libelle={LIBELLES_BARRE[lang as Langue].libelle}
-          entrees={entreesSommaire}
-        />
+        doubleNav ? (
+          <DoubleNavigationStructuree
+            titre={LIBELLES_BARRE[lang as Langue].titre}
+            libelle={LIBELLES_BARRE[lang as Langue].libelle}
+            libelleLateral={LIBELLES_LATERAL[lang as Langue]}
+            entrees={entreesSommaire}
+            classeLaterale="d44-laterale-fiche"
+          />
+        ) : (
+          <SommaireCollant
+            titre={LIBELLES_BARRE[lang as Langue].titre}
+            libelle={LIBELLES_BARRE[lang as Langue].libelle}
+            entrees={entreesSommaire}
+          />
+        )
       )}
 
       {/* Hero Product */}
@@ -1487,7 +1504,7 @@ export default async function StudioPhotoProductPage({ params }: PageProps) {
           name: machine.nom,
           description: `${machine.nom}: ${casUsage.join(', ')}`,
           image: `https://www.packshot-creator.com${machineImage}`,
-          url: `https://www.packshot-creator.com/${lang}/studio-photo/${slug}`,
+          url: urlFiche,
           // Identifiant produit du vendeur : l'`id` de la machine, déjà le slug
           // de l'URL. Même valeur sur les trois locales, comme l'attend Google.
           sku: machine.id,

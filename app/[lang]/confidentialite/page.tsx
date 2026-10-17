@@ -44,6 +44,9 @@ export default async function ConfidentialitePage({ params }: PageProps) {
 
   const dataCollected = [
     { key: 'contactForms', title: t('article2.contactForms.title'), description: t('article2.contactForms.description') },
+    { key: 'catalogueForm', title: t('article2.catalogueForm.title'), description: t('article2.catalogueForm.description') },
+    { key: 'occasionSearch', title: t('article2.occasionSearch.title'), description: t('article2.occasionSearch.description') },
+    { key: 'occasionAlerts', title: t('article2.occasionAlerts.title'), description: t('article2.occasionAlerts.description') },
     { key: 'interactiveTools', title: t('article2.interactiveTools.title'), description: t('article2.interactiveTools.description') },
     { key: 'navigation', title: t('article2.navigation.title'), description: t('article2.navigation.description') },
   ];
@@ -54,6 +57,8 @@ export default async function ConfidentialitePage({ params }: PageProps) {
     t('article3.purpose3'),
     t('article3.purpose4'),
     t('article3.purpose5'),
+    t('article3.purpose6'),
+    t('article3.purpose7'),
   ];
 
   const rights = [
@@ -74,6 +79,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
       description: t('article6.externalMedia.description'),
       link: { href: googlePrivacyUrl(lang), label: t('article6.externalMedia.linkLabel') },
     },
+    { key: 'sessionStorage', title: t('article6.sessionStorage.title'), description: t('article6.sessionStorage.description') },
   ];
 
   return (
@@ -217,6 +223,30 @@ export default async function ConfidentialitePage({ params }: PageProps) {
               <p className="text-future-dusk-600">
                 {t('article7.content')}
               </p>
+            </div>
+
+            {/* Article 8 */}
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('article8.heading')}
+              </h2>
+              <p className="text-future-dusk-600">
+                {t('article8.content')}
+              </p>
+            </div>
+
+            {/* Article 9 : offres d'occasion (recherche et alertes, PR #129) */}
+            <div className="rounded-2xl border border-neutral-100 bg-white p-8">
+              <h2 className="text-2xl font-heading font-bold text-future-dusk-900 mb-4">
+                {t('article9.heading')}
+              </h2>
+              <div className="space-y-3 text-future-dusk-600">
+                <p>{t('article9.p1')}</p>
+                <p>{t('article9.p2')}</p>
+                <p>{t('article9.p3')}</p>
+                <p>{t('article9.p4')}</p>
+                <p>{t('article9.p5')}</p>
+              </div>
             </div>
 
             {/* CTA */}

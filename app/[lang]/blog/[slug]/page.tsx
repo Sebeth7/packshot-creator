@@ -14,13 +14,17 @@ import SchemaOrg, { organizationSchema, breadcrumbSchema, articleSchema } from '
 import { HeroSection } from '@/components/hero';
 import { FadeInView } from '@/components/animations';
 import { RecommendedStudio } from '@/components/maillage/MaillageSections';
+import EncadreOccasionBlog from '@/components/landings/occasion/EncadreOccasionBlog';
 import YouTubeConsent from '@/components/blog/YouTubeConsent';
+import DoubleNavigationBlog from '@/components/navigation/DoubleNavigationBlog';
+import { formeSecondeActive, LIBELLES_BARRE } from '@/data/navigation/pages-longues';
 import {
   processHtmlContent,
   calculateReadingTime,
   type HeadingData,
 } from '@/lib/blog-utils';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { externalEmbedTexts } from '@/lib/external-embeds';
 
 interface PageProps {
   params: Promise<{ lang: string; slug: string }>;
@@ -61,23 +65,39 @@ export async function generateMetadata({ params }: PageProps) {
     if (languages.fr) languages['x-default'] = languages.fr;
 
     const isNoindex = lang === 'en' && NOINDEX_EN_BLOG_SLUGS.has(slug);
+    const canonical = `https://www.packshot-creator.com/${lang}/blog/${slug}`;
+    // Un .mp4 n'est pas une og:image valide → fallback image OG générée
+    const imageUrl = article.image && !article.image.endsWith('.mp4')
+      ? article.image
+      : `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`;
 
     return {
       title: pageTitle,
       description: article.description,
       ...(isNoindex && { robots: { index: false, follow: true } }),
       alternates: {
-        canonical: `https://www.packshot-creator.com/${lang}/blog/${slug}`,
+        canonical,
         languages,
       },
+      // openGraph et twitter remplacent en bloc ceux du layout : url, siteName et
+      // locale sont repris ici (BL-43-1), et la carte twitter porte le titre, la
+      // description et l'image de l'article au lieu de ceux du site.
       openGraph: {
         title: pageTitle,
         description: article.description,
-        // Un .mp4 n'est pas une og:image valide → fallback image OG générée
-        images: article.image && !article.image.endsWith('.mp4')
-          ? [article.image]
-          : [{ url: `/api/og?title=${encodeURIComponent(pageTitle)}&type=blog&lang=${lang}`, width: 1200, height: 630 }],
+        url: canonical,
+        siteName: 'PackshotCreator',
+        locale: lang === 'fr' ? 'fr_FR' : lang === 'de-ch' ? 'de_CH' : 'en_US',
+        images: imageUrl === article.image
+          ? [imageUrl]
+          : [{ url: imageUrl, width: 1200, height: 630 }],
         type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: pageTitle,
+        description: article.description,
+        images: [imageUrl],
       },
     };
   }
@@ -116,13 +136,15 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const article = getArticle(slug, lang as Lang);
   if (!article) notFound();
 
-  // Vidéos YouTube : façade locale au rendu, lecteur après accord (lib/youtube.ts)
+  // Vidéos YouTube et autres contenus externes : façade locale au rendu,
+  // chargement après accord (lib/youtube.ts, lib/external-embeds.ts)
   const processed = processHtmlContent(article.content || '', {
     youtubeLabels: {
       play: (title) => tVideo('facadeLabel', { title }),
       playUntitled: tVideo('facadeLabelUntitled'),
       notice: tVideo('notice'),
     },
+    embedLabels: externalEmbedTexts(lang).facade,
   });
   const title = article.h1 || article.title;
   const description = article.description;
@@ -131,6 +153,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const imageUrl = article.image || null;
   const readingTime = article.readingTime ?? calculateReadingTime(processed.wordCount);
   const headings = processed.headings;
+  // Double navigation D44 (Phase A) : barre horizontale ajoutée au sommaire latéral, sur
+  // un article pilote. Mêmes ancres que le sommaire (titres h2/h3 de l'article).
+  const barreHaute = formeSecondeActive('blog-commun', lang as Lang, slug) === 'barre';
+  const entreesBarre = headings.map((h) => ({ id: h.id, libelle: h.text }));
 
   const breadcrumbs = [
     { name: 'PackshotCreator', url: `https://www.packshot-creator.com/${lang}` },
@@ -216,36 +242,53 @@ export default async function BlogArticlePage({ params }: PageProps) {
       <FadeInView delay={0.2}>
         <section className="py-12 lg:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="lg:flex lg:justify-center lg:gap-12">
-              <div className="min-w-0 flex-1 max-w-prose mx-auto lg:mx-0">
-                {headings.length > 0 && (
-                  <div className="lg:hidden mb-8">
-                    <TableOfContents headings={headings} title={t('toc')} collapsible />
+            <DoubleNavigationBlog
+              actif={barreHaute}
+              titre={LIBELLES_BARRE[lang as Lang].titre}
+              libelle={LIBELLES_BARRE[lang as Lang].libelle}
+              entrees={entreesBarre}
+            >
+              <div className="lg:flex lg:justify-center lg:gap-12">
+                <div className="min-w-0 flex-1 max-w-prose mx-auto lg:mx-0">
+                  {headings.length > 0 && (
+                    <div className="lg:hidden mb-8">
+                      <TableOfContents headings={headings} title={t('toc')} collapsible />
+                    </div>
+                  )}
+                  {/* A3 — double navigation : la barre (48 px) s'ajoute à l'en-tête, donc
+                      les titres passent de scroll-mt-24 (96 px) à scroll-mt-36 (144 px) dès
+                      1024 px, pour qu'aucun H2/H3 ne soit masqué sous la barre. Ids et Hn
+                      inchangés. Appliqué au seul article pilote. */}
+                  <article
+                    className={
+                      barreHaute
+                        ? `${articleProseClasses} [&_h2]:lg:scroll-mt-36 [&_h3]:lg:scroll-mt-36`
+                        : articleProseClasses
+                    }
+                  >
+                    <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
+                  </article>
+                  <div className="mt-12 pt-8 border-t border-neutral-100">
+                    <Link href="/blog" className="inline-flex items-center gap-2 text-very-peri-600 hover:text-very-peri-700 font-medium transition-colors">
+                      <ArrowLeft className="h-4 w-4" />
+                      {t('backToBlog')}
+                    </Link>
                   </div>
-                )}
-                <article className={articleProseClasses}>
-                  <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(processed.processedHtml) }} />
-                </article>
-                <div className="mt-12 pt-8 border-t border-neutral-100">
-                  <Link href="/blog" className="inline-flex items-center gap-2 text-very-peri-600 hover:text-very-peri-700 font-medium transition-colors">
-                    <ArrowLeft className="h-4 w-4" />
-                    {t('backToBlog')}
-                  </Link>
                 </div>
+                {headings.length > 0 && (
+                  <aside className="hidden lg:block w-64 shrink-0">
+                    <div className="sticky top-24">
+                      <TableOfContents headings={headings} title={t('toc')} rapporteActif={barreHaute} />
+                    </div>
+                  </aside>
+                )}
               </div>
-              {headings.length > 0 && (
-                <aside className="hidden lg:block w-64 shrink-0">
-                  <div className="sticky top-24">
-                    <TableOfContents headings={headings} title={t('toc')} />
-                  </div>
-                </aside>
-              )}
-            </div>
+            </DoubleNavigationBlog>
           </div>
         </section>
       </FadeInView>
 
-      {processed.videoCount > 0 && <YouTubeConsent />}
+      {(processed.videoCount > 0 || processed.embedCount > 0) && <YouTubeConsent />}
 
       {article.faqs.length > 0 && (
         <section className="py-16 bg-neutral-50">
@@ -271,6 +314,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* Offres d'occasion : deux articles seulement, absent tant que la page n'est pas publiée (#129) */}
+      <EncadreOccasionBlog slug={slug} lang={lang} />
 
       {/* Studio recommandé (tunnel conversion — P1.B) */}
       <RecommendedStudio contentSlug={slug} lang={lang} />
