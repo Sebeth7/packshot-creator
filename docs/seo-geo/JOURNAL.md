@@ -39,17 +39,108 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Chantier** : « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX » (17/10 ; `GO_EXCEPTION_D13_D42_104`, `GO_QA_SUBSTITUTIVE_104`, `GO_RESYNC_104`, `GO_CODE_DOCUMENTATION_104`, `GO_PR_PUSH_104` = OUI ; `GO_MERGE_104` et `GO_PUBLICATION_104` = OUI sous conditions) | **PR** : #104 | **Tête éditoriale de référence** : `1878ba8`
 
 **Quoi** — Documentation et synchronisation, aucun texte du site modifié :
-- `main` `dd33884` (#160, #161) intégré par commit de fusion (`eea9f04`) ; conflit `JOURNAL.md` résolu par union ; `data/secteurs.ts` identique à `1878ba8`.
+- `main` intégré trois fois par commit de fusion, sans rebase : `dd33884` (#160, #161) en `eea9f04`, `faa1645` (#162) en `1b367ef`, puis `46aba36` (#107, fusionnée à 04:04:57 UTC) ; conflits `JOURNAL.md` et `DECISIONS.md` résolus par union (aucune ligne perdue de part et d'autre) ; `data/secteurs.ts` : entrée bijoux identique à `1878ba8`, reste du fichier (dont l'entrée vin de #107) identique à `main`.
 - `DECISIONS.md` : exception ponctuelle D13/D42 pour #104 et QA substitutive au contrôle Chrome prépublication, inscrites sans numéro (règle des entrées voisines), avec leur effet sur D15.
 - `ETAT.md` : ligne #104.
 
 **Périmètre de la fusion** — Diff contre `main` : `data/secteurs.ts` (entrée `bijoux-joaillerie` seule), `docs/seo-geo/DECISIONS.md`, `JOURNAL.md`, `ETAT.md`. Gabarit commun, Vin, Mode, Studios et protections D9 (`noindex` EN) non touchés.
 
-**Vérifié** — Fresh-check du 17/10 : `main` `dd33884` (#160 fusionnée à 03:47:46 UTC) ; #104 `1878ba8` ; #162 ouverte, prête, sans fichier commun hors `DECISIONS.md` et `JOURNAL.md`, sans changement de la famille `hub-sectoriel` ; #161 fusionnée. Contrôles de la tête de sortie : voir la PR.
+**Vérifié** — Fresh-check du 17/10 : `main` `dd33884` (#160 fusionnée à 03:47:46 UTC) ; #104 `1878ba8` ; #162 ouverte, prête, sans fichier commun hors `DECISIONS.md` et `JOURNAL.md`, sans changement de la famille `hub-sectoriel` ; #161 fusionnée. Puis #162 (03:50 UTC) et #107 (04:04:57 UTC) fusionnées avant #104 : `main` repris à chaque fois. Contrôles de la tête de sortie : voir la PR.
 
 **Non regardé** — `www` (R4, QA groupée après les publications).
 
 **Suite** — Fusion de #104 dans `main` (publication automatique), puis contrôle technique de `sysnext.vercel.app` ; QA visuelle de `www` groupée ; remarques éventuelles de Sébastien sollicitées ultérieurement ; CTA « Demander un devis gratuit » : décision du propriétaire unique du gabarit (#158, #107).
+
+---
+
+## 2026-10-17 · Hub vin-spiritueux (#107) — GO final : resynchronisation, exception D13/D42, sortie de brouillon · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX » du 17/10 (`GO_EXCEPTION_D13_D42_107`, `GO_QA_LOCALE_SUBSTITUTIVE_107`, `GO_RESYNC_107`, `GO_CODE_DOCUMENTATION_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE_107` et `GO_PUBLICATION_107` = OUI sous conditions) | **PR** : #107 | **Base** : `main` `faa1645`
+
+**Quoi** — `main` `faa1645` (fusions de #160, #161, #162) intégré par fusion, JOURNAL par union. Exception D13/D42, droits des illustrations et QA locale substitutive inscrits dans `DECISIONS.md` (entrée du 17/10, numéro à attribuer). ETAT et statut de `LANDING.md` actualisés. Aucun fichier fonctionnel modifié depuis la tête éditoriale `e4ba732`.
+
+**Pourquoi** — Clôture et publication de #107 dans la même séquence, sur l'autorité de Laurent.
+
+**Fichiers** — `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Effet attendu** — À la fusion : nouvelle landing vin en production (fr ; en servi en français, `noindex`) ; autres pages inchangées.
+
+**Vérifié** — `main` `faa1645` ; #160 et #162 fusionnées (17/10, 03:47 et 03:50 UTC) ; #104 et #158 ouvertes en brouillon, non fusionnées. Diff fonctionnel de #107 contre `main` : `HubVin.tsx`, `SchemaEclairageBouteille.tsx`, `page.tsx` (un import, un retour anticipé), entrée vin de `data/secteurs.ts`, 8 AVIF ; fichiers vin identiques à `e4ba732`. D44 : #162 ne touche ni le gabarit des hubs ni la famille `hub-sectoriel` (`aucune`, `EXCLUDE`). Fusions simulées : avec #158 (U04) et avec #104, conflit sur `JOURNAL.md` seul, code sans conflit. `npx tsc --noEmit` et `npx next build` verts avant le push.
+
+**Supposé** — [Inférence] Le rendu du hub vin est celui de `e4ba732`, aucun fichier qu'il importe n'ayant changé sur `main` depuis. Cela repose sur des schémas observés.
+**Non regardé** — Preview (SSO) ; `www` (R4, QA Chrome groupée) ; formulaire réel (GO_TEST_RÉEL distinct).
+
+**Suite** — CI du nouveau HEAD ; sortie de brouillon, fusion, contrôle de `sysnext.vercel.app` ; QA groupée sur `www` ; réévaluation D44 du hub vin.
+
+---
+
+## 2026-10-16 · Hub vin-spiritueux (#107) — finition éditoriale : nouveau H1, introduction resserrée, répétitions allégées · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« PSC V9 — FINITION ÉDITORIALE VIN #107 » : `GO_CODE_CORRECTIF_EDITO_107`, `GO_PR_PUSH_CORRECTIF_EDITO_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`
+
+**Quoi** — H1 « Photo de bouteilles : maîtrisez le verre, la lumière et les étiquettes » ; introduction en trois temps (difficultés, studio Orbitvu, accompagnement) ; phrases raccourcies et doublons allégés dans les matières, l'éclairage, la gamme et le parcours. Title, meta description, H2, H3, FAQ, visuels, légendes, liens et données structurées inchangés. Détail et table des redondances : section 5.7 de `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Pourquoi** — Landing plus convaincante et plus courte à lire, introduction moins technique, sans perte de richesse SEO ni métier.
+
+**Fichiers** — `data/secteurs.ts` (entrée `vin-spiritueux` seule), `app/[lang]/industrie/[slug]/_components/HubVin.tsx` (constantes de texte affichées), `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Rien avant fusion. Après : H1 sans « packshot » ; le terme reste dans le `<title>` et une fois dans l'introduction. [Inférence] Effet sur la position de « packshot bouteille » non estimable sans mesure. Cela repose sur des schémas observés.
+
+**Vérifié** — `npx tsc --noEmit` vert ; build vert ; HTML prérendu contre `main` `c92740c` : 382/384 identiques. Contre le HEAD précédent (`80bf178`), fr et en : title, description, canonical, robots, hreflang, H2, H3, `id`, liens, `alt`, nombre d'images, légendes, types JSON-LD et FAQ JSON-LD identiques ; seul le H1 change parmi ces éléments. Chaque information retirée d'un passage reste présente ailleurs sur la page (table de la section 5.7).
+
+**Supposé** — Rien au-delà de l'inférence ci-dessus.
+**Non regardé** — Preview Vercel (SSO) ; `www` (R4) ; relecture de Sébastien (attendue).
+
+**Suite** — Relecture de Laurent sur la Preview ; validation de Sébastien requise avant fusion ; GO de fusion et de publication distincts.
+
+---
+
+## 2026-10-16 · Hub vin-spiritueux (#107) — correctif éditorial : légendes publiques sans mention « Illustration générée par IA » · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; décision de Laurent du 16/10 (« V9 — CORRECTIF ÉDITORIAL PR #107 » : `GO_CODE_CORRECTIF_107`, `GO_PR_PUSH_CORRECTIF_107` = OUI ; `GO_MERGE_107`, `GO_PUBLICATION_107` = NON) | **PR** : #107, brouillon, « DO NOT MERGE » | **Base** : `main` `c92740c`
+
+**Quoi** — Légendes publiques des huit visuels : « Illustration générée par IA, bouteilles et étiquettes fictives » devient « Visuel d’illustration — bouteilles et étiquettes fictives » ; légendes de la gamme (« Il figure une présentation homogène… ») et des vues du flacon (« Visuel d’illustration — flacon et étiquettes fictifs… ») adaptées. Constante `LEGENDE_IA` renommée `LEGENDE_VISUEL`.
+
+**Pourquoi** — Décision éditoriale de Laurent : retirer la mention publique de l’IA, en gardant le caractère illustratif et non démonstratif des légendes.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubVin.tsx` ; `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md` (légendes du manifeste visuel, section 5.6 avec l’avant/après et la provenance IA conservée) ; `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun avant fusion. Texte visible des légendes seulement ; images, `alt`, Hn, données SEO et appels inchangés.
+
+**Vérifié** — Diff de `HubVin.tsx` : 7 lignes, légendes et constante seulement. `npx tsc --noEmit` vert ; ESLint sans remarque sur le fichier ; contrôles de rendu et de prérendu consignés dans la PR après build.
+
+**Supposé** — [Inférence] Les visuels, fictifs et légendés comme tels, ne sont pas des hypertrucages au sens de l’article 50, paragraphe 4, de l’AI Act tel que le résume l’article du site ; qualification de Laurent, pas un avis juridique. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) : vérification ciblée des légendes demandée à Laurent ; `www` (R4).
+
+**Suite** — Contrôle des légendes sur la Preview par Laurent ; validation commerciale et éditoriale de Sébastien requise avant fusion ; GO de fusion et de publication distincts.
+
+---
+
+## 2026-10-16 · Hub vin-spiritueux (#107) — reprise V9 : synchronisation, `Service.url`, variante B ajustée, Preview prête pour la QA humaine · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux` ; GO de Laurent du 16/10 (« V9 — GO REPRISE #107 VIN » : `GO_REPRISE_107`, `GO_CODE_107`, `GO_PR_PUSH_107` = OUI ; `GO_MERGE`, `GO_PUBLICATION` = NON), après le HOLD du 08/10 | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `c92740c`
+
+**Quoi** — `main` fusionné dans #107 (union de `JOURNAL.md` et `ETAT.md`). `Service.url` du hub vin construit par le routage (`getPathname`). Comparaison des variantes B (huit illustrations) et C (I1 et I4) : B retenue, avec deux ajustements (matières en liste verticale à vignettes sous 640 px ; illustration de gamme limitée à 896 px). Droits, réserves, D44 et contrôles : section 5 de `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`. Information de Sébastien : Q27.
+
+**Pourquoi** — #107 était en conflit avec `main` (343 commits d'écart). Le test `json-ld-url-canonique` de `main` refuse un `Service.url` en `${lang}/industrie/…` hors de ses exceptions. Le carrousel mobile masquait trois contraintes sur quatre ; l'illustration de gamme dominait la page à 1 440 px.
+
+**Fichiers** — `app/[lang]/industrie/[slug]/_components/HubVin.tsx`, `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/BOITE-AUX-LETTRES.md`.
+
+**Effet attendu** — Rien avant une fusion sur GO distinct. Après : identique à l'entrée du 08/10 (title, meta, H1, FAQ du hub vin) ; `Service.url` de valeur inchangée.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 1 047/1 047 (57 fichiers), dont `json-ld-url-canonique` ; ESLint : rien sur `HubVin.tsx` ; `npx next build` vert (variables factices), 396 pages générées.
+- HTML prérendu, branche contre `main` `c92740c`, identifiant de build neutralisé : 384 pages, 382 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. Mode et `de-ch/branchen/wein` identiques.
+- fr et en : canonical, robots, hreflang identiques à `main` ; EN `noindex, follow` (D9) ; `Service.url` = canonical ; JSON-LD Organization, BreadcrumbList, Service, FAQPage (6 = FAQ visible) ; 11 images, 0 sans `alt` ; HOLD H1 à H10 absents du contenu rendu.
+- Rendu local (`next start`), fr et en, 1 440, 1 024, 768 et 390 px : largeur de page = largeur de fenêtre, 0 erreur console, 9 images chargées, 1 H1, « Demander une démonstration » dans le premier écran (712, 733, 580, 736 px). Aucun formulaire envoyé.
+- Comparaison B/C (section 5.2 de `LANDING.md`) : hauteurs, poids des images servies, captures des deux sections concernées.
+- D44 : C1 11 283 px, C2 5 sections ; C5 non rempli (PR éditoriale ouverte) : HOLD, aucune navigation ajoutée, registre inchangé ; aucun élément collant hors en-tête et bandeau cookies.
+- Playwright, build local, Chromium : specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81, `consentement-medias` 20/20 ; `seo`, `mobile-overflow`, `internal-links` 236 passés, 11 échecs hors CI sur des pages au HTML identique à `main` (descriptions de plus de 160 caractères, title de 84 caractères, `/fr/packshot-bijoux` absente du prérendu, débordement de `/fr` à 375 px).
+
+**Supposé** — [Inférence] Les 11 échecs hors CI se reproduisent sur `main` `c92740c` : leur HTML prérendu est identique, et les valeurs de `main` dépassent les seuils de la spec. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO), `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari, appareils réels ; envoi réel du formulaire ; droits d'usage des illustrations (confirmation de Laurent non reçue) ; conditions d'utilisation d'OpenAI en vigueur.
+
+**Suite** — Contrôle de la Preview par Laurent (desktop, mobile). D15 : le délai de Sébastien ne court qu'à partir de la CI verte et de la Preview contrôlée ; aucune validation tacite n'est acquise à ce jour (Q27). Fusion et publication sur GO distincts.
 
 ---
 
@@ -3706,6 +3797,35 @@ Non modifiés : gabarit `app/[lang]/industrie/[slug]/page.tsx`, `sector-machine-
 **Non regardé** — `sysnext.vercel.app` et `www` (R4) ; Preview Vercel non accessible à la session (Vercel Authentication), contrôlée par Laurent (ci-dessus) ; Firefox, Safari, appareils réels ; specs `seo` et `language-switch`. Prose EN et de-ch : aucune adaptation (EN `noindex` sert les données FR ; `/de-ch/branchen/schmuck` exclu, vague 3). Aucun audit SEO, SERP ou mots-clés ; aucun appel payant ; aucun service externe. Seul le paquet `tsx` a été téléchargé du registre npm, pour compter les mots des champs.
 
 **Suite** — Preview humaine faite (PASS) ; information de Sébastien, message préparé et non envoyé (CA10 a pour M30 et M32 ; D15 pour la réécriture) ; claims retirés ou neutralisés listés dans la PR. CA10 à inscrire par la première PR de vague 1. M31 après le sort de #27. #102, fusionnée le 07/10, est un événement concomitant à déclarer à la mesure du hub (libellés de-ch du gabarit ; rendu FR inchangé selon #102). GO de fusion distinct de Laurent.
+
+---
+
+## 2026-10-08 · Hub vin-spiritueux — landing Wave 2 : copie finale, 8 visuels, 2 schémas · Claude de Laurent
+
+**Chantier** : Wave 2, landing `/fr/industrie/vin-spiritueux`, mission d'exécution de Laurent du 08/10 (`GO_CODE` landing vin seule, `GO_PR_DRAFT` ; `GO_MERGE`, `GO_PUBLICATION`, `GO_TRADUCTIONS`, `GO_PAID_CALL` : NO) | **PR** : #107, brouillon, « DO NOT MERGE », branche `claude/happy-fermat-csb8ho` | **Base** : `main` `06b18e2`
+
+**Quoi** — Page dédiée `HubVin.tsx` pour fr et en (EN servi en français, `noindex, follow`) ; de-ch garde le gabarit commun. Entrée `vin-spiritueux` de `data/secteurs.ts` réécrite. Schéma D1 (`SchemaEclairageBouteille.tsx`), parcours D2 en liste ordonnée, 8 illustrations IA en AVIF. Registre des claims (S1 à S19, HOLD H1 à H10) et manifeste visuel : `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`.
+
+**Pourquoi** — La page de `main` rend l'Alphashot XL Wine (absente du catalogue Orbitvu), « éclairage polarisé », « étalonnage 74 points », des cadences et « −85 % » non sourcés, une carte et une FAQ BlendAI. Copie L3 du 08/10 avec les corrections A à G de la mission (modèles, éclairage, machines, IA, formation, démonstration, ton).
+
+**Fichiers** — `app/[lang]/industrie/[slug]/page.tsx` (1 import, 1 retour anticipé), `app/[lang]/industrie/[slug]/_components/HubVin.tsx` et `SchemaEclairageBouteille.tsx` (nouveaux), `data/secteurs.ts` (entrée vin seule), `public/images/secteurs/vin/*.avif` (8), `docs/seo-geo/vin-spiritueux-2026-10-08/LANDING.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Rien avant une fusion sur GO distinct. Après : nouveaux `<title>`, meta description, H1 et FAQ (6 questions) sur `/fr/industrie/vin-spiritueux` ; URL, canonical, hreflang, `noindex, follow` de la version EN et page de-ch inchangés. Effet sur les positions non estimé : aucune donnée GSC consultée dans cette mission.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2` ; #104 ouverte, brouillon, tête `16e106f`, base `06b18e2` ; #105 ouverte, tête `8135bb7`.
+- Assets : 8 PNG du ZIP de la mission, noms, dimensions et SHA-256 conformes à `manifest.json` ; AVIF sans agrandissement, PSNR 41,1 à 48,2 dB.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 483/483 ; ESLint : rien dans les fichiers nouveaux, 1 erreur et 2 avertissements de `page.tsx` déjà présents sur `main` (l. 793 et 198) ; `npx next build` vert (variables factices de la CI).
+- HTML prérendu, branche contre `main` `06b18e2`, identifiant de build neutralisé : 374 pages, 372 identiques ; seules `fr` et `en` `industrie/vin-spiritueux` diffèrent. `de-ch/branchen/wein`, hubs bijoux et mode, autres hubs FR : identiques.
+- En-têtes fr et en : canonical et hreflang identiques à `main` ; EN `noindex, follow` conservé ; 1 H1 ; JSON-LD Organization, BreadcrumbList, Service, FAQPage ; FAQ JSON-LD 6 = FAQ visible 6 ; 11 images, 0 sans `alt`. Liens internes : 13/13 en 200 par langue ; liens F5 (2) et ROI identiques à `main` (D37).
+- Rendu local (`next start`), fr et en, à 1440, 1024, 768 et 390 px : largeur de page = largeur de fenêtre, 0 erreur console, 9 images chargées, 1 H1, H1 au-dessus du visuel en mobile, appel « Demander une démonstration » dans le premier écran aux quatre largeurs, bouton « Comparer tous les modèles » lisible (texte sombre sur blanc). Aucun formulaire envoyé.
+- Playwright, build local, Chromium : specs de la CI `machine-selector`, `sommaire-blog`, `navigation-pages-longues` 81/81 ; `seo`, `mobile-overflow`, `internal-links` 237/237.
+- `verifier-consequences.mjs` : effet local. Fusion simulée (`git merge-tree`) du commit de code avec #104 (`16e106f`) et avec #105 (`8135bb7`) : sans conflit ; `tsc` vert sur l'arbre fusionné avec #104 (deux retours anticipés distincts, bijoux puis vin). Avec cette entrée : conflit sur `docs/seo-geo/JOURNAL.md` seul, au point d'insertion commun du haut du journal (même conflit entre #104 et #105) ; résolution : conserver les deux blocs d'entrées. `ETAT.md` fusionne sans conflit.
+
+**Supposé** — [Inférence] Le rendu de la Preview Vercel suivra le rendu local du même commit. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel au moment de l'entrée ; `sysnext.vercel.app` et `www` (R4) ; Firefox, Safari et appareils réels ; envoi réel du formulaire (interdit par la mission) ; P0-B (bouton illisible et visuels manquants du gabarit commun) et P0-C (`/industrie/bouteilles`) : recommandations seules, dans `LANDING.md` ; traductions en et de-ch ; preuves réelles (photos de bouteilles prises en studio) : aucune disponible.
+
+**Suite** — Contrôle de la Preview par Laurent (desktop, mobile). Fusion et publication sur GO distincts. Si #104 fusionne avant, reprendre `main` et relancer le build.
 
 ---
 
