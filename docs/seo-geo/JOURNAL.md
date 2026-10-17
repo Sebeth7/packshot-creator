@@ -34,6 +34,105 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · L05 (#163) : resynchronisation sur `main` `2a8c444`, QA Chrome PASS, fusion · Claude de Laurent
+
+**Chantier** : G5 — données structurées (D57 § 5) | **PR** : #163 | **Base** : `main` `2a8c444` (après #164) | **HEAD précédent** : `42ed17d5`
+
+**Quoi** — Deuxième resynchronisation de #163, sans aucune modification de son
+périmètre fonctionnel. `main` a avancé de `1fc2230` à `2a8c444` avec la fusion de
+#164 (Worker RSC). Les quatre fichiers L05 sont identiques octet pour octet à
+`42ed17d5`. Draft et mention DO NOT MERGE levés sur les GO_MERGE_163 et
+GO_PUBLICATION_163 de Laurent du 17/10.
+
+**Pourquoi** — GO_RESYNC puis GO_MERGE et GO_PUBLICATION de Laurent du 17/10,
+après sa QA Chrome PASS sur les trois JSON-LD de la Preview. #164 ne touche que
+`cloudflare-worker/`, donc aucun recoupement fonctionnel avec L05 ; la fusion
+s'est faite automatiquement, `docs/seo-geo/JOURNAL.md` compris.
+
+**Fichiers** — Aucun fichier fonctionnel modifié par cette resynchronisation.
+Apports de `main` repris tels quels : `cloudflare-worker/src/index.js`,
+`cloudflare-worker/test/rsc-cache.test.ts`, `cloudflare-worker/wrangler.toml`.
+Seul `docs/seo-geo/JOURNAL.md` fusionne les deux côtés.
+
+**Effet attendu** — Aucun effet nouveau par rapport à l'entrée L05 du 17/10 :
+mêmes 54 pages prérendues, même retrait de la disponibilité et des `Offer` hors
+offre officielle. La publication en production suit la fusion sur `main`, en
+environ trois minutes.
+
+**Vérifié** — Fusion `main` → branche sans conflit (`git merge-tree` : arbre
+propre, aucun fichier en conflit ; `git merge` : « Auto-merging
+docs/seo-geo/JOURNAL.md », aucun marqueur résiduel). Journal : 0 ligne perdue de
+chaque côté, 0 entrée dupliquée. Les quatre fichiers L05 identiques à `42ed17d5`
+(`git diff --quiet` par fichier). `npx tsc --noEmit` : 0 erreur.
+`node scripts/seo/verifier-json.mjs` : 198 JSON valides. `npx vitest run lib/seo` :
+5 fichiers, 86 cas verts. `npx vitest run cloudflare-worker/test` (apports de
+#164) : 7 fichiers, 185 cas verts. `node --check cloudflare-worker/src/index.js` :
+OK. `npx next build` (R1) : code 0. JSON-LD relevés sur le HTML prérendu du
+build : `fr/studio-photo/alphashot-xl-pro-v2` → `Offer` avec `price` 490 EUR,
+`priceCurrency` EUR, `priceValidUntil` 2027-12-31, `itemCondition`
+`NewCondition`, `seller` présent, `availability` absente ;
+`fr/studio-photo/alphashot-g2` → aucune `offers` ; `fr/studios-photo-automatises`
+→ `AggregateOffer` avec `lowPrice` 12000, `highPrice` 150000, `offerCount` 16,
+`seller` présent, `availability` absente. Zéro occurrence de `InStock`,
+`OutOfStock` et `PreOrder` dans les trois blocs. Rendu strictement identique à
+celui soumis à la QA Chrome : celle-ci est réutilisée, elle n'est pas refaite.
+
+**Supposé** — Rien de nouveau. La QA Chrome PASS du 17/10 porte sur le rendu de
+la Preview, dont l'identité avec le rendu de ce HEAD est établie ci-dessus par
+l'égalité des quatre fichiers et des valeurs relevées.
+
+**Non regardé** — Le Worker n'est pas déployé par cette fusion : le flag
+`cache_option_enabled` de #164 reste à appliquer sur le GO distinct
+`GO_DEPLOIEMENT_WORKER`. Résultats enrichis Google et GSC : à J+7 à J+21.
+Contrôle de `www` dans Chrome : à faire par Laurent (R4, Cloudflare renvoie 403 à
+tout script).
+
+**Suite** — Publication en production par la fusion sur `main`. Contrôle du
+déploiement Vercel et des trois JSON-LD après publication. #133 reste entière et
+inchangée, en HOLD pour Q20/D45 et D42.
+
+---
+
+## 2026-10-17 · Worker RSC (#164), complément : contournement explicite du cache et flag de compatibilité · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10 (suite de l'entrée précédente) ; GO_CODE et GO_PR/PUSH complémentaires de Laurent (17/10), limités à #164 ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (brouillon, DO NOT MERGE) | **Commit** : voir PR
+
+**Quoi** — Les requêtes de navigation Next.js partent avec `cache: "no-store"` en plus de l'absence d'option `cf` ; `wrangler.toml` déclare `compatibility_flags = ["cache_option_enabled"]`. HTML ordinaire, API, `_next` et cookies : aucun champ `cache`, comportement inchangé.
+
+**Pourquoi** — Réserve de Laurent : selon la documentation Cloudflare (`workers/runtime-apis/fetch`), omettre `cf` ne garantit pas l'absence de lecture du cache ; « For `no-store`, requests to origins not hosted by Cloudflare bypass the use of Cloudflare's caches ». Avec `compatibility_date = "2024-01-01"`, le champ `cache` exige le flag `cache_option_enabled` (actif par défaut à partir du 2024-11-11, page `compatibility-flags`).
+
+**Fichiers** — `cloudflare-worker/src/index.js`, `cloudflare-worker/wrangler.toml`, `cloudflare-worker/test/rsc-cache.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement : séparation HTML/RSC dans les deux sens, la seconde par contournement documenté du cache et non plus par déduction.
+
+**Vérifié** — Runtime workerd local (`wrangler dev --local` 4.151.1, origine simulée, aucune requête externe), date 2024-01-01 : sans le flag, la requête RSC renvoie 500 « The 'cache' field on 'RequestInitializerDict' is not implemented » ; avec le flag, HTML 200 `text/html` et RSC 200 `text/x-component`, et l'origine reçoit `Cache-Control: no-cache` et `Pragma: no-cache` sur la seule requête RSC. `npx vitest run cloudflare-worker/test` : 7 fichiers, 185 tests verts ; contre-épreuves : 7 échecs contre le Worker de `5872410`, 1 échec (configuration) sans le flag.
+**Supposé** — Le contournement effectif du cache de la zone repose sur la documentation Cloudflare, le runtime local ne modélisant pas ce cache.
+**Non regardé** — Effet du `Cache-Control: no-cache` transmis sur le cache de Vercel pour les flux RSC ; compatibilité du mode de déploiement réel (voir Suite).
+
+**Suite** — **Condition de déploiement** : le flag doit être effectif sur le Worker déployé. Un déploiement `wrangler deploy` depuis ce dépôt l'applique ; un code collé au dashboard sans le flag ferait échouer toutes les navigations RSC (500). À vérifier dans la configuration du Worker avant et après déploiement.
+
+---
+
+## 2026-10-17 · Worker : requêtes RSC et préchargements Next.js hors du cache HTML partagé (P0 du crawl SF du 15/10) · Claude de Laurent
+
+**Chantier** : P0 du tri V10 du crawl Screaming Frog du 15/10 (chantier 1) ; `GO_CODE_WORKER_RSC_CACHE` et `GO_PR/PUSH_WORKER_RSC_CACHE` de Laurent (17/10) ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : brouillon, DO NOT MERGE | **Commit** : `01c84b2`
+
+**Quoi** — `isCacheableHTML` exclut les requêtes portant `RSC`, `Next-Router-Prefetch`, `Next-Router-Segment-Prefetch` ou `Next-Router-State-Tree` : elles partent vers l'origine sans option `cf`. HTML ordinaire, TTL (60 s), exclusions API, `_next`, paramètres, méthodes autres que GET et cookies sensibles inchangés.
+
+**Pourquoi** — Crawl du 15/10 (`interne_tous.csv`, `tous_les_entêtes_de_requête_http.csv`) : 12 requêtes HTML sans en-tête `rsc` ont reçu le flux RSC (`text/x-component`, `cf-cache-status: HIT`, âge 1 à 58 s) et 11 requêtes RSC ont reçu du HTML. Cause : `cacheEverything` posé sans test des en-têtes Next.js depuis `28a1169` (#50, 29/09) ; le cache Cloudflare ignore `Vary`.
+
+**Fichiers** — `cloudflare-worker/src/index.js` (+6/−1), `cloudflare-worker/test/rsc-cache.test.ts` (nouveau, 19 cas), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après déploiement seulement : plus de flux RSC servi aux requêtes HTML de `www`, ni de HTML aux navigations Next.js. **Événement technique à consigner pour M5, F5 et Mode à la date du déploiement.**
+
+**Vérifié** — `node --check` vert ; `npx vitest run cloudflare-worker/test` : 7 fichiers, 184 tests verts ; contre-épreuve : le nouveau fichier de tests exécuté contre le Worker de `main` `1fc2230` échoue sur les 7 cas RSC et préchargement, les 12 autres passent ; `npx tsc --noEmit` vert.
+**Supposé** — [Inférence] Une sous-requête sans option `cf` est traitée en `DYNAMIC` par Cloudflare et ne lit pas l'objet mis en cache par une requête HTML (cohérent avec les requêtes à paramètre en `DYNAMIC` du crawl du 15/10) ; à prouver après déploiement.
+**Non regardé** — Worker effectivement déployé (`DEPLOYED_WORKER_SHA` = NON ÉTABLI ; resynchronisation R5 à faire avant tout déploiement) ; aucun test sur `www` (risque de contaminer le cache) ; canoniques Google, JSON-LD Article, 504/C3 et autres constats du crawl.
+
+**Suite** — Avant fusion : resynchronisation R5, preuve Cloudflare du sens RSC → HTML, QA de production non perturbatrice, rollback (`git revert`, puis redéploiement depuis le dépôt, D4 ; objets en cache expirés en 60 s au plus), GO_MERGE et GO_DEPLOIEMENT_WORKER distincts.
+
+---
+
 ## 2026-10-16 · U04 : retrait des réserves graphiques vides des pages secteurs · Claude de Laurent
 
 **Chantier** : U04 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
