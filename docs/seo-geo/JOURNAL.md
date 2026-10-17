@@ -34,6 +34,46 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Lemlist et `trail.packshot-creator.com` abandonnés (décision de Laurent) ; réserve `trail.` close · Claude de Laurent
+
+**Chantier** : réserve `trail.` ouverte après le déploiement du Worker #164 | **PR** : #166 (documentation) | **Commit** : voir PR
+
+**Quoi** — Décision métier de Laurent du 17/10/2026 : Lemlist et son domaine de suivi `trail.packshot-creator.com` sont définitivement abandonnés. La réserve métier `trail.` est close.
+
+**Pourquoi** — Le sous-domaine ne se résout plus (constats du 17/10, entrées précédentes). Son absence DNS est cohérente avec l'abandon du service ; la date et la cause de la disparition de l'enregistrement restent inconnues, sans lien causal prouvé avec #164.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun sur le site ni au DNS : aucun enregistrement à supprimer. Le tracker Lemlist du site est retiré depuis le 28/09.
+
+**Vérifié** — Décision transmise par Laurent le 17/10 ; historique conservé dans les entrées précédentes (200 le 23/09 et le 25/09, page Lemlist le 28/09, NXDOMAIN le 17/10).
+**Supposé** — Aucun envoi Lemlist en cours ne dépend encore de `trail.` (conséquence de l'abandon décidé).
+**Non regardé** — Le compte Lemlist (hors dépôt). Témoins SEO sur `www` toujours **NON VÉRIFIÉS** faute de réponse HEAD réelle : redirections 301, réponses 410, en-tête `X-Robots-Tag`.
+
+**Suite** — Retrait de `trail.packshot-creator.com` de `PASSTHROUGH_HOSTS` (`cloudflare-worker/src/index.js`) : reporté à un GO_CODE Worker spécifique, sans déploiement immédiat (GO_CODE_WORKER = NON au 17/10).
+
+---
+
+## 2026-10-17 · Worker #164 : QA Chrome `www` PASS (HTML/RSC) ; événement consigné pour M5, F5 et Mode ; réserve `trail.` qualifiée · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10, clôture documentaire | **PR** : #166 (documentation) | **Commit** : voir PR
+
+**Quoi** — QA de production de `packshot-router` `f81fa93a-522b-4457-96d7-26ce09acc6a7` (déployé le 17/10 à 13:00:31 UTC) réalisée par Laurent dans Chrome sur `www`, de 13:04 à 13:09 UTC : **PASS pour le P0 HTML/RSC sur les parcours testés**. Événement Worker inscrit en E pour M5, F5 et Mode.
+
+**Pourquoi** — Clôture du P0 : correctif effectivement déployé (flag `cache_option_enabled` actif, entrée précédente) et vérifié sur `www` (R4).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Plus de flux RSC servi aux requêtes HTML de `www`, ni de HTML aux navigations Next.js. Événement à rattacher aux mesures en cours, sans changer leurs métriques ni leurs fenêtres : M5 (14 au 28/10), F5 (J+28 le 26/10, J+56 le 23/11), Mode (J+28 le 29/10, J+56 le 26/11).
+
+**Vérifié** — QA Chrome `www` de Laurent, rapportée le 17/10 : PASS sur les parcours HTML et de navigation Next.js testés (13:04–13:09 UTC).
+**Supposé** — Que les parcours testés sont représentatifs des pages servies par le Worker ; le verdict ne couvre que ces parcours.
+**Non regardé** — **NON VÉRIFIÉ** faute de réponse HEAD réelle : redirections 301 (#115/#151), réponses 410, en-tête `X-Robots-Tag` sur `www`. `trail.packshot-creator.com` : **indisponibilité DNS d'apparition indéterminée, sans lien causal prouvé avec #164** ; preuves historiques conservées (200 le 23/09 et le 25/09, page Lemlist le 28/09 ; entrée précédente et ETAT, C).
+
+**Suite** — P0 HTML/RSC : résolu sur les parcours testés ; contrôles 301, 410 et `X-Robots-Tag` à mener par requêtes HEAD réelles depuis le poste de Laurent (D23). `trail.` : décision de Laurent sur l'usage de Lemlist. Rollback toujours disponible : `npx wrangler@4 rollback d7d06bc1-a0a4-423c-a036-037a3b7266ea`.
+
+---
+
 ## 2026-10-17 · Studios #108 — GO final de préparation : `main` intégré, double navigation mutualisée, droits des médias, V05 remplacée, exception D13/D42 · Claude de Laurent
 
 **Chantier** : Studios Wave 2, « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 » (GO_RESYNC_108, GO_CODE_108, GO_PR_PUSH_108, GO_D13_D42_EXCEPTION_108, GO_QA_PREVIEW_108 = OUI ; GO_MERGE_108, GO_PUBLICATION_108, GO_TEST_REEL, GO_ENVOI = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `2041b80`, `main` `1fc2230`, puis `2a8c444` (#164), puis `4b6fca9` (#163, #165, #105)
@@ -135,6 +175,31 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **Non regardé** — Preview Vercel (authentification) et `www` (R4) ; traduction EN et de-ch de la nouvelle landing (non autorisée) ; cadences et noms « v2 » du sélecteur (D45, Q20) ; `hero-studios-wide.avif` du hero EN et de-ch (gabarit transitoire conservé) ; `Organization` global.
 
 **Suite** — CI, puis contrôle de la Preview par Laurent (FR, EN, de-ch ; desktop, tablette, mobile). Information groupée de Sébastien selon D15, préparée dans la description de la PR, non envoyée : le délai ne court qu'après la CI verte et la Preview contrôlée. GO_MERGE_108 et GO_PUBLICATION_108 : décisions distinctes.
+
+---
+
+## 2026-10-17 · Worker #164 déployé (QA `www` en attente) ; réserve DNS `trail.packshot-creator.com` · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10 ; GO_DEPLOIEMENT_WORKER_164 de Laurent (17/10) ; contrôle ciblé `trail.` (lecture seule) | **PR** : #166 (documentation) | **Commit** : voir PR
+
+**Quoi** — `packshot-router` déployé depuis `main` `4b6fca9` (sous-arbre `cloudflare-worker/` identique à `2a8c444`, arbre propre, extraction détachée) par `npx wrangler deploy` 4.151.1. Version `d7d06bc1-a0a4-423c-a036-037a3b7266ea` (15/10, 11:01:45 UTC) → `f81fa93a-522b-4457-96d7-26ce09acc6a7`, créée le 17/10 à 13:00:31 UTC, active à 100 %.
+
+**Pourquoi** — Correctif P0 HTML/RSC (#164). Séparément, Laurent constate que `trail.packshot-creator.com` ne se résout plus.
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Requêtes RSC et préchargements Next.js hors du cache HTML partagé sur `www`, à partir de 13:00 UTC le 17/10. **Événement technique pour M5 (14 au 28/10), F5 et Mode**, à rattacher à leurs mesures sans les modifier.
+
+**Vérifié** —
+- *Avant* : version active `d7d06bc1` à 100 % ; `origin/main` `4b6fca9`, aucun commit postérieur à `2a8c444` dans `cloudflare-worker/` ; un seul worktree, aucun fichier modifié ni non suivi.
+- *Après, par l'API Cloudflare* : `compatibility_date` 2024-01-01, `compatibility_flags` = `["cache_option_enabled"]` ; binding `NEXTJS_ORIGIN` = `https://sysnext.vercel.app` ; routes `www.packshot-creator.com/*`, `packshot-creator.com/*`, `*.packshot-creator.com/*` ; logpush et tail inchangés ; code relu : `isNextFlightRequest` présent, `cache: "no-store"` présent ; `d7d06bc1` toujours listée (rollback disponible).
+- *`trail.`* : requêtes DoH (`cloudflare-dns.com`, `dns.google`) du 17/10 : NOERROR sans aucune réponse pour A, AAAA, CNAME, TXT, MX, HTTPS et NS, réponse identique à celle d'un nom inexistant de la zone (`zz-inexistant-check`). Constat de Laurent : NXDOMAIN dans Chrome à 13:08:48 UTC, aucun enregistrement par 1.1.1.1 ni 8.8.8.8. Historique : 200 le 23/09 (`curl.exe`, lot F, JOURNAL de `e81e5c0` cité le 02/10) et le 25/09 (poste de Laurent et conteneur) ; le 28/09, page « Custom domain check » de Lemlist, domaine de suivi des e-mails Lemlist. Dans le code : `trail.` figure seulement dans `PASSTHROUGH_HOSTS` du Worker ; le tracker Lemlist du site a été supprimé le 28/09.
+**Supposé** — [Inférence] Le jeu NOERROR sans réponse est la réponse « négative compacte » de Cloudflare (DNSSEC) pour un nom absent ; il vaut absence d'enregistrement.
+**Non regardé** — La QA `www` (Laurent, dans Chrome, en cours) ; la zone DNS et le journal d'audit Cloudflare (jeton de cette session sans droit de lecture : « Authentication error ») ; le compte Lemlist.
+
+**Suite** —
+- QA `www` de Laurent ; P0 clos seulement si PASS ; sinon `npx wrangler@4 rollback d7d06bc1-a0a4-423c-a036-037a3b7266ea`.
+- `trail.` : **décision de Laurent**, Lemlist utilise-t-il encore ce domaine de suivi ? Oui : régression à corriger (Lemlist et DNS). Non : suppression à acter, puis retrait de `PASSTHROUGH_HOSTS` sur GO. La date et l'auteur de la suppression ne sont établissables que depuis le journal d'audit Cloudflare (dashboard). Sans lien avec le P0 HTML/RSC : un nom absent du DNS n'atteint pas le Worker.
 
 ---
 
@@ -245,6 +310,41 @@ tout script).
 **Suite** — Publication en production par la fusion sur `main`. Contrôle du
 déploiement Vercel et des trois JSON-LD après publication. #133 reste entière et
 inchangée, en HOLD pour Q20/D45 et D42.
+
+---
+
+## 2026-10-17 · #164 fusionnée (Worker, cache RSC) ; Worker non déployé ; protocole de déploiement proposé · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10 ; `GO_MERGE_164` de Laurent (17/10) au HEAD `9794ce8` ; `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (fusionnée), PR documentaire de cette entrée | **Commit** : `2a8c444` (squash)
+
+**Quoi** — Fusion de #164 dans `main` par squash, après vérification du HEAD (`9794ce8` inchangé), de la CI (4 contrôles verts), de l'absence de conflit (`mergeable_state: clean` sur `1fc2230`) et de l'absence de déploiement automatique du Worker (aucun workflow `wrangler` ; « Vercel ne déploie pas le Worker », JOURNAL du 25/09). Arbre de `2a8c444` identique à `9794ce8`.
+
+**Pourquoi** — Correctif P0 : séparation du cache HTML et des requêtes RSC Next.js (entrées précédentes du 17/10).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (cette PR). Fusionnés par #164 : `cloudflare-worker/src/index.js`, `cloudflare-worker/wrangler.toml`, `cloudflare-worker/test/rsc-cache.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun sur `www` tant que le Worker n'est pas déployé. La fusion déclenche un déploiement Vercel de l'application, dont le code Next.js est inchangé par #164.
+
+**Vérifié** — SHA de fusion `2a8c444` sur `origin/main` ; `git diff 9794ce8 2a8c444` vide ; `wrangler.toml` de `main` : `compatibility_date = "2024-01-01"`, `compatibility_flags = ["cache_option_enabled"]`.
+**Supposé** — Aucune intégration Git Cloudflare (Workers Builds) ne déploie `packshot-router` à la fusion : non configurée dans le dépôt, et les déploiements consignés depuis le 20/09 sont tous manuels (`wrangler deploy`). [Non vérifié au dashboard.]
+**Non regardé** — `smoke.mjs` sur `sysnext.vercel.app` après le déploiement Vercel de la fusion (code applicatif inchangé) ; `www`.
+
+**Protocole de déploiement proposé (sur GO_DEPLOIEMENT_WORKER distinct, depuis le poste de Laurent)**
+1. *Avant* : `cd cloudflare-worker` ; `npx wrangler@4 deployments status` → noter la version active (`d7d06bc1-a0a4-423c-a036-037a3b7266ea` attendue), sauvegarde = cet identifiant ; `npx wrangler@4 versions view <id>` → relever `compatibility_date` et flags actuels ; contrôler que la branche locale est `main` à `2a8c444` et que `src/index.js` n'a pas d'autre écart avec la version active (R5, alignement confirmé par Laurent le 17/10).
+2. *Contrôle à blanc* : `npx wrangler@4 deploy --dry-run --outdir /tmp/pr164` (aucune publication) ; `node --check src/index.js` ; `npx vitest run cloudflare-worker/test` (185 verts).
+3. *Déploiement* : `npx wrangler@4 deploy` depuis `cloudflare-worker/` (jamais de code collé au dashboard : le flag ne serait pas appliqué) ; noter l'heure UTC et la nouvelle version.
+4. *Activation du flag* : `npx wrangler@4 deployments status` (nouvelle version à 100 %) puis `npx wrangler@4 versions view <nouvelle>` : `compatibility_flags` contient `cache_option_enabled`. Sans lui : rollback immédiat.
+5. *QA immédiate, sans contamination du cache* (Chrome sur `www`, R4 ; aucune requête forgée avec `RSC: 1`) :
+   - HTML : `/fr/cgu?v=pr164-1` et `/fr/studio-photo/alphatable?v=pr164-1` (chaîne neuve, hors cache par construction) → 200 `text/html`.
+   - Navigation normale : depuis `/fr`, onglet Réseau, cliquer 3 liens internes (fiche produit, contact, ROI) → requêtes RSC émises par Next en 200 `text/x-component`, **aucun 500**, aucune page blanche ni rechargement complet anormal ; console sans erreur.
+   - Puis recharger chaque page de destination → `text/html`.
+   - Redirections principales (chaîne neuve, piège B2) : `/` → `/fr` ; une redirection legacy (ex. `/packshot-mode` → `/fr/packshot-mode`) ; `/de/...` → `/de-ch/...` (ex. `/de/packshot-packshotcreator/packshot-mode` → `/de-ch/packshot-mode`).
+   - Sous-domaines : `videos.`, `books.`, `trail.` servis par leur origine, sans redirection vers `www` (référence : JOURNAL du 25/09).
+   - Noindex D36 : en-tête `x-robots-tag` absent sur `www`.
+6. *Rollback* : `npx wrangler@4 rollback <version précédente>` (attendu `d7d06bc1-…`), puis `git revert 2a8c444` sur `main` si l'abandon est définitif. Déclencheurs : un 500 sur une navigation RSC, flag absent, redirection ou sous-domaine dégradé.
+7. *Consignation* : entrée JOURNAL avec l'heure UTC et la version ; ligne d'événement en E pour M5 (14 au 28/10), F5 et Mode ; mise à jour de la ligne #164 en C.
+
+**Suite** — GO_DEPLOIEMENT_WORKER distinct de Laurent.
 
 ---
 
