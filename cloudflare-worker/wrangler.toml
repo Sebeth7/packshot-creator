@@ -1,6 +1,9 @@
 name = "packshot-router"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
+# cache_option_enabled : fetch(..., { cache: "no-store" }) pour les requetes RSC
+# Next.js (PR #164). Sans ce flag, a cette date, le champ cache leve une erreur.
+compatibility_flags = ["cache_option_enabled"]
 account_id = "a51802d1e09d29095ca7ba45d63bf0f2"
 
 [[routes]]
