@@ -34,6 +34,41 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · #164 fusionnée (Worker, cache RSC) ; Worker non déployé ; protocole de déploiement proposé · Claude de Laurent
+
+**Chantier** : P0 du crawl SF du 15/10 ; `GO_MERGE_164` de Laurent (17/10) au HEAD `9794ce8` ; `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (fusionnée), PR documentaire de cette entrée | **Commit** : `2a8c444` (squash)
+
+**Quoi** — Fusion de #164 dans `main` par squash, après vérification du HEAD (`9794ce8` inchangé), de la CI (4 contrôles verts), de l'absence de conflit (`mergeable_state: clean` sur `1fc2230`) et de l'absence de déploiement automatique du Worker (aucun workflow `wrangler` ; « Vercel ne déploie pas le Worker », JOURNAL du 25/09). Arbre de `2a8c444` identique à `9794ce8`.
+
+**Pourquoi** — Correctif P0 : séparation du cache HTML et des requêtes RSC Next.js (entrées précédentes du 17/10).
+
+**Fichiers** — `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md` (cette PR). Fusionnés par #164 : `cloudflare-worker/src/index.js`, `cloudflare-worker/wrangler.toml`, `cloudflare-worker/test/rsc-cache.test.ts`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun sur `www` tant que le Worker n'est pas déployé. La fusion déclenche un déploiement Vercel de l'application, dont le code Next.js est inchangé par #164.
+
+**Vérifié** — SHA de fusion `2a8c444` sur `origin/main` ; `git diff 9794ce8 2a8c444` vide ; `wrangler.toml` de `main` : `compatibility_date = "2024-01-01"`, `compatibility_flags = ["cache_option_enabled"]`.
+**Supposé** — Aucune intégration Git Cloudflare (Workers Builds) ne déploie `packshot-router` à la fusion : non configurée dans le dépôt, et les déploiements consignés depuis le 20/09 sont tous manuels (`wrangler deploy`). [Non vérifié au dashboard.]
+**Non regardé** — `smoke.mjs` sur `sysnext.vercel.app` après le déploiement Vercel de la fusion (code applicatif inchangé) ; `www`.
+
+**Protocole de déploiement proposé (sur GO_DEPLOIEMENT_WORKER distinct, depuis le poste de Laurent)**
+1. *Avant* : `cd cloudflare-worker` ; `npx wrangler@4 deployments status` → noter la version active (`d7d06bc1-a0a4-423c-a036-037a3b7266ea` attendue), sauvegarde = cet identifiant ; `npx wrangler@4 versions view <id>` → relever `compatibility_date` et flags actuels ; contrôler que la branche locale est `main` à `2a8c444` et que `src/index.js` n'a pas d'autre écart avec la version active (R5, alignement confirmé par Laurent le 17/10).
+2. *Contrôle à blanc* : `npx wrangler@4 deploy --dry-run --outdir /tmp/pr164` (aucune publication) ; `node --check src/index.js` ; `npx vitest run cloudflare-worker/test` (185 verts).
+3. *Déploiement* : `npx wrangler@4 deploy` depuis `cloudflare-worker/` (jamais de code collé au dashboard : le flag ne serait pas appliqué) ; noter l'heure UTC et la nouvelle version.
+4. *Activation du flag* : `npx wrangler@4 deployments status` (nouvelle version à 100 %) puis `npx wrangler@4 versions view <nouvelle>` : `compatibility_flags` contient `cache_option_enabled`. Sans lui : rollback immédiat.
+5. *QA immédiate, sans contamination du cache* (Chrome sur `www`, R4 ; aucune requête forgée avec `RSC: 1`) :
+   - HTML : `/fr/cgu?v=pr164-1` et `/fr/studio-photo/alphatable?v=pr164-1` (chaîne neuve, hors cache par construction) → 200 `text/html`.
+   - Navigation normale : depuis `/fr`, onglet Réseau, cliquer 3 liens internes (fiche produit, contact, ROI) → requêtes RSC émises par Next en 200 `text/x-component`, **aucun 500**, aucune page blanche ni rechargement complet anormal ; console sans erreur.
+   - Puis recharger chaque page de destination → `text/html`.
+   - Redirections principales (chaîne neuve, piège B2) : `/` → `/fr` ; une redirection legacy (ex. `/packshot-mode` → `/fr/packshot-mode`) ; `/de/...` → `/de-ch/...` (ex. `/de/packshot-packshotcreator/packshot-mode` → `/de-ch/packshot-mode`).
+   - Sous-domaines : `videos.`, `books.`, `trail.` servis par leur origine, sans redirection vers `www` (référence : JOURNAL du 25/09).
+   - Noindex D36 : en-tête `x-robots-tag` absent sur `www`.
+6. *Rollback* : `npx wrangler@4 rollback <version précédente>` (attendu `d7d06bc1-…`), puis `git revert 2a8c444` sur `main` si l'abandon est définitif. Déclencheurs : un 500 sur une navigation RSC, flag absent, redirection ou sous-domaine dégradé.
+7. *Consignation* : entrée JOURNAL avec l'heure UTC et la version ; ligne d'événement en E pour M5 (14 au 28/10), F5 et Mode ; mise à jour de la ligne #164 en C.
+
+**Suite** — GO_DEPLOIEMENT_WORKER distinct de Laurent.
+
+---
+
 ## 2026-10-17 · Worker RSC (#164), complément : contournement explicite du cache et flag de compatibilité · Claude de Laurent
 
 **Chantier** : P0 du crawl SF du 15/10 (suite de l'entrée précédente) ; GO_CODE et GO_PR/PUSH complémentaires de Laurent (17/10), limités à #164 ; `GO_MERGE` et `GO_DEPLOIEMENT_WORKER` = NON | **PR** : #164 (brouillon, DO NOT MERGE) | **Commit** : voir PR
