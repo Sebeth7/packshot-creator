@@ -34,6 +34,110 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Studios #108 — GO final de préparation : `main` intégré, double navigation mutualisée, droits des médias, V05 remplacée, exception D13/D42 · Claude de Laurent
+
+**Chantier** : Studios Wave 2, « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 » (GO_RESYNC_108, GO_CODE_108, GO_PR_PUSH_108, GO_D13_D42_EXCEPTION_108, GO_QA_PREVIEW_108 = OUI ; GO_MERGE_108, GO_PUBLICATION_108, GO_TEST_REEL, GO_ENVOI = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `2041b80`, `main` `1fc2230`, puis `2a8c444` (#164), puis `4b6fca9` (#163, #165, #105)
+
+**Quoi** — Événement ultérieur ; les deux entrées suivantes (navigation V9 et reprise, 16/10) restent exactes à leur date. La finition éditoriale du 16/10 (H1, sous-titre, présentation de PackshotCreator, collection) n'avait pas d'entrée propre : elle est décrite dans la PR.
+- Fusion de `main` `1fc2230` par commit de fusion, sans rebase ni force-push. Contrôle préalable : #163, #105 et #165 ouvertes, non fusionnées. 9 conflits :
+  - code : `SommaireCollant.tsx` et `TableOfContents.tsx` repris de `main` (props `onActif`, `tolerance`, `actif`, `libelle`, `classeListe` abandonnées) ; registre, test du registre et spec e2e : version de `main` plus les ajouts Studios ;
+  - documents : `DECISIONS.md` et `R-UX-LONG.md` repris de `main` (entrée « Navigation V9 », amendement de D44 et § 2 bis non réintroduits), puis ajouts Studios ; `ETAT.md` et ce journal par union.
+- Seconde fusion de `main` après le push de `fc91d84` : `2a8c444` (#164, cache du Worker pour les requêtes RSC), fusionnée pendant la CI. Seul conflit : ce journal, résolu par union. #164 ne touche que `cloudflare-worker/` et ce journal ; #108 ne modifie pas le Worker (diff contre `main` inchangé : 17 fichiers). #163, #105 et #165 alors non fusionnées.
+- Troisième fusion de `main` : `4b6fca9` (#163, #165, puis #105, landing IA FR). Conflits : `DECISIONS.md` et ce journal, résolus par union. Fusion automatique vérifiée : registre (`landing-ia` avec l'exception FR de #105, `landing-gamme` avec le pilote Studios FR), spec e2e (IA FR parmi les pages gelées, Studios FR parmi les équipées), test du registre, `messages/*.json` (seul `studiosHardware` diffère de `main` ; `iaPhotoProduit` est celui de #105). Diff contre `main` inchangé : 17 fichiers. `LIEN_PAGE_IA_PUBLIEE` reste à `false` : la publication de la page IA sur `www` n'est pas vérifiée ici.
+- `components/navigation/NavigationSections.tsx` supprimé ; `docs/standards/NAVIGATION-V9-INVENTAIRE.md` retiré ; références alignées dans `docs/standards/README.md` (version de `main`), `01-RAYON-ACTION.md` et `02-PROCEDURE.md`.
+- Landing FR : `DoubleNavigationStructuree` (#162), mêmes 10 entrées (`TITRES`), `ancreFin="demonstration"` ; barre à partir de 1 024 px ; sommaire latéral en surimpression à partir de 1 280 px, en carte opaque à hauteur bornée par l'écran (classe propre à la page, passée par `classeLaterale`) ; conteneurs des sections et de la démonstration à droite réservée (`xl:pr-80`) ; rien de collant sous 1 024 px ; chaîne S1 statique. Aucun composant partagé modifié.
+- Registre : `landing-gamme` ADAPT, portée et `piloteSecondeForme` = Studios FR, `secondeForme: 'laterale'`, exceptions EN et de-ch maintenues.
+- Médias : V05 (photo Webflow, provenance non établie) remplacée par `machines/alphashot-xl-g2/advantage-open-doors.avif` (visuel Orbitvu sans personne, déjà publié sur la fiche XL G2 et la landing catalogue) ; alt et légende réécrits ; `StatutMedia` et `PREVISUALISATION` retirés ; légendes de provenance conservées.
+- Gouvernance : entrée « Exception ponctuelle D13/D42 pour #108 » dans `DECISIONS.md` (fait métier de Laurent sur les médias, V05, affirmations C1 à C5) ; R-UX-LONG (ligne Studios, pilote, tests) ; `ETAT.md` (ligne #108, ligne D44 alignée sur la décision du 15/10, événement de publication à dater dans la mesure #112).
+
+**Pourquoi** — Arbitrages du rapport en lecture seule du 17/10 : la fusion de #162 rendait la navigation V9 de #108 incompatible avec `main` ; la publication attendait aussi les droits des médias, le sort de V05 et l'échéance D15.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx`, `components/navigation/NavigationSections.tsx` (supprimé), `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`, `docs/standards/NAVIGATION-V9-INVENTAIRE.md` (retiré), `docs/standards/README.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/01-RAYON-ACTION.md`, `docs/seo-geo/02-PROCEDURE.md`. Composants partagés, autres landings, fiches, formulaires, Worker : non modifiés.
+
+**Effet attendu** — Aucun avant fusion. À la publication (décision distincte, pas avant le 28/10 sauf décision expresse de Laurent) : landing Studios FR avec barre et sommaire latéral synchronisés ; EN et de-ch inchangés par rapport à la tête `2041b80`.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 198 JSON valides ; Vitest 1 076/1 076 (58 fichiers) ; ESLint ciblé sans erreur ; `npx next build` vert (variables factices), 384 pages prérendues.
+- HTML prérendu (identifiant de build et noms des fichiers statiques neutralisés, scripts retirés) contre un build de `main` `1fc2230` : **381 pages identiques sur 384**, seules les 3 pages Studios diffèrent. Pages Studios EN et de-ch identiques à la tête `2041b80`. Page FR contre `2041b80` : title, meta description, canonical, hreflang, `id` des sections et JSON-LD (Organization, BreadcrumbList, Service, FAQPage) identiques ; seuls changent le H2 « Sommaire » de l'ancien sommaire vertical (retiré), les deux repères `nav[data-d44]` et l'image de V05.
+- Playwright sur `next start` du build (Chromium du conteneur) : `navigation-pages-longues` et `sommaire-blog`, 87/87. Studios FR : 1 440 px, mêmes ancres que la barre, section active identique sur les 10 sections, aucun contenu recouvert, clic et clavier (Tab, focus visible, Entrée) qui posent le titre sous la barre après la fin du défilement ; balayage complet à 1 280 × 800 et 1 440 × 900 sans contenu recouvert ; 1 280 × 600, sommaire dans l'écran et dernière entrée atteignable ; 1 024 et 1 279 px, barre seule ; 390 et 768 px, aucune navigation collante, chaîne S1 opérante, aucun débordement.
+- Premier passage en échec, corrigé avant commit : à 1 440 px, le sommaire latéral recouvrait la droite de la carte de la demande de démonstration quand elle remontait vers la barre (la classe `max-w-2xl` du conteneur est sans effet face à `max-w-7xl`). Correction : droite réservée aussi sur ce conteneur.
+- Mesures : sommaire latéral de 224 px, haut à 129 px, bas à 707 px (1 280 à 1 920 px de large, 800 px de haut et plus), 585 px à 1 280 × 600.
+- Réserve constatée : à 1 280 × 600, l'entrée active peut se trouver hors de la partie visible du sommaire (défilement interne). `SommaireLateral` de `main` ne la ramène pas dans la vue, contrairement au sommaire du blog ; une correction relèverait du composant partagé, hors périmètre de #108.
+
+**Supposé** — [Inférence] Le visuel de remplacement est « existant et autorisé » au sens du GO par sa publication sur la fiche XL G2 et la landing catalogue ; aucune autorisation écrite propre à ce fichier n'est consignée dans le dépôt. Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; Safari et Firefox ; lecteurs d'écran réels. Droits à l'image des personnes visibles dans le film V01 (une personne de profil, partiellement cadrée, sur l'affiche) : non documentés. Marques tierces visibles dans les visuels autorisés (emballage « West Caffee » dans V02 et V03, NARS et Kodak dans V12) : hors de la confirmation de Laurent.
+
+**Suite** — CI de la nouvelle tête ; QA Chrome de la Preview (lecture seule) ; GO_MERGE_108 et GO_PUBLICATION_108 distincts ; à la publication, événement daté dans la mesure `STUDIOS_INTERNAL_LINKING_EVENT` (#112) et déclaration des liens sortants modifiés.
+
+---
+
+## 2026-10-16 · Studios #108 — navigation V9 : barre horizontale et sommaire vertical à droite sur la landing FR, D44 amendée, inventaire des autres pages · Claude de Laurent
+
+**Chantier** : Studios Wave 2, « ADDENDUM PRIORITAIRE — DÉCISION LAURENT — NAVIGATION V9 » (16/10/2026), joint au GO de reprise de #108 (GO_CODE_108 maintenu ; GO_MERGE_108 et GO_PUBLICATION_108 = NON) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `a43f567`
+
+**Quoi** — Événement ultérieur, ajouté sans modifier l'entrée suivante (reprise du 16/10), qui reste exacte à sa date.
+- Nouveau composant mutualisé `components/navigation/NavigationSections.tsx` : barre `SommaireCollant` et sommaire vertical `TableOfContents` sur les mêmes entrées (titres de section de `TITRES`, 10 ancres communes, aucun `id` ajouté) ; section active calculée une fois par la barre et affichée par les deux (`aria-current="location"`).
+  - 1 280 px et plus : colonne de droite de 16 rem, collante à 132 px sous la barre, limitée à la zone des sections (de « À quoi sert » à la FAQ) ; les conteneurs de la zone réservent sa largeur (`xl:pr-80`).
+  - 1 024 à 1 279 px : barre seule en élément collant ; le sommaire vertical devient repliable, dans le flux, en tête de zone.
+  - Sous 1 024 px : sommaire repliable seulement, aucune barre fixe.
+  - La chaîne S1 reste un schéma statique, jamais une troisième navigation collante.
+- Composants partagés, props facultatives seulement : `SommaireCollant` (`onActif`, `tolerance`), `TableOfContents` (`actif`, `libelle`, `classeListe`). Sans elles, rendu et comportement inchangés (blog, 111 pages à barre).
+- Défaut relevé : une section posée par un clic finit à 129,375 px pour un seuil de 129 px et la barre garde la section précédente. Tolérance de 1 px activée par `NavigationSections` seulement ; correction générale proposée, non appliquée (réserve du 07/10 de R-UX-LONG § 3.1).
+- Registre : champ `lateral` et fonction `sommaireLateralActif()`, Studios FR seulement ; libellés `LIBELLES_SOMMAIRE`.
+- Gouvernance : R-UX-LONG § 2 bis (règle V9 ; interdiction de cumul remplacée par la décision de Laurent, barrée et datée) ; entrée « Navigation V9 » de `DECISIONS.md` (numéro à attribuer) et statut de D44 amendé ; `01-RAYON-ACTION.md`, `02-PROCEDURE.md`, `ETAT.md`, `docs/standards/README.md` alignés ; inventaire `docs/standards/NAVIGATION-V9-INVENTAIRE.md`.
+- CI de `a43f567` rouge : test de barre de Studios FR au-delà du délai de 30 s par test du runner (1 024 px en échec après 2 reprises, 1 440 px instable). Budget porté à 90 s pour la spec, comme `sommaire-blog.spec.ts`.
+- CI de `bccdc70` rouge sur le seul test V9 « clic et clavier » : la position du titre était mesurée dès que l'entrée devenait active, avant la fin du défilement doux (−558, −148 et −507 px sur le runner). Mesure locale image par image en remontant de la FAQ vers `#capture` : entrée active à 608 ms, titre encore à −793 px, posé à 225 px à l'arrivée. Le test attend désormais l'arrêt de la page, puis vérifie titre, sommaire et barre ensemble ; le comportement de la page n'est pas modifié.
+
+**Pourquoi** — Décision de Laurent du 16/10 : sur les pages organisées en sections, un sommaire vertical à droite et, sur les pages longues, une barre horizontale, cumulables sur desktop ; l'ancienne interdiction de D44 ne s'applique plus comme blocage.
+
+**Fichiers** — `components/navigation/NavigationSections.tsx` (nouveau), `components/navigation/SommaireCollant.tsx`, `components/blog/TableOfContents.tsx`, `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `docs/standards/R-UX-LONG.md`, `docs/standards/NAVIGATION-V9-INVENTAIRE.md` (nouveau), `docs/standards/README.md`, `docs/seo-geo/DECISIONS.md`, `docs/seo-geo/01-RAYON-ACTION.md`, `docs/seo-geo/02-PROCEDURE.md`, `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Aucun avant fusion. À la publication (décision distincte, jamais pendant M5) : Studios FR porte les deux navigations ; à 1 280 px et plus, le contenu des sections passe de 1 232 à 936 px de large. Aucune autre page ne change.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; Vitest 1 068 tests sur 1 068 (58 fichiers), dont `registre-pages-longues.test.ts` (sommaire vertical sur Studios FR seulement, aucune autre famille, noms de repère distincts) ; `verifier-json` : 198 JSON valides ; ESLint ciblé sans erreur ; `npx next build` vert (variables factices), 384 pages prérendues.
+- HTML prérendu (identifiant de build et noms des fichiers statiques neutralisés, scripts retirés) : contre la tête `a43f567`, **383 pages identiques sur 384**, seule `/fr/studios-photo-automatises` diffère (blog, 111 pages à barre, Mode, F5, accueil identiques) ; contre `main` `c92740c`, 381 identiques, les 3 pages Studios différentes.
+- Playwright sur `next start` du build (Chromium du conteneur) : `navigation-pages-longues` et `sommaire-blog`, 78 tests sur 78 ; tests Studios de la spec rejoués 5 fois avec 6 processus en parallèle, 50 sur 50. Suite complète (22 specs, 689 tests) : 615 passés, 74 échecs, tous reproduits à l'identique sur le build de `main` `c92740c` (23 déjà relevés ; 50 dans `redirections.spec.ts`, 307 local au lieu de 301 ; 1 dans `cookie-banner.spec.ts`, GA4 sans identifiant de mesure) : aucune régression. Navigation V9 de Studios FR : à 1 440 px, mêmes ancres que la barre, ancres uniques, section active identique dans les deux sommaires sur les 10 sections, colonne sous la barre, aucun contenu recouvert, clic et clavier (tabulation, focus visible, Entrée) qui posent le titre sous la barre, colonne arrêtée avant la démonstration ; à 1 024 px, colonne absente, repliable présent, une seule navigation collante ; à 768 et 390 px, repliable fonctionnel, titre sous l'en-tête, aucune barre fixe, aucun débordement. Premier passage en échec (section active non mise à jour après un clic, 129,375 px pour 129 px), corrigé par la tolérance de 1 px.
+- Mesures (build local) : colonne de 256 px collée à 132 px (bas de la barre : 113 px) ; bord droit à 1 336 px à 1 440, 1 256 px à 1 280, 1 576 px à 1 920 (aligné sur l'en-tête) ; aucune requête `/api/`, aucun débordement horizontal à 1 920, 1 440, 1 280, 1 024, 768 et 390 px.
+
+**Supposé** — [Inférence] « Accès rapide aux grandes étapes » est lu comme la barre numérotée existante, sur les mêmes 10 entrées que le sommaire vertical : une barre réduite à un sous-ensemble obligerait à calculer la section active deux fois. Cela repose sur des schémas observés. À confirmer par Laurent.
+**Non regardé** — Preview Vercel (authentification) et `www` (R4) ; lecteurs d'écran réels (seuls les rôles, noms et `aria-current` sont contrôlés) ; Safari et Firefox ; déploiement V9 sur les autres pages (non autorisé).
+
+**Suite** — CI de la nouvelle tête ; contrôle de la Preview par Laurent (FR, EN, de-ch ; 1 920, 1 440, 1 280, 1 024, 768, 390 px) ; validation distincte de l'inventaire V9 et de la correction générale de la section active ; information de Sébastien selon D15, préparée dans la PR, non envoyée.
+
+---
+
+## 2026-10-16 · Studios #108 — reprise : `main` intégré, EN et de-ch sur #109, capacité de 500 photos par jour au conditionnel, barre D44 sur la landing FR · Claude de Laurent
+
+**Chantier** : Studios Wave 2, reprise décidée par Laurent le 16/10 (GO_REPRISE_108, GO_CODE_108, GO_PR_PUSH_108 ; GO_MERGE_108 et GO_PUBLICATION_108 = NON ; version allégée C de l'étude comparative du 16/10) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` | **Base** : tête `a467bc7`, `main` `c92740c` intégré par commit de fusion
+
+**Quoi** —
+- Fusion de `main` (343 commits) dans #108. Conflits sur `messages/fr.json`, `en.json`, `de-ch.json`, `JOURNAL.md` et `ETAT.md`, résolus à partir de la version de `main` : aucun apport de #109 écrasé. Les modifications de #108 sur les messages sont réappliquées par chemin JSON, avec la sérialisation d'origine.
+- FR (P2) : texte de la landing #108 conservé ; meta description de #108 retenue. Faits publiés par #109 repris dans la landing : formation facturée séparément (Essential Training 4 h, Master Training 7 h), délai de livraison d'environ 12 jours à titre indicatif et sans garantie, showroom « près de Lyon » (D1), ROI de 6 à 12 mois en usage courant sans garantie (FAQ 7).
+- FR (P3) : phrase de référence de Laurent, « Selon le système utilisé, les produits photographiés et l'organisation de la production, il est possible de réaliser de l'ordre de 500 photos par jour », dans « Ce que vous obtenez à la sortie du studio ».
+- EN et de-ch (P2, P3) : textes de `main` après #109 conservés. Seuls les claims résiduels sont corrigés : « 500+ » de la meta et du hero remplacé par la capacité conditionnelle ; « 20 » systèmes retiré (meta, titre d'orientation, sous-titre du sélecteur) ; filtre « production volume » remplacé par les filtres réels ; « In seconds » retiré du titre EN ; « 3D » retiré de la FAQ q2 et des badges ; FAQ q3 sans les noms « Alphashot Pro XL » ni « la plupart ». Clés non rendues porteuses de claims supprimées (`socialProof`, `threePillars`, `photoTypes`, `finalCta.guide`, `trust`, `roiCalculator`). La statistique de ROI de #109 (« 6 à 12 mois, sans garantie ») est de nouveau rendue dans le bloc ROI.
+- D44 : barre `SommaireCollant` sur la landing FR (registre `landing-gamme` : ADAPT, portée FR), 10 entrées issues des titres de section (`TITRES`), masquée avant la demande de démonstration ; EN et de-ch sans barre (gabarit transitoire, exceptions motivées). R-UX-LONG : lignes de statut Studios actualisées, règle inchangée.
+
+**Pourquoi** — Décisions de Laurent du 16/10 (P2, P3, accord de principe D44, médias sans nouvel asset). #108 avait 343 commits de retard et 5 conflits sur `main` `c92740c` ; #64 est fermée depuis le 12/10 (L11, D57).
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx`, `app/[lang]/studios-photo-automatises/page.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json`, `data/navigation/pages-longues.ts`, `lib/navigation/__tests__/registre-pages-longues.test.ts`, `e2e/navigation-pages-longues.spec.ts`, `lib/__tests__/studios-claims.test.ts`, `docs/standards/R-UX-LONG.md`, `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun avant fusion. À la publication (décision distincte ; jamais pendant M5, qui se termine le 28/10) : landing FR refondue, EN et de-ch alignées sur #109 sans claim non qualifié. La mesure `STUDIOS_INTERNAL_LINKING_EVENT` (#112) est en cours sur la page FR ; la publication sera un événement concomitant à dater.
+
+**Vérifié** —
+- `npx tsc --noEmit` vert ; `verifier-json` : 198 JSON valides ; Vitest : 1 065 tests sur 1 065 (58 fichiers), dont `studios-claims.test.ts` et `registre-pages-longues.test.ts` ; `npx next build` vert (variables factices), 384 pages prérendues.
+- HTML prérendu, branche contre `main` `c92740c` (identifiant de build et nom du CSS neutralisés, scripts exécutables retirés) : 384 pages, **381 identiques** ; différentes : les 3 pages Studios. Pages protégées identiques hors payload : `/fr`, F5, Mode FR et EN, calculateur FR et EN, IA, hubs bijoux et vin. Payload des messages : −11,7 Ko par page FR, −5,4 Ko EN, −5,9 Ko de-ch. CSS : 8 règles ajoutées, aucune retirée.
+- Mesures D44 (build local, 1 440 × 900) : FR 14 816 px (C1 ≥ 7 200), 9 sections à titre hors FAQ et formulaire (C2 ≥ 4) ; barre de 10 entrées, masquée en haut et sur la démonstration, visible en lecture, absente à 768 et 390 px. EN 11 148 px et de-ch 11 432 px, sections sans `id` : pas de barre.
+- Playwright sur `next start` du build final (Chromium du conteneur ; requêtes `/api/` simulées par les specs, aucun formulaire soumis) : 13 specs (`navigation-pages-longues`, `machine-selector`, `sommaire-blog`, `roi-calculator`, `cta-destinations`, `seo`, `mobile-overflow`, `language-switch`, `internal-links`, `responsive`, `external-links`, `anchors`, `popin-engagement`), 497 tests : **474 passés, 23 échecs**, tous rejoués sur le build de `main` `c92740c` avec le même résultat (historiques, dont le témoin différé `anchors`, D47, non forcé). Barre D44 de Studios FR : passe à 1 024 et 1 440 px (apparition, section active sur les 10 entrées, ancres au clavier, disparition) après le retrait de `ancreSommaire` : la chaîne S1 précède directement la première section, la barre restait masquée sur la première entrée (premier passage en échec, corrigé).
+- Captures avant (`main` `c92740c`) et après, FR, EN et de-ch, à 1 440, 1 024, 768 et 390 px, plus 1 920 et 360 en FR : aucun débordement horizontal, aucune requête `/api/`, aucune erreur JavaScript ; film du hero lu à partir de 768 px, affiche fixe en dessous.
+
+**Supposé** — [Inférence] Les droits de réutilisation des médias Orbitvu sur cette landing ne sont pas établis par les sources du dépôt : D55 confirme les droits de l'image du film pour la seule pop-in (#122). Cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel (authentification) et `www` (R4) ; traduction EN et de-ch de la nouvelle landing (non autorisée) ; cadences et noms « v2 » du sélecteur (D45, Q20) ; `hero-studios-wide.avif` du hero EN et de-ch (gabarit transitoire conservé) ; `Organization` global.
+
+**Suite** — CI, puis contrôle de la Preview par Laurent (FR, EN, de-ch ; desktop, tablette, mobile). Information groupée de Sébastien selon D15, préparée dans la description de la PR, non envoyée : le délai ne court qu'après la CI verte et la Preview contrôlée. GO_MERGE_108 et GO_PUBLICATION_108 : décisions distinctes.
+
+---
+
 ## 2026-10-17 · Landing IA Orbitvu (#105) — GO final : exception D13/D42, réserve hreflang, sortie de brouillon · Claude de Laurent
 
 **Chantier** : vague 1, PR-3, `/fr/ia-photo-produit` ; « PACKSHOTCREATOR V10 — GO_MERGE + GO_PUBLICATION #105 IA ORBITVU » du 17/10 (`GO_MERGE_105` et `GO_PUBLICATION_105` = OUI) | **PR** : #105 | **Base** : `main` `2a8c444`
@@ -3360,6 +3464,34 @@ Règles du parcours sans CRM :
 **Non regardé** — Le reste de `DECISIONS.md` ; les autres lignes d'`ETAT.md`.
 
 **Suite** — D15 pour les liens de régime (b) de #112 non commencé : information de Sébastien à faire par Laurent, après CI verte et Preview contrôlée (D15), puis 5 jours ouvrés sans objection avant tout GO de fusion.
+
+---
+
+## 2026-10-08 · Studios Wave 2 — landing FR intégrée, corrections d'intégrité EN et de-ch · Claude de Laurent
+
+**Chantier** : Studios Wave 2 (mission d'exécution de Laurent du 08/10 ; `GO_CODE_FR`, `GO_EN_DE_INTEGRITY` limité aux claims du registre L2 § 5, `GO_BRANCH`, `GO_PR_DRAFT`) | **PR** : #108, brouillon, « DO NOT MERGE », branche `claude/friendly-ritchie-aop8qn` ; Preview `https://sysnext-git-claude-friendly-ritch-69eb32-sebs-projects-ca1e93a7.vercel.app` (protégée par authentification Vercel) | **Base** : `main` `06b18e2`
+
+**Quoi** — `/fr/studios-photo-automatises` rendue par un nouveau composant `LandingStudios.tsx` (texte de la proposition L3 revue par ChatGPT, sans ses notes ; schémas S1 et S2 en HTML ; médias réels seulement). EN et de-ch gardent l'ancien gabarit, avec retrait des claims du registre L2 § 5 (page, `<head>`, JSON-LD, messages livrés au navigateur).
+
+**Pourquoi** — Registre L2 du 08/10 : 27 claims de la page actuelle, dont 19 résolus et 8 retirés-HOLD ; aucun ne reste dans la proposition FR. Les mêmes claims étaient rendus en EN et de-ch, et livrés dans les messages de toutes les pages (`getMessages()` du layout) : « 500+ photos/jour » figurait dans le HTML de 161 pages FR, « 500+ photos/day » dans 155 pages EN, « 500+ Fotos/Tag » dans 54 pages de-CH (build de `main` `06b18e2`) ; 0 sur la branche.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` (nouveau), `app/[lang]/studios-photo-automatises/page.tsx`, `messages/fr.json`, `messages/en.json`, `messages/de-ch.json` (namespace `studiosHardware` seul), `public/images/studios/station-capture-mobile.avif` et `station-ai-ocr-mobile.avif` (recadrages des captures V02 et V03, nouveaux), `lib/__tests__/studios-claims.test.ts` (nouveau), `docs/seo-geo/JOURNAL.md`, `docs/seo-geo/ETAT.md`.
+
+**Effet attendu** — Aucun tant que la PR n'est pas fusionnée. Après publication (date non fixée ; aucune pendant M5, du 14/10 au 28/10) : page FR sans chiffre non sourcé, FAQPage égale à la FAQ visible (7 questions), plus d'`AggregateOffer` ni de `Review` sur les trois langues.
+
+**Vérifié** —
+- Fresh-check : `main` `06b18e2` ; 8 PR ouvertes (#107, #105, #104, #82, #70, #65, #64, #27). #64 : tête `63e1e92`, inchangée ; #105 : tête `f5ca7dd`, inchangée. #104 ajoute une fonction à `MaillageSections.tsx`, sans effet sur Studios. Aucune autre PR ne touche les fichiers Studios.
+- `npx tsc --noEmit` vert ; `verifier-json` : 195 JSON valides ; Vitest 493/493 (24 fichiers, dont `studios-claims.test.ts`, 10 tests) ; ESLint ciblé sans erreur ; `npx next build` vert (variables factices), 374 pages prérendues.
+- HTML prérendu, branche contre `main` `06b18e2` (identifiant de build et nom du CSS neutralisés, scripts exécutables retirés) : 374 pages, **371 identiques** ; différentes : les 3 pages Studios. Le CSS global change de nom sur toutes les pages : 14 classes ajoutées, aucune retirée (+897 octets). Le payload embarqué change sur toutes les pages des 3 langues (messages `studiosHardware`).
+- Page FR prérendue : title inchangé ; meta description de 153 caractères ; canonical et 5 hreflang inchangés ; un seul H1 ; JSON-LD = Organization, BreadcrumbList, Service (sans `offers`, sans BlendAI), FAQPage (7 questions, texte identique à la FAQ visible) ; aucun `id="calculateur-roi"` ; 0 image sans `alt` ; ni `hero-studios-wide.avif`, ni `Review`, ni `AggregateOffer`.
+- Playwright sur `next start` du build de la branche (Chromium du conteneur ; requêtes `/api/` simulées par les specs, aucun formulaire soumis) : 12 specs (`machine-selector`, `sommaire-blog`, `navigation-pages-longues`, `roi-calculator`, `cta-destinations`, `seo`, `mobile-overflow`, `language-switch`, `internal-links`, `responsive`, `external-links`, `anchors`), 455 tests : **432 passés, 23 échecs**. Les 23 échecs rejoués sur le build de `main` `06b18e2` échouent à l'identique : historiques, aucune régression. Dont le témoin différé `anchors` « #calculateur-roi exists on /fr/studios-photo-automatises » (D47, non forcé). Deux tests de l'assistant EN (`roi-calculator`) ont échoué une fois sous charge puis passé seuls (3/3) ; ils n'utilisent pas `studiosHardware`.
+- Captures pleine page de `/fr/studios-photo-automatises` (build local) à 1920, 1440, 1024, 768, 390 et 360 px : aucun débordement horizontal ; aucune requête `/api/` ; aucune erreur JavaScript. Vidéo du hero lue à partir de 768 px ; en dessous, affiche fixe seule, en `fetchpriority="high"` (comportement inchangé de `HeroVideoPanel`). Les bandeaux de statut des médias ne s'affichent qu'en Preview Vercel et en développement : absents de ces captures.
+- Écart avec la maquette 390 : `HeroSection` (`layout="split"`, gabarit partagé, accueil compris) place le film avant le texte sous 1024 px ; gabarit conservé.
+
+**Supposé** — [Inférence] Le film V01 et les visuels Orbitvu réutilisés relèvent de `ORBITVU_REUSE_PERMISSION = TO_CONFIRM` (#105, décision de Laurent du 08/10) ; l'usage sur l'accueil ne prouve pas le droit de réutilisation. Publication bloquée tant que ce n'est pas établi. Cela repose sur des schémas observés.
+**Non regardé** — `www` et `sysnext.vercel.app` (R4) ; contrôle visuel de la Preview Vercel par Laurent (D42, étape 4) ; traduction EN et de-ch (D42, étape 7) ; claims EN et de-ch hors registre L2 § 5, laissés en place : « Personalized demo — 30 min », badge « 3D », noms de la FAQ q3 (« Alphashot Pro XL »), filtre « production volume », sous-titre du hero, image `hero-studios-wide.avif` du hero EN et de-ch ; `Organization` global (BlendAI, Qualiopi, adresse) ; composant mort `ThreePillarsSection.tsx`, dont le namespace `studiosHardware.threePillars` est supprimé des 3 langues.
+
+**Suite** — Collision avec #64 : 2 clés × 3 langues (`studiosHardware.support.step2description`, `studiosHardware.faqStudios.q6.answer`) ; cette PR supprime ces clés en FR et les réécrit en EN et de-ch (D32). Propriétaire proposé : la PR Studios. Sur GO distinct, #64 retire ses modifications de ces 6 chaînes ; aucune fusion de l'une ou l'autre avant cette décision. Ensuite : contrôle de la Preview par Laurent, puis information de Sébastien selon D15 ; le délai de 5 jours ouvrés n'est pas ouvert. Lien vers la page IA rendu seulement après publication vérifiée de #105 (`LIEN_PAGE_IA_PUBLIEE = false`).
 
 ---
 

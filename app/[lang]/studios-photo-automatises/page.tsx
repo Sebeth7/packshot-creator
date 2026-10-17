@@ -5,13 +5,11 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import {
   Camera, Sparkles, GraduationCap, ArrowRight, ChevronDown,
-  RotateCcw, Shirt, Layout, Users, Truck, Headphones, Calculator,
+  RotateCcw, Layout, Users, Truck, Headphones, Calculator,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SchemaOrg, { organizationSchema, breadcrumbSchema, faqSchema, serviceSchema } from '@/components/seo/SchemaOrg';
-import TestimonialsSection from '@/components/testimonials/TestimonialsSection';
-import { getTestimonialsByCategory } from '@/data/testimonials';
-import { FadeInView, StaggerContainer, StaggerItem, AnimatedCounter } from '@/components/animations';
+import { FadeInView, StaggerContainer, StaggerItem } from '@/components/animations';
 import { HeroSection } from '@/components/hero';
 import { ContactForm } from '@/components/forms/ContactForm';
 import TextReveal from '@/components/animations/TextReveal';
@@ -20,6 +18,7 @@ import SpringCard from '@/components/animations/SpringCard';
 import { buildLanguages } from '@/lib/hreflang';
 import { tx } from '@/lib/locale-text';
 import { MoneyPageResources } from '@/components/maillage/MaillageSections';
+import LandingStudios from './_components/LandingStudios';
 
 const MachineSelector = dynamic(
   () => import('@/components/machine-selector/MachineSelector').then(mod => ({ default: mod.MachineSelector })),
@@ -53,6 +52,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function StudiosPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  // FR : landing Wave 2 (08/10/2026, reprise du 16/10), texte dans le composant. EN et de-ch :
+  // gabarit historique, textes de main après #109 et claims résiduels corrigés (arbitrage P2 de
+  // Laurent du 16/10), en attendant la traduction depuis la FR validée.
+  if (lang === 'fr') return <LandingStudios lang="fr" />;
+
   const t = await getTranslations({ locale: lang, namespace: 'studiosHardware' });
 
   const breadcrumbs = [
@@ -64,17 +68,6 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
     question: t(`faqStudios.${key}.question`),
     answer: t(`faqStudios.${key}.answer`),
   }));
-
-  const clientLogos = [
-    { name: 'Chanel', src: '/images/logos/client-chanel.avif', w: 225, h: 225 },
-    { name: 'Amazon', src: '/images/logos/client-amazon.avif', w: 409, h: 123 },
-    { name: 'Safran', src: '/images/logos/client-safran.avif', w: 994, h: 228 },
-    { name: 'Essilor Luxottica', src: '/images/logos/client-essilor-luxottica.avif', w: 600, h: 66 },
-    { name: 'Valentino', src: '/images/logos/client-valentino.avif', w: 320, h: 157 },
-    { name: 'Sandro', src: '/images/logos/client-sandro.avif', w: 390, h: 100 },
-    { name: 'Seiko', src: '/images/logos/client-seiko.avif', w: 508, h: 99 },
-    { name: 'Würth', src: '/images/logos/client-wurth.avif', w: 485, h: 104 },
-  ];
 
   const boldRenderer = {
     bold: (chunks: React.ReactNode) => <strong className="text-heading-dark font-semibold">{chunks}</strong>,
@@ -104,48 +97,6 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           { label: t('hero.ctaSecondary'), href: '/contact', variant: 'secondary' },
         ]}
       />
-
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          2. SOCIAL PROOF — AnimatedCounter stats + logos
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-20 lg:py-32 bg-future-dusk-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-future-dusk-900 via-very-peri-800/30 to-future-dusk-900" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/10 mb-12">
-            {([
-              { end: 5000, suffix: '+', label: t('trust.stat1label') },
-              { end: 25, suffix: tx(lang, ' ans', ' yrs', ' Jahre'), label: t('trust.stat2label') },
-              { end: 50, suffix: '+', label: t('trust.stat3label') },
-            ]).map((stat) => (
-              <StaggerItem key={stat.label}>
-                <div className="text-center px-4 sm:px-6 lg:px-8">
-                  <p className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold tracking-tight">
-                    <AnimatedCounter
-                      end={stat.end}
-                      suffix={stat.suffix}
-                      className="text-gradient-peri"
-                    />
-                  </p>
-                  <p className="mt-3 text-sm text-future-dusk-300 font-medium uppercase tracking-wider">
-                    {stat.label}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-          <FadeInView delay={0.3}>
-            <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-              <div className="flex items-center gap-x-10 sm:gap-x-14 animate-marquee w-max">
-                {[...clientLogos, ...clientLogos].map((logo, i) => (
-                  <div key={`${logo.name}-${i}`} className="w-[90px] h-[34px] sm:w-[120px] sm:h-[40px] flex-shrink-0 flex items-center justify-center opacity-60">
-                    <Image src={logo.src} alt={logo.name} width={logo.w} height={logo.h} sizes="120px" className="w-full h-full object-contain invert" loading="eager" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeInView>
-        </div>
-      </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           3. ORIENTATION — Page purpose: find the right system
@@ -200,7 +151,7 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           <ScrollReveal>
             <div className="text-center mb-14">
               <span className="text-xs font-semibold text-very-peri-400 uppercase tracking-[0.2em] mb-4 block">
-                {tx(lang, '20 systèmes Orbitvu', '20 Orbitvu systems', '20 Orbitvu Systeme')}
+                {tx(lang, 'Systèmes Orbitvu', 'Orbitvu systems', 'Orbitvu-Systeme')}
               </span>
               <TextReveal as="h2" className="text-4xl lg:text-6xl font-heading font-bold text-white mb-4">
                 {t('products.heading')}
@@ -213,7 +164,6 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
                 {[
                   { icon: <Camera className="h-4 w-4" />, label: 'Packshot' },
                   { icon: <RotateCcw className="h-4 w-4" />, label: '360°' },
-                  { icon: <Shirt className="h-4 w-4" />, label: '3D' },
                   { icon: <Layout className="h-4 w-4" />, label: 'Flat-lay' },
                 ].map((type) => (
                   <span key={type.label} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-sm font-medium text-future-dusk-200 border border-white/5">
@@ -420,11 +370,6 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
 
-      <TestimonialsSection
-        items={getTestimonialsByCategory('studios')}
-        lang={lang as 'fr' | 'en' | 'de-ch'}
-      />
-
       <SchemaOrg schema={[
         organizationSchema(),
         breadcrumbSchema(breadcrumbs),
@@ -432,16 +377,15 @@ export default async function StudiosPage({ params }: { params: Promise<{ lang: 
           name: tx(lang, 'Studios photo automatisés Orbitvu', 'Orbitvu Automated Photo Studios', 'Automatisierte Fotostudios von Orbitvu'),
           description: tx(
             lang,
-            'Gamme complète de studios photo automatisés Orbitvu : Alphashot, Alphastudio, Fashion Studio, Bike Studio. Photographie produit haute qualité avec IA BlendAI intégrée.',
-            'Full range of Orbitvu automated photo studios: Alphashot, Alphastudio, Fashion Studio, Bike Studio. High-quality product photography with integrated BlendAI.',
-            'Komplette Reihe automatisierter Fotostudios von Orbitvu: Alphashot, Alphastudio, Fashion Studio, Bike Studio. Hochwertige Produktfotografie mit integrierter BlendAI-KI.',
+            'Gamme complète de studios photo automatisés Orbitvu : Alphashot, Alphastudio, Fashion Studio, Bike Studio.',
+            'Full range of Orbitvu automated photo studios: Alphashot, Alphastudio, Fashion Studio, Bike Studio.',
+            'Komplette Reihe automatisierter Fotostudios von Orbitvu: Alphashot, Alphastudio, Fashion Studio, Bike Studio.',
           ),
           serviceType: tx(lang, 'Studio photo automatisé', 'Automated photo studio', 'Automatisiertes Fotostudio'),
           url: `https://www.packshot-creator.com/${lang}/studios-photo-automatises`,
           category: tx(lang, 'Équipement studio photo', 'Photo studio equipment', 'Fotostudio-Ausrüstung'),
-          // Fourchette identique à celle affichée dans la FAQ de la page (q1),
-          // toutes locales : « de 12 000 € à 150 000 € HT » — exigence de cohérence Google.
-          aggregateOffer: { lowPrice: 12000, highPrice: 150000, priceCurrency: 'EUR', offerCount: 16 },
+          // Pas d'offre agrégée : son nombre d'offres (16) n'est pas établi. La fourchette de prix
+          // reste affichée dans la FAQ EN et de-ch (texte de #109), sans données structurées d'offre.
         }),
         faqSchema(studioFaqs),
       ]} />

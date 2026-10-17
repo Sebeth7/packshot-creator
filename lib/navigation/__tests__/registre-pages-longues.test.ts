@@ -12,6 +12,8 @@ import {
   barreActive,
   formeSecondeActive,
   navigationPageLongue,
+  LIBELLES_BARRE,
+  LIBELLES_LATERAL,
   type Langue,
 } from '@/data/navigation/pages-longues';
 
@@ -42,8 +44,12 @@ describe('Registre de la navigation des pages longues (D44)', () => {
     }
   });
 
-  it('pilote Studios gelé jusqu’au J0 coordonné', () => {
-    for (const l of LANGUES) expect(barreActive('landing-gamme', l, 'studios-photo-automatises')).toBe(false);
+  it('landing Studios : barre sur la page FR seulement (#108), EN et de-ch sur leur gabarit transitoire', () => {
+    expect(barreActive('landing-gamme', 'fr', 'studios-photo-automatises')).toBe(true);
+    expect(barreActive('landing-gamme', 'en', 'studios-photo-automatises')).toBe(false);
+    expect(barreActive('landing-gamme', 'de-ch', 'studios-photo-automatises')).toBe(false);
+    // Aucune autre page de la famille n’est équipée.
+    for (const l of LANGUES) expect(barreActive('landing-gamme', l, 'landing-future')).toBe(false);
   });
 
   it('contenus des PR ouvertes gelés (#27, #64)', () => {
@@ -136,6 +142,26 @@ describe('Double navigation D44 (Phase A) : seconde forme et vue d’ensemble', 
       expect(formeSecondeActive('landing-mode', l, 'packshot-mode')).toBeNull();
       expect(formeSecondeActive('hub-sectoriel', l, 'mode-textile')).toBeNull();
     }
+  });
+
+  it('landing Studios pilote : barre + sommaire latéral sur la page FR seulement (#108)', () => {
+    expect(formeSecondeActive('landing-gamme', 'fr', 'studios-photo-automatises')).toBe('laterale');
+    expect(navigationPageLongue('landing-gamme', 'fr', 'studios-photo-automatises')).toEqual({
+      barre: true,
+      laterale: true,
+    });
+    for (const l of ['en', 'de-ch'] as const) {
+      expect(formeSecondeActive('landing-gamme', l, 'studios-photo-automatises')).toBeNull();
+      expect(navigationPageLongue('landing-gamme', l, 'studios-photo-automatises')).toEqual({
+        barre: false,
+        laterale: false,
+      });
+    }
+    for (const l of LANGUES) expect(formeSecondeActive('landing-gamme', l, 'landing-future')).toBeNull();
+  });
+
+  it('les noms accessibles de la barre et du sommaire latéral restent distincts (deux repères)', () => {
+    for (const l of LANGUES) expect(LIBELLES_LATERAL[l]).not.toBe(LIBELLES_BARRE[l].libelle);
   });
 
   it('une famille sans seconde forme déclarée n’en reçoit pas', () => {

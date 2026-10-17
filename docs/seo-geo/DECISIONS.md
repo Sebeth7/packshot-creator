@@ -25,6 +25,31 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #108 (landing Studios FR), droits des médias confirmés et V05 remplacée
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V10 — GO FINAL DE PRÉPARATION #108 STUDIOS — 17/10/2026 », arbitrages du rapport en lecture seule du même jour ; tête de départ `2041b80`
+**Statut** : en vigueur pour le seul périmètre de #108 ; épuisée par sa fusion et sa publication. Au 17/10 : `GO_MERGE_108`, `GO_PUBLICATION_108`, `GO_TEST_REEL` et `GO_ENVOI` = NON ; gel de publication maintenu jusqu'au 28/10/2026, sauf nouvelle décision expresse de Laurent. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #108** : Laurent assume la validation éditoriale de la version FR de `/fr/studios-photo-automatises` préparée le 16/10 (finition éditoriale comprise). Pas d'attente de la validation tacite D15, pas de nouvelle sollicitation de Sébastien. Aucune validation personnelle de Sébastien n'est attribuée à ce GO.
+2. **Affirmations** : C1 à C5 conservées telles que qualifiées, sans renforcement (cadence « de l'ordre de 500 photos par jour » au conditionnel ; ROI de 6 à 12 mois sans garantie ; délai indicatif d'environ 12 jours ; livraison et installation facturées en supplément ; formation facturée séparément). Cadence, ROI et délais ne sont jamais présentés comme des garanties contractuelles. C6 (données du sélecteur) : aucun changement dans #108, chantier #133 / Q20.
+3. **Médias, FAIT MÉTIER LAURENT du 17/10/2026, périmètre de #108** : droits de réutilisation sur la page Studios confirmés pour V02 et V03 (captures Orbitvu Station), leurs recadrages mobiles sans retouche de contenu, V12 (quatre packshots) et V01 (film de gamme et affiche). La confirmation ne s'étend ni aux marques tierces visibles dans ces visuels, ni à d'autres usages, ni aux droits à l'image individuels des personnes identifiables.
+4. **V05 remplacée** : la photo Webflow d'origine non établie (opératrice) est remplacée, dans « À quoi sert un studio photo automatisé ? », par un visuel machine Orbitvu existant, sans personne : `machines/alphashot-xl-g2/advantage-open-doors.avif`, déjà publié sur la fiche Alphashot XL G2 et sur la landing catalogue All-in-One. Aucun média généré, aucune capture de Station répétée.
+5. **Marqueurs « Préversion »** des médias retirés du code (`StatutMedia`, `PREVISUALISATION`) ; légendes de provenance conservées (« visuel Orbitvu », « Exemple de résultat présenté par Orbitvu pour… »).
+6. **Navigation** : Studios FR rejoint la double navigation D44 (15/10) comme pilote de la famille `landing-gamme`, par les composants mutualisés de #162 (`DoubleNavigationStructuree`) ; la navigation V9 de #108 (16/10 : `NavigationSections`, sommaire repliable, § 2 bis de R-UX-LONG) n'est pas reprise.
+
+**Le contexte** — #108 était prête le 16/10 (CI verte sur `2041b80`) mais en conflit avec `main` après #162 (double navigation mutualisée) et sans décision sur les droits des médias ni sur l'échéance D15. Le rapport en lecture seule du 17/10 a ramené la publication à cinq arbitrages, tranchés par ce GO.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR, à une autre landing, aux fiches machines, aux formulaires ou au Worker.
+- La tenir pour une validation de Sébastien, ou ajouter toute nouvelle promesse commerciale substantielle ou fonctionnalité produit non établie sous son couvert.
+- Modifier les valeurs commerciales du sélecteur, créer une page ou une URL, traduire en entier EN ou de-ch.
+- Fusionner ou publier sans GO distinct ; publier avant le 28/10/2026 sans nouvelle décision expresse de Laurent.
+- Généraliser la double navigation à d'autres pages.
+- Tenir les droits à l'image des personnes visibles dans le film V01 pour vérifiés.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #105 (landing IA photo produit), droits des visuels Orbitvu et publication FR seule
 
 **Décidé par** : Laurent — « PACKSHOTCREATOR V10 — GO REPRISE ET FINALISATION PR #105 » et « PACKSHOTCREATOR V10 — GO_MERGE + GO_PUBLICATION #105 IA ORBITVU », 17/10/2026 ; tête QA `9883fd6`
