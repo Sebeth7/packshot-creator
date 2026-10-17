@@ -25,6 +25,30 @@ Append-only. Plus récent en haut.
 
 ---
 
+## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #104 (hub bijoux, version C1) et QA substitutive au contrôle Chrome prépublication
+
+**Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL #104 BIJOUX », 17/10/2026 ; tête éditoriale de référence `1878ba8`
+**Statut** : en vigueur pour le seul périmètre de #104 ; épuisée par sa fusion et sa publication. Aucun numéro attribué ici (même règle que les entrées voisines).
+
+**La décision** —
+1. **D13/D42, exception limitée à #104** : Laurent accepte, sous sa responsabilité éditoriale, les textes et les affirmations de l'entrée `bijoux-joaillerie` de `data/secteurs.ts` tels que présents dans la tête `1878ba8`, y compris la démonstration avec les bijoux du prospect (meta description, titre et texte de l'appel final). Dérogation ponctuelle, limitée à cette publication. Aucune validation n'est attribuée à Sébastien ; ses remarques éventuelles seront sollicitées ultérieurement.
+2. **Visuels** : Laurent confirme les droits d'utilisation des visuels déjà employés sur cette landing (hero `hero-secteur-bijoux`, visuels des fiches Alphashot Micro Pro v2 et Alphashot Pro G2). Aucun remplacement ni nouvelle génération de média.
+3. **QA substitutive propre à #104** : la QA Chrome du 16/10 (`PASS_WITH_RESERVES`, 0 régression bloquante ; SHA de la Preview non prouvé par le rapport) et les contrôles locaux des neuf corrections éditoriales de `1878ba8` (1 440, 1 024, 768, 390 px : aucun débordement, aucune erreur, CTA du hero dans le premier écran sauf à 390 px comme sur `main` ; HTML : seuls les hubs bijoux FR et EN changent ; `FAQPage` = FAQ visible) remplacent un nouveau contrôle Chrome prépublication. Le contrôle visuel de `www` est regroupé après les publications.
+4. **Gabarit commun** : le CTA « Demander un devis gratuit » n'est pas modifié par #104 ; décision réservée au propriétaire unique du gabarit (#158, #107).
+
+**Effet sur D15** — La publication intervient sans attendre l'échéance de D15 et sans validation explicite de Sébastien de l'engagement « démonstration avec les bijoux du prospect », sur la seule autorité de ce GO final de Laurent.
+
+**Le contexte** — #104 C1 (gabarit commun, entrée de f9a6d13) : reprise le 16/10, fichiers V1 non rendus retirés (`8e00893`), décision métier de Laurent sur la démonstration (`e8d1dba`), finition éditoriale (`1878ba8`), `main` `dd33884` intégré (`eea9f04`). Mail de Laurent à Sébastien envoyé le 16/10 ; aucune réponse consignée.
+
+**Ce qu'elle interdit** —
+- L'étendre à une autre PR (#107, #108, #158, #162), au gabarit commun, à une autre entrée de `data/secteurs.ts` ou aux contenus de-ch.
+- La tenir pour une validation de Sébastien.
+- Lever le `noindex` D9 de `/en/industrie/bijoux-joaillerie` ou traduire la page.
+- Annoncer `www` vérifié avant la QA groupée.
+- Réutiliser la substitution de QA pour une autre PR sans exception écrite propre.
+
+---
+
 ## D(numéro à attribuer) · 2026-10-17 · Exception ponctuelle D13/D42 pour #107 (hub vin-spiritueux), droits des illustrations confirmés et QA locale substitutive à la Preview (SSO)
 
 **Décidé par** : Laurent — « PACKSHOTCREATOR V9 — GO FINAL PR #107 VIN & SPIRITUEUX », 17/10/2026 ; tête éditoriale de référence `e4ba732`
