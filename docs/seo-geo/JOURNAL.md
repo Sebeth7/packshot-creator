@@ -316,6 +316,9 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 **QA_CHROME_160 = PASS_WITH_RESERVES** (Laurent, Chrome, 6 articles, sans régression bloquante). Seul défaut corrigé : FAQ 2 de 06, « the smallest details36. » → « the smallest details. » (appel de note parasite, déjà présent sur `main`). Les autres anomalies relevées sont préexistantes, hors périmètre, conservées en réserve. Les cinq autres articles n'ont pas changé depuis la QA : QA réutilisée.
 **Vérifié** — 06 : FAQ visible et JSON-LD FAQPage identiques sur le build local ; CI et Preview : voir la PR. **Non regardé** — `www` (R4). GO_MERGE_160 et GO_PUBLICATION_160 : NON à ce stade.
 
+**MàJ 17/10 (sortie)** — GO final de Laurent (« PACKSHOTCREATOR V9 — GO FINAL PR #160 ») : GO_CODE_SORTIE_160, GO_PR_PUSH_SORTIE_160, GO_MERGE_160 et GO_PUBLICATION_160 sous conditions. Preuves acquises : CI 4/4 sur `ab60f21` ; QA_160_FAQ = PASS sur la Preview (absence de « details36 », FAQ visible et JSON-LD cohérents). `main` `1d1d970` (#161, ALT) fusionné dans la branche sans conflit (`7b19f5c`) ; aucun des six JSON EN n'est touché par #161.
+**Vérifié** — Les six JSON EN sont identiques octet pour octet à `ab60f21` ; le diff de la PR contre `main` se limite à ces six fichiers et à la documentation (JOURNAL, ETAT, DECISIONS). Exception D13/D42 de #160 inscrite dans DECISIONS. **Suite** — Fusion, puis contrôle `sysnext` des six URL EN ; SHA de fusion et résultats consignés dans la PR (pas de commit supplémentaire sur `main`). `www` réservé à la campagne Chrome groupée de Laurent : non vérifié.
+
 ## 2026-10-15 · #152 — finition linguistique EN des articles L1 à L4 (Audit B), Draft · Claude de Laurent
 
 **Chantier** : Audit B (`ec2b4c6`), lots L1 à L4 | **PR** : #152 (Draft, « DO NOT MERGE ») | **Commit** : `b3df50e`
