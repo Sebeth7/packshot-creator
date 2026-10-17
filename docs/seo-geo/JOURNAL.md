@@ -34,6 +34,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-16 · Lot V1-ALT : 131 ALT Webflow remplacés dans 52 articles (FR 68, EN 62, de-ch 1), Draft · Claude de Laurent
+
+**Chantier** : lot V1-ALT de la qualification V9 (« PACKSHOTCREATOR V9 — GO CIBLÉ ALT WEBFLOW », 16/10/2026 : GO_CODE_ALT et GO_PR_PUSH_ALT = OUI, GO_MERGE et GO_PUBLICATION = NON) | **PR** : cette PR | **Commit** : ce commit
+
+**Quoi** — Substitution ciblée de la seule valeur de l'attribut `alt` de 131 balises `<img>` (valeur Webflow `__wf_reserved_inherit` pour 129, `__wf_reserved_decorative` pour 2, remplacée par une description) dans 52 fichiers `content/blog/{fr,en,de-ch}/*.json`. Aucun autre caractère modifié.
+
+**Pourquoi** — 159 images d'articles portaient une valeur Webflow réservée, lue telle quelle comme texte alternatif. Référence : `01_ALT_PROPOSITIONS.csv` du dossier ALT du 16/10 (SHA-256 du ZIP `3b4ecad5…0377`), après examen visuel documenté. Exception D13/D42 accordée par Laurent, limitée aux 68 descriptions ALT FR de ce lot ; elle ne valide aucune caractéristique produit, performance, chiffre ni argument commercial.
+
+**Fichiers** — 52 fichiers `content/blog/` (FR 28, EN 23, de-ch 1), `docs/seo-geo/JOURNAL.md`.
+
+**Effet attendu** — Après fusion et déploiement : textes alternatifs signifiants sur ces 131 images. Une fois #159 intégrée, les 4 occurrences MP4 (3 médias) deviennent l'`aria-label` de leur balise `<video>`.
+
+**Vérifié** — Chaque substitution conditionnée à la valeur actuelle de la base du 16/10 : 131 appliquées, 0 conflit. Diff : 52 fichiers, 52 lignes ±, contenu identique une fois les valeurs `alt` neutralisées. `node scripts/seo/verifier-json.mjs` (198 JSON valides), `npx tsc --noEmit`, `npx vitest run` (1047/1047), `npx next build` : verts. Rendu local (`next start`) : 131/131 ALT présents dans le HTML des 52 pages, aucune valeur `__wf_reserved` restante sur ces pages ; 4 balises MP4 inchangées hors `alt`. Fonction `transformVideoImages` de #159 (`1633293`) appliquée aux 4 fichiers MP4 : `aria-label` signifiant sur la branche, absent sur `main`. Parcours Playwright de la CI (sélecteur, sommaire, pages longues, consentement) : 101/101.
+**Supposé** — Que `main` n'ait pas bougé sur ces 52 fichiers entre la vérification et la fusion (base `c92740c`).
+**Non regardé** — `www` et `sysnext` (aucun déploiement : GO_PUBLICATION = NON ; R4 pour `www`). Images hors articles de blog. Pertinence linguistique EN/de-ch non revue par un natif.
+
+**Suite** — 28 valeurs `__wf_reserved` restent, hors périmètre : 8 jumeaux FR/de-CH de l'article EN protégé par D35, 10 dans les deux articles Amazon, 6 dans les fichiers EN réservés à la session Traductions, 4 dans l'article EN protégé par D35. GO_MERGE et GO_PUBLICATION à demander séparément ; #159 non fusionnée.
+
+---
+
 ## 2026-10-16 · Landing occasion : contrôle `www` manuel de l'article 9 (#155), FR et EN, PASS (contrôle humain du contenu, rapporté par Laurent) · Claude de Laurent
 
 **Chantier** : landing occasion Orbitvu, suite de la vérification post-déploiement de #155 (« CONFIRMATION WWW #155 ET GO FINAL #157 », 16/10/2026) | **PR** : #157 | **Commit** : ce commit
