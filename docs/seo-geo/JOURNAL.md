@@ -74,9 +74,29 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Studios — parcours d'une référence en quatre étapes et note XL G2 standard / MDC (#168) · Claude de Laurent
+
+**Chantier** : enrichissement Studios du 17/10, second niveau (« GO_CODE / GO_PR_PUSH — ENRICHISSEMENT STUDIOS #168 » de Laurent ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon, même branche | **Base** : `main` `db3b34f`
+
+**Quoi** — Dans la section « À quoi sert un studio photo automatisé ? », sous les quatre cartes hors e-commerce (conservées) : un H3 « Le parcours d'une référence, en quatre étapes » (liste numérotée en 2 × 2, étapes de Laurent mot pour mot) et une note « Mesures physiques » : l'Alphashot XL G2 standard produit les images sans mesurer ; sa variante MDC ajoute, dans le même cycle, les dimensions par deux lasers et la pesée sur balance intégrée. Aucun H2, aucune ancre, aucun visuel.
+
+**Pourquoi** — Enrichissement métier demandé par Laurent à partir des recherches du 17/10.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` (+30 lignes) ; `docs/seo-geo/ETAT.md` (ligne #168 en B) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : un H3, quatre étapes et une note de plus sur `/fr/studios-photo-automatises` ; title, meta description, canonical, hreflang, JSON-LD, ancres, CTA, formulaire et médias inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — Sources primaires Orbitvu lues le 17/10 (pages publiques, aucun appel payant) : `orbitvu.com/why-orbitvu/how-it-works/` (« Start by scanning the unique product code », réglages d'éclairage et de scène en un clic, « Export and publish online to multiple pre-defined locations ») ; `orbitvu.com/products/alphashot-xl-g2` (« Alphashot XL G2 MDC - all of the above, plus dimensions and weight captured in the same cycle », « Two independent lasers measure L × W × H », balance de 25 kg). Vérification par l'opérateur : formulation existante de la page (`ROLE_OPERATEUR`). `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu contre la tête précédente : 383 pages sur 384 identiques, seule `/fr/studios-photo-automatises` change, marqueurs SEO identiques ; Playwright Studios de `navigation-pages-longues` 14/14 ; captures à 1 440, 1 280, 1 024 et 390 px : aucun débordement, aucun recouvrement du sommaire latéral.
+**Supposé** — « par saisie » : la saisie manuelle de la référence n'est pas décrite mot pour mot par la page Orbitvu lue ; formulation de Laurent conservée.
+**Non regardé** — Preview Vercel (SSO) et `www` (R4) ; taille mesurable de la variante MDC et précision de la balance, publiées par Orbitvu mais non affichées (hors référentiel D45). Aucun visuel ajouté : le seul média Orbitvu proche (`machines/alphashot-xl-g2/hw-turntable.avif`, plateau de la variante MDC) n'illustre pas le parcours et n'entre pas dans la confirmation de droits du 17/10 pour cette page.
+
+**Suite** — CI et Preview de #168 ; QA Chrome ciblée de la section ; GO_MERGE et GO_PUBLICATION distincts.
+
+---
+
 ## 2026-10-17 · Studios — bloc « Des usages bien au-delà du e-commerce » (retour de Sébastien) · Claude de Laurent
 
-**Chantier** : complément Studios demandé par Sébastien le 17/10, relayé par Laurent (GO_CODE puis GO_PR/PUSH du 17/10 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : à ouvrir depuis `claude/friendly-ritchie-aop8qn` | **Base** : `main` `db3b34f`
+**Chantier** : complément Studios demandé par Sébastien le 17/10, relayé par Laurent (GO_CODE puis GO_PR/PUSH du 17/10 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon, branche `claude/friendly-ritchie-aop8qn` | **Base** : `main` `db3b34f`
 
 **Quoi** — Dans la section « À quoi sert un studio photo automatisé ? » de la landing FR (`LandingStudios.tsx`), sous le texte et le visuel : un H3 « Des usages bien au-delà du e-commerce », l'introduction fournie par Laurent et quatre usages (contrôle qualité, documentation technique, logistique et pièces détachées, SAV). Aucun H2, aucune ancre, aucun média ; les sommaires D44 ne listent que les titres de section.
 

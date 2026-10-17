@@ -137,6 +137,18 @@ const USAGES_HORS_ECOMMERCE = [
   { nom: 'SAV', texte: 'Documentation de l’état d’un produit à réception et après intervention, en conservant les fichiers d’origine.' },
 ] as const;
 
+/**
+ * Parcours d'une référence (enrichissement du 17/10/2026, GO_CODE de Laurent sur #168) : étapes publiées par Orbitvu
+ * (orbitvu.com/why-orbitvu/how-it-works : scan du code produit, modèles d'éclairage et de scène, export vers des
+ * destinations prédéfinies) ; vérification par l'opérateur comme dans `ROLE_OPERATEUR`.
+ */
+const PARCOURS = [
+  'Identifier une référence produit, par saisie ou scan d’un code-barres.',
+  'Rappeler un modèle de prise de vue : cadrage, lumière, traitements.',
+  'Photographier les vues nécessaires et faire vérifier les images par l’opérateur.',
+  'Associer les images à la référence et les exporter vers les destinations configurées.',
+] as const;
+
 const FONCTIONS_IA = [
   { nom: 'AI Photo Assistant', texte: 'reconnaît le type de produit et propose plusieurs réglages d’éclairage. Disponible sur l’Alphashot Pro G2 et l’Alphashot XL G2.' },
   { nom: 'AI Masking', texte: 'aide à détacher le produit de son fond pendant la capture, avec vérification du résultat.' },
@@ -424,6 +436,24 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
               </li>
             ))}
           </ul>
+          {/* Parcours d'une référence : H3 de la section, pas une entrée des sommaires ; aucun visuel ajouté. */}
+          <h3 className="mt-12 text-2xl font-heading font-bold text-heading-dark mb-4 text-balance">Le parcours d’une référence, en quatre étapes</h3>
+          <ol className="grid gap-3 sm:grid-cols-2">
+            {PARCOURS.map((etape, i) => (
+              <li key={etape} className="flex gap-3 rounded-xl border border-neutral-200 bg-white p-4 text-neutral-medium leading-relaxed">
+                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-very-peri-100 text-sm font-semibold text-very-peri-600 tabular-nums" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <span>{etape}</span>
+              </li>
+            ))}
+          </ol>
+          {/* XL G2 standard / MDC : orbitvu.com/products/alphashot-xl-g2 (« plus dimensions and weight captured in the same cycle »). */}
+          <p className="mt-4 max-w-3xl text-neutral-medium leading-relaxed">
+            <strong className="font-semibold text-heading-dark">Mesures physiques.</strong> L’Alphashot XL G2 standard produit les
+            images sans mesurer le produit. Sa variante MDC ajoute, dans le même cycle, la mesure des dimensions par deux lasers
+            et la pesée sur une balance intégrée.
+          </p>
         </div>
       </section>
 
