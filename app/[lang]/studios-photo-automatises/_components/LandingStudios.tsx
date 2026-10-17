@@ -123,6 +123,20 @@ const ROLE_OPERATEUR = [
   'valide les images avant leur envoi.',
 ] as const;
 
+/**
+ * Usages hors e-commerce (retour de Sébastien du 17/10/2026, GO_CODE de Laurent). Aucune détection automatique des
+ * défauts, aucune traçabilité certifiée, aucune valeur probante promise ; XL G2 : caractéristiques du référentiel D45.
+ */
+const USAGES_HORS_ECOMMERCE = [
+  { nom: 'Contrôle qualité', texte: 'Des séries d’images comparables, prises avec les mêmes réglages, facilitent le contrôle visuel par vos équipes.' },
+  { nom: 'Documentation technique', texte: 'Photographie de composants, d’assemblages et d’équipements, avec le même cadrage et le même éclairage d’une prise de vue à l’autre.' },
+  {
+    nom: 'Logistique et pièces détachées',
+    texte: 'Identification visuelle, catalogage et gestion des références à partir de photos homogènes. Pour les pièces volumineuses, l’Alphashot XL G2 accepte des objets jusqu’à 60 × 40 × 70 cm et 25 kg.',
+  },
+  { nom: 'SAV', texte: 'Documentation de l’état d’un produit à réception et après intervention, en conservant les fichiers d’origine.' },
+] as const;
+
 const FONCTIONS_IA = [
   { nom: 'AI Photo Assistant', texte: 'reconnaît le type de produit et propose plusieurs réglages d’éclairage. Disponible sur l’Alphashot Pro G2 et l’Alphashot XL G2.' },
   { nom: 'AI Masking', texte: 'aide à détacher le produit de son fond pendant la capture, avec vérification du résultat.' },
@@ -393,6 +407,23 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             legende="Alphashot XL G2, portes ouvertes : chambre de prise de vue, éclairage et appareil photo réunis dans le studio (visuel Orbitvu)."
             sizes="(min-width: 1024px) 600px, 100vw"
           />
+        </div>
+        {/* Usages hors e-commerce : H3 de la section, pas une entrée des sommaires. */}
+        <div className={`${conteneur} mt-14 lg:mt-20`}>
+          <h3 className="text-2xl font-heading font-bold text-heading-dark mb-3 text-balance">Des usages bien au-delà du e-commerce</h3>
+          <p className={`${PARAGRAPHE} max-w-3xl mb-6`}>
+            Les studios Orbitvu ne servent pas uniquement à produire des images pour les catalogues et les boutiques en ligne. Ils
+            peuvent également fournir des photographies homogènes pour documenter des produits et des pièces tout au long de leur
+            cycle de vie.
+          </p>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {USAGES_HORS_ECOMMERCE.map((u) => (
+              <li key={u.nom} className="rounded-xl bg-future-dusk-0 border border-neutral-100 p-5 text-neutral-medium leading-relaxed">
+                <strong className="block font-semibold text-heading-dark mb-1">{u.nom}</strong>
+                {u.texte}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
