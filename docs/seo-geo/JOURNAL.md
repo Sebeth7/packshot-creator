@@ -74,6 +74,26 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Studios — bandeau résultats sous le hero (pilote WOW, maquette A) · Claude de Laurent
+
+**Chantier** : « EXÉCUTION PILOTE WOW STUDIOS #168 » (GO_CODE_WOW_STUDIOS, GO_PR_PUSH_WOW_STUDIOS de Laurent ; lot PSC_WOW_01_STUDIOS du 17/10, maquette A ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon | **Base** : `main` `db3b34f`
+
+**Quoi** — `LandingStudios.tsx` seul : les quatre exemples V12 quittent la galerie de « Ce que vous obtenez » pour un bandeau entre le hero et la chaîne S1 (fauteuil en photo principale ; manteau, mascara, appareil photo en vignettes ; une légende de provenance par photo, texte inchangé, décision #108 point 5 ; surtitre, accroche « La qualité se voit. La production se maîtrise. », une phrase et le lien « Demander une démonstration avec vos produits » vers `#demonstration`). Ancienne galerie retirée, texte et lien de la section conservés. Aucun nouveau média ni composant partagé ; les JPEG d'aperçu du lot ne sont pas utilisés.
+
+**Pourquoi** — Mettre en valeur les résultats photographiques plus tôt : première photo à 918 px au lieu de 6 046 px à 1 440 × 900, à 1 318 px au lieu de 9 160 px à 390 × 844.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` ; `docs/seo-geo/ETAT.md` (ligne #168) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : bandeau visible juste sous le hero ; H1, 12 H2, title, meta, canonical, hreflang, JSON-LD, ALT, film, CTA, formulaire et navigation D44 inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu contre `2eb4f56` : 383 pages sur 384 identiques, marqueurs SEO identiques ; titres H1/H2/H3 identiques (1, 12, 36) ; ALT identiques ; 4 légendes « Exemple de résultat présenté par Orbitvu pour… » ; chaque photo présente une fois ; ordre H1 < bandeau < chaîne S1 ; Playwright Studios de `navigation-pages-longues` 14/14 ; build local, Chromium, 3 passages : LCP toujours l'affiche du film (médiane 196 → 220 ms à 1 440 px, 236 → 208 ms à 390 px, écart dans le bruit local), CLS au chargement 0 avant et après, CLS après défilement complet inchangé (0,0008 à 1 440 px, 0 à 390 px) ; captures à 1 440 et 390 px sans débordement. Lien du bandeau corrigé à 390 px (flèche solidaire du dernier mot).
+**Supposé** — Aucun.
+**Non regardé** — Preview (SSO) et `www` (R4) ; mesures de terrain (CrUX) ; validation éditoriale de l'accroche (proposition de Laurent, non approuvée par Sébastien).
+
+**Suite** — CI de la nouvelle tête ; QA Chrome ; GO_MERGE_168 et GO_PUBLICATION_168 distincts.
+
+---
+
 ## 2026-10-17 · Studios — finition qualitative de #168 : redondances allégées, légendes, typographie · Claude de Laurent
 
 **Chantier** : « FINITION QUALITATIVE #168 » de Laurent (GO du périmètre #168 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon | **Base** : `main` `db3b34f`

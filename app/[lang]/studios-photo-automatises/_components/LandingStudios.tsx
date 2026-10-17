@@ -90,12 +90,15 @@ const VISUELS = {
   },
 } satisfies Record<string, Visuel>;
 
-/** V12 : packshots Orbitvu publiés sur les fiches machines, présentés comme exemples de résultat. */
+/**
+ * V12 : packshots Orbitvu publiés sur les fiches machines, présentés comme exemples de résultat. Ordre du bandeau
+ * résultats : le fauteuil en photo principale (aucune marque tierce visible), puis les trois vignettes.
+ */
 const EXEMPLES = [
-  { src: '/images/machines/alphashot-pro-g2/packshot-mascara.avif', w: 1080, h: 1080, alt: 'Mascara rouge sur fond blanc', machine: 'Alphashot Pro G2' },
-  { src: '/images/machines/alphashot-360/packshot-camera.avif', w: 1080, h: 1080, alt: 'Appareil photo instantané blanc sur fond blanc', machine: 'Alphashot 360' },
   { src: '/images/machines/alphastudio-compact/packshot-chair.avif', w: 1080, h: 1080, alt: 'Fauteuil jaune sur fond blanc', machine: 'Alphastudio Compact' },
   { src: '/images/machines/alphatable-alphadesk/packshot-coat.avif', w: 1200, h: 1200, alt: 'Manteau rose présenté à plat sur fond blanc', machine: 'Alphatable' },
+  { src: '/images/machines/alphashot-pro-g2/packshot-mascara.avif', w: 1080, h: 1080, alt: 'Mascara rouge sur fond blanc', machine: 'Alphashot Pro G2' },
+  { src: '/images/machines/alphashot-360/packshot-camera.avif', w: 1080, h: 1080, alt: 'Appareil photo instantané blanc sur fond blanc', machine: 'Alphashot 360' },
 ] as const;
 
 const CHAINE = [
@@ -337,6 +340,65 @@ function SchemaCollection() {
   );
 }
 
+/**
+ * Bandeau résultats (pilote du 17/10/2026, maquette A du lot PSC_WOW_01_STUDIOS, GO_CODE_WOW_STUDIOS) : les quatre
+ * exemples V12, déplacés depuis « Ce que vous obtenez », entre le hero et la chaîne S1 ; fauteuil en photo
+ * principale, trois vignettes. Une légende de provenance par photo (décision #108, point 5). Aucun titre : H1 et H2
+ * inchangés, la chaîne S1 précède toujours la première section (D44). L'accroche est une proposition éditoriale
+ * de Laurent, à valider.
+ */
+function BandeauResultats() {
+  const [principal, ...vignettes] = EXEMPLES;
+  return (
+    <section aria-label="Exemples de résultats photographiques Orbitvu" className="bg-white py-12 lg:py-20">
+      <div className={`${CONTENEUR} grid gap-8 lg:grid-cols-12 lg:gap-x-12`}>
+        <div className="lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-very-peri-600">Résultats photographiques</p>
+          <p className="mb-4 font-heading text-3xl lg:text-5xl font-bold leading-tight text-heading-dark text-balance">
+            La qualité se voit. La production se maîtrise.
+          </p>
+          <p className={PARAGRAPHE}>Des photographies homogènes sur fond blanc, produites en interne par votre équipe avec un studio Orbitvu.</p>
+        </div>
+        <figure className="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:self-center">
+          <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+            <Image
+              src={principal.src}
+              alt={principal.alt}
+              width={principal.w}
+              height={principal.h}
+              sizes="(min-width: 1280px) 592px, (min-width: 1024px) 46vw, calc(100vw - 32px)"
+              loading="lazy"
+              className="block w-full h-auto"
+            />
+          </div>
+          <figcaption className="mt-2 text-sm text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {principal.machine}.</figcaption>
+        </figure>
+        <div className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:self-start">
+          <ul className="grid grid-cols-3 gap-3">
+            {vignettes.map((e) => (
+              <li key={e.src}>
+                <figure>
+                  <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+                    <Image src={e.src} alt={e.alt} width={e.w} height={e.h} sizes="(min-width: 1280px) 189px, (min-width: 1024px) 15vw, 30vw" loading="lazy" className="block w-full h-auto" />
+                  </div>
+                  <figcaption className="mt-2 text-xs leading-snug text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {e.machine}.</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          {/* Lien en ligne, pas en flex : sur deux lignes à 390 px, la flèche suit le dernier mot. */}
+          <p className="mt-6">
+            <a href="#demonstration" className={LIEN.replace('inline-flex items-center gap-1.5', 'inline')}>
+              Demander une démonstration avec vos produits
+              <ArrowRight className="ml-1.5 inline h-4 w-4 align-[-0.125em]" aria-hidden="true" />
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const ENTREES = Object.entries(TITRES).map(([id, libelle]) => ({ id, libelle }));
 
 /**
@@ -377,6 +439,9 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
           </figure>
         }
       />
+
+      {/* 1 bis. Résultats : les quatre exemples V12, avant la chaîne. */}
+      <BandeauResultats />
 
       {/* 2. S1 : chaîne de production. */}
       <Chaine />
@@ -554,18 +619,6 @@ export default function LandingStudios({ lang }: { lang: 'fr' }) {
             poids du produit sont mesurés dans le même cycle que les photos, par deux lasers et une balance intégrée ; la
             version standard ne mesure pas.
           </p>
-          <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {EXEMPLES.map((e) => (
-              <li key={e.src}>
-                <figure>
-                  <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white">
-                    <Image src={e.src} alt={e.alt} width={e.w} height={e.h} sizes="(min-width: 1024px) 296px, 50vw" loading="lazy" className="block w-full h-auto" />
-                  </div>
-                  <figcaption className="mt-2 text-sm text-neutral-medium">Exemple de résultat présenté par Orbitvu pour {e.machine}.</figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
           <p className="mt-6">
             <Link href={fiche('alphashot-360')} className={LIEN}>
               Pour les vues à 360°, voir l’Alphashot 360 <ArrowRight className="h-4 w-4" aria-hidden="true" />
