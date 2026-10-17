@@ -402,7 +402,7 @@
       },
       "e3": {
         "titre": "Modèles et séries",
-        "texte": "Réglages de prise de vue et de post-production enregistrés en modèles ; une correction s’applique à toute la série.",
+        "texte": "Réglages de prise de vue et de post-production enregistrés en modèles ; la post-production s’applique automatiquement selon le modèle choisi.",
         "outil": ""
       },
       "e4": {
@@ -464,7 +464,7 @@
       "action": "AI Retoucher retire les reflets, nettoie les imperfections, ajuste l’étalonnage des couleurs et ajoute une ombre, selon une consigne écrite.",
       "resultat": "Une image retouchée, à contrôler avant usage.",
       "utilite": "La consigne s’enregistre en préréglage et se réutilise sur les séries suivantes.",
-      "avantLibelle": "Photo prise au studio",
+      "avantLibelle": "Photo d’origine",
       "apresLibelle": "Image retouchée",
       "avantAlt": "Bague en or à pierre bleue taillée en poire, avant retouche, avec des reflets sur la pierre",
       "apresAlt": "La même bague après AI Retoucher, reflets réduits",

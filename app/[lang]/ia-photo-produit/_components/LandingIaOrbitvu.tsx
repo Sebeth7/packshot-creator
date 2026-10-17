@@ -15,7 +15,7 @@ import { tx } from '@/lib/locale-text';
  * Landing IA photo produit (refonte du 07/10/2026 ; deuxième passe, verdict lexical et refonte
  * visuelle du 08/10/2026). Récit : produit réel → capture → action de l'IA → résultat → usage.
  * Chaque fonction IA répond à quatre questions (entrée, ce que fait l'IA, résultat, utilité).
- * Faits produit relus le 08/10/2026 sur orbitvu.com (voir JOURNAL). Texte : namespace
+ * Faits produit relus le 08/10/2026 sur orbitvu.com, fresh-check ciblé le 17/10/2026 (voir JOURNAL). Texte : namespace
  * `iaPhotoProduit` de messages/fr.json. Servie en FR seulement (D42, étape 7) : voir page.tsx.
  *
  * Navigation : forme C de D44 (schéma du workflow avec liens vers les sections), sans
@@ -26,8 +26,8 @@ import { tx } from '@/lib/locale-text';
  *   traitement. Capture et AI OCR : fiche Alphashot XL G2 déjà publiée sur le site
  *   (public/images/ia-photo-produit/station-*). AI Photo Assistant, AI Masking, AI Retoucher :
  *   exemples de orbitvu.com/software/ai, téléchargés le 08/10/2026
- *   (public/images/ia-photo-produit/orbitvu-*), autorisation de réutilisation à confirmer avant
- *   publication (voir JOURNAL) ;
+ *   (public/images/ia-photo-produit/orbitvu-*) ; droits de réutilisation pour cette page
+ *   confirmés par Laurent le 17/10/2026 (fait métier, voir JOURNAL) ;
  * - illustrations éditoriales V105-E1 à E3 (public/images/ia-photo-produit/v105-*) : générées
  *   par ChatGPT (pack de Laurent du 08/10/2026), produit et personne fictifs, légendées
  *   « Illustration générée par IA ». Elles ne prouvent aucun résultat Orbitvu.

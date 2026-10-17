@@ -34,6 +34,37 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Landing IA Orbitvu (#105) — reprise : resynchronisation, fresh-check ciblé, droits des visuels Orbitvu · Claude de Laurent
+
+**Chantier** : vague 1, PR-3, `/fr/ia-photo-produit` (FR) ; « PACKSHOTCREATOR V10 — GO REPRISE ET FINALISATION PR #105 » du 17/10 (`GO_REPRISE_105`, `GO_CODE_CIBLÉ_105`, `GO_RESYNC_105`, `GO_PR_PUSH_105` = OUI ; `GO_MERGE_105` et `GO_PUBLICATION_105` non donnés) | **PR** : #105 | **Base** : `main` `1fc2230`
+
+**Quoi** — `main` `1fc2230` intégré par fusion (`bd056d0`), JOURNAL et ETAT par union. Deux nuances de texte issues du fresh-check ; droits de réutilisation des visuels Orbitvu confirmés par Laurent ; exception D13/D42 propre à #105 proposée dans la description de la PR, non inscrite dans `DECISIONS.md` avant la décision de Laurent.
+
+**Pourquoi** — Gel du 12/10 levé pour #105 seule (décision de Laurent du 17/10) ; la branche partait de `main` `06b18e2`, 410 commits plus tôt.
+
+**Fichiers** — `messages/fr.json` (bloc `iaPhotoProduit` : `workflow.e3.texte`, `retoucher.avantLibelle`), `app/[lang]/ia-photo-produit/_components/LandingIaOrbitvu.tsx` (commentaire de provenance seul), `docs/seo-geo/ETAT.md`, `docs/seo-geo/JOURNAL.md`.
+
+- Fusion : conflits limités à `JOURNAL.md` (entrée #105 du 07/10 replacée avant PACK-D9, aucune ligne de `main` retirée) et `ETAT.md` (lignes #70 et #119 de `main` conservées, ligne #105 ajoutée). Registre D44 (#162) : l'exception `landing-ia` / `fr` reste la seule différence ; la famille `landing-ia` n'a ni `secondeForme` ni pilote, la page FR ne reçoit aucune navigation D44 ; aucune autre règle modifiée. #159 (MP4) et #161 (ALT) : aucun fichier commun. #163 (brouillon) : `SchemaOrg.tsx` non touché par #105. #108 (brouillon) touche les mêmes fichiers de registre D44 et `messages/fr.json`, hors de l'entrée `landing-ia` et du bloc `iaPhotoProduit`.
+- Fresh-check du 17/10 (orbitvu.com : `/software/ai`, `/software/orbitvu-station`, `/software/orbitvu-station-trial`, note de version 26.2 ; aucune note de version plus récente dans le blog) :
+  - AI Photo Assistant : « available on the Alphashot Pro G2 and Alphashot XL G2 » ; inchangé.
+  - AI Masking : « removes the background right in the capture process », « works directly on your high-resolution images », « uniform edges and clean silhouettes across your batch » ; 5 crédits par image (26.2) ; inchangé.
+  - AI Retoucher : reflets, imperfections, étalonnage des couleurs, ombre, « while keeping your real product faithfully intact » ; consignes (« prompts ») et préréglages (26.2) ; « (Beta)* » dans la note 26.2 seulement.
+  - AI OCR : références, contenus, descriptions ; « (Beta)* » dans la note 26.2 seulement, pages produit sans mention.
+  - Abonnement : outils IA réservés aux abonnements ; Enterprise : 4 500 crédits par mois, API, mode hors ligne, support prioritaire ; essai de 30 jours sans carte bancaire, compte Orbitvu Cloud et appareil Canon ; inchangé.
+  - « une correction s’applique à toute la série » (chaîne, étape « Modèles et séries ») : non retrouvé ; la page Station écrit « applies post-production tools automatically according to the selected template ». Texte précisé : « la post-production s’applique automatiquement selon le modèle choisi ».
+  - Libellé « Photo prise au studio » sur l'avant de l'exemple AI Retoucher : Orbitvu ne décrit pas les conditions de prise de vue de l'exemple. Libellé neutre : « Photo d’origine ». « Photo issue de la capture » (AI Masking) conservé : la section Orbitvu situe AI Masking dans la capture.
+- Droits : fait métier de Laurent du 17/10 — PackshotCreator dispose des droits d'utilisation des visuels Orbitvu de cette page (exemples de orbitvu.com/software/ai, captures de la fiche Alphashot XL G2), dans leur présentation prévue. `ORBITVU_REUSE_PERMISSION` levé pour ces médias ; légendes, provenance et distinction entre exemples officiels, captures d'Orbitvu Station et illustrations générées par IA inchangées ; aucun droit n'est déduit pour les marques tierces visibles (exemple AI Masking) ni hors de #105.
+
+**Effet attendu** — À la fusion : nouvelle version de `/fr/ia-photo-produit` en production, même URL ; EN, de-ch et autres pages inchangées.
+
+**Vérifié** — `main` `1fc2230` et tête de départ `f5ca7dd` (locale = distante). `git diff origin/main` : 23 fichiers, tous propres à #105 (composant et `page.tsx` de la page IA, bloc `iaPhotoProduit`, exception D44 et ses deux tests, 15 AVIF, JOURNAL, ETAT). `node scripts/seo/verifier-json.mjs` : 198 JSON valides ; `npx tsc --noEmit` : 0 ; ESLint des 5 fichiers TypeScript de la branche : 0 ; Vitest : 1 056/1 056 ; `npx next build` (R1, variables factices) : code 0. HTML prérendu comparé à un build de `main` `1fc2230` : 383 pages sur 384 identiques, seule `fr/ia-photo-produit` diffère. Chromium à 1 440, 1 024, 768 et 390 px : 1 H1, 7 H2, 16 images chargées avec `alt`, aucun débordement, aucune erreur console, aucun élément collant, 0 marqueur. Playwright, 7 specs (navigation des pages longues, responsive, débordement mobile, SEO, destinations des CTA, liens internes, liens externes) : 351 réussis, 22 échecs, tous présents sur le build de `main` ; 3 échecs de `main` résolus (`responsive`, `/fr/ia-photo-produit`).
+**Supposé** — [Inférence] Le statut bêta d'AI OCR et d'AI Retoucher est celui de la note 26.2 (juin 2026), faute de note plus récente ; cela repose sur des schémas observés.
+**Non regardé** — Preview Vercel et `www` (R4 : QA confiée à Claude pour Chrome) ; EN et de-ch ; formulaire de contact (aucun envoi).
+
+**Suite** — CI du nouveau HEAD ; QA de la Preview par Claude pour Chrome ; décision de Laurent sur l'exception D13/D42 et sur la mention bêta ; `GO_MERGE_105` et `GO_PUBLICATION_105` distincts ; information de Sébastien sur `GO_ENVOI`.
+
+---
+
 ## 2026-10-16 · U04 : retrait des réserves graphiques vides des pages secteurs · Claude de Laurent
 
 **Chantier** : U04 (audit visuel G6), finition UX sans nouveau visuel | **PR** : #<à venir> (brouillon) | **Commit** : voir PR
