@@ -74,6 +74,30 @@ décoratives : le silence sur une dimension laisse croire qu'elle a été couver
 
 ---
 
+## 2026-10-17 · Studios — finition qualitative de #168 : redondances allégées, légendes, typographie · Claude de Laurent
+
+**Chantier** : « FINITION QUALITATIVE #168 » de Laurent (GO du périmètre #168 ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon | **Base** : `main` `db3b34f`
+
+**Quoi** — `LandingStudios.tsx` seul, mêmes sections, aucun média, schéma, CTA, formulaire, métadonnée ni navigation D44 modifié :
+- « À quoi sert » : phrase de facturation (livraison, installation, formation) retirée, déjà dite dans « Ce que comprend un projet » et la FAQ ; quatre usages conservés mot pour mot ; parcours en quatre étapes conservé mot pour mot, regroupé dans un seul encadré à titre plus discret, sans cartes séparées ;
+- note « Mesures physiques » retirée de « À quoi sert » et fondue dans « Ce que vous obtenez », où elle remplace la réserve générale sur les mesures et sur AI OCR (AI OCR déjà soumis à vérification dans la section IA) : variante MDC de l'Alphashot XL G2, dimensions et poids mesurés dans le même cycle par deux lasers et une balance intégrée ; version standard sans mesure ;
+- légendes : « Film de présentation de la gamme Orbitvu. » supprimée (descriptive, hors des légendes de provenance de la décision #108, point 5) ; légende du visuel XL G2 réduite à « Alphashot XL G2 (visuel Orbitvu). » ; « visuel Orbitvu » et « Exemple de résultat présenté par Orbitvu pour… » conservés ;
+- typographie : espace insécable avant « ; : ? ! » dans les listes du composant (rôles, critères, prérequis, parcours) ; constaté sur captures : « ; » seul en fin de ligne à 1 440 px, « : » en début de ligne à 390 px.
+
+**Pourquoi** — Demande de Laurent : page plus convaincante, moins administrative et moins textuelle, sans perdre les apports de Sébastien.
+
+**Fichiers** — `app/[lang]/studios-photo-automatises/_components/LandingStudios.tsx` ; `docs/seo-geo/ETAT.md` (ligne #168) ; ce journal.
+
+**Effet attendu** — À la publication (décision distincte) : `/fr/studios-photo-automatises` un peu plus courte ; title, meta description, canonical, hreflang, JSON-LD, ancres, CTA, formulaire et médias inchangés ; EN et de-ch inchangées.
+
+**Vérifié** — `npx tsc --noEmit` vert ; ESLint sans erreur ; Vitest `studios-claims` et `registre-pages-longues` 34/34 ; `npx next build` vert ; HTML prérendu contre `eae7ade` : 383 pages sur 384 identiques, seule `/fr/studios-photo-automatises` change, marqueurs SEO identiques, 12 H2 ; Playwright Studios de `navigation-pages-longues` 14/14 ; captures à 1 440 et 390 px sans débordement.
+**Supposé** — Aucun.
+**Non regardé** — Liste des détails typographiques de la QA Chrome groupée : non reçue ; seuls les défauts constatés sur captures sont traités. Preview (SSO) et `www` (R4).
+
+**Suite** — CI de la nouvelle tête ; QA Chrome ; GO_MERGE_168 et GO_PUBLICATION_168 distincts.
+
+---
+
 ## 2026-10-17 · Studios — parcours d'une référence en quatre étapes et note XL G2 standard / MDC (#168) · Claude de Laurent
 
 **Chantier** : enrichissement Studios du 17/10, second niveau (« GO_CODE / GO_PR_PUSH — ENRICHISSEMENT STUDIOS #168 » de Laurent ; GO_MERGE et GO_PUBLICATION = NON) | **PR** : #168, brouillon, même branche | **Base** : `main` `db3b34f`
